@@ -1,0 +1,969 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/stor-config.html 
+keywords: deploy, trident, docker, trident for docker, nfs, iscsi, protcol, nfs protocol, iscsi protocol, configure host, host config, storage config, options, variables, ontap, element, aws, cvs on gcp, cvs on aws, anf, azure netapp files 
+summary: 请参见适用于您的 Astra Trident 配置的配置选项。 
+---
+= 存储配置选项
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+请参见适用于您的 Astra Trident 配置的配置选项。
+
+
+
+== 全局配置选项
+
+这些配置选项适用于所有 Astra Trident 配置，而不考虑所使用的存储平台。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `ve版本`  a| 
+配置文件版本号
+ a| 
+1.
+
+
+
+| `storageDriverName`  a| 
+存储驱动程序的名称
+ a| 
+`ontap-nas` ， `ontap-san` ， `ontap-nas-economics` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` ， `AWS-CVS` 或 `GCP-CVS`
+
+
+
+| `s存储前缀`  a| 
+卷名称的可选前缀。默认值： "netappdvp_ " 。
+ a| 
+暂存 _
+
+
+
+| `limitVolumeSize`  a| 
+卷大小的可选限制。默认值： " " （未强制实施）
+ a| 
+10 G
+
+|===
+
+TIP: 请勿对元素后端使用 `storagePrefix` （包括默认值）。默认情况下， `solidfire-san` 驱动程序将忽略此设置，而不使用前缀。我们建议使用特定的租户 ID 进行 Docker 卷映射，或者在可能已使用任何名称的情况下使用 Docker 中填充的 Docker 版本，驱动程序信息和原始名称的属性数据。
+
+您可以使用默认选项来避免在创建的每个卷上指定这些选项。`s` 选项适用于所有控制器类型。有关如何设置默认卷大小的示例，请参见 ONTAP 配置一节。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `s大小`  a| 
+新卷的可选默认大小。默认值： "1G"
+ a| 
+10 G
+
+|===
+
+
+== ONTAP 配置
+
+除了上述全局配置值之外，在使用 ONTAP 时，还可以使用以下顶级选项。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `m年` 月 日  a| 
+ONTAP 管理 LIF 的 IP 地址。您可以指定完全限定域名（ FQDN ）。
+ a| 
+10.0.0.1
+
+
+
+| `dataLIF`  a| 
+协议 LIF 的 IP 地址；如果未指定，则派生此地址。对于 `ontap-NAS` 驱动程序 * 仅 * ，您可以指定 FQDN ，在这种情况下， FQDN 将用于 NFS 挂载操作。对于 `ontap-san` 驱动程序，默认使用 SVM 中的所有数据 LIF IP 并使用 iSCSI 多路径。为 `ontap-san` 驱动程序指定 `dataLIF` 的 IP 地址会强制驱动程序禁用多路径并仅使用指定的地址。
+ a| 
+10.0.0.2
+
+
+
+| `sVM`  a| 
+要使用的 Storage Virtual Machine （如果管理 LIF 为集群 LIF ，则为必填项）
+ a| 
+SVM_NFS
+
+
+
+| `用户名`  a| 
+用于连接到存储设备的用户名
+ a| 
+vsadmin
+
+
+
+| `密码`  a| 
+用于连接到存储设备的密码
+ a| 
+机密
+
+
+
+| `聚合`  a| 
+要配置的聚合（可选；如果设置了聚合，则必须将其分配给 SVM ）。对于 `ontap-nas-flexgroup` 驱动程序，此选项将被忽略。分配给 SVM 的所有聚合都用于配置 FlexGroup 卷。
+ a| 
+aggr1.
+
+
+
+| `limitAggregateUsage`  a| 
+可选，如果使用量超过此百分比，则配置失败
+ a| 
+75%
+
+
+
+| `nfsMountOptions`  a| 
+对 NFS 挂载选项进行精细控制；默认为 -o nfsver=3 。* 仅适用于 `ontap-nas` 和 `ontap-nas- 经济` 驱动程序 * 。 https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["请参见此处的 NFS 主机配置信息"^]。
+ a| 
+-o nfsver=4
+
+
+
+| `igroupName`  a| 
+插件使用的 igroup ；默认为 "netappdvp " 。* 仅适用于 `ontap-san`driver* 。
+ a| 
+myigroup
+
+
+
+| `limitVolumeSizee`  a| 
+可请求的最大卷大小和 qtree 父卷大小。* 对于 `ontap-nas-economy` 驱动程序，此选项还会限制其创建的 FlexVol 的大小 * 。
+ a| 
+300 克
+
+
+
+| `qtreesPerFlexvol`  a| 
+每个 FlexVol 的最大 qtree 数必须在 50 ， 300 范围内，默认值为 200 。* 对于 `ontap-nas-economy` 驱动程序，此选项允许自定义每个 qtree* 的最大 FlexVol 数。
+ a| 
+300
+
+|===
+您可以使用默认选项来避免在创建的每个卷上指定这些选项：
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `s页面预留`  a| 
+空间预留模式； " 无 " （精简配置）或 " 卷 " （厚）
+ a| 
+无
+
+
+
+| `sSnapshot 策略`  a| 
+要使用的 Snapshot 策略，默认值为 " 无 "
+ a| 
+无
+
+
+
+| `sSnapshot 预留`  a| 
+Snapshot 预留百分比，默认值为 " " 以接受 ONTAP 的默认值
+ a| 
+10
+
+
+
+| `splitOnClone`  a| 
+创建克隆时将其从父级拆分，默认为 "false"
+ a| 
+false
+
+
+
+| `加密`  a| 
+启用 NetApp 卷加密，默认为 "false"
+ a| 
+true
+
+
+
+| `unixPermissions`  a| 
+已配置 NFS 卷的 NAS 选项，默认为 "777"
+ a| 
+777.
+
+
+
+| `snapshotDir`  a| 
+用于访问 ` .snapshot` 目录的 NAS 选项，默认为 "false"
+ a| 
+true
+
+
+
+| `exportPolicy`  a| 
+要使用的 NFS 导出策略的 NAS 选项，默认为 " 默认 "
+ a| 
+default
+
+
+
+| `securityStyle`  a| 
+用于访问已配置 NFS 卷的 NAS 选项，默认为 "UNIX"
+ a| 
+混合
+
+
+
+| `fileSystemType`  a| 
+SAN 选项要选择文件系统类型，默认为 "ext4"
+ a| 
+XFS
+
+
+
+| `分层策略`  a| 
+要使用的分层策略，对于 ONTAP 9.5 SVM-DR 之前的配置，默认为 " 无 " ； " 仅快照 "
+ a| 
+无
+
+|===
+
+
+=== 扩展选项
+
+`ontap-nas` 和 `ontap-san` 驱动程序会为每个 Docker 卷创建一个 ONTAP FlexVol 。对于每个集群节点， ONTAP 最多支持 1000 个 FlexVol ，而集群最多支持 12 ， 000 个 FlexVol 。如果您的 Docker 卷要求符合此限制，则由于 Flexvol 提供的其他功能（例如 Docker 卷粒度快照和克隆）， `ontap-NAS` 驱动程序是首选的 NAS 解决方案。
+
+如果所需的 Docker 卷数超出 FlexVol 限制所能容纳的范围，请选择 `ontap-nas-economy"` 或 `ontap-san-economy"` 驱动程序。
+
+`ontap-nas-economy` 驱动程序可在自动管理的 ONTAP 卷池中创建 Docker 卷作为 qtree 。qtree 的扩展能力远高于此，每个集群节点最多可扩展 100 ， 000 个，每个集群最多可扩展 2 ， 400 ， 000 个，但某些功能会受到影响。`ontap-nas-economy` 驱动程序不支持 Docker 卷粒度快照或克隆。
+
+
+NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因为 Swarm 不会在多个节点之间协调卷创建。
+
+`ontap-san-economy-driver` 可在一个由自动管理的 FlexVol 构成的共享池中将 Docker 卷创建为 ONTAP LUN 。这样，每个 FlexVol 就不会仅限于一个 LUN ，并且可以为 SAN 工作负载提供更好的可扩展性。根据存储阵列的不同， ONTAP 每个集群最多支持 16384 个 LUN 。由于卷是下面的 LUN ，因此此驱动程序支持 Docker 卷粒度快照和克隆。
+
+选择 `ontap-nas-flexgroup` 驱动程序可将并行性提高到单个卷，该卷可以扩展到包含数十亿个文件的 PB 范围。FlexGroup 的一些理想用例包括 AI/ML/DL ，大数据和分析，软件构建，流式传输，文件存储库等。配置 FlexGroup 卷时， Trident 会使用分配给 SVM 的所有聚合。Trident 中的 FlexGroup 支持还需要注意以下事项：
+
+* 需要 ONTAP 9.2 或更高版本。
+* 截至本文撰写时， FlexGroup 仅支持 NFS v3 。
+* 建议为 SVM 启用 64 位 NFSv3 标识符。
+* 建议的最小 FlexGroup 大小为 100 GB 。
+* FlexGroup 卷不支持克隆。
+
+
+有关适用于 FlexGroup 的 FlexGroup 和工作负载的信息，请参见 https://www.netapp.com/pdf.html?item=/media/12385-tr4571pdf.pdf["《 NetApp FlexGroup 卷最佳实践和实施指南》"^]。
+
+要在同一环境中获得高级功能并实现大规模扩展，您可以运行多个 Docker 卷插件实例，其中一个使用 `ontap-NAS` ，另一` 个使用 `ontap-nas-economy.
+
+
+
+=== ONTAP 配置文件示例
+
+`ontap-nas` driver* 的 * NFS 示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "secret",
+    "aggregate": "aggr1",
+    "defaults": {
+      "size": "10G",
+      "spaceReserve": "none",
+      "exportPolicy": "default"
+    }
+}
+----
+`ontap-nas-flexgroup` driver* 的 * NFS 示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas-flexgroup",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "secret",
+    "defaults": {
+      "size": "100G",
+      "spaceReserve": "none",
+      "exportPolicy": "default"
+    }
+}
+----
+`ontap-nas-economy` driver* 的 * NFS 示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas-economy",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "secret",
+    "aggregate": "aggr1"
+}
+----
+`ontap-san` driver* 的 * iSCSI 示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-san",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.3",
+    "svm": "svm_iscsi",
+    "username": "vsadmin",
+    "password": "secret",
+    "aggregate": "aggr1",
+    "igroupName": "myigroup"
+}
+----
+`ontap-san-economy-driver` 的 * NFS 示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-san-economy",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.3",
+    "svm": "svm_iscsi_eco",
+    "username": "vsadmin",
+    "password": "secret",
+    "aggregate": "aggr1",
+    "igroupName": "myigroup"
+}
+----
+
+
+== Element 软件配置
+
+除了全局配置值之外，在使用 Element 软件（ NetApp HCI/SolidFire ）时，还可以使用这些选项。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `端点`  a| 
+https://<login>:<password>@<mvip>/json-rpc/<element-version>[]
+ a| 
+https://admin:admin@192.168.160.3/json-rpc/8.0[]
+
+
+
+| `sVIP`  a| 
+iSCSI IP 地址和端口
+ a| 
+10.0.0.7 ： 3260
+
+
+
+| `租户名称`  a| 
+要使用的 SolidFireF 租户（如果未找到，则创建）
+ a| 
+Docker
+
+
+
+| `InitiatorIFace`  a| 
+将 iSCSI 流量限制为非默认接口时，请指定接口
+ a| 
+default
+
+
+
+| `类型`  a| 
+QoS 规范
+ a| 
+请参见以下示例
+
+
+
+| `LegendPrefix`  a| 
+升级后的 Trident 安装的前缀。如果您使用的是 1.3.2 之前的 Trident 版本并对现有卷执行升级，则需要设置此值才能访问通过 volume-name 方法映射的旧卷。
+ a| 
+"netappdvp- "
+
+|===
+`solidfire-san` 驱动程序不支持 Docker Swarm 。
+
+
+
+=== Element 软件配置文件示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "solidfire-san",
+    "Endpoint": "https://admin:admin@192.168.160.3/json-rpc/8.0",
+    "SVIP": "10.0.0.7:3260",
+    "TenantName": "docker",
+    "InitiatorIFace": "default",
+    "Types": [
+        {
+            "Type": "Bronze",
+            "Qos": {
+                "minIOPS": 1000,
+                "maxIOPS": 2000,
+                "burstIOPS": 4000
+            }
+        },
+        {
+            "Type": "Silver",
+            "Qos": {
+                "minIOPS": 4000,
+                "maxIOPS": 6000,
+                "burstIOPS": 8000
+            }
+        },
+        {
+            "Type": "Gold",
+            "Qos": {
+                "minIOPS": 6000,
+                "maxIOPS": 8000,
+                "burstIOPS": 10000
+            }
+        }
+    ]
+}
+----
+
+
+== AWS 上的 Cloud Volumes Service （ CVS ）配置
+
+在 AWS 上使用 CVS 时，除了全局配置值之外，还可以使用这些选项。所有必需值均可在 CVS Web 用户界面中使用。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `区域`  a| 
+CVS 帐户区域（必需）。可以在 CVS Web 门户中的 "Account settings" >"API access" 中找到。
+ a| 
+"us-east-1"
+
+
+
+| `apiURL`  a| 
+CVS 帐户 API URL （必需）。可以在 CVS Web 门户中的 "Account settings" >"API access" 中找到。
+ a| 
+https://cds-aws-bundles.netapp.com:8080/v1”
+
+
+
+| `apiKey`  a| 
+CVS 帐户 API 密钥（必需）。可以在 CVS Web 门户中的 "Account settings" >"API access" 中找到。
+ a| 
+Docker
+
+
+
+| `secreKey`  a| 
+CVS 帐户密钥（必需）。可以在 CVS Web 门户中的 "Account settings" >"API access" 中找到。
+ a| 
+default
+
+
+
+| `代理 URL`  a| 
+代理服务器需要连接到 CVS 帐户时的代理 URL 。代理服务器可以是 HTTP 代理，也可以是 HTTPS 代理。对于 HTTPS 代理，系统会跳过证书验证，以允许在代理服务器中使用自签名证书。* 不支持已启用身份验证的代理服务器 * 。
+ a| 
+http://proxy-server-hostname/”
+
+
+
+| `nfsMountOptions`  a| 
+NFS 挂载选项；默认为 -o nfsver=3
+ a| 
+"nfsver=3 ， proto=tcp ， timeo=600"
+
+
+
+| `s服务级别`  a| 
+性能级别（标准，高级，极高），默认为 " 标准 "
+ a| 
+高级版
+
+|===
+
+NOTE: NetApp Cloud Volumes Service for AWS 不支持小于 100 GB 的卷。为了便于部署应用程序，如果请求的卷较小， Trident 会自动创建 100 GB 的卷。
+
+在 AWS 上使用 CVS 时，可以使用这些默认卷选项设置。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `exportRule`  a| 
+NFS 访问列表（地址和 / 或 CIDR 子网），默认为 "0.0.0.0/0 "
+ a| 
+"10.0.1.0/24 10.0.0.2.100"
+
+
+
+| `snapshotDir`  a| 
+控制 ` .snapshot` 目录的可见性
+ a| 
+false
+
+
+
+| `sSnapshot 预留`  a| 
+Snapshot 预留百分比，默认值为 " " 以接受 CVS 默认值 0
+ a| 
+10
+
+
+
+| `s大小`  a| 
+卷大小，默认为 100 GB
+ a| 
+"500 克 "
+
+|===
+
+
+=== AWS 上的 CVS 配置文件示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "aws-cvs",
+    "apiRegion": "us-east-1",
+    "apiURL": "https://cds-aws-bundles.netapp.com:8080/v1",
+    "apiKey":    "znHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE",
+    "secretKey": "rR0rUmWXfNioN1KhtHisiSAnoTherboGuskey6pU",
+    "region": "us-east-1",
+    "proxyURL": "http://proxy-server-hostname/",
+    "serviceLevel": "premium",
+    "limitVolumeSize": "200Gi",
+    "defaults": {
+        "snapshotDir": "true",
+        "snapshotReserve": "5",
+        "exportRule": "10.0.0.0/24,10.0.1.0/24,10.0.2.100",
+        "size": "100Gi"
+    }
+}
+----
+
+
+== GCP 配置上的 Cloud Volumes Service （ CVS ）
+
+Trident 现在支持使用默认 CVS 服务类型的较小卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["GCP"^]。对于使用 `storageClass=software` 创建的后端，卷的最小配置大小将为 300 GiB 。* NetApp 建议客户将低于 1 TiB 的卷用于非生产工作负载 * 。CVS 目前在 " 受控可用性 " 下提供此功能，不提供技术支持。
+
+
+NOTE: 注册以访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此处"^]。
+
+
+WARNING: 使用默认 CVS 服务类型 `storageClass=software` 部署后端时，您应获得 GCP 上有关项目编号和项目 ID 的子 1TiB 卷功能的访问权限。这对于 Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建 * 将失败 * 。使用访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此表单"^]。
+
+Trident 为默认 CVS 服务级别创建的卷将按以下方式进行配置：
+
+* 小于 300 GiB 的 PVC 将导致 Trident 创建 300 GiB 的 CVS 卷。
+* 如果 PVC 介于 300 GiB 到 600 GiB 之间，则 Trident 将创建一个请求大小的 CVS 卷。
+* 介于 600 GiB 和 1 TiB 之间的 PVC 将导致 Trident 创建 1 TiB CVS 卷。
+* 如果 PVC 大于 1 TiB ，则 Trident 将创建一个请求大小的 CVS 卷。
+
+
+除了全局配置值之外，在 GCP 上使用 CVS 时，还可以使用这些选项。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `区域`  a| 
+CVS 帐户区域（必需）。是此后端将配置卷的 GCP 区域。
+ a| 
+"us-west2"
+
+
+
+| `projectNumber`  a| 
+GCP 项目编号（必需）。可以在 GCP Web 门户的主屏幕中找到。
+ a| 
+"123456789012"
+
+
+
+| `hostProjectNumber`  a| 
+GCP 共享 VPC 主机项目编号（如果使用共享 VPC ，则为必填项）
+ a| 
+"098765432109"
+
+
+
+| `apiKey`  a| 
+具有 CVS 管理员角色的 GCP 服务帐户的 API 密钥（必需）。是 GCP 服务帐户专用密钥文件的 JSON 格式内容（逐字复制到后端配置文件）。服务帐户必须具有 netappcloudvolumes.admin 角色。
+ a| 
+（私钥文件的内容）
+
+
+
+| `secreKey`  a| 
+CVS 帐户密钥（必需）。可以在 CVS Web 门户中的 "Account settings" >"API access" 中找到。
+ a| 
+default
+
+
+
+| `代理 URL`  a| 
+代理服务器需要连接到 CVS 帐户时的代理 URL 。代理服务器可以是 HTTP 代理，也可以是 HTTPS 代理。对于 HTTPS 代理，系统会跳过证书验证，以允许在代理服务器中使用自签名证书。* 不支持已启用身份验证的代理服务器 * 。
+ a| 
+http://proxy-server-hostname/”
+
+
+
+| `nfsMountOptions`  a| 
+NFS 挂载选项；默认为 -o nfsver=3
+ a| 
+"nfsver=3 ， proto=tcp ， timeo=600"
+
+
+
+| `s服务级别`  a| 
+性能级别（标准，高级，极高），默认为 " 标准 "
+ a| 
+高级版
+
+
+
+| `网络`  a| 
+用于 CVS 卷的 GCP 网络，默认为 " 默认 "
+ a| 
+default
+
+|===
+
+NOTE: 如果使用共享 VPC 网络，则应同时指定 `projectNumber` 和 `hostProjectNumber` 。在这种情况下， `projectNumber` 是服务项目， `hostProjectNumber` 是主机项目。
+
+
+NOTE: NetApp Cloud Volumes Service for GCP 不支持小于 100 GiB 的 CVS-Performance 卷或小于 300 GiB 的 CVS 卷。为了便于部署应用程序，如果请求的卷太小， Trident 会自动创建最小大小的卷。
+
+在 GCP 上使用 CVS 时，可以使用这些默认卷选项设置。
+
+[cols="3*"]
+|===
+| 选项 | Description | 示例 
+
+
+| `exportRule`  a| 
+NFS 访问列表（地址和 / 或 CIDR 子网），默认为 "0.0.0.0/0 "
+ a| 
+"10.0.1.0/24 10.0.0.2.100"
+
+
+
+| `snapshotDir`  a| 
+控制 ` .snapshot` 目录的可见性
+ a| 
+false
+
+
+
+| `sSnapshot 预留`  a| 
+Snapshot 预留百分比，默认值为 " " 以接受 CVS 默认值 0
+ a| 
+10
+
+
+
+| `s大小`  a| 
+卷大小，默认为 "100GiB"
+ a| 
+"10T"
+
+|===
+
+
+=== GCP 配置文件上的 CVS 示例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "gcp-cvs",
+    "projectNumber": "012345678901",
+    "apiRegion": "us-west2",
+    "apiKey": {
+        "type": "service_account",
+        "project_id": "my-gcp-project",
+        "private_key_id": "1234567890123456789012345678901234567890",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nznHczZsrrtHisIsAbOguSaPIKeyAZNchRAGzlzZE4jK3bl/qp8B4Kws8zX5ojY9m\nXsYg6gyxy4zq7OlwWgLwGa==\n-----END PRIVATE KEY-----\n",
+        "client_email": "cloudvolumes-admin-sa@my-gcp-project.iam.gserviceaccount.com",
+        "client_id": "123456789012345678901",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloudvolumes-admin-sa%40my-gcp-project.iam.gserviceaccount.com"
+    },
+    "proxyURL": "http://proxy-server-hostname/"
+}
+----
+
+
+== Azure NetApp Files 配置
+
+配置和使用 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 后端，您需要满足以下要求：
+
+* `ssubscriptionID` 来自启用了 Azure NetApp Files 的 Azure 订阅
+* `租户 ID` ， `clientID` 和 `clientSecret` 来自 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal["应用程序注册"^] 在 Azure Active Directory 中，具有足够的 Azure NetApp Files 服务权限
+* 至少包含一个的 Azure 位置 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["委派子网"^]
+
+
+
+TIP: 如果您是首次使用 Azure NetApp Files 或在新位置使用，则需要对进行一些初始配置 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-quickstart-set-up-account-create-volumes?tabs=azure-portal["《快速入门指南》"^] 将引导您完成操作。
+
+
+NOTE: Astra Trident 21.04.0 及更早版本不支持手动 QoS 容量池。
+
+[cols="3*"]
+|===
+| 选项 | Description | Default 
+
+
+| `ve版本`  a| 
+始终为 1
+ a| 
+
+
+
+| `storageDriverName`  a| 
+"azure-netapp-files"
+ a| 
+
+
+
+| `backendName`  a| 
+存储后端的自定义名称
+ a| 
+驱动程序名称 + "_" + 随机字符
+
+
+
+| `ssubscriptionID` 。  a| 
+Azure 订阅中的订阅 ID
+ a| 
+
+
+
+| `租户 ID` 。  a| 
+应用程序注册中的租户 ID
+ a| 
+
+
+
+| `客户端 ID` 。  a| 
+应用程序注册中的客户端 ID
+ a| 
+
+
+
+| `clientSecret` 。  a| 
+应用程序注册中的客户端密钥
+ a| 
+
+
+
+| `s服务级别`  a| 
+" 标准 " ， " 高级 " 或 " 超 " 之一
+ a| 
+" （随机）
+
+
+
+| `位置`  a| 
+将在中创建新卷的 Azure 位置名称
+ a| 
+" （随机）
+
+
+
+| `virtualNetwork`  a| 
+具有委派子网的虚拟网络的名称
+ a| 
+" （随机）
+
+
+
+| `ssubnet`  a| 
+委派给 `Microsoft.Netapp/volumes` 的子网的名称
+ a| 
+" （随机）
+
+
+
+| `nfsMountOptions`  a| 
+精细控制 NFS 挂载选项
+ a| 
+-o nfsver=3
+
+
+
+| `limitVolumeSize`  a| 
+如果请求的卷大小超过此值，则配置失败
+ a| 
+" （默认情况下不强制实施）
+
+|===
+
+NOTE: Azure NetApp Files 服务不支持小于 100 GB 的卷。为了便于部署应用程序，如果请求的卷较小， Trident 会自动创建 100 GB 的卷。
+
+您可以在配置的特殊部分中使用这些选项来控制默认配置每个卷的方式。
+
+[cols="3*"]
+|===
+| 选项 | Description | Default 
+
+
+| `exportRule`  a| 
+新卷的导出规则。必须是以 CIDR 表示法表示的任意 IPv4 地址或 IPv4 子网组合的逗号分隔列表。
+ a| 
+"0.0.0.0/0 "
+
+
+
+| `snapshotDir`  a| 
+控制 ` .snapshot` 目录的可见性
+ a| 
+false
+
+
+
+| `s大小`  a| 
+新卷的默认大小
+ a| 
+"100G"
+
+|===
+
+
+=== Azure NetApp Files 配置示例
+
+* 示例 1 ： azure-netapp-files* 的最小后端配置
+
+这是绝对的最低后端配置。使用此配置， Trident 将发现全球每个位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个上。
+
+当您刚开始使用 ANF 并尝试执行以下操作时，此配置非常有用： 但实际上，您将需要为您配置的卷提供额外的范围界定，以确保这些卷具有所需的特征，并最终位于一个靠近使用该卷的计算的网络上。有关详细信息，请参见后续示例。
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "azure-netapp-files",
+    "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+    "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+    "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+    "clientSecret": "SECRET"
+}
+----
+* 示例 2 ： azure-netapp-files* 的单一位置和特定服务级别
+
+此后端配置会将卷放置在 Azure 的 " 东向 " 位置的 " 高级 " 容量池中。Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "azure-netapp-files",
+    "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+    "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+    "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+    "clientSecret": "SECRET",
+    "location": "eastus",
+    "serviceLevel": "Premium"
+}
+----
+* 示例 3 ： azure-netapp-files* 的高级配置
+
+此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "azure-netapp-files",
+    "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+    "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+    "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+    "clientSecret": "SECRET",
+    "location": "eastus",
+    "serviceLevel": "Premium",
+    "virtualNetwork": "my-virtual-network",
+    "subnet": "my-subnet",
+    "nfsMountOptions": "nfsvers=3,proto=tcp,timeo=600",
+    "limitVolumeSize": "500Gi",
+    "defaults": {
+        "exportRule": "10.0.0.0/24,10.0.1.0/24,10.0.2.100",
+        "size": "200Gi"
+    }
+}
+----
+* 示例 4 ：使用 azure-netapp-files* 的虚拟存储池
+
+此后端配置定义了多个 link:../trident-concepts/virtual-storage-pool.html["存储池"^] 在单个文件中。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。
+
+这只是擦除虚拟存储池及其标签的强大功能表面。
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "azure-netapp-files",
+    "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+    "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+    "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+    "clientSecret": "SECRET",
+    "nfsMountOptions": "nfsvers=3,proto=tcp,timeo=600",
+    "labels": {
+        "cloud": "azure"
+    },
+    "location": "eastus",
+
+    "storage": [
+        {
+            "labels": {
+                "performance": "gold"
+            },
+            "serviceLevel": "Ultra"
+        },
+        {
+            "labels": {
+                "performance": "silver"
+            },
+            "serviceLevel": "Premium"
+        },
+        {
+            "labels": {
+                "performance": "bronze"
+            },
+            "serviceLevel": "Standard",
+        }
+    ]
+}
+----

@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/upgrade-uninstall-docker.html 
+keywords: uninstall, astra trident, trident for docker, docker, upgrade trident for docker 
+summary: '您可以安全地升级适用于 Docker 的 Astra Trident ，而不会对正在使用的卷产生任何影响。在升级过程中，指向插件的 `docker volume` 命令将在很短的时间内失败，并且应用程序将无法挂载卷，直到插件重新运行为止。在大多数情况下，这只需要几秒钟。' 
+---
+= 升级或卸载 Astra Trident
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+您可以安全地升级适用于 Docker 的 Astra Trident ，而不会对正在使用的卷产生任何影响。在升级过程中，指向插件的 `docker volume` 命令将在很短的时间内失败，并且应用程序将无法挂载卷，直到插件重新运行为止。在大多数情况下，这只需要几秒钟。
+
+
+
+== 升级
+
+执行以下步骤以升级适用于 Docker 的 Astra Trident 。
+
+.步骤
+. 列出现有卷：
++
+[listing]
+----
+docker volume ls
+DRIVER              VOLUME NAME
+netapp:latest       my_volume
+----
+. 禁用插件：
++
+[listing]
+----
+docker plugin disable -f netapp:latest
+docker plugin ls
+ID                  NAME                DESCRIPTION                          ENABLED
+7067f39a5df5        netapp:latest       nDVP - NetApp Docker Volume Plugin   false
+----
+. 升级插件：
++
+[listing]
+----
+docker plugin upgrade --skip-remote-check --grant-all-permissions netapp:latest netapp/trident-plugin:21.07
+----
++
+
+NOTE: Astra Trident 18.01 版取代了 nDVP 。您应直接从 `NetApp/ndvp-plugin` 映像升级到 `NetApp/trident 插件` 映像。
+
+. 启用插件：
++
+[listing]
+----
+docker plugin enable netapp:latest
+----
+. 验证是否已启用此插件：
++
+[listing]
+----
+docker plugin ls
+ID                  NAME                DESCRIPTION                             ENABLED
+7067f39a5df5        netapp:latest       Trident - NetApp Docker Volume Plugin   true
+----
+. 验证卷是否可见：
++
+[listing]
+----
+docker volume ls
+DRIVER              VOLUME NAME
+netapp:latest       my_volume
+----
++
+
+IMPORTANT: 如果要从旧版本的 Astra Trident （ 20.10 之前的版本）升级到 Astra Trident 20.10 或更高版本，则可能会遇到错误。有关详细信息，请参见 link:known-issues-docker.html["已知问题"^]。如果遇到此错误，应先禁用此插件，然后删除此插件，然后通过传递一个额外的配置参数来安装所需的 Astra Trident 版本： `docker plugin install netapp/trident plugin ： 20.10 —— alias netapp — -grant-all-permissions config.json`
+
+
+
+
+
+== 卸载
+
+执行以下步骤卸载适用于 Docker 的 Astra Trident 。
+
+.步骤
+. 删除插件创建的所有卷。
+. 禁用插件：
++
+[listing]
+----
+docker plugin disable netapp:latest
+docker plugin ls
+ID                  NAME                DESCRIPTION                          ENABLED
+7067f39a5df5        netapp:latest       nDVP - NetApp Docker Volume Plugin   false
+----
+. 删除插件：
++
+[listing]
+----
+docker plugin rm netapp:latest
+----
+

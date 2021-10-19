@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: trident-managing-k8s/uninstall-trident.html 
+keywords: uninstall, astra trident, methods, operator, tridentctl, helm 
+summary: 根据 Astra Trident 的安装方式，有多种卸载方法。 
+---
+= 卸载 Astra Trident
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+根据 Astra Trident 的安装方式，有多种卸载方法。
+
+
+
+== 使用 Helm 卸载
+
+如果您使用 Helm 安装了 Astra Trident ，则可以使用 `helm uninstall` 将其卸载。
+
+[listing]
+----
+#List the Helm release corresponding to the Astra Trident install.
+$ helm ls -n trident
+NAME          NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
+trident       trident         1               2021-04-20 00:26:42.417764794 +0000 UTC deployed        trident-operator-21.07.1        21.07.1
+
+#Uninstall Helm release to remove Trident
+$ helm uninstall trident -n trident
+release "trident" uninstalled
+----
+
+
+== 使用 Trident 操作符卸载
+
+如果您使用操作符安装了 Astra Trident ，则可以通过执行以下操作之一卸载它：
+
+* `编辑` TridentOrchestrator `设置卸载标志： * 您可以编辑` TridentOrchestrator `s并设置` Pec.uninstall=true 。编辑 `TridentOrchestrator` CR 并设置 `uninstall` 标志，如下所示：
++
+[listing]
+----
+$  kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"uninstall":true}}'
+----
++
+当 `uninstall` 标志设置为 `true` 时， Trident 操作员将卸载 Trident ，但不会删除 Trident Orchestrator 本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。
+
+* `删除` TridentOrchestrator `： * 删除用于部署 Astra Trident 的` Trident Orchestrator CR 后，您可以指示操作员卸载 Trident 。操作员将处理 `TridentOrchestrator` 的删除，并继续删除 Astra Trident 部署和子集，同时删除在安装过程中创建的 Trident Pod 。要完全删除 Astra Trident （包括其创建的 CRD ）并有效地擦除板，您可以编辑 `TridentOrchestrator` 以传递 `wipeout` 选项。请参见以下示例：
+
+
+[listing]
+----
+$ kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"wipeout":["crds"],"uninstall":true}}'
+----
+这将完全卸载 Astra Trident 并清除与后端及其管理的卷相关的所有元数据。后续安装将视为全新安装。
+
+
+WARNING: 只有在执行完全卸载时，才应考虑擦除 CRD 。此操作无法撤消。* 除非您希望重新启动并创建全新的 Astra Trident 安装，否则请勿擦除 CRD 。
+
+
+
+== 使用 tridentctl 卸载
+
+在 `tridentctl` 中运行 `uninstall` 命令，如下所示删除除 CRD 和相关对象之外与 Astra Trident 关联的所有资源，从而可以轻松地重新运行安装程序以更新到最新版本。
+
+[listing]
+----
+./tridentctl uninstall -n <namespace>
+----
+要完全删除 Astra Trident ，您应删除由 Astra Trident 创建的 CRD 的最终结果并删除这些 CRD 。

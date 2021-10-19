@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: get-help.html 
+keywords: get help, get support, knowledgebase, slack, phone, web, ticket, contact support, support ticket 
+summary: NetApp 以多种方式为 Trident 提供支持。全天候提供广泛的免费自助支持选项，例如，可提供宽松通道。 
+---
+= 支持
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+Astra Trident 是一个官方支持的 NetApp 项目。您可以使用任何标准机制联系 NetApp ，并获得所需的企业级支持。
+
+此外，在 `containers` Channel on 上还有一个由容器用户（包括 Astra Trident 开发人员）组成的活跃公有社区 http://netapp.io/slack["NetApp 的工作时间很长"^]。这是一个很好的地方，可以提出有关项目的一般问题，并与志同道合的同行讨论相关主题。

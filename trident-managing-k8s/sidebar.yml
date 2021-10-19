@@ -1,0 +1,14 @@
+---
+section: trident-managing-k8s
+title: 管理 Astra Trident
+entries:
+- title: 升级 Astra Trident
+  url: "/trident-managing-k8s/upgrade-trident.html"
+- title: 使用操作员升级
+  url: "/trident-managing-k8s/upgrade-operator.html"
+- title: 使用 tridentctl 进行升级
+  url: "/trident-managing-k8s/upgrade-tridentctl.html"
+- title: 卸载 Astra Trident
+  url: "/trident-managing-k8s/uninstall-trident.html"
+- title: 降级 Astra Trident
+  url: "/trident-managing-k8s/downgrade-trident.html"

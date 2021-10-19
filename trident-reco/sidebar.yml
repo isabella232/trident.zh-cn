@@ -1,0 +1,14 @@
+---
+section: trident-reco
+title: 最佳实践和建议
+entries:
+- title: 部署
+  url: "/trident-reco/deploy-reco.html"
+- title: 存储配置
+  url: "/trident-reco/storage-config-best-practices.html"
+- title: Astra Trident 集成
+  url: "/trident-reco/integrate-trident.html"
+- title: 数据保护
+  url: "/trident-reco/backup.html"
+- title: 安全性
+  url: "/trident-reco/security-reco.html"

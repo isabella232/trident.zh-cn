@@ -1,0 +1,425 @@
+---
+sidebar: sidebar 
+permalink: faq.html 
+keywords: faq, frequently asked questions 
+summary: 查找有关 Astra Trident 的安装，配置，升级和故障排除的常见问题解答。 
+---
+= 常见问题解答
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+查找有关 Astra Trident 的安装，配置，升级和故障排除的常见问题解答。
+
+
+
+== 一般问题
+
+
+
+=== Astra Trident 的发布频率如何？
+
+Astra Trident 每三个月发布一次： 1 月， 4 月， 7 月和 10 月。这是 Kubernetes 发布后一个月。
+
+
+
+=== Astra Trident 是否支持特定版本的 Kubernetes 中发布的所有功能？
+
+Astra Trident 通常不支持 Kubernetes 中的 alpha 功能。在 Kubernetes 测试版之后的两个 Trident 版本中， Trident 可能支持测试版功能。
+
+
+
+=== Astra Trident 的运行是否依赖于其他 NetApp 产品？
+
+Astra Trident 与其他 NetApp 软件产品没有任何依赖关系，它可以作为独立应用程序运行。但是，您应具有 NetApp 后端存储设备。
+
+
+
+=== 如何获取完整的 Astra Trident 配置详细信息？
+
+使用 `tridentctl get` 命令可获取有关 Astra Trident 配置的详细信息。
+
+
+
+=== 我能否获取有关 Astra Trident 如何配置存储的指标？
+
+是的。Trident 20.01 引入了 Prometheus 端点，可用于收集有关 Astra Trident 操作的信息，例如托管的后端数量，配置的卷数量，占用的字节数等。您还可以使用 Cloud Insights 进行监控和分析。
+
+
+
+=== 使用 Astra Trident 作为 CSI 配置程序时，用户体验是否会发生变化？
+
+否在用户体验和功能方面没有变化。使用的配置程序名称是 `csi.trident.netapp.io` 。如果要使用当前版本和未来版本提供的所有新功能，建议使用此方法安装 Astra Trident 。
+
+
+
+== 在 Kubernetes 集群上安装和使用 Astra Trident
+
+
+
+=== 支持哪些版本的 etcd ？
+
+Astra Trident 不再需要 `etcd` 。它使用 CRD 来保持状态。
+
+
+
+=== Astra Trident 是否支持从专用注册表脱机安装？
+
+可以， Astra Trident 可以脱机安装。请参见 link:../trident-get-started/kubernetes-deploy.html["此处"^]。
+
+
+
+=== 是否可以远程安装 Astra Trident ？
+
+是的。Astra Trident 18.10 及更高版本支持从 `kubectl` 访问集群的任何计算机远程安装。验证 `kubectl` 访问后（例如，从远程计算机启动 `kubectl get nodes` 命令进行验证），请按照安装说明进行操作。
+
+
+
+=== 是否可以使用 Astra Trident 配置高可用性？
+
+Astra Trident 以 Kubernetes 部署（ ReplicaSet ）的形式安装有一个实例，因此它具有内置的 HA 。您不应增加部署中的副本数量。如果安装了 Astra Trident 的节点丢失或 POD 无法访问， Kubernetes 会自动将 POD 重新部署到集群中运行正常的节点。Astra Trident 仅支持控制平面，因此，如果重新部署 Astra Trident ，当前安装的 Pod 不会受到影响。
+
+
+
+=== Astra Trident 是否需要访问 Kube-system 命名空间？
+
+Astra Trident 从 Kubernetes API 服务器读取数据，以确定应用程序何时请求新的 PVC ，因此需要访问 Kube-system 。
+
+
+
+=== Astra Trident 使用哪些角色和特权？
+
+Trident 安装程序会创建一个 Kubernetes ClusterRole ，该 ClusterRole 可对集群的 PersistentVolume ， PersistentVolumeClaim ， StorageClass 和 Kubernetes 集群的 Secret 资源进行特定访问。请参见 link:../trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"^]。
+
+
+
+=== 是否可以在本地生成 Astra Trident 用于安装的准确清单文件？
+
+如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 link:../trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"^]。
+
+
+
+=== 是否可以为两个单独的 Kubernetes 集群的两个单独的 Astra Trident 实例共享同一个 ONTAP 后端 SVM ？
+
+尽管不建议这样做，但您可以对两个 Astra Trident 实例使用同一个后端 SVM 。在安装期间为每个实例指定唯一的卷名称和 / 或在 `setup/backend.json` 文件中指定唯一的 `StoragePrefix` 参数。这是为了确保不会对这两个实例使用相同的 FlexVol 。
+
+
+
+=== 是否可以在 ContainerLinux （以前称为 CoreOS ）下安装 Astra Trident ？
+
+Astra Trident 只是 Kubernetes Pod ，可安装在 Kubernetes 运行的任何位置。
+
+
+
+=== 是否可以将 Astra Trident 与 NetApp Cloud Volumes ONTAP 结合使用？
+
+是的， AWS ， Google Cloud 和 Azure 支持 Astra Trident 。
+
+
+
+=== Astra Trident 是否支持 Cloud Volumes Services ？
+
+是的， Astra Trident 支持 Azure 中的 Azure NetApp Files 服务以及 AWS 和 GCP 中的 Cloud Volumes Service 。
+
+
+
+== 故障排除和支持
+
+
+
+=== NetApp 是否支持 Astra Trident ？
+
+虽然 Astra Trident 是开源且免费提供的，但只要您的 NetApp 后端受支持， NetApp 就会完全支持它。
+
+
+
+=== 如何提出支持案例？
+
+要提交支持案例，请执行以下操作之一：
+
+. 请联系您的支持客户经理并获得帮助以提交服务单。
+. 联系以提出支持案例 https://www.netapp.com/company/contact-us/support/["NetApp 支持"^]。
+
+
+
+
+=== 如何生成支持日志包？
+
+您可以运行 `tridentctl logs -a` 来创建支持包。除了在捆绑包中捕获的日志之外，还可以捕获 kubelet 日志以诊断 Kubernetes 端的挂载问题。获取 kubelet 日志的说明因 Kubernetes 的安装方式而异。
+
+
+
+=== 如果需要提出新功能请求，我该怎么办？
+
+在上创建问题描述 https://github.com/NetApp/trident["Trident Github"^] 并在问题描述的主题和问题描述中提及 * RFE* 。
+
+
+
+=== 我应在何处提出缺陷？
+
+在上创建问题描述 https://github.com/NetApp/trident["Astra Trident Github"^]。请务必包含与问题描述相关的所有必要信息和日志。
+
+
+
+=== 如果我有有关 Astra Trident 的快速问题需要澄清，会发生什么情况？是否有社区或论坛？
+
+如果您有任何问题，问题或请求，请通过我们的联系我们 http://netapp.io/slack["可宽延"^] 团队或 GitHub 。
+
+
+
+=== 我的存储系统密码已更改， Astra Trident 不再工作，如何恢复？
+
+使用 `tridentctl update backend myBackend -f </path/to_new_backend.json> -n trident` 更新后端的密码。将示例中的 `myBackend` 替换为后端名称，将 `` /path/to_new_backend.json` 替换为正确的 `backend.json` 文件的路径。
+
+
+
+=== Astra Trident 找不到我的 Kubernetes 节点。如何修复此问题？
+
+Astra Trident 无法找到 Kubernetes 节点的原因可能有两种。这可能是因为 Kubernetes 中的网络问题描述或 DNS 问题描述。在每个 Kubernetes 节点上运行的 Trident 节点取消设置必须能够与 Trident 控制器进行通信，以便向 Trident 注册该节点。如果在安装 Astra Trident 后发生网络更改，则只有在添加到集群中的新 Kubernetes 节点上才会遇到此问题。
+
+
+
+=== 如果 Trident POD 被销毁，是否会丢失数据？
+
+如果 Trident POD 被销毁，数据不会丢失。Trident 的元数据存储在 CRD 对象中。已由 Trident 配置的所有 PV 都将正常运行。
+
+
+
+== 升级 Astra Trident
+
+
+
+=== 是否可以直接从旧版本升级到新版本（跳过几个版本）？
+
+NetApp 支持将 Astra Trident 从一个主要版本升级到下一个直接主要版本。您可以从 18.xx 升级到 19.xx ，从 19.xx 升级到 20.xx 等。在生产部署之前，您应在实验室中测试升级。
+
+
+
+=== 是否可以将 Trident 降级到先前版本？
+
+如果要降级，需要评估许多因素。请参见 link:../trident-managing-k8s/downgrade-trident.html["有关降级的章节"^]。
+
+
+
+== 管理后端和卷
+
+
+
+=== 是否需要在 ONTAP 后端定义文件中同时定义管理和数据 LIF ？
+
+NetApp 建议在后端定义文件中同时包含这两者。但是，只有管理 LIF 是必需的。
+
+
+
+=== Astra Trident 是否可以为 ONTAP 后端配置 CHAP ？
+
+是的。从 20.04 开始， Astra Trident 支持 ONTAP 后端的双向 CHAP 。这需要在后端配置中设置 `useCHAP=true` 。
+
+
+
+=== 如何使用 Astra Trident 管理导出策略？
+
+Astra Trident 可以从 20.04 版开始动态创建和管理导出策略。这样，存储管理员便可在其后端配置中提供一个或多个 CIDR 块，并使 Trident 将属于这些范围的节点 IP 添加到其创建的导出策略中。通过这种方式， Astra Trident 会自动管理为给定 CIDR 中具有 IP 的节点添加和删除规则的操作。此功能需要 CSI Trident 。
+
+
+
+=== 是否可以在 DataLIF 中指定端口？
+
+Astra Trident 19.01 及更高版本支持在 DataLIF 中指定端口。在 `backend.json` 文件中将其配置为 `` "managementLIF" ： <IP address> ： <port> "`` 。例如，如果管理 LIF 的 IP 地址为 192.0.2.1 ，端口为 1000 ，请配置 `` "managementLIF" ： "192.0.2.1 ： 1000"`` 。
+
+
+
+=== IPv6 地址是否可用于管理和数据 LIF ？
+
+是的。Astra Trident 20.01 支持为管理 LIF 定义 IPv6 地址，并为 ONTAP 后端定义 dataLIF 参数。您应确保地址遵循 IPv6 语义，并且管理 LIF 在方括号内进行定义（例如， `` [ec0d ： 6504 ： a9c1 ： ae67 ： 53d1 ： 4bdf ： ab32 ： e233]`` ）。您还应确保使用 `` -use-ipv6` 标志安装 Astra Trident ，以使其能够在 IPv6 上正常运行。
+
+
+
+=== 是否可以在后端更新管理 LIF ？
+
+可以，可以使用 `tridentctl update backend` 命令更新后端管理 LIF 。
+
+
+
+=== 是否可以更新后端的数据 LIF ？
+
+不可以，无法更新后端的数据 LIF 。
+
+
+
+=== 是否可以在适用于 Kubernetes 的 Astra Trident 中创建多个后端？
+
+Astra Trident 可以同时支持多个后端，可以使用相同的驱动程序，也可以使用不同的驱动程序。
+
+
+
+=== Astra Trident 如何存储后端凭据？
+
+Astra Trident 会将后端凭据存储为 Kubernetes Secretes 。
+
+
+
+=== Astra Trident 如何选择特定后端？
+
+如果无法使用后端属性自动为某个类选择合适的池，则会使用 `storagePools` 和 `addtionalStoragePools` 参数来选择一组特定的池。
+
+
+
+=== 如何确保 Astra Trident 不会从特定后端配置？
+
+`excludeStoragePools` 参数用于筛选 Astra Trident 要用于配置的一组池，并将删除匹配的任何池。
+
+
+
+=== 如果存在多个相同类型的后端，则 Astra Trident 如何选择要使用的后端？
+
+如果配置了多个相同类型的后端，则 Astra Trident 会根据 `StorageClass` 和 `PersistentVolumeClaim` 中的参数选择相应的后端。例如，如果有多个 ontap-NAS 驱动程序后端，则 Astra Trident 会尝试匹配 `StorageClass` 和 `PersistentVolumeClaim` 组合中的参数，并匹配后端，这样可以满足 `StorageClass` 和 `PersistentVolumeClaim` 中列出的要求。如果有多个后端与请求匹配，则 Astra Trident 会随机从其中一个后端中进行选择。
+
+
+
+=== Astra Trident 是否支持 Element 或 SolidFire 的双向 CHAP ？
+
+是的。
+
+
+
+=== Astra Trident 如何在 ONTAP 卷上部署 qtree ？一个卷可以部署多少个 qtree ？
+
+`ontap-nas-economy` 驱动程序可在同一个 FlexVol 中创建多达 200 个 qtree （可在 50 到 300 之间配置），每个集群节点创建 100 ， 000 个 qtree ，每个集群创建 2.4 M 个 qtree 。当您输入由经济型驱动程序提供服务的新的 `PersistentVolumeClaim` 时，驱动程序将查看是否已存在可为新的 qtree 提供服务的 FlexVol 。如果不存在可为 qtree 提供服务的 FlexVol ，则会创建一个新的 FlexVol 。
+
+
+
+=== 如何为在 ONTAP NAS 上配置的卷设置 Unix 权限？
+
+您可以通过在后端定义文件中设置参数来对 Astra Trident 配置的卷设置 Unix 权限。
+
+
+
+=== 如何在配置卷时配置一组显式 ONTAP NFS 挂载选项？
+
+默认情况下， Astra Trident 不会使用 Kubernetes 将挂载选项设置为任何值。要在 Kubernetes 存储类中指定挂载选项，请按照给定示例进行操作 https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-ontapnas-k8s1.8-mountoptions.yaml#L6["此处"^]。
+
+
+
+=== 如何将配置的卷设置为特定导出策略？
+
+要允许相应的主机访问卷，请使用后端定义文件中配置的 `exportPolicy` 参数。
+
+
+
+=== 如何使用 ONTAP 通过 Astra Trident 设置卷加密？
+
+您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。
+
+
+
+=== 通过 Astra Trident 为 ONTAP 实施 QoS 的最佳方式是什么？
+
+使用 `StorageClasses` 为 ONTAP 实施 QoS 。
+
+
+
+=== 如何通过 Astra Trident 指定精简配置或厚配置？
+
+ONTAP 驱动程序支持精简或厚配置。ONTAP 驱动程序默认为精简配置。如果需要厚配置，则应配置后端定义文件或 `StorageClass` 。如果同时配置了这两者，则 `StorageClass` 优先。为 ONTAP 配置以下内容：
+
+. 在 `StorageClass` 上，将 `provisioningType` 属性设置为 thick 。
+. 在后端定义文件中，通过将 `backend spaceReserve 参数` 设置为 volume 来启用厚卷。
+
+
+
+
+=== 如何确保即使意外删除了 PVC 也不会删除所使用的卷？
+
+从版本 1.10 开始， Kubernetes 会自动启用 PVC 保护。
+
+
+
+=== 是否可以扩展由 Astra Trident 创建的 NFS PVC ？
+
+是的。您可以扩展由 Astra Trident 创建的 PVC 。请注意，卷自动增长是一项 ONTAP 功能，不适用于 Trident 。
+
+
+
+=== 如果我的卷是在 Astra Trident 外部创建的，是否可以将其导入到 Astra Trident ？
+
+从 19.04 开始，您可以使用卷导入功能将卷引入 Kubernetes 。
+
+
+
+=== 是否可以在卷处于 SnapMirror 数据保护（ DP ）或脱机模式时导入它？
+
+如果外部卷处于 DP 模式或脱机，则卷导入将失败。您会收到以下错误消息：
+
+[listing]
+----
+Error: could not import volume: volume import failed to get size of volume: volume <name> was not found (400 Bad Request) command terminated with exit code 1.
+Make sure to remove the DP mode or put the volume online before importing the volume.
+----
+
+
+=== 是否可以扩展由 Astra Trident 创建的 iSCSI PVC ？
+
+Trident 19.10 支持使用 CSI 配置程序扩展 iSCSI PV 。
+
+
+
+=== 如何将资源配额转换为 NetApp 集群？
+
+只要 NetApp 存储具有容量， Kubernetes 存储资源配额就应起作用。当 NetApp 存储由于容量不足而无法支持 Kubernetes 配额设置时， Astra Trident 会尝试配置，但会出错。
+
+
+
+=== 是否可以使用 Astra Trident 创建卷快照？
+
+是的。Astra Trident 支持从快照创建按需卷快照和永久性卷。要从快照创建 PV ，请确保已启用 `VolumeSnapshotDataSource` 功能门。
+
+
+
+=== 哪些驱动程序支持 Astra Trident 卷快照？
+
+从目前开始，我们为 `ontap-nas` ， `ontap-san` ， `ontap-san-economic` ， `solidfire-san` ， `AWS-CVS` 提供按需快照支持。 `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。
+
+
+
+=== 如何为采用 ONTAP 的 Astra Trident 配置的卷创建快照备份？
+
+此功能可从 `ontap-nas` ， `ontap-san` 和 `ontap-nas-flexgroup` 驱动程序获得。您也可以在 FlexVol 级别为 `ontap-san-economy` 驱动程序指定 `snapshotPolicy` 。
+
+此功能也可在 `ontap-nas-economy` 驱动程序上使用，但可在 FlexVol 级别粒度上使用，而不能在 qtree 级别粒度上使用。要启用对由 Astra Trident 配置的卷创建快照的功能，请将后端参数选项 `snapshotPolicy` 设置为 ONTAP 后端定义的所需快照策略。Astra Trident 无法识别存储控制器创建的任何快照。
+
+
+
+=== 是否可以为通过 Astra Trident 配置的卷设置快照预留百分比？
+
+可以，您可以通过在后端定义文件中设置 `snapshotReserve` 属性来预留特定百分比的磁盘空间，以便通过 Astra Trident 存储 Snapshot 副本。如果在后端定义文件中配置了 `snapshotPolicy` 和 `snapshotReserve` ，则会根据后端文件中提及的 `snapshotReserve` 百分比设置快照预留百分比。如果未提及 `snapshotReserve` 百分比数，则默认情况下， ONTAP 会将快照预留百分比设置为 5 。如果将 `snapshotPolicy` 选项设置为 none ，则快照预留百分比将设置为 0 。
+
+
+
+=== 是否可以直接访问卷快照目录和复制文件？
+
+可以，您可以通过在后端定义文件中设置 `snapshotDir` 参数来访问 Trident 配置的卷上的 Snapshot 目录。
+
+
+
+=== 是否可以通过 Astra Trident 为卷设置 SnapMirror ？
+
+目前，必须使用 ONTAP 命令行界面或 OnCommand 系统管理器在外部设置 SnapMirror 。
+
+
+
+=== 如何将永久性卷还原到特定 ONTAP 快照？
+
+要将卷还原到 ONTAP 快照，请执行以下步骤：
+
+. 暂停正在使用永久性卷的应用程序 POD 。
+. 通过 ONTAP 命令行界面或 OnCommand 系统管理器还原到所需的快照。
+. 重新启动应用程序 POD 。
+
+
+
+
+=== 如何区分每个客户 / 租户的存储类使用情况？
+
+Kubernetes 不允许在命名空间中使用存储类。但是，您可以使用 Kubernetes 通过使用每个命名空间的存储资源配额来限制每个命名空间的特定存储类的使用。要拒绝特定命名空间对特定存储的访问，请将该存储类的资源配额设置为 0 。

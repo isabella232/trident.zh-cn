@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: trident-use/vol-operations.html 
+keywords: snapshots, volumes, csi topology, storage classes, pv, pvc, persistent volumes, persistent volume claims, backends, expand volumes, import volumes 
+summary: Astra Trident 提供了多种用于管理卷的功能。了解 Astra Trident 为卷提供的功能。 
+---
+= 执行卷操作
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+Astra Trident 提供了多种用于管理卷的功能。了解 Astra Trident 为卷提供的功能。
+
+* link:csi-topology.html["使用 CSI 拓扑"^]
+* link:vol-snapshots.html["使用快照"^]
+* link:vol-expansion.html["展开卷"^]
+* link:vol-import.html["导入卷"^]
+

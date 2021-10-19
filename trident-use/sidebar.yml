@@ -1,0 +1,58 @@
+---
+section: trident-backend
+title: 使用 Astra Trident
+entries:
+- title: 配置后端
+  url: "/trident-use/backends.html"
+  entries:
+  - title: 配置 ANF 后端
+    url: "/trident-use/anf.html"
+  - title: 为 AWS 后端配置 CVS
+    url: "/trident-use/aws.html"
+  - title: 为 Google Cloud 配置 CVS
+    url: "/trident-use/gcp.html"
+  - title: 配置 NetApp HCI 或 SolidFire 后端
+    url: "/trident-use/element.html"
+  - title: 使用 ONTAP SAN 驱动程序配置后端
+    url: "/trident-use/ontap-san.html"
+    entries:
+    - title: 准备
+      url: "/trident-use/ontap-san-prep.html"
+    - title: 配置选项和示例
+      url: "/trident-use/ontap-san-examples.html"
+  - title: 使用 ONTAP NAS 驱动程序配置后端
+    url: "/trident-use/ontap-nas.html"
+    entries:
+    - title: 准备
+      url: "/trident-use/ontap-nas-prep.html"
+    - title: 配置选项和示例
+      url: "/trident-use/ontap-nas-examples.html"
+  - title: 将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSX 结合使用
+    url: "/trident-use/trident-fsx.html"
+- title: 使用 kubectl 创建后端
+  url: "/trident-use/backend-kubectl.html"
+- title: 使用 kubectl 执行后端管理
+  url: "/trident-use/backend_ops_kubectl.html"
+- title: 使用 tridentctl 执行后端管理
+  url: "/trident-use/backend_ops_tridentctl.html"
+- title: 在后端管理选项之间移动
+  url: "/trident-use/backend_options.html"
+- title: 管理存储类
+  url: "/trident-use/manage-stor-class.html"
+- title: 执行卷操作
+  url: "/trident-use/vol-operations.html"
+  entries:
+  - title: 使用 CSI 拓扑
+    url: "/trident-use/csi-topology.html"
+  - title: 使用快照
+    url: "/trident-use/vol-snapshots.html"
+  - title: 展开卷
+    url: "/trident-use/vol-expansion.html"
+  - title: 导入卷
+    url: "/trident-use/vol-import.html"
+- title: 准备工作节点
+  url: "/trident-use/worker-node-prep.html"
+- title: 自动工作节点准备
+  url: "/trident-use/automatic-workernode.html"
+- title: 监控 Astra Trident
+  url: "/trident-use/monitor-trident.html"

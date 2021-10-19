@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-customize-deploy-tridentctl.html 
+keywords: deploy, astra trident, methods, operator, tridentctl, helm, attributes, customize, tridentorchestrator 
+summary: 使用 Trident 的安装程序可以自定义属性。 
+---
+= 自定义 <code>tridentctl</code> 部署
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+使用 Trident 安装程序可以自定义属性。例如，如果已将 Trident 映像复制到专用存储库，则可以使用 ` -trident 映像` 指定映像名称。如果您已将 Trident 映像以及所需的 CSI sidecar 映像复制到专用存储库，则最好使用 ` -image-regRegistry` 开关指定该存储库的位置，该开关的格式为 ` < 注册表 FQDN>[ ： port]` 。
+
+要让 Astra Trident 自动为您配置工作节点，请使用 ` -enable-node-prep` 。有关其工作原理的详细信息，请参见 link:../trident-use/automatic-workernode.html["此处"^]。
+
+
+NOTE: 自动员工节点准备是一项 * 测试版功能 * ，仅用于非生产环境。
+
+如果您使用的是 Kubernetes 的分发版本，其中 `kubelet` 将其数据保存在通常的 ` /var/lib/kubelet` 以外的路径上，则可以使用 ` -kubelet-dir` 指定备用路径。
+
+如果您需要自定义安装，使其超出安装程序参数的允许范围，则还可以自定义部署文件。使用 ` -generate-custom-yaml` 参数可在安装程序的 `setup` 目录中创建以下 YAML 文件：
+
+* `trident — clusterrolebinding 。 yaml`
+* `trident 部署。 yaml`
+* `trident — crds.yaml`
+* `trident 集群角色。 yaml`
+* `trident — demonset.yaml`
+* `trident service.yaml`
+* `trident 命名空间 .yaml`
+* `trident 服务帐户。 yaml`
+
+
+生成这些文件后，您可以根据需要对其进行修改，然后使用 ` -use-custom-yaml` 安装自定义部署。
+
+[listing]
+----
+./tridentctl install -n trident --use-custom-yaml
+----

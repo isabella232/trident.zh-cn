@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: trident-rn.html 
+keywords: what's new, new features, enhancements, known issues, resolved issues, troubleshooting 
+summary: NetApp 不断改进和完善其产品和服务。以下是最新版 Astra Trident 中的一些最新功能，增强功能和错误修复。 
+---
+= 发行说明
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+发行说明提供了有关最新版本的 Astra Trident 中的新增功能，增强功能和错误修复的信息。
+
+
+
+== 新增功能
+
+NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 的一些最新特性和功能。
+
+
+
+=== Astra Trident 21.07.02
+
+* 修复了问题描述，其中无法将 XFS 卷的克隆挂载到与源卷相同的节点上。
+
+
+
+
+==== 增强功能
+
+* 增加了对 Kubernetes 1.22 的支持。
+* 已启用 Trident 操作员和 Helm 图表以使用 Kubernetes 1.22 。
+
+
+请参见 https://github.com/NetApp/trident/releases["Astra Trident GitHub"^] 有关详细信息 ...
+
+
+
+=== Astra Trident 21.07.01
+
+* 使用不同映像修复了自定义 YAML 安装程序问题描述。
+* 固定快照大小计算问题描述。
+
+
+请参见 https://github.com/NetApp/trident/releases/tag/v21.07.1["Astra Trident GitHub"^] 有关详细信息 ...
+
+
+
+=== Astra Trident 21.07
+
+Astra Trident 21.07.0 * 不可下载 * 。对版本 21.07.0 中的 `snapshotReserve` 进行更改可能会导致 CSI `VolumeSnapshots` 无法用于创建 PersistentVolumeClaim 。
+
+如果您已升级到 21.07.0 版，建议删除新创建的 `VolumeSnapshots` （在 21.07.0 版中配置）并降级到先前版本。
+
+请参见 https://github.com/NetApp/trident/releases/tag/v21.07.0["Astra Trident GitHub"^] 有关详细信息 ...
+
+
+
+== 已知问题
+
+已知问题用于确定可能会阻止您成功使用本产品的问题。
+
+* 对于在其 StorageClass 中未指定 `FSType` 的卷， Astra Trident 现在会强制使用空的 `FSType` （`FSTtype=""` ）。使用 Kubernetes 1.17 或更高版本时， Trident 支持为 NFS 卷提供一个空的 `FSType` 。对于 iSCSI 卷，在使用安全上下文强制执行 `fsGroup` 时，您需要在 StorageClass 上设置 `FSType` 。
+* 在多个 Astra Trident 实例之间使用后端时，每个后端配置文件对于 ONTAP 后端应具有不同的 `storagePrefix` 值，或者对于 SolidFire 后端使用不同的 `租户名称` 。Astra Trident 无法检测其他 Astra Trident 实例创建的卷。尝试在 ONTAP 或 SolidFire 后端创建现有卷会成功，因为 Astra Trident 会将卷创建视为一项幂等操作。如果 `storagePrefix` 或 `租户名称` 不存在差异，则在同一后端创建的卷可能会发生名称冲突。
+* 安装 Astra Trident （使用 `tridentctl` 或 Trident 操作员）并使用 `tridentctl` 管理 Astra Trident 时，应确保设置 `KUBECONFIG` 环境变量。这是 `需要对` tridentctl 进行处理的 Kubernetes 集群进行指示的。在使用多个 Kubernetes 环境时，您应确保准确获取 `KUBECONFIG` 文件。
+* 要对 iSCSI PV 执行联机空间回收，工作节点上的底层操作系统可能需要将挂载选项传递到卷。这一点适用于需要 `discard` 的 RHEL/RedHat CoreOS 实例 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/discarding-unused-blocks_managing-file-systems["挂载选项"^]；确保中包含 Discard mountOption 支持联机块丢弃。
+* 如果每个 Kubernetes 集群有多个 Astra Trident 实例，则 Astra Trident 将无法与其他实例通信，也无法发现它们创建的其他卷，如果集群中运行多个实例，则会导致意外的错误行为。每个 Kubernetes 集群只能有一个 Astra Trident 实例。
+* 如果在 Astra Trident 脱机时从 Kubernetes 中删除了基于 Astra Trident 的 `StorageClass` 对象，则 Astra Trident 不会在恢复联机后从其数据库中删除相应的存储类。您应使用 `tridentctl` 或 REST API 删除这些存储类。
+* 如果用户在删除相应的 PVC 之前删除了由 Astra Trident 配置的 PV ，则 Astra Trident 不会自动删除后备卷。您应通过 `tridentctl` 或 REST API 删除此卷。
+* ONTAP 不能同时配置多个 FlexGroup ，除非聚合集对于每个配置请求是唯一的。
+* 使用基于 IPv6 的 Astra Trident 时，应在后端定义中方括号内指定 `managementLIF` 和 `dataLIF` 。例如， `` FD20 ： 8b1e ： b258 ： 2000 ： f816 ： 3effe ： feec ： 0`` 。
+* 如果将 `solidfire-san` 驱动程序与 OpenShift 4.5 结合使用，请确保底层工作节点使用 MD5 作为 CHAP 身份验证算法。
+
+
+
+
+== 了解更多信息
+
+* https://github.com/NetApp/trident["Astra Trident GitHub"^]
+* https://netapp.io/persistent-storage-provisioner-for-kubernetes/["Astra Trident 博客"^]
+

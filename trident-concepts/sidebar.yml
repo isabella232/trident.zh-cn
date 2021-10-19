@@ -1,0 +1,16 @@
+---
+section: trident-concepts
+title: 概念
+entries:
+- title: Astra Trident 简介
+  url: "/trident-concepts/intro.html"
+- title: ONTAP 驱动程序
+  url: "/trident-concepts/ontap-drivers.html"
+- title: 配置
+  url: "/trident-concepts/provisioning.html"
+- title: 卷快照
+  url: "/trident-concepts/snapshots.html"
+- title: 虚拟存储池
+  url: "/trident-concepts/virtual-storage-pool.html"
+- title: 卷访问组
+  url: "/trident-concepts/vol-access-groups.html"

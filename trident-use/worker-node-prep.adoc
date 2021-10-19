@@ -1,0 +1,128 @@
+---
+sidebar: sidebar 
+permalink: trident-use/worker-node-prep.html 
+keywords: storage class, manage storage class, storage classes, kubernetes storage classes, worker node, nfs, iscsi, kubernetes clusters 
+summary: Kubernetes 集群中的所有工作节点都需要能够挂载为 Pod 配置的卷。如果您在其中一个后端使用的是 ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup 驱动程序，则您的工作节点需要 NFS 工具。否则，它们需要使用 iSCSI 工具。 
+---
+= 准备工作节点
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+Kubernetes 集群中的所有工作节点都需要能够挂载为 Pod 配置的卷。如果您在其中一个后端使用 `ontap-nas` ， `ontap-nas-economy` 或 `ontap-nas-flexgroup` 驱动程序，则您的工作节点需要 NFS 工具。否则，它们需要使用 iSCSI 工具。
+
+默认情况下，最新版本的 RedHat CoreOS 同时安装了 NFS 和 iSCSI 。
+
+
+WARNING: 安装 NFS 或 iSCSI 工具后，您应始终重新启动工作节点，否则将卷连接到容器可能会失败。
+
+
+
+== NFS volumes
+
+[cols="3*"]
+|===
+| 协议 | 操作系统 | 命令 
+
+
+| NFS  a| 
+RHEL/CentOS
+ a| 
+`sudo yum install -y nfs-utils`
+
+
+
+| NFS  a| 
+Ubuntu 或 Debian
+ a| 
+`sudo apt-get install -y nfs-common`
+
+|===
+
+NOTE: 您应确保 NFS 服务在启动期间启动。
+
+
+
+== iSCSI 卷
+
+使用 iSCSI 卷时，请考虑以下事项：
+
+* Kubernetes 集群中的每个节点都必须具有唯一的 IQN 。* 这是必要的前提条件 * 。
+* 如果将 RHCOS 4.5 或更高版本，或者将 RHEL 或 CentOS 8.2 或更高版本与 `solidfire-san` 驱动程序结合使用，请确保在 ` /etc/iscsi/iscsid.conf` 中将 CHAP 身份验证算法设置为 MD5 。
+
+
+[listing]
+----
+sudo sed -i 's/^\(node.session.auth.chap_algs\).*/\1 = MD5/' /etc/iscsi/iscsid.conf
+----
+* 使用运行 RHEL/RedHat CoreOS 和 iSCSI PV 的工作节点时，请确保在 StorageClass 中指定 `discard` mountOption 以执行实时空间回收。请参见 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/discarding-unused-blocks_managing-file-systems["RedHat 的文档"^]。
+
+
+[cols="3*"]
+|===
+| 协议 | 操作系统 | 命令 
+
+
+| iSCSI  a| 
+RHEL/CentOS
+ a| 
+. 安装以下系统软件包：
++
+`sudo yum install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath`
+
+. 检查 iscsi-initiator-utils 版本是否为 6.2.0.877-2.el7 或更高版本：
++
+`rpm -q iscsi-initiator-utils`
+
+. 将扫描设置为手动：
++
+`sUdo sed -i 's/^ \ （ node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf`
+
+. 启用多路径：
++
+`sudo mpathconf -enable -with multipathd y`
+
+. 确保 `iscsid` 和 `multipathd` 正在运行：
++
+`sudo systemctl enable -now iscsid multipathd`
+
+. 启用并启动 `iSCSI` ：
++
+`sudo systemctl enable —现在为 iSCSI`
+
+
+
+
+
+| iSCSI  a| 
+Ubuntu 或 Debian
+ a| 
+. 安装以下系统软件包：
++
+`sUdo apt-get install -y open-iscsi lsscsi sg3-utils multipath-tools scsitool`
+
+. 检查 open-iscsi 版本是否为 2.0.877-5ubuntu2.10 或更高版本（对于双子系统）或 2.0.877-7.1ubuntu6.1 或更高版本（对于 Focal ）：
++
+`dpkg -l open-iscsi`
+
+. 将扫描设置为手动：
++
+`sUdo sed -i 's/^ \ （ node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf`
+
+. 启用多路径：
++
+`sUdo tee /etc/multipath.conf <<-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`
+
+. 确保已启用并运行 `open-iscsi` 和 `multipath-tools` ：
++
+`sudo systemctl status multipath-tools` `sudo systemctl enable -now open-iscsi.service` `sudo systemctl status open-iscsi`
+
+
+
+|===
+
+NOTE: 对于 Ubuntu 18.04 ，您必须先使用 `iscsiadm` 发现目标端口，然后再启动 `open-iscsi` ， iSCSI 守护进程才能启动。您也可以将 `iscsi` 服务修改为自动启动 `iscsid` 。
+
+
+NOTE: 如果您希望了解有关自动员工节点准备的更多信息，这是一项测试功能，请参见 link:automatic-workernode.html["此处"^]。

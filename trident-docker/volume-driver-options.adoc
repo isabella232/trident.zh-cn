@@ -1,0 +1,351 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/volume-driver-options.html 
+keywords: create volumes, astra trident, trident for docker, docker, docker volume, driver options, ontap, element volumes, cloud volumes service on aws, cvs, cloud volumes service on gcp, azure netapp files 
+summary: 每个存储驱动程序都有一组不同的选项，您可以在创建卷时指定这些选项来自定义结果。有关适用于您配置的存储系统的选项，请参见以下内容。 
+---
+= 卷驱动程序选项
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+每个存储驱动程序都有一组不同的选项，您可以在创建卷时指定这些选项来自定义结果。有关适用于您配置的存储系统的选项，请参见以下内容。
+
+在卷创建操作期间使用这些选项非常简单。在命令行界面操作期间，使用 ` -o` 运算符提供选项和值。这些参数将覆盖 JSON 配置文件中的任何等效值。
+
+
+
+== ONTAP 卷选项
+
+NFS 和 iSCSI 的卷创建选项包括以下内容：
+
+[cols="2*"]
+|===
+| 选项 | Description 
+
+
+| `s大小`  a| 
+卷的大小默认为 1 GiB 。
+
+
+
+| `s页面预留`  a| 
+精简或厚配置卷，默认为精简。有效值为 `none` （精简配置）和 `volume` （厚配置）。
+
+
+
+| `sSnapshot 策略`  a| 
+此操作会将 Snapshot 策略设置为所需的值。默认值为 `none` ，表示不会自动为卷创建快照。除非存储管理员修改，否则所有 ONTAP 系统上都存在一个名为 "defaultion" 的策略，该策略会创建并保留六个每小时快照，两个每日快照和两个每周快照。通过浏览到卷中任意目录中的 ` .snapshot` 目录，可以恢复快照中保留的数据。
+
+
+
+| `sSnapshot 预留`  a| 
+此操作会将快照预留设置为所需百分比。默认值为 no 值，这意味着如果您选择了 snapshotPolicy ， ONTAP 将选择 snapshotReserve （通常为 5% ）；如果 snapshotPolicy 为 none ，则选择 0% 。您可以在配置文件中为所有 ONTAP 后端设置默认 snapshotReserve 值，并可将其用作除 ontap-nas-economy. 以外的所有 ONTAP 后端的卷创建选项。
+
+
+
+| `splitOnClone`  a| 
+克隆卷时，此操作将使发生原因 ONTAP 立即从其父卷拆分克隆。默认值为 `false` 。在克隆卷的某些使用情形中，最好在创建后立即将克隆从其父卷中拆分，因为不太可能有任何提高存储效率的机会。例如，克隆空数据库可以节省大量时间，但节省的存储很少，因此最好立即拆分克隆。
+
+
+
+| `加密`  a| 
+这将在新卷上启用 NetApp 卷加密（ NVE ），默认为 `false` 。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。
+
+
+
+| `分层策略`  a| 
+设置要用于卷的分层策略。这将决定数据在变为非活动状态（冷）时是否移至云层。
+
+|===
+以下附加选项适用于 NFS * 仅 * ：
+
+[cols="2*"]
+|===
+| 选项 | Description 
+
+
+| `unixPermissions`  a| 
+此选项用于控制为卷本身设置的权限。默认情况下，权限将设置为 `` -rwrxr-xr-x` ，或以数字表示法 0755 表示，并且 `root` 将为所有者。文本或数字格式均可使用。
+
+
+
+| `snapshotDir`  a| 
+将此值设置为 `true` 将使访问卷的客户端能够看到 ` 。 snapshot` 目录。默认值为 `false` ，这意味着默认情况下禁用 ` .snapshot` 目录的可见性。当 ` .snapshot` 目录可见时，某些映像（例如官方 MySQL 映像）无法按预期运行。
+
+
+
+| `exportPolicy`  a| 
+设置要用于卷的导出策略。默认值为 `default` 。
+
+
+
+| `securityStyle`  a| 
+设置用于访问卷的安全模式。默认值为 `UNIX` 。有效值为 `UNIX` 和 `mi 已加传真` 。
+
+|===
+以下附加选项适用于 iSCSI * 仅 * ：
+
+[cols="2*"]
+|===
+| 选项 | Description 
+
+
+| `fileSystemType` | 设置用于格式化 iSCSI 卷的文件系统。默认值为 `ext4` 。有效值为 `ext3` ， `ext4` 和 `xfs` 。 
+
+
+| `spaceAllocation` | 如果将此值设置为 `false` ，则会关闭 LUN 的空间分配功能。默认值为 `true` ，表示当卷空间用尽且卷中的 LUN 无法接受写入时， ONTAP 会通知主机。此选项还允许 ONTAP 在主机删除数据时自动回收空间。 
+|===
+
+
+=== 示例
+
+请参见以下示例：
+
+* 创建 10 GiB 卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o size=10G -o encryption=true
+----
+* 创建具有快照的 100GiB 卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o size=100G -o snapshotPolicy=default -o snapshotReserve=10
+----
+* 创建启用了 setuid 位的卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o unixPermissions=4755
+----
+
+
+最小卷大小为 20MiB 。
+
+如果未指定快照预留且快照策略为 `none` ，则 Trident 将使用 0% 的快照预留。
+
+* 创建无快照策略且无快照预留的卷：
++
+[listing]
+----
+docker volume create -d netapp --name my_vol --opt snapshotPolicy=none
+----
+* 创建一个无快照策略且自定义快照预留为 10% 的卷：
++
+[listing]
+----
+docker volume create -d netapp --name my_vol --opt snapshotPolicy=none --opt snapshotReserve=10
+----
+* 创建具有快照策略和 10% 自定义快照预留的卷：
++
+[listing]
+----
+docker volume create -d netapp --name my_vol --opt snapshotPolicy=myPolicy --opt snapshotReserve=10
+----
+* 使用快照策略创建卷，并接受 ONTAP 的默认快照预留（通常为 5% ）：
++
+[listing]
+----
+docker volume create -d netapp --name my_vol --opt snapshotPolicy=myPolicy
+----
+
+
+
+
+== Element 软件卷选项
+
+Element 软件选项会显示与卷关联的大小和服务质量（ QoS ）策略。创建卷时，将使用 ` -o type=service_level` 命名空间指定与其关联的 QoS 策略。
+
+使用 Element 驱动程序定义 QoS 服务级别的第一步是至少创建一种类型，并指定与配置文件中的名称关联的最小，最大和突发 IOPS 。
+
+其他 Element 软件卷创建选项包括：
+
+[cols="2*"]
+|===
+| 选项 | Description 
+
+
+| `s大小`  a| 
+卷的大小，默认为 1GiB 或配置条目 ... " 默认值 " ： ｛ "size" ： "5c" ｝ 。
+
+
+
+| `块大小`  a| 
+使用 512 或 4096 ，默认为 512 或配置条目 DefaultBlockSize 。
+
+|===
+
+
+=== 示例
+
+请参见以下包含 QoS 定义的示例配置文件：
+
+[listing]
+----
+{
+    "...": "..."
+    "Types": [
+        {
+            "Type": "Bronze",
+            "Qos": {
+                "minIOPS": 1000,
+                "maxIOPS": 2000,
+                "burstIOPS": 4000
+            }
+        },
+        {
+            "Type": "Silver",
+            "Qos": {
+                "minIOPS": 4000,
+                "maxIOPS": 6000,
+                "burstIOPS": 8000
+            }
+        },
+        {
+            "Type": "Gold",
+            "Qos": {
+                "minIOPS": 6000,
+                "maxIOPS": 8000,
+                "burstIOPS": 10000
+            }
+        }
+    ]
+}
+----
+在上述配置中，我们有三个策略定义：铜牌，银牌和金牌。这些名称是任意的。
+
+* 创建 10 GiB 黄金卷：
++
+[listing]
+----
+docker volume create -d solidfire --name sfGold -o type=Gold -o size=10G
+----
+* 创建 100GiB 铜牌卷：
++
+[listing]
+----
+docker volume create -d solidfire --name sfBronze -o type=Bronze -o size=100G
+----
+
+
+
+
+== AWS 卷选项上的 Cloud Volumes Service （ CVS ）
+
+AWS 上的 CVS 驱动程序的卷创建选项包括以下内容：
+
+[cols="2*"]
+|===
+| 选项 | Description 
+
+
+| `s大小`  a| 
+卷的大小默认为 100 GB 。
+
+
+
+| `s服务级别`  a| 
+卷的 CVS 服务级别默认为标准。有效值包括标准，高级和极高。
+
+
+
+| `sSnapshot 预留`  a| 
+`此操作会将快照预留设置为所需百分比。默认值为 no 值，表示 CVS 将选择快照预留（通常为 0% ）。
+
+|===
+
+
+=== 示例
+
+* 创建 200 GiB 卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o size=200G
+----
+* 创建一个 500 GiB 高级卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o size=500G -o serviceLevel=premium
+----
+
+
+最小卷大小为 100 GB 。
+
+
+
+== GCP 上的 CVS 卷选项
+
+基于 GCP 的 CVS 驱动程序的卷创建选项包括以下内容：
+
+[cols="2*"]
+|===
+| 选项 | Description 
+
+
+| `s大小`  a| 
+卷的大小，默认情况下， CVS-Performance 卷为 100 GiB ， CVS 卷为 300 GiB 。
+
+
+
+| `s服务级别`  a| 
+卷的 CVS 服务级别默认为标准。有效值包括标准，高级和极高。
+
+
+
+| `sSnapshot 预留`  a| 
+此操作会将快照预留设置为所需百分比。默认值为 no 值，表示 CVS 将选择快照预留（通常为 0% ）。
+
+|===
+
+
+=== 示例
+
+* 创建 2 TiB 卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o size=2T
+----
+* 创建 5 TiB 高级卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o size=5T -o serviceLevel=premium
+----
+
+
+对于 CVS-Performance 卷，最小卷大小为 100 GiB ，对于 CVS 卷，最小卷大小为 300 GiB 。
+
+
+
+== Azure NetApp Files 卷选项
+
+Azure NetApp Files 驱动程序的卷创建选项包括：
+
+[cols="2*"]
+|===
+| 选项 | Description 
+
+
+| `s大小`  a| 
+卷的大小默认为 100 GB 。
+
+|===
+
+
+=== 示例
+
+* 创建 200 GiB 卷：
++
+[listing]
+----
+docker volume create -d netapp --name demo -o size=200G
+----
+
+
+最小卷大小为 100 GB 。

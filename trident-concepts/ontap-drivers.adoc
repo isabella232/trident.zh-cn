@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: trident-concepts/ontap-drivers.html 
+keywords: trident backend, AFF, FAS, ONTAP Select, Cloud, Amazon FSx for NetApp ONTAP, drivers, ONTAP drivers 
+summary: 了解如何在 Trident 安装中创建和使用 Element 后端。 
+---
+= ONTAP 驱动程序
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTAP 集群进行通信。详细了解每个驱动程序如何处理卷的创建，访问控制及其功能。
+
+[cols="5"]
+|===
+| 驱动程序 | 协议 | 卷模式 | 支持的访问模式 | 支持的文件系统 
+
+
+| `ontap-NAS`  a| 
+NFS
+ a| 
+文件系统
+ a| 
+rwo ， rwx ， rox
+ a| 
+"" ， NFS
+
+
+
+| `ontap-nas-economy.`  a| 
+NFS
+ a| 
+文件系统
+ a| 
+rwo ， rwx ， rox
+ a| 
+"" ， NFS
+
+
+
+| `ontap-nas-flexgroup`  a| 
+NFS
+ a| 
+文件系统
+ a| 
+rwo ， rwx ， rox
+ a| 
+"" ， NFS
+
+
+
+| `ontap-san`  a| 
+iSCSI
+ a| 
+块
+ a| 
+rwo ， rox ， rwx
+ a| 
+无文件系统。原始块设备
+
+
+
+| `ontap-san`  a| 
+iSCSI
+ a| 
+文件系统
+ a| 
+工单， ROX
+ a| 
+`xfs` ， `ext3` ， `ext4`
+
+
+
+| `ontap-san-economy.`  a| 
+iSCSI
+ a| 
+块
+ a| 
+rwo ， rox ， rwx
+ a| 
+无文件系统。原始块设备
+
+
+
+| `ontap-san-economy.`  a| 
+iSCSI
+ a| 
+文件系统
+ a| 
+工单， ROX
+ a| 
+`xfs` ， `ext3` ， `ext4`
+
+|===
+
+NOTE: 可以使用安全角色的登录凭据（用户名 / 密码）或使用 ONTAP 集群上安装的私钥和证书对 ONTAP 后端进行身份验证。您可以使用 `tridentctl update backend` 来更新现有后端，以便从一种身份验证模式移至另一种身份验证模式。

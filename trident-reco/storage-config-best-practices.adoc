@@ -1,0 +1,381 @@
+---
+sidebar: sidebar 
+permalink: trident-reco/storage-config-best-practices.html 
+keywords: kubernetes, clusters, nodes, components, master, compute 
+summary: Kubernetes 集群通常由两种类型的节点组成，每种节点负责不同的功能方面。 
+---
+= 存储配置
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+NetApp 产品组合中的每个存储平台都具有独特的功能，无论应用程序是容器化还是非容器化，都能从中受益。Trident 可与每个主要平台配合使用： ONTAP ， Element 和 E 系列。没有一个平台比另一个平台更适合所有应用程序和场景，但是，在选择平台时，应考虑应用程序和设备管理团队的需求。
+
+您应遵循使用所使用协议的主机操作系统的基线最佳实践。或者，您也可以考虑将应用程序最佳实践（如果有）与后端，存储类和 PVC 设置结合使用，以便为特定应用程序优化存储。
+
+
+
+== ONTAP 和 Cloud Volumes ONTAP 最佳实践
+
+了解为 Trident 配置 ONTAP 和 Cloud Volumes ONTAP 的最佳实践。
+
+以下建议是为容器化工作负载配置 ONTAP 的准则，容器化工作负载会占用 Trident 动态配置的卷。应考虑并评估每个问题在您的环境中的适用性。
+
+
+
+=== 使用专用于 Trident 的 SVM
+
+Storage Virtual Machine （ SVM ）可在 ONTAP 系统上的租户之间实现隔离和管理隔离。通过将 SVM 专用于应用程序，可以委派特权并应用最佳实践来限制资源消耗。
+
+可通过多种方法管理 SVM ：
+
+* 在后端配置中提供集群管理接口以及相应的凭据，并指定 SVM 名称。
+* 使用 ONTAP 系统管理器或命令行界面为 SVM 创建专用管理接口。
+* 与 NFS 数据接口共享管理角色。
+
+
+在每种情况下，接口都应位于 DNS 中，配置 Trident 时应使用 DNS 名称。这有助于在不使用网络身份保留的情况下实施某些灾难恢复方案，例如 SVM-DR 。
+
+在为 SVM 配置专用管理 LIF 或共享管理 LIF 之间没有任何偏好，但是，您应确保网络安全策略与您选择的方法一致。无论如何，管理 LIF 应可通过 DNS 访问，以实现最大的灵活性 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/GUID-B9E36563-1C7A-48F5-A9FF-1578B99AADA9.html["SVM-DR"^] 与 Trident 结合使用。
+
+
+
+=== 限制最大卷数
+
+ONTAP 存储系统具有最大卷数，具体取决于软件版本和硬件平台。请参见 https://hwu.netapp.com/["NetApp Hardware Universe"^] 以 ONTAP 确定确切限制。当卷计数用尽时，配置操作不仅会对 Trident 失败，而且会对所有存储请求失败。
+
+Trident 的 `ontap-nas` 和 `ontap-san` 驱动程序为创建的每个 Kubernetes 永久性卷（ PV ）配置一个 FlexVolume 。`ontap-nas-economy` 驱动程序会为每 200 个 PV 创建大约一个 FlexVolume （可在 50 到 300 之间配置）。`ontap-san-economy-经济` 驱动程序会为每 100 个 PV 创建大约一个 FlexVolume （可配置为 50 到 200 ）。要防止 Trident 占用存储系统上的所有可用卷，您应对 SVM 设置限制。您可以从命令行执行此操作：
+
+[listing]
+----
+vserver modify -vserver <svm_name> -max-volumes <num_of_volumes>
+----
+`max-volumes` 的值因环境的特定条件而异：
+
+* ONTAP 集群中现有卷的数量
+* 希望在 Trident 之外为其他应用程序配置的卷数
+* Kubernetes 应用程序预期占用的永久性卷数
+
+
+`max-volumes` 值是在 ONTAP 集群中的所有节点上配置的总卷数，而不是在单个 ONTAP 节点上配置的总卷数。因此，在某些情况下， ONTAP 集群节点所配置的 Trident 卷可能远远多于或少于其他节点。
+
+例如，一个双节点 ONTAP 集群最多可以托管 2000 个 FlexVolume 。将最大卷数设置为 1250 似乎非常合理。但是，如果只是 https://library.netapp.com/ecmdocs/ECMP1368859/html/GUID-3AC7685D-B150-4C1F-A408-5ECEB3FF0011.html["聚合"^] 从一个节点分配给 SVM ，或者从一个节点分配的聚合无法配置（例如，由于容量），则另一个节点将成为所有 Trident 配置卷的目标。这意味着，在达到 `max-volumes` 值之前，可能会达到该节点的卷限制，从而影响使用该节点的 Trident 和其他卷操作。* 您可以通过确保将集群中每个节点的聚合分配给 Trident 使用的 SVM 来避免这种情况。 *
+
+
+
+=== 限制 Trident 创建的卷的最大大小
+
+要为 Trident 可以创建的卷配置最大大小，请在 `backend.json` 定义中使用 `limitVolumeSize` 参数。
+
+除了控制存储阵列上的卷大小之外，您还应利用 Kubernetes 功能。
+
+
+
+=== 配置 Trident 以使用双向 CHAP
+
+您可以在后端定义中指定 CHAP 启动程序以及目标用户名和密码，并在 SVM 上启用 Trident CHAP 。在后端配置中使用 `useCHAP` 参数， Trident 使用 CHAP 对 ONTAP 后端的 iSCSI 连接进行身份验证。Trident 20.04 及更高版本支持双向 CHAP 。
+
+
+
+=== 创建并使用 SVM QoS 策略
+
+利用应用于 SVM 的 ONTAP QoS 策略，限制 Trident 配置的卷可使用的 IOPS 数量。这有助于实现 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-perf-mon/GUID-77DF9BAF-4ED7-43F6-AECE-95DFB0680D2F.html?cp=7_1_2_1_2["防止抢占资源"^] 或控制不足的容器，以使其不会影响 Trident SVM 以外的工作负载。
+
+您可以通过几个步骤为 SVM 创建 QoS 策略。有关最准确的信息，请参见适用于您的 ONTAP 版本的文档。以下示例将创建一个 QoS 策略，将 SVM 可用的总 IOPS 限制为 5000 。
+
+[source, console]
+----
+# create the policy group for the SVM
+qos policy-group create -policy-group <policy_name> -vserver <svm_name> -max-throughput 5000iops
+
+# assign the policy group to the SVM, note this will not work
+# if volumes or files in the SVM have existing QoS policies
+vserver modify -vserver <svm_name> -qos-policy-group <policy_name>
+----
+此外，如果您的 ONTAP 版本支持此功能，则可以考虑使用最低 QoS 来保证容器化工作负载的吞吐量。自适应 QoS 与 SVM 级别策略不兼容。
+
+专用于容器化工作负载的 IOPS 数量取决于许多方面。其中包括：
+
+* 使用存储阵列的其他工作负载。如果存在与 Kubernetes 部署无关的其他工作负载，则应注意利用存储资源，以确保这些工作负载不会意外受到不利影响。
+* 容器中运行的预期工作负载。如果 IOPS 要求较高的工作负载将在容器中运行，则 QoS 策略较低会导致出现不良体验。
+
+
+请务必记住，在 SVM 级别分配的 QoS 策略会导致配置到 SVM 的所有卷共享同一个 IOPS 池。如果一个或少量容器化应用程序的 IOPS 要求较高，则可能会成为其他容器化工作负载的抢占资源的应用程序。如果是这种情况，您可能需要考虑使用外部自动化来分配每个卷的 QoS 策略。
+
+
+IMPORTANT: 如果 ONTAP 版本早于 9.8 ，则应将此 QoS 策略组分配给 SVM * 仅 * 。
+
+
+
+=== 为 Trident 创建 QoS 策略组
+
+服务质量（ QoS ）可确保关键工作负载的性能不会因争用工作负载而降级。ONTAP QoS 策略组为卷提供 QoS 选项，并使用户能够为一个或多个工作负载定义吞吐量上限。有关 QoS 的详细信息，请参见 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-perf-mon/GUID-77DF9BAF-4ED7-43F6-AECE-95DFB0680D2F.html["通过 QoS 保证吞吐量"^]。您可以在后端或存储池中指定 QoS 策略组，这些策略组将应用于该池或后端创建的每个卷。
+
+ONTAP 有两种类型的 QoS 策略组：传统和自适应。传统策略组以 IOPS 为单位提供固定的最大（或最小）吞吐量。自适应 QoS 会根据工作负载大小自动扩展吞吐量，并在工作负载大小发生变化时保持 IOPS 与 TBSGB 的比率。如果您要在大型部署中管理数百或数千个工作负载，则这将带来显著优势。
+
+创建 QoS 策略组时，请考虑以下事项：
+
+* 您应在后端配置的 `defaults` 块中设置 `qosPolicy` 密钥。请参见以下后端配置示例：
+
+
+[source, console]
+----
+  {
+    "version": 1,
+    "storageDriverName": "ontap-nas",
+    "managementLIF": "0.0.0.0",
+    "dataLIF": "0.0.0.0",
+    "svm": "svm0",
+    "username": "user",
+    "password": "pass",
+    "defaults": {
+      "qosPolicy": "standard-pg"
+    },
+    "storage": [
+      {
+        "labels": {"performance": "extreme"},
+        "defaults": {
+          "adaptiveQosPolicy": "extremely-adaptive-pg"
+        }
+      },
+      {
+        "labels": {"performance": "premium"},
+        "defaults": {
+          "qosPolicy": "premium-pg"
+        }
+      }
+    ]
+  }
+----
+* 您应该对每个卷应用策略组，以便每个卷都获得策略组指定的整个吞吐量。不支持共享策略组。
+
+
+有关 QoS 策略组的详细信息，请参见 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr-980/TOC__qos.html["ONTAP 9.8 QoS 命令"^]。
+
+
+
+=== 将存储资源访问限制为 Kubernetes 集群成员
+
+限制对 Trident 创建的 NFS 卷和 iSCSI LUN 的访问是 Kubernetes 部署安全状况的重要组成部分。这样可以防止不属于 Kubernetes 集群的主机访问卷并可能意外修改数据。
+
+请务必了解命名空间是 Kubernetes 中资源的逻辑边界。假设同一命名空间中的资源可以共享，但重要的是，没有跨命名空间功能。这意味着，即使 PV 是全局对象，但在绑定到 PVC 时，它们只能由同一命名空间中的 Pod 访问。* 请务必确保使用命名空间在适当时提供分隔。 *
+
+大多数组织在 Kubernetes 环境中的数据安全方面的主要顾虑是，容器中的进程可以访问挂载到主机但不适用于容器的存储。  https://en.wikipedia.org/wiki/Linux_namespaces["命名空间"^] 旨在防止这种类型的损害。但是，存在一个例外：特权容器。
+
+有权限的容器是指运行时拥有比正常情况更多主机级别权限的容器。默认情况下，这些选项不会被拒绝，因此请确保使用禁用此功能 https://kubernetes.io/docs/concepts/policy/pod-security-policy/["POD 安全策略"^]。
+
+对于需要从 Kubernetes 和外部主机访问的卷，应采用传统方式管理存储，并由管理员引入 PV ，而不是由 Trident 管理。这样可以确保只有在 Kubernetes 和外部主机断开连接且不再使用此卷时，才会销毁此存储卷。此外，还可以应用自定义导出策略，以便从 Kubernetes 集群节点和 Kubernetes 集群以外的目标服务器进行访问。
+
+对于具有专用基础架构节点（例如 OpenShift ）或其他不能为用户应用程序计划的节点的部署，应使用单独的导出策略进一步限制对存储资源的访问。其中包括为部署到这些基础架构节点的服务（例如 OpenShift 指标和日志记录服务）以及部署到非基础架构节点的标准应用程序创建导出策略。
+
+
+
+=== 使用专用导出策略
+
+您应确保每个后端都有一个导出策略，该策略仅允许访问 Kubernetes 集群中的节点。从 20.04 版开始， Trident 可以自动创建和管理导出策略。通过这种方式， Trident 会限制对其配置给 Kubernetes 集群中节点的卷的访问，并简化节点的添加 / 删除。
+
+或者，您也可以手动创建导出策略，并使用一个或多个导出规则来填充此策略，这些导出规则用于处理每个节点访问请求：
+
+* 使用 `vserver export-policy create` ONTAP 命令行界面命令创建导出策略。
+* 使用 `vserver export-policy rule create` ONTAP 命令行界面命令向导出策略添加规则。
+
+
+通过运行这些命令，您可以限制哪些 Kubernetes 节点可以访问数据。
+
+
+
+=== 为应用程序 SVM 禁用 showmount
+
+通过 `showmount` 功能， NFS 客户端可以向 SVM 查询可用 NFS 导出列表。部署到 Kubernetes 集群的 Pod 可以对数据 LIF 执行问题描述 `showmount -e` 命令，并接收可用挂载列表，包括其无权访问的挂载。虽然这本身并不会影响安全，但它确实会提供不必要的信息，可能有助于未经授权的用户连接到 NFS 导出。
+
+您应使用 SVM 级别的 ONTAP 命令行界面命令禁用 `showmount` ：
+
+[listing]
+----
+vserver nfs modify -vserver <svm_name> -showmount disabled
+----
+
+
+== SolidFire 最佳实践
+
+了解为 Trident 配置 SolidFire 存储的最佳实践。
+
+
+
+=== 创建 SolidFire 帐户
+
+每个 SolidFire 帐户都代表一个唯一的卷所有者，并接收自己的一组质询握手身份验证协议（ Challenge-Handshake Authentication Protocol ， CHAP ）凭据。您可以使用帐户名称和相对 CHAP 凭据或通过卷访问组访问分配给帐户的卷。一个帐户最多可以分配 2 ， 000 个卷，但一个卷只能属于一个帐户。
+
+
+
+=== 创建 QoS 策略
+
+如果要创建并保存可应用于多个卷的标准化服务质量设置，请使用 SolidFire 服务质量（ QoS ）策略。
+
+您可以按卷设置 QoS 参数。通过设置三个可配置的参数来定义 QoS ，可以确保每个卷的性能：最小 IOPS ，最大 IOPS 和突发 IOPS 。
+
+以下是 4 KB 块大小的可能最小，最大和突发 IOPS 值。
+
+[cols="5*"]
+|===
+| IOPS 参数 | 定义 | 最小value | 默认值 | 最大值（ 4 KB ） 
+
+
+ a| 
+最小 IOPS
+ a| 
+卷的性能保障级别。
+| 50  a| 
+50
+ a| 
+15000
+
+
+
+ a| 
+最大 IOPS
+ a| 
+性能不会超过此限制。
+| 50  a| 
+15000
+ a| 
+200,000
+
+
+
+ a| 
+突发 IOPS
+ a| 
+在短时突发情形下允许的最大 IOPS 。
+| 50  a| 
+15000
+ a| 
+200,000
+
+|===
+
+NOTE: 虽然最大 IOPS 和突发 IOPS 可设置为高达 200 ， 000 ，但卷的实际最大性能受集群使用情况和每节点性能的限制。
+
+块大小和带宽会直接影响 IOPS 数量。随着块大小的增加，系统会将带宽增加到处理较大块大小所需的级别。随着带宽的增加，系统能够达到的 IOPS 数量也会减少。请参见 https://www.netapp.com/pdf.html?item=/media/10502-tr-4644pdf.pdf["SolidFire 服务质量"^] 有关 QoS 和性能的详细信息。
+
+
+
+=== SolidFire 身份验证
+
+Element 支持两种身份验证方法： CHAP 和卷访问组（ VAG ）。CHAP 使用 CHAP 协议向后端对主机进行身份验证。卷访问组控制对其配置的卷的访问。NetApp 建议使用 CHAP 进行身份验证，因为它更简单，并且没有扩展限制。
+
+
+NOTE: 具有增强型 CSI 配置程序的 Trident 支持使用 CHAP 身份验证。VAG 只能在传统的非 CSI 操作模式下使用。
+
+只有基于帐户的访问控制才支持 CHAP 身份验证（验证启动程序是否为目标卷用户）。如果使用 CHAP 进行身份验证，则可以使用两个选项：单向 CHAP 和双向 CHAP 。单向 CHAP 使用 SolidFire 帐户名称和启动程序密钥对卷访问进行身份验证。双向 CHAP 选项可提供最安全的卷身份验证方法，因为卷会通过帐户名称和启动程序密钥对主机进行身份验证，然后主机通过帐户名称和目标密钥对卷进行身份验证。
+
+但是，如果无法启用 CHAP 且需要使用 VAG ，请创建访问组并将主机启动程序和卷添加到此访问组。添加到访问组的每个 IQN 都可以使用或不使用 CHAP 身份验证访问组中的每个卷。如果将 iSCSI 启动程序配置为使用 CHAP 身份验证，则会使用基于帐户的访问控制。如果 iSCSI 启动程序未配置为使用 CHAP 身份验证，则会使用卷访问组访问控制。
+
+
+
+== E 系列最佳实践
+
+了解为 Trident 配置 E 系列存储的最佳实践。
+
+
+
+=== E 系列磁盘池和卷组
+
+根据需要创建磁盘池和卷组，并确定应如何将总存储容量组织为卷并在主机之间共享。磁盘池和卷组都包含一组驱动器，这些驱动器经过逻辑分组，可为应用程序主机提供一个或多个卷。磁盘池或卷组中的所有驱动器都应具有相同的介质类型。
+
+
+
+=== E 系列主机组
+
+Trident 使用主机组访问其配置的卷（ LUN ）。默认情况下， Trident 会使用名为 `trident` 的主机组，除非您在配置中指定了其他主机组名称。Trident 本身不会创建或管理主机组。在 Trident 上设置 E 系列存储后端之前，必须先创建主机组。确保主机组中的所有 Kubernetes 工作节点 iSCSI IQN 名称均已更新。
+
+
+
+=== E 系列快照计划
+
+创建快照计划并将 Trident 创建的卷分配给快照计划，以便可以按所需的间隔进行卷备份。根据根据根据快照策略创建的快照，可以通过将快照映像还原到基础卷来对卷执行回滚操作。您应使用 SANtricity 系统管理器创建快照计划。
+
+
+
+=== Snapshot 一致性组
+
+设置快照一致性组也非常适合跨越多个卷的应用程序。一致性组的目的是为多个卷同时创建快照映像，从而确保在特定时间点为一组卷创建一致的副本。您应使用 SANtricity 系统管理器创建一致性组。
+
+
+
+== 适用于 AWS 的 Cloud Volumes Service 最佳实践
+
+了解在适用于 Trident 的 AWS 上配置 Cloud Volumes Service 的最佳实践。
+
+
+
+=== 创建导出策略
+
+要确保只有经过授权的一组节点才能访问通过 Cloud Volumes Service 配置的卷，请在创建 Cloud Volumes Service 时为此导出策略设置适当的规则。通过 Trident 在云卷服务上配置卷时，请确保在后端文件中使用 `exportRule` 参数来授予对所需 Kubernetes 节点的访问权限。
+
+
+
+=== 创建快照策略
+
+为通过 Cloud Volume Service 配置的卷创建快照策略，以确保按要求的间隔创建快照。这样可以保证定期备份数据，并在数据丢失或数据损坏时恢复数据。您可以通过在卷详细信息页面上选择适当的计划来为 Cloud Volume Service 托管的卷设置快照策略。
+
+
+
+=== 选择适当的服务级别，存储容量和存储带宽
+
+适用于 AWS 的 Cloud Volume Services 提供不同的服务级别，例如标准，高级和极高。这些服务级别可满足不同的存储容量和存储带宽要求。确保您根据业务需求选择适当的服务级别。
+
+您应根据应用程序的特定需求在创建卷期间选择所需的已分配存储大小。在确定分配的存储时，需要考虑两个因素：
+
+* 特定应用程序的存储要求
+* 峰值或边缘所需的带宽
+
+
+存储带宽取决于所选服务级别和已分配容量的组合。因此，请选择正确的服务级别和分配的容量，同时考虑所需的带宽。
+
+
+
+=== 限制 Trident 创建的卷的最大大小
+
+通过在后端配置文件中使用 `limitVolumeSize` 参数，我可以限制 Trident 在 Cloud Volume Services for AWS 上创建的卷的最大大小。设置此参数可确保在请求的卷大小高于设置值时配置失败。
+
+
+
+== 如何查找更多信息
+
+下面列出了一些最佳实践文档。搜索 https://www.netapp.com/search/["NetApp 库"^] 对于最新版本。
+
+* ONTAP *
+
+* https://www.netapp.com/us/media/tr-4067.pdf["NFS 最佳实践和实施指南"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["《 SAN 管理指南》"^] （对于 iSCSI ）
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-rhel-cg/home.html["适用于 RHEL 的 iSCSI 快速配置"^]
+
+
+* Element 软件 *
+
+* https://www.netapp.com/pdf.html?item=/media/10507-tr4639pdf.pdf["配置适用于 Linux 的 SolidFire"^]
+
+
+* NetApp HCI *
+
+* https://docs.netapp.com/us-en/hci/docs/hci_prereqs_overview.html["NetApp HCI 部署前提条件"^]
+* https://docs.netapp.com/us-en/hci/docs/concept_nde_access_overview.html["访问 NetApp 部署引擎"^]
+
+
+* E 系列 *
+
+* https://docs.netapp.com/ess-11/topic/com.netapp.doc.ssm-exp-ic-lin/home.html["安装和配置 Linux"^]
+
+
+* 应用程序最佳实践信息 *
+
+* https://www.netapp.com/us/media/tr-4722.pdf["基于 ONTAP 的 MySQL 最佳实践"^]
+* https://www.netapp.com/pdf.html?item=/media/10510-tr-4605.pdf["基于 SolidFire 的 MySQL 最佳实践"^]
+* http://www.netapp.com/us/media/tr-4635.pdf["NetApp SolidFire 和 Cassandra"^]
+* http://www.netapp.com/us/media/tr-4606.pdf["SolidFire 上的 Oracle 最佳实践"^]
+* http://www.netapp.com/us/media/tr-4610.pdf["SolidFire 上的 PostgreSQL 最佳实践"^]
+
+
+并非所有应用程序都有特定的准则，与您的 NetApp 团队合作并使用非常重要 https://www.netapp.com/search/["NetApp 库"^] 以查找最新文档。

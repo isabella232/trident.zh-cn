@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: trident-use/ontap-nas.html 
+keywords: trident backend, ontap nas, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups 
+summary: 了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。 
+---
+= 使用 ONTAP NAS 驱动程序配置后端
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。
+
+* link:ontap-nas-prep.html["准备"^]
+* link:ontap-nas-examples.html["配置和示例"^]
+
+
+
+
+== 用户权限
+
+Astra Trident 应以 ONTAP 或 SVM 管理员身份运行，通常使用 `admin` cluster 用户或 `vsadmin` SVM 用户，或者使用具有相同角色的其他名称的用户。对于适用于 NetApp ONTAP 的 Amazon FSX 部署， Astra Trident 应使用集群 `fsxadmin` user 或 `vsadmin` SVM 用户或具有相同角色的其他名称的用户作为 ONTAP 或 SVM 管理员运行。`fsxadmin` 用户是集群管理员用户的有限替代用户。
+
+
+NOTE: 如果使用 `limitAggregateUsage` 参数，则需要集群管理员权限。将适用于 NetApp ONTAP 的 Amazon FSx 与 Astra Trident 结合使用时， `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。

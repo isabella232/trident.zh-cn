@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: trident-reference/rest-api.html 
+keywords: rest api, get, post, json, object, backends 
+summary: 如果您希望与 Astra Trident 的 REST API 进行交互，则可以直接使用 REST 端点。 
+---
+= Astra Trident REST API
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+同时 link:trident-reference/tridentctl.html["tridentctl 命令和选项"^] 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。
+
+这对于在非 Kubernetes 部署中使用 Astra Trident 作为独立二进制文件的高级安装非常有用。
+
+为了提高安全性，在 Pod 内部运行时， Astra Trident 的 `reST API` 默认限制为 localhost 。要更改此行为，您需要在其 Pod 配置中设置 Astra Trident 的 ` 地址` 参数。
+
+API 的工作原理如下：
+
+
+
+== 获取
+
+* `get <trident 地址 >/trident /v1/< 对象类型 >` ：列出此类型的所有对象。
+* `get <trident 地址 >/trident /v1/< 对象类型 >/< 对象名称 >` ：获取命名对象的详细信息。
+
+
+
+
+== 发布
+
+`post <trident 地址 >/trident /v1/< 对象类型 >` ：创建指定类型的对象。
+
+* 需要为要创建的对象配置 JSON 。有关每种对象类型的规范，请参见 link:tridentctl.html["`tridentctl` 命令和选项"]。
+* 如果对象已存在，则行为会有所不同：后端更新现有对象，而所有其他对象类型将使操作失败。
+
+
+
+
+== 删除
+
+`delete <trident 地址 >/trident /v1/< 对象类型 >/< 对象名称 >` ：删除指定的资源。
+
+
+NOTE: 与后端或存储类关联的卷将继续存在；必须单独删除这些卷。有关详细信息，请参见 link:tridentctl.html["`tridentctl` 命令和选项"]。
+
+有关如何调用这些 API 的示例，请传递 debug （` -d` ）标志。有关详细信息，请参见 link:tridentctl.html["`tridentctl` 命令和选项"]。

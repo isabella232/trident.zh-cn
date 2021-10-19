@@ -1,0 +1,117 @@
+---
+sidebar: sidebar 
+permalink: trident-use/manage-stor-class.html 
+keywords: storage class, manage storage class, storage classes, kubernetes storage classes 
+summary: 您可以创建存储类，删除存储类以及查看现有存储类。 
+---
+= 管理存储类
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+查找有关创建存储类，删除存储类以及查看现有存储类的信息。
+
+
+
+== 设计存储类
+
+请参见 link:../trident-reference/objects.html["此处"^] 有关什么是存储类以及如何配置这些类的详细信息，请参见。
+
+
+
+== 创建存储类。
+
+创建存储类文件后，运行以下命令：
+
+[listing]
+----
+kubectl create -f <storage-class-file>
+----
+` <storage-class-file>` 应替换为存储类文件名。
+
+
+
+== 删除存储类
+
+要从 Kubernetes 中删除存储类，请运行以下命令：
+
+[listing]
+----
+kubectl delete storageclass <storage-class>
+----
+` < 存储类 >` 应替换为您的存储类。
+
+通过此存储类创建的任何永久性卷将保持不变， Astra Trident 将继续对其进行管理。
+
+
+NOTE: Astra Trident 会为其创建的卷强制使用空的 `FSType` 。对于 iSCSI 后端，建议在 StorageClass 中强制实施 `parameters.FSType` 。您应删除现有 StorageClasses 并使用指定的 `parameters.FSType` 重新创建它们。
+
+
+
+== 查看现有存储类
+
+* 要查看现有 Kubernetes 存储类，请运行以下命令：
+
+
+[listing]
+----
+kubectl get storageclass
+----
+* 要查看 Kubernetes 存储类详细信息，请运行以下命令：
+
+
+[listing]
+----
+kubectl get storageclass <storage-class> -o json
+----
+* 要查看 Astra Trident 的同步存储类，请运行以下命令：
+
+
+[listing]
+----
+tridentctl get storageclass
+----
+* 要查看 Astra Trident 的同步存储类详细信息，请运行以下命令：
+
+
+[listing]
+----
+tridentctl get storageclass <storage-class> -o json
+----
+
+
+== 设置默认存储类
+
+Kubernetes 1.6 增加了设置默认存储类的功能。如果用户未在永久性卷声明（ PVC ）中指定永久性卷，则此存储类将用于配置永久性卷。
+
+* 通过在存储类定义中将标注 `storageclass.Kubernetes 。 io/is-default-class` 设置为 true 来定义默认存储类。根据规范，任何其他值或标注不存在均视为 false 。
+* 您可以使用以下命令将现有存储类配置为默认存储类：
+
+
+[listing]
+----
+kubectl patch storageclass <storage-class-name> -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+----
+* 同样，您也可以使用以下命令删除默认存储类标注：
+
+
+[listing]
+----
+kubectl patch storageclass <storage-class-name> -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+----
+Trident 安装程序包中也有包含此标注的示例。
+
+
+NOTE: 在任何给定时间，集群中只能有一个默认存储类。Kubernetes 在技术上不会阻止您拥有多个存储类，但其行为就像根本没有默认存储类一样。
+
+
+
+== 确定存储类的后端
+
+以下是您可以使用问题解答与 JSON 一起为 Astra Trident 后端对象输出的 `tridentctl` 类问题的示例。此操作将使用 `JQ` 实用程序，您可能需要先安装该实用程序。
+
+[listing]
+----
+tridentctl get storageclass -o json | jq  '[.items[] | {storageClass: .Config.name, backends: [.storage]|unique}]'
+----

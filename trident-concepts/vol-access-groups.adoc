@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: trident-concepts/vol-access-groups.html 
+keywords: volume access groups, element, solidfire, chap, astra trident, hci, netapp hci, storage system, access volumes, 
+summary: 详细了解 Astra Trident 如何使用卷访问组。 
+---
+= 卷访问组
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+了解有关 Astra Trident 如何使用的更多信息 https://docs.netapp.com/us-en/element-software/concepts/concept_solidfire_concepts_volume_access_groups.html["卷访问组"^]。
+
+
+NOTE: 如果使用的是 CHAP ，请忽略此部分，建议使用此部分来简化管理并避免下面所述的扩展限制。此外，如果您在 CSI 模式下使用 Astra Trident ，则可以忽略此部分。在作为增强型 CSI 配置程序安装时， Astra Trident 会使用 CHAP 。
+
+Astra Trident 可以使用卷访问组来控制对其配置的卷的访问。如果禁用了 CHAP ，则它会查找名为 `trident` 的访问组，除非您在配置中指定了一个或多个访问组 ID 。
+
+虽然 Astra Trident 会将新卷与已配置的访问组相关联，但它不会自行创建或管理访问组。在将存储后端添加到 Astra Trident 之前，访问组必须存在，并且这些访问组必须包含 Kubernetes 集群中每个节点的 iSCSI IQN ，这些节点可能会挂载该后端配置的卷。在大多数安装中，包括集群中的每个工作节点。
+
+对于节点数超过 64 个的 Kubernetes 集群，您应使用多个访问组。每个访问组最多可以包含 64 个 IQN ，每个卷可以属于四个访问组。在最多配置四个访问组的情况下，集群中大小最多为 256 个节点的任何节点都可以访问任何卷。有关卷访问组的最新限制，请参见 https://docs.netapp.com/us-en/element-software/concepts/concept_solidfire_concepts_volume_access_groups.html["此处"^]。
+
+如果要将配置从使用默认 `trident` 访问组的修改为也使用其他访问组的配置，请在列表中包含 `trident` 访问组的 ID 。

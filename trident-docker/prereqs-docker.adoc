@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/prereqs-docker.html 
+keywords: deploy, astra trident, docker, trident for docker, nfs, iscsi, protcol, nfs protocol, iscsi protocol, configure host, host config 
+summary: 在部署 Astra Trident 之前，您必须在主机上安装和配置必要的协议前提条件。 
+---
+= 部署的前提条件
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+在部署 Astra Trident 之前，您必须在主机上安装和配置必要的协议前提条件。
+
+* 验证您的部署是否满足所有要求 link:../trident-get-started/requirements.html["要求"^]。
+* 验证您是否安装了受支持的 Docker 版本。如果您的 Docker 版本已过时， https://docs.docker.com/engine/install/["安装或更新它"^]。
+
+
+[listing]
+----
+docker --version
+----
+* 验证是否已在主机上安装和配置协议前提条件：
+
+
+[cols="3*"]
+|===
+| 协议 | 操作系统 | 命令 
+
+
+| NFS  a| 
+RHEL/CentOS
+ a| 
+`sudo yum install -y nfs-utils`
+
+
+
+| NFS  a| 
+Ubuntu 或 Debian
+ a| 
+`sudo apt-get install -y nfs-common`
+
+
+
+| iSCSI  a| 
+RHEL/CentOS
+ a| 
+. 安装以下系统软件包：
++
+`sudo yum install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath`
+
+. 启动多路径守护进程：
++
+`sudo mpathconf -enable -with multipathd y`
+
+. 确保已启用 `iscsid` 和 `multipathd` 并正在运行：
++
+`sudo systemctl enable iscsid multipathd` `sudo systemctl start iscsid multipathd`
+
+. 发现 iSCSI 目标：
++
+`sudo iscsiadm -m discoverydb -t st -p <data_LIF_IP> -discover`
+
+. 登录到发现的 iSCSI 目标：
++
+`sudo iscsiadm -m node -p <data_LIF_IP> -login`
+
+. 启用并启动 `iSCSI` ：
++
+`sudo systemctl enable iscsi` `sudo systemctl start iscsi`
+
+
+
+
+
+| iSCSI  a| 
+Ubuntu 或 Debian
+ a| 
+. 安装以下系统软件包：
++
+`sUdo apt-get install -y open-iscsi lsscsi sg3-utils multipath-tools scsitool`
+
+. 启用多路径：
++
+`sUdo tee /etc/multipath.conf <<-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo service multipath-tools restart`
+
+. 确保 `iscsid` 和 `multipathd` 正在运行：
++
+`sudo service open-iscsi start sudo service multipath-tools start`
+
+. 发现 iSCSI 目标：
++
+`sudo iscsiadm -m discoverydb -t st -p <data_LIF_IP> -discover`
+
+. 登录到发现的 iSCSI 目标：
++
+`sudo iscsiadm -m node -p <data_LIF_IP> -login`
+
+
+
+|===

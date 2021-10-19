@@ -1,0 +1,264 @@
+---
+sidebar: sidebar 
+permalink: trident-use/csi-topology.html 
+keywords: volumes, csi topology, storage classes, backends, kubernetes 
+summary: 通过使用 CSI 拓扑功能， Astra Trident 可以有选择地创建卷并将其附加到 Kubernetes 集群中的节点。 
+---
+= 使用 CSI 拓扑
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点 https://kubernetes-csi.github.io/docs/topology.html["CSI 拓扑功能"^]。使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于可用性区域内的不同区域，也可以位于不同可用性区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。
+
+
+TIP: 了解有关 CSI 拓扑功能的更多信息 https://kubernetes.io/blog/2018/10/11/topology-aware-volume-provisioning-in-kubernetes/["此处"^]。
+
+Kubernetes 提供了两种唯一的卷绑定模式：
+
+* 如果将 `VolumeBindingMode` 设置为 `immediate` ，则 Astra Trident 将创建卷，而不会感知任何拓扑。创建 PVC 时会处理卷绑定和动态配置。这是默认值 `VolumeBindingMode` ，适用于不强制实施拓扑约束的集群。创建永久性卷时，不会依赖于请求的 Pod 的计划要求。
+* 如果将 `VolumeBindingMode` 设置为 `WaitForFirstConsuming` ，则为 PVC 创建和绑定永久性卷的操作将延迟，直到计划并创建使用 PVC 的 Pod 为止。这样，卷就会根据拓扑要求强制实施的计划限制来创建。
+
+
+
+NOTE: `WaitForFirstConsumer"` 绑定模式不需要拓扑标签。此功能可独立于 CSI 拓扑功能使用。
+
+要使用 CSI 拓扑，您需要满足以下条件：
+
+* 运行 1.17 或更高版本的 Kubernetes 集群。
++
+[listing]
+----
+$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.3", GitCommit:"1e11e4a2108024935ecfcb2912226cedeafd99df", GitTreeState:"clean", BuildDate:"2020-10-14T12:50:19Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.3", GitCommit:"1e11e4a2108024935ecfcb2912226cedeafd99df", GitTreeState:"clean", BuildDate:"2020-10-14T12:41:49Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"linux/amd64"}
+----
+* 集群中的节点应具有可引入拓扑感知的标签（`topology.Kubernetes IO/ 区域` 和 `topology.Kubernetes IO/ 区域` ）。在安装 Astra Trident 之前，集群中的节点上应存在这些标签 * ，以使 Astra Trident 能够识别拓扑。
++
+[listing]
+----
+$ kubectl get nodes -o=jsonpath='{range .items[*]}[{.metadata.name}, {.metadata.labels}]{"\n"}{end}' | grep --color "topology.kubernetes.io"
+[node1, {"beta.kubernetes.io/arch":"amd64","beta.kubernetes.io/os":"linux","kubernetes.io/arch":"amd64","kubernetes.io/hostname":"node1","kubernetes.io/os":"linux","node-role.kubernetes.io/master":"","topology.kubernetes.io/region":"us-east1","topology.kubernetes.io/zone":"us-east1-a"}]
+[node2, {"beta.kubernetes.io/arch":"amd64","beta.kubernetes.io/os":"linux","kubernetes.io/arch":"amd64","kubernetes.io/hostname":"node2","kubernetes.io/os":"linux","node-role.kubernetes.io/worker":"","topology.kubernetes.io/region":"us-east1","topology.kubernetes.io/zone":"us-east1-b"}]
+[node3, {"beta.kubernetes.io/arch":"amd64","beta.kubernetes.io/os":"linux","kubernetes.io/arch":"amd64","kubernetes.io/hostname":"node3","kubernetes.io/os":"linux","node-role.kubernetes.io/worker":"","topology.kubernetes.io/region":"us-east1","topology.kubernetes.io/zone":"us-east1-c"}]
+----
+
+
+
+
+== 第 1 步：创建可感知拓扑的后端
+
+可以设计 Astra Trident 存储后端，以便根据可用性区域有选择地配置卷。每个后端都可以包含一个可选的 `supportedTopatis` 块，该块表示必须支持的分区和区域的列表。对于使用此后端的 StorageClasses ，只有在受支持区域 / 区域中计划的应用程序请求时，才会创建卷。
+
+下面是后端定义示例：
+
+[listing]
+----
+{
+ "version": 1,
+ "storageDriverName": "ontap-san",
+ "backendName": "san-backend-us-east1",
+ "managementLIF": "192.168.27.5",
+ "svm": "iscsi_svm",
+ "username": "admin",
+ "password": "xxxxxxxxxxxx",
+ "supportedTopologies": [
+{"topology.kubernetes.io/region": "us-east1", "topology.kubernetes.io/zone": "us-east1-a"},
+{"topology.kubernetes.io/region": "us-east1", "topology.kubernetes.io/zone": "us-east1-b"}
+]
+}
+----
+
+NOTE: `supportedTopologies` 用于提供每个后端的区域和分区列表。这些区域和分区表示可在 StorageClass 中提供的允许值列表。对于包含后端提供的部分区域和分区的 StorageClasses ， Astra Trident 将在后端创建卷。
+
+您也可以为每个存储池定义 `supportedTopologies` 。请参见以下示例：
+
+[listing]
+----
+{"version": 1,
+"storageDriverName": "ontap-nas",
+"backendName": "nas-backend-us-central1",
+"managementLIF": "172.16.238.5",
+"svm": "nfs_svm",
+"username": "admin",
+"password": "Netapp123",
+"supportedTopologies": [
+      {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-a"},
+      {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-b"}
+    ]
+"storage": [
+   {
+       "labels": {"workload":"production"},
+        "region": "Iowa-DC",
+        "zone": "Iowa-DC-A",
+        "supportedTopologies": [
+            {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-a"}
+        ]
+    },
+    {
+        "labels": {"workload":"dev"},
+         "region": "Iowa-DC",
+         "zone": "Iowa-DC-B",
+         "supportedTopologies": [
+             {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-b"}
+         ]
+     }
+]
+}
+----
+在此示例中， `reGion` 和 `zone` 标签表示存储池的位置。`topology.Kubernees.io/zone` 和 `topology.Kubernees.io/zone` 指定存储池的使用位置。
+
+
+
+== 第 2 步：定义可识别拓扑的 StorageClasses
+
+根据为集群中的节点提供的拓扑标签，可以将 StorageClasses 定义为包含拓扑信息。这将确定用作 PVC 请求候选对象的存储池，以及可使用 Trident 配置的卷的节点子集。
+
+请参见以下示例：
+
+[listing]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+name: netapp-san-us-east1
+provisioner: csi.trident.netapp.io
+volumeBindingMode: WaitForFirstConsumer
+allowedTopologies:
+- matchLabelExpressions:
+- key: topology.kubernetes.io/zone
+  values:
+  - us-east1-a
+  - us-east1-b
+- key: topology.kubernetes.io/region
+  values:
+  - us-east1
+parameters:
+  fsType: "ext4"
+----
+在上述 StorageClass 定义中， `volumeBindingMode` 设置为 `WaitForFirstConsumer"` 。在此存储类中请求的 PVC 在 Pod 中引用之前不会执行操作。此外， `allowedTopologies` 还提供了要使用的分区和区域。`NetApp-san-us-East1` StorageClass 将在上述 `san-backend-us-East1` 后端创建 PVC 。
+
+
+
+== 第 3 步：创建和使用 PVC
+
+创建 StorageClass 并将其映射到后端后，您现在可以创建 PVC 。
+
+请参见以下示例 `sPec` ：
+
+[listing]
+----
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+name: pvc-san
+spec:
+accessModes:
+  - ReadWriteOnce
+resources:
+  requests:
+    storage: 300Mi
+storageClassName: netapp-san-us-east1
+----
+使用此清单创建 PVC 将导致以下结果：
+
+[listing]
+----
+$ kubectl create -f pvc.yaml
+persistentvolumeclaim/pvc-san created
+$ kubectl get pvc
+NAME      STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS          AGE
+pvc-san   Pending                                      netapp-san-us-east1   2s
+$ kubectl describe pvc
+Name:          pvc-san
+Namespace:     default
+StorageClass:  netapp-san-us-east1
+Status:        Pending
+Volume:
+Labels:        <none>
+Annotations:   <none>
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:
+Access Modes:
+VolumeMode:    Filesystem
+Mounted By:    <none>
+Events:
+  Type    Reason                Age   From                         Message
+  ----    ------                ----  ----                         -------
+  Normal  WaitForFirstConsumer  6s    persistentvolume-controller  waiting for first consumer to be created before binding
+----
+要使 Trident 创建卷并将其绑定到 PVC ，请在 Pod 中使用 PVC 。请参见以下示例：
+
+[listing]
+----
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod-1
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.kubernetes.io/region
+            operator: In
+            values:
+            - us-east1
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east1-a
+            - us-east1-b
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
+  volumes:
+  - name: vol1
+    persistentVolumeClaim:
+      claimName: pvc-san
+  containers:
+  - name: sec-ctx-demo
+    image: busybox
+    command: [ "sh", "-c", "sleep 1h" ]
+    volumeMounts:
+    - name: vol1
+      mountPath: /data/demo
+    securityContext:
+      allowPrivilegeEscalation: false
+----
+此 podSpec 指示 Kubernetes 在 `us-East1` 区域中的节点上计划 Pod ，并从 `us-East1-a` 或 `us-East1-b` 区域中的任何节点中进行选择。
+
+请参见以下输出：
+
+[listing]
+----
+$ kubectl get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE   IP               NODE              NOMINATED NODE   READINESS GATES
+app-pod-1   1/1     Running   0          19s   192.168.25.131   node2             <none>           <none>
+$ kubectl get pvc -o wide
+NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE   VOLUMEMODE
+pvc-san   Bound    pvc-ecb1e1a0-840c-463b-8b65-b3d033e2e62b   300Mi      RWO            netapp-san-us-east1   48s   Filesystem
+----
+
+
+== 更新后端以包括支持的拓扑
+
+可以使用 `tridentctl backend update` 更新原有后端，以包含 `supportedTopologies` 列表。这不会影响已配置的卷，并且仅用于后续的 PVC 。
+
+
+
+== 了解更多信息
+
+* https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/["管理容器的资源"^]
+* https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector["节点选择器"^]
+* https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity["关联性和反关联性"^]
+* https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/["损害和公差"^]
+

@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-customize-deploy.html 
+keywords: deploy, trident, methods, operator, tridentctl, helm, attributes, customize, tridentorchestrator 
+summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。' 
+---
+= 自定义 Trident 操作员部署
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+通过 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。
+
+有关属性列表，请参见下表：
+
+[cols="3"]
+|===
+| 参数 | Description | Default 
+
+
+| `命名空间` | 用于安装 Astra Trident 的命名空间 | default 
+
+
+| `debug` | 为 Astra Trident 启用调试 | false 
+
+
+| `使用 IPv6` | 安装基于 IPv6 的 Astra Trident | false 
+
+
+| `k8sTimeout` | Kubernetes 操作超时 | 30 秒 
+
+
+| `sileAutoSupport` | 不要自动向 NetApp 发送 AutoSupport 捆绑包 | false 
+
+
+| `enableNodePrep` | 自动管理工作节点依赖关系（ * 测试版 * ） | false 
+
+
+| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trident autosupport ： 21.04.0" 
+
+
+| `autosupport 代理` | 用于发送 AutoSupport 遥测的代理的地址 / 端口 | "http://proxy.example.com:8888"[] 
+
+
+| `卸载` | 用于卸载 Astra Trident 的标志 | false 
+
+
+| `logFormat` | 要使用的 Astra Trident 日志记录格式 [text ， json] | 文本 
+
+
+| `TridentImage` | 要安装的 Astra Trident 映像 | "NetApp/Trident ： 21.04" 
+
+
+| `imageRegistry` | 内部注册表的路径，格式为 ` < 注册表 FQDN>[ ：端口 ]/subpath]` | "K8s.gcr.io/SIG-storage （ K8s 1.17+ ）或 quay.io/k8scsi " 
+
+
+| `kubeletDir` | 主机上的 kubelet 目录的路径 | "/var/lib/kubelet" 
+
+
+| `wipeout` | 要删除以执行 Astra Trident 完全删除的资源列表 |  
+
+
+| `imagePullSecs` | 从内部注册表中提取映像的机密信息 |  
+|===
+
+IMPORTANT: 在 `TridentOrchestrator` 中指定 `spec.namespace` ，以表示安装了哪个命名空间 Astra Trident 。此参数 * 安装 Astra Trident 后无法更新 * 。尝试执行此操作会导致 `TridentOrchestrator` 的状态更改为 `Failed` 。Astra Trident 不适用于跨命名空间迁移。
+
+
+NOTE: 自动员工节点准备是一项 * 测试版功能 * ，仅用于非生产环境。
+
+在定义 `TridentOrchestrator` 时，您可以使用上述属性自定义安装。以下是一个示例：
+
+[listing]
+----
+$ cat deploy/crds/tridentorchestrator_cr_imagepullsecrets.yaml
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  tridentImage: netapp/trident:21.04.0
+  imagePullSecrets:
+  - thisisasecret
+----
+如果您希望自定义安装超出 `TridentOrchestrator` 参数的允许范围，则应考虑使用 `tridentctl` 生成自定义 YAML 清单，以便您可以根据需要进行修改。

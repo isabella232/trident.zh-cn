@@ -1,0 +1,130 @@
+---
+sidebar: sidebar 
+permalink: troubleshooting.html 
+keywords: troubleshooting, trident 
+summary: 使用此处提供的指针排除安装和使用 Astra Trident 时可能遇到的问题。 
+---
+= 故障排除
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+使用此处提供的指针排除安装和使用 Astra Trident 时可能遇到的问题。
+
+
+NOTE: 要获得有关 Astra Trident 的帮助，请使用 `tridentctl logs -a -n trident` 创建支持包，并将其发送到 `NetApp 支持 < 获取帮助 >` 。
+
+
+
+== 常规故障排除
+
+* 如果 Trident Pod 无法正常启动（例如，当 Trident Pod 停留在 `ContainerCreating` 阶段且已准备好的容器少于两个时），则运行 `kubectl -n trident describe deployment trident` and `kubectl -n trident describe pod trident -%%.%.%.* -***` 可以提供更多见解。获取 kubelet 日志（例如，通过 `jlogalctl -xeu kubelet` ）也会很有帮助。
+* 如果 Trident 日志中的信息不足，您可以尝试通过将 ` -d` 标志传递给 install 参数来启用 Trident 的调试模式： ` ./tridentctl install -d -n trident` 。
+* 您还可以通过在后端定义中包含 `debugTraceFlags` 来获取每个后端的调试日志。例如，包括 `debugTraceFlags ： ｛ "api" ： true ， "method " ： true ， ｝` 以获取 Trident 日志中的 API 调用和方法遍历。现有后端可以已配置 `debugTraceFlags` 并配置 `tridentctl 后端更新` 。
+* 使用 RedHat CoreOS 时，请确保在工作节点上启用了 `iscsid` 并默认启动。可以使用 OpenShift MachineConfigs 或修改点燃模板来完成此操作。
+* 使用 Trident 时可能会遇到的一个常见问题 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"] 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 link:../trident-backend/anf.html["Azure NetApp Files"] Configuration
+* 如果在将 PV 挂载到容器时出现问题，请确保 `rpcbind` 已安装并正在运行。对主机操作系统使用所需的软件包管理器，并检查 `rpcbind` 是否正在运行。您可以通过运行 `systemctl status rpcbind` 或其等效项来检查 `rpcbind` 服务的状态。
+* 如果 Trident 后端报告其处于 `Failed` 状态，尽管之前已正常工作，但这可能是由于更改了与后端关联的 SVM/ 管理员凭据所致。使用 `tridentctl update backend` 更新后端信息或放弃 Trident Pod 将修复此问题描述。
+* 如果要升级 Kubernetes 集群和 / 或 Trident 以使用测试版卷快照，请确保已完全删除所有现有的 alpha Snapshot CRS 。然后，您可以使用 `tridentctl obviate alpha-snapshot-crd` 命令删除 alpha snapshot CRD 。请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"] 了解迁移 alpha 快照所涉及的步骤。
+* 如果在容器运行时安装 Trident 时遇到权限问题，请使用 ` -in cluster=false` 标志尝试安装 Trident 。这不会使用安装程序 POD ，并可避免因 `trident 安装程序` 用户而出现权限问题。
+* 使用 `uninstall 参数 <Uninstalling Trident >` 在运行失败后进行清理。默认情况下，该脚本不会删除 Trident 创建的 CRD ，因此即使在正在运行的部署中，也可以安全地卸载并重新安装。
+* 如果要降级到早期版本的 Trident ，请先运行 `tridenctl uninstall` 命令以删除 Trident 。下载所需的 https://github.com/NetApp/trident/releases["Trident 版本"] 并使用 `tridentctl install` 命令进行安装。只有在未创建新 PV 且未对现有 PV/ 后端 / 存储类进行更改的情况下，才考虑降级。由于 Trident 现在使用 CRD 来保持状态，因此创建的所有存储实体（后端，存储类， PV 和卷快照）都具有 `关联的 CRD 对象 <Kubernetes CustomResourceDefinition Objects>` ，而不是写入 PV 的数据，而 PV 中的数据是先前安装的 Trident 版本所使用的。* 新创建的 PV 在移回早期版本时不可用。 * 降级后， Trident 将无法看到对后端， PV ，存储类和卷快照（已创建 / 更新 / 删除）等对象所做的更改 * 。先前安装的 Trident 版本所使用的 PV 仍可供 Trident 查看。如果返回到早期版本，则不会中断对已使用旧版本创建的 PV 的访问，除非已对其进行升级。
+* 要完全删除 Trident ，请运行 `tridentctl obviate crd` 命令。此操作将删除所有 CRD 对象并取消定义 CRD 。Trident 将不再管理其已配置的任何 PV 。
++
+
+NOTE: 之后，需要从头开始重新配置 Trident 。
+
+* 成功安装后，如果 PVC 停留在 `Pending` 阶段，则运行 `kubectl describe PVC` 可以提供追加信息，说明 Trident 为何无法为此 PVC 配置 PV 。
+
+
+
+
+== 使用操作员对未成功的 Trident 部署进行故障排除
+
+如果使用操作员部署 Trident ，则 `TridentOrchestrator` 的状态将从 `Installing` 更改为 `Installed` 。如果您观察到 `failed` 状态，并且操作员无法自行恢复，则应运行以下命令来检查操作员的日志：
+
+[listing]
+----
+tridentctl logs -l trident-operator
+----
+跟踪 trident 操作器容器的日志可能会指向问题所在。例如，其中一个问题描述可能是无法从运行良好的环境中的上游注册表中提取所需的容器映像。
+
+要了解 Trident 安装失败的原因，您应查看 `TridentOrchestrator` 的状态。
+
+[listing]
+----
+$ kubectl describe torc trident-2
+Name:         trident-2
+Namespace:
+Labels:       <none>
+Annotations:  <none>
+API Version:  trident.netapp.io/v1
+Kind:         TridentOrchestrator
+...
+Status:
+  Current Installation Params:
+    IPv6:
+    Autosupport Hostname:
+    Autosupport Image:
+    Autosupport Proxy:
+    Autosupport Serial Number:
+    Debug:
+    Enable Node Prep:
+    Image Pull Secrets:         <nil>
+    Image Registry:
+    k8sTimeout:
+    Kubelet Dir:
+    Log Format:
+    Silence Autosupport:
+    Trident Image:
+  Message:                      Trident is bound to another CR 'trident'
+  Namespace:                    trident-2
+  Status:                       Error
+  Version:
+Events:
+  Type     Reason  Age                From                        Message
+  ----     ------  ----               ----                        -------
+  Warning  Error   16s (x2 over 16s)  trident-operator.netapp.io  Trident is bound to another CR 'trident'
+----
+此错误表示已存在用于安装 Trident 的 `TridentOrchestrator` 。由于每个 Kubernetes 集群只能有一个 Trident 实例，因此操作员可确保在任意给定时间只存在一个可创建的活动 `TridentOrchestrator` 。
+
+此外，观察 Trident Pod 的状态通常可以指示情况是否不正确。
+
+[listing]
+----
+$ kubectl get pods -n trident
+
+NAME                                READY   STATUS             RESTARTS   AGE
+trident-csi-4p5kq                   1/2     ImagePullBackOff   0          5m18s
+trident-csi-6f45bfd8b6-vfrkw        4/5     ImagePullBackOff   0          5m19s
+trident-csi-9q5xc                   1/2     ImagePullBackOff   0          5m18s
+trident-csi-9v95z                   1/2     ImagePullBackOff   0          5m18s
+trident-operator-766f7b8658-ldzsv   1/1     Running            0          8m17s
+----
+您可以清楚地看到，由于未提取一个或多个容器映像， Pod 无法完全初始化。
+
+要解决此问题，您应编辑 `TridentOrchestrator` CR 。或者，您也可以删除 `TridentOrchestrator` ，并使用修改后的准确定义创建一个新的。
+
+
+
+== 使用 tridentctl 对未成功的 Trident 部署进行故障排除
+
+为了帮助您找出出现问题的原因，您可以使用 `` -d`` 参数再次运行安装程序，该参数将打开调试模式并帮助您了解问题所在：
+
+[listing]
+----
+./tridentctl install -n trident -d
+----
+解决此问题后，您可以按如下所示清理安装，然后再次运行 `tridentctl install` 命令：
+
+[listing]
+----
+./tridentctl uninstall -n trident
+INFO Deleted Trident deployment.
+INFO Deleted cluster role binding.
+INFO Deleted cluster role.
+INFO Deleted service account.
+INFO Removed Trident user from security context constraint.
+INFO Trident uninstallation succeeded.
+----

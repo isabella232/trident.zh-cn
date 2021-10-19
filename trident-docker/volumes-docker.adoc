@@ -1,0 +1,131 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/volumes-docker.html 
+keywords: create volumes, astra trident, trident for docker, docker, docker volume 
+summary: '要创建卷，请根据需要使用标准的 `docker volume` 命令以及指定的 Astra Trident 驱动程序名称。' 
+---
+= 使用卷
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+您可以根据需要使用标准的 `docker volume` 命令以及指定的 Astra Trident 驱动程序名称轻松创建，克隆和删除卷。
+
+
+
+== 创建卷
+
+* 使用默认名称创建包含驱动程序的卷：
++
+[listing]
+----
+docker volume create -d netapp --name firstVolume
+----
+* 使用特定的 Astra Trident 实例创建卷：
++
+[listing]
+----
+docker volume create -d ntap_bronze --name bronzeVolume
+----
++
+
+NOTE: 如果未指定任何 link:volume-driver-options.html["选项"^]，将使用驱动程序的默认值。
+
+* 覆盖默认卷大小。要使用驱动程序创建 20GiB 卷，请参见以下示例：
++
+[listing]
+----
+docker volume create -d netapp --name my_vol --opt size=20G
+----
++
+
+TIP: 卷大小以字符串表示，该字符串包含一个包含可选单元的整数值（例如： 10 G ， 20 GB ， 3 TiB ）。如果未指定单位，则默认值为 G大小单位可以表示为 2 的幂（ B ， KiB ， MIB ， GiB ， TiB ）或 10 的幂（ B ， KB ， MB ， GB ， TB ）。速率单位使用 2 的电流（ G = GiB ， T = TiB ，…）。
+
+
+
+
+
+== 删除卷
+
+* 像删除任何其他 Docker 卷一样删除此卷：
++
+[listing]
+----
+docker volume rm firstVolume
+----
++
+
+IMPORTANT: 使用 `solidfire-san` 驱动程序时，上述示例将删除并清除卷。
+
+
+
+执行以下步骤以升级适用于 Docker 的 Astra Trident 。
+
+
+
+== 克隆卷
+
+使用 `ontap-nas` ， `ontap-san` ， `solidfire-san` ， `AWS-CVS` 和 `GCP-CVS 存储驱动程序` 时， Astra Trident 可以克隆卷。使用 `ontap-nas-flexgroup` 或 `ontap-nas-economy-经济` 驱动程序时，不支持克隆。从现有卷创建新卷将创建新快照。
+
+* 检查卷以枚举快照：
++
+[listing]
+----
+docker volume inspect <volume_name>
+----
+* 从现有卷创建新卷。这将导致创建新快照：
++
+[listing]
+----
+docker volume create -d <driver_name> --name <new_name> -o from=<source_docker_volume>
+----
+* 从卷上的现有快照创建新卷。此操作不会创建新快照：
++
+[listing]
+----
+docker volume create -d <driver_name> --name <new_name> -o from=<source_docker_volume> -o fromSnapshot=<source_snap_name>
+----
+
+
+
+
+=== 示例
+
+[listing]
+----
+[me@host ~]$ docker volume inspect firstVolume
+
+[
+    {
+        "Driver": "ontap-nas",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker-volumes/ontap-nas/netappdvp_firstVolume",
+        "Name": "firstVolume",
+        "Options": {},
+        "Scope": "global",
+        "Status": {
+            "Snapshots": [
+                {
+                    "Created": "2017-02-10T19:05:00Z",
+                    "Name": "hourly.2017-02-10_1505"
+                }
+            ]
+        }
+    }
+]
+
+[me@host ~]$ docker volume create -d ontap-nas --name clonedVolume -o from=firstVolume
+clonedVolume
+
+[me@host ~]$ docker volume rm clonedVolume
+[me@host ~]$ docker volume create -d ontap-nas --name volFromSnap -o from=firstVolume -o fromSnapshot=hourly.2017-02-10_1505
+volFromSnap
+
+[me@host ~]$ docker volume rm volFromSnap
+----
+
+
+== 访问外部创建的卷
+
+如果容器没有分区，并且 Astra Trident 支持其文件系统（例如： A `ext4` 格式的 ` /dev/sdc1` 将无法通过 Astra Trident 访问），则可以使用 Trident * only * 通过容器访问外部创建的块设备（或其克隆）。

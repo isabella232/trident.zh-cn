@@ -1,0 +1,252 @@
+---
+sidebar: sidebar 
+permalink: trident-reference/tridentctl.html 
+keywords: tridentctl, trident, kubernetes, commands, options, usage, flags 
+summary: 了解有关 tridentctl 的更多信息， tridentctl 是一个命令行实用程序，可用于轻松访问 Trident 。 
+---
+= <code>tridentctl</code> 命令和选项
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+。 https://github.com/NetApp/trident/releases["Trident 安装程序包"^] 包括一个命令行实用程序 `tridentctl` ，可用于轻松访问 Astra Trident 。具有足够权限的 Kubernetes 用户可以使用它来安装 Astra Trident ，并直接与其交互以管理包含 Astra Trident Pod 的命名空间。
+
+有关使用情况信息，请运行 `tridentctl -help` 。
+
+可用的命令和全局选项如下：
+
+[listing]
+----
+Usage:
+  tridentctl [command]
+----
+可用命令：
+
+* `create` ：将资源添加到 Astra Trident 。
+* `d删除` ：从 Astra Trident 中删除一个或多个资源。
+* `获取` ：从 Astra Trident 获取一个或多个资源。
+* `帮助` ：有关任何命令的帮助。
+* `images` ：打印一个包含 Astra Trident 所需容器映像的表。
+* `import` ：将现有资源导入到 Astra Trident 。
+* `安装` ：安装 Astra Trident 。
+* `logs` ：从 Astra Trident 打印日志。
+* `sEnd` ：从 Astra Trident 发送资源。
+* `卸载` ：卸载 Astra Trident 。
+* `update` ：修改 Astra Trident 中的资源。
+* `升级` ：升级 Astra Trident 中的资源。
+* `version` ：打印 Astra Trident 的版本。
+
+
+flags
+
+* `` -d ， -debug` ：调试输出。
+* `` -h ， -help` ：帮助 `tridentctl` 。
+* `` -n ， -namespace string` ： Astra Trident 部署的命名空间。
+* `` -o ， -output string` ：输出格式。json_yaml_name_wide|ps 之一（默认）。
+* `` -s ， -server string` ： Astra Trident REST 接口的地址 / 端口。
+
+
+
+
+== 创建
+
+您可以使用 run the `create` 命令向 Astra Trident 添加资源。
+
+[listing]
+----
+Usage:
+  tridentctl create [option]
+----
+可用选项： `backend` ：将后端添加到 Astra Trident 。
+
+
+
+== 删除
+
+您可以运行 `delete` 命令从 Astra Trident 中删除一个或多个资源。
+
+[listing]
+----
+Usage:
+  tridentctl delete [option]
+----
+可用选项：
+
+* `后端` ：从 Astra Trident 中删除一个或多个存储后端。
+* `node` ：从 Astra Trident 中删除一个或多个 CSI 节点。
+* `snapshot` ：从 Astra Trident 中删除一个或多个卷快照。
+* `storageclass` ：从 Astra Trident 中删除一个或多个存储类。
+* `volume` ：从 Astra Trident 中删除一个或多个存储卷。
+
+
+
+
+== 获取
+
+您可以运行 `get` 命令从 Astra Trident 获取一个或多个资源。
+
+[listing]
+----
+Usage:
+  tridentctl get [option]
+----
+可用选项：
+
+* `后端` ：从 Astra Trident 获取一个或多个存储后端。
+* `snapshot` ：从 Astra Trident 获取一个或多个快照。
+* `storageclass` ：从 Astra Trident 获取一个或多个存储类。
+* `volume` ：从 Astra Trident 获取一个或多个卷。
+
+
+
+
+== 映像
+
+您可以运行 `images` 标志来打印包含 Astra Trident 所需容器映像的表。
+
+[listing]
+----
+Usage:
+  tridentctl images [flags]
+----
+标志： * `` -h ， -help` ：图像帮助。* `` -v ， -k8s-version 字符串` ： Kubernetes 集群的语义版本。
+
+
+
+== 导入卷
+
+您可以运行 `import volume` 命令将现有卷导入到 Astra Trident 。
+
+[listing]
+----
+Usage:
+  tridentctl import volume <backendName> <volumeName> [flags]
+----
+别名： `volume ， v`
+
+flags
+
+* `` -f ， -filename string` ： YAML 或 JSON PVC 文件的路径。
+* `` -h ， -help` ：卷帮助。
+* `` -no-manage` ：仅创建 PV/PVC 。不要假定卷生命周期管理。
+
+
+
+
+== 安装
+
+您可以运行 `install` 标志来安装 Astra Trident 。
+
+[listing]
+----
+Usage:
+  tridentctl install [flags]
+----
+flags
+
+* `` -autosupport-image string` ： AutoSupport 遥测的容器映像（默认为 "netapp/trident autosupport ： 20.07.0" ）。
+* `` -autosupport-proxy string` ：用于发送 AutoSupport 遥测的代理的地址 / 端口。
+* `` -CSI` ：安装 CSI Trident （仅对 Kubernetes 1.13 进行覆盖，需要功能安全门）。
+* `` -enable-node-prep` ：尝试在节点上安装所需的软件包。
+* `` -generate-custom-yaml` ：在不安装任何内容的情况下生成 YAML 文件。
+* `` -h ， -help` ：安装帮助。
+* `` -image-regRegistry string` ：内部映像注册表的地址 / 端口。
+* `` -K8s-timeout duration` ：所有 Kubernetes 操作的超时（默认值为 3 毫秒）。
+* `` -kubelet-dir string` ： kubelet 内部状态的主机位置（默认为 "/var/lib/kubelet" ）。
+* `` -log-format string` ： Astra Trident 日志记录格式（文本， json ）（默认为 "text" ）。
+* `` -pv 字符串` ： Astra Trident 使用的原有 PV 名称，用于确保此名称不存在（默认为 "trident " ）。
+* `` -PVC 字符串` ： Astra Trident 使用的原有 PVC 的名称，用于确保此名称不存在（默认为 "trident " ）。
+* `` -silning-autosupport` ：不要自动向 NetApp 发送 AutoSupport 捆绑包（默认为 true ）。
+* `` —静默` ：在安装期间禁用大多数输出。
+* `` -trident 映像字符串` ：要安装的 Astra Trident 映像。
+* `` -use-custom-yaml` ：使用设置目录中现有的任何 YAML 文件。
+* `` -use-ipv6` ：使用 IPv6 进行 Astra Trident 的通信。
+
+
+
+
+== 日志
+
+您可以运行 `logs` 标志从 Astra Trident 打印日志。
+
+[listing]
+----
+Usage:
+  tridentctl logs [flags]
+----
+flags
+
+* `` A ， -archive` ：使用所有日志创建支持归档，除非另有说明。
+* `` -h ， -help` ：日志帮助。
+* `` -l ， -log 字符串` ：要显示的 Astra Trident 日志。Trident 中的一个 "auto"|trident 操作符 "All" （默认为 "auto" ）。
+* `` -node string` ：用于收集节点 Pod 日志的 Kubernetes 节点名称。
+* `` -p ， -previous` ：获取先前容器实例（如果存在）的日志。
+* `` -sidecar` ：获取 sidecar 容器的日志。
+
+
+
+
+== 发送
+
+您可以运行 `send` 命令从 Astra Trident 发送资源。
+
+[listing]
+----
+Usage:
+  tridentctl send [option]
+----
+可用选项： `AutoSupport` ：将 AutoSupport 归档发送到 NetApp 。
+
+
+
+== 卸载
+
+您可以运行 `uninstall` 标志来卸载 Astra Trident 。
+
+[listing]
+----
+Usage:
+  tridentctl uninstall [flags]
+----
+标志： * ` -h ， -help` ：卸载帮助。* ` —静默` ：在卸载期间禁用大多数输出。
+
+
+
+== 更新
+
+您可以运行 `update` 命令来修改 Astra Trident 中的资源。
+
+[listing]
+----
+Usage:
+  tridentctl update [option]
+----
+可用选项： `backend` ：在 Astra Trident 中更新后端。
+
+
+
+== 升级
+
+您可以运行 `upgrade` 命令来升级 Astra Trident 中的资源。
+
+[listing]
+----
+Usage:
+tridentctl upgrade [option]
+----
+可用选项： `volume` ：将一个或多个永久性卷从 NFS/iSCSI 升级到 CSI 。
+
+
+
+== version
+
+您可以运行 `version` 标志来打印 `tridentctl` 的版本以及正在运行的 Trident 服务。
+
+[listing]
+----
+Usage:
+  tridentctl version [flags]
+----
+标志： * ` -client` ：仅限客户端版本（不需要服务器）。* ` -h ， -help` ：版本帮助。

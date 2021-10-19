@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: trident-reference/trident-ports.html 
+keywords: astra trident, port, ports 
+summary: 详细了解 Astra Trident 所通过的端口。 
+---
+= Astra Trident 端口
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+详细了解 Astra Trident 所通过的端口。
+
+Astra Trident 通过以下端口进行通信：
+
+[cols="2,4"]
+|===
+| Port | 目的 
+
+
+| 8443 | 后通道 HTTPS 
+
+
+| 8001 | Prometheus 指标端点 
+
+
+| 8000 | Trident REST 服务器 
+
+
+| 17546 | Trident demonset Pod 使用的活动性 / 就绪性探测端口 
+|===
+
+NOTE: 可以在安装期间使用 ` -probe-port` 标志更改活跃度 / 就绪性探测端口。请务必确保此端口未被工作节点上的其他进程使用。

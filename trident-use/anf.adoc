@@ -1,0 +1,268 @@
+---
+sidebar: sidebar 
+permalink: trident-use/anf.html 
+keywords: trident backend, azure netapp files 
+summary: 了解如何使用提供的示例配置将 Azure NetApp Files 配置为 Trident 安装的后端。 
+---
+= 配置 Azure NetApp Files 后端
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+了解如何使用提供的示例配置将 Azure NetApp Files （ ANF ）配置为 Astra Trident 安装的后端。
+
+
+NOTE: Azure NetApp Files 服务不支持小于 100 GB 的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。
+
+配置和使用 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 后端，您需要满足以下要求：
+
+* `ssubscriptionID` 来自启用了 Azure NetApp Files 的 Azure 订阅。
+* `租户 ID` ， `clientID` 和 `clientSecret` 来自 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal["应用程序注册"^] 在 Azure Active Directory 中，具有足够的 Azure NetApp Files 服务权限。应用程序注册应使用` Azure 预定义的 `owner` 或 `Contributor... 角色。
++
+
+TIP: 要了解有关 Azure 内置角色的详细信息，请参见 https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles["Azure 文档"^]。
+
+* 至少包含一个的 Azure `位置` https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["委派子网"^]。
+* 如果您是首次使用 Azure NetApp Files 或在新位置使用，则需要进行一些初始配置。请参见 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-quickstart-set-up-account-create-volumes["《快速入门指南》"^]。
+
+
+根据后端配置（子网，虚拟网络，服务级别和位置）， Trident 会在请求位置提供的容量池上创建 ANF 卷，并与请求的服务级别和子网匹配。
+
+
+NOTE: Astra Trident 21.04.0 及更早版本不支持手动 QoS 容量池。
+
+
+
+== 后端配置选项
+
+有关后端配置选项，请参见下表：
+
+[cols="3"]
+|===
+| 参数 | Description | Default 
+
+
+| `ve版本` |  | 始终为 1 
+
+
+| `storageDriverName` | 存储驱动程序的名称 | "Azure-netapp-files" 
+
+
+| `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + 随机字符 
+
+
+| `ssubscriptionID` 。 | Azure 订阅中的订阅 ID |  
+
+
+| `租户 ID` 。 | 应用程序注册中的租户 ID |  
+
+
+| `客户端 ID` 。 | 应用程序注册中的客户端 ID |  
+
+
+| `clientSecret` 。 | 应用程序注册中的客户端密钥 |  
+
+
+| `s服务级别` | `S标准` ， `高级` 或 `超级` 之一 | "" （随机） 
+
+
+| `位置` | 要创建新卷的 Azure 位置的名称 | "" （随机） 
+
+
+| `virtualNetwork` | 具有委派子网的虚拟网络的名称 | "" （随机） 
+
+
+| `ssubnet` | 委派给 `Microsoft.Netapp/volumes` 的子网的名称 | "" （随机） 
+
+
+| `nfsMountOptions` | 精细控制 NFS 挂载选项。 | "nfsvers=3" 
+
+
+| `limitVolumeSize` | 如果请求的卷大小超过此值，则配置失败 | "" （默认情况下不强制实施） 
+
+
+| `debugTraceFlags` | 故障排除时要使用的调试标志。示例， ` \ ｛ "api" ： false ， "method ： true" ｝` 。除非您正在进行故障排除并需要详细的日志转储，否则请勿使用此功能。 | 空 
+|===
+
+WARNING: 修改现有后端的 `capacityPools` 字段以减少用于配置的容量池的数量会导致孤立卷，这些卷会在不再属于 `capacityPools` 列表的容量池 / 池上配置。对这些孤立卷执行克隆操作将失败。
+
+
+WARNING: 如果在尝试创建 PVC 时遇到 " 未找到容量池 " 错误，则您的应用程序注册可能没有关联的所需权限和资源（子网，虚拟网络，容量池）。启用调试后， Astra Trident 将记录在创建后端时发现的 Azure 资源。请务必检查是否正在使用适当的角色。
+
+
+NOTE: 如果要使用 NFS 4.1 挂载卷，可以在逗号分隔的挂载选项列表中包含 ``nfsver=4`` 以选择 NFS v4.1 。存储类中设置的任何挂载选项都会覆盖后端配置文件中设置的挂载选项。
+
+您可以通过在配置文件的特殊部分中指定以下选项来控制默认配置每个卷的方式。请参见以下配置示例。
+
+[cols=",,"]
+|===
+| 参数 | Description | Default 
+
+
+| `exportRule` | 新卷的导出规则 | "0.0.0.0/0 
+
+
+| `s大小` | 新卷的默认大小 | "100 克 " 
+|===
+`exportRule` 值必须是以 CIDR 表示法表示的 IPv4 地址或 IPv4 子网任意组合的逗号分隔列表。
+
+
+NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对存储池中创建的所有卷进行分组。这样，您就可以根据后端配置中提供的一组可自定义标签来方便地区分卷了。
+
+
+
+== 示例 1 ：最低配置
+
+这是绝对的最低后端配置。借助此配置， Astra Trident 可以发现全球每个位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个上。
+
+当您刚开始使用 ANF 并尝试执行相关操作时，此配置是理想的选择，但实际上，您希望为所配置的卷提供更多范围界定。
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "azure-netapp-files",
+    "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+    "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+    "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+    "clientSecret": "SECRET"
+}
+----
+
+
+== 示例 2 ：单个位置和特定服务级别配置
+
+此后端配置会将卷放置在 Azure 的 `东向` 位置的 `高级` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。
+
+[listing]
+----
+    {
+        "version": 1,
+        "storageDriverName": "azure-netapp-files",
+        "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+        "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+        "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+        "clientSecret": "SECRET",
+        "location": "eastus",
+        "serviceLevel": "Premium"
+    }
+----
+
+
+== 示例 3 ：高级配置
+
+此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。
+
+[listing]
+----
+    {
+        "version": 1,
+        "storageDriverName": "azure-netapp-files",
+        "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+        "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+        "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+        "clientSecret": "SECRET",
+        "location": "eastus",
+        "serviceLevel": "Premium",
+        "virtualNetwork": "my-virtual-network",
+        "subnet": "my-subnet",
+        "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
+        "limitVolumeSize": "500Gi",
+        "defaults": {
+            "exportRule": "10.0.0.0/24,10.0.1.0/24,10.0.2.100",
+            "size": "200Gi"
+        }
+    }
+----
+
+
+== 示例 4 ：虚拟存储池配置
+
+此后端配置可在一个文件中定义多个存储池。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。
+
+[listing]
+----
+    {
+        "version": 1,
+        "storageDriverName": "azure-netapp-files",
+        "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
+        "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
+        "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
+        "clientSecret": "SECRET",
+        "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
+        "labels": {
+            "cloud": "azure"
+        },
+        "location": "eastus",
+
+        "storage": [
+            {
+                "labels": {
+                    "performance": "gold"
+                },
+                "serviceLevel": "Ultra"
+            },
+            {
+                "labels": {
+                    "performance": "silver"
+                },
+                "serviceLevel": "Premium"
+            },
+            {
+                "labels": {
+                    "performance": "bronze"
+                },
+                "serviceLevel": "Standard",
+            }
+        ]
+    }
+----
+以下 `S存储类` 定义是指上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 `StorageClass` 指定用于托管卷的实际池。卷将在选定池中定义各个方面。
+
+[listing]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gold
+provisioner: csi.trident.netapp.io
+parameters:
+  selector: "performance=gold"
+allowVolumeExpansion: true
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: silver
+provisioner: csi.trident.netapp.io
+parameters:
+  selector: "performance=silver"
+allowVolumeExpansion: true
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: bronze
+provisioner: csi.trident.netapp.io
+parameters:
+  selector: "performance=bronze"
+allowVolumeExpansion: true
+----
+
+
+== 下一步是什么？
+
+创建后端配置文件后，运行以下命令：
+
+[listing]
+----
+tridentctl create backend -f <backend-file>
+----
+如果后端创建失败，则后端配置出现问题。您可以运行以下命令来查看日志以确定发生原因：
+
+[listing]
+----
+tridentctl logs
+----
+确定并更正配置文件中的问题后，您可以再次运行 create 命令。

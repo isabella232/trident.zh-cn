@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: trident-managing-k8s/upgrade-trident.html 
+keywords: upgrade, trident, methods, operator, tridentctl, helm 
+summary: Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的，可提供新功能和性能增强以及错误修复和改进功能。我们建议您每年至少升级一次，以利用 Astra Trident 中的新功能。 
+---
+= 升级 Astra Trident
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的，可提供新功能和性能增强以及错误修复和改进功能。我们建议您每年至少升级一次，以利用 Astra Trident 中的新功能。
+
+
+NOTE: 要升级到之前的五个版本，您需要执行多步升级。
+
+
+
+== 确定要升级到的版本
+
+* 您可以从 `YY-1.mm` 版本和任何介于两者之间的版本升级到 `YY.mm` 版本。例如，您可以从 19.07 及更高版本直接升级到 20.07 （包括 DOT 版本，例如 19.07.1 ）。
+* 如果您使用的是早期版本，则应执行多步骤升级。这要求您首先升级到适合您的四个版本窗口的最新版本。例如，如果您运行的是 18.07 ，并希望升级到 20.07 版本，请按照以下所述执行多步骤升级过程：
++
+** 首次从 18.07 升级到 19.07 。有关升级的具体说明，请参见相应版本的文档。
+** 然后从 19.07 升级到 20.07 。
+
+
+
+
+
+IMPORTANT: 对于 19.04 及更早版本的所有升级，都需要将 Astra Trident 的元数据从其自身的 `etcd` 迁移到 CRD 对象。请务必查看此版本的文档，了解升级的工作原理。
+
+
+WARNING: 升级时，请务必提供 `parameter.FSType` in `StorageClasses` used by Astra Trident 。您可以删除并重新创建 `StorageClasses` ，而不会中断已有卷。这是执行的一项 * 要求 * https://kubernetes.io/docs/tasks/configure-pod-container/security-context/["安全上下文"^] SAN 卷。。 目录包含示例，例如 和。有关详细信息，请参见 link:../trident-rn.html["已知问题"^]。
+
+
+
+== 我应选择哪种升级路径？
+
+您可以使用以下路径之一进行升级：
+
+* 使用 Trident 运算符。
+* 使用 `tridentctl` 。
+
+
+
+WARNING: 从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。在升级 Astra Trident 时，在执行升级之前，必须删除所有先前的 alpha snapshot CRS 和 CRD （卷快照类，卷快照和卷快照内容）。请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^] 了解将 alpha 快照迁移到测试版 /GA 规范所涉及的步骤。
+
+如果满足以下条件，则可以使用 Trident 操作符进行升级：
+
+* 您正在运行 CSI Trident （ 19.07 及更高版本）。
+* 您已安装基于 CRD 的 Trident 版本（ 19.07 及更高版本）。
+* 您正在执行自定义安装（使用自定义 YAML ）。
+
+
+
+WARNING: 如果您使用的是基于 `etcd` 的 Trident 版本（ 19.04 或更早版本），请勿使用运算符升级 Trident 。
+
+如果您不想使用该运算符，或者您的自定义安装操作符不支持，则可以使用 `tridentctl` 进行升级。这是 Trident 19.04 及更早版本的首选升级方法。
+
+
+
+== 对运算符进行了更改
+
+Astra Trident 21.01 版为操作员引入了一些关键的架构变更，即：
+
+* 操作符现在为 * 集群范围 * 。以前的 Trident 运算符实例（版本 20.04 到 20.10 ）为 * 命名空间范围 * 。集群范围内的运算符具有优势，原因如下：
++
+** 资源责任：操作员现在可以在集群级别管理与 Astra Trident 安装相关的资源。在安装 Astra Trident 过程中，操作员使用 `ownerReferences` 创建和维护多个资源。在集群范围的资源上维护 `所有权参考` 可能会在某些 Kubernetes 分销商（例如 OpenShift ）上引发错误。使用集群范围的运算符可缓解此问题。对于 Trident 资源的自动修复和修补，这是一项基本要求。
+** 卸载期间清理：要完全删除 Astra Trident ，需要删除所有关联的资源。命名空间范围的运算符可能会在删除集群范围的资源（例如 clusterRole ， ClusterRoleBinding-and PodSecurityPolicy ）时遇到问题，并导致清理不完整。集群范围的运算符可消除此问题描述。用户可以完全卸载 Astra Trident 并在需要时重新安装。
+
+
+* `TridentProvider` 现已替换为 `TridentOrchestrator` 作为用于安装和管理 Astra Trident 的自定义资源。此外，还为 `TridentOrchestrator` 规范引入了一个新字段。用户可以使用 `spec.namespace` 字段指定必须安装 / 升级命名空间 Trident 。您可以查看一个示例 https://github.com/NetApp/trident/blob/stable/v21.01/deploy/crds/tridentorchestrator_cr.yaml["此处"^]。
+
+
+
+
+== 了解更多信息
+
+* link:upgrade-operator.html["使用 Trident 操作符进行升级"^]
+* link:upgrade-tridentctl.html["使用 `tridentctl` 进行升级"]
+

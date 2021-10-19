@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/multiple-instances-docker.html 
+keywords: deploy, astra trident, docker, trident for docker, managed plugin, trident instances, alias 
+summary: 如果您希望同时提供多个存储配置，则需要多个 Astra Trident 实例。多个实例的关键在于，在主机上实例化 Trident 时，使用 -alias 选项和容器化插件或 -volume-driver 选项为其提供不同的名称。 
+---
+= 管理多个 Astra Trident 实例
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+如果希望同时提供多个存储配置，则需要多个 Trident 实例。多个实例的关键在于，在主机上实例化 Trident 时，使用容器化插件的 ` -alias` 选项或 ` -volume-driver` 选项为其提供不同的名称。
+
+
+
+== Docker 托管插件（ 1.13/17.03 或更高版本）的步骤
+
+. 启动指定别名和配置文件的第一个实例。
++
+[listing]
+----
+docker plugin install --grant-all-permissions --alias silver netapp/trident-plugin:21.07 config=silver.json
+----
+. 启动第二个实例，指定其他别名和配置文件。
++
+[listing]
+----
+docker plugin install --grant-all-permissions --alias gold netapp/trident-plugin:21.07 config=gold.json
+----
+. 创建将别名指定为驱动程序名称的卷。
++
+例如，对于黄金卷：
+
++
+[listing]
+----
+docker volume create -d gold --name ntapGold
+----
++
+例如，对于银牌卷：
+
++
+[listing]
+----
+docker volume create -d silver --name ntapSilver
+----
+
+
+
+
+== 传统（ 1.12 或更早版本）的步骤
+
+. 使用自定义驱动程序 ID 启动具有 NFS 配置的插件：
++
+[listing]
+----
+sudo trident --volume-driver=netapp-nas --config=/path/to/config-nfs.json
+----
+. 使用自定义驱动程序 ID 启动具有 iSCSI 配置的插件：
++
+[listing]
+----
+sudo trident --volume-driver=netapp-san --config=/path/to/config-iscsi.json
+----
+. 为每个驱动程序实例配置 Docker 卷：
++
+例如，对于 NFS ：
+
++
+[listing]
+----
+docker volume create -d netapp-nas --name my_nfs_vol
+----
++
+例如，对于 iSCSI ：
+
++
+[listing]
+----
+docker volume create -d netapp-san --name my_iscsi_vol
+----
+

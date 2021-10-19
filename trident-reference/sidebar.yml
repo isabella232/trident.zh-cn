@@ -1,0 +1,16 @@
+---
+section: trident-reference
+title: 参考
+entries:
+- title: Astra Trident 端口
+  url: "/trident-reference/trident-ports.html"
+- title: Astra Trident REST API
+  url: "/trident-reference/rest-api.html"
+- title: 命令行选项
+  url: "/trident-reference/trident-cl.html"
+- title: 与 Kubernetes 集成的 NetApp 产品
+  url: "/trident-reference/k8s-netapp.html"
+- title: Kubernetes 和 Astra Trident 对象
+  url: "/trident-reference/objects.html"
+- title: tridentctl 命令和选项
+  url: "/trident-reference/tridentctl.html"

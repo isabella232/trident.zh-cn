@@ -1,0 +1,132 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-deploy.html 
+keywords: deploy, astra trident, methods, operator, tridentctl, helm 
+summary: '您可以使用 Trident 运算符或使用 `tridentctl` 来部署 Astra Trident 。' 
+---
+= 部署概述
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+您可以使用 Trident 运算符或使用 `tridentctl` 来部署 Astra Trident 。
+
+
+
+== 选择部署方法
+
+要确定要使用的部署方法，请考虑以下几点：
+
+
+
+=== 为什么要使用 Trident 运算符？
+
+。 link:kubernetes-deploy-operator.html["Trident 运算符"^] 是动态管理 Astra Trident 资源并自动完成设置阶段的绝佳方式。必须满足某些前提条件。请参见 。
+
+Trident 运算符提供了以下几项优势。
+
+
+
+==== 自我修复功能
+
+您可以监控 Astra Trident 安装并主动采取措施来解决问题，例如删除部署或意外修改部署的时间。将此操作员设置为部署时，将创建 `trident 操作符 -<generated -id>` Pod 。此 POD 会将 `Trident Orchestrator` CR 与 Astra Trident 安装关联起来，并始终确保只有一个活动的 `TridentOrchestrator` 。换言之，操作员可确保集群中只有一个 Astra Trident 实例并控制其设置，从而确保安装有效。对安装进行更改（例如删除部署或节点取消设置）时，操作员会识别这些更改并逐个修复它们。
+
+
+
+==== 轻松更新现有安装
+
+您可以使用操作员轻松更新现有部署。您只需编辑 `TridentOrchestrator` CR 即可更新安装。例如，请考虑需要启用 Astra Trident 以生成调试日志的情形。
+
+为此，请修补您的 `TridentOrchestrator` 以将 `spec.debug` 设置为 `true` ：
+
+[listing]
+----
+kubectl patch torc <trident-orchestrator-name> -n trident --type=merge -p '{"spec":{"debug":true}}'
+----
+更新 `TridentOrchestrator` 后，操作员将处理更新并修补现有安装。这可能会触发创建新 Pod 以相应地修改安装。
+
+
+
+==== 自动处理 Kubernetes 升级
+
+当集群的 Kubernetes 版本升级到受支持的版本时，操作员会自动更新现有的 Astra Trident 安装并进行更改，以确保其满足 Kubernetes 版本的要求。
+
+
+NOTE: 如果集群升级到不受支持的版本，则操作员会阻止安装 Astra Trident 。如果已随操作员安装了 Astra Trident ，则会显示一条警告，指示 Astra Trident 安装在不受支持的 Kubernetes 版本上。
+
+
+
+=== 为什么要使用 Helm ？
+
+如果您还有其他要使用 Helm 管理的应用程序，从 Astra Trident 21.01 开始，您也可以使用 Helm 管理您的部署。
+
+
+
+=== 何时应使用 tridenctl ？
+
+如果您的现有部署必须升级到，或者您希望对部署进行高度自定义，则应查看使用 link:kubernetes-deploy-tridentctl.html["Tridentctl"^]。这是部署 Astra Trident 的传统方法。
+
+
+
+== 在部署方法之间移动时的注意事项
+
+不难想象需要在部署方法之间移动的情形。在尝试从 `tridentctl` 部署迁移到基于操作员的部署之前，应考虑以下事项，反之亦然：
+
+* 卸载 Astra Trident 时，请始终使用相同的方法。如果已使用 `tridentctl` 进行部署，则应使用适当版本的 `tridentctl` 二进制文件卸载 Astra Trident 。同样，如果要使用操作员进行部署，则应编辑 `TridentOrchestrator` CR 并设置 `sPec.uninstall=true` 以卸载 Astra Trident 。
+* 如果您要删除基于操作员的部署并使用 `tridentctl` 来部署 Astra Trident ，则应先编辑 `TridentOrchestrator` 并设置 `sPec.uninstall=true` 以卸载 Astra Trident 。然后删除 `TridentOrchestrator` 和操作员部署。然后，您可以使用 `tridentctl` 进行安装。
+* 如果您使用的是基于操作员的手动部署，并且要使用基于 Helm 的 Trident 操作员部署，则应先手动卸载此操作员，然后再执行 Helm 安装。这样， Helm 就可以使用所需的标签和标注来部署 Trident 操作员。如果不执行此操作，则基于 Helm 的 Trident 操作员部署将失败，并显示标签验证错误和标注验证错误。如果您使用的是基于 `tridentctl` 的部署，则可以使用基于 Helm 的部署，而不会出现问题。
+
+
+
+
+== 了解部署模式
+
+部署 Astra Trident 的方法有三种。
+
+
+
+=== 标准部署
+
+在 Kubernetes 集群上部署 Trident 会导致 Astra Trident 安装程序执行以下两项操作：
+
+* 通过 Internet 提取容器映像
+* 创建部署和 / 或节点取消设置，以便在 Kubernetes 集群中所有符合条件的节点上启动 Astra Trident Pod 。
+
+
+此类标准部署可以通过两种不同的方式执行：
+
+* 使用 `tridentctl install`
+* 使用 Trident 运算符。您可以手动或使用 Helm 部署 Trident 操作员。
+
+
+此安装模式是安装 Astra Trident 的最简单方法，适用于大多数不会实施网络限制的环境。
+
+
+
+=== 脱机部署
+
+要执行空映射部署，您可以在调用 `tridentctl install` 时使用 ` -image-regRegistry` 标志来指向私有映像注册表。如果使用 Trident 操作符进行部署，则也可以在 `TridentOrchestrator` 中指定 `sPec.imageRegistry` 。此注册表应包含 https://hub.docker.com/r/netapp/trident/["Trident 映像"^]，和 Kubernetes 版本所需的 CSI sidecar 映像。
+
+要自定义部署，您可以使用 `tridentctl` 为 Trident 的资源生成清单。其中包括 Astra Trident 在安装过程中创建的部署，取消设置，服务帐户和集群角色。
+
+有关自定义部署的详细信息，请参见以下链接：
+
+* link:kubernetes-customize-deploy.html["自定义基于操作员的部署"^]
+* link:kubernetes-customize-deploy-tridentctl.html["自定义基于 `tridentctl` 的部署"^]
+
+
+
+IMPORTANT: 如果您使用的是私有映像存储库，则应在专用注册表 URL 的末尾添加 ` /k8scsi` （对于 1.17 之前的 Kubernetes 版本）或 ` /SIG-storage` （对于 1.17 之后的 Kubernetes 版本）。在使用私有注册表进行 `tridentctl` 部署时，应将 ` -trident 映像` 和 ` -autosupport-image` 与 ` -image-regRegistry` 结合使用。如果要使用 Trident 操作符部署 Astra Trident ，请确保 Orchestrator CR 在安装参数中包含 `tridentImage` 和 `autosupportImage` 。
+
+
+
+=== 远程部署
+
+下面简要概述了远程部署过程：
+
+* 在要部署 Astra Trident 的远程计算机上部署适当版本的 `kubectl` 。
+* 从 Kubernetes 集群复制配置文件，并在远程计算机上设置 `KUBECONFIG` 环境变量。
+* 启动 `kubectl get nodes` 命令，验证您是否可以连接到所需的 Kubernetes 集群。
+* 使用标准安装步骤从远程计算机完成部署。
+

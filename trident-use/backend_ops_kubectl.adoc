@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: trident-use/backend_ops_kubectl.html 
+keywords: backends, storage system, anf, cvs for aws, cvs for gcp, element, hci, solidfire, ontap, aff, fas, ontap select, configure backends, kubectl, create backends, delete backends, update backends, view backends 
+summary: '了解如何使用 `kubectl` 执行后端管理操作。' 
+---
+= 使用 <code>kubectl</code> 执行后端管理
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+了解如何使用 `kubectl` 执行后端管理操作。
+
+
+
+== 删除后端
+
+通过删除 `TridentBackendConfig` ，您可以指示 Astra Trident 删除 / 保留后端（基于 `detionPolicy` ）。要删除后端，请确保将 `deletionPolicy` 设置为 delete 。要仅删除 `TridentBackendConfig` ，请确保将 `deletionPolicy` 设置为 Retain 。这样可以确保后端仍然存在，并可使用 `tridentctl` 进行管理。
+
+运行以下命令：
+
+[listing]
+----
+$ kubectl delete tbc <tbc-name> -n trident
+----
+Astra Trident 不会删除 `TridentBackendConfig` 使用的 Kubernetes 机密。Kubernetes 用户负责清理密钥。删除机密时必须小心。只有在后端未使用机密时，才应将其删除。
+
+
+
+== 查看现有后端
+
+运行以下命令：
+
+[listing]
+----
+$ kubectl get tbc -n trident
+----
+您也可以运行 `tridentctl get backend -n trident` 或 `tridentctl get backend -o YAML -n trident` 来获取存在的所有后端的列表。此列表还将包括使用 `tridentctl` 创建的后端。
+
+
+
+== 更新后端
+
+更新后端可能有多种原因：
+
+* 存储系统的凭据已更改。要更新凭据，必须更新 `TridentBackendConfig` 对象中使用的 Kubernetes Secret 。Astra Trident 将使用提供的最新凭据自动更新后端。运行以下命令以更新 Kubernetes Secret ：
+
+
+[listing]
+----
+$ kubectl apply -f <updated-secret-file.yaml> -n trident
+----
+* 需要更新参数（例如所使用的 ONTAP SVM 的名称）。在这种情况下，可以直接通过 Kubernetes 更新 `TridentBackendConfig` 对象。
+
+
+[listing]
+----
+$ kubectl apply -f <updated-backend-file.yaml>
+----
+或者，也可以运行以下命令来更改现有的 `TridentBackendConfig` CR ：
+
+[listing]
+----
+$ kubectl edit tbc <tbc-name> -n trident
+----
+如果后端更新失败，则后端仍会保持在其上次已知配置中。您可以通过运行 `kubectl get tbc <tbc-name> -o yaml -n trident` 或 `kubectl describe tbc <tbc-name> -n trident` 来查看日志以确定发生原因。
+
+确定并更正配置文件中的问题后，您可以重新运行 update 命令。

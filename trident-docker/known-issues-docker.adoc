@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/known-issues-docker.html 
+keywords: known issues, trident, trident for docker, docker 
+summary: 查找有关将 Astra Trident 与 Docker 结合使用时的已知问题的信息。 
+---
+= 已知问题和限制
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+查找有关将 Astra Trident 与 Docker 结合使用时的已知问题和限制的信息。
+
+
+
+== 将 Trident Docker 卷插件从旧版本升级到 20.10 及更高版本会导致升级失败，并且不会显示此类文件或目录错误。
+
+.临时解决策
+. 禁用插件。
++
+[listing]
+----
+docker plugin disable -f netapp:latest
+----
+. 删除此插件。
++
+[listing]
+----
+docker plugin rm -f netapp:latest
+----
+. 通过提供额外的 `config` 参数来重新安装插件。
++
+[listing]
+----
+docker plugin install netapp/trident-plugin:20.10 --alias netapp --grant-all-permissions config=config.json
+----
+
+
+
+
+== 卷名称的长度必须至少为 2 个字符。
+
+
+NOTE: 这是 Docker 客户端的限制。客户端会将单个字符名称解释为 Windows 路径。 https://github.com/moby/moby/issues/25773["请参见错误 25773"^]。
+
+
+
+== Docker Swarm 的某些行为会阻止 Astra Trident 在每个存储和驱动程序组合中为其提供支持。
+
+* Docker Swarm 目前使用卷名称而非卷 ID 作为其唯一卷标识符。
+* 卷请求会同时发送到 Swarm 集群中的每个节点。
+* 卷插件（包括 Astra Trident ）必须在 Swarm 集群中的每个节点上独立运行。由于 ONTAP 的工作方式以及 `ontap-NAS` 和 `ontap-san` 驱动程序的工作方式，它们恰好是唯一能够在这些限制范围内运行的驱动程序。
+
+
+其余驱动程序可能会受到诸如争用情况等问题的影响，这些问题可能会导致为单个请求创建大量卷，而无需明确的 " 赢家 " ；例如， Element 具有一项功能，允许卷具有相同的名称，但 ID 不同。
+
+NetApp 已向 Docker 团队提供反馈，但没有任何迹象表明将来可以采用。
+
+
+
+== 如果要配置 FlexGroup ，则在第二个 FlexGroup 具有一个或多个与要配置的 FlexGroup 相同的聚合时， ONTAP 不会配置第二个 FlexGroup 。

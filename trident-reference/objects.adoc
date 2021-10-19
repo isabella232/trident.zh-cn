@@ -1,0 +1,420 @@
+---
+sidebar: sidebar 
+permalink: trident-reference/objects.html 
+keywords: kubernetes objects, trident objects, persistent volume claim, storage class, backend, snapshot 
+summary: Kubernetes 与 Trident ， Trident 与存储以及 Kubernetes 与存储之间的关系由多个资源对象决定。其中一些对象通过 Kubernetes 进行管理，而另一些对象则通过 Trident 进行管理。 
+---
+= Kubernetes 和 Trident 对象
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+您可以通过读取和写入资源对象来使用 REST API 与 Kubernetes 和 Trident 进行交互。Kubernetes 与 Trident ， Trident 与存储以及 Kubernetes 与存储之间的关系由多个资源对象决定。其中一些对象通过 Kubernetes 进行管理，而另一些对象则通过 Trident 进行管理。
+
+
+
+== 对象如何相互交互？
+
+了解对象，对象的用途以及对象交互方式的最简单方法可能是，遵循 Kubernetes 用户的单个存储请求：
+
+. 用户创建一个 `PersistentVolumeClaim` ，请求管理员先前配置的 Kubernetes `StorageClass` 中具有特定大小的新 `PersistentVolume` 。
+. Kubernetes `StorageClass` 将 Trident 标识为其配置程序，并包含一些参数，用于指示 Trident 如何为请求的类配置卷。
+. Trident 会查看自己的 `StorageClass` 并使用相同的名称来标识匹配的 `Backend` 和 `StoragePools` ，它可以使用这些卷为该类配置卷。
+. Trident 会在匹配的后端配置存储并创建两个对象： Kubernetes 中的 A `PersistentVolume` 用于告知 Kubernetes 如何查找，挂载和处理卷； Trident 中的一个卷用于保留 `PersistentVolume` 与实际存储之间的关系。
+. Kubernetes 会将 `PersistentVolumeClaim` 绑定到新的 `PersistentVolume` 。包含 `PersistentVolumeClaim` 的 Pod 会将此 PersistentVolume 挂载到其运行所在的任何主机上。
+. 用户使用指向 Trident 的 `VolumeSnapshotClass` 创建现有 PVC 的 `VolumeSnapshot` 。
+. Trident 标识与 PVC 关联的卷，并在其后端创建卷的快照。此外，它还会创建一个 `VolumeSnapshotContent` ，指示 Kubernetes 如何识别快照。
+. 用户可以使用 `VolumeSnapshot` 作为源创建 `PersistentVolumeClaim` 。
+. Trident 可识别所需的快照，并执行与创建 `PersistentVolume` 和 `Volume` 相同的一组步骤。
+
+
+
+TIP: 要进一步了解 Kubernetes 对象，强烈建议您阅读 https://kubernetes.io/docs/concepts/storage/persistent-volumes/["永久性卷"^] Kubernetes 文档的一节。
+
+
+
+== Kubernetes PersistentVolumeClaim 对象
+
+Kubernetes `PersistentVolumeClaim` 对象是 Kubernetes 集群用户发出的存储请求。
+
+除了标准规范之外，如果用户要覆盖在后端配置中设置的默认值， Trident 还允许用户指定以下特定于卷的标注：
+
+[cols=",,"]
+|===
+| 标注 | 卷选项 | 支持的驱动程序 
+
+
+| trident.netapp.io/fileSystem | 文件系统 | ontap-san ， solidfire-san ， E 系列 -iscsi ， ontap-san-economy. 
+
+
+| trident.netapp.io/cloneFromPVC | cloneSourceVolume | ontap-nas ， ontap-san ， solidfire-san ， AWS-CVS ， azure-netapp-files ， GCP-CVS ， ontap-san-economy. 
+
+
+| trident.netapp.io/splitOnClone | splitOnClone | ontap-NAS ， ontap-san 
+
+
+| trident.netapp.io/protocol | 协议 | 任意 
+
+
+| trident.netapp.io/exportPolicy | 导出策略 | ontap-nas ， ontap-nas-economy-、 ontap-nas-flexgroup 
+
+
+| trident.netapp.io/snapshotPolicy | snapshotPolicy | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san 
+
+
+| trident.netapp.io/snapshotReserve | SnapshotReserve | ontap-nas ， ontap-nas-flexgroup ， ontap-san ， AWS-CVS ， GCP-CVS 
+
+
+| trident.netapp.io/snapshotDirectory | snapshotDirectory | ontap-nas ， ontap-nas-economy-、 ontap-nas-flexgroup 
+
+
+| trident.netapp.io/unixPermissions | unixPermissions | ontap-nas ， ontap-nas-economy-、 ontap-nas-flexgroup 
+
+
+| trident.netapp.io/blockSize | 块大小 | solidfire-san 
+|===
+如果创建的 PV 具有 `Delete` reclaime 策略，则在释放 PV 时（即用户删除 PVC 时）， Trident 会同时删除 PV 和后备卷。如果删除操作失败， Trident 会将 PV 标记为相应的 PV ，并定期重试此操作，直到操作成功或 PV 手动删除为止。如果 PV 使用 ` +retain+` 策略， Trident 会忽略该策略，并假定管理员将从 Kubernetes 和后端清理该策略，以便在删除卷之前对其进行备份或检查。请注意，删除 PV 不会通过发生原因 Trident 删除后备卷。您应使用 REST API （`tridentctl` ）将其删除。
+
+Trident 支持使用 CSI 规范创建卷快照：您可以创建卷快照并将其用作数据源来克隆现有 PVC 。这样， PV 的时间点副本就可以以快照的形式公开给 Kubernetes 。然后，可以使用快照创建新的 PV 。请查看 ` + 按需卷快照 +` 了解其工作原理。
+
+Trident 还提供了用于创建克隆的 `cloneFromPVC` 和 `splitOnClone` 标注。您可以使用这些标注克隆 PVC ，而无需使用 CSI 实施（在 Kubernetes 1.13 及更早版本上），或者您的 Kubernetes 版本不支持测试版卷快照（ Kubernetes 1.16 及更早版本）。请注意， Trident 19.10 支持从 PVC 克隆的 CSI 工作流。
+
+
+NOTE: 您可以将 `cloneFromPVC` 和 `splitOnClone` 标注与 CSI Trident 以及传统的非 CSI 前端结合使用。
+
+例如：如果用户已经有一个名为 `mysql` 的 PVC ，则用户可以使用标注创建一个名为 `mysqlclone` 的新 PVC ，例如 `trident.netapp.io/cloneFromPVC: mysql` 。设置了此标注后， Trident 将克隆与 mysql PVC 对应的卷，而不是从头开始配置卷。
+
+请考虑以下几点：
+
+* 建议克隆空闲卷。
+* 一个 PVC 及其克隆应位于同一个 Kubernetes 命名空间中，并具有相同的存储类。
+* 使用 `ontap-nas` 和 `ontap-san` 驱动程序时，可能需要将 PVC 标注 `trident.netapp.io/splitOnClone` 与 `trident.netapp.io/cloneFromPVC` 结合使用。当 `trident.netapp.io/splitOnClone` 设置为 `true` 时， Trident 会将克隆的卷与父卷拆分，从而将克隆的卷与其父卷的生命周期完全分离，从而降低存储效率。如果不设置 `trident.netapp.io/splitOnClone` 或将其设置为 `false` ，则会减少后端的空间占用，而会在父卷和克隆卷之间创建依赖关系，因此除非先删除克隆，否则无法删除父卷。拆分克隆是有意义的一种情形，即克隆空数据库卷时，该卷及其克隆会发生很大的差异，无法从 ONTAP 提供的存储效率中受益。
+
+
+`sample-input` 目录包含用于 Trident 的 PVC 定义示例。有关与 Trident 卷关联的参数和设置的完整问题描述，请参见 Trident 卷对象。
+
+
+
+== Kubernetes PersistentVolume 对象
+
+Kubernetes `PersistentVolume` 对象表示可供 Kubernetes 集群使用的一段存储。它的生命周期与使用它的 POD 无关。
+
+
+NOTE: Trident 会创建 `PersistentVolume` 对象，并根据其配置的卷自动将其注册到 Kubernetes 集群中。您不应自行管理它们。
+
+创建引用基于 Trident 的 `S存储类` 的 PVC 时， Trident 会使用相应的存储类配置新卷并为该卷注册新的 PV 。在配置已配置的卷和相应的 PV 时， Trident 会遵循以下规则：
+
+* Trident 会为 Kubernetes 生成 PV 名称及其用于配置存储的内部名称。在这两种情况下，它都可以确保名称在其范围内是唯一的。
+* 卷的大小与 PVC 中请求的大小尽可能匹配，但可能会根据平台将其取整为最接近的可分配数量。
+
+
+
+
+== Kubernetes StorageClass 对象
+
+Kubernetes `StorageClass` 对象在 `PersistentVolumeClass` 中按名称指定，用于使用一组属性配置存储。存储类本身可标识要使用的配置程序，并按配置程序所了解的术语定义该属性集。
+
+它是需要由管理员创建和管理的两个基本对象之一。另一个是 Trident 后端对象。
+
+使用 Trident 的 Kubernetes `StorageClass` 对象如下所示：
+
+[source, yaml]
+----
+apiVersion: storage.k8s.io/v1beta1
+kind: StorageClass
+metadata:
+  name: <Name>
+provisioner: csi.trident.netapp.io
+mountOptions: <Mount Options>
+parameters:
+  <Trident Parameters>
+----
+这些参数是 Trident 专用的，可告诉 Trident 如何为类配置卷。
+
+存储类参数包括：
+
+[cols=",,,"]
+|===
+| 属性 | Type | Required | Description 
+
+
+| 属性 | map[string]string | 否 | 请参见下面的属性部分 
+
+
+| 存储池 | map[string]StringList | 否 | 后端名称映射到中的存储池列表 
+
+
+| 附加 StoragePools | map[string]StringList | 否 | 后端名称映射到中的存储池列表 
+
+
+| 排除 StoragePools | map[string]StringList | 否 | 后端名称映射到中的存储池列表 
+|===
+存储属性及其可能值可以分类为存储池选择属性和 Kubernetes 属性。
+
+
+
+=== 存储池选择属性
+
+这些参数决定了应使用哪些 Trident 管理的存储池来配置给定类型的卷。
+
+[cols=",,,,,"]
+|===
+| 属性 | Type | 值 | 优惠 | 请求 | 支持 
+
+
+| 介质^1^ | string | HDD ，混合， SSD | Pool 包含此类型的介质；混合表示两者 | 指定的介质类型 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san 
+
+
+| 配置类型 | string | 精简，厚 | Pool 支持此配置方法 | 指定的配置方法 | 厚：全 ONTAP 和 E 系列 iSCSI ；精简：全 ONTAP 和 solidfire-san 
+
+
+| 后端类型 | string  a| 
+ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， E 系列 iSCSI ， AWS-CVS ， GCP-CVS ， azure-netapp-files ， ontap-san-economy.
+| 池属于此类型的后端 | 指定后端 | 所有驱动程序 
+
+
+| snapshots | 池 | true false | Pool 支持具有快照的卷 | 启用了快照的卷 | ontap-NAS ， ontap-san ， solidfire-san ， AWS-CVS ， GCP-CVS 
+
+
+| 克隆 | 池 | true false | Pool 支持克隆卷 | 启用了克隆的卷 | ontap-NAS ， ontap-san ， solidfire-san ， AWS-CVS ， GCP-CVS 
+
+
+| 加密 | 池 | true false | 池支持加密卷 | 已启用加密的卷 | ontap-nas ， ontap-nas-economy-、 ontap-nas-flexgroups ， ontap-san 
+
+
+| IOPS | 内部 | 正整数 | Pool 能够保证此范围内的 IOPS | 卷保证这些 IOPS | solidfire-san 
+|===
+^1^ ： ONTAP Select 系统不支持
+
+在大多数情况下，请求的值直接影响配置；例如，请求厚配置会导致卷配置较厚。但是， Element 存储池会使用其提供的 IOPS 最小值和最大值来设置 QoS 值，而不是请求的值。在这种情况下，请求的值仅用于选择存储池。
+
+理想情况下，您可以单独使用 `attributes` 来为满足特定类需求所需的存储质量建模。Trident 会自动发现并选择与您指定的 `属性` 的 _all_ 匹配的存储池。
+
+如果您发现自己无法使用 `attributes` 自动为某个类选择合适的池，则可以使用 `storagePools` 和 `addtionalStoragePools` 参数进一步细化池，甚至可以选择一组特定的池。
+
+您可以使用 `storagePools` 参数进一步限制与任何指定的 `attributes` 匹配的池集。换言之， Trident 会使用 `attributes` 和 `storagePools` 参数标识的池的交叉点进行配置。您可以单独使用参数，也可以同时使用这两者。
+
+您可以使用 `addtionalStoragePools` 参数扩展 Trident 用于配置的池集，而不管 `attributes` 和 `storagePools` 参数选择的任何池如何。
+
+您可以使用 `excludeStoragePools` 参数筛选 Trident 用于配置的池集。使用此参数将删除任何匹配的池。
+
+在 `storagePools` 和 `addtionalStoragePools` 参数中，每个条目的格式为 ` <backend>： <storagePoolList>` ，其中 ` <storagePoolList>` 是指定后端的存储池列表，以逗号分隔。例如， `addtionalStoragePools` 的值可能类似于 `ontapnas_192.168.1.100 ： aggr1 ， aggr2 ； solidfire_192.168.1.101 ： bronze` 。这些列表接受后端值和列表值的正则表达式值。您可以使用 `tridentctl get backend` 来获取后端及其池的列表。
+
+
+
+=== Kubernetes 属性
+
+这些属性不会影响 Trident 在动态配置期间选择的存储池 / 后端。相反，这些属性仅提供 Kubernetes 永久性卷支持的参数。工作节点负责文件系统创建操作，并且可能需要文件系统实用程序，例如 xfsprogs 。
+
+[cols=",,,,,"]
+|===
+| 属性 | Type | 值 | Description | 相关驱动程序 | Kubernetes 版本 
+
+
+| FSType | string | ext4 ， ext3 ， xfs 等 | 块卷的文件系统类型 | solidfire-san ， ontap-san ， ontap-san-economy. | 全部 
+|===
+Trident 安装程序包提供了几个示例存储类定义，可用于 ``sample-input/storage-class-* 。 yaml`` 中的 Trident 。删除 Kubernetes 存储类也会删除相应的 Trident 存储类。
+
+
+
+== Kubernetes VolumeSnapshotClass 对象
+
+Kubernetes `VolumeSnapshotClass` 对象类似于 `StorageClasses` 。它们有助于定义多个存储类，并由卷快照引用以将快照与所需的快照类关联。每个卷快照都与一个卷快照类相关联。
+
+要创建快照，管理员应定义 `VolumeSnapshotClass` 。此时将使用以下定义创建卷快照类：
+
+[source, yaml]
+----
+apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshotClass
+metadata:
+  name: csi-snapclass
+driver: csi.trident.netapp.io
+deletionPolicy: Delete
+----
+`driver` 指定给 Kubernetes ，由 Trident 处理对 `csI-snapclass` 类的卷快照请求。`deeltionPolicy` 指定必须删除快照时要执行的操作。如果将 `deletionPolicy` 设置为 `Delete` ，则在删除快照时，卷快照对象以及存储集群上的底层快照将被删除。或者，如果将其设置为 `Retain` ，则表示保留 `VolumeSnapshotContent` 和物理快照。
+
+
+
+== Kubernetes VolumeSnapshot 对象
+
+Kubernetes `VolumeSnapshot` 对象是创建卷快照的请求。就像 PVC 代表用户对卷发出的请求一样，卷快照也是用户为现有 PVC 创建快照的请求。
+
+收到卷快照请求后， Trident 会自动管理在后端为卷创建快照的操作，并通过创建唯一的 `VolumeSnapshotContent` 对象公开快照。您可以从现有 PVC 创建快照，并在创建新 PVC 时将这些快照用作 DataSource 。
+
+
+NOTE: VolumeSnapshot 的生命周期与源 PVC 无关：即使删除了源 PVC ，快照也会持续存在。删除具有关联快照的 PVC 时， Trident 会将此 PVC 的后备卷标记为 " 正在删除 " 状态，但不会将其完全删除。删除所有关联快照后，卷将被删除。
+
+
+
+== Kubernetes VolumeSnapshotContent 对象
+
+Kubernetes `VolumeSnapshotContent` 对象表示从已配置的卷创建的快照。它类似于 `PersistentVolume` ，表示存储集群上配置的快照。与 `PersistentVolumeClaim` 和 `PersistentVolume` 对象类似，创建快照时， `VolumeSnapshotContent` 对象会与请求创建快照的 `VolumeSnapshot` 对象保持一对一映射。
+
+
+NOTE: Trident 会创建 `VolumeSnapshotContent` 对象，并根据其配置的卷自动将其注册到 Kubernetes 集群中。您不应自行管理它们。
+
+`VolumeSnapshotContent` 对象包含用于唯一标识快照的详细信息，例如 `snapshotHandle` 。此 `snapshotHandle` 是 PV 名称和 `VolumeSnapshotContent` 对象名称的唯一组合。
+
+收到快照请求后， Trident 会在后端创建快照。创建快照后， Trident 会配置一个 `VolumeSnapshotContent` 对象，从而将快照公开到 Kubernetes API 。
+
+
+
+== Kubernetes CustomResourceDefinition 对象
+
+Kubernetes 自定义资源是 Kubernetes API 中的端点，由管理员定义并用于对类似对象进行分组。Kubernetes 支持创建自定义资源以存储对象集合。您可以通过运行 `kubectl get crds` 来获取这些资源定义。
+
+自定义资源定义（ CRD ）及其关联的对象元数据由 Kubernetes 存储在其元数据存储中。这样就无需为 Trident 创建单独的存储。
+
+从 19.07 版开始， Trident 会使用许多 `CustomResourceDefinition` 对象来保留 Trident 对象的身份，例如 Trident 后端， Trident 存储类和 Trident 卷。这些对象由 Trident 管理。此外， CSI 卷快照框架还引入了一些定义卷快照所需的 CRD 。
+
+CRD 是一种 Kubernetes 构造。上述资源的对象由 Trident 创建。例如，使用 `tridentctl` 创建后端时，会创建一个对应的 `tridentbackend` CRD 对象，供 Kubernetes 使用。
+
+有关 Trident 的 CRD ，请注意以下几点：
+
+* 安装 Trident 时，系统会创建一组 CRD ，并可像使用任何其他资源类型一样使用。
+* 从先前版本的 Trident （使用 `etcd` 保持状态的版本）升级时， Trident 安装程序会从 `etcd` key-value 数据存储库迁移数据并创建相应的 CRD 对象。
+* 使用 `tridentctl uninstall` 命令卸载 Trident 时， Trident Pod 会被删除，但不会清理创建的 CRD 。请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Trident"^] 了解如何从头开始完全删除和重新配置 Trident 。
+
+
+
+
+== Trident StorageClass 对象
+
+Trident 会为 Kubernetes `StorageClass` 在其配置程序字段中指定 `csi.trident.netapp.io`/`netapp.io/trident` 的对象创建匹配的存储类。存储类名称与 Kubernetes `StorageClass` 其所代表的对象的名称匹配。
+
+
+NOTE: 使用 Kubernetes 时，如果注册了使用 Trident 作为配置程序的 Kubernetes `StorageClass` ，则会自动创建这些对象。
+
+存储类包含一组卷要求。Trident 会将这些要求与每个存储池中的属性进行匹配；如果匹配，则该存储池是使用该存储类配置卷的有效目标。
+
+您可以使用 REST API 创建存储类配置以直接定义存储类。但是，对于 Kubernetes 部署，我们希望在注册新的 Kubernetes `StorageClass` 对象时创建这些部署。
+
+
+
+== Trident 后端对象
+
+后端表示存储提供程序，其中 Trident 配置卷；单个 Trident 实例可以管理任意数量的后端。
+
+
+NOTE: 这是您自己创建和管理的两种对象类型之一。另一个是 Kubernetes `StorageClass` 对象。
+
+有关如何构建这些对象的详细信息，请参见后端配置。
+
+
+
+== Trident StoragePool 对象
+
+存储池表示可在每个后端配置的不同位置。对于 ONTAP ，这些聚合对应于 SVM 中的聚合。对于 NetApp HCI/SolidFire ，这些 QoS 分段对应于管理员指定的 QoS 分段。对于 Cloud Volumes Service ，这些区域对应于云提供商区域。每个存储池都有一组不同的存储属性，用于定义其性能特征和数据保护特征。
+
+与此处的其他对象不同，存储池候选对象始终会自动发现和管理。
+
+
+
+== Trident Volume 对象
+
+卷是基本配置单元，由后端端点组成，例如 NFS 共享和 iSCSI LUN 。在 Kubernetes 中，这些卷直接对应于 `PersistentVolumes` 。创建卷时，请确保其具有存储类，此类可确定可配置该卷的位置以及大小。
+
+
+NOTE: 在 Kubernetes 中，这些对象会自动进行管理。您可以查看它们以查看 Trident 配置的内容。
+
+
+TIP: 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * 正在删除 * 状态。要删除 Trident 卷，您应删除该卷的快照。
+
+卷配置定义了配置的卷应具有的属性。
+
+[cols=",,,"]
+|===
+| 属性 | Type | Required | Description 
+
+
+| version | string | 否 | Trident API 版本（ "1" ） 
+
+
+| name | string | 是的。 | 要创建的卷的名称 
+
+
+| 存储类 | string | 是的。 | 配置卷时要使用的存储类 
+
+
+| size | string | 是的。 | 要配置的卷大小（以字节为单位） 
+
+
+| 协议 | string | 否 | 要使用的协议类型； "file" 或 "block" 
+
+
+| 内部名称 | string | 否 | 存储系统上的对象名称；由 Trident 生成 
+
+
+| cloneSourceVolume | string | 否 | ONTAP （ NAS ， SAN ） & SolidFire AWS-* 和 AWS-CVS* ：要从中克隆的卷的名称 
+
+
+| splitOnClone | string | 否 | ONTAP （ NAS ， SAN ）：将克隆从其父级拆分 
+
+
+| snapshotPolicy | string | 否 | Snapshot-* ：要使用的 ONTAP 策略 
+
+
+| SnapshotReserve | string | 否 | Snapshot-* ：为快照预留的卷百分比 ONTAP 
+
+
+| 导出策略 | string | 否 | ontap-nas* ：要使用的导出策略 
+
+
+| snapshotDirectory | 池 | 否 | ontap-nas* ：是否显示快照目录 
+
+
+| unixPermissions | string | 否 | ontap-nas* ：初始 UNIX 权限 
+
+
+| 块大小 | string | 否 | SolidFire — * ：块 / 扇区大小 
+
+
+| 文件系统 | string | 否 | 文件系统类型 
+|===
+创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` <prefix>-<volume-name>` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` <prefix>_<volume-name>` ）。对于 Element 后端，它会将下划线替换为连字符。对于对所有对象名称施加 30 个字符限制的 E 系列， Trident 会为每个卷的内部名称生成随机字符串。对于对唯一卷创建令牌实施 16 到 36 个字符限制的 CVS （ AWS ）， Trident 会为每个卷的内部名称生成一个随机字符串。
+
+您可以使用卷配置使用 REST API 直接配置卷，但在 Kubernetes 部署中，我们希望大多数用户使用标准的 Kubernetes `PersistentVolumeClaim` 方法。Trident 会在配置过程中自动创建此卷对象。
+
+
+
+== Trident Snapshot 对象
+
+快照是卷的时间点副本，可用于配置新卷或还原状态。在 Kubernetes 中，这些对象直接对应于 `VolumeSnapshotContent` 对象。每个快照都与一个卷相关联，该卷是快照的数据源。
+
+每个 `Snapshot` 对象包括以下属性：
+
+[cols=",,,"]
+|===
+| 属性 | Type | Required | Description 
+
+
+| version | string  a| 
+是的。
+| Trident API 版本（ "1" ） 
+
+
+| name | string  a| 
+是的。
+| Trident Snapshot 对象的名称 
+
+
+| 内部名称 | string  a| 
+是的。
+| 存储系统上 Trident Snapshot 对象的名称 
+
+
+| volumeName | string  a| 
+是的。
+| 为其创建快照的永久性卷的名称 
+
+
+| volumeInternalName | string  a| 
+是的。
+| 存储系统上关联的 Trident 卷对象的名称 
+|===
+
+NOTE: 在 Kubernetes 中，这些对象会自动进行管理。您可以查看它们以查看 Trident 配置的内容。
+
+创建 Kubernetes `VolumeSnapshot` 对象请求时， Trident 会在备用存储系统上创建 Snapshot 对象。此快照对象的 `internalName` 是通过将前缀 `snapshot-` 与 `VolumeSnapshot` 对象的 `UID` （例如， `snapshot-e8d8a0ca-9826-11e9-9807-525400f3f660` ）组合而生成的。`VolumeName` 和 `volumeInternalName` 可通过获取后备卷的详细信息来填充。
