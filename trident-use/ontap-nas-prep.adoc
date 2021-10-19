@@ -32,7 +32,7 @@ Astra Trident 提供了两种对 ONTAP 后端进行身份验证的模式。
 
 
 
-=== 基于凭据的身份验证
+=== 启用基于凭据的身份验证
 
 Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONTAP 后端进行通信。建议使用标准的预定义角色，例如 `admin` 或 `vsadmin` 。这样可以确保与未来的 ONTAP 版本向前兼容，这些版本可能会使功能 API 公开供未来的 Astra Trident 版本使用。可以创建自定义安全登录角色并将其用于 Astra Trident ，但不建议使用。
 
@@ -55,7 +55,7 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
 
 
 
-=== 基于证书的身份验证
+=== 启用基于证书的身份验证
 
 新的和现有的后端可以使用证书并与 ONTAP 后端进行通信。后端定义需要三个参数。
 
@@ -137,7 +137,7 @@ $ tridentctl update backend NasBackend -f cert-backend-updated.json -n trident
 
 
 
-== 更新身份验证方法或轮换凭据
+=== 更新身份验证方法或轮换凭据
 
 您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此，请使用更新后的 `backend.json` 文件，该文件包含执行 `tridentctl 后端更新` 所需的参数。
 

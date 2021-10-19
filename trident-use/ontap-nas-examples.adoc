@@ -114,7 +114,7 @@ WARNING: 使用 IPv6 地址时，请确保在方括号内定义 `managementLIF` 
 
 使用 `autosExportPolicy` 和 `autosExportCIDR` 选项， CSI Trident 可以自动管理导出策略。所有 ontap-nas-* 驱动程序均支持此功能。
 
-对于 ontap-nas-经济 型驱动程序， `limitVolumeSize` 选项还会限制它所管理的 qtree 和 FlexVol 卷的最大大小，而 `qtreesPerFlexvol` 选项允许自定义每个 的最大 qtree 数。
+对于 `ontap-nas-economy` 驱动程序， `limitVolumeSize` 选项还会限制它为 qtree 和 FlexVol 管理的卷的最大大小，而 `qtreesPerFlexvol` 选项允许自定义每个 的最大 qtree 数。
 
 可以使用 `nfsMountOptions` 参数指定挂载选项。Kubernetes 永久性卷的挂载选项通常在存储类中指定，但如果在存储类中未指定挂载选项，则 Astra Trident 将回退为使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项，则 Astra Trident 不会在关联的永久性卷上设置任何挂载选项。
 

@@ -10,7 +10,7 @@ summary: Astra Trident 提供了多种用于管理卷的功能。了解 Astra Tr
 :imagesdir: ../media/
 
 
-Astra Trident 提供了多种用于管理卷的功能。了解 Astra Trident 为卷提供的功能。
+了解 Astra Trident 为管理卷提供的功能。
 
 * link:csi-topology.html["使用 CSI 拓扑"^]
 * link:vol-snapshots.html["使用快照"^]

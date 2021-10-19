@@ -579,19 +579,13 @@
   <block id="eb2c92a9d2d39fa7191d6e84d5c33bb5" category="list-text"><block ref="eb2c92a9d2d39fa7191d6e84d5c33bb5" category="inline-link-rx"></block></block>
   <block id="b062996d6ca590abe798d3db75561f79" category="paragraph">并非所有应用程序都有特定的准则，与您的 NetApp 团队合作并使用非常重要<block ref="4caccef7312f2c398bfbb419629c1a78" category="inline-link-rx"></block> 以查找最新文档。</block>
   <block id="748c130a6179b02d614cf9a027294302" category="doc">集成 Astra Trident</block>
-  <block id="dacdd7afebb6a9752099a6d21cd3ab65" category="paragraph">要集成 Astra Trident ，以下设计和架构要素需要集成：驱动程序选择和部署，存储类设计，虚拟存储池设计，使用 Astra Trident 对存储配置的 PVC 影响，卷操作以及 OpenShift 服务部署。</block>
-  <block id="c6c185350e08317e96353ab54b07ba11" category="section-title">后端设计</block>
-  <block id="22cb928217356a5cc5ccbe940b1b8497" category="paragraph">详细了解后端设计。</block>
-  <block id="4beb597cf50f7cda5fa6a8e913cd934a" category="paragraph">为 ONTAP * 选择后端驱动程序</block>
   <block id="3b81f3dbce48d5a5e5f6f338de47bb44" category="paragraph">ONTAP 系统可使用四种不同的后端驱动程序。这些驱动程序根据所使用的协议以及在存储系统上配置卷的方式进行了区分。因此，请仔细考虑要部署的驱动程序。</block>
-  <block id="a3b49c9c8e2cc9311c0759ed3ad3248e" category="paragraph">更高级别的情况是，如果您的应用程序中的组件需要共享存储（多个 Pod 访问同一 PVC ），则默认选择基于 NAS 的驱动程序，而基于块的 iSCSI 驱动程序则可满足非共享存储的需求。根据应用程序要求以及存储和基础架构团队的舒适程度选择协议。一般来说，对于大多数应用程序来说，它们之间没有什么区别，因此通常是根据是否需要共享存储（多个 POD 需要同时访问）来决定的。</block>
   <block id="3e5fda6b2fdf8b78a529ee58e0289c8d" category="paragraph">下面列出了 ONTAP 后端的五个驱动程序：</block>
   <block id="c2c889ded63fbe94cf7f1d5fe4747b2d" category="list-text">`ontap-NAS` ：配置的每个 PV 都是一个完整的 ONTAP FlexVolume 。</block>
   <block id="9418583a1b7e700d24bcc735aa4682b5" category="list-text">`ontap-nas-economy.` ：配置的每个 PV 都是一个 qtree ，每个 FlexVolume 的 qtree 数量是可配置的（默认值为 200 ）。</block>
   <block id="bc8f11db54909209ba09d55ee0b46990" category="list-text">`ontap-nas-flexgroup` ：使用配置为完整 ONTAP FlexGroup 的每个 PV ，以及分配给 SVM 的所有聚合。</block>
   <block id="5e587346b7a212ee6429303276a1578b" category="list-text">`ontap-san` ：配置的每个 PV 都是其自身 FlexVolume 中的一个 LUN 。</block>
   <block id="85f6f5093b037b5bde3201d8136ee585" category="list-text">`ontap-san-economi` ：配置的每个 PV 都是一个 LUN ，每个 FlexVolume 具有可配置的 LUN 数量（默认值为 100 ）。</block>
-  <block id="330507209f6d21d60edbd7da7b5ecba4" category="paragraph">在三个 NAS 驱动程序之间进行选择会对应用程序可用的功能产生一些影响。</block>
   <block id="8a1187760a2c55e422a454a64e160291" category="paragraph">请注意，在下表中，并非所有功能都通过 Astra Trident 公开。如果需要某些功能，存储管理员必须在配置后应用这些功能。上标脚注区分了每个功能和驱动程序的功能。</block>
   <block id="6252699c8e049f40eaf187092727a531" category="cell">ONTAP NAS 驱动程序</block>
   <block id="9147e5e61a7b9260dec09f3a6eb3e5be" category="cell">快照</block>
@@ -614,68 +608,35 @@
   <block id="cd17e7ed84c40a0ff5ecb8b625b1f186" category="cell">`ontap-san`</block>
   <block id="e78e01b4457814be0584f80618e4659a" category="cell">是脚注： 4[]</block>
   <block id="73b781a615cea2647a87ff2035e296b1" category="cell">`ontap-san-economy.`</block>
-  <block id="cf374696e88ab0517fca0dbd0b1f4611" category="verse-content-simple">上述表的脚注：是脚注： 1[] ：不是 Trident 管理的是脚注： 2[] ： Trident 管理的，而不是 PV 粒度 Yesfootnote ： 3[] ：未管理 Trident 而不是 PV 粒度 Yesfootnote ： 4]] ：支持原始块卷是脚注： 5[] ： CSI Trident 支持</block>
-  <block id="77de9f9666de2020c4eac7c62a656006" category="paragraph">非 PV 粒度功能将应用于整个 FlexVolume ，而所有 PV （即共享 FlexVol 中的 qtree 或 LUN ）将共享一个通用计划。</block>
-  <block id="1ebdb1f245d72faf3346f7f71d8c754a" category="paragraph">如上表所示， `ontap-nas` 与 `ontap-nas-economy` 之间的大部分功能是相同的。但是，由于 `ontap-nas-economy` 驱动程序限制了按 PV 粒度控制计划的能力，因此可能会特别影响灾难恢复和备份规划。对于希望在 ONTAP 存储上使用 PVC 克隆功能的开发团队，只有在使用 `ontap-NAS` ， `ontap-san` 或 `ontap-san-economy-经济` 驱动程序（注意， `solidfire-san` 驱动程序也能够克隆 PVC ）时，才可以执行此操作。</block>
-  <block id="6fc9a9b1e505b46db59f4ec012d8b4fd" category="paragraph">为 Cloud Volumes ONTAP * 选择后端驱动程序</block>
   <block id="20743b3fe5b4d69360557b02168b12ea" category="paragraph">Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存储功能，包括文件共享和为 NAS 和 SAN 协议（ NFS ， SMB/CIFS 和 iSCSI ）提供服务的块级存储。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-san` 和 `ontap-san-economy.`这些功能适用于 Cloud Volume ONTAP for AWS ， Cloud Volume ONTAP for Azure ， Cloud Volume ONTAP for GCP 。</block>
-  <block id="084eb7bb074f076513ed90ca7e0e31eb" category="paragraph">为适用于 ONTAP 的 Amazon FSx 选择后端驱动程序 *</block>
   <block id="168b96624733268bb4b4ebfbebea0449" category="paragraph">借助适用于 ONTAP 的 Amazon FSX ，客户可以利用他们熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX for ONTAP 支持 ONTAP 的许多文件系统功能和管理 API 。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-nas-flexgroup` ， `ontap-san` 和 `ontap-san-economy.`</block>
-  <block id="3b1966696a0f1e962f74a6d7eb2c5bf9" category="section-title">Element 软件（ NetApp HCI/SolidFire ）</block>
   <block id="e040ac9827d856d3ad8ae9ac0da92295" category="paragraph">与 NetApp HCI/SolidFire 平台结合使用的 `solidfire-san` 驱动程序可帮助管理员根据 QoS 限制为 Trident 配置 Element 后端。如果您希望设计后端，以便为 Trident 配置的卷设置特定的 QoS 限制，请在后端文件中使用 `type` 参数。管理员还可以使用 `limitVolumeSize` 参数限制可在存储上创建的卷大小。目前， `solidfire-san` 驱动程序不支持卷大小调整和卷复制等 Element 存储功能。这些操作应通过 Element Software Web UI 手动完成。</block>
   <block id="77e9d6f249e4626d5b5c3aec863459d3" category="cell">SolidFire 驱动程序</block>
   <block id="9ef2bbb12ff72558472202561a25058d" category="cell">CHAP</block>
   <block id="57ee8ed0b2796ea5f35b10f9ae5d68cd" category="cell">`solidfire-san`</block>
   <block id="0929973a1c9993903f6193add75b3fcf" category="cell">是脚注： 2[]</block>
-  <block id="5a18ff275a9fdbfee1efe79dc485b3d7" category="verse-content-simple">脚注：是脚注： 1[] ：不是由 Trident 管理的是脚注： 2[] ：支持原始块卷</block>
-  <block id="797deaa450de02d1b58c85646b731708" category="section-title">Azure NetApp Files 后端驱动程序</block>
-  <block id="34989a23c15d100a28b1b751d4562fcb" category="paragraph">Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 <block ref="fb5213100d6bab3fc618d8667f557e07" category="inline-link-macro-rx"></block> 服务</block>
-  <block id="67f0b796ae8988fe5446f8f925a4f9d8" category="inline-link-macro">Azure NetApp Files 的 Trident 后端配置</block>
-  <block id="829ec8360e9db9a1a75a62dd8e1e4c40" category="paragraph">有关此驱动程序及其配置方法的详细信息，请参见 <block ref="f69a50135d677efc30f26c3d93b02eeb" category="inline-link-macro-rx"></block>。</block>
   <block id="4da613089cbda3d7c19cb4b3f67c1f5d" category="cell">Azure NetApp Files 驱动程序</block>
   <block id="8098b34f582537833b36b58273c3545b" category="cell">展开</block>
   <block id="e228843381960c06d1035c4219901307" category="cell">`azure-netapp-files`</block>
-  <block id="fff73a7ca871f70b78d17266f1f18b67" category="verse-content-simple">脚注：是脚注： 1[] ：未管理 Trident</block>
-  <block id="20eeede80812efc1d5fceb16c6a4ba88" category="section-title">采用 AWS 后端驱动程序的 Cloud Volumes Service</block>
-  <block id="9c722329c596eb07c412548f394c5d61" category="paragraph">Trident 使用 `AWS-CVS` 驱动程序与 AWS 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 AWS 后端，您需要在后端文件中指定 `apiRegion` ， `apiURL` ， `apiKey` 和 `secreKey` 。这些值可在 CVS Web 门户中的 Account settings/API access 中找到。支持的服务级别与 CVS 一致，包括 `standard` ， `Premium` 和 `Extreme` 。目前，要配置的最小卷大小为 100G 。未来版本的 CVS 可能会删除此限制。</block>
   <block id="f5619cf78c5af29a1223fb34ef1361ce" category="cell">CVS for AWS 驱动程序</block>
   <block id="b69ca6e3662048fc46e2e4f8adc185a1" category="cell">`AWS-CVS`</block>
   <block id="c7fdaa4c02d33ea744bd0e39a9e89956" category="paragraph">`AWS-CVS` 驱动程序使用虚拟存储池。虚拟存储池会对后端进行抽象化，从而使 Trident 决定卷的放置。管理员在 backend.json 文件中定义虚拟存储池。存储类使用标签标识虚拟存储池。</block>
-  <block id="475f52b4d857f39618e3dd4099b8dd4e" category="section-title">采用 GCP 后端驱动程序的 Cloud Volumes Service</block>
   <block id="1d326a2a7f267c800fe3eafb89e5c7cd" category="inline-link-macro">服务类型</block>
-  <block id="da5f94d147e721f7bca5c7952715d117" category="paragraph">Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 GCP 后端，您需要在后端文件中指定 `projectNumber` ， `apiRegion` 和 `apiKey` 。项目编号可在 GCP Web 门户中找到，而 API 密钥必须从您在 GCP 上为 Cloud Volumes 设置 API 访问时创建的服务帐户专用密钥文件中获取。Trident 可以在两个卷中创建 CVS 卷之一 <block ref="7050da776471d6cc4bfeb5bc451270d5" category="inline-link-macro-rx"></block>：</block>
   <block id="3481817b04a40b0420a940c0c9c1f82d" category="list-text">* CVS* ：基本 CVS 服务类型，可提供较高的区域可用性，但性能级别有限 / 中等。</block>
   <block id="19de6287eaf342572d94a5e0b99c2823" category="list-text">* CVS-Performance* ：经过性能优化的服务类型最适合重视性能的生产工作负载。从三个独特的服务级别中进行选择 `standard` ， `Premium` 和 `Extreme` 。目前， 100 GiB 是要配置的最小 CVS-Performance 卷大小，而 CVS 卷必须至少为 300 GiB 。未来版本的 CVS 可能会删除此限制。</block>
   <block id="4525f6e1d5124cd80f38341d78e8a67d" category="inline-link-macro">此表单</block>
-  <block id="acc1b69f39c0d4923cebcaa86e92f19a" category="admonition">使用默认 CVS 服务类型 `storageClass=software` 部署后端时，用户 * 必须获得 * 对 GCP 上相关项目编号和项目 ID 的子 1TiB 卷功能的访问权限。这对于 Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建 * 将失败 * 。使用 ... <block ref="3b82a67583e1d56be30fcd4e214985b8" category="inline-link-macro-rx"></block> 以访问低于 1 TiB 的卷。</block>
   <block id="6219f23a135db2efc679d38117420cf0" category="cell">适用于 GCP 的 CVS 驱动程序</block>
   <block id="949a374fc5a78d436e3067ee2de19cbe" category="cell">`GCP-CVS`</block>
-  <block id="62d822e2d0d2349694b3a11b760796a8" category="paragraph">`GCP-CVS` 驱动程序使用虚拟存储池。虚拟存储池会对后端进行抽象化，从而使 Trident 决定卷的放置。管理员在 backend.json 文件中定义虚拟存储池。存储类使用标签标识虚拟存储池。</block>
-  <block id="d383821dc02daaf1236737339658cb99" category="section-title">存储类设计</block>
-  <block id="5c650e13c450ccd29c08293e8e706e89" category="paragraph">要创建 Kubernetes 存储类对象，需要配置并应用各个存储类。本节讨论如何为您的应用程序设计存储类。</block>
-  <block id="928ccd80a67aa87c0b3df9e220840530" category="section-title">针对特定后端利用率的存储类设计</block>
   <block id="a09acd5f665bdf96b6dce47f8d4265e3" category="paragraph">可以在特定存储类对象中使用筛选功能来确定要将哪个存储池或一组池与该特定存储类结合使用。可以在存储类中设置三组筛选器： `storagePools` ， `addtionalStoragePools` 和 / 或 `excludeStoragePools` 。</block>
-  <block id="2dacc0e93e3b482529c16a564655dc4c" category="paragraph">`storagePools` 参数有助于将存储限制为与任何指定属性匹配的一组池。`addtionalStoragePools` 参数用于扩展 Trident 用于配置的池集以及由属性和 `storagePools` 参数选择的池集。您可以单独使用参数，也可以同时使用这两个参数，以确保选择适当的存储池集。</block>
   <block id="74476e892d2681775eb41ec00a11e8da" category="paragraph">`excludeStoragePools` 参数用于明确排除列出的一组与属性匹配的池。</block>
-  <block id="6a94a0022bb1885aedba4a6a6c7aabb3" category="section-title">用于模拟 QoS 策略的存储类设计</block>
   <block id="ab807e6bd2f9cb9872eed98161bdd4e1" category="paragraph">如果要设计存储类以模拟服务质量策略，请创建一个存储类，其中 `mmedia` attribute 为 `HDD` 或 `sSD` 。根据存储类中提及的 `mmedia` 属性， Trident 将选择提供 `HDD` 或 `sSD` 聚合的相应后端，以便与介质属性匹配，然后将卷配置定向到特定聚合。因此，我们可以创建一个存储类高级版，该高级版会将 `mmedia` attribute 设置为 `sSD` ，该高级版可归类为高级 QoS 策略。我们可以创建另一个存储类标准，该标准会将介质属性设置为 `HDD' ，并可归类为标准 QoS 策略。我们还可以使用存储类中的 ``IOPS' 属性将配置重定向到可定义为 QoS 策略的 Element 设备。</block>
-  <block id="f02d2c7833f54f5b9f5f2f5a13361758" category="section-title">存储类设计，可根据特定功能利用后端</block>
-  <block id="747ab06ac90585a189f425774b8c3677" category="paragraph">存储类可设计为在启用了精简和厚配置，快照，克隆和加密等功能的特定后端直接配置卷。要指定要使用的存储，请创建存储类，以指定启用了所需功能的相应后端。</block>
-  <block id="e5cb8775085df35719f22249180d9e61" category="section-title">虚拟存储池的存储类设计</block>
-  <block id="69abd7e05296027c636aae517fbaa4d8" category="paragraph">虚拟存储池可用于所有 Trident 后端。您可以使用 Trident 提供的任何驱动程序为任何后端定义虚拟存储池。</block>
-  <block id="97c096bb430144bbfc7ed9f85c3de532" category="paragraph">通过虚拟存储池，管理员可以在后端创建一个抽象级别，并可通过存储类进行引用，从而提高卷在后端的灵活性和效率。可以使用相同的服务类定义不同的后端。此外，可以在同一后端创建多个存储池，但其特征不同。如果为存储类配置了具有特定标签的选择器，则 Trident 会选择一个与所有选择器标签匹配的后端来放置卷。如果存储类选择器标签与多个存储池匹配， Trident 将选择其中一个存储池来配置卷。</block>
   <block id="830a7882918fba200333b9c6ea7db363" category="section-title">虚拟存储池设计</block>
-  <block id="9bb074939ec1e3bff7ad8d2961cafd6a" category="paragraph">创建后端时，通常可以指定一组参数。管理员无法使用相同的存储凭据和一组不同的参数创建另一个后端。随着虚拟存储池的推出，此问题描述得以缓解。虚拟存储池是在后端和 Kubernetes 存储类之间引入的级别抽象，因此管理员可以定义参数以及标签，这些参数和标签可以通过 Kubernetes 存储类作为选择器进行引用，并且与后端无关。可以使用 Trident 为所有受支持的 NetApp 后端定义虚拟存储池。该列表包括 SolidFire/HCI ， ONTAP ， AWS 和 GCP 上的 Cloud Volumes Service 以及 Azure NetApp Files 。</block>
   <block id="3c4f3a478663d0f7aab5180da0b1356a" category="admonition">定义虚拟存储池时，建议不要尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。</block>
-  <block id="7a7b3b8c2a946ca0dbabfb4de0877e48" category="section-title">设计虚拟存储池以模拟不同的服务级别 /QoS</block>
   <block id="9e44f014bb0976e50892e95fed1ed5b5" category="paragraph">可以设计虚拟存储池来模拟服务类。使用 Cloud Volume Service for AWS 的虚拟池实施，让我们来了解一下如何设置不同的服务类。使用多个标签配置 AWS-CVS 后端，以表示不同的性能级别。将 `servicelevel` Aspect 设置为适当的性能级别，并在每个标签下添加其他所需的内容。现在，创建可映射到不同虚拟存储池的不同 Kubernetes 存储类。使用 `parameters.selector` 字段，每个 StorageClass 都会调用可用于托管卷的虚拟池。</block>
-  <block id="b0c012669084943ac72b4d6031c7ae2d" category="section-title">设计用于分配特定方面的虚拟池</block>
   <block id="c011d5d6ca18de1df954b81c6bb49d4a" category="paragraph">可以从一个存储后端设计具有一组特定方面的多个虚拟存储池。为此，请为后端配置多个标签，并在每个标签下设置所需的方面。现在，使用 `parameters.selector` 字段创建不同的 Kubernetes 存储类，该字段将映射到不同的虚拟存储池。在后端配置的卷将在选定的虚拟存储池中定义相关方面。</block>
   <block id="421f7dd5bb37a6401aa6326ad33dae20" category="section-title">影响存储配置的 PVC 特征</block>
-  <block id="ee4024477770d9da7440a270be1a2c09" category="paragraph">在创建 PVC 时，请求的存储类以外的某些参数可能会影响 Trident 的配置决策过程。</block>
   <block id="5ab83f35784f154d55ea7ab58c8e503b" category="section-title">访问模式</block>
   <block id="f3882c83b41b76a9fac2c57407f3ac2b" category="paragraph">通过 PVC 请求存储时，访问模式为必填字段之一。所需的模式可能会影响所选的托管存储请求的后端。</block>
-  <block id="d0652515edf18bae4abe8c32cbada535" category="paragraph">Trident 将尝试与根据下表指定的访问方法所使用的存储协议匹配。这独立于底层存储平台。</block>
   <block id="cac415feda213697b27d3b6fce10d33a" category="cell">ReadWriteOnce</block>
   <block id="c24ad3d99a666c95edd149419c958ee0" category="cell">ReadOnlyMany</block>
   <block id="caa8dc1f4bb28d2d11226494cd05a123" category="cell">读取写入任何</block>
@@ -683,42 +644,20 @@
   <block id="cefb8ccdebef1940174b22e9d0ab530b" category="cell">是（原始块）</block>
   <block id="1d1a594959ec615f56516f5d0f5e8ddb" category="cell">NFS</block>
   <block id="823f2153adc2211a0777560eafdcbad6" category="paragraph">如果在未配置 NFS 后端的情况下向 Trident 部署提交了 ReadWriteMany PVC 请求，则不会配置任何卷。因此，请求者应使用适合其应用程序的访问模式。</block>
-  <block id="685dbb3c6f4ee6b3c1caa5f21c6c4d09" category="section-title">卷操作</block>
-  <block id="91de3c8706c331ffc66f4fe49f351113" category="section-title">修改永久性卷</block>
   <block id="3b69d471bb98837ae6e267593bb38882" category="paragraph">除了两个例外，永久性卷是 Kubernetes 中不可变的对象。创建后，可以修改回收策略和大小。但是，这并不会阻止在 Kubernetes 外部修改卷的某些方面。为了针对特定应用程序自定义卷，确保容量不会意外占用，或者出于任何原因将卷移动到其他存储控制器，这一点可能是理想的。</block>
-  <block id="4ef93066ab67c2a9f599963bff64542e" category="admonition">目前， Kubernetes 树中配置程序不支持对 NFS 或 iSCSI PV 执行卷大小调整操作。Trident 支持扩展 NFS 和 iSCSI 卷。</block>
   <block id="b1d1874782626fe3f391628ea493e6ef" category="paragraph">创建 PV 后，无法修改其连接详细信息。</block>
-  <block id="3f0aa648f12aacb45b36e5bb1066234d" category="section-title">使用 Trident 增强型 CSI 配置程序的按需卷快照</block>
-  <block id="5778c34e2378296c943901d6fc399424" category="paragraph">Trident 支持按需创建卷快照，并使用 CSI 框架从快照创建 PVC 。快照提供了一种维护数据时间点副本的便捷方法，并且生命周期独立于 Kubernetes 中的源 PV 。这些快照可用于克隆 PVC 。</block>
-  <block id="d51bda9540285ecef0160d9a43447db3" category="section-title">使用 Trident 的增强型 CSI 配置程序从快照创建卷</block>
-  <block id="9aea71aa176b781fee80bdbfd4f20d46" category="paragraph">Trident 还支持从卷快照创建 PersistentVolumes 。为此，只需创建 PersistentVolumeClaim 并注明 `datasource` 作为创建卷所需的快照即可。Trident 将使用快照上的数据创建卷来处理此 PVC 。通过此功能，可以跨区域复制数据，创建测试环境，整体更换损坏或损坏的生产卷，或者检索特定文件和目录并将其传输到另一个连接的卷。</block>
-  <block id="a5ac8261891671145cc16ff04f90ba31" category="section-title">卷移动操作</block>
-  <block id="2ebd39c68d7524953ee6ebe06bf64982" category="paragraph">存储管理员可以在 ONTAP 集群中的聚合和控制器之间无中断地将卷移动到存储使用者。只要目标聚合是 SVM Trident 正在使用的具有访问权限的聚合，此操作就不会影响 Trident 或 Kubernetes 集群。重要的是，如果已将聚合新添加到 SVM ，则需要通过将后端重新添加到 Trident 来对后端进行 `re刷新` 。此操作将触发 Trident 来重新清点 SVM ，以便识别新聚合。</block>
-  <block id="aec7eb75babd44ee65e8fe4e8f0b1096" category="paragraph">但是， Trident 不支持在后端之间自动移动卷。这包括在同一集群中的 SVM 之间，集群之间或不同存储平台上（即使该存储系统是连接到 Trident 的存储系统也是如此）。</block>
-  <block id="16c30c56fe00d20f49bb055490dff7aa" category="paragraph">如果将卷复制到其他位置，则可以使用卷导入功能将当前卷导入到 Trident 中。</block>
-  <block id="eee7162a80343b2de9595157208fa532" category="section-title">扩展卷</block>
-  <block id="bce27bf0ef94334832585e3954c7c356" category="paragraph">Trident 支持调整 NFS 和 iSCSI PV 的大小，从 `18.10` 和 `19.10` 版本开始。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， Element HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident 会自动调整存储集群上卷的大小。</block>
   <block id="40a28a40c11a193f8911cf4143a6ae6a" category="section-title">将现有卷导入到 Kubernetes 中</block>
-  <block id="9b9eb77bb331cb0c7afb0c39603efabe" category="paragraph">通过卷导入，可以将现有存储卷导入到 Kubernetes 环境中。目前， `ontap-nas` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` ， `AWS-CVS` ， 和 `GCP-CVS` 驱动程序。在将现有应用程序移植到 Kubernetes 或在灾难恢复场景中，此功能非常有用。</block>
-  <block id="387fb4251a4a51dd98b60590a73a862e" category="paragraph">使用 ONTAP 和 `solidfire-san` 驱动程序时，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume-name&gt; -f /path/PVC.YAML` 将现有卷导入到要由 Trident 管理的 Kubernetes 中。导入卷命令中使用的 PVC YAML 或 JSON 文件指向将 Trident 标识为配置程序的存储类。使用 HCI/SolidFire 后端时，请确保卷名称是唯一的。如果卷名称重复，请将卷克隆为唯一名称，以便卷导入功能可以区分它们。</block>
-  <block id="01e8e82b9f73cd548b2a2cd699a3e532" category="paragraph">如果使用了 `AWS-CVS` ， `azure-netapp-files` 或 `GCP-CVS` 驱动程序，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume path&gt; -f /path/PVC.YAML` 将卷导入到要由 Trident 管理的 Kubernetes 中。这样可以确保卷引用是唯一的。</block>
-  <block id="4b8abe832e47d3a95846343e3fa92309" category="paragraph">执行上述命令后， Trident 将在后端找到卷并读取其大小。它将自动添加（并在必要时覆盖）已配置的 PVC 卷大小。然后， Trident 会创建新的 PV ， Kubernetes 会将 PVC 绑定到 PV 。</block>
   <block id="3a8b25f50e2dcc298175abc8f6a71f82" category="paragraph">如果部署的容器需要特定的导入 PVC ，则容器将保持待定状态，直到通过卷导入过程绑定 PVC/PV 对为止。在绑定 PVC/PV 对后，如果没有其他问题，应启动容器。</block>
-  <block id="3246fd833f3fd6afd56e1bda003e422a" category="section-title">使用 Trident 部署 OpenShift 服务</block>
   <block id="7e3c623b48b608f4c6380c2994ae5aa9" category="paragraph">OpenShift 增值集群服务为集群管理员和要托管的应用程序提供了重要功能。这些服务使用的存储可以使用节点本地资源进行配置，但这通常会限制服务的容量，性能，可恢复性和可持续性。利用企业级存储阵列为这些服务提供容量可以显著改善服务，但是，与所有应用程序一样， OpenShift 和存储管理员应密切合作，为每个服务确定最佳选项。应大量利用 Red Hat 文档来确定要求并确保满足规模估算和性能需求。</block>
   <block id="6dd8f6c286b8e1a8c96c6309099f0003" category="section-title">注册表服务</block>
   <block id="68ee1c4c0da20bfd1e946df20351d4b9" category="inline-link-macro">netapp.io</block>
-  <block id="1549b8e101473b3827b59bf7d8b716cc" category="inline-link-macro">使用 NetApp 存储部署 OpenShift 注册表</block>
-  <block id="68afd86ab2ff6cdc4a3a331de5cdcd30" category="paragraph">有关为注册表部署和管理存储的文档，请参见 <block ref="f6a5d1c99f05711cfb10beed025aab19" category="inline-link-macro-rx"></block> 在博客中 <block ref="3ca9c73a1b492013937ca94e28673c9c" category="inline-link-macro-rx"></block>。</block>
   <block id="62ac236856a5a6aefd15133e967514c6" category="section-title">日志记录服务</block>
   <block id="2f3052b6a2858bec8355ec56150f6a38" category="paragraph">与其他 OpenShift 服务一样，日志记录服务也是使用清单文件（也称为）提供的配置参数 Ansible 部署的主机，提供给攻略手册。其中包括两种安装方法：在初始 OpenShift 安装期间部署日志记录以及在安装 OpenShift 之后部署日志记录。</block>
   <block id="541c717d8d2998609c0970b5e43c7401" category="admonition">自 Red Hat OpenShift 3.9 版开始，官方文档出于对数据损坏的担忧，建议不要对日志记录服务使用 NFS 。这是基于 Red Hat 对其产品的测试得出的。ONTAP 的 NFS 服务器不存在这些问题，可以轻松地备份日志记录部署。最终，您可以选择日志记录服务的协议，只需了解这两种协议在使用 NetApp 平台时都能很好地发挥作用，如果您愿意，也没有理由避免使用 NFS 。</block>
   <block id="57cad4852c9c2e439f61728e0391fe7b" category="paragraph">如果您选择将 NFS 与日志记录服务结合使用，则需要将 Ansible 变量 `OpenShift_enable_unsupported _configurations` 设置为 `true` ，以防止安装程序失败。</block>
-  <block id="7f4d22b3de45045172408ddd711a85a1" category="paragraph">* 入门 *</block>
   <block id="16e90b2336fdfec64b19194247422194" category="paragraph">可以选择为这两个应用程序以及 OpenShift 集群本身的核心操作部署日志记录服务。如果选择部署操作日志记录，则通过将变量 `OpenShift_logging_use_ops` 指定为 `true` ，将创建两个服务实例。控制操作日志记录实例的变量包含 "ops" ，而应用程序实例则不包含 "ops" 。</block>
   <block id="a9ccaa810b97a00e75bb1ea4100d0a9f" category="paragraph">要确保底层服务使用正确的存储，必须根据部署方法配置 Ansible 变量。让我们来了解一下每种部署方法的选项。</block>
   <block id="c5c09113a6a6ae4b75868a9e96ea3cc3" category="inline-link-macro">RedHat OpenShift 日志记录文档</block>
-  <block id="847bf2cf7cbeb1bff44337f451dff84a" category="admonition">下表仅包含与存储配置相关的变量，因为这些变量与日志记录服务相关。您可以在中找到其他选项 <block ref="a00d300f1654252ebe11da50ebccc593" category="inline-link-macro-rx"></block> 应根据您的部署情况查看，配置和使用。</block>
   <block id="02098b11f876fe10c40b6106bd9864da" category="paragraph">下表中的变量将导致 Ansible 攻略手册使用提供的详细信息为日志记录服务创建 PV 和 PVC 。与在 OpenShift 安装后使用组件安装攻略手册相比，此方法的灵活性明显降低，但是，如果您有可用的现有卷，则可以选择此方法。</block>
   <block id="47c14840d8e15331fa420b9b2f757cd9" category="cell">变量</block>
   <block id="3ec365dd533ddb7ef3d1c111186ce872" category="cell">详细信息</block>
@@ -749,10 +688,8 @@
   <block id="bc367f89ac597585e52d0eb58a5929ae" category="cell">操作实例的卷请求大小。</block>
   <block id="155871626071d69cb283985a9f36bad2" category="cell">`OpenShift_logging_es_ops_vc_prefix`</block>
   <block id="2a8f254749a466654f556c6466051133" category="cell">操作实例 PVC 的前缀。</block>
-  <block id="4672723109037982cd0bdbbeb3913573" category="paragraph">* 部署日志记录堆栈 *</block>
   <block id="0409a0cfdfa4f3b3033503b8309442ff" category="paragraph">如果要在初始 OpenShift 安装过程中部署日志记录，则只需遵循标准部署过程即可。Ansible 将配置和部署所需的服务和 OpenShift 对象，以便在 Ansible 完成后立即提供此服务。</block>
   <block id="210ecadaccb6088b0dfbd2e6a0b5d0a0" category="inline-link-macro">RedHat OpenShift Container Platform 3.11 文档</block>
-  <block id="a12303abed71964b5ecaa3be798d3893" category="paragraph">但是，如果在初始安装后进行部署，则 Ansible 需要使用组件攻略手册。此过程可能会因 OpenShift 的不同版本而略有变化，因此请务必阅读并遵循 <block ref="c4c22ec684b08728e4892c9d59932dc1" category="inline-link-macro-rx"></block> 适用于您的版本。</block>
   <block id="3dbf527ac3caf41ab150ec99a1737217" category="section-title">指标服务</block>
   <block id="12a5438ab4c44c9ad4dec6edc191eb7a" category="paragraph">指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外， POD 自动调整功能也需要使用此功能，许多组织会将来自指标服务的数据用于其成本分摊和 / 或成本分摊应用程序。</block>
   <block id="d0ed828e153e9bad2da040ddf6ad8f45" category="paragraph">与日志记录服务和 OpenShift 作为一个整体一样， Ansible 用于部署指标服务。此外，与日志记录服务一样，可以在集群初始设置期间或使用组件安装方法运行之后部署指标服务。下表包含在为指标服务配置永久性存储时非常重要的变量。</block>
@@ -773,10 +710,7 @@
   <block id="aab0ec84a4da1dfd2b63896453f1e05d" category="cell">要用于度量指标的存储类型，必须将此类型设置为动态， Ansible 才能创建具有相应存储类的 PVC 。</block>
   <block id="460aaf3805271ec2e5dc35755fe317b1" category="cell">`OpenShift_metrics_cassanda_vc_storage_class_name`</block>
   <block id="0c55ca33e89539cd67eb0be3796547c5" category="cell">要使用的存储类的名称。</block>
-  <block id="3ec57ef8197a78deb7cf79c3ecad5491" category="paragraph">* 正在部署指标服务 *</block>
-  <block id="78406c760542bdef84fb044dfb5fdca8" category="paragraph">使用在主机 / 清单文件中定义的适当 Ansible 变量，使用 Ansible 部署服务。如果您在 OpenShift 安装时进行部署，则系统将自动创建和使用 PV 。如果您使用组件攻略手册进行部署，则在 OpenShift 安装之后， Ansible 将创建所需的任何 PVC ，并在 Trident 为其配置存储后部署该服务。</block>
   <block id="bf1cadd7aa4e541e255df26af5451d85" category="inline-link-macro">RedHat 的 OpenShift 部署指南</block>
-  <block id="15ea4a1baae70736f9b03f17abfde1f2" category="paragraph">上述变量以及部署过程可能会随 OpenShift 的每个版本而发生变化。确保您查看并遵循 <block ref="f611d1f909a03de4e32f81ed920fc87f" category="inline-link-macro-rx"></block> 为您的版本配置，以便为您的环境进行配置。</block>
   <block id="d03f8f06d8317baa619ceba8c71e0be3" category="summary">了解 NetApp 存储平台提供的数据保护和可恢复性选项。Astra Trident 可以配置可利用其中某些功能的卷。对于具有持久性要求的每个应用程序，您都应制定完整的数据保护和恢复策略。</block>
   <block id="7e7397a7b79323762c61941fc0e6b5f9" category="doc">数据保护</block>
   <block id="cfee9077e497a91b77466a20f58fcdff" category="paragraph">了解 NetApp 存储平台提供的数据保护和可恢复性选项。Astra Trident 可以配置可利用其中某些功能的卷。对于具有持久性要求的每个应用程序，您都应制定一个数据保护和恢复策略。</block>
@@ -1270,7 +1204,6 @@
   <block id="8b389d7be97d6c697a4e775ff8338905" category="paragraph">请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 有关如何为后端类型配置文件的更多详细信息。</block>
   <block id="af445e1d9a0a481ba7f9b5f01df23a3d" category="paragraph">如果创建失败，则后端配置出现问题。您可以运行以下命令来查看日志以确定发生原因：</block>
   <block id="00715976efdc0cc3b7c5a8512fb0e08d" category="inline-link-macro">故障排除</block>
-  <block id="f5f494e8d606c9f26b472c698730c51f" category="paragraph">解决问题后，只需返回到此步骤的开头并重试。有关更多故障排除提示，请参见 <block ref="fa8c952f2dea85664a3e3e5dc210aa4c" category="inline-link-macro-rx"></block> 部分。</block>
   <block id="0cf7ce61dd48f9396923c05ab8f5e302" category="section-title">第 2 步：创建存储类</block>
   <block id="8c566ff50efde64c700b1188e862c328" category="inline-link">存储类</block>
   <block id="c44e939795fbf61079e70122d3e77735" category="paragraph">Kubernetes 用户使用指定的永久性卷声明（ Persistent Volume Claim ， PVC ）配置卷<block ref="bc70014ff50467618a31ef39142ab151" category="inline-link-rx"></block> 按名称。详细信息对用户隐藏，但存储类可标识用于该类的配置程序（在本例中为 Trident ）以及该类对配置程序的含义。</block>
@@ -1281,7 +1214,6 @@
   <block id="3bdc1ec6969d1615bb58d7f0443bf1c2" category="section-title">第 3 步：配置第一个卷</block>
   <block id="a58b17a231318aa42ed47bfe0be43447" category="inline-link">永久性卷声明</block>
   <block id="512b66e66e82ba09d70c3e9f784aa8af" category="paragraph">现在，您已准备好动态配置第一个卷。可通过创建 Kubernetes 来完成此操作<block ref="95c09f225fe48abca705fd090f5f4c89" category="inline-link-rx"></block> （ PVC ）对象。</block>
-  <block id="8543d9edeec0640ceb4fab884f944e00" category="paragraph">为使用刚刚创建的存储类的卷创建永久性卷声明（ PVC ）。</block>
   <block id="b357acbdc339437d16e4e967ecc6d0c2" category="paragraph">有关示例，请参见 `sample-input/vpva-basic CSI 。 yaml` 。确保存储类名称与您创建的名称匹配。</block>
   <block id="2fe8954464ccf22d2d06423b358f38a7" category="section-title">第 4 步：将卷挂载到 Pod 中</block>
   <block id="366556d176e685870d134b7fc6e9ca3c" category="paragraph">现在，让我们挂载卷。我们将启动一个 nginx pod ，将 PV 挂载到 ` /usr/share/nginx/html` 下。</block>
@@ -1325,7 +1257,6 @@
   <block id="b430504ce0f6755a2be91a9a221c144e" category="paragraph">明白了吗？太棒了！让我们开始吧。</block>
   <block id="f9589cad119238efbce2b063d5225fb4" category="section-title">使用 Helm 部署 Trident 操作员</block>
   <block id="8a414e5c564a0c9e7a0f799a3c8cf47c" category="paragraph">执行列出的步骤以使用 Helm 部署 Trident 操作员。</block>
-  <block id="1f4e9099423697aae4d893be68d77564" category="paragraph">除了上述前提条件之外，要使用 Helm 部署 Trident 操作员，还需要满足以下条件：</block>
   <block id="8f5e62e2d03d87aeaafa8d4776fb7a79" category="list-text">Kubernetes 1.17 及更高版本</block>
   <block id="2e1b3f44683eee188be985693c4af5e1" category="list-text">Helm 版本 3</block>
   <block id="8a247589aa6f5931b3416e5dd64ba361" category="inline-link">Trident GitHub</block>
@@ -1347,7 +1278,6 @@
   <block id="d14fa1adb2805f01b2a616f5ef9d25be" category="paragraph">要查看您是否具有 Kubernetes 集群管理员权限，请运行以下命令：</block>
   <block id="f67b776be47148789a46badee3f77607" category="paragraph">要验证是否可以从 Docker Hub 启动使用映像的 POD 并通过 Pod 网络访问存储系统，请运行以下命令：</block>
   <block id="b51ca564a2763a36e8eff661a1e45814" category="section-title">第 2 步：下载并设置操作员</block>
-  <block id="05ec0b3d4873868958490d562439a650" category="admonition">从 21.01 开始， Trident 操作符的范围为集群范围。使用 Trident 操作符安装 Trident 需要创建 `TridentOrchestrator` Custom Resource Definition （ CRD ）并定义其他资源。在安装 Astra Trident 之前，您应执行以下步骤来设置操作员。</block>
   <block id="76e266ddd09c36b072fda03f840a24df" category="list-text">下载最新版本的<block ref="d4cf8040e05d7d00be7e40a7abf8ee09" category="inline-link-rx"></block> 从 _Downloads_部分 中提取该文件。</block>
   <block id="f3d3e6090d613a233f190256fd5f4fa3" category="list-text">使用适当的 CRD 清单创建 `TridentOrchestrator` CRD 。然后，您可以稍后创建一个 `TridentOrchestrator` Custom Resource ，以通过操作员实例化安装。</block>
   <block id="337d79852891a37d41285c9101c3fff4" category="paragraph">运行以下命令：</block>
@@ -1767,11 +1697,9 @@
   <block id="00cbc0e7ed0014813b07fc8452f60df1" category="list-text">Credential Based ：具有所需权限的 ONTAP 用户的用户名和密码。建议使用 `admin` 或 `vsadmin` 等预定义的安全登录角色，以确保与 ONTAP 版本的最大兼容性。</block>
   <block id="e2cd9c84c3ebf14f3c81be4692848e5b" category="list-text">基于证书： Astra Trident 还可以使用后端安装的证书与 ONTAP 集群进行通信。此处，后端定义必须包含客户端证书，密钥和可信 CA 证书的 Base64 编码值（如果使用）（建议）。</block>
   <block id="f3a85dfc22761b09346aa0134d77d4f9" category="paragraph">用户还可以选择更新现有后端，选择从基于凭据迁移到基于证书，反之亦然。如果 * 同时提供了凭据和证书 * ，则 Astra Trident 将在发出警告以从后端定义中删除凭据时默认使用证书。</block>
-  <block id="09fb0aef7553ea7496f351ab1094dfde" category="section-title">基于凭据的身份验证</block>
   <block id="ceae351bc6b26100a9b1685a5d477c0a" category="paragraph">Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONTAP 后端进行通信。建议使用标准的预定义角色，例如 `admin` 或 `vsadmin` 。这样可以确保与未来的 ONTAP 版本向前兼容，这些版本可能会使功能 API 公开供未来的 Astra Trident 版本使用。可以创建自定义安全登录角色并将其用于 Astra Trident ，但不建议使用。</block>
   <block id="2312b8f77f99c346269b67308afc3649" category="paragraph">后端定义示例如下所示：</block>
   <block id="2a2ef6dcf08a8789a55301af5f71304c" category="paragraph">请注意，后端定义是凭据以纯文本格式存储的唯一位置。创建后端后，用户名 / 密码将使用 Base64 进行编码并存储为 Kubernetes 密钥。创建 / 更新后端是唯一需要了解凭据的步骤。因此，这是一项仅由管理员执行的操作，由 Kubernetes 或存储管理员执行。</block>
-  <block id="55ed93802434dfc90ca2d10654aac0e9" category="section-title">基于证书的身份验证</block>
   <block id="0778b06c5ea9fded4fd7b586b248dd86" category="paragraph">新的和现有的后端可以使用证书并与 ONTAP 后端进行通信。后端定义需要三个参数。</block>
   <block id="d5b9c9db262b1927d7914504f3587adb" category="list-text">clientCertificate ：客户端证书的 Base64 编码值。</block>
   <block id="8f2b750dd6a57864f0e36828c248ddfc" category="list-text">clientPrivateKey ：关联私钥的 Base64 编码值。</block>
@@ -2262,7 +2190,6 @@
   <block id="c0417f5bbd54c5dc1c3704d6b566fcf3" category="list-text"><block ref="c0417f5bbd54c5dc1c3704d6b566fcf3" category="inline-link-macro-rx"></block></block>
   <block id="8b7b728c6a1e7accd6148646ba730e77" category="summary">了解如何在 Astra Trident 中管理后端。</block>
   <block id="4342473e01edd2e1440b8b76076f4c9e" category="doc">在后端管理选项之间移动</block>
-  <block id="01dbc1e3b63adc5b50a733ee586909ac" category="paragraph">了解如何在 Astra Trident 中管理后端。随着 TridentBackendConfig 的推出，管理员现在可以通过两种独特的方式管理后端。这会提出以下问题：</block>
   <block id="a7b407f571446f9f4a30f63e8160784a" category="list-text">使用 `tridentctl` 创建的后端是否可以使用 `TridentBackendConfig` 进行管理？</block>
   <block id="3e1fc11d05c13404995af2b9fda64675" category="list-text">使用 `TridentBackendConfig` 创建的后端是否可以使用 `tridentctl` 进行管理？</block>
   <block id="41b338cd1cea5e2df168994a9bdedf75" category="section-title">使用 TridentBackendConfig 管理 tridentctl 后端</block>
@@ -2270,7 +2197,6 @@
   <block id="bee2ae6068ad50344ddb325737434004" category="paragraph">这适用于以下情形：</block>
   <block id="e9c4de6d076377511c2b6a8463898ef2" category="list-text">预先存在的后端，没有 `TridentBackendConfig` ，因为它们是使用 `tridentctl` 创建的。</block>
   <block id="8eed1f3ae09f008e2dbfb4280a0c137c" category="list-text">使用 `tridentctl` 创建的新后端，而存在其他 `TridentBackendConfig` 对象。</block>
-  <block id="bac40b125335351da76d668586b3b603" category="paragraph">在这两种情况下，后端仍会存在，其中 Astra Trident 会计划卷并对其进行操作。管理员可以选择以下两种方法之一：</block>
   <block id="95328f21e7a6deb7bb94acb3866753a6" category="list-text">继续使用 `tridentctl` 管理使用它创建的后端。</block>
   <block id="82c1dd66573aab904c86b63e2d5486ad" category="list-text">使用 `tridentctl` 创建的后端绑定到新的 `TridentBackendConfig` 对象。这样做意味着将使用 `kubectl` 而不是 `tridentctl` 来管理后端。</block>
   <block id="d12d5022b29f44c340ee55411970fe10" category="paragraph">要使用 `kubectl` 管理已有后端，您需要创建一个绑定到现有后端的 `TridentBackendConfig` 。下面简要介绍了它的工作原理：</block>
@@ -2510,7 +2436,6 @@
   <block id="118ec9e23f24f4ea0355c0a8fc7644f8" category="paragraph">可以为 `managementLIF` 选项指定完全限定域名（ FQDN ）。也可以为 `dataLIF` 选项指定 FQDN ，在这种情况下， FQDN 将用于 NFS 挂载操作。这样，您就可以创建循环 DNS ，以便在多个数据 LIF 之间实现负载平衡。</block>
   <block id="3de9530f105c3bf7d417c73170a03e5a" category="paragraph">对于所有 ONTAP 驱动程序，也可以将 `managementLIF` 设置为 IPv6 地址。请务必使用 ` -use-ipv6` 标志安装 Astra Trident 。必须 `m方括号内的` anagementLIF IPv6 地址。</block>
   <block id="06390865e9ec240a0e295db286d7bef7" category="paragraph">使用 `autosExportPolicy` 和 `autosExportCIDR` 选项， CSI Trident 可以自动管理导出策略。所有 ontap-nas-* 驱动程序均支持此功能。</block>
-  <block id="f1ec321056c387c79d31e2efbb55cc2e" category="paragraph">对于 ontap-nas-经济 型驱动程序， `limitVolumeSize` 选项还会限制它所管理的 qtree 和 FlexVol 卷的最大大小，而 `qtreesPerFlexvol` 选项允许自定义每个 的最大 qtree 数。</block>
   <block id="92e660f52759e323dbc0ec71541a2e9e" category="paragraph">可以使用 `nfsMountOptions` 参数指定挂载选项。Kubernetes 永久性卷的挂载选项通常在存储类中指定，但如果在存储类中未指定挂载选项，则 Astra Trident 将回退为使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项，则 Astra Trident 不会在关联的永久性卷上设置任何挂载选项。</block>
   <block id="7587c806a60b3f88688668f32e0b766c" category="admonition">Astra Trident 会在使用 `ontap-NAS` 和 `ontap-nas-flexgroup` 创建的所有卷的 "Comments" 字段中设置配置标签。根据所使用的驱动程序，注释将在 FlexVol （`ontap-NAS` ）或 FlexGroup （`ontap-nas-flexgroup` ）上进行设置。Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对存储池中创建的所有卷进行分组。这样，您就可以根据后端配置中提供的一组可自定义标签来方便地区分卷了。</block>
   <block id="831924abd31e90baedabed887dbfc24c" category="cell">要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。不受 ontap-nas-economy.</block>
@@ -2698,7 +2623,6 @@
   <block id="e6693412ed2252a87ece3f264fb334ed" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo service multipath-tools restart`</block>
   <block id="0d29eaa34aa7badaae0d49b35a2a0d12" category="paragraph">`sudo service open-iscsi start sudo service multipath-tools start`</block>
   <block id="0e9e734e557a02db30a20e5ac259cfb9" category="summary">每个存储驱动程序都有一组不同的选项，您可以在创建卷时指定这些选项来自定义结果。有关适用于您配置的存储系统的选项，请参见以下内容。</block>
-  <block id="8e048ecf4fe93f51d8abf00697276359" category="doc">卷驱动程序选项</block>
   <block id="bca0712c590c8d3c228bf1044aed730b" category="paragraph">在卷创建操作期间使用这些选项非常简单。在命令行界面操作期间，使用 ` -o` 运算符提供选项和值。这些参数将覆盖 JSON 配置文件中的任何等效值。</block>
   <block id="6021d91bdededf94b8ae37c30e820118" category="section-title">ONTAP 卷选项</block>
   <block id="16dc9caa069072a49db7ea7c81a7cf66" category="paragraph">NFS 和 iSCSI 的卷创建选项包括以下内容：</block>
@@ -3050,9 +2974,84 @@
   <block id="bbe2bfefd5797bb567e3da92f68ce8d1" category="sidebar">自定义 tridentctl 部署</block>
   <block id="58eaebf972358f1cf03d386a4ade1a0f" category="sidebar">下一步是什么？</block>
   <block id="cc4a0df2c635530d752308ab5a1c4b89" category="sidebar">配置 ANF 后端</block>
-  <block id="a74573296331849020e0c43347cee5f4" category="sidebar">为 Google Cloud 配置 CVS</block>
   <block id="bffb766af67c15f14cae35f03dd6f4a9" category="sidebar">使用 kubectl 执行后端管理</block>
   <block id="748a22b5f1312291ad55429ba4b809a0" category="sidebar">使用 tridentctl 执行后端管理</block>
   <block id="f14894e4c400a400c02367258a93029a" category="sidebar">适用于 Docker 的 Astra Trident</block>
   <block id="e08bfc79c5202517b3814efd6e82fb2c" category="sidebar">升级或卸载 Trident</block>
+  <block id="463c6e3deb27d776ba0302b5b90f6607" category="paragraph">要集成 Astra Trident ，需要集成以下设计和架构要素：驱动程序选择和部署，存储类设计，虚拟存储池设计，永久性卷声明（ PVC ）对存储配置的影响，卷操作以及使用 Astra Trident 部署 OpenShift 服务。</block>
+  <block id="1fdc23c8579638d050b7b219da011f2b" category="section-title">驱动程序选择和部署</block>
+  <block id="150d96898b109ac670a955fd616679fe" category="section-title">为 ONTAP 选择后端驱动程序</block>
+  <block id="815a377da65ae5b66c84438c43416d82" category="paragraph">更高级别的是，如果您的应用程序中的组件需要共享存储（多个 Pod 访问同一个 PVC ），则基于 NAS 的驱动程序将成为默认选项，而基于块的 iSCSI 驱动程序则可满足非共享存储的需求。根据应用程序要求以及存储和基础架构团队的舒适程度选择协议。一般来说，对于大多数应用程序来说，它们之间没有什么区别，因此通常是根据是否需要共享存储（多个 POD 需要同时访问）来决定的。</block>
+  <block id="f1d8371af632688748db007c98766ded" category="paragraph">在三个 NAS 驱动程序之间进行选择会对应用程序可用的功能产生一些影响。</block>
+  <block id="708ee6a923f9b4b3f2213d57632eaadc" category="verse-content-simple">上述表的脚注：是脚注： 1[] ：不受 Astra Trident 管理是脚注： 2[] ：由 Astra Trident 管理，但不是 PV 粒度 Yesfootnote ： 3[] ：不受 Astra Trident 管理，也不是 PV 粒度 Yesnote ： 4[] ：支持原始块卷是脚注： 5[] ： CSI Trident 支持</block>
+  <block id="74b4b41be17ac9897921032dfd4e94a8" category="paragraph">非 PV 粒度功能将应用于整个 FlexVolume ，而所有 PV （即共享 FlexVol 中的 qtree 或 LUN ）将共享一个通用计划。</block>
+  <block id="b483d59c54aea739f0806cf2f30c057e" category="paragraph">如上表所示， `ontap-nas` 与 `ontap-nas-economy` 之间的大部分功能是相同的。但是，由于 `ontap-nas-economy` 驱动程序限制了按 PV 粒度控制计划的能力，因此这可能会特别影响灾难恢复和备份规划。对于希望在 ONTAP 存储上利用 PVC 克隆功能的开发团队，只有在使用 `ontap-NAS` ， `ontap-san` 或 `ontap-san-economy-经济` 驱动程序时，才可能实现这一点。</block>
+  <block id="45f7f2e55c0930a28d1a9e481e602a09" category="admonition">`solidfire-san` 驱动程序还能够克隆 PVC 。</block>
+  <block id="5ea8a1263c170a1b26153c03919a84f2" category="section-title">为 Cloud Volumes ONTAP 选择后端驱动程序</block>
+  <block id="6b1a08ddb7e74488a9039997d4961ff8" category="section-title">为适用于 ONTAP 的 Amazon FSX 选择后端驱动程序</block>
+  <block id="d0030e26d7e1baf13ad36649449f3689" category="section-title">为 NetApp HCI/SolidFire 选择后端驱动程序</block>
+  <block id="bccbad684880808562152ac1d82d7b73" category="verse-content-simple">脚注：是脚注： 1[] ：不由 Astra Trident 管理是脚注： 2[] ：支持原始块卷</block>
+  <block id="bb1da85f123c0dbedeb19d1f5c676112" category="section-title">为 Azure NetApp Files 选择后端驱动程序</block>
+  <block id="657e0fa57d574227dd7520919f55ff92" category="paragraph">Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 <block ref="d617d79fbb5ee3bc8bd280353eeb1349" category="inline-link-macro-rx"></block> 服务</block>
+  <block id="1f65578a7accdff5ca6ff9f8dc42d9c6" category="inline-link-macro">适用于 Azure NetApp Files 的 Astra Trident 后端配置</block>
+  <block id="e4eb3683baaad2a9ce9e264a37fb519e" category="paragraph">有关此驱动程序及其配置方法的详细信息，请参见 <block ref="452e5754c64fc2b52b13e03114bfeff6" category="inline-link-macro-rx"></block>。</block>
+  <block id="2fdc8a66565228c15d355a7849997337" category="verse-content-simple">脚注：是脚注： 1[] ：不由 Astra Trident 管理</block>
+  <block id="08a2e51877cfee5806cf83c6d30fbefe" category="section-title">选择适用于采用 AWS 的 Cloud Volumes Service 的后端驱动程序</block>
+  <block id="01d0b26a2d16d5fb475e224d7705b56d" category="paragraph">Astra Trident 使用 `AWS-CVS` 驱动程序与 AWS 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 AWS 后端，您需要在后端文件中指定 `apiRegion` ， `apiURL` ， `apiKey` 和 `secreKey` 。这些值可在 CVS Web 门户中的 Account settings/API access 中找到。支持的服务级别与 CVS 一致，包括 `standard` ， `Premium` 和 `Extreme` 。目前，要配置的最小卷大小为 100G 。未来版本的 CVS 可能会删除此限制。</block>
+  <block id="88d040295b5885489339e969bf92517c" category="section-title">为采用 GCP 的 Cloud Volumes Service 选择后端驱动程序</block>
+  <block id="f888f12905dbaabc09dd3e50073d862f" category="paragraph">Astra Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 GCP 后端，您需要在后端文件中指定 `projectNumber` ， `apiRegion` 和 `apiKey` 。项目编号可在 GCP Web 门户中找到，而 API 密钥必须从您在 GCP 上为 Cloud Volumes 设置 API 访问时创建的服务帐户专用密钥文件中获取。Astra Trident 可以在两个卷中创建 CVS 卷之一 <block ref="a3cd55e5a9ff014b76f6953040234c24" category="inline-link-macro-rx"></block>：</block>
+  <block id="51e6e54f894aa900f8a1822598ef3c5a" category="admonition">使用默认 CVS 服务类型 `storageClass=software` 部署后端时，用户 * 必须获得 * 对 GCP 上相关项目编号和项目 ID 的子 1TiB 卷功能的访问权限。这对于 Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建 * 将失败 * 。使用 ... <block ref="0c921b807a9a638a24dd843d24ed0800" category="inline-link-macro-rx"></block> 以访问低于 1 TiB 的卷。</block>
+  <block id="439d990c21037b37b51c4373a7aa9811" category="paragraph">`GCP-CVS` 驱动程序使用虚拟存储池。虚拟存储池会对后端进行抽象化，从而使 Astra Trident 决定卷的放置。管理员在 backend.json 文件中定义虚拟存储池。存储类使用标签标识虚拟存储池。</block>
+  <block id="3af6198d49c40c18f13c73c5ce15cf34" category="section-title">存储类设计</block>
+  <block id="388bdf78cbb5b6bf4248ddf5613f7cc3" category="paragraph">要创建 Kubernetes 存储类对象，需要配置并应用各个存储类。本节讨论如何为您的应用程序设计存储类。</block>
+  <block id="964c7dcda39ec7b9c8717c3369e2fc25" category="section-title">针对特定后端利用率的存储类设计</block>
+  <block id="fc01760e8c283c2f128543ae8b8a67cc" category="paragraph">`storagePools` 参数有助于将存储限制为与任何指定属性匹配的一组池。`addtionalStoragePools` 参数用于扩展 Astra Trident 用于配置的池集以及由属性和 `storagePools` 参数选择的池集。您可以单独使用参数，也可以同时使用这两个参数，以确保选择适当的存储池集。</block>
+  <block id="072c88043b516dbbbadd8bb0182445c7" category="section-title">用于模拟 QoS 策略的存储类设计</block>
+  <block id="eb47104f276a8955680299ff2f4bd39d" category="section-title">存储类设计，可根据特定功能利用后端</block>
+  <block id="0bc0e72aefbf8f8ec0b28cc0486f98a2" category="paragraph">存储类可设计为在启用了精简和厚配置，快照，克隆和加密等功能的特定后端直接配置卷。要指定要使用的存储，请创建存储类，以指定启用了所需功能的相应后端。</block>
+  <block id="f45e814b7c305f5341f031df78bf2f07" category="section-title">虚拟存储池的存储类设计</block>
+  <block id="bd755d43092fcea772b8e9ab21e9951e" category="paragraph">所有 Astra Trident 后端均可使用虚拟存储池。您可以使用 Astra Trident 提供的任何驱动程序为任何后端定义虚拟存储池。</block>
+  <block id="365b4529a5f01ced729944db23d237a5" category="paragraph">通过虚拟存储池，管理员可以在后端创建一个抽象级别，并可通过存储类进行引用，从而提高卷在后端的灵活性和效率。可以使用相同的服务类定义不同的后端。此外，可以在同一后端创建多个存储池，但其特征不同。如果为存储类配置了具有特定标签的选择器，则 Astra Trident 会选择与所有选择器标签匹配的后端来放置卷。如果存储类选择器标签与多个存储池匹配，则 Astra Trident 将选择其中一个存储池来配置卷。</block>
+  <block id="65f970319bb8b6ede33a2d975be3693d" category="paragraph">创建后端时，通常可以指定一组参数。管理员无法使用相同的存储凭据和一组不同的参数创建另一个后端。随着虚拟存储池的推出，此问题描述得以缓解。虚拟存储池是在后端和 Kubernetes 存储类之间引入的级别抽象，因此管理员可以定义参数以及标签，这些参数和标签可以通过 Kubernetes 存储类作为选择器进行引用，并且与后端无关。可以使用 Astra Trident 为所有受支持的 NetApp 后端定义虚拟存储池。该列表包括 SolidFire/NetApp HCI ， ONTAP ， AWS 和 GCP 上的 Cloud Volumes Service 以及 Azure NetApp Files 。</block>
+  <block id="d96c9f641b35ec82dabdc46092afe1d0" category="section-title">设计虚拟存储池以模拟不同的服务级别 /QoS</block>
+  <block id="85d73d477f633146bd32af7aaedd54da" category="section-title">设计用于分配特定方面的虚拟池</block>
+  <block id="3800921d8c248cc0de59c64d110e570a" category="paragraph">创建 PVC 时，请求的存储类以外的某些参数可能会影响 Astra Trident 的配置决策过程。</block>
+  <block id="b72ab56468fdf0df298a89c3339b82c0" category="paragraph">Astra Trident 将尝试与根据下表指定的访问方法所使用的存储协议匹配。这独立于底层存储平台。</block>
+  <block id="5a51acb2538e54805c54d37ebb49c75d" category="section-title">卷操作</block>
+  <block id="26fad327e23b6b08dcc94300bfe1ed04" category="section-title">修改永久性卷</block>
+  <block id="f82b5505d8def4abda0bec52275bd411" category="admonition">目前， Kubernetes 树中配置程序不支持对 NFS 或 iSCSI PV 执行卷大小调整操作。Astra Trident 支持扩展 NFS 和 iSCSI 卷。</block>
+  <block id="e68591655c8031177206e1e75728853f" category="section-title">创建按需卷快照</block>
+  <block id="f557ce2b38683c13c1c1a070ce58a33d" category="paragraph">Astra Trident 支持按需创建卷快照，并使用 CSI 框架从快照创建 PVC 。快照提供了一种维护数据时间点副本的便捷方法，并且生命周期独立于 Kubernetes 中的源 PV 。这些快照可用于克隆 PVC 。</block>
+  <block id="f007c56a8eb121e8a696105e69aefa68" category="section-title">从快照创建卷</block>
+  <block id="e005d448313cdc2848d923f4c754e467" category="paragraph">Astra Trident 还支持从卷快照创建 PersistentVolumes 。为此，只需创建 PersistentVolumeClaim 并注明 `datasource` 作为创建卷所需的快照即可。Astra Trident 将通过创建包含快照上的数据的卷来处理此 PVC 。通过此功能，可以跨区域复制数据，创建测试环境，整体更换损坏或损坏的生产卷，或者检索特定文件和目录并将其传输到另一个连接的卷。</block>
+  <block id="55a3309b0b6646e0ea6b47195bd3d4bd" category="section-title">移动集群中的卷</block>
+  <block id="925b814524908630c07d45fc5a80028a" category="paragraph">存储管理员可以在 ONTAP 集群中的聚合和控制器之间无中断地将卷移动到存储使用者。此操作不会影响 Astra Trident 或 Kubernetes 集群，只要目标聚合是 Astra Trident 所使用的 SVM 有权访问的聚合即可。重要的是，如果已将聚合新添加到 SVM ，则需要通过将后端重新添加到 Astra Trident 来刷新后端。这将触发 Astra Trident 对 SVM 重新进行清单配置，以便识别新聚合。</block>
+  <block id="033dcaefcc578c987d32d4bdb6f6b1e2" category="paragraph">但是， Astra Trident 不支持在后端之间自动移动卷。这包括在同一集群中的 SVM 之间，集群之间或不同存储平台上（即使该存储系统是连接到 Astra Trident 的存储系统也是如此）。</block>
+  <block id="302be77289f337115411c01846d9a489" category="paragraph">如果将卷复制到其他位置，则可以使用卷导入功能将当前卷导入到 Astra Trident 中。</block>
+  <block id="a059bca2035a0befa11f641fdabde223" category="paragraph">Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident 会自动调整存储集群上卷的大小。</block>
+  <block id="911dcebca8f00bd038d697c0c5b9f99d" category="paragraph">通过卷导入，可以将现有存储卷导入到 Kubernetes 环境中。目前， `ontap-nas` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` ， `AWS-CVS` ， 和 `GCP-CVS` 驱动程序。在将现有应用程序移植到 Kubernetes 或在灾难恢复场景中，此功能非常有用。</block>
+  <block id="5d9f64103cac7a58da69304bc3320e98" category="paragraph">使用 ONTAP 和 `solidfire-san` 驱动程序时，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume-name&gt; -f /path/PVC.YAML` 将现有卷导入到要由 Astra Trident 管理的 Kubernetes 中。导入卷命令中使用的 PVC YAML 或 JSON 文件指向将 Astra Trident 标识为配置程序的存储类。使用 NetApp HCI/SolidFire 后端时，请确保卷名称是唯一的。如果卷名称重复，请将卷克隆为唯一名称，以便卷导入功能可以区分它们。</block>
+  <block id="5c7a693958891a764b947da44bbeb122" category="paragraph">如果使用了 `AWS-CVS` ， `azure-netapp-files` 或 `GCP-CVS` 驱动程序，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume path&gt; -f /path/PVC.YAML` 将卷导入到要由 Astra Trident 管理的 Kubernetes 中。这样可以确保卷引用是唯一的。</block>
+  <block id="cb619cd0109686b5f82562b63e44a107" category="paragraph">执行上述命令后， Astra Trident 将在后端找到卷并读取其大小。它将自动添加（并在必要时覆盖）已配置的 PVC 卷大小。然后， Astra Trident 会创建新的 PV ， Kubernetes 会将 PVC 绑定到 PV 。</block>
+  <block id="41603705958b86c3ec4ff21cfce13a5b" category="section-title">部署 OpenShift 服务</block>
+  <block id="34d357a7f8cc47e860d5fb0a317cf22d" category="paragraph">有关为注册表部署和管理存储的文档，请参见 <block ref="d5e1883ebd095c0eda96c44469e8197d" category="inline-link-macro-rx"></block> 在中 <block ref="ceb73d0582d40281d79011a1e5343e89" category="inline-link-macro-rx"></block>。</block>
+  <block id="bc468c28ba57dbcb58de37265cd02436" category="admonition">下表仅包含与存储配置相关的变量，因为这些变量与日志记录服务相关。您可以在中找到其他选项 <block ref="e81826ec3b15492352776daada114990" category="inline-link-macro-rx"></block> 应根据您的部署情况查看，配置和使用。</block>
+  <block id="e1b2d0d3228c29c069bcd139de306709" category="section-title">部署日志记录堆栈</block>
+  <block id="67f3e99678cc7c568f4ed29074cdc41c" category="paragraph">但是，如果在初始安装后进行部署，则 Ansible 需要使用组件攻略手册。此过程可能会因 OpenShift 的不同版本而略有变化，因此请务必阅读并遵循 <block ref="a2226808e95b8487c66dd3b8cbea118e" category="inline-link-macro-rx"></block> 适用于您的版本。</block>
+  <block id="6c13e62eb53f29e7794d3807369299d2" category="section-title">部署指标服务</block>
+  <block id="3e75d51468f5a99fdb50b75dafea32e8" category="paragraph">使用在主机 / 清单文件中定义的适当 Ansible 变量，使用 Ansible 部署服务。如果您在 OpenShift 安装时进行部署，则系统将自动创建和使用 PV 。如果您使用组件攻略手册进行部署，则在 OpenShift 安装之后， Ansible 将创建所需的任何 PVC ，并在 Astra Trident 为其配置存储后部署该服务。</block>
+  <block id="eb502d6483a644e9b6f61ca4719276d8" category="paragraph">上述变量以及部署过程可能会随 OpenShift 的每个版本而发生变化。确保您查看并遵循 <block ref="5ad72ffc1eda2c257c8947a0ad66dddb" category="inline-link-macro-rx"></block> 为您的版本配置，以便为您的环境进行配置。</block>
+  <block id="936067ad00da88d877acb024c96f3129" category="paragraph">解决问题后，只需返回到此步骤的开头并重试。有关更多故障排除提示，请参见 <block ref="fa8c952f2dea85664a3e3e5dc210aa4c" category="inline-link-macro-rx"></block> 部分。</block>
+  <block id="61e8eac65ddef26d4c4230d88cae8498" category="paragraph">为使用刚刚创建的存储类的卷创建 PVC 。</block>
+  <block id="dc2d0674739dcd145f5287a7d619ee05" category="paragraph">除了上述前提条件之外，要使用 Helm 部署 Trident 操作员，还需要满足以下条件：</block>
+  <block id="2078c81a90072659fba28be2f6863a52" category="admonition">从 21.01 开始， Trident 操作符的范围为集群范围。使用 Trident 操作符安装 Trident 需要创建 `TridentOrchestrator` Custom Resource Definition （ CRD ）并定义其他资源。在安装 Astra Trident 之前，您应执行以下步骤来设置操作员。</block>
+  <block id="40e41fb2db11266b8f751c0d5c67cba0" category="inline-link">NetApp 知识库（需要登录）</block>
+  <block id="01005ecf4349194d1ec13d0ba516c9e5" category="admonition">有关故障排除文章的完整列表，请参见<block ref="57f5c759ada931c6a2051314ca6ee99e" category="inline-link-rx"></block>。您还可以找到有关排除与 Astra 相关的问题的信息<block ref="695f48b1d8b7348c0e2828947d24161e" category="inline-link-rx"></block>。</block>
+  <block id="a2f8f419bf420960ef8cca73e1999e09" category="section-title">启用基于凭据的身份验证</block>
+  <block id="052f76b486189a7b01340d5134eb7985" category="section-title">启用基于证书的身份验证</block>
+  <block id="eb487790322c4b8e9b4953d60be1acee" category="paragraph">了解 Astra Trident 为管理卷提供的功能。</block>
+  <block id="207aacc2f1990ce861bf20cfcd0ca067" category="paragraph">了解如何在 Astra Trident 中管理后端。随着 `TridentBackendConfig` 的推出，管理员现在可以通过两种独特的方式管理后端。这会提出以下问题：</block>
+  <block id="0507a4f0ac746171a414097e7f033dca" category="paragraph">在这两种情况下，后端仍会存在，其中 Astra Trident 会计划卷并对其进行操作。管理员可以选择以下两种方式之一：</block>
+  <block id="e98c128dda80ebab208244e4f62e7372" category="paragraph">对于 `ontap-nas-economy` 驱动程序， `limitVolumeSize` 选项还会限制它为 qtree 和 FlexVol 管理的卷的最大大小，而 `qtreesPerFlexvol` 选项允许自定义每个 的最大 qtree 数。</block>
+  <block id="11e1b165c1d718d825f4bb9aaf0b884e" category="doc">驱动程序专用的卷选项</block>
 </blocks>

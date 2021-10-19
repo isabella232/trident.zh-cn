@@ -111,7 +111,7 @@ basic-csi    csi.trident.netapp.io   15h
 
 现在，您已准备好动态配置第一个卷。可通过创建 Kubernetes 来完成此操作 https://kubernetes.io/docs/concepts/storage/persistent-volumes["永久性卷声明"^] （ PVC ）对象。
 
-为使用刚刚创建的存储类的卷创建永久性卷声明（ PVC ）。
+为使用刚刚创建的存储类的卷创建 PVC 。
 
 有关示例，请参见 `sample-input/vpva-basic CSI 。 yaml` 。确保存储类名称与您创建的名称匹配。
 

@@ -11,7 +11,7 @@ entries:
 - title: 使用卷
   url: "/trident-docker/volumes-docker.html"
   entries:
-  - title: 卷驱动程序选项
+  - title: 驱动程序专用的卷选项
     url: "/trident-docker/volume-driver-options.html"
 - title: 收集日志
   url: "/trident-docker/collect-logs-docker.html"
