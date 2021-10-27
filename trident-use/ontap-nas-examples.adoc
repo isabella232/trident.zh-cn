@@ -92,7 +92,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 * | false 
 |===
 
-NOTE: `useREST` 提供了一个 * 技术预览 * ，建议用于测试环境，而不是生产工作负载。如果设置为 `true` ，则 Astra Trident 将使用 ONTAP REST API 与后端进行通信。此功能需要使用 ONTAP 9.8 及更高版本。此外，使用的 ONTAP 登录角色必须能够访问 `ONTAP` 应用程序。这一点可通过预定义的 `vsadmin` 和 `cluster-admin` 角色来满足。
+NOTE: `useREST` 提供了一个 * 技术预览 * ，建议用于测试环境，而不是生产工作负载。如果设置为 `true` ，则 Astra Trident 将使用 ONTAP REST API 与后端进行通信。此功能需要使用 ONTAP 9.9 及更高版本。此外，使用的 ONTAP 登录角色必须能够访问 `ONTAP` 应用程序。这一点可通过预定义的 `vsadmin` 和 `cluster-admin` 角色来满足。
 
 要与 ONTAP 集群通信，您应提供身份验证参数。这可以是安全登录的用户名 / 密码，也可以是已安装的证书。
 
@@ -273,8 +273,19 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 
 === ontap-nas-flexgroup 驱动程序
 
-｛ "version" ： 1 ， "storageDriverName" ： "ontap-nas-flexgroup" ， "managementLIF" ： "10.0.0.1" ， "dataLIF" ： "10.0.0.2" ， " 标签 " ： ｛ "k8scluster" ： "test-cluster-east-1b" ， "backend" ： "test1-ontap-cluster" ｝ ， "SVM" ： "SVM_NFS" ， "username" ： "vsadmin" ， "password" ： "secret" ， ｝
-
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas-flexgroup",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "labels": {"k8scluster": "test-cluster-east-1b", "backend": "test1-ontap-cluster"},
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "secret",
+}
+----
 
 
 === 使用 IPv6 的 ONTAP NAS 驱动程序

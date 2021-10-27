@@ -164,7 +164,7 @@ Astra Trident 只是 Kubernetes Pod ，可安装在 Kubernetes 运行的任何�
 
 === 如果我有有关 Astra Trident 的快速问题需要澄清，会发生什么情况？是否有社区或论坛？
 
-如果您有任何问题，问题或请求，请通过我们的联系我们 http://netapp.io/slack["可宽延"^] 团队或 GitHub 。
+如果您有任何问题，问题或请求，请通过我们的联系我们 http://netapp.io/slack["Slack"^] 团队或 GitHub 。
 
 
 

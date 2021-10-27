@@ -1,4 +1,13 @@
 ---
+settings:
+  name: Astra Trident
+  platform: ''
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: true
+    langs: zh-cn,us-en,ja-jp
 sidebar:
   entries:
   - title: Astra Trident 文档
@@ -78,5 +87,5 @@ homepage:
       url: https://cloud.netapp.com/kubernetes-hub
     - title: netapp.io
       url: https://netapp.io/
-    - title: 可宽延
+    - title: Slack
       url: https://netapppub.slack.com/

@@ -13,6 +13,9 @@ summary: NetApp 不断改进和完善其产品和服务。以下是最新版 Ast
 发行说明提供了有关最新版本的 Astra Trident 中的新增功能，增强功能和错误修复的信息。
 
 
+WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经过测试且受支持的版本。请注意， zip 文件的 ` 或 Extras` 部分中提供的 `macos` 二进制文件未经过测试或不受支持。
+
+
 
 == 新增功能
 
@@ -20,40 +23,50 @@ NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 的一�
 
 
 
-=== Astra Trident 21.07.02
+=== 自 Astra Trident 21.07 以来发生的变化
 
-* 修复了问题描述，其中无法将 XFS 卷的克隆挂载到与源卷相同的节点上。
+
+
+==== 修复
+
+* 修复了问题描述，其中无法将 XFS 卷的克隆挂载到与源卷相同的节点上（ GitHub 问题描述 514 ）。
+* 修复了问题描述，其中 Astra Trident 在关闭时记录了致命错误（ GitHub 问题描述 597 ）。
+* 与 Kubernetes 相关的修复程序：
++
+** 使用 `ontap-NAS` 和 `ontap-nas-flexgroup` 驱动程序创建快照时，将卷的已用空间返回为最小还原大小（ GitHub 问题描述 645 ）。
+** 修复了问题描述，其中 `无法扩展文件系统` 在调整卷大小后记录了错误（ GitHub 问题描述 560 ）。
+** 修复了 POD 可能停留在 `正在终止` 状态的问题描述（ GitHub 问题描述 572 ）。
+** 修复了 `ontap-san-economy-lun` FlexVol 可能已满快照 LUN 的情况（ GitHub 问题描述 533 ）。
+** 使用不同映像修复了自定义 YAML 安装程序问题描述（ GitHub 问题描述 613" ）。
+** 固定快照大小计算（ GitHub 问题描述 611 ）。
+** 修复了问题描述，其中所有 Astra Trident 安装程序都可以将纯 Kubernetes 标识为 OpenShift （ GitHub 问题描述 639 ）。
+** 修复了 Trident 操作员在无法访问 Kubernetes API 服务器时停止协调的问题（ GitHub 问题描述 599 ）。
+
+
 
 
 
 
 ==== 增强功能
 
-* 增加了对 Kubernetes 1.22 的支持。
-* 已启用 Trident 操作员和 Helm 图表以使用 Kubernetes 1.22 。
-
-
-请参见 https://github.com/NetApp/trident/releases["Astra Trident GitHub"^] 有关详细信息 ...
-
-
-
-=== Astra Trident 21.07.01
-
-* 使用不同映像修复了自定义 YAML 安装程序问题描述。
-* 固定快照大小计算问题描述。
-
-
-请参见 https://github.com/NetApp/trident/releases/tag/v21.07.1["Astra Trident GitHub"^] 有关详细信息 ...
+* 为 GCP-CVS 性能卷增加了对 `unixPermissions` 选项的支持。
+* 增加了对 GCP 中 600 GiB 到 1 TiB 范围内的扩展优化 CVS 卷的支持。
+* Kubernetes 相关增强功能：
++
+** 增加了对 Kubernetes 1.22 的支持。
+** 已启用 Trident 操作员和 Helm 图表以使用 Kubernetes 1.22 （ GitHub 问题描述 628 ）。
+** 已将操作员映像添加到 `tridentctl` images 命令（ GitHub 问题描述 570 ）中。
 
 
 
-=== Astra Trident 21.07
 
-Astra Trident 21.07.0 * 不可下载 * 。对版本 21.07.0 中的 `snapshotReserve` 进行更改可能会导致 CSI `VolumeSnapshots` 无法用于创建 PersistentVolumeClaim 。
 
-如果您已升级到 21.07.0 版，建议删除新创建的 `VolumeSnapshots` （在 21.07.0 版中配置）并降级到先前版本。
 
-请参见 https://github.com/NetApp/trident/releases/tag/v21.07.0["Astra Trident GitHub"^] 有关详细信息 ...
+==== 实验增强功能
+
+* 在 `ontap-san` 驱动程序中增加了对卷复制的支持。
+* 增加了对 `ontap-nas-flexgroup` ， `ontap-san` 和 `ontap-nas-economy` 驱动程序的 * 技术预览 * REST 支持。
+
 
 
 

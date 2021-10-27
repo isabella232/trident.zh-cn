@@ -43,6 +43,7 @@ Astra Trident 还可与其他许多完全托管和自我管理的 Kubernetes 产
 
 要使用 Astra Trident ，您需要以下一个或多个受支持的后端：
 
+* 适用于 NetApp ONTAP 的 Amazon FSX
 * Azure NetApp Files
 * Cloud Volumes ONTAP
 * 适用于 AWS 的 Cloud Volumes Service
