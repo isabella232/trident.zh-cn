@@ -23,7 +23,40 @@ TIP: 有关故障排除文章的完整列表，请参见 https://kb.netapp.com/A
 == 常规故障排除
 
 * 如果 Trident Pod 无法正常启动（例如，当 Trident Pod 停留在 `ContainerCreating` 阶段且已准备好的容器少于两个时），则运行 `kubectl -n trident describe deployment trident` and `kubectl -n trident describe pod trident -%%.%.%.* -***` 可以提供更多见解。获取 kubelet 日志（例如，通过 `jlogalctl -xeu kubelet` ）也会很有帮助。
-* 如果 Trident 日志中的信息不足，您可以尝试通过将 ` -d` 标志传递给 install 参数来启用 Trident 的调试模式： ` ./tridentctl install -d -n trident` 。
+* 如果 Trident 日志中的信息不足，您可以根据安装选项将 ` -d` 标志传递到 install 参数，尝试为 Trident 启用调试模式。
++
+然后，使用 ` ./tridentctl logs -n trident` 并在日志中搜索 `level=debug msg` 来确认是否设置了调试。
+
++
+随操作员一起安装::
++
+--
+[listing]
+----
+# kubectl patch torc -n --type=merge -p '{"spec":{"debug":true}}'
+----
+对于 Astra Trident 20.07 和 20.10 ，请使用 `tprov` 代替 `Torc` 。
+
+--
+随 Helm 一起安装::
++
+--
+[listing]
+----
+$ helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true`
+----
+--
+使用 tridentctl 安装::
++
+--
+[listing]
+----
+./tridentctl uninstall -n trident
+./tridentctl install -d -n trident
+----
+--
+
+
 * 您还可以通过在后端定义中包含 `debugTraceFlags` 来获取每个后端的调试日志。例如，包括 `debugTraceFlags ： ｛ "api" ： true ， "method " ： true ， ｝` 以获取 Trident 日志中的 API 调用和方法遍历。现有后端可以已配置 `debugTraceFlags` 并配置 `tridentctl 后端更新` 。
 * 使用 RedHat CoreOS 时，请确保在工作节点上启用了 `iscsid` 并默认启动。可以使用 OpenShift MachineConfigs 或修改点燃模板来完成此操作。
 * 使用 Trident 时可能会遇到的一个常见问题 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"] 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 link:../trident-backend/anf.html["Azure NetApp Files"] Configuration

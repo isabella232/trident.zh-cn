@@ -878,7 +878,6 @@
   <block id="d06b5297af318d2581021098f6b0d44d" category="section-title">升级命名空间范围的操作员安装</block>
   <block id="ddfa75d059a999aedec16392aae03bc4" category="paragraph">要从使用命名空间范围的运算符（版本 20.07 至 20.10 ）安装的 Astra Trident 实例进行升级，需要遵循以下步骤：</block>
   <block id="edf5c542759186ded2c7eeaae6b340a5" category="list-text">验证现有 Trident 安装的状态。要执行此操作，请检查 `TridentProvider` 的 * 状态 * 。状态应为 `installed` 。</block>
-  <block id="0d01552e27bf606a7c7333cead56fe00" category="admonition">如果状态显示 `Updating` ，请确保先解决此问题，然后再继续。有关可能的状态值列表，请参见 <block ref="cfaafa23765f16a097372bc04c3dd97f" category="inline-link-macro-rx"></block>。</block>
   <block id="683d018a2f7c70469fd74ba0eeae2a79" category="list-text">使用 Trident 安装程序随附的清单创建 `TridentOrchestrator` CRD 。</block>
   <block id="ede3d39a1c5211985b126b3f166cf601" category="inline-link">Trident 存储库</block>
   <block id="af39f09efb6e7b7133433dff92d0fffe" category="list-text">使用其清单删除命名空间范围的运算符。要完成此步骤，您需要使用 `bundle.yaml` 文件来部署命名空间范围的运算符。您可以从获取 `bundle.yaml`<block ref="1403b813895a8a78c447fca96240f2ac" category="inline-link-rx"></block>。请确保使用相应的分支。</block>
@@ -1250,7 +1249,6 @@
   <block id="0d3ef54a4cc337b5d907b6639e51c6d4" category="section-title">如何区分每个客户 / 租户的存储类使用情况？</block>
   <block id="fda1b35892cb6f61447f0e49415937d9" category="paragraph">Kubernetes 不允许在命名空间中使用存储类。但是，您可以使用 Kubernetes 通过使用每个命名空间的存储资源配额来限制每个命名空间的特定存储类的使用。要拒绝特定命名空间对特定存储的访问，请将该存储类的资源配额设置为 0 。</block>
   <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="summary">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
-  <block id="14d9b10c6196045941347a9e85704b50" category="doc">Astra Trident 文档</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律声明</block>
   <block id="c59ae8d7beeb519a23478ab048af482c" category="paragraph"><block ref="c59ae8d7beeb519a23478ab048af482c" category="inline-link-macro-rx"></block></block>
   <block id="6f2ac1cf1da8ec34232c651d4bba0149" category="paragraph"><block ref="6f2ac1cf1da8ec34232c651d4bba0149" category="inline-link-macro-rx"></block></block>
@@ -1581,7 +1579,6 @@
   <block id="01005ecf4349194d1ec13d0ba516c9e5" category="admonition">有关故障排除文章的完整列表，请参见<block ref="57f5c759ada931c6a2051314ca6ee99e" category="inline-link-rx"></block>。您还可以找到有关排除与 Astra 相关的问题的信息<block ref="695f48b1d8b7348c0e2828947d24161e" category="inline-link-rx"></block>。</block>
   <block id="163fb9eb00818e2c7109900db1a3cc82" category="section-title">常规故障排除</block>
   <block id="f504c27d1ad305a988958b64f34468cb" category="list-text">如果 Trident Pod 无法正常启动（例如，当 Trident Pod 停留在 `ContainerCreating` 阶段且已准备好的容器少于两个时），则运行 `kubectl -n trident describe deployment trident` and `kubectl -n trident describe pod trident -%%.%.%.* -***` 可以提供更多见解。获取 kubelet 日志（例如，通过 `jlogalctl -xeu kubelet` ）也会很有帮助。</block>
-  <block id="22e0842769f063bdabbe3e60c842e01a" category="list-text">如果 Trident 日志中的信息不足，您可以尝试通过将 ` -d` 标志传递给 install 参数来启用 Trident 的调试模式： ` ./tridentctl install -d -n trident` 。</block>
   <block id="87248f7afe198418bdbedd919695631e" category="list-text">您还可以通过在后端定义中包含 `debugTraceFlags` 来获取每个后端的调试日志。例如，包括 `debugTraceFlags ： ｛ "api" ： true ， "method " ： true ， ｝` 以获取 Trident 日志中的 API 调用和方法遍历。现有后端可以已配置 `debugTraceFlags` 并配置 `tridentctl 后端更新` 。</block>
   <block id="6cc37a0664d7f97f87d34eadef23dbad" category="list-text">使用 RedHat CoreOS 时，请确保在工作节点上启用了 `iscsid` 并默认启动。可以使用 OpenShift MachineConfigs 或修改点燃模板来完成此操作。</block>
   <block id="4582245538a41243a95713a7d0c21b64" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="c09112d17e34405b7a5c3d246f91583f" category="inline-link-macro-rx"></block> Configuration</block>
@@ -2566,7 +2563,6 @@
   <block id="5dd03e8d039863e563e049be198c3fd3" category="doc">发行说明</block>
   <block id="2e6ce374ac42de81aea6a3d682b92e33" category="paragraph">发行说明提供了有关最新版本的 Astra Trident 中的新增功能，增强功能和错误修复的信息。</block>
   <block id="e4c4d344a524d21b898e4d04b6539aa7" category="admonition">安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经过测试且受支持的版本。请注意， zip 文件的 ` 或 Extras` 部分中提供的 `macos` 二进制文件未经过测试或不受支持。</block>
-  <block id="490414e0366b091220802d406e52c076" category="section-title">新增功能</block>
   <block id="c1f57827e94910e34725b8cf11415683" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 的一些最新特性和功能。</block>
   <block id="fdb053d6bab681277dcb47b3a45e2e85" category="section-title">自 Astra Trident 21.07 以来发生的变化</block>
   <block id="41cf959adc98386b54829d71a6ed5d37" category="section-title">修复</block>
@@ -3056,4 +3052,15 @@
   <block id="748a22b5f1312291ad55429ba4b809a0" category="sidebar">使用 tridentctl 执行后端管理</block>
   <block id="f14894e4c400a400c02367258a93029a" category="sidebar">适用于 Docker 的 Astra Trident</block>
   <block id="e08bfc79c5202517b3814efd6e82fb2c" category="sidebar">升级或卸载 Trident</block>
+  <block id="f14a1d8e56a0cbd2826edd38778371f7" category="admonition">如果状态显示 `Updating` ，请确保先解决此问题，然后再继续。有关可能的状态值列表，请参见<block ref="6aefd1c9ce8e43313a8c7c92e2fac4f3" category="inline-link-rx"></block>。</block>
+  <block id="91cba8fa9749855921b347b0cf808b76" category="doc">Astra Trident 21.10 文档</block>
+  <block id="05d68d1b7214c73141ed12aaed0c2ab5" category="list-text">如果 Trident 日志中的信息不足，您可以根据安装选项将 ` -d` 标志传递到 install 参数，尝试为 Trident 启用调试模式。</block>
+  <block id="bc6de9cad530a57dba08ff711f4a6b5f" category="paragraph">然后，使用 ` ./tridentctl logs -n trident` 并在日志中搜索 `level=debug msg` 来确认是否设置了调试。</block>
+  <block id="8e95ae46f32b05cf983c93e608530e36" category="list-text">随操作员一起安装</block>
+  <block id="6a304a6cf7cd8c90bac892ab0fb9c134" category="paragraph">对于 Astra Trident 20.07 和 20.10 ，请使用 `tprov` 代替 `Torc` 。</block>
+  <block id="79b91d0489c081de6794796638793787" category="list-text">随 Helm 一起安装</block>
+  <block id="d356d628089d439d75e3f85564372658" category="list-text">使用 tridentctl 安装</block>
+  <block id="415e3eb51625ca73d5e09053eea6a42b" category="section-title">21.10 中的新增功能</block>
+  <block id="1b6ea3b57d23007f55ba778700bc369c" category="inline-link">文档版本更新版</block>
+  <block id="af78f8cf3a2a8307db27d14c5642d95f" category="paragraph">对于先前版本，请参见<block ref="a3e07c08f1bbcd23d8422302f837e06b" category="inline-link-rx"></block>。</block>
 </blocks>

@@ -67,7 +67,7 @@ Version:  v20.10.1
 ----
 +
 
-NOTE: 如果状态显示 `Updating` ，请确保先解决此问题，然后再继续。有关可能的状态值列表，请参见 link:../trident-kubernetes/kubernetes-deploy-operator.html["此处"^]。
+NOTE: 如果状态显示 `Updating` ，请确保先解决此问题，然后再继续。有关可能的状态值列表，请参见 https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-operator.html["此处"^]。
 
 . 使用 Trident 安装程序随附的清单创建 `TridentOrchestrator` CRD 。
 +
