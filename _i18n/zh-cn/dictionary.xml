@@ -1532,18 +1532,10 @@
   <block id="a6595e492ec094375a673911109a32f2" category="paragraph">对于带气的安装，请参见以下列表，了解安装 Astra Trident 需要哪些容器映像：</block>
   <block id="aa92c4c233bc01609d957e469736b699" category="cell">容器映像</block>
   <block id="3b29886980a3307188a882bdc7cad63b" category="cell">v1.17.0</block>
-  <block id="47d07011bca79befe16bb700e92dcbc1" category="list-text">NetApp/trident ： 21.07.0</block>
-  <block id="d9f8e2d8dd775582f52f3faab2fd1e65" category="list-text">netapp/trident 操作符： 21.07.0</block>
-  <block id="2e6c4d3ef0db2b4c90724d4a5476e36d" category="list-text">netapp/trident autosupport ： 21.01</block>
-  <block id="b30d0a097738f86abbfecf3f9ea80403" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.1.1</block>
-  <block id="0add2d5b06a46b805acf99b6548b2398" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.1.0</block>
-  <block id="2ca7c243ca3adf9f395ed61cad94c4b9" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.1.0</block>
   <block id="ca2e728c8f17fef48811518aaed4de43" category="list-text">K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3</block>
-  <block id="74ba55b5b18f4a1327f8e0691e73ec2e" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.1.0</block>
   <block id="b8f1a143b913482d06bc0abdd94e9fc7" category="cell">v1.18.0</block>
   <block id="79f59ba516b478a970a428a795414034" category="cell">v1.19.0</block>
   <block id="4b977ef7367155e20f954fe7b0a00c4f" category="cell">v1.20.0</block>
-  <block id="f5de0771348311ab6f3933f60bd8008d" category="list-text">K8s.gcr.io/SIG-storage/CsI-snapshotter ： v4.1.1</block>
   <block id="6f0b081bef5e745ef2429ef74472d9bd" category="cell">v1.21.0</block>
   <block id="721d66fc3896f0caf2122a92b3f1c017" category="admonition">在 Kubernetes 1.20 及更高版本上，只有当 `v1` 版本提供了 `volumesnapshots.snapshot.storage.k8s.io` CRD 时，才使用经过验证的 `K8s.gcr.io/SIG-storage/CsI-snapshotter ： v4.x` image 。如果 `v1bea1` 版本在使用 / 不使用 `v1` 版本的情况下为 CRD 提供服务，请使用经验证的 `K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.x` 映像。</block>
   <block id="a60c2f57df655a9ac5fcaa0750886195" category="summary">如果您刚刚开始使用 Kubernetes ，请按照说明安装 Kubernetes 以进行尝试。这些说明提供了一个裸机单节点集群， Trident 可以与此集群集成以供演示。</block>
@@ -2092,7 +2084,6 @@
   <block id="28ea88befb3a7f6a8e98e7ea7a4fd35f" category="paragraph">`sUdo apt-get install -y open-iscsi lsscsi sg3-utils multipath-tools scsitool`</block>
   <block id="a53508e75911225e5de8b5febc82cf12" category="list-text">检查 open-iscsi 版本是否为 2.0.877-5ubuntu2.10 或更高版本（对于双子系统）或 2.0.877-7.1ubuntu6.1 或更高版本（对于 Focal ）：</block>
   <block id="f6802be29c6bca93d8f44768b0347ac9" category="paragraph">`dpkg -l open-iscsi`</block>
-  <block id="4dafc112897e668d8c968f7418829817" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`</block>
   <block id="b163c84ad8a4e55a17b51aad8074093e" category="list-text">确保已启用并运行 `open-iscsi` 和 `multipath-tools` ：</block>
   <block id="8741473f7a80f4dd83071161b2c95301" category="paragraph">`sudo systemctl status multipath-tools` `sudo systemctl enable -now open-iscsi.service` `sudo systemctl status open-iscsi`</block>
   <block id="1b757fe9c8a149de349a32b8d21feb54" category="admonition">对于 Ubuntu 18.04 ，您必须先使用 `iscsiadm` 发现目标端口，然后再启动 `open-iscsi` ， iSCSI 守护进程才能启动。您也可以将 `iscsi` 服务修改为自动启动 `iscsid` 。</block>
@@ -3063,4 +3054,16 @@
   <block id="415e3eb51625ca73d5e09053eea6a42b" category="section-title">21.10 中的新增功能</block>
   <block id="1b6ea3b57d23007f55ba778700bc369c" category="inline-link">文档版本更新版</block>
   <block id="af78f8cf3a2a8307db27d14c5642d95f" category="paragraph">对于先前版本，请参见<block ref="a3e07c08f1bbcd23d8422302f837e06b" category="inline-link-rx"></block>。</block>
+  <block id="822b439e1640423ccbcbed4f9075999d" category="list-text">NetApp/trident ： 21.10.0</block>
+  <block id="098ea8d7067b53d30d17fa3828abed7b" category="list-text">netapp/trident autosupport ： 21.10</block>
+  <block id="b0b4b8e52878f03279584f43bc961472" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2</block>
+  <block id="af4499fc8818e7a77f8ba226b45359df" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.3.0</block>
+  <block id="3c8910d4db724229b566887801de96bb" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0</block>
+  <block id="ad51ab91499291ae184dc614edbfe7df" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.3.0</block>
+  <block id="f948435808f18602f3b9e0f018da83dc" category="list-text">netapp/trident 操作符： 21.10.0 （可选）</block>
+  <block id="d7f860105f67679f001ef7c3ed889c0c" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.0.0</block>
+  <block id="681d715b456f6d29a501b8f132e941a1" category="cell">v1.22.0</block>
+  <block id="75419edaab27be09afdb3415e83d93f6" category="paragraph">`sudo mpathconf -enable -for_multipathd y -find_multipaths n`</block>
+  <block id="60c268e00db3206011b54b01705d7211" category="admonition">确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.</block>
+  <block id="b85c80e2af7e3d7dd06b874ed048d430" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`</block>
 </blocks>
