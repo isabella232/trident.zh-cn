@@ -15,7 +15,7 @@ summary: 了解有关 tridentctl 的更多信息， tridentctl 是一个命令�
 
 有关使用情况信息，请运行 `tridentctl -help` 。
 
-可用的命令和全局选项如下：
+可用的命令和全局选项包括：
 
 [listing]
 ----

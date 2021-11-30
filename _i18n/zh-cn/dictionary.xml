@@ -74,7 +74,6 @@
   <block id="7358b1fd077fa65f88fff87888fd2547" category="inline-link">Trident 安装程序包</block>
   <block id="4e49f66de2e2dc43c25555fe50639334" category="paragraph">。<block ref="5a856e83aada9750fe5389f8da94335b" category="inline-link-rx"></block> 包括一个命令行实用程序 `tridentctl` ，可用于轻松访问 Astra Trident 。具有足够权限的 Kubernetes 用户可以使用它来安装 Astra Trident ，并直接与其交互以管理包含 Astra Trident Pod 的命名空间。</block>
   <block id="8ca34267f11cb69ea424bc0320f0e295" category="paragraph">有关使用情况信息，请运行 `tridentctl -help` 。</block>
-  <block id="82afa66ce2496cc16fa1a7a5a6b3a000" category="paragraph">可用的命令和全局选项如下：</block>
   <block id="2dd878ee55d738aa02e6b0b162d45708" category="paragraph">可用命令：</block>
   <block id="4386bd8da14af923cbb7ac011ffc048e" category="list-text">`create` ：将资源添加到 Astra Trident 。</block>
   <block id="f40f9a4cf242d0355aaf8d9e06617436" category="list-text">`d删除` ：从 Astra Trident 中删除一个或多个资源。</block>
@@ -3066,4 +3065,5 @@
   <block id="75419edaab27be09afdb3415e83d93f6" category="paragraph">`sudo mpathconf -enable -for_multipathd y -find_multipaths n`</block>
   <block id="60c268e00db3206011b54b01705d7211" category="admonition">确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.</block>
   <block id="b85c80e2af7e3d7dd06b874ed048d430" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`</block>
+  <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
 </blocks>
