@@ -84,7 +84,7 @@ NOTE: 使用默认 CVS 服务类型（ `storageClass=software` ）部署后端�
 |===
 如果使用共享 VPC 网络，则必须同时指定 `projectNumber` 和 `hostProjectNumber` 。在这种情况下， `projectNumber` 是服务项目，而 `hostProjectNumber` 是主机项目。
 
-"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `Astra Trident 可以在属于同一 GCP 区域的 Kubernetes 节点上挂载和附加卷。`后端时，请务必确保 "apiRegion"` 与中部署的 Kubernetes 节点所在的区域匹配。在创建跨区域 Kubernetes 集群时，在 `apiRegion` 中创建的 CVS 卷只能用于在同一 GCP 区域的节点上计划的工作负载。
+"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `Astra Trident 可以在属于同一 GCP 区域的 Kubernetes 节点上挂载和附加卷。`后端时，请务必确保 "apiRegion"` 与中部署的 Kubernetes 节点所在的区域匹配。在创建跨区域 Kubernetes 集群时，在 `apiRegion` 中创建的 CVS 云卷只能用于在同一 GCP 区域的节点上计划的工作负载。
 
 
 NOTE: `storageClass` 是一个可选参数，您可以使用该参数选择所需的 https://cloud.google.com/solutions/partners/netapp-cloud-volumes/service-types?hl=en_US["CVS 服务类型"^]。您可以从基本 CVS 服务类型（ `storageClass=software` ）或 CVS-Performance 服务类型（ `storageClass=hardware` ）中进行选择， Trident 默认使用此服务类型。请 `指定一个 "apiRegion"` ，用于在后端定义中提供相应的 CVS `storageClass` 。

@@ -1692,7 +1692,6 @@
   <block id="e472abc54914c303a14c29f7e853a28a" category="cell">标准</block>
   <block id="e39a04a98487bb1fd113f63d47331565" category="cell">故障排除时要使用的调试标志。示例， ` \ ｛ "api" ： false ， "method ： true" ｝` 。除非您正在进行故障排除并需要详细的日志转储，否则请勿使用此功能。</block>
   <block id="e96ca96c25a07de5f03e2535b0c2f7fc" category="paragraph">如果使用共享 VPC 网络，则必须同时指定 `projectNumber` 和 `hostProjectNumber` 。在这种情况下， `projectNumber` 是服务项目，而 `hostProjectNumber` 是主机项目。</block>
-  <block id="f7a4728554be1aad54665d818b079348" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `Astra Trident 可以在属于同一 GCP 区域的 Kubernetes 节点上挂载和附加卷。`后端时，请务必确保 "apiRegion"` 与中部署的 Kubernetes 节点所在的区域匹配。在创建跨区域 Kubernetes 集群时，在 `apiRegion` 中创建的 CVS 卷只能用于在同一 GCP 区域的节点上计划的工作负载。</block>
   <block id="34c1edfb4ac8581528c3791be680aeb3" category="inline-link">CVS 服务类型</block>
   <block id="457c2f1fead29343fe617ea61b06aaff" category="admonition">`storageClass` 是一个可选参数，您可以使用该参数选择所需的<block ref="46dc1bdb584c5005116d9d2a4d889e1d" category="inline-link-rx"></block>。您可以从基本 CVS 服务类型（ `storageClass=software` ）或 CVS-Performance 服务类型（ `storageClass=hardware` ）中进行选择， Trident 默认使用此服务类型。请 `指定一个 "apiRegion"` ，用于在后端定义中提供相应的 CVS `storageClass` 。</block>
   <block id="8ae8f69dea7cff0617560bc62f9c8c21" category="admonition">Astra Trident 与 Google Cloud 上的基本 CVS 服务类型集成是一项 * 测试版功能 * ，不适用于生产工作负载。在 CVS-Performance 服务类型中， Trident 是 "* 完全支持 "* ，默认情况下会使用它。</block>
@@ -2553,7 +2552,6 @@
   <block id="5dd03e8d039863e563e049be198c3fd3" category="doc">发行说明</block>
   <block id="2e6ce374ac42de81aea6a3d682b92e33" category="paragraph">发行说明提供了有关最新版本的 Astra Trident 中的新增功能，增强功能和错误修复的信息。</block>
   <block id="e4c4d344a524d21b898e4d04b6539aa7" category="admonition">安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经过测试且受支持的版本。请注意， zip 文件的 ` 或 Extras` 部分中提供的 `macos` 二进制文件未经过测试或不受支持。</block>
-  <block id="c1f57827e94910e34725b8cf11415683" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 的一些最新特性和功能。</block>
   <block id="fdb053d6bab681277dcb47b3a45e2e85" category="section-title">自 Astra Trident 21.07 以来发生的变化</block>
   <block id="41cf959adc98386b54829d71a6ed5d37" category="section-title">修复</block>
   <block id="a6e7aa999ba654c6844672ae59f5137a" category="list-text">修复了问题描述，其中无法将 XFS 卷的克隆挂载到与源卷相同的节点上（ GitHub 问题描述 514 ）。</block>
@@ -2597,9 +2595,6 @@
   <block id="d090b5d97388b77aa02e5d1203c037a0" category="list-text"><block ref="d090b5d97388b77aa02e5d1203c037a0" category="inline-link-rx"></block></block>
   <block id="34c4dac14496e9c45d92f345d9392fc8" category="summary">如果您未运行最新版本，则可以参考有关先前版本的 Astra Trident 的文档。</block>
   <block id="ba09ee47d11962c1ccd13d7e1f10e6c5" category="doc">文档的早期版本</block>
-  <block id="a1509084d79ec341b5fa6440d1be8634" category="paragraph">如果您未运行最新版本，则可以参考先前版本的 Astra Trident 文档。</block>
-  <block id="aeeec433666472b603c30d4253b0ebf5" category="admonition">有关 Astra Trident 21.07 及相关修补程序版本的文档为<block ref="05716ac1466b0f4f02ba68e41e25a5d9" category="inline-link-rx"></block>。</block>
-  <block id="b2b6d326276756e4c6b75a232980415b" category="admonition">早期版本的 Astra Trident 的文档位于我们的原有文档站点中。</block>
   <block id="0c141ec81d4107f4c63fb0deb2531c0d" category="inline-link">Astra Trident 21.04</block>
   <block id="193bfae1ebda99fb7289c66fa69395a0" category="list-text"><block ref="193bfae1ebda99fb7289c66fa69395a0" category="inline-link-rx"></block></block>
   <block id="cba2c660d905f83e39a0d1771286c9e7" category="inline-link">Astra Trident 21.01</block>
@@ -3066,4 +3061,10 @@
   <block id="60c268e00db3206011b54b01705d7211" category="admonition">确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.</block>
   <block id="b85c80e2af7e3d7dd06b874ed048d430" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`</block>
   <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
+  <block id="ebb6d1f6681020925f184345a6a955aa" category="paragraph">如果您运行的不是 Astra Trident 21.10 ，则可以参考先前版本的文档。</block>
+  <block id="9f687b4e8cbf2fbb623b26b30fd92717" category="admonition">对于 21.07 之前的版本，您将重定向到旧版文档站点。</block>
+  <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
+  <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
+  <block id="287b5cd1a6f828768510ca46bbf05bd9" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `Astra Trident 可以在属于同一 GCP 区域的 Kubernetes 节点上挂载和附加卷。`后端时，请务必确保 "apiRegion"` 与中部署的 Kubernetes 节点所在的区域匹配。在创建跨区域 Kubernetes 集群时，在 `apiRegion` 中创建的 CVS 云卷只能用于在同一 GCP 区域的节点上计划的工作负载。</block>
+  <block id="9bbe247417ec112bd7f3be36a4035717" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。</block>
 </blocks>
