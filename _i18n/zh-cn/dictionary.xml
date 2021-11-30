@@ -3067,4 +3067,5 @@
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
   <block id="287b5cd1a6f828768510ca46bbf05bd9" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `Astra Trident 可以在属于同一 GCP 区域的 Kubernetes 节点上挂载和附加卷。`后端时，请务必确保 "apiRegion"` 与中部署的 Kubernetes 节点所在的区域匹配。在创建跨区域 Kubernetes 集群时，在 `apiRegion` 中创建的 CVS 云卷只能用于在同一 GCP 区域的节点上计划的工作负载。</block>
   <block id="9bbe247417ec112bd7f3be36a4035717" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。</block>
+  <block id="311847a44163ac40ccf470fcf81e74fb" category="admonition">如果在 GKE- 环境中设置按需卷快照，请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
 </blocks>
