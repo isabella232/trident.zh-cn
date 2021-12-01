@@ -1489,7 +1489,6 @@
   <block id="74aefc05d193afd5c50a0df882997656" category="paragraph">Astra Trident 支持多个容器引擎和流程编排程序，其中包括：</block>
   <block id="13ab6ee12e5d62b771a28d7c3a8de9fc" category="list-text">Kubernetes 1.17 或更高版本（最新版本： 1.22 ）</block>
   <block id="37696641960d6c73a7dadab603c1877e" category="list-text">Mirantis Kubernetes Engine 3.4</block>
-  <block id="6835e07bc055fcef1cc48dc5a6f625a8" category="list-text">OpenShift 4.4 ， 4.5 ， 4.6 （ 4.6.8+ ）， 4.7 ， 4.8 （最新的 4.8 ）</block>
   <block id="201eb37826a33e35adff9119f25946bd" category="paragraph">以下版本支持 Trident 操作符：</block>
   <block id="5596419ed8318cabbcb138ef27fd3035" category="inline-link">错误修复公告</block>
   <block id="f2f0da9b50bd2001bc802c121fc76254" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.6.8 及更高版本上使用 Astra Trident 。</block>
@@ -3068,4 +3067,5 @@
   <block id="287b5cd1a6f828768510ca46bbf05bd9" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `Astra Trident 可以在属于同一 GCP 区域的 Kubernetes 节点上挂载和附加卷。`后端时，请务必确保 "apiRegion"` 与中部署的 Kubernetes 节点所在的区域匹配。在创建跨区域 Kubernetes 集群时，在 `apiRegion` 中创建的 CVS 云卷只能用于在同一 GCP 区域的节点上计划的工作负载。</block>
   <block id="9bbe247417ec112bd7f3be36a4035717" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。</block>
   <block id="311847a44163ac40ccf470fcf81e74fb" category="admonition">如果在 GKE- 环境中设置按需卷快照，请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
+  <block id="f2e9bdbb5c832d5c2334a0d5f04ac327" category="list-text">OpenShift 4.4 ， 4.5 ， 4.6 （ 4.6.8+ ）， 4.7 ， 4.8 ， 4.9 （最新 4.9 ）</block>
 </blocks>
