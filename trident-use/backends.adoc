@@ -16,7 +16,7 @@ summary: 后端定义了 Astra Trident 与存储系统之间的关系。它告�
 * link:aws.html["为 AWS 后端配置 Cloud Volumes Service"^]
 * link:gcp.html["配置适用于 Google 云平台的 Cloud Volumes Service 后端"^]
 * link:element.html["配置 NetApp HCI 或 SolidFire 后端"^]
-* link:ontap-nas.html["使用 ONTAP NAS 驱动程序配置后端"^]
-* link:ontap-san.html["使用 ONTAP SAN 驱动程序配置后端"^]
+* link:ontap-nas.html["使用 ONTAP 或 Cloud Volumes ONTAP NAS 驱动程序配置后端"^]
+* link:ontap-san.html["使用 ONTAP 或 Cloud Volumes ONTAP SAN 驱动程序配置后端"^]
 * link:trident-fsx.html["将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSX 结合使用"^]
 
