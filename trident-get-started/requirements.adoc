@@ -128,11 +128,11 @@ Astra Trident 还可与其他许多完全托管和自我管理的 Kubernetes 产
 |===
 
 
-== 支持的主机操作系统
+== 已测试主机操作系统
 
-默认情况下， Astra Trident 本身在容器中运行，因此它将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。
+默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。
 
-这些是已知有效的 Linux 分发版：
+虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：
 
 * Debian 8 或更高版本
 * RedHat CoreOS 4.2 和 4.3

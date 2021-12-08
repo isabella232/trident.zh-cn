@@ -1514,9 +1514,6 @@
   <block id="1f7219b07d5bce7feec002a9f4dc2201" category="cell">Trident 运算符</block>
   <block id="bf0d42cfb33347700a1060d7b0cf07c1" category="cell">自动工作节点准备（测试版）</block>
   <block id="443432948b68bb63d707ce7ecc4a021a" category="cell">CSI 拓扑</block>
-  <block id="9d731f8383dd11a9e23415f4e5621ee6" category="section-title">支持的主机操作系统</block>
-  <block id="462b8344a4e3b491690838228ddbedb5" category="paragraph">默认情况下， Astra Trident 本身在容器中运行，因此它将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
-  <block id="1def7d1add436c6afb595676d8c32a2f" category="paragraph">这些是已知有效的 Linux 分发版：</block>
   <block id="6de5d05951877f2b0040daec4067aaf7" category="list-text">Debian 8 或更高版本</block>
   <block id="10ba4d981cc0f1ae131e16a64d3c2687" category="list-text">RedHat CoreOS 4.2 和 4.3</block>
   <block id="4fa506be8cc1c8c936a3eff8a374fe26" category="list-text">RHEL 或 CentOS 7.4 或更高版本</block>
@@ -3074,4 +3071,7 @@
   <block id="f4f833852bac4217eff92d53c1bd24dc" category="list-text"><block ref="f4f833852bac4217eff92d53c1bd24dc" category="inline-link-macro-rx"></block></block>
   <block id="df7d9b009cdb0a2623872cb3f905e161" category="list-text"><block ref="df7d9b009cdb0a2623872cb3f905e161" category="inline-link-macro-rx"></block></block>
   <block id="4d80e2460d711b841338dfbeea2ca8c1" category="paragraph">了解如何使用 ONTAP 和 Cloud Volumes ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
+  <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">已测试主机操作系统</block>
+  <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
+  <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
 </blocks>
