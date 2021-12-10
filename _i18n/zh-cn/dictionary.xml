@@ -3074,4 +3074,5 @@
   <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">已测试主机操作系统</block>
   <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
   <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
+  <block id="e088e1f9fcd6d6a9509bd529db24c8f3" category="admonition">如果尚未为 Trident 创建命名空间，则可以将 ` -create-namespace` 参数添加到 `helm install` 命令中。然后， Helm 将自动为您创建命名空间。</block>
 </blocks>
