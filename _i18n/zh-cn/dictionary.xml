@@ -1041,7 +1041,6 @@
   <block id="4ff78ba07210a8b4db65f6ef62b4e1b4" category="admonition">可以使用安全角色的登录凭据（用户名 / 密码）或使用 ONTAP 集群上安装的私钥和证书对 ONTAP 后端进行身份验证。您可以使用 `tridentctl update backend` 来更新现有后端，以便从一种身份验证模式移至另一种身份验证模式。</block>
   <block id="d00888bc1409d1c598b90af117bd3551" category="summary">在 Astra Trident 中配置有两个主要阶段。第一阶段会将存储类与一组合适的后端存储池相关联，并在配置之前进行必要的准备。第二阶段包括卷创建本身，需要从与待定卷的存储类关联的存储池中选择一个存储池。</block>
   <block id="8a7354f894ef62fb3f076510315bf206" category="doc">Astra Trident 简介</block>
-  <block id="cac3274b477ab652946784fa7e4d61e7" category="paragraph">Astra Trident 是一个由 NetApp 维护的完全受支持的开源项目。它经过全新设计，可帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
   <block id="3777daa0663e4d3f177a85bc67443c32" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。</block>
   <block id="7c738d9c13e4e5770c6b455ab345afd7" category="paragraph">Astra Trident 也是 NetApp Astra 的一项基础技术，利用 NetApp 行业领先的快照，备份，复制和克隆数据管理技术，可满足 Kubernetes 工作负载的数据保护，灾难恢复，可移动性和迁移用例。</block>
   <block id="4bd05efa612e48dd723de2bdd29f88e2" category="section-title">支持的 Kubernetes 集群架构</block>
@@ -1250,7 +1249,6 @@
   <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="summary">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律声明</block>
   <block id="c59ae8d7beeb519a23478ab048af482c" category="paragraph"><block ref="c59ae8d7beeb519a23478ab048af482c" category="inline-link-macro-rx"></block></block>
-  <block id="6f2ac1cf1da8ec34232c651d4bba0149" category="paragraph"><block ref="6f2ac1cf1da8ec34232c651d4bba0149" category="inline-link-macro-rx"></block></block>
   <block id="55847a7d73d44b84804f47ee7863b80f" category="summary">部署 Astra Trident 后，您可以继续创建后端，创建存储类，配置卷以及将卷挂载到 Pod 中。</block>
   <block id="7c3983f18df54b898b386f7cf4a7d05c" category="doc">接下来是什么？</block>
   <block id="0b0ca016c0d99a4845777aeeebb032ac" category="section-title">第 1 步：创建后端</block>
@@ -3076,4 +3074,11 @@
   <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
   <block id="e088e1f9fcd6d6a9509bd529db24c8f3" category="admonition">如果尚未为 Trident 创建命名空间，则可以将 ` -create-namespace` 参数添加到 `helm install` 命令中。然后， Helm 将自动为您创建命名空间。</block>
   <block id="94912f7fb206038e8527957b44dfbf25" category="paragraph">此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。</block>
+  <block id="d6601a8eb863a49ea065281f70a5956b" category="summary">Astra Trident 是一个受全面支持的开源项目，由 NetApp 作为 Astra 产品系列的一部分进行维护。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
+  <block id="bb453665f57f6823950856f7a9bad0c3" category="inline-link-macro">Astra 产品系列</block>
+  <block id="9f469e7cb13566d8a664e8ab4d46f9e1" category="paragraph">Astra Trident 是一个完全受支持的开源项目，由 NetApp 在中维护 <block ref="a1650a2308dbba03b9ca704756a5a37d" category="inline-link-macro-rx"></block>。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
+  <block id="3d9f18019f5d8f128c54babba33ccb6a" category="inline-link">NetApp Astra 产品系列简介</block>
+  <block id="553b525c83fb384539ce2a25b030062f" category="list-text"><block ref="553b525c83fb384539ce2a25b030062f" category="inline-link-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
+  <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
 </blocks>
