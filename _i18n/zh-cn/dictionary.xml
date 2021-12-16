@@ -873,7 +873,6 @@
   <block id="238e63aecc23c1bc2611ca883f075f1f" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如，如果要从 21.01 升级，请运行以下命令：</block>
   <block id="caa6267a6d2c9b631544a2ce0d5e4180" category="list-text">（可选）如果要修改安装参数，请编辑安装 Trident 时创建的 `TridentOrchestrator` 对象。这些更改可能包括修改自定义 Trident 映像，从中提取容器映像的专用映像注册表，启用调试日志或指定映像提取密钥等。</block>
   <block id="09b615e18699c6675b3705c00a495375" category="list-text">使用为新版本设置 Trident 操作符的 `bundle.yaml` 文件安装 Astra Trident 。运行以下命令：</block>
-  <block id="162868582f509647f4b899829f6e41f6" category="paragraph">在此步骤中， 21.07.1 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
   <block id="d06b5297af318d2581021098f6b0d44d" category="section-title">升级命名空间范围的操作员安装</block>
   <block id="ddfa75d059a999aedec16392aae03bc4" category="paragraph">要从使用命名空间范围的运算符（版本 20.07 至 20.10 ）安装的 Astra Trident 实例进行升级，需要遵循以下步骤：</block>
   <block id="edf5c542759186ded2c7eeaae6b340a5" category="list-text">验证现有 Trident 安装的状态。要执行此操作，请检查 `TridentProvider` 的 * 状态 * 。状态应为 `installed` 。</block>
@@ -3081,4 +3080,5 @@
   <block id="553b525c83fb384539ce2a25b030062f" category="list-text"><block ref="553b525c83fb384539ce2a25b030062f" category="inline-link-rx"></block></block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
   <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
+  <block id="4546bbd46f06879787b5670b13277b28" category="paragraph">在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
 </blocks>
