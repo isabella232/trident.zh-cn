@@ -2442,27 +2442,20 @@
   <block id="e07778d10cef90430253876cba7157e4" category="cell">`租户 ID` 。</block>
   <block id="2975d48342e428a3b18123f85ed0ecb5" category="cell">应用程序注册中的租户 ID</block>
   <block id="949ba1045db0d48bd189044e672d8097" category="cell">`客户端 ID` 。</block>
-  <block id="85bfe817bf2347bf6d5dcea4b86ade72" category="cell">应用程序注册中的客户端 ID</block>
   <block id="56ef18e84ab36c2bdc4546e6a2756673" category="cell">`clientSecret` 。</block>
   <block id="85f484f0892a96287b6224ddd3c5fbb2" category="cell">应用程序注册中的客户端密钥</block>
   <block id="1c65f12b4d30114593cc01384938cb5f" category="cell">`S标准` ， `高级` 或 `超级` 之一</block>
   <block id="b21b08bb55acd409e40e9b45edd3bb34" category="cell">"" （随机）</block>
   <block id="fc7dd5b65d21ee7272a067c9404a8498" category="cell">`位置`</block>
   <block id="8fce436e09a08bd124727374d3e1d1d5" category="cell">要创建新卷的 Azure 位置的名称</block>
-  <block id="a5e65d71b5d7719b3a51518133fd2538" category="cell">"" （随机）</block>
   <block id="32ef1af5ccda7c2f6d85e55f5034f105" category="cell">`virtualNetwork`</block>
   <block id="10afd0959cfa4a53bce9c8d395c40c48" category="cell">具有委派子网的虚拟网络的名称</block>
   <block id="ec045173f4df65e5e8951c3ca9579945" category="cell">`ssubnet`</block>
   <block id="0b8deda0ecc5080e8c0ed0b475e983ba" category="cell">委派给 `Microsoft.Netapp/volumes` 的子网的名称</block>
-  <block id="23ef4149f946c881b1c40a6ac1510554" category="admonition">修改现有后端的 `capacityPools` 字段以减少用于配置的容量池的数量会导致孤立卷，这些卷会在不再属于 `capacityPools` 列表的容量池 / 池上配置。对这些孤立卷执行克隆操作将失败。</block>
   <block id="9440dab4b1faaad2a053d658b9e70623" category="admonition">如果在尝试创建 PVC 时遇到 " 未找到容量池 " 错误，则您的应用程序注册可能没有关联的所需权限和资源（子网，虚拟网络，容量池）。启用调试后， Astra Trident 将记录在创建后端时发现的 Azure 资源。请务必检查是否正在使用适当的角色。</block>
-  <block id="ae9b95a558c60bdc3b5682a1ca2625ea" category="admonition">如果要使用 NFS 4.1 挂载卷，可以在逗号分隔的挂载选项列表中包含 ``nfsver=4`` 以选择 NFS v4.1 。存储类中设置的任何挂载选项都会覆盖后端配置文件中设置的挂载选项。</block>
   <block id="e5ac299cc3b14e1fac29518569ca9bb1" category="cell">新卷的默认大小</block>
   <block id="dbb358dadb4da7e240eeaa0513a064e1" category="admonition">对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对存储池中创建的所有卷进行分组。这样，您就可以根据后端配置中提供的一组可自定义标签来方便地区分卷了。</block>
-  <block id="fb10fd1921fe8ac41f7ce51b41dd3320" category="paragraph">这是绝对的最低后端配置。借助此配置， Astra Trident 可以发现全球每个位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个上。</block>
   <block id="e43b3577dd4b74a4cfa994a56e8138b8" category="paragraph">当您刚开始使用 ANF 并尝试执行相关操作时，此配置是理想的选择，但实际上，您希望为所配置的卷提供更多范围界定。</block>
-  <block id="04e5e56f251267658dc57f90ae659538" category="section-title">示例 2 ：单个位置和特定服务级别配置</block>
-  <block id="93d594d992801662d9e5e5d1ccf8bb86" category="paragraph">此后端配置会将卷放置在 Azure 的 `东向` 位置的 `高级` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。</block>
   <block id="725ae241ec74eed978f0b099030236b8" category="section-title">示例 3 ：高级配置</block>
   <block id="a83f4a534ccef7ac1d209fb0015cd907" category="paragraph">此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。</block>
   <block id="198188b722e4e8ee2004b3bd2a9348ed" category="paragraph">此后端配置可在一个文件中定义多个存储池。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。</block>
@@ -3038,7 +3031,6 @@
   <block id="6a304a6cf7cd8c90bac892ab0fb9c134" category="paragraph">对于 Astra Trident 20.07 和 20.10 ，请使用 `tprov` 代替 `Torc` 。</block>
   <block id="79b91d0489c081de6794796638793787" category="list-text">随 Helm 一起安装</block>
   <block id="d356d628089d439d75e3f85564372658" category="list-text">使用 tridentctl 安装</block>
-  <block id="415e3eb51625ca73d5e09053eea6a42b" category="section-title">21.10 中的新增功能</block>
   <block id="1b6ea3b57d23007f55ba778700bc369c" category="inline-link">文档版本更新版</block>
   <block id="af78f8cf3a2a8307db27d14c5642d95f" category="paragraph">对于先前版本，请参见<block ref="a3e07c08f1bbcd23d8422302f837e06b" category="inline-link-rx"></block>。</block>
   <block id="822b439e1640423ccbcbed4f9075999d" category="list-text">NetApp/trident ： 21.10.0</block>
@@ -3081,4 +3073,39 @@
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
   <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
   <block id="4546bbd46f06879787b5670b13277b28" category="paragraph">在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
+  <block id="5fe26149fa172056aee5f841415c55fa" category="admonition">Astra Trident 不支持手动 QoS 容量池。</block>
+  <block id="016a4b469916e37291cfe2f7fab49aaf" category="cell">`resourceGroups`</block>
+  <block id="66d09fbe1165f3d10b368cbe0cc029f4" category="cell">用于筛选已发现资源的资源组列表</block>
+  <block id="36cbcb8a57112362b05d06b9fe037a6e" category="cell">"[]" （无筛选器）</block>
+  <block id="d4b4343f054233d7d339bb1501425fd4" category="cell">`netappAccounts`</block>
+  <block id="61476ef20a8015760b9cb3c1bd0ea435" category="cell">用于筛选已发现资源的 NetApp 帐户列表</block>
+  <block id="722c7b4409fa4d1fe6aaa2902ae66473" category="cell">`容量池`</block>
+  <block id="225abbb59bc0bbaa2a5852ada333b31b" category="cell">用于筛选已发现资源的容量池列表</block>
+  <block id="f2a5b99a63a463017b3e5f5848444d9a" category="cell">"[]" （无筛选器，随机）</block>
+  <block id="9d4568c009d203ab10e33ea9953a0264" category="cell">""</block>
+  <block id="91b3c29beb3641dce2fcf3d2382fac4f" category="cell">故障排除时要使用的调试标志。示例， ` \ ｛ "api" ： false ， "method ： true ， "discovery" ： true ｝` 。除非您正在进行故障排除并需要详细的日志转储，否则请勿使用此功能。</block>
+  <block id="b025cb91ea905e0ae1a879fe81e5ff18" category="admonition">如果要使用 NFS 4.1 挂载卷，可以在逗号分隔的挂载选项列表中包含 ``nfsver=4`` 以选择 NFS v4.1 。存储类中设置的任何挂载选项都会覆盖后端配置文件中设置的挂载选项。</block>
+  <block id="eaea97dbd365f00421eb397e8eabeebf" category="paragraph">可以使用短名称或完全限定名称指定 `resourceGroups` ， `netappAccounts` ， `capacityPools` ， `virtualNetwork` 和 `ssubnet` 的值。短名称可以与多个同名资源匹配，因此在大多数情况下，建议使用完全限定名称。`resourceGroups` ， `netappAccounts` 和 `capacityPools` 值是一种筛选器，可将发现的一组资源限制为此存储后端提供的资源，并可通过任意组合方式指定。完全限定名称的格式如下：</block>
+  <block id="520d0db389f362bf79ef56ca0af3dcab" category="cell">格式。</block>
+  <block id="dde92bca1b59f0db813ef42a2688752e" category="cell">Resource group</block>
+  <block id="671e72ca3ef632233f4c27dfef1ec109" category="cell">&lt; 资源组 &gt;</block>
+  <block id="ac252743de820aac9183d9f76d4bed67" category="cell">NetApp 帐户</block>
+  <block id="2bf2783c6d0d867a9fe629138b38bd84" category="cell">&lt; 资源组 &gt;/&lt; NetApp 帐户 &gt;</block>
+  <block id="9eea1c08013c37f1499f428378764a08" category="cell">容量池</block>
+  <block id="01c656d6b97f45a90022ee307283ae01" category="cell">&lt; 资源组 &gt;/&lt; NetApp 帐户 &gt;/&lt; 容量池 &gt;</block>
+  <block id="bf76cafc47141522dca89c4d6e25b822" category="cell">虚拟网络</block>
+  <block id="8c9309282517a29ad09b10443d825c7c" category="cell">&lt; 资源组 &gt;/&lt; 虚拟网络 &gt;</block>
+  <block id="9770c6469e9d27585d6c0c389ede7bc3" category="cell">Subnet</block>
+  <block id="7addf9faaab78a084548d05b695cd2e2" category="cell">&lt; 资源组 &gt;/&lt; 虚拟网络 &gt;/&lt; 子网 &gt;</block>
+  <block id="3e71a01ee522f366b6eeb2990e170fde" category="cell">新卷的 UNIX 权限（ 4 个八进制数字）</block>
+  <block id="976a6dc52dbcabb541efa0a91e922604" category="cell">"" （预览功能，需要在订阅中列入白名单）</block>
+  <block id="54042b89155d99a3568a196cb5ff1da8" category="paragraph">这是绝对的最低后端配置。使用此配置， Astra Trident 会发现在已配置位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个池和子网上。</block>
+  <block id="a78703e6fcb2511d5a565496df5b2082" category="section-title">示例 2 ：使用容量池筛选器的特定服务级别配置</block>
+  <block id="6da664b0342ea1be008211c33f1eb020" category="paragraph">此后端配置会将卷放置在 Azure 的 `Easus` 位置的 `超高` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。</block>
+  <block id="def7176d1592ea5f9d6a93b9083b78be" category="section-title">21.10.1 中的新增功能</block>
+  <block id="e56bc548e9811e07f1c872158876a75e" category="section-title">自 Astra Trident 21.10.0 以来的变化</block>
+  <block id="cdb544a92bee555749f43046d53ef34e" category="admonition">v21.10.0 版本具有一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时， Trident 控制器可以将其置于 CrashLoopBackOff 状态。此问题描述在 v21.10.1 中得到了修复（ GitHub 问题描述 669 ）。</block>
+  <block id="cd1bf2431d703fd3c62a278b9c812d56" category="list-text">修复了在 GCP CVS 后端导入卷导致导入失败的潜在争用情况。</block>
+  <block id="8e1e1dad95de3dc781f25f58483acdf3" category="list-text">修复了一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时，可能会将 Trident 控制器置于 CrashLoopBackOff 状态（ GitHub 问题描述 669 ）。</block>
+  <block id="d7c32cb5ff2be4aaff3a8eaea9d18e0d" category="list-text">修复了在未指定 SVM 名称的情况下不再发现 SVM 的问题描述（ GitHub 问题描述 612 ）。</block>
 </blocks>

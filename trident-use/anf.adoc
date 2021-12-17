@@ -30,7 +30,7 @@ TIP: 要了解有关 Azure 内置角色的详细信息，请参见 https://docs.
 根据后端配置（子网，虚拟网络，服务级别和位置）， Trident 会在请求位置提供的容量池上创建 ANF 卷，并与请求的服务级别和子网匹配。
 
 
-NOTE: Astra Trident 21.04.0 及更早版本不支持手动 QoS 容量池。
+NOTE: Astra Trident 不支持手动 QoS 容量池。
 
 
 
@@ -64,13 +64,22 @@ NOTE: Astra Trident 21.04.0 及更早版本不支持手动 QoS 容量池。
 | `clientSecret` 。 | 应用程序注册中的客户端密钥 |  
 
 
+| `位置` | 要创建新卷的 Azure 位置的名称 |  
+
+
 | `s服务级别` | `S标准` ， `高级` 或 `超级` 之一 | "" （随机） 
 
 
-| `位置` | 要创建新卷的 Azure 位置的名称 | "" （随机） 
+| `resourceGroups` | 用于筛选已发现资源的资源组列表 | "[]" （无筛选器） 
 
 
-| `virtualNetwork` | 具有委派子网的虚拟网络的名称 | "" （随机） 
+| `netappAccounts` | 用于筛选已发现资源的 NetApp 帐户列表 | "[]" （无筛选器） 
+
+
+| `容量池` | 用于筛选已发现资源的容量池列表 | "[]" （无筛选器，随机） 
+
+
+| `virtualNetwork` | 具有委派子网的虚拟网络的名称 | "" 
 
 
 | `ssubnet` | 委派给 `Microsoft.Netapp/volumes` 的子网的名称 | "" （随机） 
@@ -82,17 +91,35 @@ NOTE: Astra Trident 21.04.0 及更早版本不支持手动 QoS 容量池。
 | `limitVolumeSize` | 如果请求的卷大小超过此值，则配置失败 | "" （默认情况下不强制实施） 
 
 
-| `debugTraceFlags` | 故障排除时要使用的调试标志。示例， ` \ ｛ "api" ： false ， "method ： true" ｝` 。除非您正在进行故障排除并需要详细的日志转储，否则请勿使用此功能。 | 空 
+| `debugTraceFlags` | 故障排除时要使用的调试标志。示例， ` \ ｛ "api" ： false ， "method ： true ， "discovery" ： true ｝` 。除非您正在进行故障排除并需要详细的日志转储，否则请勿使用此功能。 | 空 
 |===
-
-WARNING: 修改现有后端的 `capacityPools` 字段以减少用于配置的容量池的数量会导致孤立卷，这些卷会在不再属于 `capacityPools` 列表的容量池 / 池上配置。对这些孤立卷执行克隆操作将失败。
-
 
 WARNING: 如果在尝试创建 PVC 时遇到 " 未找到容量池 " 错误，则您的应用程序注册可能没有关联的所需权限和资源（子网，虚拟网络，容量池）。启用调试后， Astra Trident 将记录在创建后端时发现的 Azure 资源。请务必检查是否正在使用适当的角色。
 
 
 NOTE: 如果要使用 NFS 4.1 挂载卷，可以在逗号分隔的挂载选项列表中包含 ``nfsver=4`` 以选择 NFS v4.1 。存储类中设置的任何挂载选项都会覆盖后端配置文件中设置的挂载选项。
 
+可以使用短名称或完全限定名称指定 `resourceGroups` ， `netappAccounts` ， `capacityPools` ， `virtualNetwork` 和 `ssubnet` 的值。短名称可以与多个同名资源匹配，因此在大多数情况下，建议使用完全限定名称。`resourceGroups` ， `netappAccounts` 和 `capacityPools` 值是一种筛选器，可将发现的一组资源限制为此存储后端提供的资源，并可通过任意组合方式指定。完全限定名称的格式如下：
+
+[cols="2"]
+|===
+| Type | 格式。 
+
+
+| Resource group | < 资源组 > 
+
+
+| NetApp 帐户 | < 资源组 >/< NetApp 帐户 > 
+
+
+| 容量池 | < 资源组 >/< NetApp 帐户 >/< 容量池 > 
+
+
+| 虚拟网络 | < 资源组 >/< 虚拟网络 > 
+
+
+| Subnet | < 资源组 >/< 虚拟网络 >/< 子网 > 
+|===
 您可以通过在配置文件的特殊部分中指定以下选项来控制默认配置每个卷的方式。请参见以下配置示例。
 
 [cols=",,"]
@@ -104,6 +131,9 @@ NOTE: 如果要使用 NFS 4.1 挂载卷，可以在逗号分隔的挂载选项�
 
 
 | `s大小` | 新卷的默认大小 | "100 克 " 
+
+
+| `unixPermissions` | 新卷的 UNIX 权限（ 4 个八进制数字） | "" （预览功能，需要在订阅中列入白名单） 
 |===
 `exportRule` 值必须是以 CIDR 表示法表示的 IPv4 地址或 IPv4 子网任意组合的逗号分隔列表。
 
@@ -114,7 +144,7 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
 
 == 示例 1 ：最低配置
 
-这是绝对的最低后端配置。借助此配置， Astra Trident 可以发现全球每个位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个上。
+这是绝对的最低后端配置。使用此配置， Astra Trident 会发现在已配置位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个池和子网上。
 
 当您刚开始使用 ANF 并尝试执行相关操作时，此配置是理想的选择，但实际上，您希望为所配置的卷提供更多范围界定。
 
@@ -126,14 +156,15 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
     "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
     "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
     "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
-    "clientSecret": "SECRET"
+    "clientSecret": "SECRET",
+    "location": "eastus"
 }
 ----
 
 
-== 示例 2 ：单个位置和特定服务级别配置
+== 示例 2 ：使用容量池筛选器的特定服务级别配置
 
-此后端配置会将卷放置在 Azure 的 `东向` 位置的 `高级` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。
+此后端配置会将卷放置在 Azure 的 `Easus` 位置的 `超高` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。
 
 [listing]
 ----
@@ -145,7 +176,11 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
         "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
         "clientSecret": "SECRET",
         "location": "eastus",
-        "serviceLevel": "Premium"
+        "serviceLevel": "Ultra",
+        "capacityPools": [
+            "application-group-1/account-1/ultra-1",
+            "application-group-1/account-1/ultra-2"
+        ],
     }
 ----
 
@@ -164,14 +199,19 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
         "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
         "clientSecret": "SECRET",
         "location": "eastus",
-        "serviceLevel": "Premium",
+        "serviceLevel": "Ultra",
+        "capacityPools": [
+            "application-group-1/account-1/ultra-1",
+            "application-group-1/account-1/ultra-2"
+        ],
         "virtualNetwork": "my-virtual-network",
         "subnet": "my-subnet",
         "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
         "limitVolumeSize": "500Gi",
         "defaults": {
             "exportRule": "10.0.0.0/24,10.0.1.0/24,10.0.2.100",
-            "size": "200Gi"
+            "size": "200Gi",
+            "unixPermissions": "0777"
         }
     }
 ----
@@ -190,30 +230,34 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
         "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
         "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
         "clientSecret": "SECRET",
+        "location": "eastus",
+        "resourceGroups": ["application-group-1"],
         "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
         "labels": {
             "cloud": "azure"
         },
-        "location": "eastus",
 
         "storage": [
             {
                 "labels": {
                     "performance": "gold"
                 },
-                "serviceLevel": "Ultra"
+                "serviceLevel": "Ultra",
+                "capacityPools": ["ultra-1", "ultra-2"]
             },
             {
                 "labels": {
                     "performance": "silver"
                 },
-                "serviceLevel": "Premium"
+                "serviceLevel": "Premium",
+                "capacityPools": ["premium-1"]
             },
             {
                 "labels": {
                     "performance": "bronze"
                 },
                 "serviceLevel": "Standard",
+                "capacityPools": ["standard-1", "standard-2"]
             }
         ]
     }
