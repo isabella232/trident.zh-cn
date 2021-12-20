@@ -3,7 +3,6 @@
   <block id="8447c4879970f03c99a2bec36a05c141" category="summary">如果您希望与 Astra Trident 的 REST API 进行交互，则可以直接使用 REST 端点。</block>
   <block id="a0ebcf8495639418ba9d4b85dbb67b8b" category="doc">Astra Trident REST API</block>
   <block id="319c1a7b5479ffa2a028b658ad5b7033" category="inline-link-macro">tridentctl 命令和选项</block>
-  <block id="57138e91e6168cecf9d0dad2afd12735" category="paragraph">同时 <block ref="6ad29d013fc003c1446dfe4715881765" category="inline-link-macro-rx"></block> 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。</block>
   <block id="d7c9226cc31c5b12ee3114bc7014c075" category="paragraph">这对于在非 Kubernetes 部署中使用 Astra Trident 作为独立二进制文件的高级安装非常有用。</block>
   <block id="ff307287df4629ad827fba73568b9a58" category="paragraph">为了提高安全性，在 Pod 内部运行时， Astra Trident 的 `reST API` 默认限制为 localhost 。要更改此行为，您需要在其 Pod 配置中设置 Astra Trident 的 ` 地址` 参数。</block>
   <block id="8b3c7aa88e751573c842f17535525f19" category="paragraph">API 的工作原理如下：</block>
@@ -3108,4 +3107,5 @@
   <block id="cd1bf2431d703fd3c62a278b9c812d56" category="list-text">修复了在 GCP CVS 后端导入卷导致导入失败的潜在争用情况。</block>
   <block id="8e1e1dad95de3dc781f25f58483acdf3" category="list-text">修复了一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时，可能会将 Trident 控制器置于 CrashLoopBackOff 状态（ GitHub 问题描述 669 ）。</block>
   <block id="d7c32cb5ff2be4aaff3a8eaea9d18e0d" category="list-text">修复了在未指定 SVM 名称的情况下不再发现 SVM 的问题描述（ GitHub 问题描述 612 ）。</block>
+  <block id="2f1ab5b99f1893144b69718c274415f4" category="paragraph">同时 <block ref="a3b750e7ac33c9792c64627692f306aa" category="inline-link-macro-rx"></block> 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。</block>
 </blocks>
