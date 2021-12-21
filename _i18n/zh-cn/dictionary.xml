@@ -1039,7 +1039,6 @@
   <block id="4ff78ba07210a8b4db65f6ef62b4e1b4" category="admonition">可以使用安全角色的登录凭据（用户名 / 密码）或使用 ONTAP 集群上安装的私钥和证书对 ONTAP 后端进行身份验证。您可以使用 `tridentctl update backend` 来更新现有后端，以便从一种身份验证模式移至另一种身份验证模式。</block>
   <block id="d00888bc1409d1c598b90af117bd3551" category="summary">在 Astra Trident 中配置有两个主要阶段。第一阶段会将存储类与一组合适的后端存储池相关联，并在配置之前进行必要的准备。第二阶段包括卷创建本身，需要从与待定卷的存储类关联的存储池中选择一个存储池。</block>
   <block id="8a7354f894ef62fb3f076510315bf206" category="doc">Astra Trident 简介</block>
-  <block id="3777daa0663e4d3f177a85bc67443c32" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。</block>
   <block id="7c738d9c13e4e5770c6b455ab345afd7" category="paragraph">Astra Trident 也是 NetApp Astra 的一项基础技术，利用 NetApp 行业领先的快照，备份，复制和克隆数据管理技术，可满足 Kubernetes 工作负载的数据保护，灾难恢复，可移动性和迁移用例。</block>
   <block id="4bd05efa612e48dd723de2bdd29f88e2" category="section-title">支持的 Kubernetes 集群架构</block>
   <block id="85b179f2c10f76f0171b4d9d3f2d5171" category="paragraph">以下 Kubernetes 架构支持 Astra Trident ：</block>
@@ -3108,4 +3107,40 @@
   <block id="8e1e1dad95de3dc781f25f58483acdf3" category="list-text">修复了一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时，可能会将 Trident 控制器置于 CrashLoopBackOff 状态（ GitHub 问题描述 669 ）。</block>
   <block id="d7c32cb5ff2be4aaff3a8eaea9d18e0d" category="list-text">修复了在未指定 SVM 名称的情况下不再发现 SVM 的问题描述（ GitHub 问题描述 612 ）。</block>
   <block id="2f1ab5b99f1893144b69718c274415f4" category="paragraph">同时 <block ref="a3b750e7ac33c9792c64627692f306aa" category="inline-link-macro-rx"></block> 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。</block>
+  <block id="fdc319eb193763016bf0bff75d0c0abc" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）， Astra 数据存储以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。</block>
+  <block id="3381a309aeefac050f7f5319f6757afe" category="summary">了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。</block>
+  <block id="83caf3e7a6bf2dcce3d7d6eab3c8905c" category="doc">配置 Astra 数据存储后端</block>
+  <block id="0b1c01b976c493a4217d6f4b772849b0" category="paragraph">了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。</block>
+  <block id="8035d5d39b2b48f6ec1a3133b688513c" category="inline-link">Astra 数据存储</block>
+  <block id="efd5e8dbeec263f783a6cd6ac036c6a9" category="paragraph">以配置和使用<block ref="a026c15058b831feb6de8c4c836387ae" category="inline-link-rx"></block> 后端，您需要满足以下要求：</block>
+  <block id="0033a0be965b04e889c13f8699fa52ca" category="inline-link-macro">Astra Data Store 预览文档</block>
+  <block id="8845f71e636beb45af772d2d14cf557b" category="list-text">支持的 ADS 存储系统。请参见 <block ref="1a14c2d84d3a02888bdf552ab07570ae" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="c7f6917a3ac9bd1d4133a82dc3260748" category="list-text">托管 ADS 的 Kubernetes 集群的凭据。托管 ADS 的 Kubernetes 集群必须具有一个专用于此 Astra Trident 后端创建和管理的卷，快照和导出策略资源的命名空间。必须为托管支持以下功能的 ADS 的 Kubernetes 集群提供 `kubeconfig` ：</block>
+  <block id="cebbe731acfa0b8c520f355bcbfa6dd1" category="list-text">读取 `astrads-system` 命名空间中的所有对象</block>
+  <block id="cb90bccb2cf5bc16b37e39d379d5a5ea" category="list-text">读取 / 写入为该 Astra Trident 后端使用而创建的命名空间中的对象</block>
+  <block id="2f191460bd4d4750f88513ea54101bed" category="list-text">列出所有集群命名空间</block>
+  <block id="e269f9fe19f18e73c77815dddc019d7b" category="cell">"astrads-NAS"</block>
+  <block id="5b4fc65310144922f0384b20a00bd6ae" category="cell">ADS 集群名称</block>
+  <block id="65e18a0bb1868a9c1e181302d4733dba" category="cell">`集群`</block>
+  <block id="d24ec3d66e6303208e4767ec5cccbc76" category="cell">AstraDSCluster 资源的名称</block>
+  <block id="a4c39aafd14948aacfcc4f9c6374a875" category="cell">Astra Trident 将在其中创建所有 ADS 自定义资源的命名空间</block>
+  <block id="995c6425a4a00f961b0c8a2000c5497c" category="cell">`kubeconfig`</block>
+  <block id="dc37fa78a7cf3d9ae1dbf70f4430a142" category="cell">ADS Kubernetes 集群的凭据（ Base64 Compact JSON ）</block>
+  <block id="e5f77e38f271802a5a75ecdffe577104" category="cell">"vers=4.1"</block>
+  <block id="2949ef191693d444cc1f96962c1fd8ae" category="cell">启用 `AutoExportPolicy` 时用于筛选 Kubernetes 节点 IP 的 CIDR 列表</block>
+  <block id="1abbe16b7053d16fb89efaebd94484be" category="cell">["0.0.0.0/0 ， " ：： /0"</block>
+  <block id="857a0a2e6dd17cb6e0022d80855b338a" category="cell">故障排除时要使用的调试标志。示例： ｛ "api" ： false ， "method ： true ｝</block>
+  <block id="0ffdeb640d4a5fc9f33736feec8d274f" category="admonition">您应先将 `kubeconfig` 值从 YAML 转换为紧凑型 JSON 格式，然后再转换为 Base64 格式，然后再将其包含在后端配置中。</block>
+  <block id="5ef844cc326d7b10c0f674ac9b2b3c74" category="paragraph">每个后端都会在托管 ADS 的 Kubernetes 集群上的一个命名空间中配置卷。要在其他命名空间中创建卷，您可以定义其他后端。可以将 ADS 卷附加到托管集群中的任何命名空间，任何其他 Kubernetes 集群或可以挂载 NFS 共享的任何其他位置。</block>
+  <block id="f2319c1b13782c7170018cdd5fb7fd49" category="paragraph">您可以在配置文件的特殊部分中使用这些选项控制每个卷的默认配置。</block>
+  <block id="77c62856cfaac230e7c2fd8139d7c2c8" category="paragraph">请参见以下配置示例。</block>
+  <block id="ef616ce0e78a1254437e682f723bb5e6" category="cell">新卷的模式必须为八进制，并且以 "0" 开头</block>
+  <block id="6474dd374337126fa99c86e653ebfd64" category="cell">"0777"</block>
+  <block id="5964a48430cb8e8190dbd855a8514a0c" category="cell">"5"</block>
+  <block id="115261f04e7f7d964bc608b63a82b482" category="cell">要为创建的卷分配的 QoS 策略</block>
+  <block id="cf04ead37df0a76237b27de327c0cd03" category="admonition">对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对每个存储池创建的所有卷进行分组。这样，您就可以根据后端配置文件中提供的一组可自定义标签来方便地区分卷了。</block>
+  <block id="b53453343f074fd64ef7129def93f57d" category="section-title">示例 1 ：最小后端配置</block>
+  <block id="8f3db75549f212e0fdab2c542531a95e" category="paragraph">此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。</block>
+  <block id="a2c81e41622f2e2616b33a689e229c72" category="paragraph">以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
+  <block id="498784627f42c14468b84a1a351bd462" category="sidebar">配置 ADS 后端</block>
 </blocks>
