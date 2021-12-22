@@ -152,6 +152,7 @@ flags
 * `` -enable-node-prep` ：尝试在节点上安装所需的软件包。
 * `` -generate-custom-yaml` ：在不安装任何内容的情况下生成 YAML 文件。
 * `` -h ， -help` ：安装帮助。
+* `` -http-request-timeout` ：覆盖 Trident 控制器的 REST API 的 HTTP 请求超时（默认值为 1m30s ）。
 * `` -image-regRegistry string` ：内部映像注册表的地址 / 端口。
 * `` -K8s-timeout duration` ：所有 Kubernetes 操作的超时（默认值为 3 毫秒）。
 * `` -kubelet-dir string` ： kubelet 内部状态的主机位置（默认为 "/var/lib/kubelet" ）。

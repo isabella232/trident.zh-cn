@@ -52,10 +52,15 @@ Astra Trident 也是 NetApp Astra 的一项基础技术，利用 NetApp 行业�
 
 借助 Astra ，企业可以更轻松地在公有云内部和内部环境中管理，保护和移动 Kubernetes 上运行的数据丰富的容器化工作负载。Astra 使用 NetApp 在公有云和内部环境中成熟而广泛的存储产品组合中的 Astra Trident 配置和提供永久性容器存储。此外，它还提供了一组丰富的高级应用程序感知型数据管理功能，例如快照，备份和还原，活动日志和主动克隆，用于数据保护，灾难 / 数据恢复，数据审核以及 Kubernetes 工作负载的迁移用例。
 
-请查看 Astra 文档，立即开始使用。您可以立即在 Astra 页面上注册免费试用。
+您可以在 Astra 页面上注册免费试用版。
 
-* https://docs.netapp.com/us-en/astra-family/intro-family.html["NetApp Astra 产品系列简介"]
-* https://docs.netapp.com/us-en/astra/get-started/intro.html["Astra 控制服务简介"^]
-* https://docs.netapp.com/us-en/astra-automation/get-started/before_get_started.html["开始使用 Astra API"^]
-* https://docs.netapp.com/us-en/astra-control-center/concepts/intro.html["了解 Astra 控制中心"^]
+
+
+== 有关详细信息 ...
+
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["NetApp Astra 产品系列"]
+* https://docs.netapp.com/us-en/astra/get-started/intro.html["Astra Control Service 文档"^]
+* https://docs.netapp.com/us-en/astra-control-center/index.html["Astra 控制中心文档"^]
+* https://docs.netapp.com/us-en/astra-data-store/index.html["Astra Data 文档"^]
+* https://docs.netapp.com/us-en/astra-automation/get-started/before_get_started.html["Astra API 文档"^]
 

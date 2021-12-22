@@ -44,6 +44,11 @@ Astra Trident 会显示多个命令行选项。您可以在部署中修改它们
 == REST
 
 * ` 地址 <ip-or-host>` ：指定 Trident 的 REST 服务器应侦听的地址。默认为 localhost 。在本地主机上侦听并在 Kubernetes Pod 中运行时，无法从 Pod 外部直接访问 REST 接口。使用 ` 地址 ""` 可从 Pod IP 地址访问 REST 接口。
+
+
+
+CAUTION: 可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。
+
 * ` -port <port-number>` ：指定 Trident 的 REST 服务器应侦听的端口。默认为 8000 。
 * ` -REST` ：启用 REST 接口。默认为 true 。
 

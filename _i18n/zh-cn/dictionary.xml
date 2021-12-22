@@ -1051,13 +1051,6 @@
   <block id="5e5f49db20e29f6377e57e98932dae57" category="cell">主机，基础架构，计算</block>
   <block id="ae663d0d321764bd88b8d864cd3afc9e" category="section-title">什么是 Astra ？</block>
   <block id="dd91e88f9a6ec30684f494c41baeeee0" category="paragraph">借助 Astra ，企业可以更轻松地在公有云内部和内部环境中管理，保护和移动 Kubernetes 上运行的数据丰富的容器化工作负载。Astra 使用 NetApp 在公有云和内部环境中成熟而广泛的存储产品组合中的 Astra Trident 配置和提供永久性容器存储。此外，它还提供了一组丰富的高级应用程序感知型数据管理功能，例如快照，备份和还原，活动日志和主动克隆，用于数据保护，灾难 / 数据恢复，数据审核以及 Kubernetes 工作负载的迁移用例。</block>
-  <block id="34354c1f7e5f61fa8fe457b846c277e1" category="paragraph">请查看 Astra 文档，立即开始使用。您可以立即在 Astra 页面上注册免费试用。</block>
-  <block id="b90cfe7eec2fd25d8051aa0d2904effd" category="inline-link">Astra 控制服务简介</block>
-  <block id="e863c6f356f601b620d332145ba64279" category="list-text"><block ref="e863c6f356f601b620d332145ba64279" category="inline-link-rx"></block></block>
-  <block id="84a414bad3d440f298f070c3d3fa60bb" category="inline-link">开始使用 Astra API</block>
-  <block id="22e85cb2bef8534170e0b3aa21efdd42" category="list-text"><block ref="22e85cb2bef8534170e0b3aa21efdd42" category="inline-link-rx"></block></block>
-  <block id="41babe56ec27c9b39ecab6c854265300" category="inline-link">了解 Astra 控制中心</block>
-  <block id="05e8ff43093720b9084af213039e0bc5" category="list-text"><block ref="05e8ff43093720b9084af213039e0bc5" category="inline-link-rx"></block></block>
   <block id="02030c8e07c049062fbbba9a32b01067" category="summary">虚拟存储池在 Astra Trident 的存储后端和 Kubernetes 的 StorageClasses 之间提供了一个抽象层。管理员可以通过这些协议以一种通用的，与后端无关的方式定义各个方面，例如每个后端的位置，性能和保护，而不会使 StorageClass 指定要用于满足所需条件的物理后端，后端池或后端类型。</block>
   <block id="9f802733184b3e0fb080eddcf9ffeaef" category="doc">虚拟存储池</block>
   <block id="9f4406586d4a2343f2a5289e16131b3e" category="paragraph">虚拟存储池在 Astra Trident 的存储后端与 Kubernetes 的 `StorageClasses` 之间提供了一个抽象层。通过这些功能，管理员可以在不受后端影响的情况下以一种通用方式为每个后端定义位置，性能和保护等方面，而无需使用 `StorageClass` 指定要用于满足所需条件的物理后端，后端池或后端类型。</block>
@@ -1517,7 +1510,6 @@
   <block id="13d80777c8fd43e555c1f5b1b72d7ef0" category="section-title">主机配置</block>
   <block id="62df396fbf0c4fd30e1e851335e8b26b" category="paragraph">根据所使用的后端，应在集群中的所有工作人员上安装 NFS 和 / 或 iSCSI 实用程序。请参见 <block ref="8e0b40cac942de59585b1131f9197d7b" category="inline-link-macro-rx"></block> 有关详细信息 ...</block>
   <block id="2139fe384d5ae165545994dff01961d9" category="section-title">存储系统配置：</block>
-  <block id="4bd66d391160d942582baacb04fa201f" category="paragraph">Astra Trident 可能需要先对存储系统进行一些更改，然后后端配置才能使用它。请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="923680056b0f0258907f498670b4ead1" category="section-title">容器映像以及相应的 Kubernetes 版本</block>
   <block id="a6595e492ec094375a673911109a32f2" category="paragraph">对于带气的安装，请参见以下列表，了解安装 Astra Trident 需要哪些容器映像：</block>
   <block id="aa92c4c233bc01609d957e469736b699" category="cell">容器映像</block>
@@ -3048,7 +3040,6 @@
   <block id="9f687b4e8cbf2fbb623b26b30fd92717" category="admonition">对于 21.07 之前的版本，您将重定向到旧版文档站点。</block>
   <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
-  <block id="287b5cd1a6f828768510ca46bbf05bd9" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `Astra Trident 可以在属于同一 GCP 区域的 Kubernetes 节点上挂载和附加卷。`后端时，请务必确保 "apiRegion"` 与中部署的 Kubernetes 节点所在的区域匹配。在创建跨区域 Kubernetes 集群时，在 `apiRegion` 中创建的 CVS 云卷只能用于在同一 GCP 区域的节点上计划的工作负载。</block>
   <block id="9bbe247417ec112bd7f3be36a4035717" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。</block>
   <block id="311847a44163ac40ccf470fcf81e74fb" category="admonition">如果在 GKE- 环境中设置按需卷快照，请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
   <block id="aaf288b351be41417d093d835297fb3e" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9 （最新版本 4.9 ）</block>
@@ -3066,8 +3057,6 @@
   <block id="d6601a8eb863a49ea065281f70a5956b" category="summary">Astra Trident 是一个受全面支持的开源项目，由 NetApp 作为 Astra 产品系列的一部分进行维护。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
   <block id="bb453665f57f6823950856f7a9bad0c3" category="inline-link-macro">Astra 产品系列</block>
   <block id="9f469e7cb13566d8a664e8ab4d46f9e1" category="paragraph">Astra Trident 是一个完全受支持的开源项目，由 NetApp 在中维护 <block ref="a1650a2308dbba03b9ca704756a5a37d" category="inline-link-macro-rx"></block>。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
-  <block id="3d9f18019f5d8f128c54babba33ccb6a" category="inline-link">NetApp Astra 产品系列简介</block>
-  <block id="553b525c83fb384539ce2a25b030062f" category="list-text"><block ref="553b525c83fb384539ce2a25b030062f" category="inline-link-rx"></block></block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
   <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
   <block id="4546bbd46f06879787b5670b13277b28" category="paragraph">在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
@@ -3114,7 +3103,6 @@
   <block id="8035d5d39b2b48f6ec1a3133b688513c" category="inline-link">Astra 数据存储</block>
   <block id="efd5e8dbeec263f783a6cd6ac036c6a9" category="paragraph">以配置和使用<block ref="a026c15058b831feb6de8c4c836387ae" category="inline-link-rx"></block> 后端，您需要满足以下要求：</block>
   <block id="0033a0be965b04e889c13f8699fa52ca" category="inline-link-macro">Astra Data Store 预览文档</block>
-  <block id="8845f71e636beb45af772d2d14cf557b" category="list-text">支持的 ADS 存储系统。请参见 <block ref="1a14c2d84d3a02888bdf552ab07570ae" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="c7f6917a3ac9bd1d4133a82dc3260748" category="list-text">托管 ADS 的 Kubernetes 集群的凭据。托管 ADS 的 Kubernetes 集群必须具有一个专用于此 Astra Trident 后端创建和管理的卷，快照和导出策略资源的命名空间。必须为托管支持以下功能的 ADS 的 Kubernetes 集群提供 `kubeconfig` ：</block>
   <block id="cebbe731acfa0b8c520f355bcbfa6dd1" category="list-text">读取 `astrads-system` 命名空间中的所有对象</block>
   <block id="cb90bccb2cf5bc16b37e39d379d5a5ea" category="list-text">读取 / 写入为该 Astra Trident 后端使用而创建的命名空间中的对象</block>
@@ -3143,4 +3131,22 @@
   <block id="8f3db75549f212e0fdab2c542531a95e" category="paragraph">此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。</block>
   <block id="a2c81e41622f2e2616b33a689e229c72" category="paragraph">以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
   <block id="498784627f42c14468b84a1a351bd462" category="sidebar">配置 ADS 后端</block>
+  <block id="165fe4b78b5877cf8db8ac6361e5c85a" category="paragraph">您可以在 Astra 页面上注册免费试用版。</block>
+  <block id="d13de4a83d7b44c2e65495def8ef1c7b" category="section-title">有关详细信息 ...</block>
+  <block id="fa80e31eb77798b8dd995ddd9553be6e" category="inline-link">NetApp Astra 产品系列</block>
+  <block id="ed394f5572d8e7df474126557b3288f8" category="list-text"><block ref="ed394f5572d8e7df474126557b3288f8" category="inline-link-rx"></block></block>
+  <block id="ef22ff17624b3faeed227ce5c717eb5f" category="inline-link">Astra Control Service 文档</block>
+  <block id="0ae0ea6967e9321db008cee4ad5f290c" category="list-text"><block ref="0ae0ea6967e9321db008cee4ad5f290c" category="inline-link-rx"></block></block>
+  <block id="3a4b2c66d4bdac6ce0e3340c71a39eda" category="inline-link">Astra 控制中心文档</block>
+  <block id="ea643bf7aaf130341a17f697a7009368" category="list-text"><block ref="ea643bf7aaf130341a17f697a7009368" category="inline-link-rx"></block></block>
+  <block id="668cea0790a6ca206d2c5f41d4e2bfe3" category="inline-link">Astra Data 文档</block>
+  <block id="774d94ad69407b5dff98038fec00368b" category="list-text"><block ref="774d94ad69407b5dff98038fec00368b" category="inline-link-rx"></block></block>
+  <block id="9d6ffa6ef31bd0b92876314219f18ef5" category="inline-link">Astra API 文档</block>
+  <block id="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="list-text"><block ref="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="inline-link-rx"></block></block>
+  <block id="dc5ac69fee94d861f0bed64729b712cf" category="paragraph">Astra Trident 可能需要先对存储系统进行一些更改，然后后端配置才能使用它。请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="91bffb05ce7b35189932ad387d14e41b" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `在 `跨区域 Kubernetes 集群时，在 "apiRegion"` 中创建的 CVS 卷可用于在多个 GCP 区域的节点上计划的工作负载。请注意，跨区域流量会产生额外成本。</block>
+  <block id="31842a4ad923dd3481336d7d93dc2068" category="list-text">要启用跨区域访问， `allowedTopologies` 的 StorageClass 定义必须包括所有地区。例如：</block>
+  <block id="44353297d28e56e03a6c2fa8ed4c436d" category="list-text">支持的 ADS 存储系统。请参见 <block ref="a495e7dcf960e6114a66e71691c841e9" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="433f174b6e54b889696b2efd4ef40dc6" category="admonition">可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。</block>
+  <block id="1968a7e86875b6b6ca9d5222172f8d16" category="list-text">`` -http-request-timeout` ：覆盖 Trident 控制器的 REST API 的 HTTP 请求超时（默认值为 1m30s ）。</block>
 </blocks>

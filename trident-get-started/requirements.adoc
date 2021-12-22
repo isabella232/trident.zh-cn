@@ -45,6 +45,7 @@ Astra Trident 还可与其他许多完全托管和自我管理的 Kubernetes 产
 
 * 适用于 NetApp ONTAP 的 Amazon FSX
 * Azure NetApp Files
+* Astra 数据存储
 * Cloud Volumes ONTAP
 * 适用于 AWS 的 Cloud Volumes Service
 * 适用于 GCP 的 Cloud Volumes Service
