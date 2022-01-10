@@ -1289,7 +1289,6 @@
   <block id="4a052772dca278b7be31d54ca9f21831" category="inline-link-macro">基本概念</block>
   <block id="e029dd3737acab556b62bda0be50840c" category="admonition">如果您尚未熟悉 <block ref="0342248ee22d08eaf42465a29ddd67ec" category="inline-link-macro-rx"></block>，现在是一个实现这一目标的好时机。</block>
   <block id="df2aaa5fa27e9bdafcb6bb0a4367b7d6" category="paragraph">要部署 Astra Trident ，应满足以下前提条件：</block>
-  <block id="007e76b80d06fb6fce07aea80115be89" category="list-text">您对运行 Kubernetes 1.14 及更高版本的受支持 Kubernetes 集群拥有完全权限。</block>
   <block id="3a1ac050b1160a02cbd3c9ea84228191" category="list-text">您可以访问受支持的 NetApp 存储系统。</block>
   <block id="6a477d2ddba6ea3bc12088f821ce4e64" category="list-text">您可以从所有 Kubernetes 工作节点挂载卷。</block>
   <block id="6d8c90e9c1152c55e27e8166d128b927" category="list-text">您安装了一个安装了 `kubectl` （如果使用的是 OpenShift ，则为 `oc` ）的 Linux 主机，并将其配置为管理要使用的 Kubernetes 集群。</block>
@@ -1319,7 +1318,6 @@
   <block id="ea8cda06a0e70ad34c1b9ab1b7135105" category="inline-link-macro">支持的 Kubernetes 集群</block>
   <block id="619cde7335e798082dc3bfdbe30708a0" category="paragraph">首先，您需要登录到 Linux 主机并验证它是否正在管理 _b工作 _ ， <block ref="ac355729d1ddc95a290738ca862fed08" category="inline-link-macro-rx"></block> 您具有所需权限。</block>
   <block id="e420b75ec3bc014e3f69c43b2383768b" category="admonition">使用 OpenShift 时，在以下所有示例中使用 `oc` 而不是 `kubectl` ，并首先以 * 系统： admin* 的身份运行 `oc login -u system ： admin` 或 `oc login -u Kube-admin` 进行登录。</block>
-  <block id="5e149dc32c800c2faceed6e6e59d0f8c" category="paragraph">要查看您的 Kubernetes 版本是否高于 1.14 ，请运行以下命令：</block>
   <block id="d14fa1adb2805f01b2a616f5ef9d25be" category="paragraph">要查看您是否具有 Kubernetes 集群管理员权限，请运行以下命令：</block>
   <block id="f67b776be47148789a46badee3f77607" category="paragraph">要验证是否可以从 Docker Hub 启动使用映像的 POD 并通过 Pod 网络访问存储系统，请运行以下命令：</block>
   <block id="b51ca564a2763a36e8eff661a1e45814" category="section-title">第 2 步：下载并设置操作员</block>
@@ -1479,7 +1477,6 @@
   <block id="37696641960d6c73a7dadab603c1877e" category="list-text">Mirantis Kubernetes Engine 3.4</block>
   <block id="201eb37826a33e35adff9119f25946bd" category="paragraph">以下版本支持 Trident 操作符：</block>
   <block id="5596419ed8318cabbcb138ef27fd3035" category="inline-link">错误修复公告</block>
-  <block id="f2f0da9b50bd2001bc802c121fc76254" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.6.8 及更高版本上使用 Astra Trident 。</block>
   <block id="3943a2e0490c50c43f31a486978ea80b" category="paragraph">Astra Trident 还可与其他许多完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Cloud 的 Google Kubernetes Engine （ GKS ）， AWS 的 Elastic Kubernetes Services （ EKS ）， Azure 的 Azure Kubernetes Service （ AKS ）和 Rancher 。</block>
   <block id="f787cd4b6963b13f12fa53131f58ef6c" category="section-title">支持的后端（存储）</block>
   <block id="843e2f0c722d25903a6010b62ac4f13b" category="paragraph">要使用 Astra Trident ，您需要以下一个或多个受支持的后端：</block>
@@ -1502,7 +1499,6 @@
   <block id="1f7219b07d5bce7feec002a9f4dc2201" category="cell">Trident 运算符</block>
   <block id="bf0d42cfb33347700a1060d7b0cf07c1" category="cell">自动工作节点准备（测试版）</block>
   <block id="443432948b68bb63d707ce7ecc4a021a" category="cell">CSI 拓扑</block>
-  <block id="6de5d05951877f2b0040daec4067aaf7" category="list-text">Debian 8 或更高版本</block>
   <block id="10ba4d981cc0f1ae131e16a64d3c2687" category="list-text">RedHat CoreOS 4.2 和 4.3</block>
   <block id="4fa506be8cc1c8c936a3eff8a374fe26" category="list-text">RHEL 或 CentOS 7.4 或更高版本</block>
   <block id="2d736ed9cdbf58b500e9715daeb267e6" category="list-text">Ubuntu 18.04 或更高版本</block>
@@ -3149,4 +3145,7 @@
   <block id="44353297d28e56e03a6c2fa8ed4c436d" category="list-text">支持的 ADS 存储系统。请参见 <block ref="a495e7dcf960e6114a66e71691c841e9" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="433f174b6e54b889696b2efd4ef40dc6" category="admonition">可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。</block>
   <block id="1968a7e86875b6b6ca9d5222172f8d16" category="list-text">`` -http-request-timeout` ：覆盖 Trident 控制器的 REST API 的 HTTP 请求超时（默认值为 1m30s ）。</block>
+  <block id="705db3afa1c1d4451f7b0f7f8552f1b5" category="list-text">您对运行 Kubernetes 1.17 及更高版本的受支持 Kubernetes 集群拥有完全权限。</block>
+  <block id="3b4c548466953befff1962ac2426cb8e" category="paragraph">要查看您的 Kubernetes 版本是否高于 1.17 ，请运行以下命令：</block>
+  <block id="834bb262db01800c5b2fc71ef097a803" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.7 及更高版本上使用 Astra Trident 。</block>
 </blocks>
