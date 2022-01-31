@@ -4,7 +4,7 @@ permalink: trident-get-started/kubernetes-postdeployment.html
 keywords: deploy, astra trident, methods, operator, tridentctl, helm, attributes, customize, tridentorchestrator, trident backend, storage class, create backend, create storage class, provision volume, mount volume 
 summary: 部署 Astra Trident 后，您可以继续创建后端，创建存储类，配置卷以及将卷挂载到 Pod 中。 
 ---
-= 接下来是什么？
+= 下一步是什么？
 :hardbreaks:
 :icons: font
 :imagesdir: ../media/

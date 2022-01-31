@@ -4,7 +4,7 @@ permalink: trident-get-started/kubernetes-customize-deploy-tridentctl.html
 keywords: deploy, astra trident, methods, operator, tridentctl, helm, attributes, customize, tridentorchestrator 
 summary: 使用 Trident 的安装程序可以自定义属性。 
 ---
-= 自定义 <code>tridentctl</code> 部署
+= 自定义 tridentctl 部署
 :hardbreaks:
 :icons: font
 :imagesdir: ../media/

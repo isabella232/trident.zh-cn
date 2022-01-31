@@ -4,7 +4,7 @@ permalink: trident-use/backend_ops_tridentctl.html
 keywords: backends, storage system, anf, cvs for aws, cvs for gcp, element, hci, solidfire, ontap, aff, fas, ontap select, configure backends, tridentctl, create backends, delete backends, view backends, update backends 
 summary: '了解如何使用 `tridentctl` 执行后端管理操作。' 
 ---
-= 使用 <code>tridentctl</code> 执行后端管理
+= 使用 tridentctl 执行后端管理
 :hardbreaks:
 :icons: font
 :imagesdir: ../media/

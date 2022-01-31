@@ -4,7 +4,7 @@ permalink: trident-managing-k8s/upgrade-tridentctl.html
 keywords: upgrade, trident, methods, operator, tridentctl, helm 
 summary: '您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安装。' 
 ---
-= 使用 <code>tridentctl</code> 进行升级
+= 使用 tridentctl 进行升级
 :hardbreaks:
 :icons: font
 :imagesdir: ../media/

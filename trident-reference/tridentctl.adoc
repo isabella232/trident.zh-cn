@@ -4,7 +4,7 @@ permalink: trident-reference/tridentctl.html
 keywords: tridentctl, trident, kubernetes, commands, options, usage, flags 
 summary: 了解有关 tridentctl 的更多信息， tridentctl 是一个命令行实用程序，可用于轻松访问 Trident 。 
 ---
-= <code>tridentctl</code> 命令和选项
+= tridentctl 命令和选项
 :hardbreaks:
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ permalink: trident-get-started/kubernetes-deploy-tridentctl.html
 keywords: deploy, astra trident, methods, tridentctl 
 summary: '您可以使用 `tridentctl` 来部署 Astra Trident 。' 
 ---
-= 使用 <code>tridentctl</code> 进行部署
+= 使用 tridentctl 进行部署
 :hardbreaks:
 :icons: font
 :imagesdir: ../media/
