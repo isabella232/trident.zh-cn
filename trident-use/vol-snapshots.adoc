@@ -10,7 +10,7 @@ summary: 从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创�
 :imagesdir: ../media/
 
 
-从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` 支持。 `GCP-CVS` 和 `azure-netapp-files` 驱动程序。
+从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` 支持。 `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序。
 
 
 NOTE: 此功能可从 Kubernetes 1.17 （测试版）获得，从 1.20 开始正式上市。要了解从测试版迁移到 GA 所涉及的变化，请参见 https://kubernetes.io/blog/2020/12/10/kubernetes-1.20-volume-snapshot-moves-to-ga/["发布博客"^]。升级到 GA 后，将推出 `v1` API 版本，并向后兼容 `v1bea1` 快照。

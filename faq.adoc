@@ -379,7 +379,7 @@ Trident 19.10 支持使用 CSI 配置程序扩展 iSCSI PV 。
 
 === 哪些驱动程序支持 Astra Trident 卷快照？
 
-从目前开始，我们为 `ontap-nas` ， `ontap-san` ， `ontap-san-economic` ， `solidfire-san` ， `AWS-CVS` 提供按需快照支持。 `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。
+从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。
 
 
 

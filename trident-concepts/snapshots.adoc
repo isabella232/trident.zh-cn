@@ -13,6 +13,7 @@ summary: 详细了解 Astra Trident 如何为其驱动程序创建卷快照。
 详细了解 Astra Trident 如何为其驱动程序创建卷快照。
 
 * 对于 `ontap-nas` ， `ontap-san` ， `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序， 每个永久性卷（ PV ）都会映射到一个 FlexVol 。因此，卷快照会创建为 NetApp 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。
+* 对于 `ontap-nas-flexgroup` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexGroup 。因此，卷快照会创建为 NetApp FlexGroup 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。
 * 对于 `ontap-san-economy-经济` 驱动程序， PV 会映射到在共享 FlexVol 上创建的 LUN 。可以通过对关联 LUN 执行 FlexClones 来实现 PV 的卷快照。借助 ONTAP 的 FlexClone 技术，即使是最大的数据集，也可以几乎即时创建副本。副本与其父级共享数据块，除了元数据所需的存储之外，不会占用任何存储。
 * 对于 `solidfire-san` 驱动程序，每个 PV 都会映射到在 NetApp Element 软件 /NetApp HCI 集群上创建的 LUN 。VolumeSnapshot 由底层 LUN 的 Element Snapshot 表示。这些快照是时间点副本，只占用少量系统资源和空间。
 * 使用 `ontap-nas` 和 `ontap-san` 驱动程序时， ONTAP 快照是 FlexVol 的时间点副本，并占用 FlexVol 本身的空间。这样，在创建 / 计划快照时，卷中的可写空间量会随着时间的推移而减少。解决此问题的一个简单方法是，通过 Kubernetes 调整大小来增大卷的大小。另一个选项是删除不再需要的快照。删除通过 Kubernetes 创建的卷快照后， Astra Trident 将删除关联的 ONTAP 快照。也可以删除未通过 Kubernetes 创建的 ONTAP 快照。

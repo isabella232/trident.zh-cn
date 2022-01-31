@@ -1217,7 +1217,6 @@
   <block id="491a93842f7a65b8cbe82aca71db0d3f" category="section-title">是否可以使用 Astra Trident 创建卷快照？</block>
   <block id="9792ac41ce6f91861f84548e1b4a2b1c" category="paragraph">是的。Astra Trident 支持从快照创建按需卷快照和永久性卷。要从快照创建 PV ，请确保已启用 `VolumeSnapshotDataSource` 功能门。</block>
   <block id="1eedb8a6574b0c07ea61689a7e3ec8d4" category="section-title">哪些驱动程序支持 Astra Trident 卷快照？</block>
-  <block id="98760f13ca9ff06aa46ea65a64b74dea" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-san` ， `ontap-san-economic` ， `solidfire-san` ， `AWS-CVS` 提供按需快照支持。 `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
   <block id="24c649a639a2c31810a4dfc6ed0190da" category="section-title">如何为采用 ONTAP 的 Astra Trident 配置的卷创建快照备份？</block>
   <block id="0bdcd128fab544a7df404bc496a4126e" category="paragraph">此功能可从 `ontap-nas` ， `ontap-san` 和 `ontap-nas-flexgroup` 驱动程序获得。您也可以在 FlexVol 级别为 `ontap-san-economy` 驱动程序指定 `snapshotPolicy` 。</block>
   <block id="933b520ff6d70262ddb482995c684d57" category="paragraph">此功能也可在 `ontap-nas-economy` 驱动程序上使用，但可在 FlexVol 级别粒度上使用，而不能在 qtree 级别粒度上使用。要启用对由 Astra Trident 配置的卷创建快照的功能，请将后端参数选项 `snapshotPolicy` 设置为 ONTAP 后端定义的所需快照策略。Astra Trident 无法识别存储控制器创建的任何快照。</block>
@@ -2475,7 +2474,6 @@
   <block id="e3d163236efea4513c9df89a9c1be381" category="section-title">ontap-nas-economy-driver</block>
   <block id="412b252fa44d1a73e3e7bf22113f99a2" category="section-title">ontap-NAS 驱动程序</block>
   <block id="141da5e3f576179cbf2f6506b07ef538" category="summary">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建永久性卷（ PV ）的快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。</block>
-  <block id="879d65b9b2cc663b2ff6a01cfe8d4c72" category="paragraph">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` 支持。 `GCP-CVS` 和 `azure-netapp-files` 驱动程序。</block>
   <block id="332138092a1597c4d5e69679199e490c" category="inline-link">发布博客</block>
   <block id="006b05a472974308122f7f05ef147e80" category="admonition">此功能可从 Kubernetes 1.17 （测试版）获得，从 1.20 开始正式上市。要了解从测试版迁移到 GA 所涉及的变化，请参见<block ref="02a1c904d0035e03c61e261dbe622345" category="inline-link-rx"></block>。升级到 GA 后，将推出 `v1` API 版本，并向后兼容 `v1bea1` 快照。</block>
   <block id="e197a057bfe0ae792bb2b9ce9a78761e" category="list-text">要创建卷快照，需要创建外部快照控制器以及一些自定义资源定义（ Custom Resource Definitions ， CRD ）。这是所使用的 Kubernetes 流程编排程序（例如： Kubeadm ， GKEE ， OpenShift ）的职责。</block>
@@ -3119,4 +3117,7 @@
   <block id="fb10fd1921fe8ac41f7ce51b41dd3320" category="paragraph">这是绝对的最低后端配置。借助此配置， Astra Trident 可以发现全球每个位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个上。</block>
   <block id="04e5e56f251267658dc57f90ae659538" category="section-title">示例 2 ：单个位置和特定服务级别配置</block>
   <block id="93d594d992801662d9e5e5d1ccf8bb86" category="paragraph">此后端配置会将卷放置在 Azure 的 `东向` 位置的 `高级` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。</block>
+  <block id="cf282b9c05ab0f84b1690e644cd3f68e" category="list-text">对于 `ontap-nas-flexgroup` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexGroup 。因此，卷快照会创建为 NetApp FlexGroup 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
+  <block id="ba9e76e1be4705136fd15fd947717d07" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
+  <block id="1600a61b1da8ff824ac37a5e83b2aef0" category="paragraph">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` 支持。 `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序。</block>
 </blocks>
