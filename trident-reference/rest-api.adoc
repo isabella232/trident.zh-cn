@@ -11,7 +11,7 @@ summary: 如果您希望与 Astra Trident 的 REST API 进行交互，则可以�
 
 
 [role="lead"]
-同时 link:tridentctl.html["tridentctl 命令和选项"^] 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。
+同时 link:trident-reference/tridentctl.html["tridentctl 命令和选项"^] 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。
 
 这对于在非 Kubernetes 部署中使用 Astra Trident 作为独立二进制文件的高级安装非常有用。
 

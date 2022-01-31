@@ -48,10 +48,6 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 ----
 helm install <name> trident-operator-21.07.1.tgz --namespace <namespace you want to use for Trident>
 ----
-+
-
-NOTE: 如果尚未为 Trident 创建命名空间，则可以将 ` -create-namespace` 参数添加到 `helm install` 命令中。然后， Helm 将自动为您创建命名空间。
-
 
 
 在安装期间，可以通过两种方式传递配置数据：

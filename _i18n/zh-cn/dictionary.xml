@@ -3009,102 +3009,8 @@
   <block id="d356d628089d439d75e3f85564372658" category="list-text">使用 tridentctl 安装</block>
   <block id="1b6ea3b57d23007f55ba778700bc369c" category="inline-link">文档版本更新版</block>
   <block id="af78f8cf3a2a8307db27d14c5642d95f" category="paragraph">对于先前版本，请参见<block ref="a3e07c08f1bbcd23d8422302f837e06b" category="inline-link-rx"></block>。</block>
-  <block id="822b439e1640423ccbcbed4f9075999d" category="list-text">NetApp/trident ： 21.10.0</block>
-  <block id="098ea8d7067b53d30d17fa3828abed7b" category="list-text">netapp/trident autosupport ： 21.10</block>
-  <block id="b0b4b8e52878f03279584f43bc961472" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2</block>
-  <block id="af4499fc8818e7a77f8ba226b45359df" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.3.0</block>
-  <block id="3c8910d4db724229b566887801de96bb" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0</block>
-  <block id="ad51ab91499291ae184dc614edbfe7df" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.3.0</block>
-  <block id="f948435808f18602f3b9e0f018da83dc" category="list-text">netapp/trident 操作符： 21.10.0 （可选）</block>
-  <block id="d7f860105f67679f001ef7c3ed889c0c" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.0.0</block>
-  <block id="681d715b456f6d29a501b8f132e941a1" category="cell">v1.22.0</block>
-  <block id="75419edaab27be09afdb3415e83d93f6" category="paragraph">`sudo mpathconf -enable -for_multipathd y -find_multipaths n`</block>
-  <block id="60c268e00db3206011b54b01705d7211" category="admonition">确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.</block>
-  <block id="b85c80e2af7e3d7dd06b874ed048d430" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`</block>
-  <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
-  <block id="ebb6d1f6681020925f184345a6a955aa" category="paragraph">如果您运行的不是 Astra Trident 21.10 ，则可以参考先前版本的文档。</block>
-  <block id="9f687b4e8cbf2fbb623b26b30fd92717" category="admonition">对于 21.07 之前的版本，您将重定向到旧版文档站点。</block>
-  <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
-  <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
-  <block id="9bbe247417ec112bd7f3be36a4035717" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。</block>
-  <block id="311847a44163ac40ccf470fcf81e74fb" category="admonition">如果在 GKE- 环境中设置按需卷快照，请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
-  <block id="aaf288b351be41417d093d835297fb3e" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9 （最新版本 4.9 ）</block>
-  <block id="29db8b676d0a02f8179869506102c8ce" category="doc">使用 ONTAP 或 Cloud Volumes ONTAP SAN 驱动程序配置后端</block>
-  <block id="133184f8c608809bdc057abf1397d10d" category="paragraph">了解如何使用 ONTAP 和 Cloud Volumes ONTAP SAN 驱动程序配置 ONTAP 后端。</block>
-  <block id="a3610578ce54198653d7e0b2cc53c05d" category="inline-link-macro">使用 ONTAP 或 Cloud Volumes ONTAP NAS 驱动程序配置后端</block>
-  <block id="f4f833852bac4217eff92d53c1bd24dc" category="list-text"><block ref="f4f833852bac4217eff92d53c1bd24dc" category="inline-link-macro-rx"></block></block>
-  <block id="df7d9b009cdb0a2623872cb3f905e161" category="list-text"><block ref="df7d9b009cdb0a2623872cb3f905e161" category="inline-link-macro-rx"></block></block>
-  <block id="4d80e2460d711b841338dfbeea2ca8c1" category="paragraph">了解如何使用 ONTAP 和 Cloud Volumes ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
-  <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">已测试主机操作系统</block>
-  <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
-  <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
-  <block id="e088e1f9fcd6d6a9509bd529db24c8f3" category="admonition">如果尚未为 Trident 创建命名空间，则可以将 ` -create-namespace` 参数添加到 `helm install` 命令中。然后， Helm 将自动为您创建命名空间。</block>
-  <block id="94912f7fb206038e8527957b44dfbf25" category="paragraph">此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。</block>
-  <block id="d6601a8eb863a49ea065281f70a5956b" category="summary">Astra Trident 是一个受全面支持的开源项目，由 NetApp 作为 Astra 产品系列的一部分进行维护。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
-  <block id="bb453665f57f6823950856f7a9bad0c3" category="inline-link-macro">Astra 产品系列</block>
-  <block id="9f469e7cb13566d8a664e8ab4d46f9e1" category="paragraph">Astra Trident 是一个完全受支持的开源项目，由 NetApp 在中维护 <block ref="a1650a2308dbba03b9ca704756a5a37d" category="inline-link-macro-rx"></block>。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
-  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
-  <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
-  <block id="4546bbd46f06879787b5670b13277b28" category="paragraph">在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
-  <block id="9d4568c009d203ab10e33ea9953a0264" category="cell">""</block>
-  <block id="def7176d1592ea5f9d6a93b9083b78be" category="section-title">21.10.1 中的新增功能</block>
-  <block id="e56bc548e9811e07f1c872158876a75e" category="section-title">自 Astra Trident 21.10.0 以来的变化</block>
-  <block id="cdb544a92bee555749f43046d53ef34e" category="admonition">v21.10.0 版本具有一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时， Trident 控制器可以将其置于 CrashLoopBackOff 状态。此问题描述在 v21.10.1 中得到了修复（ GitHub 问题描述 669 ）。</block>
-  <block id="cd1bf2431d703fd3c62a278b9c812d56" category="list-text">修复了在 GCP CVS 后端导入卷导致导入失败的潜在争用情况。</block>
-  <block id="8e1e1dad95de3dc781f25f58483acdf3" category="list-text">修复了一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时，可能会将 Trident 控制器置于 CrashLoopBackOff 状态（ GitHub 问题描述 669 ）。</block>
-  <block id="d7c32cb5ff2be4aaff3a8eaea9d18e0d" category="list-text">修复了在未指定 SVM 名称的情况下不再发现 SVM 的问题描述（ GitHub 问题描述 612 ）。</block>
-  <block id="2f1ab5b99f1893144b69718c274415f4" category="paragraph">同时 <block ref="a3b750e7ac33c9792c64627692f306aa" category="inline-link-macro-rx"></block> 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。</block>
-  <block id="fdc319eb193763016bf0bff75d0c0abc" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）， Astra 数据存储以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。</block>
-  <block id="3381a309aeefac050f7f5319f6757afe" category="summary">了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。</block>
-  <block id="83caf3e7a6bf2dcce3d7d6eab3c8905c" category="doc">配置 Astra 数据存储后端</block>
-  <block id="0b1c01b976c493a4217d6f4b772849b0" category="paragraph">了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。</block>
-  <block id="8035d5d39b2b48f6ec1a3133b688513c" category="inline-link">Astra 数据存储</block>
-  <block id="efd5e8dbeec263f783a6cd6ac036c6a9" category="paragraph">以配置和使用<block ref="a026c15058b831feb6de8c4c836387ae" category="inline-link-rx"></block> 后端，您需要满足以下要求：</block>
-  <block id="0033a0be965b04e889c13f8699fa52ca" category="inline-link-macro">Astra Data Store 预览文档</block>
-  <block id="c7f6917a3ac9bd1d4133a82dc3260748" category="list-text">托管 ADS 的 Kubernetes 集群的凭据。托管 ADS 的 Kubernetes 集群必须具有一个专用于此 Astra Trident 后端创建和管理的卷，快照和导出策略资源的命名空间。必须为托管支持以下功能的 ADS 的 Kubernetes 集群提供 `kubeconfig` ：</block>
-  <block id="cebbe731acfa0b8c520f355bcbfa6dd1" category="list-text">读取 `astrads-system` 命名空间中的所有对象</block>
-  <block id="cb90bccb2cf5bc16b37e39d379d5a5ea" category="list-text">读取 / 写入为该 Astra Trident 后端使用而创建的命名空间中的对象</block>
-  <block id="2f191460bd4d4750f88513ea54101bed" category="list-text">列出所有集群命名空间</block>
-  <block id="e269f9fe19f18e73c77815dddc019d7b" category="cell">"astrads-NAS"</block>
-  <block id="5b4fc65310144922f0384b20a00bd6ae" category="cell">ADS 集群名称</block>
-  <block id="65e18a0bb1868a9c1e181302d4733dba" category="cell">`集群`</block>
-  <block id="d24ec3d66e6303208e4767ec5cccbc76" category="cell">AstraDSCluster 资源的名称</block>
-  <block id="a4c39aafd14948aacfcc4f9c6374a875" category="cell">Astra Trident 将在其中创建所有 ADS 自定义资源的命名空间</block>
-  <block id="995c6425a4a00f961b0c8a2000c5497c" category="cell">`kubeconfig`</block>
-  <block id="dc37fa78a7cf3d9ae1dbf70f4430a142" category="cell">ADS Kubernetes 集群的凭据（ Base64 Compact JSON ）</block>
-  <block id="e5f77e38f271802a5a75ecdffe577104" category="cell">"vers=4.1"</block>
-  <block id="2949ef191693d444cc1f96962c1fd8ae" category="cell">启用 `AutoExportPolicy` 时用于筛选 Kubernetes 节点 IP 的 CIDR 列表</block>
-  <block id="1abbe16b7053d16fb89efaebd94484be" category="cell">["0.0.0.0/0 ， " ：： /0"</block>
-  <block id="857a0a2e6dd17cb6e0022d80855b338a" category="cell">故障排除时要使用的调试标志。示例： ｛ "api" ： false ， "method ： true ｝</block>
-  <block id="0ffdeb640d4a5fc9f33736feec8d274f" category="admonition">您应先将 `kubeconfig` 值从 YAML 转换为紧凑型 JSON 格式，然后再转换为 Base64 格式，然后再将其包含在后端配置中。</block>
-  <block id="5ef844cc326d7b10c0f674ac9b2b3c74" category="paragraph">每个后端都会在托管 ADS 的 Kubernetes 集群上的一个命名空间中配置卷。要在其他命名空间中创建卷，您可以定义其他后端。可以将 ADS 卷附加到托管集群中的任何命名空间，任何其他 Kubernetes 集群或可以挂载 NFS 共享的任何其他位置。</block>
-  <block id="f2319c1b13782c7170018cdd5fb7fd49" category="paragraph">您可以在配置文件的特殊部分中使用这些选项控制每个卷的默认配置。</block>
-  <block id="77c62856cfaac230e7c2fd8139d7c2c8" category="paragraph">请参见以下配置示例。</block>
-  <block id="ef616ce0e78a1254437e682f723bb5e6" category="cell">新卷的模式必须为八进制，并且以 "0" 开头</block>
-  <block id="6474dd374337126fa99c86e653ebfd64" category="cell">"0777"</block>
-  <block id="5964a48430cb8e8190dbd855a8514a0c" category="cell">"5"</block>
-  <block id="115261f04e7f7d964bc608b63a82b482" category="cell">要为创建的卷分配的 QoS 策略</block>
-  <block id="cf04ead37df0a76237b27de327c0cd03" category="admonition">对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对每个存储池创建的所有卷进行分组。这样，您就可以根据后端配置文件中提供的一组可自定义标签来方便地区分卷了。</block>
-  <block id="b53453343f074fd64ef7129def93f57d" category="section-title">示例 1 ：最小后端配置</block>
-  <block id="8f3db75549f212e0fdab2c542531a95e" category="paragraph">此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。</block>
-  <block id="a2c81e41622f2e2616b33a689e229c72" category="paragraph">以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
-  <block id="498784627f42c14468b84a1a351bd462" category="sidebar">配置 ADS 后端</block>
-  <block id="165fe4b78b5877cf8db8ac6361e5c85a" category="paragraph">您可以在 Astra 页面上注册免费试用版。</block>
-  <block id="d13de4a83d7b44c2e65495def8ef1c7b" category="section-title">有关详细信息 ...</block>
-  <block id="fa80e31eb77798b8dd995ddd9553be6e" category="inline-link">NetApp Astra 产品系列</block>
-  <block id="ed394f5572d8e7df474126557b3288f8" category="list-text"><block ref="ed394f5572d8e7df474126557b3288f8" category="inline-link-rx"></block></block>
-  <block id="ef22ff17624b3faeed227ce5c717eb5f" category="inline-link">Astra Control Service 文档</block>
-  <block id="0ae0ea6967e9321db008cee4ad5f290c" category="list-text"><block ref="0ae0ea6967e9321db008cee4ad5f290c" category="inline-link-rx"></block></block>
-  <block id="3a4b2c66d4bdac6ce0e3340c71a39eda" category="inline-link">Astra 控制中心文档</block>
-  <block id="ea643bf7aaf130341a17f697a7009368" category="list-text"><block ref="ea643bf7aaf130341a17f697a7009368" category="inline-link-rx"></block></block>
-  <block id="668cea0790a6ca206d2c5f41d4e2bfe3" category="inline-link">Astra Data 文档</block>
-  <block id="774d94ad69407b5dff98038fec00368b" category="list-text"><block ref="774d94ad69407b5dff98038fec00368b" category="inline-link-rx"></block></block>
-  <block id="9d6ffa6ef31bd0b92876314219f18ef5" category="inline-link">Astra API 文档</block>
-  <block id="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="list-text"><block ref="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="inline-link-rx"></block></block>
-  <block id="dc5ac69fee94d861f0bed64729b712cf" category="paragraph">Astra Trident 可能需要先对存储系统进行一些更改，然后后端配置才能使用它。请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="91bffb05ce7b35189932ad387d14e41b" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `在 `跨区域 Kubernetes 集群时，在 "apiRegion"` 中创建的 CVS 卷可用于在多个 GCP 区域的节点上计划的工作负载。请注意，跨区域流量会产生额外成本。</block>
   <block id="31842a4ad923dd3481336d7d93dc2068" category="list-text">要启用跨区域访问， `allowedTopologies` 的 StorageClass 定义必须包括所有地区。例如：</block>
-  <block id="44353297d28e56e03a6c2fa8ed4c436d" category="list-text">支持的 ADS 存储系统。请参见 <block ref="a495e7dcf960e6114a66e71691c841e9" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="433f174b6e54b889696b2efd4ef40dc6" category="admonition">可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。</block>
   <block id="1968a7e86875b6b6ca9d5222172f8d16" category="list-text">`` -http-request-timeout` ：覆盖 Trident 控制器的 REST API 的 HTTP 请求超时（默认值为 1m30s ）。</block>
   <block id="705db3afa1c1d4451f7b0f7f8552f1b5" category="list-text">您对运行 Kubernetes 1.17 及更高版本的受支持 Kubernetes 集群拥有完全权限。</block>
@@ -3120,4 +3026,47 @@
   <block id="cf282b9c05ab0f84b1690e644cd3f68e" category="list-text">对于 `ontap-nas-flexgroup` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexGroup 。因此，卷快照会创建为 NetApp FlexGroup 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
   <block id="ba9e76e1be4705136fd15fd947717d07" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
   <block id="1600a61b1da8ff824ac37a5e83b2aef0" category="paragraph">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` 支持。 `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序。</block>
+  <block id="cac3274b477ab652946784fa7e4d61e7" category="paragraph">Astra Trident 是一个由 NetApp 维护的完全受支持的开源项目。它经过全新设计，可帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
+  <block id="3777daa0663e4d3f177a85bc67443c32" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。</block>
+  <block id="34354c1f7e5f61fa8fe457b846c277e1" category="paragraph">请查看 Astra 文档，立即开始使用。您可以立即在 Astra 页面上注册免费试用。</block>
+  <block id="b90cfe7eec2fd25d8051aa0d2904effd" category="inline-link">Astra 控制服务简介</block>
+  <block id="e863c6f356f601b620d332145ba64279" category="list-text"><block ref="e863c6f356f601b620d332145ba64279" category="inline-link-rx"></block></block>
+  <block id="84a414bad3d440f298f070c3d3fa60bb" category="inline-link">开始使用 Astra API</block>
+  <block id="22e85cb2bef8534170e0b3aa21efdd42" category="list-text"><block ref="22e85cb2bef8534170e0b3aa21efdd42" category="inline-link-rx"></block></block>
+  <block id="41babe56ec27c9b39ecab6c854265300" category="inline-link">了解 Astra 控制中心</block>
+  <block id="05e8ff43093720b9084af213039e0bc5" category="list-text"><block ref="05e8ff43093720b9084af213039e0bc5" category="inline-link-rx"></block></block>
+  <block id="162868582f509647f4b899829f6e41f6" category="paragraph">在此步骤中， 21.07.1 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
+  <block id="a1509084d79ec341b5fa6440d1be8634" category="paragraph">如果您未运行最新版本，则可以参考先前版本的 Astra Trident 文档。</block>
+  <block id="aeeec433666472b603c30d4253b0ebf5" category="admonition">有关 Astra Trident 21.07 及相关修补程序版本的文档为<block ref="05716ac1466b0f4f02ba68e41e25a5d9" category="inline-link-rx"></block>。</block>
+  <block id="b2b6d326276756e4c6b75a232980415b" category="admonition">早期版本的 Astra Trident 的文档位于我们的原有文档站点中。</block>
+  <block id="b89df534de66f446ec6482f9d7898bb2" category="cell">`控制器插件节点选择器`</block>
+  <block id="15cfc4bea44cee69551eb577fb0dcd8a" category="cell">运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。格式与 pod.spec.nodeSelector 相同。</block>
+  <block id="8d414af35aeb82413205fa45551a5545" category="cell">无默认值；可选</block>
+  <block id="df1f367efe879ec0030f43610e29c5af" category="cell">`控制器插件公差`</block>
+  <block id="2fba8e7843d1d343f2fe29feeca4b34d" category="cell">覆盖运行 Trident 控制器 CSI 插件的 Pod 的容错。格式与 po.spec.Tolerations 相同。</block>
+  <block id="47a441037628a3c0f0edb0daccb33f99" category="cell">`nodePluginNodeSelector`</block>
+  <block id="109ef057002ce8b5901039ee5b81df88" category="cell">运行 Trident Node CSI 插件的 Pod 的其他节点选择器。格式与 pod.spec.nodeSelector 相同。</block>
+  <block id="f297db5a937924105908a365d9d4c4ff" category="cell">`nodePluginTholeations`</block>
+  <block id="01fae47efea3407f5bc27a09eea8709c" category="cell">覆盖运行 Trident Node CSI 插件的 Pod 的容错。格式与 po.spec.Tolerations 相同。</block>
+  <block id="4352a1b4e004cf57ac04661a18de43aa" category="inline-link-macro">将 Pod 分配给节点</block>
+  <block id="b3b67fd79d24b4873c8164c750c21798" category="admonition">有关格式化 POD 参数的详细信息，请参见 <block ref="7b3a69fdac08c769183925679da4c365" category="inline-link-macro-rx"></block>。</block>
+  <block id="6835e07bc055fcef1cc48dc5a6f625a8" category="list-text">OpenShift 4.4 ， 4.5 ， 4.6 （ 4.6.8+ ）， 4.7 ， 4.8 （最新的 4.8 ）</block>
+  <block id="9d731f8383dd11a9e23415f4e5621ee6" category="section-title">支持的主机操作系统</block>
+  <block id="462b8344a4e3b491690838228ddbedb5" category="paragraph">默认情况下， Astra Trident 本身在容器中运行，因此它将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
+  <block id="1def7d1add436c6afb595676d8c32a2f" category="paragraph">这些是已知有效的 Linux 分发版：</block>
+  <block id="4bd66d391160d942582baacb04fa201f" category="paragraph">Astra Trident 可能需要先对存储系统进行一些更改，然后后端配置才能使用它。请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="47d07011bca79befe16bb700e92dcbc1" category="list-text">NetApp/trident ： 21.07.0</block>
+  <block id="d9f8e2d8dd775582f52f3faab2fd1e65" category="list-text">netapp/trident 操作符： 21.07.0</block>
+  <block id="2e6c4d3ef0db2b4c90724d4a5476e36d" category="list-text">netapp/trident autosupport ： 21.01</block>
+  <block id="b30d0a097738f86abbfecf3f9ea80403" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.1.1</block>
+  <block id="0add2d5b06a46b805acf99b6548b2398" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.1.0</block>
+  <block id="2ca7c243ca3adf9f395ed61cad94c4b9" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.1.0</block>
+  <block id="74ba55b5b18f4a1327f8e0691e73ec2e" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.1.0</block>
+  <block id="f5de0771348311ab6f3933f60bd8008d" category="list-text">K8s.gcr.io/SIG-storage/CsI-snapshotter ： v4.1.1</block>
+  <block id="6f2ac1cf1da8ec34232c651d4bba0149" category="paragraph"><block ref="6f2ac1cf1da8ec34232c651d4bba0149" category="inline-link-macro-rx"></block></block>
+  <block id="4dafc112897e668d8c968f7418829817" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`</block>
+  <block id="415e3eb51625ca73d5e09053eea6a42b" category="section-title">21.10 中的新增功能</block>
+  <block id="c1f57827e94910e34725b8cf11415683" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 的一些最新特性和功能。</block>
+  <block id="57138e91e6168cecf9d0dad2afd12735" category="paragraph">同时 <block ref="6ad29d013fc003c1446dfe4715881765" category="inline-link-macro-rx"></block> 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。</block>
+  <block id="82afa66ce2496cc16fa1a7a5a6b3a000" category="paragraph">可用的命令和全局选项如下：</block>
 </blocks>

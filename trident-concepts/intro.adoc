@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-concepts/intro.html 
 keywords: product overview, astra trident 
-summary: Astra Trident 是一个受全面支持的开源项目，由 NetApp 作为 Astra 产品系列的一部分进行维护。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。 
+summary: 在 Astra Trident 中配置有两个主要阶段。第一阶段会将存储类与一组合适的后端存储池相关联，并在配置之前进行必要的准备。第二阶段包括卷创建本身，需要从与待定卷的存储类关联的存储池中选择一个存储池。 
 ---
 = Astra Trident 简介
 :hardbreaks:
@@ -10,9 +10,9 @@ summary: Astra Trident 是一个受全面支持的开源项目，由 NetApp 作�
 :imagesdir: ../media/
 
 
-Astra Trident 是一个完全受支持的开源项目，由 NetApp 在中维护 link:https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra 产品系列"^]。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。
+Astra Trident 是一个由 NetApp 维护的完全受支持的开源项目。它经过全新设计，可帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。
 
-Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）， Astra 数据存储以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。
+Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。
 
 Astra Trident 也是 NetApp Astra 的一项基础技术，利用 NetApp 行业领先的快照，备份，复制和克隆数据管理技术，可满足 Kubernetes 工作负载的数据保护，灾难恢复，可移动性和迁移用例。
 
@@ -52,15 +52,9 @@ Astra Trident 也是 NetApp Astra 的一项基础技术，利用 NetApp 行业�
 
 借助 Astra ，企业可以更轻松地在公有云内部和内部环境中管理，保护和移动 Kubernetes 上运行的数据丰富的容器化工作负载。Astra 使用 NetApp 在公有云和内部环境中成熟而广泛的存储产品组合中的 Astra Trident 配置和提供永久性容器存储。此外，它还提供了一组丰富的高级应用程序感知型数据管理功能，例如快照，备份和还原，活动日志和主动克隆，用于数据保护，灾难 / 数据恢复，数据审核以及 Kubernetes 工作负载的迁移用例。
 
-您可以在 Astra 页面上注册免费试用版。
+请查看 Astra 文档，立即开始使用。您可以立即在 Astra 页面上注册免费试用。
 
-
-
-== 有关详细信息 ...
-
-* https://docs.netapp.com/us-en/astra-family/intro-family.html["NetApp Astra 产品系列"]
-* https://docs.netapp.com/us-en/astra/get-started/intro.html["Astra Control Service 文档"^]
-* https://docs.netapp.com/us-en/astra-control-center/index.html["Astra 控制中心文档"^]
-* https://docs.netapp.com/us-en/astra-data-store/index.html["Astra Data 文档"^]
-* https://docs.netapp.com/us-en/astra-automation/get-started/before_get_started.html["Astra API 文档"^]
+* https://docs.netapp.com/us-en/astra/get-started/intro.html["Astra 控制服务简介"^]
+* https://docs.netapp.com/us-en/astra-automation/get-started/before_get_started.html["开始使用 Astra API"^]
+* https://docs.netapp.com/us-en/astra-control-center/concepts/intro.html["了解 Astra 控制中心"^]
 
