@@ -1478,7 +1478,6 @@
   <block id="a3c559e0541e9bb860178ce6fe414224" category="list-text">适用于 GCP 的 Cloud Volumes Service</block>
   <block id="ff617c70912e62b6adb0266e42f9d4f5" category="list-text">FAS/AFF/ 选择 9.3 或更高版本</block>
   <block id="1d3d126b8a5bad69c46ed03734beed47" category="list-text">NetApp 全 SAN 阵列（ ASA ）</block>
-  <block id="74b7fad26c712d18ff25fc7d7ae5a7a1" category="list-text">NetApp HCI/Element 软件 8 或更高版本</block>
   <block id="c7c7a6a5641f33e348244f9c43010e16" category="section-title">功能要求</block>
   <block id="8c67111ad59dd108156a3e7c9a32b63c" category="paragraph">下表总结了此版本的 Astra Trident 及其支持的 Kubernetes 版本提供的功能。</block>
   <block id="21021ea0e52be8e9c599f4dff41e5be0" category="cell">功能</block>
@@ -1494,7 +1493,6 @@
   <block id="1f7219b07d5bce7feec002a9f4dc2201" category="cell">Trident 运算符</block>
   <block id="bf0d42cfb33347700a1060d7b0cf07c1" category="cell">自动工作节点准备（测试版）</block>
   <block id="443432948b68bb63d707ce7ecc4a021a" category="cell">CSI 拓扑</block>
-  <block id="10ba4d981cc0f1ae131e16a64d3c2687" category="list-text">RedHat CoreOS 4.2 和 4.3</block>
   <block id="4fa506be8cc1c8c936a3eff8a374fe26" category="list-text">RHEL 或 CentOS 7.4 或更高版本</block>
   <block id="2d736ed9cdbf58b500e9715daeb267e6" category="list-text">Ubuntu 18.04 或更高版本</block>
   <block id="11ea58814ce429c3e3254a63f8cde7a4" category="paragraph">`tridentctl` 实用程序也可在 Linux 的任何这些分发版上运行。</block>
@@ -3012,7 +3010,6 @@
   <block id="1968a7e86875b6b6ca9d5222172f8d16" category="list-text">`` -http-request-timeout` ：覆盖 Trident 控制器的 REST API 的 HTTP 请求超时（默认值为 1m30s ）。</block>
   <block id="705db3afa1c1d4451f7b0f7f8552f1b5" category="list-text">您对运行 Kubernetes 1.17 及更高版本的受支持 Kubernetes 集群拥有完全权限。</block>
   <block id="3b4c548466953befff1962ac2426cb8e" category="paragraph">要查看您的 Kubernetes 版本是否高于 1.17 ，请运行以下命令：</block>
-  <block id="834bb262db01800c5b2fc71ef097a803" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.7 及更高版本上使用 Astra Trident 。</block>
   <block id="85bfe817bf2347bf6d5dcea4b86ade72" category="cell">应用程序注册中的客户端 ID</block>
   <block id="a5e65d71b5d7719b3a51518133fd2538" category="cell">"" （随机）</block>
   <block id="23ef4149f946c881b1c40a6ac1510554" category="admonition">修改现有后端的 `capacityPools` 字段以减少用于配置的容量池的数量会导致孤立卷，这些卷会在不再属于 `capacityPools` 列表的容量池 / 池上配置。对这些孤立卷执行克隆操作将失败。</block>
@@ -3061,14 +3058,8 @@
   <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
   <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
   <block id="dc5ac69fee94d861f0bed64729b712cf" category="paragraph">Astra Trident 可能需要先对存储系统进行一些更改，然后后端配置才能使用它。请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
-  <block id="822b439e1640423ccbcbed4f9075999d" category="list-text">NetApp/trident ： 21.10.0</block>
-  <block id="098ea8d7067b53d30d17fa3828abed7b" category="list-text">netapp/trident autosupport ： 21.10</block>
   <block id="b0b4b8e52878f03279584f43bc961472" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2</block>
-  <block id="af4499fc8818e7a77f8ba226b45359df" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.3.0</block>
   <block id="3c8910d4db724229b566887801de96bb" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0</block>
-  <block id="ad51ab91499291ae184dc614edbfe7df" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.3.0</block>
-  <block id="f948435808f18602f3b9e0f018da83dc" category="list-text">netapp/trident 操作符： 21.10.0 （可选）</block>
-  <block id="d7f860105f67679f001ef7c3ed889c0c" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.0.0</block>
   <block id="681d715b456f6d29a501b8f132e941a1" category="cell">v1.22.0</block>
   <block id="80fa8f92dc0ebf122ed30a4a88fda343" category="doc">Astra Trident 22.01 文档</block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
@@ -3142,4 +3133,17 @@
   <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
   <block id="94912f7fb206038e8527957b44dfbf25" category="paragraph">此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。</block>
   <block id="498784627f42c14468b84a1a351bd462" category="sidebar">配置 ADS 后端</block>
+  <block id="d60af04250fde4c14a6e7a6a884dfbfd" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal ， 1.8 ， 1.9</block>
+  <block id="fe3b4c5750a12d7254dee5e87c55bb40" category="list-text">Kubernetes 1.17 或更高版本（最新版本： 1.23 ）</block>
+  <block id="10ae2729ec6b89f9c276ab2da5409336" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9</block>
+  <block id="f2f0da9b50bd2001bc802c121fc76254" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.6.8 及更高版本上使用 Astra Trident 。</block>
+  <block id="0f6e0df69462b7a5d101ec1a3fa8a376" category="list-text">NetApp HCI/ Element 软件 11 或更高版本</block>
+  <block id="597a56086e1f9d7ca5e8f55c40a0153a" category="list-text">OpenShift 容器平台支持的 RedHat CoreOS （ RHCOS ）版本</block>
+  <block id="83f21d8f3725c4e4a96d4e8da9c06403" category="list-text">NetApp/trident ： 22.01.0</block>
+  <block id="0e3db22955e0ef2a04155e743fdcd843" category="list-text">netapp/trident autosupport ： 22.01</block>
+  <block id="52d5de12f37c2ff6a4de253d20947ca2" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0</block>
+  <block id="f86452b351d644230a6ab4c2d580e193" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0</block>
+  <block id="9b73461bc19f14ce7a87a56f6890ca87" category="list-text">netapp/trident 操作符： 22.01.0 （可选）</block>
+  <block id="ad9d572821da9bfff3397f2d3260509d" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0</block>
+  <block id="73e93ad328287e5ce4c06228cfdba2bf" category="cell">v1.23.0</block>
 </blocks>
