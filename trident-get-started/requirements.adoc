@@ -21,7 +21,7 @@ NOTE: 要了解 Astra Trident 使用的端口，请参见 link:../trident-refere
 
 Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
-* Anthos on-Prem （ VMware ）和 Anthos on bare metal ， 1.8 ， 1.9
+* Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9
 * Kubernetes 1.17 或更高版本（最新版本： 1.23 ）
 * Mirantis Kubernetes Engine 3.4
 * OpenShift 4.7 ， 4.8 ， 4.9
@@ -29,9 +29,9 @@ Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
 以下版本支持 Trident 操作符：
 
-* Anthos on-Prem （ VMware ）和 Anthos on bare metal ， 1.8 ， 1.9
-* Kubernetes 1.17 或更高版本（最新版本： 1.22 ）
-* OpenShift 4.7 ， 4.8 ， 4.9 （最新版本 4.9 ）
+* Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9
+* Kubernetes 1.17 或更高版本（最新版本： 1.23 ）
+* OpenShift 4.7 ， 4.8 ， 4.9
 
 
 

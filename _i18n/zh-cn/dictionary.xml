@@ -1468,7 +1468,6 @@
   <block id="0582c93c9857a8b6d0380be79128eefc" category="admonition">要了解 Astra Trident 使用的端口，请参见 <block ref="c6b87a878d50568ac1e654ad3964af7b" category="inline-link-macro-rx"></block>。</block>
   <block id="c777be7f669397b0a376fe32ca5cd9c3" category="section-title">支持的前端（编排程序）</block>
   <block id="74aefc05d193afd5c50a0df882997656" category="paragraph">Astra Trident 支持多个容器引擎和流程编排程序，其中包括：</block>
-  <block id="13ab6ee12e5d62b771a28d7c3a8de9fc" category="list-text">Kubernetes 1.17 或更高版本（最新版本： 1.22 ）</block>
   <block id="37696641960d6c73a7dadab603c1877e" category="list-text">Mirantis Kubernetes Engine 3.4</block>
   <block id="201eb37826a33e35adff9119f25946bd" category="paragraph">以下版本支持 Trident 操作符：</block>
   <block id="5596419ed8318cabbcb138ef27fd3035" category="inline-link">错误修复公告</block>
@@ -3052,7 +3051,6 @@
   <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
   <block id="e088e1f9fcd6d6a9509bd529db24c8f3" category="admonition">如果尚未为 Trident 创建命名空间，则可以将 ` -create-namespace` 参数添加到 `helm install` 命令中。然后， Helm 将自动为您创建命名空间。</block>
-  <block id="aaf288b351be41417d093d835297fb3e" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9 （最新版本 4.9 ）</block>
   <block id="8035d5d39b2b48f6ec1a3133b688513c" category="list-text">Astra 数据存储</block>
   <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">已测试主机操作系统</block>
   <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
@@ -3133,7 +3131,6 @@
   <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
   <block id="94912f7fb206038e8527957b44dfbf25" category="paragraph">此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。</block>
   <block id="498784627f42c14468b84a1a351bd462" category="sidebar">配置 ADS 后端</block>
-  <block id="d60af04250fde4c14a6e7a6a884dfbfd" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal ， 1.8 ， 1.9</block>
   <block id="fe3b4c5750a12d7254dee5e87c55bb40" category="list-text">Kubernetes 1.17 或更高版本（最新版本： 1.23 ）</block>
   <block id="10ae2729ec6b89f9c276ab2da5409336" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9</block>
   <block id="f2f0da9b50bd2001bc802c121fc76254" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.6.8 及更高版本上使用 Astra Trident 。</block>
@@ -3146,4 +3143,5 @@
   <block id="9b73461bc19f14ce7a87a56f6890ca87" category="list-text">netapp/trident 操作符： 22.01.0 （可选）</block>
   <block id="ad9d572821da9bfff3397f2d3260509d" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0</block>
   <block id="73e93ad328287e5ce4c06228cfdba2bf" category="cell">v1.23.0</block>
+  <block id="f2fe14f2f47e170d6135f34f6214adcb" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9</block>
 </blocks>
