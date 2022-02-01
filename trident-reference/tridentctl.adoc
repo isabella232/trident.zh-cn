@@ -15,7 +15,7 @@ summary: 了解有关 tridentctl 的更多信息， tridentctl 是一个命令�
 
 有关使用情况信息，请运行 `tridentctl -help` 。
 
-可用的命令和全局选项如下：
+可用的命令和全局选项包括：
 
 [listing]
 ----
@@ -47,9 +47,6 @@ flags
 * `` -o ， -output string` ：输出格式。json_yaml_name_wide|ps 之一（默认）。
 * `` -s ， -server string` ： Astra Trident REST 接口的地址 / 端口。
 
-
-
-CAUTION: 可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。
 
 
 

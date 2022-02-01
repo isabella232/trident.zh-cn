@@ -1,0 +1,244 @@
+---
+sidebar: sidebar 
+permalink: trident-use/ads.html 
+keywords: trident backend, cloud volumes service for AWS 
+summary: 了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。 
+---
+= 配置 Astra 数据存储后端
+:hardbreaks:
+:icons: font
+:imagesdir: ../media/
+
+
+了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。
+
+以配置和使用 https://cloud.netapp.com/astra-data-store["Astra 数据存储"^] 后端，您需要满足以下要求：
+
+* 支持的 ADS 存储系统。请参见 link:https://docs.netapp.com/us-en/astra-data-store/index.html["Astra Data Store 预览文档"^] 了解详细信息。
+* 托管 ADS 的 Kubernetes 集群的凭据。托管 ADS 的 Kubernetes 集群必须具有一个专用于此 Astra Trident 后端创建和管理的卷，快照和导出策略资源的命名空间。必须为托管支持以下功能的 ADS 的 Kubernetes 集群提供 `kubeconfig` ：
++
+** 读取 `astrads-system` 命名空间中的所有对象
+** 读取 / 写入为该 Astra Trident 后端使用而创建的命名空间中的对象
+** 列出所有集群命名空间
+
+
+
+
+
+
+== 后端配置选项
+
+有关后端配置选项，请参见下表：
+
+[cols="3"]
+|===
+| 参数 | Description | Default 
+
+
+| `ve版本` |  | 始终为 1 
+
+
+| `storageDriverName` | 存储驱动程序的名称 | "astrads-NAS" 
+
+
+| `backendName` | 自定义名称或存储后端 | ADS 集群名称 
+
+
+| `集群` | AstraDSCluster 资源的名称 |  
+
+
+| `命名空间` | Astra Trident 将在其中创建所有 ADS 自定义资源的命名空间 |  
+
+
+| `kubeconfig` | ADS Kubernetes 集群的凭据（ Base64 Compact JSON ） | `nfsMountOptions` 
+
+
+| 精细控制 NFS 挂载选项 | "vers=4.1" | `autosExportPolicy` 
+
+
+| 启用自动创建和更新导出策略 [ 布尔值 ] | false | `autosExportCIDR` 
+
+
+| 启用 `AutoExportPolicy` 时用于筛选 Kubernetes 节点 IP 的 CIDR 列表 | ["0.0.0.0/0 ， " ：： /0" | `limitVolumeSize` 
+
+
+| 如果请求的卷大小超过此值，则配置失败 | "" （默认情况下不强制实施） | `debugTraceFlags` 
+
+
+| 故障排除时要使用的调试标志。示例： ｛ "api" ： false ， "method ： true ｝ | 空 | `标签` 
+|===
+
+CAUTION: 请勿使用 `debugTraceFlags` ，除非您正在进行故障排除并需要详细的日志转储。
+
+
+NOTE: 您应先将 `kubeconfig` 值从 YAML 转换为紧凑型 JSON 格式，然后再转换为 Base64 格式，然后再将其包含在后端配置中。
+
+每个后端都会在托管 ADS 的 Kubernetes 集群上的一个命名空间中配置卷。要在其他命名空间中创建卷，您可以定义其他后端。可以将 ADS 卷附加到托管集群中的任何命名空间，任何其他 Kubernetes 集群或可以挂载 NFS 共享的任何其他位置。
+
+您可以在配置文件的特殊部分中使用这些选项控制每个卷的默认配置。
+
+请参见以下配置示例。
+
+[cols=",,"]
+|===
+| 参数 | Description | Default 
+
+
+| `exportPolicy` | 要使用的导出策略 | default 
+
+
+| `unixPermissions` | 新卷的模式必须为八进制，并且以 "0" 开头 | "0777" 
+
+
+| `sSnapshot 预留` | 为快照预留的卷百分比 | "5" 
+
+
+| `snapshotDir` | 控制 ` .snapshot` 目录的可见性 | false 
+
+
+| `qosPolicy` | 要为创建的卷分配的 QoS 策略 | "" 
+|===
+
+NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对每个存储池创建的所有卷进行分组。这样，您就可以根据后端配置文件中提供的一组可自定义标签来方便地区分卷了。
+
+
+
+== 示例 1 ：最小后端配置
+
+这是绝对的最低后端配置。
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "astrads-nas",
+    "cluster": "astrads-sti-c6220-09-10-11-12",
+    "namespace": "test",
+    "kubeconfig": "eyJjdXJyZW50LWNvbnRleHQiOiJmZWRlcmFsLWNvbnRleHQiLCJhcGlWZXJzaW9uIjoidjEiLCJjbHVzdGVycyI6W3siY2x1c3RlciI6eyJhcGktdmVyc2lvbiI6InYxIiwic2VydmVyIjoiaHR0cDovL2Nvdy5vcmc6ODA4MCJ9LCJuYW1lIjoiY293LWNsdXN0ZXIifSx7ImNsdXN0ZXIiOnsiY2VydGlmaWNhdGUtYXV0aG9yaXR5IjoicGF0aC90by9teS9jYWZpbGUiLCJzZXJ2ZXIiOiJodHRwczovL2hvcnNlLm9yZzo0NDQzIn0sIm5hbWUiOiJob3JzZS1jbHVzdGVyIn0seyJjbHVzdGVyIjp7Imluc2VjdXJlLXNraXAtdGxzLXZlcmlmeSI6dHJ1ZSwic2VydmVyIjoiaHR0cHM6Ly9waWcub3JnOjQ0MyJ9LCJuYW1lIjoicGlnLWNsdXN0ZXIifV0sImNvbnRleHRzIjpbeyJjb250ZXh0Ijp7ImNsdXN0ZXIiOiJob3JzZS1jbHVzdGVyIiwibmFtZXNwYWNlIjoiY2hpc2VsLW5zIiwidXNlciI6ImdyZWVuLXVzZXIifSwibmFtZSI6ImZlZGVyYWwtY29udGV4dCJ9LHsiY29udGV4dCI6eyJjbHVzdGVyIjoicGlnLWNsdXN0ZXIiLCJuYW1lc3BhY2UiOiJzYXctbnMiLCJ1c2VyIjoiYmxhY2stdXNlciJ9LCJuYW1lIjoicXVlZW4tYW5uZS1jb250ZXh0In1dLCJraW5kIjoiQ29uZmlnIiwicHJlZmVyZW5jZXMiOnsiY29sb3JzIjp0cnVlfSwidXNlcnMiOlt7Im5hbWUiOiJibHVlLXVzZXIiLCJ1c2VyIjp7InRva2VuIjoiYmx1ZS10b2tlbiJ9fSx7Im5hbWUiOiJncmVlbi11c2VyIiwidXNlciI6eyJjbGllbnQtY2VydGlmaWNhdGUiOiJwYXRoL3RvL215L2NsaWVudC9jZXJ0IiwiY2xpZW50LWtleSI6InBhdGgvdG8vbXkvY2xpZW50L2tleSJ9fV19"
+}
+----
+
+
+== 示例 2 ：单服务级别配置
+
+此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。
+
+[listing]
+----
+{
+    "version": 1,
+        "storageDriverName": "astrads-nas",
+        "cluster": "astrads-sti-c6220-09-10-11-12",
+        "namespace": "test",
+        "kubeconfig": "eyJjdXJyZW50LWNvbnRleHQiOiJmZWRlcmFsLWNvbnRleHQiLCJhcGlWZXJzaW9uIjoidjEiLCJjbHVzdGVycyI6W3siY2x1c3RlciI6eyJhcGktdmVyc2lvbiI6InYxIiwic2VydmVyIjoiaHR0cDovL2Nvdy5vcmc6ODA4MCJ9LCJuYW1lIjoiY293LWNsdXN0ZXIifSx7ImNsdXN0ZXIiOnsiY2VydGlmaWNhdGUtYXV0aG9yaXR5IjoicGF0aC90by9teS9jYWZpbGUiLCJzZXJ2ZXIiOiJodHRwczovL2hvcnNlLm9yZzo0NDQzIn0sIm5hbWUiOiJob3JzZS1jbHVzdGVyIn0seyJjbHVzdGVyIjp7Imluc2VjdXJlLXNraXAtdGxzLXZlcmlmeSI6dHJ1ZSwic2VydmVyIjoiaHR0cHM6Ly9waWcub3JnOjQ0MyJ9LCJuYW1lIjoicGlnLWNsdXN0ZXIifV0sImNvbnRleHRzIjpbeyJjb250ZXh0Ijp7ImNsdXN0ZXIiOiJob3JzZS1jbHVzdGVyIiwibmFtZXNwYWNlIjoiY2hpc2VsLW5zIiwidXNlciI6ImdyZWVuLXVzZXIifSwibmFtZSI6ImZlZGVyYWwtY29udGV4dCJ9LHsiY29udGV4dCI6eyJjbHVzdGVyIjoicGlnLWNsdXN0ZXIiLCJuYW1lc3BhY2UiOiJzYXctbnMiLCJ1c2VyIjoiYmxhY2stdXNlciJ9LCJuYW1lIjoicXVlZW4tYW5uZS1jb250ZXh0In1dLCJraW5kIjoiQ29uZmlnIiwicHJlZmVyZW5jZXMiOnsiY29sb3JzIjp0cnVlfSwidXNlcnMiOlt7Im5hbWUiOiJibHVlLXVzZXIiLCJ1c2VyIjp7InRva2VuIjoiYmx1ZS10b2tlbiJ9fSx7Im5hbWUiOiJncmVlbi11c2VyIiwidXNlciI6eyJjbGllbnQtY2VydGlmaWNhdGUiOiJwYXRoL3RvL215L2NsaWVudC9jZXJ0IiwiY2xpZW50LWtleSI6InBhdGgvdG8vbXkvY2xpZW50L2tleSJ9fV19",
+        "defaults": {
+            "exportPolicy": "myexportpolicy1",
+            "qosPolicy": "bronze",
+            "snapshotReserve": "10"
+        },
+        "labels": {"cloud": "on-prem", "creator": "ads-cluster-1", "performance": "bronze"}
+}
+----
+
+
+== 示例 3 ：虚拟存储池配置
+
+此示例显示了使用虚拟存储池配置的后端定义文件以及引用这些池的 StorageClasses 。
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "astrads-nas",
+    "cluster": "astrads-sti-c6220-09-10-11-12",
+    "namespace": "test",
+    "kubeconfig": "eyJjdXJyZW50LWNvbnRleHQiOiJmZWRlcmFsLWNvbnRleHQiLCJhcGlWZXJzaW9uIjoidjEiLCJjbHVzdGVycyI6W3siY2x1c3RlciI6eyJhcGktdmVyc2lvbiI6InYxIiwic2VydmVyIjoiaHR0cDovL2Nvdy5vcmc6ODA4MCJ9LCJuYW1lIjoiY293LWNsdXN0ZXIifSx7ImNsdXN0ZXIiOnsiY2VydGlmaWNhdGUtYXV0aG9yaXR5IjoicGF0aC90by9teS9jYWZpbGUiLCJzZXJ2ZXIiOiJodHRwczovL2hvcnNlLm9yZzo0NDQzIn0sIm5hbWUiOiJob3JzZS1jbHVzdGVyIn0seyJjbHVzdGVyIjp7Imluc2VjdXJlLXNraXAtdGxzLXZlcmlmeSI6dHJ1ZSwic2VydmVyIjoiaHR0cHM6Ly9waWcub3JnOjQ0MyJ9LCJuYW1lIjoicGlnLWNsdXN0ZXIifV0sImNvbnRleHRzIjpbeyJjb250ZXh0Ijp7ImNsdXN0ZXIiOiJob3JzZS1jbHVzdGVyIiwibmFtZXNwYWNlIjoiY2hpc2VsLW5zIiwidXNlciI6ImdyZWVuLXVzZXIifSwibmFtZSI6ImZlZGVyYWwtY29udGV4dCJ9LHsiY29udGV4dCI6eyJjbHVzdGVyIjoicGlnLWNsdXN0ZXIiLCJuYW1lc3BhY2UiOiJzYXctbnMiLCJ1c2VyIjoiYmxhY2stdXNlciJ9LCJuYW1lIjoicXVlZW4tYW5uZS1jb250ZXh0In1dLCJraW5kIjoiQ29uZmlnIiwicHJlZmVyZW5jZXMiOnsiY29sb3JzIjp0cnVlfSwidXNlcnMiOlt7Im5hbWUiOiJibHVlLXVzZXIiLCJ1c2VyIjp7InRva2VuIjoiYmx1ZS10b2tlbiJ9fSx7Im5hbWUiOiJncmVlbi11c2VyIiwidXNlciI6eyJjbGllbnQtY2VydGlmaWNhdGUiOiJwYXRoL3RvL215L2NsaWVudC9jZXJ0IiwiY2xpZW50LWtleSI6InBhdGgvdG8vbXkvY2xpZW50L2tleSJ9fV19",
+
+    "autoExportPolicy": true,
+    "autoExportCIDRs": ["10.211.55.0/24"],
+
+    "labels": {"cloud": "on-prem", "creator": "ads-cluster-1"},
+    "defaults": {"snapshotReserve": "5"},
+
+    "storage": [
+        {
+            "labels": {"performance": "gold", "cost": "3"},
+            "defaults": {
+                "qosPolicy": "gold",
+                "snapshotReserve": "10"
+            }
+         },
+         {
+            "labels": {"performance": "silver", "cost": "2"},
+            "defaults": {"qosPolicy": "silver"}
+         },
+         {
+            "labels": {"performance": "bronze", "cost": "1"},
+            "defaults": {"qosPolicy": "bronze"}
+         }
+     ]
+}
+----
+以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。
+
+[listing]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ads
+provisioner: csi.trident.netapp.io
+parameters:
+  backendType: astrads-nas
+allowVolumeExpansion: true
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ads-gold
+provisioner: csi.trident.netapp.io
+parameters:
+  backendType: astrads-nas
+  selector: performance=gold
+allowVolumeExpansion: true
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ads-silver
+provisioner: csi.trident.netapp.io
+parameters:
+  backendType: astrads-nas
+  selector: performance=silver
+allowVolumeExpansion: true
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ads-bronze
+provisioner: csi.trident.netapp.io
+parameters:
+  backendType: astrads-nas
+  selector: performance=bronze
+allowVolumeExpansion: true
+----
+
+
+== 下一步是什么？
+
+创建后端配置文件后，运行以下命令：
+
+[listing]
+----
+tridentctl create backend -f <backend-file>
+----
+如果后端创建失败，则后端配置出现问题。您可以运行以下命令来查看日志以确定发生原因：
+
+[listing]
+----
+tridentctl logs
+----
+确定并更正配置文件中的问题后，您可以再次运行 create 命令。

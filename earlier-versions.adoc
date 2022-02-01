@@ -11,14 +11,12 @@ summary: 如果您未运行最新版本，则可以参考有关先前版本的 A
 
 
 [role="lead"]
-如果您未运行最新版本，则可以参考先前版本的 Astra Trident 文档。
+如果您运行的不是 Astra Trident 21.10 ，则可以参考先前版本的文档。
 
 
-NOTE: 有关 Astra Trident 21.07 及相关修补程序版本的文档为 https://docs.netapp.com/us-en/trident-2107/index.html["此处"^]。
+NOTE: 对于 21.07 之前的版本，您将重定向到旧版文档站点。
 
-
-NOTE: 早期版本的 Astra Trident 的文档位于我们的原有文档站点中。
-
+* https://docs.netapp.com/us-en/trident-2107/index.html["Astra Trident 21.07"^]
 * https://netapp-trident.readthedocs.io/en/stable-v21.04/["Astra Trident 21.04"^]
 * https://netapp-trident.readthedocs.io/en/stable-v21.01/["Astra Trident 21.01"^]
 * https://netapp-trident.readthedocs.io/en/stable-v20.10/["Astra Trident 20.10"^]

@@ -17,15 +17,58 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 21.10 中的新增功能
+== 22.01.0 中的新增功能
 
-NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 的一些最新特性和功能。
-
-对于先前版本，请参见 https://docs.netapp.com/us-en/trident/earlier-versions.html["文档版本更新版"]。
+NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见 https://docs.netapp.com/us-en/trident/earlier-versions.html["文档版本更新版"]。
 
 
+IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetApp Files ，则 ``location`` config 参数现在是一个必填字段。
 
-=== 自 Astra Trident 21.07 以来发生的变化
+
+
+=== 修复
+
+固定的 ANF 驱动程序，允许重复的资源名称并将操作限制在一个位置。
+
+
+
+=== 增强功能
+
+* Kubernetes 增强功能：
++
+** 增加了对 Kubernetes 1.23 的支持。
+** 通过 Trident 操作员或 Helm 安装 Trident Pod 时，为其添加计划选项。（link:https://github.com/NetApp/trident/issues/651["GitHub 问题描述 #651"^]）
+
+
+* 在 GCP 驱动程序中允许跨区域卷。（link:https://github.com/NetApp/trident/issues/633["GitHub 问题描述 #633"^]）
+* 为 ANF 卷增加了对 "unixPermissions" 选项的支持。（link:https://github.com/NetApp/trident/issues/666["GitHub 问题描述 #666"^]）
+
+
+
+
+=== 已弃用
+
+Trident REST 接口只能在 127.0.0.1 或 [ ：：： 1 ）地址处侦听和提供服务
+
+
+
+=== Astra Trident 21.10.1 中的变更
+
+
+WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时， Trident 控制器可以将其置于 CrashLoopBackOff 状态。此问题描述在 v21.10.1 中得到了修复（ GitHub 问题描述 669 ）。
+
+
+
+==== 修复
+
+* 修复了在 GCP CVS 后端导入卷导致导入失败的潜在争用情况。
+* 修复了一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时，可能会将 Trident 控制器置于 CrashLoopBackOff 状态（ GitHub 问题描述 669 ）。
+* 修复了在未指定 SVM 名称的情况下不再发现 SVM 的问题描述（ GitHub 问题描述 612 ）。
+
+
+
+
+=== 21.10.0 中的更改（自 Astra Trident 21.07 以来）
 
 
 

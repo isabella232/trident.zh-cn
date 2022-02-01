@@ -102,7 +102,7 @@ NOTE: 使用默认 CVS 服务类型（ `storageClass=software` ）部署后端�
 
 ====
 
-IMPORTANT: Astra Trident 与 Google Cloud 上的基本 CVS 服务类型集成是一项 * 测试版功能 * ，不适用于生产工作负载。在 CVS-Performance 服务类型中， Trident 是 "* 完全支持 "* ，默认情况下会使用它。
+CAUTION: Astra Trident 与 Google Cloud 上的基本 CVS 服务类型集成是一项 * 测试版功能 * ，不适用于生产工作负载。在 CVS-Performance 服务类型中， Trident 是 "* 完全支持 "* ，默认情况下会使用它。
 
 每个后端都会在一个 Google Cloud 区域中配置卷。要在其他区域创建卷，您可以定义其他后端。
 

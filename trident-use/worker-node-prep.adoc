@@ -81,7 +81,11 @@ RHEL/CentOS
 
 . 启用多路径：
 +
-`sudo mpathconf -enable -with multipathd y`
+`sudo mpathconf -enable -for_multipathd y -find_multipaths n`
+
++
+
+NOTE: 确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.
 
 . 确保 `iscsid` 和 `multipathd` 正在运行：
 +
@@ -112,7 +116,11 @@ Ubuntu 或 Debian
 
 . 启用多路径：
 +
-`sUdo tee /etc/multipath.conf <<-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`
+`sUdo tee /etc/multipath.conf <<-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`
+
++
+
+NOTE: 确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.
 
 . 确保已启用并运行 `open-iscsi` 和 `multipath-tools` ：
 +
