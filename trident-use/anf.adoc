@@ -103,6 +103,9 @@ NOTE: 如果要使用 NFS 4.1 挂载卷，可以在逗号分隔的挂载选项�
 | `exportRule` | 新卷的导出规则 | "0.0.0.0/0 
 
 
+| `snapshotDir` | 控制 .snapshot 目录的可见性 | false 
+
+
 | `s大小` | 新卷的默认大小 | "100 克 " 
 |===
 `exportRule` 值必须是以 CIDR 表示法表示的 IPv4 地址或 IPv4 子网任意组合的逗号分隔列表。
@@ -171,6 +174,7 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
         "limitVolumeSize": "500Gi",
         "defaults": {
             "exportRule": "10.0.0.0/24,10.0.1.0/24,10.0.2.100",
+            "snapshotDir": "true",
             "size": "200Gi"
         }
     }
