@@ -3166,4 +3166,6 @@
   <block id="a78703e6fcb2511d5a565496df5b2082" category="section-title">示例 2 ：使用容量池筛选器的特定服务级别配置</block>
   <block id="6da664b0342ea1be008211c33f1eb020" category="paragraph">此后端配置会将卷放置在 Azure 的 `Easus` 位置的 `超高` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。</block>
   <block id="b0f4f0ac7ea6be4c3047dd422c23539b" category="paragraph">如果您运行的不是 Astra Trident 22.01 ，则可以参考先前版本的文档。</block>
+  <block id="cce172403b73af5c2a4e93081affcc7f" category="inline-link">Astra Trident 21.10</block>
+  <block id="606b9e83fb467a43b3065d4fd5037094" category="list-text"><block ref="606b9e83fb467a43b3065d4fd5037094" category="inline-link-rx"></block></block>
 </blocks>
