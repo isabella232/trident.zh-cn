@@ -46,6 +46,10 @@ flags
 * `` -n ， -namespace string` ： Astra Trident 部署的命名空间。
 * `` -o ， -output string` ：输出格式。json_yaml_name_wide|ps 之一（默认）。
 * `` -s ， -server string` ： Astra Trident REST 接口的地址 / 端口。
++
+
+CAUTION: 可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。
+
 
 
 

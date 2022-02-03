@@ -3038,7 +3038,6 @@
   <block id="9d6ffa6ef31bd0b92876314219f18ef5" category="inline-link">Astra API 文档</block>
   <block id="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="list-text"><block ref="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="inline-link-rx"></block></block>
   <block id="4546bbd46f06879787b5670b13277b28" category="paragraph">在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
-  <block id="ebb6d1f6681020925f184345a6a955aa" category="paragraph">如果您运行的不是 Astra Trident 21.10 ，则可以参考先前版本的文档。</block>
   <block id="9f687b4e8cbf2fbb623b26b30fd92717" category="admonition">对于 21.07 之前的版本，您将重定向到旧版文档站点。</block>
   <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
@@ -3166,4 +3165,5 @@
   <block id="54042b89155d99a3568a196cb5ff1da8" category="paragraph">这是绝对的最低后端配置。使用此配置， Astra Trident 会发现在已配置位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个池和子网上。</block>
   <block id="a78703e6fcb2511d5a565496df5b2082" category="section-title">示例 2 ：使用容量池筛选器的特定服务级别配置</block>
   <block id="6da664b0342ea1be008211c33f1eb020" category="paragraph">此后端配置会将卷放置在 Azure 的 `Easus` 位置的 `超高` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。</block>
+  <block id="b0f4f0ac7ea6be4c3047dd422c23539b" category="paragraph">如果您运行的不是 Astra Trident 22.01 ，则可以参考先前版本的文档。</block>
 </blocks>
