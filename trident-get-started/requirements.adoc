@@ -159,7 +159,7 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 == 容器映像以及相应的 Kubernetes 版本
 
-对于带气的安装，请参见以下列表，了解安装 Astra Trident 需要哪些容器映像：
+对于带气的安装，下面列出了安装 Astra Trident 所需的容器映像。使用 `tridentctl images` 命令验证所需容器映像的列表。
 
 [cols="2"]
 |===

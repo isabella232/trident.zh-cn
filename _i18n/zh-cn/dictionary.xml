@@ -1499,7 +1499,6 @@
   <block id="62df396fbf0c4fd30e1e851335e8b26b" category="paragraph">根据所使用的后端，应在集群中的所有工作人员上安装 NFS 和 / 或 iSCSI 实用程序。请参见 <block ref="8e0b40cac942de59585b1131f9197d7b" category="inline-link-macro-rx"></block> 有关详细信息 ...</block>
   <block id="2139fe384d5ae165545994dff01961d9" category="section-title">存储系统配置：</block>
   <block id="923680056b0f0258907f498670b4ead1" category="section-title">容器映像以及相应的 Kubernetes 版本</block>
-  <block id="a6595e492ec094375a673911109a32f2" category="paragraph">对于带气的安装，请参见以下列表，了解安装 Astra Trident 需要哪些容器映像：</block>
   <block id="aa92c4c233bc01609d957e469736b699" category="cell">容器映像</block>
   <block id="3b29886980a3307188a882bdc7cad63b" category="cell">v1.17.0</block>
   <block id="ca2e728c8f17fef48811518aaed4de43" category="list-text">K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3</block>
@@ -3168,4 +3167,5 @@
   <block id="b0f4f0ac7ea6be4c3047dd422c23539b" category="paragraph">如果您运行的不是 Astra Trident 22.01 ，则可以参考先前版本的文档。</block>
   <block id="cce172403b73af5c2a4e93081affcc7f" category="inline-link">Astra Trident 21.10</block>
   <block id="606b9e83fb467a43b3065d4fd5037094" category="list-text"><block ref="606b9e83fb467a43b3065d4fd5037094" category="inline-link-rx"></block></block>
+  <block id="ee50d481128d1543f9945b4a4f3fbe9d" category="paragraph">对于带气的安装，下面列出了安装 Astra Trident 所需的容器映像。使用 `tridentctl images` 命令验证所需容器映像的列表。</block>
 </blocks>
