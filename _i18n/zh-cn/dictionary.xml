@@ -50,9 +50,7 @@
   <block id="607ae6360b32f1bd6e559e915d414fab" category="doc">Kubernetes 概念</block>
   <block id="d60f0fff1c23a02458849862f593357e" category="inline-link">Kubernetes 系统</block>
   <block id="a7018a5fd7b610274c7786aa5402e64d" category="paragraph">详细了解的各个部分<block ref="f01a74527fa0343e793eb393c9d4809a" category="inline-link-rx"></block>。</block>
-  <block id="7a90ecd4cb81a2963b963ac8c0bba0a2" category="summary">Astra Trident 会显示多个命令行选项并通过某些端口进行通信。</block>
   <block id="7d4fab76513c90b603a722620cde60fe" category="doc">命令行选项</block>
-  <block id="576f889bab2702f907ac880da895cddb" category="paragraph">Astra Trident 会显示多个命令行选项。您可以在部署中修改它们。</block>
   <block id="8db7df66ab1d7ab5f1dc947acdb5fae4" category="section-title">日志记录</block>
   <block id="7e2a14542a2613424ad88206fd2dd9aa" category="list-text">` -debug` ：启用调试输出。</block>
   <block id="55e727716c7f623987be58e50732c01e" category="list-text">` -loglevel &lt;level&gt;` ：设置日志记录级别（调试，信息，警告，错误，致命）。默认为 INFO 。</block>
@@ -1416,7 +1414,6 @@
   <block id="df65ec31c6f96e95301e3c6ff8863335" category="list-text">使用标准安装步骤从远程计算机完成部署。</block>
   <block id="13c852fce58f7c6981fa0a952dcd76af" category="summary">使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。</block>
   <block id="b9d69225e5cf4da0389ed6b1f6b66a10" category="doc">自定义 Trident 操作员部署</block>
-  <block id="541de2d8e93ee6c623dfc11938d0e83a" category="paragraph">通过 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。</block>
   <block id="02e0835b3015839cde731027c217d70b" category="paragraph">有关属性列表，请参见下表：</block>
   <block id="83f499a540b1323009c200d6f8cc9396" category="cell">参数</block>
   <block id="7a1920d61156abc05a60135aefe8bc67" category="cell">Default</block>
@@ -3168,4 +3165,7 @@
   <block id="cce172403b73af5c2a4e93081affcc7f" category="inline-link">Astra Trident 21.10</block>
   <block id="606b9e83fb467a43b3065d4fd5037094" category="list-text"><block ref="606b9e83fb467a43b3065d4fd5037094" category="inline-link-rx"></block></block>
   <block id="ee50d481128d1543f9945b4a4f3fbe9d" category="paragraph">对于带气的安装，下面列出了安装 Astra Trident 所需的容器映像。使用 `tridentctl images` 命令验证所需容器映像的列表。</block>
+  <block id="ec3f9af8f611100a0182ffb9ab2e5ef8" category="paragraph">虽然可以在 ONTAP 中创建 Trident 驱动程序可以使用的限制性更强的角色，但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。</block>
+  <block id="ee50ce7340da5b018abe62c8e613cae0" category="summary">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项，并可通过特定端口进行通信。</block>
+  <block id="94efe0c9471991c69d2a3b0970a56744" category="paragraph">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项。您可以使用这些选项修改部署。</block>
 </blocks>

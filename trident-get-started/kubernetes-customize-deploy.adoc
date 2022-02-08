@@ -10,7 +10,7 @@ summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规�
 :imagesdir: ../media/
 
 
-通过 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。
+使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。
 
 有关属性列表，请参见下表：
 

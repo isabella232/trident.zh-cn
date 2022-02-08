@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-reference/trident-cl.html 
 keywords: command-line, options, logging, kubernetes, docker, ports 
-summary: Astra Trident 会显示多个命令行选项并通过某些端口进行通信。 
+summary: Astra Trident 为 Trident 流程编排程序提供了多个命令行选项，并可通过特定端口进行通信。 
 ---
 = 命令行选项
 :hardbreaks:
@@ -11,7 +11,7 @@ summary: Astra Trident 会显示多个命令行选项并通过某些端口进行
 
 
 [role="lead"]
-Astra Trident 会显示多个命令行选项。您可以在部署中修改它们。
+Astra Trident 为 Trident 流程编排程序提供了多个命令行选项。您可以使用这些选项修改部署。
 
 
 
