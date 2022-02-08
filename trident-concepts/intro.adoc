@@ -61,6 +61,6 @@ Astra Trident 也是 NetApp Astra 的一项基础技术，利用 NetApp 行业�
 * https://docs.netapp.com/us-en/astra-family/intro-family.html["NetApp Astra 产品系列"]
 * https://docs.netapp.com/us-en/astra/get-started/intro.html["Astra Control Service 文档"^]
 * https://docs.netapp.com/us-en/astra-control-center/index.html["Astra 控制中心文档"^]
-* https://docs.netapp.com/us-en/astra-data-store/index.html["Astra Data 文档"^]
+* https://docs.netapp.com/us-en/astra-data-store/index.html["Astra Data Store 文档"^]
 * https://docs.netapp.com/us-en/astra-automation/get-started/before_get_started.html["Astra API 文档"^]
 

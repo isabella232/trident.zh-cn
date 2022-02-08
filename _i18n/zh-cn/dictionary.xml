@@ -3029,8 +3029,6 @@
   <block id="0ae0ea6967e9321db008cee4ad5f290c" category="list-text"><block ref="0ae0ea6967e9321db008cee4ad5f290c" category="inline-link-rx"></block></block>
   <block id="3a4b2c66d4bdac6ce0e3340c71a39eda" category="inline-link">Astra 控制中心文档</block>
   <block id="ea643bf7aaf130341a17f697a7009368" category="list-text"><block ref="ea643bf7aaf130341a17f697a7009368" category="inline-link-rx"></block></block>
-  <block id="668cea0790a6ca206d2c5f41d4e2bfe3" category="inline-link">Astra Data 文档</block>
-  <block id="774d94ad69407b5dff98038fec00368b" category="list-text"><block ref="774d94ad69407b5dff98038fec00368b" category="inline-link-rx"></block></block>
   <block id="9d6ffa6ef31bd0b92876314219f18ef5" category="inline-link">Astra API 文档</block>
   <block id="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="list-text"><block ref="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="inline-link-rx"></block></block>
   <block id="4546bbd46f06879787b5670b13277b28" category="paragraph">在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
@@ -3168,4 +3166,6 @@
   <block id="ec3f9af8f611100a0182ffb9ab2e5ef8" category="paragraph">虽然可以在 ONTAP 中创建 Trident 驱动程序可以使用的限制性更强的角色，但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。</block>
   <block id="ee50ce7340da5b018abe62c8e613cae0" category="summary">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项，并可通过特定端口进行通信。</block>
   <block id="94efe0c9471991c69d2a3b0970a56744" category="paragraph">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项。您可以使用这些选项修改部署。</block>
+  <block id="be1c3d3113c4023e29e8dd947523c711" category="inline-link">Astra Data Store 文档</block>
+  <block id="c54241e3258a450b02a723d6d751a4f1" category="list-text"><block ref="c54241e3258a450b02a723d6d751a4f1" category="inline-link-rx"></block></block>
 </blocks>
