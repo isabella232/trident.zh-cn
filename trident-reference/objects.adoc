@@ -129,6 +129,8 @@ provisioner: csi.trident.netapp.io
 mountOptions: <Mount Options>
 parameters:
   <Trident Parameters>
+allowVolumeExpansion: true
+volumeBindingMode: Immediate
 ----
 这些参数是 Trident 专用的，可告诉 Trident 如何为类配置卷。
 
@@ -212,10 +214,30 @@ ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire
 | 属性 | Type | 值 | Description | 相关驱动程序 | Kubernetes 版本 
 
 
-| FSType | string | ext4 ， ext3 ， xfs 等 | 块卷的文件系统类型 | solidfire-san ， ontap-san ， ontap-san-economy. | 全部 
-|===
-Trident 安装程序包提供了几个示例存储类定义，可用于 ``sample-input/storage-class-* 。 yaml`` 中的 Trident 。删除 Kubernetes 存储类也会删除相应的 Trident 存储类。
+| FSType | string | ext4 ， ext3 ， xfs 等 | 块卷的文件系统类型 | solidfire-san ， ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy-、 E 系列 -iscsi | 全部 
 
+
+| 允许卷扩展 | boolean | true false | 启用或禁用对增加 PVC 大小的支持 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files | 1.11 及更高版本 
+
+
+| 卷绑定模式 | string | 即时， WaitForFirstConsumer" | 选择何时进行卷绑定和动态配置 | 全部 | 1.17 及更高版本 
+|===
+[TIP]
+====
+* `FSType` 参数用于控制 SAN LUN 所需的文件系统类型。此外， Kubernetes 还会使用存储类中存在的 `FSType` 来指示文件系统已存在。只有在设置了 `FSType` 的情况下，才能使用 Pod 的 `fsGroup` 安全上下文来控制卷所有权。请参见 link:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/["Kubernetes ：为 Pod 或容器配置安全上下文"^] 有关使用 `fsGroup` 上下文设置卷所有权的概述。只有在以下情况下， Kubernetes 才会应用 `fsGroup` 值：
++
+** 在存储类中设置 `FSType` 。
+** PVC 访问模式为 RW 。
+
+
++
+对于 NFS 存储驱动程序， NFS 导出中已存在文件系统。要使用 `fsGroup` ，存储类仍需要指定 `FSType` 。您可以将其设置为 `NFS` 或任何非空值。
+
+* 请参见 link:https://docs.netapp.com/us-en/trident/trident-use/vol-expansion.html["展开卷"^] 有关卷扩展的更多详细信息。
+* Trident 安装程序包提供了几个示例存储类定义，可用于 ``sample-input/storage-class-* 。 yaml`` 中的 Trident 。删除 Kubernetes 存储类也会删除相应的 Trident 存储类。
+
+
+====
 
 
 == Kubernetes VolumeSnapshotClass 对象
