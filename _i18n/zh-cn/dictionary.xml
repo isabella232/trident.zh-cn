@@ -3171,7 +3171,6 @@
   <block id="6add71a247c8f4513060920be14857bc" category="cell">允许卷扩展</block>
   <block id="84e2c64f38f78ba3ea5c905ab5a2da27" category="cell">boolean</block>
   <block id="675e3f37a9adfd7ab6433906c490fa06" category="cell">启用或禁用对增加 PVC 大小的支持</block>
-  <block id="87122f0775b5e45af5241d0008c1a51f" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files</block>
   <block id="c791531450eeeb073b30215d9c306a00" category="cell">1.11 及更高版本</block>
   <block id="086b513e7d83c4cf32a8bd3550679276" category="cell">卷绑定模式</block>
   <block id="fd656a4f359aa12808a6d0ceb5792342" category="cell">即时， WaitForFirstConsumer"</block>
@@ -3183,4 +3182,5 @@
   <block id="45d2174daba36b76955e69d2eddf26ca" category="list-text">PVC 访问模式为 RW 。</block>
   <block id="ba5b62efad4f90a8f4bb806cba4a3ea4" category="paragraph">对于 NFS 存储驱动程序， NFS 导出中已存在文件系统。要使用 `fsGroup` ，存储类仍需要指定 `FSType` 。您可以将其设置为 `NFS` 或任何非空值。</block>
   <block id="4811aaaf5eedea1ea9f703353903b5b5" category="list-text">请参见 <block ref="c35b155baa39b6aa36cf9bc59eea88f3" category="inline-link-macro-rx"></block> 有关卷扩展的更多详细信息。</block>
+  <block id="853119066470e5145f87024e7c6accdb" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files</block>
 </blocks>
