@@ -3183,4 +3183,5 @@
   <block id="ba5b62efad4f90a8f4bb806cba4a3ea4" category="paragraph">对于 NFS 存储驱动程序， NFS 导出中已存在文件系统。要使用 `fsGroup` ，存储类仍需要指定 `FSType` 。您可以将其设置为 `NFS` 或任何非空值。</block>
   <block id="4811aaaf5eedea1ea9f703353903b5b5" category="list-text">请参见 <block ref="c35b155baa39b6aa36cf9bc59eea88f3" category="inline-link-macro-rx"></block> 有关卷扩展的更多详细信息。</block>
   <block id="853119066470e5145f87024e7c6accdb" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files</block>
+  <block id="eb5fcd9066a478d8d1c83a897726b2c0" category="paragraph">+ 注意： Trident 目前不支持 NetApp 聚合加密（ NAE ）。</block>
 </blocks>

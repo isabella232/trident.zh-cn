@@ -53,6 +53,9 @@ CAUTION: 可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 �
 
 
 
+CAUTION: 可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。
+
+
 
 == 创建
 

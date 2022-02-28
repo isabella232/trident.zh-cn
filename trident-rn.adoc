@@ -52,14 +52,14 @@ Trident REST 接口只能在 127.0.0.1 或 [ ：：： 1 ）地址处侦听和�
 
 
 
-=== Astra Trident 21.10.1 中的变更
+== Astra Trident 21.10.1 中的变更
 
 
 WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时， Trident 控制器可以将其置于 CrashLoopBackOff 状态。此问题描述在 v21.10.1 中得到了修复（ GitHub 问题描述 669 ）。
 
 
 
-==== 修复
+=== 修复
 
 * 修复了在 GCP CVS 后端导入卷导致导入失败的潜在争用情况。
 * 修复了一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时，可能会将 Trident 控制器置于 CrashLoopBackOff 状态（ GitHub 问题描述 669 ）。
@@ -68,11 +68,11 @@ WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重�
 
 
 
-=== 21.10.0 中的更改（自 Astra Trident 21.07 以来）
+== 21.10.0 中的更改（自 Astra Trident 21.07 以来）
 
 
 
-==== 修复
+=== 修复
 
 * 修复了问题描述，其中无法将 XFS 卷的克隆挂载到与源卷相同的节点上（ GitHub 问题描述 514 ）。
 * 修复了问题描述，其中 Astra Trident 在关闭时记录了致命错误（ GitHub 问题描述 597 ）。
@@ -92,7 +92,7 @@ WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重�
 
 
 
-==== 增强功能
+=== 增强功能
 
 * 为 GCP-CVS 性能卷增加了对 `unixPermissions` 选项的支持。
 * 增加了对 GCP 中 600 GiB 到 1 TiB 范围内的扩展优化 CVS 卷的支持。
@@ -107,7 +107,7 @@ WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重�
 
 
 
-==== 实验增强功能
+=== 实验增强功能
 
 * 在 `ontap-san` 驱动程序中增加了对卷复制的支持。
 * 增加了对 `ontap-nas-flexgroup` ， `ontap-san` 和 `ontap-nas-economy` 驱动程序的 * 技术预览 * REST 支持。

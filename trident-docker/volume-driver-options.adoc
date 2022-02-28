@@ -53,6 +53,8 @@ NFS 和 iSCSI 的卷创建选项包括以下内容：
 | `加密`  a| 
 这将在新卷上启用 NetApp 卷加密（ NVE ），默认为 `false` 。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。
 
++ 注意： Trident 目前不支持 NetApp 聚合加密（ NAE ）。
+
 
 
 | `分层策略`  a| 
