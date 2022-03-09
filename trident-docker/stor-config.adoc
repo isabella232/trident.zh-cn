@@ -140,7 +140,7 @@ myigroup
 
 
 
-| `limitVolumeSizee`  a| 
+| `limitVolumeSize`  a| 
 可请求的最大卷大小和 qtree 父卷大小。* 对于 `ontap-nas-economy` 驱动程序，此选项还会限制其创建的 FlexVol 的大小 * 。
  a| 
 300 克
