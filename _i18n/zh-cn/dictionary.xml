@@ -2190,7 +2190,6 @@
   <block id="82744a46443ebff9011b85aa2468fdc2" category="list-text"><block ref="82744a46443ebff9011b85aa2468fdc2" category="inline-link-macro-rx"></block></block>
   <block id="d1e8ff43d93982813a74a45f9b721655" category="list-text"><block ref="d1e8ff43d93982813a74a45f9b721655" category="inline-link-macro-rx"></block></block>
   <block id="408cf26cdce3db57f4b0cfb372f60739" category="admonition">请勿为 `ontap-san` 和 `ontap-san-economy-` 驱动程序指定 `dataLIF` ，以允许 Astra Trident 使用多路径。</block>
-  <block id="f15eb14cb9557fc6c608200b83965ea4" category="admonition">将适用于 NetApp ONTAP 的 Amazon FSx 与 Astra Trident 结合使用时， `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
   <block id="d11f02b39cdb338286053b2f1315c6b4" category="inline-link-macro">存储类，配置卷以及将卷挂载到 Pod 中</block>
   <block id="95a5f873da165cd068ef3ec7e17364f3" category="paragraph">部署完成后，执行以下步骤以创建 <block ref="15bf5a6bf382a8a35f58cdae8ebe845c" category="inline-link-macro-rx"></block>。</block>
   <block id="cc788b7e72b2a734dd0985bd1e0e9fe3" category="inline-link">Amazon FSX for NetApp ONTAP 文档</block>
@@ -2767,7 +2766,6 @@
   <block id="301c869c551e12d862ab0291837102a0" category="paragraph">-o nfsver=4</block>
   <block id="00d72747af4eb1f0bab120935efe88fe" category="paragraph">插件使用的 igroup ；默认为 "netappdvp " 。* 仅适用于 `ontap-san`driver* 。</block>
   <block id="79e762988462f6f8da9becfbfd789755" category="paragraph">myigroup</block>
-  <block id="7f36667ac41e34035d815320145dcadb" category="cell">`limitVolumeSizee`</block>
   <block id="5c5adadf8175fd69d4af9bfdb608c42c" category="paragraph">可请求的最大卷大小和 qtree 父卷大小。* 对于 `ontap-nas-economy` 驱动程序，此选项还会限制其创建的 FlexVol 的大小 * 。</block>
   <block id="f07e606cfe25ac6fb07d9c4af941d9a2" category="paragraph">300 克</block>
   <block id="981ba910eb0ffc42f42059de056624b4" category="paragraph">每个 FlexVol 的最大 qtree 数必须在 50 ， 300 范围内，默认值为 200 。* 对于 `ontap-nas-economy` 驱动程序，此选项允许自定义每个 qtree* 的最大 FlexVol 数。</block>
@@ -3184,4 +3182,7 @@
   <block id="4811aaaf5eedea1ea9f703353903b5b5" category="list-text">请参见 <block ref="c35b155baa39b6aa36cf9bc59eea88f3" category="inline-link-macro-rx"></block> 有关卷扩展的更多详细信息。</block>
   <block id="853119066470e5145f87024e7c6accdb" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files</block>
   <block id="23038d88eea805ac06a26959fc129ca5" category="admonition">Trident 目前不支持 NetApp 聚合加密（ NAE ）。</block>
+  <block id="18cf072964a583150dd247485ba75b92" category="admonition-title">适用于 ONTAP 的 Amazon FSX</block>
+  <block id="fa8bc73a8436dd2f79aafaa731d248e4" category="list-text">`limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
+  <block id="c7e012baf676feb8d925d8f535c01c02" category="list-text">适用于 NetApp ONTAP 的 Amazon FSX 卷预配置了 SnapMirror 。Trident 无法修改或中断它们。要删除 PVC ，您需要手动删除 PV 和适用于 NetApp ONTAP 的 FSX 卷。</block>
 </blocks>
