@@ -3185,4 +3185,5 @@
   <block id="18cf072964a583150dd247485ba75b92" category="admonition-title">适用于 ONTAP 的 Amazon FSX</block>
   <block id="fa8bc73a8436dd2f79aafaa731d248e4" category="list-text">`limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
   <block id="c7e012baf676feb8d925d8f535c01c02" category="list-text">适用于 NetApp ONTAP 的 Amazon FSX 卷预配置了 SnapMirror 。Trident 无法修改或中断它们。要删除 PVC ，您需要手动删除 PV 和适用于 NetApp ONTAP 的 FSX 卷。</block>
+  <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
 </blocks>

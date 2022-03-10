@@ -107,7 +107,9 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
 
 这是绝对的最低后端配置。
 
-[listing]
+.展开示例
+====
+[source, CLI]
 ----
 {
     "version": 1,
@@ -117,13 +119,16 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
     "kubeconfig": "eyJjdXJyZW50LWNvbnRleHQiOiJmZWRlcmFsLWNvbnRleHQiLCJhcGlWZXJzaW9uIjoidjEiLCJjbHVzdGVycyI6W3siY2x1c3RlciI6eyJhcGktdmVyc2lvbiI6InYxIiwic2VydmVyIjoiaHR0cDovL2Nvdy5vcmc6ODA4MCJ9LCJuYW1lIjoiY293LWNsdXN0ZXIifSx7ImNsdXN0ZXIiOnsiY2VydGlmaWNhdGUtYXV0aG9yaXR5IjoicGF0aC90by9teS9jYWZpbGUiLCJzZXJ2ZXIiOiJodHRwczovL2hvcnNlLm9yZzo0NDQzIn0sIm5hbWUiOiJob3JzZS1jbHVzdGVyIn0seyJjbHVzdGVyIjp7Imluc2VjdXJlLXNraXAtdGxzLXZlcmlmeSI6dHJ1ZSwic2VydmVyIjoiaHR0cHM6Ly9waWcub3JnOjQ0MyJ9LCJuYW1lIjoicGlnLWNsdXN0ZXIifV0sImNvbnRleHRzIjpbeyJjb250ZXh0Ijp7ImNsdXN0ZXIiOiJob3JzZS1jbHVzdGVyIiwibmFtZXNwYWNlIjoiY2hpc2VsLW5zIiwidXNlciI6ImdyZWVuLXVzZXIifSwibmFtZSI6ImZlZGVyYWwtY29udGV4dCJ9LHsiY29udGV4dCI6eyJjbHVzdGVyIjoicGlnLWNsdXN0ZXIiLCJuYW1lc3BhY2UiOiJzYXctbnMiLCJ1c2VyIjoiYmxhY2stdXNlciJ9LCJuYW1lIjoicXVlZW4tYW5uZS1jb250ZXh0In1dLCJraW5kIjoiQ29uZmlnIiwicHJlZmVyZW5jZXMiOnsiY29sb3JzIjp0cnVlfSwidXNlcnMiOlt7Im5hbWUiOiJibHVlLXVzZXIiLCJ1c2VyIjp7InRva2VuIjoiYmx1ZS10b2tlbiJ9fSx7Im5hbWUiOiJncmVlbi11c2VyIiwidXNlciI6eyJjbGllbnQtY2VydGlmaWNhdGUiOiJwYXRoL3RvL215L2NsaWVudC9jZXJ0IiwiY2xpZW50LWtleSI6InBhdGgvdG8vbXkvY2xpZW50L2tleSJ9fV19"
 }
 ----
+====
 
 
 == 示例 2 ：单服务级别配置
 
 此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。
 
-[listing]
+.展开示例
+====
+[source, CLI]
 ----
 {
     "version": 1,
@@ -139,13 +144,16 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
         "labels": {"cloud": "on-prem", "creator": "ads-cluster-1", "performance": "bronze"}
 }
 ----
+====
 
 
 == 示例 3 ：虚拟存储池配置
 
 此示例显示了使用虚拟存储池配置的后端定义文件以及引用这些池的 StorageClasses 。
 
-[listing]
+.展开示例
+====
+[source, CLI]
 ----
 {
     "version": 1,
@@ -179,9 +187,12 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
      ]
 }
 ----
+====
 以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。
 
-[listing]
+.展开示例
+====
+[source, CLI]
 ----
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -225,6 +236,7 @@ parameters:
   selector: performance=bronze
 allowVolumeExpansion: true
 ----
+====
 
 
 == 下一步是什么？
