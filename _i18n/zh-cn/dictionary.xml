@@ -3125,7 +3125,6 @@
   <block id="9b73461bc19f14ce7a87a56f6890ca87" category="list-text">netapp/trident 操作符： 22.01.0 （可选）</block>
   <block id="ad9d572821da9bfff3397f2d3260509d" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0</block>
   <block id="73e93ad328287e5ce4c06228cfdba2bf" category="cell">v1.23.0</block>
-  <block id="f2fe14f2f47e170d6135f34f6214adcb" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9</block>
   <block id="08ee53e1d5cefb7967a295e98036598e" category="cell">控制 .snapshot 目录的可见性</block>
   <block id="9837781971083d3fe119b0217014d301" category="list-text">至少包含一个的 Azure `位置`<block ref="c5f14b2142014dc234282a513132bad4" category="inline-link-rx"></block>。从 Trident 22.01 开始， `location` 参数是后端配置文件顶层的必填字段。在虚拟池中指定的位置值将被忽略。</block>
   <block id="3d1c87b616fe621310b766603b6c175d" category="admonition">注意： Astra Trident 不支持手动 QoS 容量池。</block>
@@ -3186,4 +3185,5 @@
   <block id="fa8bc73a8436dd2f79aafaa731d248e4" category="list-text">`limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
   <block id="c7e012baf676feb8d925d8f535c01c02" category="list-text">适用于 NetApp ONTAP 的 Amazon FSX 卷预配置了 SnapMirror 。Trident 无法修改或中断它们。要删除 PVC ，您需要手动删除 PV 和适用于 NetApp ONTAP 的 FSX 卷。</block>
   <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
+  <block id="76df2d4e2a105a35b5db1ce7b060bbe1" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10</block>
 </blocks>
