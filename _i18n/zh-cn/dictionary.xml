@@ -1295,8 +1295,6 @@
   <block id="dc2d0674739dcd145f5287a7d619ee05" category="paragraph">除了上述前提条件之外，要使用 Helm 部署 Trident 操作员，还需要满足以下条件：</block>
   <block id="8f5e62e2d03d87aeaafa8d4776fb7a79" category="list-text">Kubernetes 1.17 及更高版本</block>
   <block id="2e1b3f44683eee188be985693c4af5e1" category="list-text">Helm 版本 3</block>
-  <block id="8a247589aa6f5931b3416e5dd64ba361" category="inline-link">Trident GitHub</block>
-  <block id="c8435da18bdd7e5fe967b241d24c9849" category="list-text">从下载安装程序包<block ref="27269fc0a05ad3df94013b630291d22b" category="inline-link-rx"></block> 页面。安装程序包的 ` /helm` 目录中包含 Helm 图表。</block>
   <block id="bfd69e00e956b426c17001fc7ae7afbe" category="list-text">使用 `helm install` 命令并为您的部署指定一个名称。请参见以下示例：</block>
   <block id="e366a20246a41520da551be510c1d658" category="paragraph">在安装期间，可以通过两种方式传递配置数据：</block>
   <block id="a61e25800624ce452a1c4082ce082d9b" category="list-text">` 值` （或 ` f` ）：指定包含覆盖的 YAML 文件。可以多次指定此值，最右侧的文件将优先。</block>
@@ -3186,4 +3184,5 @@
   <block id="c7e012baf676feb8d925d8f535c01c02" category="list-text">适用于 NetApp ONTAP 的 Amazon FSX 卷预配置了 SnapMirror 。Trident 无法修改或中断它们。要删除 PVC ，您需要手动删除 PV 和适用于 NetApp ONTAP 的 FSX 卷。</block>
   <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
   <block id="76df2d4e2a105a35b5db1ce7b060bbe1" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10</block>
+  <block id="9c99c91edd7eddead4f870a324f880bd" category="list-text">添加 Trident 的 Helm 存储库：</block>
 </blocks>

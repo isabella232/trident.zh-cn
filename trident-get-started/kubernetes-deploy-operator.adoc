@@ -41,12 +41,17 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 
 
 .步骤
-. 从下载安装程序包 https://github.com/netapp/trident/releases["Trident GitHub"] 页面。安装程序包的 ` /helm` 目录中包含 Helm 图表。
+. 添加 Trident 的 Helm 存储库：
++
+[listing]
+----
+helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
+----
 . 使用 `helm install` 命令并为您的部署指定一个名称。请参见以下示例：
 +
 [listing]
 ----
-helm install <name> trident-operator-21.07.1.tgz --namespace <namespace you want to use for Trident>
+helm install <release-name> netapp-trident/trident-operator --version 22.1.0 --namespace <trident-namespace>
 ----
 +
 
@@ -64,7 +69,7 @@ NOTE: 如果尚未为 Trident 创建命名空间，则可以将 ` -create-namesp
 
 [listing]
 ----
-$ helm install <name> trident-operator-21.07.1.tgz --set tridentDebug=true
+$ helm install <name> netapp-trident/trident-operator --version 22.1.0 --set tridentDebug=true
 ----
 Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。
 
