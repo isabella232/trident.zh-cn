@@ -2992,7 +2992,6 @@
   <block id="6a304a6cf7cd8c90bac892ab0fb9c134" category="paragraph">对于 Astra Trident 20.07 和 20.10 ，请使用 `tprov` 代替 `Torc` 。</block>
   <block id="79b91d0489c081de6794796638793787" category="list-text">随 Helm 一起安装</block>
   <block id="d356d628089d439d75e3f85564372658" category="list-text">使用 tridentctl 安装</block>
-  <block id="1b6ea3b57d23007f55ba778700bc369c" category="inline-link">文档版本更新版</block>
   <block id="91bffb05ce7b35189932ad387d14e41b" category="paragraph">"apiRegion"` 表示 Astra Trident 在其中创建 CVS 卷的 GCP 区域。 `在 `跨区域 Kubernetes 集群时，在 "apiRegion"` 中创建的 CVS 卷可用于在多个 GCP 区域的节点上计划的工作负载。请注意，跨区域流量会产生额外成本。</block>
   <block id="31842a4ad923dd3481336d7d93dc2068" category="list-text">要启用跨区域访问， `allowedTopologies` 的 StorageClass 定义必须包括所有地区。例如：</block>
   <block id="433f174b6e54b889696b2efd4ef40dc6" category="admonition">可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。</block>
@@ -3039,7 +3038,6 @@
   <block id="b0b4b8e52878f03279584f43bc961472" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2</block>
   <block id="3c8910d4db724229b566887801de96bb" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0</block>
   <block id="681d715b456f6d29a501b8f132e941a1" category="cell">v1.22.0</block>
-  <block id="80fa8f92dc0ebf122ed30a4a88fda343" category="doc">Astra Trident 22.01 文档</block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
   <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
   <block id="29db8b676d0a02f8179869506102c8ce" category="doc">使用 ONTAP 或 Cloud Volumes ONTAP SAN 驱动程序配置后端</block>
@@ -3087,8 +3085,6 @@
   <block id="b53453343f074fd64ef7129def93f57d" category="section-title">示例 1 ：最小后端配置</block>
   <block id="8f3db75549f212e0fdab2c542531a95e" category="paragraph">此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。</block>
   <block id="a2c81e41622f2e2616b33a689e229c72" category="paragraph">以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
-  <block id="f5037f01585529df5529040fa25eda7f" category="section-title">22.01.0 中的新增功能</block>
-  <block id="bff57507323bddf3673af0ae7ab80e2b" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见<block ref="a3e07c08f1bbcd23d8422302f837e06b" category="inline-link-rx"></block>。</block>
   <block id="7072ec708b0ea7e3243747d8b79c0d20" category="admonition">如果要从先前的任何 Trident 版本升级并使用 Azure NetApp Files ，则 ``location`` config 参数现在是一个必填字段。</block>
   <block id="b956e1f58f802db57dd9f871ac59ed6c" category="paragraph">固定的 ANF 驱动程序，允许重复的资源名称并将操作限制在一个位置。</block>
   <block id="851679bec9b3e6c8e6284128fb750b1e" category="list-text">Kubernetes 增强功能：</block>
@@ -3116,11 +3112,9 @@
   <block id="f2f0da9b50bd2001bc802c121fc76254" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.6.8 及更高版本上使用 Astra Trident 。</block>
   <block id="0f6e0df69462b7a5d101ec1a3fa8a376" category="list-text">NetApp HCI/ Element 软件 11 或更高版本</block>
   <block id="597a56086e1f9d7ca5e8f55c40a0153a" category="list-text">OpenShift 容器平台支持的 RedHat CoreOS （ RHCOS ）版本</block>
-  <block id="83f21d8f3725c4e4a96d4e8da9c06403" category="list-text">NetApp/trident ： 22.01.0</block>
   <block id="0e3db22955e0ef2a04155e743fdcd843" category="list-text">netapp/trident autosupport ： 22.01</block>
   <block id="52d5de12f37c2ff6a4de253d20947ca2" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0</block>
   <block id="f86452b351d644230a6ab4c2d580e193" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0</block>
-  <block id="9b73461bc19f14ce7a87a56f6890ca87" category="list-text">netapp/trident 操作符： 22.01.0 （可选）</block>
   <block id="ad9d572821da9bfff3397f2d3260509d" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0</block>
   <block id="73e93ad328287e5ce4c06228cfdba2bf" category="cell">v1.23.0</block>
   <block id="08ee53e1d5cefb7967a295e98036598e" category="cell">控制 .snapshot 目录的可见性</block>
@@ -3185,4 +3179,20 @@
   <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
   <block id="76df2d4e2a105a35b5db1ce7b060bbe1" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10</block>
   <block id="9c99c91edd7eddead4f870a324f880bd" category="list-text">添加 Trident 的 Helm 存储库：</block>
+  <block id="b9baa6fa560066bf0c9e87d66d1c0664" category="doc">Astra Trident 22.01.1 文档</block>
+  <block id="583a5308ed42c99426f964d094ea527d" category="list-text">NetApp/trident ： 22.01.1</block>
+  <block id="e2393935037062665875a528ef53dd36" category="list-text">netapp/trident 操作符： 22.01.1 （可选）</block>
+  <block id="6e7239a6c6cfd378a1e55314b7490e32" category="section-title">22.01.1 中的新增功能</block>
+  <block id="368b120a3b5f53a49dc3ab96ec9b8dbd" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见<block ref="25da125dffad1d6323c21354bccf0203" category="inline-link-rx"></block>。</block>
+  <block id="a98b2ebbcbb381d3abc81e2ecfb2054c" category="inline-link-macro">GitHub 问题描述 第 691 号</block>
+  <block id="61465c1d4383dd4afdf168925e15e767" category="list-text">修复了已删除节点上的卷已取消发布的问题描述 。（<block ref="5fee6ab43e8008edba54375694a29266" category="inline-link-macro-rx"></block>）</block>
+  <block id="e50f1057ba4b67b255c98fa09c5ba6f8" category="list-text">修复了访问 ONTAP API 响应中聚合空间的 " 无 " 字段时的崩溃问题。</block>
+  <block id="f064e09978a6df920139de5d0ebddd77" category="section-title">22.01.0 中的更改（从 22.10.1 开始）</block>
+  <block id="3c72f47eeb46270dd13a77b32ec10dd3" category="list-text">* Kubernetes ： * 增加大型集群的节点注册回退重试时间。</block>
+  <block id="0ef48234390855900384d0bc8a0a8a24" category="list-text">修复了问题描述 ，其中 azure-netapp-files 驱动程序可能会被同名的多个资源混淆。</block>
+  <block id="7eaa7391130c13b3bf9a7e4ae755d908" category="list-text">如果使用括号指定 ONTAP SAN IPv6 数据 LIF ，则此 LIF 现在可以正常工作。</block>
+  <block id="404cef2e43cb97ccef52692419ad6f6b" category="inline-link-macro">GitHub 问题描述 489</block>
+  <block id="7213ed07f5b718aa66cfac350f023a77" category="list-text">修复的问题描述 ，尝试导入已导入的卷时，返回的 EOF 将使 PVC 处于待定状态。（<block ref="b9a2290d6389b9a605883cda4e717749" category="inline-link-macro-rx"></block>）</block>
+  <block id="c28d8c94f865f3ef7e4b01a157510ef6" category="list-text">修复了在 SolidFire 卷上创建超过 32 个快照时 Astra Trident 性能下降的问题描述 。</block>
+  <block id="d0aaca968285d0d47ea0c5a0f7b9bab5" category="list-text">在创建 SSL 证书时将 SHA-1 替换为 SHA-256 。</block>
 </blocks>
