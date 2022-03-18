@@ -10,7 +10,7 @@ summary: 通过使用 CSI 拓扑功能， Astra Trident 可以有选择地创建
 :imagesdir: ../media/
 
 
-Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点 https://kubernetes-csi.github.io/docs/topology.html["CSI 拓扑功能"^]。使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于可用性区域内的不同区域，也可以位于不同可用性区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。
+Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点 https://kubernetes-csi.github.io/docs/topology.html["CSI 拓扑功能"^]。使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于一个区域内的不同可用性区域中，也可以位于不同区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。
 
 
 TIP: 了解有关 CSI 拓扑功能的更多信息 https://kubernetes.io/blog/2018/10/11/topology-aware-volume-provisioning-in-kubernetes/["此处"^]。
