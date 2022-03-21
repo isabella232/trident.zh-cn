@@ -25,7 +25,7 @@ summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规�
 | `debug` | 为 Astra Trident 启用调试 | false 
 
 
-| `使用 IPv6` | 安装基于 IPv6 的 Astra Trident | false 
+| `IPv6` | 安装基于 IPv6 的 Astra Trident | false 
 
 
 | `k8sTimeout` | Kubernetes 操作超时 | 30 秒 
