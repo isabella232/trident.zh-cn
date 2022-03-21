@@ -96,8 +96,23 @@ metadata:
 spec:
   debug: true
   namespace: trident
-  tridentImage: netapp/trident:21.04.0
   imagePullSecrets:
   - thisisasecret
+----
+下面是另一个示例，说明如何使用节点选择器部署 Trident ：
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  controllerPluginNodeSelector:
+    nodetype: master
+  nodePluginNodeSelector:
+    storage: netapp
 ----
 如果您希望自定义安装超出 `TridentOrchestrator` 参数的允许范围，则应考虑使用 `tridentctl` 生成自定义 YAML 清单，以便您可以根据需要进行修改。

@@ -3195,4 +3195,5 @@
   <block id="c28d8c94f865f3ef7e4b01a157510ef6" category="list-text">修复了在 SolidFire 卷上创建超过 32 个快照时 Astra Trident 性能下降的问题描述 。</block>
   <block id="d0aaca968285d0d47ea0c5a0f7b9bab5" category="list-text">在创建 SSL 证书时将 SHA-1 替换为 SHA-256 。</block>
   <block id="92e6030d252cfd43e0567e282a0d2c9b" category="paragraph">Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点<block ref="80b9a4f4a1bc9851317207ee3477041a" category="inline-link-rx"></block>。使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于一个区域内的不同可用性区域中，也可以位于不同区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。</block>
+  <block id="4dc3d1311e111454f28be4e2842328b1" category="paragraph">下面是另一个示例，说明如何使用节点选择器部署 Trident ：</block>
 </blocks>
