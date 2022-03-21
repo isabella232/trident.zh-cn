@@ -115,7 +115,7 @@ WARNING: 只有适用于 Astra Trident 的传统非 CSI 框架才支持卷访问
 | `InitiatorIFace` | 将 iSCSI 流量限制为特定主机接口 | default 
 
 
-| `UseCHAP` | 使用 CHAP 对 iSCSI 进行身份验证 | "nfsvers=3" 
+| `UseCHAP` | 使用 CHAP 对 iSCSI 进行身份验证 | true 
 
 
 | `访问组` | 要使用的访问组 ID 列表 | 查找名为 "trident " 的访问组的 ID 
