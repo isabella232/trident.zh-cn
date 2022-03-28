@@ -48,7 +48,7 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
   "dataLIF": "10.0.0.2",
   "svm": "svm_nfs",
   "username": "vsadmin",
-  "password": "secret",
+  "password": "secret"
 }
 ----
 请注意，后端定义是凭据以纯文本格式存储的唯一位置。创建后端后，用户名 / 密码将使用 Base64 进行编码并存储为 Kubernetes 密钥。创建 / 更新后端是唯一需要了解凭据的步骤。因此，这是一项仅由管理员执行的操作，由 Kubernetes 或存储管理员执行。
@@ -71,7 +71,7 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
 +
 [listing]
 ----
-openssl req -x509 -nodes -days 1095 -newkey rsa:2048 -keyout k8senv.key -out k8senv.pem -subj "/C=US/ST=NC/L=RTP/O=NetApp/CN=admin"
+openssl req -x509 -nodes -days 1095 -newkey rsa:2048 -keyout k8senv.key -out k8senv.pem -subj "/C=US/ST=NC/L=RTP/O=NetApp/CN=vsadmin"
 ----
 . 将可信 CA 证书添加到 ONTAP 集群。此问题可能已由存储管理员处理。如果未使用可信 CA ，则忽略。
 +
@@ -91,10 +91,10 @@ security ssl modify -vserver <vserver-name> -client-enabled true
 +
 [listing]
 ----
-security login create -user-or-group-name admin -application ontapi -authentication-method cert
-security login create -user-or-group-name admin -application http -authentication-method cert
+security login create -user-or-group-name vsadmin -application ontapi -authentication-method cert -vserver <vserver-name>
+security login create -user-or-group-name vsadmin -application http -authentication-method cert -vserver <vserver-name>
 ----
-. 使用生成的证书测试身份验证。将 <SVM 管理 LIF> 和 <SVM 名称 > 替换为管理 LIF IP 和 ONTAP 名称。
+. 使用生成的证书测试身份验证。将 <SVM 管理 LIF> 和 <SVM 名称 > 替换为管理 LIF IP 和 ONTAP 名称。您必须确保 LIF 的服务策略设置为 `default-data-management` 。
 +
 [listing]
 ----
@@ -120,8 +120,8 @@ $ cat cert-backend-updated.json
 "managementLIF": "1.2.3.4",
 "dataLIF": "1.2.3.8",
 "svm": "vserver_test",
-"username": "vsadmin",
-"password": "secret",
+"clientCertificate": "Faaaakkkkeeee...Vaaalllluuuueeee",
+"clientPrivateKey": "LS0tFaKE...0VaLuES0tLS0K",
 "storagePrefix": "myPrefix_"
 }
 
