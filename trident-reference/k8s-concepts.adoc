@@ -6,6 +6,7 @@ summary: 详细了解 Kubernetes 系统的各个部分。
 ---
 = Kubernetes 概念
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

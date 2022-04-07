@@ -6,6 +6,7 @@ summary: 了解 NetApp 存储平台提供的数据保护和可恢复性选项。
 ---
 = 数据保护
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

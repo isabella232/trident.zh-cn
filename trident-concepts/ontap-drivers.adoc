@@ -6,6 +6,7 @@ summary: 了解如何在 Trident 安装中创建和使用 Element 后端。
 ---
 = ONTAP 驱动程序
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

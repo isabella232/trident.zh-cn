@@ -6,6 +6,7 @@ summary: 在 Astra Trident 中配置有两个主要阶段。第一阶段会将�
 ---
 = 配置
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

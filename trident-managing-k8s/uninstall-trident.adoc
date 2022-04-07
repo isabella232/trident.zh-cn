@@ -6,6 +6,7 @@ summary: 根据 Astra Trident 的安装方式，有多种卸载方法。
 ---
 = 卸载 Astra Trident
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

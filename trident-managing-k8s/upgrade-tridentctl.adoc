@@ -6,6 +6,7 @@ summary: '您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安�
 ---
 = 使用 tridentctl 进行升级
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

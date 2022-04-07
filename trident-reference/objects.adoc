@@ -6,6 +6,7 @@ summary: Kubernetes 与 Trident ， Trident 与存储以及 Kubernetes 与存储
 ---
 = Kubernetes 和 Trident 对象
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

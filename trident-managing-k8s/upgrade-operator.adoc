@@ -6,6 +6,7 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 ---
 = 使用操作员升级
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -6,6 +6,7 @@ summary: '您可以安全地升级适用于 Docker 的 Astra Trident ，而不�
 ---
 = 升级或卸载 Astra Trident
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -6,6 +6,7 @@ summary: '了解如何使用 `tridentctl` 执行后端管理操作。'
 ---
 = 使用 tridentctl 执行后端管理
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

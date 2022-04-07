@@ -6,6 +6,7 @@ summary: Astra Trident 遵循季度发布节奏，每个日历年提供四个主
 ---
 = 升级 Astra Trident
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

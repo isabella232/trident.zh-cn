@@ -6,6 +6,7 @@ summary: '您可以使用 `tridentctl` 来部署 Astra Trident 。'
 ---
 = 使用 tridentctl 进行部署
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

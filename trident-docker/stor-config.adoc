@@ -6,6 +6,7 @@ summary: 请参见适用于您的 Astra Trident 配置的配置选项。
 ---
 = 存储配置选项
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

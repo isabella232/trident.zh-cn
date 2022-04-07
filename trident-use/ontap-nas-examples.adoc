@@ -6,6 +6,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 ---
 = 配置选项和示例
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

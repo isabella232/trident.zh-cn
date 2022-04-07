@@ -6,6 +6,7 @@ summary: '您可以使用 `tridentctl import` 将现有存储卷作为 Kubernete
 ---
 = 导入卷
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

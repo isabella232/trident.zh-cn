@@ -6,6 +6,7 @@ summary: 了解如何在 Astra Trident 安装中创建和使用 Element 后端�
 ---
 = 配置 NetApp HCI 或 SolidFire 后端
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

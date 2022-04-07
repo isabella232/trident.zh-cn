@@ -6,6 +6,7 @@ summary: 部署 Astra Trident 后，您可以继续创建后端，创建存储�
 ---
 = 下一步是什么？
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

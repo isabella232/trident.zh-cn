@@ -7,6 +7,7 @@ summary: Astra Trident 是由 NetApp 维护的开源存储配置程序和流程�
 ---
 = Astra Trident 22.01.1 文档
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规�
 ---
 = 自定义 Trident 操作员部署
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

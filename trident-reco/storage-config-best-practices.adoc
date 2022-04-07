@@ -6,6 +6,7 @@ summary: Kubernetes 集群通常由两种类型的节点组成，每种节点负
 ---
 = 存储配置
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

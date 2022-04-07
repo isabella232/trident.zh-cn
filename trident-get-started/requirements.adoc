@@ -6,6 +6,7 @@ summary: 首先查看支持的前端，后端和主机配置。
 ---
 = 要求
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -6,6 +6,7 @@ summary: 详细了解 Astra Trident 如何为其驱动程序创建卷快照。
 ---
 = 卷快照
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

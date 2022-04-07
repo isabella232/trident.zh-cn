@@ -6,6 +6,7 @@ summary: NetApp 不断改进和完善其产品和服务。以下是最新版 Ast
 ---
 = 发行说明
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

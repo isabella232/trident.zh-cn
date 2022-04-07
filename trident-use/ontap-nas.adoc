@@ -6,6 +6,7 @@ summary: 了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。
 ---
 = 使用 ONTAP NAS 驱动程序配置后端
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

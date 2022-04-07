@@ -6,6 +6,7 @@ summary: 如果您希望同时提供多个存储配置，则需要多个 Astra T
 ---
 = 管理多个 Astra Trident 实例
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

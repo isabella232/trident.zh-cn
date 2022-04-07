@@ -6,6 +6,7 @@ summary: 虚拟存储池在 Astra Trident 的存储后端和 Kubernetes 的 Stor
 ---
 = 虚拟存储池
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

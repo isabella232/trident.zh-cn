@@ -6,6 +6,7 @@ summary: 通过 Astra Trident ， Kubernetes 用户可以在创建卷后对其�
 ---
 = 展开卷
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -6,6 +6,7 @@ summary: 如果您希望与 Astra Trident 的 REST API 进行交互，则可以�
 ---
 = Astra Trident REST API
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

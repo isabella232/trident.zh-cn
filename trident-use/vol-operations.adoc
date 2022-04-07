@@ -6,6 +6,7 @@ summary: Astra Trident 提供了多种用于管理卷的功能。了解 Astra Tr
 ---
 = 执行卷操作
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

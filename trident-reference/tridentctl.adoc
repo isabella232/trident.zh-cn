@@ -6,6 +6,7 @@ summary: 了解有关 tridentctl 的更多信息， tridentctl 是一个命令�
 ---
 = tridentctl 命令和选项
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

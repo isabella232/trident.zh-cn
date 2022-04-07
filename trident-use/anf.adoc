@@ -6,6 +6,7 @@ summary: 了解如何使用提供的示例配置将 Azure NetApp Files 配置为
 ---
 = 配置 Azure NetApp Files 后端
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

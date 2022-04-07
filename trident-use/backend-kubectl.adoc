@@ -6,6 +6,7 @@ summary: '后端定义了 Astra Trident 与存储系统之间的关系。它告�
 ---
 = 使用 kubectl 创建后端
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

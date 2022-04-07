@@ -6,6 +6,7 @@ summary: 详细了解 Astra Trident 所通过的端口。
 ---
 = Astra Trident 端口
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -6,6 +6,7 @@ summary: 在部署 Astra Trident 时，请使用此处列出的建议。
 ---
 = 部署
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

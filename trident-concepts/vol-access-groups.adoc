@@ -6,6 +6,7 @@ summary: 详细了解 Astra Trident 如何使用卷访问组。
 ---
 = 卷访问组
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

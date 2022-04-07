@@ -6,6 +6,7 @@ summary: '要创建卷，请根据需要使用标准的 `docker volume` 命令�
 ---
 = 使用卷
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

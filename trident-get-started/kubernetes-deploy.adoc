@@ -6,6 +6,7 @@ summary: '您可以使用 Trident 运算符或使用 `tridentctl` 来部署 Astr
 ---
 = 部署概述
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

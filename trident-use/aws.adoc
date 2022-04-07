@@ -6,6 +6,7 @@ summary: 了解如何使用提供的示例配置将 Cloud Volumes Service for AW
 ---
 = 为 AWS 后端配置 CVS
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -6,6 +6,7 @@ summary: 了解如何使用提供的示例配置为 Astra Trident 安装配置 A
 ---
 = 配置 Astra 数据存储后端
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

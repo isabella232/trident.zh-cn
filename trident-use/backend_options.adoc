@@ -6,6 +6,7 @@ summary: 了解如何在 Astra Trident 中管理后端。
 ---
 = 在后端管理选项之间移动
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

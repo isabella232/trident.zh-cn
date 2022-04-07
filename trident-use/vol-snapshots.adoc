@@ -6,6 +6,7 @@ summary: 从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创�
 ---
 = 使用快照
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

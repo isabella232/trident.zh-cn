@@ -6,6 +6,7 @@ summary: Astra Trident 是一个受全面支持的开源项目，由 NetApp 作�
 ---
 = Astra Trident 简介
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

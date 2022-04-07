@@ -6,6 +6,7 @@ summary: 适用于 Docker 的 Astra Trident 可与适用于 NetApp 存储平台�
 ---
 = 部署 Astra Trident
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

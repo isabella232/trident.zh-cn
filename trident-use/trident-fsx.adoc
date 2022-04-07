@@ -6,6 +6,7 @@ summary: 通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合
 ---
 = 将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSX 结合使用
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

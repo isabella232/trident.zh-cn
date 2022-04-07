@@ -6,6 +6,7 @@ summary: 了解降级到早期版本的 Astra Trident 所涉及的步骤。
 ---
 = 降级 Astra Trident
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

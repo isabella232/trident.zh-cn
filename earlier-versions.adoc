@@ -6,6 +6,7 @@ summary: 如果您未运行最新版本，则可以参考有关先前版本的 A
 ---
 = 文档的早期版本
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

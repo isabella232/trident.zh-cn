@@ -6,6 +6,7 @@ summary: 在部署 Astra Trident 之前，您必须在主机上安装和配置�
 ---
 = 部署的前提条件
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

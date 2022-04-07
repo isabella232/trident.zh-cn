@@ -6,6 +6,7 @@ summary: 您可以使用 Trident 操作员部署 Astra Trident 。您可以手�
 ---
 = 使用 Trident 操作员进行部署
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

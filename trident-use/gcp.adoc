@@ -6,6 +6,7 @@ summary: 了解如何使用提供的示例配置将 Cloud Volumes Service for Go
 ---
 = 为 GCP 后端配置 CVS
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

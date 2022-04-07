@@ -6,6 +6,7 @@ summary: 使用此处列出的建议确保您的 Astra Trident 安装安全。
 ---
 = 安全性
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

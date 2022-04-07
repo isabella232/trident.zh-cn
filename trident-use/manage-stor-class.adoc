@@ -6,6 +6,7 @@ summary: 您可以创建存储类，删除存储类以及查看现有存储类�
 ---
 = 管理存储类
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

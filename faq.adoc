@@ -6,6 +6,7 @@ summary: 查找有关 Astra Trident 的安装，配置，升级和故障排除�
 ---
 = 常见问题解答
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

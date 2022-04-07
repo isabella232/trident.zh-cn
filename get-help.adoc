@@ -6,6 +6,7 @@ summary: NetApp 以多种方式为 Trident 提供支持。全天候提供广泛�
 ---
 = 支持
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

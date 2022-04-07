@@ -6,6 +6,7 @@ summary: Kubernetes 集群中的所有工作节点都需要能够挂载为 Pod �
 ---
 = 准备工作节点
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

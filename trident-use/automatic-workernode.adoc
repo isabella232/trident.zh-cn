@@ -6,6 +6,7 @@ summary: Astra Trident 可以在 Kubernetes 集群中的节点上自动安装所
 ---
 = 自动工作节点准备
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

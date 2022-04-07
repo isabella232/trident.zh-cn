@@ -6,6 +6,7 @@ summary: 您可以收集日志以帮助进行故障排除。收集日志的方�
 ---
 = 收集日志
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

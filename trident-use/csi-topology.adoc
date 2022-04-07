@@ -6,6 +6,7 @@ summary: 通过使用 CSI 拓扑功能， Astra Trident 可以有选择地创建
 ---
 = 使用 CSI 拓扑
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

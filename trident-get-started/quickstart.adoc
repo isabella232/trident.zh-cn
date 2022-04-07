@@ -6,6 +6,7 @@ summary: 如果您刚刚开始使用 Kubernetes ，请按照说明安装 Kuberne
 ---
 = 试用
 :hardbreaks:
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
