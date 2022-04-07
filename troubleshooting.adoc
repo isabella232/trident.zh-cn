@@ -16,7 +16,7 @@ summary: 使用此处提供的指针排除安装和使用 Astra Trident 时可�
 NOTE: 要获得有关 Astra Trident 的帮助，请使用 `tridentctl logs -a -n trident` 创建支持包，并将其发送到 `NetApp 支持 < 获取帮助 >` 。
 
 
-TIP: 有关故障排除文章的完整列表，请参见 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Trident_Kubernetes["NetApp 知识库（需要登录）"^]。您还可以找到有关排除与 Astra 相关的问题的信息。
+TIP: 有关故障排除文章的完整列表，请参见 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Trident_Kubernetes["NetApp 知识库（需要登录）"^]。您还可以找到有关排除与 Astra 相关的问题的信息 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra["此处"^]。
 
 
 

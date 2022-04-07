@@ -22,7 +22,7 @@ summary: '您可以使用 Trident 运算符或使用 `tridentctl` 来部署 Astr
 
 === 为什么要使用 Trident 运算符？
 
-。 link:kubernetes-deploy-operator.html["Trident 运算符"^] 是动态管理 Astra Trident 资源并自动完成设置阶段的绝佳方式。必须满足某些前提条件。请参见 。
+。 link:kubernetes-deploy-operator.html["Trident 运算符"^] 是动态管理 Astra Trident 资源并自动完成设置阶段的绝佳方式。必须满足某些前提条件。请参见 link:requirements.html["要求"^]。
 
 Trident 运算符提供了以下几项优势。
 
@@ -106,7 +106,7 @@ NOTE: 如果集群升级到不受支持的版本，则操作员会阻止安装 A
 
 === 脱机部署
 
-要执行空映射部署，您可以在调用 `tridentctl install` 时使用 ` -image-regRegistry` 标志来指向私有映像注册表。如果使用 Trident 操作符进行部署，则也可以在 `TridentOrchestrator` 中指定 `sPec.imageRegistry` 。此注册表应包含 https://hub.docker.com/r/netapp/trident/["Trident 映像"^]，和 Kubernetes 版本所需的 CSI sidecar 映像。
+要执行空映射部署，您可以在调用 `tridentctl install` 时使用 ` -image-regRegistry` 标志来指向私有映像注册表。如果使用 Trident 操作符进行部署，则也可以在 `TridentOrchestrator` 中指定 `sPec.imageRegistry` 。此注册表应包含 https://hub.docker.com/r/netapp/trident/["Trident 映像"^]， https://hub.docker.com/r/netapp/trident-autosupport/["Trident AutoSupport 映像"^]和 Kubernetes 版本所需的 CSI sidecar 映像。
 
 要自定义部署，您可以使用 `tridentctl` 为 Trident 的资源生成清单。其中包括 Astra Trident 在安装过程中创建的部署，取消设置，服务帐户和集群角色。
 

@@ -937,7 +937,6 @@
   <block id="46da6852e307b4f4a0e965c9c18fe576" category="list-text">如果您 * 未看到 * a `tridentOrchestrator` ，（或） a `tridentprovisioner` ，（或）名为 `trident — operator-xxxxxxxxxx-xxxxx` 的 Pod ，则已安装 Astra Trident * 和 `tridentctl` 。</block>
   <block id="72b739b65841b5d903e9ec216f0c4fd1" category="list-text">使用现有的 `tridentctl` 二进制文件卸载 Astra Trident 。在这种情况下，您将使用 21.07 二进制文件卸载。</block>
   <block id="6445365d100b18e233ebf2d08d116aee" category="inline-link-macro">自定义安装</block>
-  <block id="ca35ad40c102410833ee6b7227e3cfcc" category="list-text">完成此操作后，获取所需版本的 Trident 二进制文件（在此示例中为 20.07 ），并使用它安装 Astra Trident 。您可以为生成自定义 YAML <block ref="e519c8a747d0bcd553094af015469d7d" category="inline-link-macro-rx"></block> 如果需要，</block>
   <block id="03347682a0c8323a17a17933bbf4e18c" category="paragraph">降级过程已完成。</block>
   <block id="3a90bea856daf0616bcbdde1b9d9ad0b" category="summary">根据 Astra Trident 的安装方式，有多种卸载方法。</block>
   <block id="bdcf993f8f3d91925d60754cd864f3c0" category="section-title">使用 Helm 卸载</block>
@@ -1107,7 +1106,6 @@
   <block id="ffb25b8f3453272318fba778e825268f" category="section-title">支持哪些版本的 etcd ？</block>
   <block id="6a3ad0d68dcfe0164611dadb7f7656f9" category="paragraph">Astra Trident 不再需要 `etcd` 。它使用 CRD 来保持状态。</block>
   <block id="bde6cb03741f92107c63aeebe62d3278" category="section-title">Astra Trident 是否支持从专用注册表脱机安装？</block>
-  <block id="eeabb890ce57551c5685ffb613b78406" category="paragraph">可以， Astra Trident 可以脱机安装。请参见 <block ref="f0cd5c2694f3680f6758ce5ce7e21a5b" category="inline-link-macro-rx"></block>。</block>
   <block id="1c51806b370d428d5779dbcacd940174" category="section-title">是否可以远程安装 Astra Trident ？</block>
   <block id="bf858450c271da75a3df3a15ca761330" category="paragraph">是的。Astra Trident 18.10 及更高版本支持从 `kubectl` 访问集群的任何计算机远程安装。验证 `kubectl` 访问后（例如，从远程计算机启动 `kubectl get nodes` 命令进行验证），请按照安装说明进行操作。</block>
   <block id="12694c2de4575e39a6f7e81d55e35de9" category="section-title">是否可以使用 Astra Trident 配置高可用性？</block>
@@ -1115,9 +1113,7 @@
   <block id="1656e4b34abdb6d497b40cac65366767" category="section-title">Astra Trident 是否需要访问 Kube-system 命名空间？</block>
   <block id="6f67e1edfd4aa5b0e695528a9c7d8898" category="paragraph">Astra Trident 从 Kubernetes API 服务器读取数据，以确定应用程序何时请求新的 PVC ，因此需要访问 Kube-system 。</block>
   <block id="16cdb35003b5bcf0f30556e0bc477511" category="section-title">Astra Trident 使用哪些角色和特权？</block>
-  <block id="dd57666df1542a5c5c1c8ea446433dba" category="paragraph">Trident 安装程序会创建一个 Kubernetes ClusterRole ，该 ClusterRole 可对集群的 PersistentVolume ， PersistentVolumeClaim ， StorageClass 和 Kubernetes 集群的 Secret 资源进行特定访问。请参见 <block ref="21005beb39aa5b473ddc4fbc9c302e0b" category="inline-link-macro-rx"></block>。</block>
   <block id="8ff39a39871cc30228035bc0580a6af4" category="section-title">是否可以在本地生成 Astra Trident 用于安装的准确清单文件？</block>
-  <block id="34edccb29a11f4f0728f07bbefd9d0e6" category="paragraph">如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 <block ref="21005beb39aa5b473ddc4fbc9c302e0b" category="inline-link-macro-rx"></block>。</block>
   <block id="e6af67b71bd46d7588b50f28e1414f9b" category="section-title">是否可以为两个单独的 Kubernetes 集群的两个单独的 Astra Trident 实例共享同一个 ONTAP 后端 SVM ？</block>
   <block id="7bbf9b47e035f0f9bb7c46098e78fb4d" category="paragraph">尽管不建议这样做，但您可以对两个 Astra Trident 实例使用同一个后端 SVM 。在安装期间为每个实例指定唯一的卷名称和 / 或在 `setup/backend.json` 文件中指定唯一的 `StoragePrefix` 参数。这是为了确保不会对这两个实例使用相同的 FlexVol 。</block>
   <block id="9840a5bb6278469ed550bcdcc92c29c5" category="section-title">是否可以在 ContainerLinux （以前称为 CoreOS ）下安装 Astra Trident ？</block>
@@ -1155,7 +1151,6 @@
   <block id="ce44cbbc54839f39b351c091b0e3caa5" category="paragraph">NetApp 支持将 Astra Trident 从一个主要版本升级到下一个直接主要版本。您可以从 18.xx 升级到 19.xx ，从 19.xx 升级到 20.xx 等。在生产部署之前，您应在实验室中测试升级。</block>
   <block id="0399b9e6348e554937a4d65efc97a1b8" category="section-title">是否可以将 Trident 降级到先前版本？</block>
   <block id="d307563c01953bd90a41ddd049f96d51" category="inline-link-macro">有关降级的章节</block>
-  <block id="0dedfa196a76d45ea496a2b3ebca850a" category="paragraph">如果要降级，需要评估许多因素。请参见 <block ref="4734dc58d0c9739f3584035ff28dc1f1" category="inline-link-macro-rx"></block>。</block>
   <block id="ba9c59aa9d07b25e124dcf6ca88d689a" category="section-title">管理后端和卷</block>
   <block id="ffe72215dff9a93d62ee68905212025e" category="section-title">是否需要在 ONTAP 后端定义文件中同时定义管理和数据 LIF ？</block>
   <block id="3a35d35cc18d96684d78b36a81422e0c" category="paragraph">NetApp 建议在后端定义文件中同时包含这两者。但是，只有管理 LIF 是必需的。</block>
@@ -2133,7 +2128,6 @@
   <block id="337de5d45c69b1e4dcf87a8e7ec9ff76" category="doc">将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSX 结合使用</block>
   <block id="679e88f51c747ba6602cbc38cb32bff8" category="paragraph"><block ref="6a2736fcbb5755dd03d114a5153506eb" category="inline-link-rx"></block>是一种完全受管的 AWS 服务，支持客户启动和运行由 NetApp 的 ONTAP 存储操作系统提供支持的文件系统。Amazon FSX for NetApp ONTAP 支持您利用您熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX 支持 ONTAP 的许多文件系统功能和管理 API 。</block>
   <block id="7eb620c879218a348ba0e9afaedf6b01" category="paragraph">文件系统是 Amazon FSX 中的主要资源，类似于内部部署的 ONTAP 集群。在每个 SVM 中，您可以创建一个或多个卷，这些卷是将文件和文件夹存储在文件系统中的数据容器。借助适用于 NetApp ONTAP 的 Amazon FSX ， Data ONTAP 将作为云中的托管文件系统提供。新的文件系统类型称为 * NetApp ONTAP * 。</block>
-  <block id="98cbc4f3bec852897b19deb4e76af117" category="paragraph">通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 提供支持的块和文件永久性卷。</block>
   <block id="ff27e75635c1ff1e88fbc656b16e56ce" category="section-title">了解 Astra Trident</block>
   <block id="ac7bd35f3efc1fd44a6368cea5fa9c21" category="paragraph">如果您是 Astra Trident 的新用户，请使用下面提供的链接进行熟悉：</block>
   <block id="483a5da192f46e3cfe8391d3ef234fc4" category="inline-link-macro">常见问题解答</block>
@@ -3171,9 +3165,7 @@
   <block id="4811aaaf5eedea1ea9f703353903b5b5" category="list-text">请参见 <block ref="c35b155baa39b6aa36cf9bc59eea88f3" category="inline-link-macro-rx"></block> 有关卷扩展的更多详细信息。</block>
   <block id="853119066470e5145f87024e7c6accdb" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files</block>
   <block id="23038d88eea805ac06a26959fc129ca5" category="admonition">Trident 目前不支持 NetApp 聚合加密（ NAE ）。</block>
-  <block id="18cf072964a583150dd247485ba75b92" category="admonition-title">适用于 ONTAP 的 Amazon FSX</block>
   <block id="fa8bc73a8436dd2f79aafaa731d248e4" category="list-text">`limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
-  <block id="c7e012baf676feb8d925d8f535c01c02" category="list-text">适用于 NetApp ONTAP 的 Amazon FSX 卷预配置了 SnapMirror 。Trident 无法修改或中断它们。要删除 PVC ，您需要手动删除 PV 和适用于 NetApp ONTAP 的 FSX 卷。</block>
   <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
   <block id="76df2d4e2a105a35b5db1ce7b060bbe1" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10</block>
   <block id="9c99c91edd7eddead4f870a324f880bd" category="list-text">添加 Trident 的 Helm 存储库：</block>
@@ -3197,4 +3189,17 @@
   <block id="d293f031e5664526b25f3a65012401b7" category="cell">`IPv6`</block>
   <block id="82ac2196255f9b53a51cdc28bcf73966" category="paragraph">下面是另一个示例，说明如何使用节点选择器部署 Trident ：</block>
   <block id="997cff957213b9212a22d7cac2b4275d" category="list-text">使用生成的证书测试身份验证。将 &lt;SVM 管理 LIF&gt; 和 &lt;SVM 名称 &gt; 替换为管理 LIF IP 和 ONTAP 名称。您必须确保 LIF 的服务策略设置为 `default-data-management` 。</block>
+  <block id="1e6c7220f5d4eb181d67b4d5043336f5" category="paragraph">通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 备份的块和文件永久性卷。</block>
+  <block id="8792dbcf77c7dadb90a49563ee249d3e" category="admonition-title">创建适用于 ONTAP 的 Amazon FSX 文件系统</block>
+  <block id="fe901b8f112db124800eb81787ce3be4" category="paragraph">Trident 无法删除在启用了自动备份的 Amazon FSx 文件系统上创建的卷。要删除 PVC ，您需要手动删除 PV 和 ONTAP 的 FSX 卷。</block>
+  <block id="2433c28b2cd1430a6f8bd5d5ea6aa3da" category="paragraph">要防止此问题描述 ，请执行以下操作：</block>
+  <block id="10b862795141355be1c179a2f878f507" category="list-text">请勿使用 "* 快速创建 "* 来创建适用于 ONTAP 的 FSX 文件系统。快速创建工作流可启用自动备份，但不提供选择退出选项。</block>
+  <block id="a10ab8f133704d9a58a1dff179ad7f7d" category="list-text">使用 "** 标准创建 " 时，禁用自动备份。禁用自动备份可以使 Trident 成功删除卷，而无需进一步手动干预。</block>
+  <block id="4ef50c481a6113a6276514f572c414d2" category="inline-image-macro">AWS 控制台禁用自动备份的屏幕截图。</block>
+  <block id="cce5aa9218d4019d57adcf814d7189c1" category="paragraph"><block ref="cce5aa9218d4019d57adcf814d7189c1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="45b09f7cb3dcbe0274eef2b3fce46bea" category="paragraph">可以， Astra Trident 可以脱机安装。请参见 <block ref="4a2b27d6d4bc3dd7ae85bfd131d50753" category="inline-link-macro-rx"></block>。</block>
+  <block id="6efc6545e459b8bb96815706b41a84cd" category="paragraph">Trident 安装程序会创建一个 Kubernetes ClusterRole ，该 ClusterRole 可对集群的 PersistentVolume ， PersistentVolumeClaim ， StorageClass 和 Kubernetes 集群的 Secret 资源进行特定访问。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
+  <block id="0f43ba8a9cfc14b033c2c652f53bfcb9" category="paragraph">如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
+  <block id="72fec731c958562fd09df08eef5fbb89" category="paragraph">如果要降级，需要评估许多因素。请参见 <block ref="ea621a0de3f004c488ea799d0fd7e41d" category="inline-link-macro-rx"></block>。</block>
+  <block id="da4ba399089f873246a85825f8a3e1c3" category="list-text">完成此操作后，获取所需版本的 Trident 二进制文件（在此示例中为 20.07 ），并使用它安装 Astra Trident 。您可以为生成自定义 YAML <block ref="a251ebefafa5a5d36d857b7034f07489" category="inline-link-macro-rx"></block> 如果需要，</block>
 </blocks>

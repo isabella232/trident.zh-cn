@@ -32,7 +32,7 @@ NOTE: 要升级到之前的五个版本，您需要执行多步升级。
 IMPORTANT: 对于 19.04 及更早版本的所有升级，都需要将 Astra Trident 的元数据从其自身的 `etcd` 迁移到 CRD 对象。请务必查看此版本的文档，了解升级的工作原理。
 
 
-WARNING: 升级时，请务必提供 `parameter.FSType` in `StorageClasses` used by Astra Trident 。您可以删除并重新创建 `StorageClasses` ，而不会中断已有卷。这是执行的一项 * 要求 * https://kubernetes.io/docs/tasks/configure-pod-container/security-context/["安全上下文"^] SAN 卷。。 目录包含示例，例如 和。有关详细信息，请参见 link:../trident-rn.html["已知问题"^]。
+WARNING: 升级时，请务必提供 `parameter.FSType` in `StorageClasses` used by Astra Trident 。您可以删除并重新创建 `StorageClasses` ，而不会中断已有卷。这是执行的一项 * 要求 * https://kubernetes.io/docs/tasks/configure-pod-container/security-context/["安全上下文"^] SAN 卷。。 https://github.com/NetApp/trident/tree/master/trident-installer/sample-input["输入示例："^] 目录包含示例，例如 https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-basic.yaml.templ["`storage-class-basic 。 yaml.temp`"^] 和 https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-bronze-default.yaml["`storage-class-brone-default.yaml`"^]。有关详细信息，请参见 link:../trident-rn.html["已知问题"^]。
 
 
 

@@ -14,8 +14,23 @@ https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["适用
 
 文件系统是 Amazon FSX 中的主要资源，类似于内部部署的 ONTAP 集群。在每个 SVM 中，您可以创建一个或多个卷，这些卷是将文件和文件夹存储在文件系统中的数据容器。借助适用于 NetApp ONTAP 的 Amazon FSX ， Data ONTAP 将作为云中的托管文件系统提供。新的文件系统类型称为 * NetApp ONTAP * 。
 
-通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 提供支持的块和文件永久性卷。
+通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 备份的块和文件永久性卷。
 
+[WARNING]
+.创建适用于 ONTAP 的 Amazon FSX 文件系统
+====
+Trident 无法删除在启用了自动备份的 Amazon FSx 文件系统上创建的卷。要删除 PVC ，您需要手动删除 PV 和 ONTAP 的 FSX 卷。
+
+要防止此问题描述 ，请执行以下操作：
+
+* 请勿使用 "* 快速创建 "* 来创建适用于 ONTAP 的 FSX 文件系统。快速创建工作流可启用自动备份，但不提供选择退出选项。
+* 使用 "** 标准创建 " 时，禁用自动备份。禁用自动备份可以使 Trident 成功删除卷，而无需进一步手动干预。
++
+image:screenshot-fsx-backup-disable.png["AWS 控制台禁用自动备份的屏幕截图。"]
+
+
+
+====
 
 
 == 了解 Astra Trident
@@ -94,7 +109,7 @@ aws fsx describe-storage-virtual-machines --region <file system region>
 ----
 
 
-. 创建并安装用于身份验证的证书。如果您使用的是 `ontap-san` 后端，请参见 link:ontap-san.html["此处"^]。如果您使用的是 `ontap-nas` 后端，请参见 。
+. 创建并安装用于身份验证的证书。如果您使用的是 `ontap-san` 后端，请参见 link:ontap-san.html["此处"^]。如果您使用的是 `ontap-nas` 后端，请参见 link:ontap-nas.html["此处"^]。
 +
 
 NOTE: 您可以从可以访问文件系统的任何位置使用 SSH 登录到文件系统（例如，安装证书）。使用 `fsxadmin` 用户，创建文件系统时配置的密码以及 `AWS FSx describe 文件系统` 中的管理 DNS 名称。
@@ -125,14 +140,9 @@ NOTE: 您可以从可以访问文件系统的任何位置使用 SSH 登录到文
 
 NOTE: 请勿为 `ontap-san` 和 `ontap-san-economy-` 驱动程序指定 `dataLIF` ，以允许 Astra Trident 使用多路径。
 
-[WARNING]
-.适用于 ONTAP 的 Amazon FSX
-====
-* `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。
-* 适用于 NetApp ONTAP 的 Amazon FSX 卷预配置了 SnapMirror 。Trident 无法修改或中断它们。要删除 PVC ，您需要手动删除 PV 和适用于 NetApp ONTAP 的 FSX 卷。
 
+WARNING: `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。
 
-====
 部署完成后，执行以下步骤以创建 link:../trident-get-started/kubernetes-postdeployment.html["存储类，配置卷以及将卷挂载到 Pod 中"^]。
 
 

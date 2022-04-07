@@ -23,7 +23,7 @@ NOTE: NetApp Cloud Volumes Service for Google Cloud 不支持大小小于 100 Gi
 * CVS 服务帐户的 API 密钥文件
 
 
-Astra Trident 现在支持使用默认值的较小卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-type["GCP 上的 CVS 服务类型"^]。对于使用 `storageClass=software` 创建的后端，卷的最小配置大小将为 300 GiB 。CVS 目前在 " 受控可用性 " 下提供此功能，不提供技术支持。用户必须注册才能访问低于 1TiB 的卷。NetApp 建议客户对非生产工作负载使用 1 TiB 以下的卷。
+Astra Trident 现在支持使用默认值的较小卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-type["GCP 上的 CVS 服务类型"^]。对于使用 `storageClass=software` 创建的后端，卷的最小配置大小将为 300 GiB 。CVS 目前在 " 受控可用性 " 下提供此功能，不提供技术支持。用户必须注册才能访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此处"^]。NetApp 建议客户对非生产工作负载使用 1 TiB 以下的卷。
 
 
 NOTE: 使用默认 CVS 服务类型（ `storageClass=software` ）部署后端时，用户必须获得 GCP 上有关项目编号和项目 ID 的 1 TiB 卷功能的访问权限。这对于 Astra Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建将失败。使用访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此表单"^]。

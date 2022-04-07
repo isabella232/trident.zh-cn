@@ -68,7 +68,7 @@ NOTE: Cloud Volumes Service for AWS 不支持小于 100 GB 的卷。如果请求
 | `debugTraceFlags` | 故障排除时要使用的调试标志。示例， ` \ ｛ "api" ： false ， "method ： true" ｝` 。除非您正在进行故障排除并需要详细的日志转储，否则请勿使用此功能。 | 空 
 |===
 
-NOTE: 每个 `区域` 的 "apiURL"` 都是唯一的。 `例如， us-west-2 `apiRegion` 具有 https://cv.us-west-2.netapp.com:8080/v1/[] `apiURL` 。同样， us-east-1 `apiRegion` 也具有 `apiURL` 。请务必查看 CVS 信息板，了解后端配置的正确 `apiRegion` 和 `apiURL` 参数。
+NOTE: 每个 `区域` 的 "apiURL"` 都是唯一的。 `例如， us-west-2 `apiRegion` 具有 https://cv.us-west-2.netapp.com:8080/v1/[] `apiURL` 。同样， us-east-1 `apiRegion` 也具有 https://cds-aws-bundles.netapp.com:8080/v1/[] `apiURL` 。请务必查看 CVS 信息板，了解后端配置的正确 `apiRegion` 和 `apiURL` 参数。
 
 每个后端都会在一个 AWS 区域中配置卷。要在其他区域创建卷，您可以定义其他后端。
 

@@ -45,7 +45,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snaps
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
 ----
 
-TIP: CSI Snapshotter 提供了 https://github.com/kubernetes-csi/external-snapshotter#validating-webhook["正在验证 webhook"^] 帮助用户验证现有 v1bea1 快照并确认它们是有效的资源对象。正在验证的 webhook 会自动标记无效的快照对象，并防止将来创建无效对象。验证 webhook 由 Kubernetes 流程编排程序部署。请参见有关手动部署验证 webhook 的说明。查找无效快照清单的示例。
+TIP: CSI Snapshotter 提供了 https://github.com/kubernetes-csi/external-snapshotter#validating-webhook["正在验证 webhook"^] 帮助用户验证现有 v1bea1 快照并确认它们是有效的资源对象。正在验证的 webhook 会自动标记无效的快照对象，并防止将来创建无效对象。验证 webhook 由 Kubernetes 流程编排程序部署。请参见有关手动部署验证 webhook 的说明 https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/deploy/kubernetes/webhook-example/README.md["此处"^]。查找无效快照清单的示例 https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0/examples/kubernetes["此处"^]。
 
 下面详细介绍的示例说明了使用快照所需的构造，并说明了如何创建和使用快照。
 
