@@ -866,7 +866,6 @@
   <block id="2f6881ec6a84d1ac9ef2e551f3ca8466" category="section-title">升级集群范围的操作员安装</block>
   <block id="532223fc600c8862511462ff30738c55" category="paragraph">要从 * Trident 21.01 及更高版本 * 升级，请执行以下步骤。</block>
   <block id="238e63aecc23c1bc2611ca883f075f1f" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如，如果要从 21.01 升级，请运行以下命令：</block>
-  <block id="caa6267a6d2c9b631544a2ce0d5e4180" category="list-text">（可选）如果要修改安装参数，请编辑安装 Trident 时创建的 `TridentOrchestrator` 对象。这些更改可能包括修改自定义 Trident 映像，从中提取容器映像的专用映像注册表，启用调试日志或指定映像提取密钥等。</block>
   <block id="09b615e18699c6675b3705c00a495375" category="list-text">使用为新版本设置 Trident 操作符的 `bundle.yaml` 文件安装 Astra Trident 。运行以下命令：</block>
   <block id="d06b5297af318d2581021098f6b0d44d" category="section-title">升级命名空间范围的操作员安装</block>
   <block id="ddfa75d059a999aedec16392aae03bc4" category="paragraph">要从使用命名空间范围的运算符（版本 20.07 至 20.10 ）安装的 Astra Trident 实例进行升级，需要遵循以下步骤：</block>
@@ -3212,4 +3211,6 @@
   <block id="d7f1fbcf9ce4e42f705add574d262b2c" category="paragraph"><block ref="d7f1fbcf9ce4e42f705add574d262b2c" category="inline-link-rx"></block></block>
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隐私政策</block>
   <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
+  <block id="056b6e39cb1ae24d946674f95697989a" category="paragraph">您可以使用操作员轻松升级现有的 Astra Trident 安装。</block>
+  <block id="d10c9260fe9a1660c2f75dddda0220e4" category="list-text">（可选）如果要修改安装参数，请编辑在安装 Trident 时创建的 `TridentOrchestrator` 对象。这可能包括一些更改，例如修改自定义 Trident 映像，从其中提取容器映像的专用映像注册表，启用调试日志或指定映像提取密钥。</block>
 </blocks>
