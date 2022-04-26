@@ -1457,7 +1457,6 @@
   <block id="37696641960d6c73a7dadab603c1877e" category="list-text">Mirantis Kubernetes Engine 3.4</block>
   <block id="201eb37826a33e35adff9119f25946bd" category="paragraph">以下版本支持 Trident 操作符：</block>
   <block id="5596419ed8318cabbcb138ef27fd3035" category="inline-link">错误修复公告</block>
-  <block id="3943a2e0490c50c43f31a486978ea80b" category="paragraph">Astra Trident 还可与其他许多完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Cloud 的 Google Kubernetes Engine （ GKS ）， AWS 的 Elastic Kubernetes Services （ EKS ）， Azure 的 Azure Kubernetes Service （ AKS ）和 Rancher 。</block>
   <block id="f787cd4b6963b13f12fa53131f58ef6c" category="section-title">支持的后端（存储）</block>
   <block id="843e2f0c722d25903a6010b62ac4f13b" category="paragraph">要使用 Astra Trident ，您需要以下一个或多个受支持的后端：</block>
   <block id="a3c559e0541e9bb860178ce6fe414224" category="list-text">适用于 GCP 的 Cloud Volumes Service</block>
@@ -3213,4 +3212,10 @@
   <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
   <block id="056b6e39cb1ae24d946674f95697989a" category="paragraph">您可以使用操作员轻松升级现有的 Astra Trident 安装。</block>
   <block id="d10c9260fe9a1660c2f75dddda0220e4" category="list-text">（可选）如果要修改安装参数，请编辑在安装 Trident 时创建的 `TridentOrchestrator` 对象。这可能包括一些更改，例如修改自定义 Trident 映像，从其中提取容器映像的专用映像注册表，启用调试日志或指定映像提取密钥。</block>
+  <block id="25c11af81bf0b01ce7b0f24ddc9f7136" category="section-title">其他已知配置选项</block>
+  <block id="ffedfe711d36cdc8c41927063ae77027" category="paragraph">在 VMware Tanzu Portfolio 产品上安装 Astra Trident 时：</block>
+  <block id="8ded34c5caad3971bb6d0a2b202d7b32" category="list-text">集群必须支持有权限的工作负载。</block>
+  <block id="dbe38f4f0d856b41827e6e4531720a5e" category="list-text">` -kubelet-dir` 标志应设置为 kubelet 目录的位置。默认情况下，此值为 ` /var/vcap/data/kubelet` 。</block>
+  <block id="4dc3529fbf05312075f0aa52f9c0908e" category="paragraph">已知使用 ` -kubelet-dir` 指定 kubelet 位置适用于 Trident Operator ， Helm 和 `tridentctl` 部署。</block>
+  <block id="8fad5c21cf613e120f249eadc62cda2f" category="paragraph">Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。</block>
 </blocks>

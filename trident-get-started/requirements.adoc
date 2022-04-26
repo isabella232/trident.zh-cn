@@ -38,7 +38,7 @@ Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
 NOTE: 如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容 https://access.redhat.com/errata/RHSA-2020:5259/["错误修复公告"^]。NetApp 建议您在 OpenShift 4.6.8 及更高版本上使用 Astra Trident 。
 
-Astra Trident 还可与其他许多完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Cloud 的 Google Kubernetes Engine （ GKS ）， AWS 的 Elastic Kubernetes Services （ EKS ）， Azure 的 Azure Kubernetes Service （ AKS ）和 Rancher 。
+Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。
 
 
 

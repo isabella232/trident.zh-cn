@@ -131,3 +131,16 @@ IMPORTANT: 如果您使用的是私有映像存储库，则应在专用注册表
 * 启动 `kubectl get nodes` 命令，验证您是否可以连接到所需的 Kubernetes 集群。
 * 使用标准安装步骤从远程计算机完成部署。
 
+
+
+
+== 其他已知配置选项
+
+在 VMware Tanzu Portfolio 产品上安装 Astra Trident 时：
+
+* 集群必须支持有权限的工作负载。
+* ` -kubelet-dir` 标志应设置为 kubelet 目录的位置。默认情况下，此值为 ` /var/vcap/data/kubelet` 。
++
+已知使用 ` -kubelet-dir` 指定 kubelet 位置适用于 Trident Operator ， Helm 和 `tridentctl` 部署。
+
+
