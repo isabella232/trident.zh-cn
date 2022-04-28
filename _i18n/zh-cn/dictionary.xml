@@ -364,7 +364,6 @@
   <block id="3f7c94eec4bbf43962e1667f5a334469" category="cell">ontap-nas* ：初始 UNIX 权限</block>
   <block id="4b2d5d83aef608a3fb59ec6eda8bea26" category="cell">SolidFire — * ：块 / 扇区大小</block>
   <block id="62fe71ae4f6a04a6937feb48ba5dc4f4" category="cell">文件系统类型</block>
-  <block id="44be9d1a43b6ec865a2264e42c53de2d" category="paragraph">创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` &lt;prefix&gt;-&lt;volume-name&gt;` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` &lt;prefix&gt;_&lt;volume-name&gt;` ）。对于 Element 后端，它会将下划线替换为连字符。对于对所有对象名称施加 30 个字符限制的 E 系列， Trident 会为每个卷的内部名称生成随机字符串。对于对唯一卷创建令牌实施 16 到 36 个字符限制的 CVS （ AWS ）， Trident 会为每个卷的内部名称生成一个随机字符串。</block>
   <block id="49539689cebb34166a417b3b666818e5" category="paragraph">您可以使用卷配置使用 REST API 直接配置卷，但在 Kubernetes 部署中，我们希望大多数用户使用标准的 Kubernetes `PersistentVolumeClaim` 方法。Trident 会在配置过程中自动创建此卷对象。</block>
   <block id="cbd341b63adaa47fcb248e55d33f6eae" category="section-title">Trident Snapshot 对象</block>
   <block id="a1b3787bbd275b7ed5812d022dd36932" category="paragraph">快照是卷的时间点副本，可用于配置新卷或还原状态。在 Kubernetes 中，这些对象直接对应于 `VolumeSnapshotContent` 对象。每个快照都与一个卷相关联，该卷是快照的数据源。</block>
@@ -420,7 +419,6 @@
   <block id="923169151e05d28a3474b2a033666297" category="paragraph">这些值是按命名空间定义的，这意味着每个命名空间都应定义符合其资源要求的值。有关信息，请参见此处<block ref="5b289b2ffde01314d8b0d038aabd709b" category="inline-link-rx"></block>。</block>
   <block id="698aa9df4c2c5470599821c3d10620dd" category="summary">Kubernetes 集群通常由两种类型的节点组成，每种节点负责不同的功能方面。</block>
   <block id="6e8775bd755a8835ce86806d669677ea" category="doc">存储配置</block>
-  <block id="4d59d193e356ef0157daf2c1fc0a6dd6" category="paragraph">NetApp 产品组合中的每个存储平台都具有独特的功能，无论应用程序是容器化还是非容器化，都能从中受益。Trident 可与每个主要平台配合使用： ONTAP ， Element 和 E 系列。没有一个平台比另一个平台更适合所有应用程序和场景，但是，在选择平台时，应考虑应用程序和设备管理团队的需求。</block>
   <block id="ac5112696fd64ee051846c666ebebebe" category="paragraph">您应遵循使用所使用协议的主机操作系统的基线最佳实践。或者，您也可以考虑将应用程序最佳实践（如果有）与后端，存储类和 PVC 设置结合使用，以便为特定应用程序优化存储。</block>
   <block id="efc9d085ca2f3a152c786357e9359c03" category="section-title">ONTAP 和 Cloud Volumes ONTAP 最佳实践</block>
   <block id="a3f99d5d44515cf922e6b525de736173" category="paragraph">了解为 Trident 配置 ONTAP 和 Cloud Volumes ONTAP 的最佳实践。</block>
@@ -516,14 +514,6 @@
   <block id="fc9e812321a3f9b0eab1b702a08bab4e" category="admonition">具有增强型 CSI 配置程序的 Trident 支持使用 CHAP 身份验证。VAG 只能在传统的非 CSI 操作模式下使用。</block>
   <block id="d23eaa75b7bd1405526da0e18b7290ac" category="paragraph">只有基于帐户的访问控制才支持 CHAP 身份验证（验证启动程序是否为目标卷用户）。如果使用 CHAP 进行身份验证，则可以使用两个选项：单向 CHAP 和双向 CHAP 。单向 CHAP 使用 SolidFire 帐户名称和启动程序密钥对卷访问进行身份验证。双向 CHAP 选项可提供最安全的卷身份验证方法，因为卷会通过帐户名称和启动程序密钥对主机进行身份验证，然后主机通过帐户名称和目标密钥对卷进行身份验证。</block>
   <block id="42d135bea104c1079cebd1543c89e970" category="paragraph">但是，如果无法启用 CHAP 且需要使用 VAG ，请创建访问组并将主机启动程序和卷添加到此访问组。添加到访问组的每个 IQN 都可以使用或不使用 CHAP 身份验证访问组中的每个卷。如果将 iSCSI 启动程序配置为使用 CHAP 身份验证，则会使用基于帐户的访问控制。如果 iSCSI 启动程序未配置为使用 CHAP 身份验证，则会使用卷访问组访问控制。</block>
-  <block id="f9245b5c4618640379c5b7aca1642196" category="section-title">E 系列最佳实践</block>
-  <block id="2bd6c307c08ebf17bbd89f92953812b5" category="paragraph">了解为 Trident 配置 E 系列存储的最佳实践。</block>
-  <block id="c502c3645d40ca0e119a2434fc569207" category="section-title">E 系列磁盘池和卷组</block>
-  <block id="91e654e42725ff5233a96730cbb8353a" category="paragraph">根据需要创建磁盘池和卷组，并确定应如何将总存储容量组织为卷并在主机之间共享。磁盘池和卷组都包含一组驱动器，这些驱动器经过逻辑分组，可为应用程序主机提供一个或多个卷。磁盘池或卷组中的所有驱动器都应具有相同的介质类型。</block>
-  <block id="3ff82339aba03372510cbf649c88660b" category="section-title">E 系列主机组</block>
-  <block id="1d159fb9310d2d64f0e89556f5e5e92a" category="paragraph">Trident 使用主机组访问其配置的卷（ LUN ）。默认情况下， Trident 会使用名为 `trident` 的主机组，除非您在配置中指定了其他主机组名称。Trident 本身不会创建或管理主机组。在 Trident 上设置 E 系列存储后端之前，必须先创建主机组。确保主机组中的所有 Kubernetes 工作节点 iSCSI IQN 名称均已更新。</block>
-  <block id="345b5f2b58b43a215fba679b4aff7483" category="section-title">E 系列快照计划</block>
-  <block id="7e496222beafc240f7c54f2e86d37419" category="paragraph">创建快照计划并将 Trident 创建的卷分配给快照计划，以便可以按所需的间隔进行卷备份。根据根据根据快照策略创建的快照，可以通过将快照映像还原到基础卷来对卷执行回滚操作。您应使用 SANtricity 系统管理器创建快照计划。</block>
   <block id="b5dd97bf7f44d6c721a9534c1b6d4390" category="section-title">Snapshot 一致性组</block>
   <block id="9279a0fc4d40b361df8598208a14b586" category="paragraph">设置快照一致性组也非常适合跨越多个卷的应用程序。一致性组的目的是为多个卷同时创建快照映像，从而确保在特定时间点为一组卷创建一致的副本。您应使用 SANtricity 系统管理器创建一致性组。</block>
   <block id="1ea481e04f09f7ec7132c7773f132743" category="section-title">适用于 AWS 的 Cloud Volumes Service 最佳实践</block>
@@ -557,9 +547,6 @@
   <block id="85bfffc1a1f7aaabd6cf58841640c308" category="list-text"><block ref="85bfffc1a1f7aaabd6cf58841640c308" category="inline-link-rx"></block></block>
   <block id="b52e411998b7d3a95ad5bd8a320bf271" category="inline-link">访问 NetApp 部署引擎</block>
   <block id="9d0da73b02655dd7861121905db229e2" category="list-text"><block ref="9d0da73b02655dd7861121905db229e2" category="inline-link-rx"></block></block>
-  <block id="985f6a763990196218b4750275e1f3b6" category="paragraph">* E 系列 *</block>
-  <block id="db06f9adb1b570484daf34ad3bf4e257" category="inline-link">安装和配置 Linux</block>
-  <block id="a66f5507c8942de388ae63c7a177f7ab" category="list-text"><block ref="a66f5507c8942de388ae63c7a177f7ab" category="inline-link-rx"></block></block>
   <block id="9aaca8cfd79770bc4944ccc477e37141" category="paragraph">* 应用程序最佳实践信息 *</block>
   <block id="27a5e02bc2fadee43ace94805739a0c8" category="inline-link">基于 ONTAP 的 MySQL 最佳实践</block>
   <block id="40d2eaf9adabe99a601c57eabf49e4d3" category="list-text"><block ref="40d2eaf9adabe99a601c57eabf49e4d3" category="inline-link-rx"></block></block>
@@ -3218,4 +3205,6 @@
   <block id="dbe38f4f0d856b41827e6e4531720a5e" category="list-text">` -kubelet-dir` 标志应设置为 kubelet 目录的位置。默认情况下，此值为 ` /var/vcap/data/kubelet` 。</block>
   <block id="4dc3529fbf05312075f0aa52f9c0908e" category="paragraph">已知使用 ` -kubelet-dir` 指定 kubelet 位置适用于 Trident Operator ， Helm 和 `tridentctl` 部署。</block>
   <block id="8fad5c21cf613e120f249eadc62cda2f" category="paragraph">Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。</block>
+  <block id="7054a9a8c9f6d4b0bcf8cfe758a2e14d" category="paragraph">NetApp 产品组合中的每个存储平台都具有独特的功能，无论应用程序是容器化还是非容器化，都能从中受益。Trident 可与 ONTAP 和 Element 结合使用。没有一个平台比另一个平台更适合所有应用程序和场景，但是，在选择平台时，应考虑应用程序和设备管理团队的需求。</block>
+  <block id="0f1a50993db502cac54d3679b60ad5a3" category="paragraph">创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` &lt;prefix&gt;-&lt;volume-name&gt;` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` &lt;prefix&gt;_&lt;volume-name&gt;` ）。对于 Element 后端，它会将下划线替换为连字符。对于对唯一卷创建令牌实施 16 到 36 个字符限制的 CVS （ AWS ）， Trident 会为每个卷的内部名称生成一个随机字符串。</block>
 </blocks>
