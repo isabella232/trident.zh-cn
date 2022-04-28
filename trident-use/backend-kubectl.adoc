@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/backend-kubectl.html 
-keywords: backends, storage system, anf, cvs for aws, cvs for gcp, element, hci, solidfire, ontap, aff, fas, ontap select, configure backends, kubectl, create backends 
+keywords: backends, storage system, anf, cvs for gcp, element, hci, solidfire, ontap, aff, fas, ontap select, configure backends, kubectl, create backends 
 summary: '后端定义了 Astra Trident 与存储系统之间的关系。它告诉 Astra Trident 如何与该存储系统进行通信，以及 Astra Trident 如何从该存储系统配置卷。安装 Astra Trident 后，下一步是创建后端。使用 `TridentBackendConfig` Custom Resource Definition （ CRD ），您可以直接通过 Kubernetes 界面创建和管理 Trident 后端。为此，您可以对 Kubernetes 分发版使用 `kubectl` 或等效的命令行界面工具。' 
 ---
 = 使用 kubectl 创建后端
@@ -110,20 +110,6 @@ stringData:
 clientId
  a| 
 应用程序注册中的客户端 ID
-
-
-
-| 适用于 AWS 的 Cloud Volumes Service  a| 
-apiKey
- a| 
-CVS 帐户 API 密钥
-
-
-
-| 适用于 AWS 的 Cloud Volumes Service  a| 
-secretKey
- a| 
-CVS 帐户密钥
 
 
 

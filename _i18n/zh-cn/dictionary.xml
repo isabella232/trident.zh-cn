@@ -35,14 +35,8 @@
   <block id="08edd2123939d5309dced149763a50ee" category="section-title">NetApp HCI</block>
   <block id="25f221cc63a7e1fa55b05c29420a72a2" category="paragraph"><block ref="2841e7defe3939e68d83d007d1ad666b" category="inline-link-rx"></block> 通过自动化执行日常任务并使基础架构管理员能够专注于更重要的功能，简化数据中心的管理和扩展。</block>
   <block id="be17f8b9c728a6cb61cad5a2609b3888" category="paragraph">Trident 完全支持 NetApp HCI 。Trident 可以直接在底层 NetApp HCI 存储平台上为容器化应用程序配置和管理存储设备。</block>
-  <block id="b146010b35b21e2354c084cf6d1d2a5d" category="section-title">SANtricity</block>
-  <block id="6161e6c043d51e8eea03494bff7fc57b" category="paragraph">NetApp 的 E 系列和 EF 系列存储平台使用<block ref="01c1197ee4ca6d1b24476d1f7b6bc83e" category="inline-link-rx"></block> 操作系统，可提供功能强大的存储，该存储具有高可用性，高性能，能够为任何规模的应用程序提供存储服务。</block>
-  <block id="9589e472cb7c5e0d01ca15ecca72de0d" category="paragraph">Trident 可以在整个产品组合中创建和管理 SANtricity 卷。</block>
   <block id="7450cfde7058dc5e1f7909d0280fd7ae" category="section-title">Azure NetApp Files</block>
   <block id="29e7ab00082418141d470583a19c28d3" category="paragraph"><block ref="2384314bcd106c8062815b2ed789c4ad" category="inline-link-rx"></block> 是一种企业级 Azure 文件共享服务，由 NetApp 提供支持。您可以在 Azure 中以本机方式运行要求最苛刻的基于文件的工作负载，同时享受 NetApp 应有的性能和丰富的数据管理功能。</block>
-  <block id="06021ba1ee96f1a3a57b50001fc7244c" category="section-title">适用于 AWS 的 Cloud Volumes Service</block>
-  <block id="962483cc436ac01febcdca57fff4735f" category="inline-link">适用于 AWS 的 NetApp Cloud Volumes Service</block>
-  <block id="9cd398e3307ca354d12d0f47aca4f913" category="paragraph"><block ref="a105e3d261515148b2a94b7605496120" category="inline-link-rx"></block> 是一种云原生文件服务，可通过 NFS 和 SMB 提供具有全闪存性能的 NAS 卷。此服务支持在 AWS 云中运行任何工作负载，包括原有应用程序。它提供了一种完全托管的服务，可提供稳定一致的高性能，即时克隆，数据保护以及对弹性容器服务（ Elastic Container Service ， ECS ）实例的安全访问。</block>
   <block id="b0cee72642f5457a71ddd0b49efb6d93" category="section-title">适用于 Google Cloud 的 Cloud Volumes Service</block>
   <block id="a3b5183ae6f5c3f1d6644448f795b5cb" category="inline-link">适用于 Google Cloud 的 NetApp Cloud Volumes Service</block>
   <block id="a1515efe69d0ac9d979af2bdfc068934" category="paragraph"><block ref="68704f3321dd8ca7029c03c29da7736a" category="inline-link-rx"></block> 是一种云原生文件服务，可通过 NFS 和 SMB 提供具有全闪存性能的 NAS 卷。此服务支持在 GCP 云中运行任何工作负载，包括原有应用程序。它提供了一种完全托管的服务，可提供稳定一致的高性能，即时克隆，数据保护以及对 Google Compute Engine （ GCE ）实例的安全访问。</block>
@@ -185,7 +179,6 @@
   <block id="59c54cb66816513690f886c6cbd45d7e" category="cell">ontap-san ， solidfire-san ， E 系列 -iscsi ， ontap-san-economy.</block>
   <block id="979f70bf9da982ee97ac075df4f048c3" category="cell">trident.netapp.io/cloneFromPVC</block>
   <block id="b4ead50a5ca4f307f7d61da7763ad204" category="cell">cloneSourceVolume</block>
-  <block id="a056535de687a7e3ba370fa531941d0e" category="cell">ontap-nas ， ontap-san ， solidfire-san ， AWS-CVS ， azure-netapp-files ， GCP-CVS ， ontap-san-economy.</block>
   <block id="46ec89aa5290ead7b514dd5182caa0a7" category="cell">trident.netapp.io/splitOnClone</block>
   <block id="58c1c86186ef8de4f6e12d8f3aed8b64" category="cell">splitOnClone</block>
   <block id="80f05e749a4f524e8c8a05fa19d5df0e" category="cell">ontap-NAS ， ontap-san</block>
@@ -200,7 +193,6 @@
   <block id="7f3bf2672240703dc69740ce11443cf2" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san</block>
   <block id="6224177007fc13e9e0d3789985ed165a" category="cell">trident.netapp.io/snapshotReserve</block>
   <block id="bb0d75280f9b683f2f1f0767fd0aff9b" category="cell">SnapshotReserve</block>
-  <block id="3419db347ff8e06397e8a611be353848" category="cell">ontap-nas ， ontap-nas-flexgroup ， ontap-san ， AWS-CVS ， GCP-CVS</block>
   <block id="1cb43054bed661d8c8457ddbb43e1b1b" category="cell">trident.netapp.io/snapshotDirectory</block>
   <block id="1ae33c448502ac3d326593aee304c21f" category="cell">snapshotDirectory</block>
   <block id="ec1739ebad429a70f25efc292c347f8e" category="cell">trident.netapp.io/unixPermissions</block>
@@ -265,7 +257,6 @@
   <block id="ef2577df8468ab39e993a1938ba7f38d" category="cell">厚：全 ONTAP 和 E 系列 iSCSI ；精简：全 ONTAP 和 solidfire-san</block>
   <block id="55b56fb238360663afa6230ad82e74a0" category="cell">后端类型</block>
   <block id="d41d8cd98f00b204e9800998ecf8427e" category="doc"></block>
-  <block id="9d7b1f44c2f9de09e74ed8f6104c3f16" category="paragraph">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， E 系列 iSCSI ， AWS-CVS ， GCP-CVS ， azure-netapp-files ， ontap-san-economy.</block>
   <block id="0e1201d4d96df2d9d03c9c66b90874a1" category="cell">池属于此类型的后端</block>
   <block id="c4efe19137f43450149d48fddbab6c28" category="cell">指定后端</block>
   <block id="a04622349b3ede0d4176ca2c2e161763" category="cell">所有驱动程序</block>
@@ -274,7 +265,6 @@
   <block id="ac1ffb15effdc77a86029972670d022f" category="cell">true false</block>
   <block id="4ac43bef181074fbd4a1f3620b46f77f" category="cell">Pool 支持具有快照的卷</block>
   <block id="13410bff9f7871113a6af273e2a1b97f" category="cell">启用了快照的卷</block>
-  <block id="b43a2204ed324763abdbca5be0c35b02" category="cell">ontap-NAS ， ontap-san ， solidfire-san ， AWS-CVS ， GCP-CVS</block>
   <block id="bc3832c405ec6cb9c831849328240f3b" category="cell">克隆</block>
   <block id="609d32aa243917905f282544b543752a" category="cell">Pool 支持克隆卷</block>
   <block id="bcb81802de31cf9c717de3c1d6c2f610" category="cell">启用了克隆的卷</block>
@@ -355,7 +345,6 @@
   <block id="4f18882934f0472b4bfa32928bf92f14" category="cell">要使用的协议类型； "file" 或 "block"</block>
   <block id="252c6d364cc1a0437939a4f01b0717ae" category="cell">内部名称</block>
   <block id="2857a43e58983276d059c0e6e2fcb0e9" category="cell">存储系统上的对象名称；由 Trident 生成</block>
-  <block id="ff4630d4b2307b42398211e68c0c3996" category="cell">ONTAP （ NAS ， SAN ） &amp; SolidFire AWS-* 和 AWS-CVS* ：要从中克隆的卷的名称</block>
   <block id="e94d46d7c89bcb7e6ac2e2df4d21bafb" category="cell">ONTAP （ NAS ， SAN ）：将克隆从其父级拆分</block>
   <block id="819549a86d14e849e1d0042c9156d781" category="cell">Snapshot-* ：要使用的 ONTAP 策略</block>
   <block id="e38882545bfedafc7e8ec5973b2e6dd8" category="cell">Snapshot-* ：为快照预留的卷百分比 ONTAP</block>
@@ -514,21 +503,6 @@
   <block id="fc9e812321a3f9b0eab1b702a08bab4e" category="admonition">具有增强型 CSI 配置程序的 Trident 支持使用 CHAP 身份验证。VAG 只能在传统的非 CSI 操作模式下使用。</block>
   <block id="d23eaa75b7bd1405526da0e18b7290ac" category="paragraph">只有基于帐户的访问控制才支持 CHAP 身份验证（验证启动程序是否为目标卷用户）。如果使用 CHAP 进行身份验证，则可以使用两个选项：单向 CHAP 和双向 CHAP 。单向 CHAP 使用 SolidFire 帐户名称和启动程序密钥对卷访问进行身份验证。双向 CHAP 选项可提供最安全的卷身份验证方法，因为卷会通过帐户名称和启动程序密钥对主机进行身份验证，然后主机通过帐户名称和目标密钥对卷进行身份验证。</block>
   <block id="42d135bea104c1079cebd1543c89e970" category="paragraph">但是，如果无法启用 CHAP 且需要使用 VAG ，请创建访问组并将主机启动程序和卷添加到此访问组。添加到访问组的每个 IQN 都可以使用或不使用 CHAP 身份验证访问组中的每个卷。如果将 iSCSI 启动程序配置为使用 CHAP 身份验证，则会使用基于帐户的访问控制。如果 iSCSI 启动程序未配置为使用 CHAP 身份验证，则会使用卷访问组访问控制。</block>
-  <block id="b5dd97bf7f44d6c721a9534c1b6d4390" category="section-title">Snapshot 一致性组</block>
-  <block id="9279a0fc4d40b361df8598208a14b586" category="paragraph">设置快照一致性组也非常适合跨越多个卷的应用程序。一致性组的目的是为多个卷同时创建快照映像，从而确保在特定时间点为一组卷创建一致的副本。您应使用 SANtricity 系统管理器创建一致性组。</block>
-  <block id="1ea481e04f09f7ec7132c7773f132743" category="section-title">适用于 AWS 的 Cloud Volumes Service 最佳实践</block>
-  <block id="17bc2586ce2fe71048cad42dbfd6049f" category="paragraph">了解在适用于 Trident 的 AWS 上配置 Cloud Volumes Service 的最佳实践。</block>
-  <block id="bb53c6c29f127a298da7dd86bf00bb89" category="section-title">创建导出策略</block>
-  <block id="8e8d04641d33b2f0af7ad761af53aeb3" category="paragraph">要确保只有经过授权的一组节点才能访问通过 Cloud Volumes Service 配置的卷，请在创建 Cloud Volumes Service 时为此导出策略设置适当的规则。通过 Trident 在云卷服务上配置卷时，请确保在后端文件中使用 `exportRule` 参数来授予对所需 Kubernetes 节点的访问权限。</block>
-  <block id="e807ebdf213353b8a415f991a2cade81" category="section-title">创建快照策略</block>
-  <block id="07aa362ac01b2df1044db626df0e7c9b" category="paragraph">为通过 Cloud Volume Service 配置的卷创建快照策略，以确保按要求的间隔创建快照。这样可以保证定期备份数据，并在数据丢失或数据损坏时恢复数据。您可以通过在卷详细信息页面上选择适当的计划来为 Cloud Volume Service 托管的卷设置快照策略。</block>
-  <block id="283a4f872d02fc8073ac706850ed948b" category="section-title">选择适当的服务级别，存储容量和存储带宽</block>
-  <block id="3251e3b8c107f351e2d3fd9e462aba19" category="paragraph">适用于 AWS 的 Cloud Volume Services 提供不同的服务级别，例如标准，高级和极高。这些服务级别可满足不同的存储容量和存储带宽要求。确保您根据业务需求选择适当的服务级别。</block>
-  <block id="c34374a04df0b3e2c47131fdbb5ef741" category="paragraph">您应根据应用程序的特定需求在创建卷期间选择所需的已分配存储大小。在确定分配的存储时，需要考虑两个因素：</block>
-  <block id="e2ae4659e808edd54a095d9432707c2f" category="list-text">特定应用程序的存储要求</block>
-  <block id="76ba23394d92b7a06d3ecb8582769eff" category="list-text">峰值或边缘所需的带宽</block>
-  <block id="e1e4f36a86f0d5a56aa4115fed351ff5" category="paragraph">存储带宽取决于所选服务级别和已分配容量的组合。因此，请选择正确的服务级别和分配的容量，同时考虑所需的带宽。</block>
-  <block id="8015d968013817a20de84963d8c695b4" category="paragraph">通过在后端配置文件中使用 `limitVolumeSize` 参数，我可以限制 Trident 在 Cloud Volume Services for AWS 上创建的卷的最大大小。设置此参数可确保在请求的卷大小高于设置值时配置失败。</block>
   <block id="b4931a42b69dbf4e721e7b97873b1ebb" category="section-title">如何查找更多信息</block>
   <block id="2c3a4d5c923121574c10ea22c0474a01" category="inline-link">NetApp 库</block>
   <block id="65840df7365892d2abe1280cb6cdb1d2" category="paragraph">下面列出了一些最佳实践文档。搜索<block ref="4caccef7312f2c398bfbb419629c1a78" category="inline-link-rx"></block> 对于最新版本。</block>
@@ -599,7 +573,6 @@
   <block id="b483d59c54aea739f0806cf2f30c057e" category="paragraph">如上表所示， `ontap-nas` 与 `ontap-nas-economy` 之间的大部分功能是相同的。但是，由于 `ontap-nas-economy` 驱动程序限制了按 PV 粒度控制计划的能力，因此这可能会特别影响灾难恢复和备份规划。对于希望在 ONTAP 存储上利用 PVC 克隆功能的开发团队，只有在使用 `ontap-NAS` ， `ontap-san` 或 `ontap-san-economy-经济` 驱动程序时，才可能实现这一点。</block>
   <block id="45f7f2e55c0930a28d1a9e481e602a09" category="admonition">`solidfire-san` 驱动程序还能够克隆 PVC 。</block>
   <block id="5ea8a1263c170a1b26153c03919a84f2" category="section-title">为 Cloud Volumes ONTAP 选择后端驱动程序</block>
-  <block id="20743b3fe5b4d69360557b02168b12ea" category="paragraph">Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存储功能，包括文件共享和为 NAS 和 SAN 协议（ NFS ， SMB/CIFS 和 iSCSI ）提供服务的块级存储。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-san` 和 `ontap-san-economy.`这些功能适用于 Cloud Volume ONTAP for AWS ， Cloud Volume ONTAP for Azure ， Cloud Volume ONTAP for GCP 。</block>
   <block id="6b1a08ddb7e74488a9039997d4961ff8" category="section-title">为适用于 ONTAP 的 Amazon FSX 选择后端驱动程序</block>
   <block id="168b96624733268bb4b4ebfbebea0449" category="paragraph">借助适用于 ONTAP 的 Amazon FSX ，客户可以利用他们熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX for ONTAP 支持 ONTAP 的许多文件系统功能和管理 API 。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-nas-flexgroup` ， `ontap-san` 和 `ontap-san-economy.`</block>
   <block id="d0030e26d7e1baf13ad36649449f3689" category="section-title">为 NetApp HCI/SolidFire 选择后端驱动程序</block>
@@ -617,11 +590,6 @@
   <block id="8098b34f582537833b36b58273c3545b" category="cell">展开</block>
   <block id="e228843381960c06d1035c4219901307" category="cell">`azure-netapp-files`</block>
   <block id="2fdc8a66565228c15d355a7849997337" category="verse-content-simple">脚注：是脚注： 1[] ：不由 Astra Trident 管理</block>
-  <block id="08a2e51877cfee5806cf83c6d30fbefe" category="section-title">选择适用于采用 AWS 的 Cloud Volumes Service 的后端驱动程序</block>
-  <block id="01d0b26a2d16d5fb475e224d7705b56d" category="paragraph">Astra Trident 使用 `AWS-CVS` 驱动程序与 AWS 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 AWS 后端，您需要在后端文件中指定 `apiRegion` ， `apiURL` ， `apiKey` 和 `secreKey` 。这些值可在 CVS Web 门户中的 Account settings/API access 中找到。支持的服务级别与 CVS 一致，包括 `standard` ， `Premium` 和 `Extreme` 。目前，要配置的最小卷大小为 100G 。未来版本的 CVS 可能会删除此限制。</block>
-  <block id="f5619cf78c5af29a1223fb34ef1361ce" category="cell">CVS for AWS 驱动程序</block>
-  <block id="b69ca6e3662048fc46e2e4f8adc185a1" category="cell">`AWS-CVS`</block>
-  <block id="c7fdaa4c02d33ea744bd0e39a9e89956" category="paragraph">`AWS-CVS` 驱动程序使用虚拟存储池。虚拟存储池会对后端进行抽象化，从而使 Trident 决定卷的放置。管理员在 backend.json 文件中定义虚拟存储池。存储类使用标签标识虚拟存储池。</block>
   <block id="88d040295b5885489339e969bf92517c" category="section-title">为采用 GCP 的 Cloud Volumes Service 选择后端驱动程序</block>
   <block id="1d326a2a7f267c800fe3eafb89e5c7cd" category="inline-link-macro">服务类型</block>
   <block id="f888f12905dbaabc09dd3e50073d862f" category="paragraph">Astra Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 GCP 后端，您需要在后端文件中指定 `projectNumber` ， `apiRegion` 和 `apiKey` 。项目编号可在 GCP Web 门户中找到，而 API 密钥必须从您在 GCP 上为 Cloud Volumes 设置 API 访问时创建的服务帐户专用密钥文件中获取。Astra Trident 可以在两个卷中创建 CVS 卷之一 <block ref="a3cd55e5a9ff014b76f6953040234c24" category="inline-link-macro-rx"></block>：</block>
@@ -646,10 +614,8 @@
   <block id="bd755d43092fcea772b8e9ab21e9951e" category="paragraph">所有 Astra Trident 后端均可使用虚拟存储池。您可以使用 Astra Trident 提供的任何驱动程序为任何后端定义虚拟存储池。</block>
   <block id="365b4529a5f01ced729944db23d237a5" category="paragraph">通过虚拟存储池，管理员可以在后端创建一个抽象级别，并可通过存储类进行引用，从而提高卷在后端的灵活性和效率。可以使用相同的服务类定义不同的后端。此外，可以在同一后端创建多个存储池，但其特征不同。如果为存储类配置了具有特定标签的选择器，则 Astra Trident 会选择与所有选择器标签匹配的后端来放置卷。如果存储类选择器标签与多个存储池匹配，则 Astra Trident 将选择其中一个存储池来配置卷。</block>
   <block id="830a7882918fba200333b9c6ea7db363" category="section-title">虚拟存储池设计</block>
-  <block id="65f970319bb8b6ede33a2d975be3693d" category="paragraph">创建后端时，通常可以指定一组参数。管理员无法使用相同的存储凭据和一组不同的参数创建另一个后端。随着虚拟存储池的推出，此问题描述得以缓解。虚拟存储池是在后端和 Kubernetes 存储类之间引入的级别抽象，因此管理员可以定义参数以及标签，这些参数和标签可以通过 Kubernetes 存储类作为选择器进行引用，并且与后端无关。可以使用 Astra Trident 为所有受支持的 NetApp 后端定义虚拟存储池。该列表包括 SolidFire/NetApp HCI ， ONTAP ， AWS 和 GCP 上的 Cloud Volumes Service 以及 Azure NetApp Files 。</block>
   <block id="3c4f3a478663d0f7aab5180da0b1356a" category="admonition">定义虚拟存储池时，建议不要尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。</block>
   <block id="d96c9f641b35ec82dabdc46092afe1d0" category="section-title">设计虚拟存储池以模拟不同的服务级别 /QoS</block>
-  <block id="9e44f014bb0976e50892e95fed1ed5b5" category="paragraph">可以设计虚拟存储池来模拟服务类。使用 Cloud Volume Service for AWS 的虚拟池实施，让我们来了解一下如何设置不同的服务类。使用多个标签配置 AWS-CVS 后端，以表示不同的性能级别。将 `servicelevel` Aspect 设置为适当的性能级别，并在每个标签下添加其他所需的内容。现在，创建可映射到不同虚拟存储池的不同 Kubernetes 存储类。使用 `parameters.selector` 字段，每个 StorageClass 都会调用可用于托管卷的虚拟池。</block>
   <block id="85d73d477f633146bd32af7aaedd54da" category="section-title">设计用于分配特定方面的虚拟池</block>
   <block id="c011d5d6ca18de1df954b81c6bb49d4a" category="paragraph">可以从一个存储后端设计具有一组特定方面的多个虚拟存储池。为此，请为后端配置多个标签，并在每个标签下设置所需的方面。现在，使用 `parameters.selector` 字段创建不同的 Kubernetes 存储类，该字段将映射到不同的虚拟存储池。在后端配置的卷将在选定的虚拟存储池中定义相关方面。</block>
   <block id="421f7dd5bb37a6401aa6326ad33dae20" category="section-title">影响存储配置的 PVC 特征</block>
@@ -680,9 +646,7 @@
   <block id="2243e252be826d6ec5e767668d9f961d" category="section-title">展开卷</block>
   <block id="a059bca2035a0befa11f641fdabde223" category="paragraph">Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident 会自动调整存储集群上卷的大小。</block>
   <block id="40a28a40c11a193f8911cf4143a6ae6a" category="section-title">将现有卷导入到 Kubernetes 中</block>
-  <block id="911dcebca8f00bd038d697c0c5b9f99d" category="paragraph">通过卷导入，可以将现有存储卷导入到 Kubernetes 环境中。目前， `ontap-nas` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` ， `AWS-CVS` ， 和 `GCP-CVS` 驱动程序。在将现有应用程序移植到 Kubernetes 或在灾难恢复场景中，此功能非常有用。</block>
   <block id="5d9f64103cac7a58da69304bc3320e98" category="paragraph">使用 ONTAP 和 `solidfire-san` 驱动程序时，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume-name&gt; -f /path/PVC.YAML` 将现有卷导入到要由 Astra Trident 管理的 Kubernetes 中。导入卷命令中使用的 PVC YAML 或 JSON 文件指向将 Astra Trident 标识为配置程序的存储类。使用 NetApp HCI/SolidFire 后端时，请确保卷名称是唯一的。如果卷名称重复，请将卷克隆为唯一名称，以便卷导入功能可以区分它们。</block>
-  <block id="5c7a693958891a764b947da44bbeb122" category="paragraph">如果使用了 `AWS-CVS` ， `azure-netapp-files` 或 `GCP-CVS` 驱动程序，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume path&gt; -f /path/PVC.YAML` 将卷导入到要由 Astra Trident 管理的 Kubernetes 中。这样可以确保卷引用是唯一的。</block>
   <block id="cb619cd0109686b5f82562b63e44a107" category="paragraph">执行上述命令后， Astra Trident 将在后端找到卷并读取其大小。它将自动添加（并在必要时覆盖）已配置的 PVC 卷大小。然后， Astra Trident 会创建新的 PV ， Kubernetes 会将 PVC 绑定到 PV 。</block>
   <block id="3a8b25f50e2dcc298175abc8f6a71f82" category="paragraph">如果部署的容器需要特定的导入 PVC ，则容器将保持待定状态，直到通过卷导入过程绑定 PVC/PV 对为止。在绑定 PVC/PV 对后，如果没有其他问题，应启动容器。</block>
   <block id="41603705958b86c3ec4ff21cfce13a5b" category="section-title">部署 OpenShift 服务</block>
@@ -1065,7 +1029,6 @@
   <block id="4f5254b466f691d7b0c50fb0d8286075" category="paragraph">如果要将配置从使用默认 `trident` 访问组的修改为也使用其他访问组的配置，请在列表中包含 `trident` 访问组的 ID 。</block>
   <block id="4d5445eb6c70cdab8d3ad5e71367f42a" category="summary">详细了解 Astra Trident 如何为其驱动程序创建卷快照。</block>
   <block id="e9c3828cd06711f9036bb4ce862a32c5" category="doc">卷快照</block>
-  <block id="4fb7e6ff3b63c56522fdea39e41d701e" category="list-text">对于 `ontap-nas` ， `ontap-san` ， `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序， 每个永久性卷（ PV ）都会映射到一个 FlexVol 。因此，卷快照会创建为 NetApp 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
   <block id="98c670ffe759cc20cd8a31d49bd0b4fc" category="list-text">对于 `ontap-san-economy-经济` 驱动程序， PV 会映射到在共享 FlexVol 上创建的 LUN 。可以通过对关联 LUN 执行 FlexClones 来实现 PV 的卷快照。借助 ONTAP 的 FlexClone 技术，即使是最大的数据集，也可以几乎即时创建副本。副本与其父级共享数据块，除了元数据所需的存储之外，不会占用任何存储。</block>
   <block id="9dbabbadda024bb7b1d0db43ab31b45f" category="list-text">对于 `solidfire-san` 驱动程序，每个 PV 都会映射到在 NetApp Element 软件 /NetApp HCI 集群上创建的 LUN 。VolumeSnapshot 由底层 LUN 的 Element Snapshot 表示。这些快照是时间点副本，只占用少量系统资源和空间。</block>
   <block id="34f731018ae783f70901b14b4950c3a7" category="list-text">使用 `ontap-nas` 和 `ontap-san` 驱动程序时， ONTAP 快照是 FlexVol 的时间点副本，并占用 FlexVol 本身的空间。这样，在创建 / 计划快照时，卷中的可写空间量会随着时间的推移而减少。解决此问题的一个简单方法是，通过 Kubernetes 调整大小来增大卷的大小。另一个选项是删除不再需要的快照。删除通过 Kubernetes 创建的卷快照后， Astra Trident 将删除关联的 ONTAP 快照。也可以删除未通过 Kubernetes 创建的 ONTAP 快照。</block>
@@ -1107,7 +1070,6 @@
   <block id="5fc6de1b535ebb2a5380b6aa607e4cca" category="section-title">是否可以将 Astra Trident 与 NetApp Cloud Volumes ONTAP 结合使用？</block>
   <block id="5d1cff73e26dc54ef52bdca5a29b319c" category="paragraph">是的， AWS ， Google Cloud 和 Azure 支持 Astra Trident 。</block>
   <block id="2ddee53d5c18f6e78f18dad82851303e" category="section-title">Astra Trident 是否支持 Cloud Volumes Services ？</block>
-  <block id="404ebcdc21eb83145ddb36d33bd8c09e" category="paragraph">是的， Astra Trident 支持 Azure 中的 Azure NetApp Files 服务以及 AWS 和 GCP 中的 Cloud Volumes Service 。</block>
   <block id="92d1656d06303733c5e1398fb273a17e" category="section-title">故障排除和支持</block>
   <block id="9985a592486717ae388709b9267da4f9" category="section-title">NetApp 是否支持 Astra Trident ？</block>
   <block id="cc56e0da96ceaf708545923f1094815b" category="paragraph">虽然 Astra Trident 是开源且免费提供的，但只要您的 NetApp 后端受支持， NetApp 就会完全支持它。</block>
@@ -1733,28 +1695,9 @@
   <block id="a7fe005c9f49619f4438aac8932fb361" category="paragraph">您可以通过更新 `backend.json` 文件中的 CHAP 参数来更新 CHAP 凭据。这需要更新 CHAP 密码并使用 `tridentctl update` 命令反映这些更改。</block>
   <block id="8959ac16a58b09dc5a158e86ab02cb53" category="admonition">更新后端的 CHAP 密码时，必须使用 `tridentctl` 来更新后端。请勿通过 CLI/ONTAP UI 更新存储集群上的凭据，因为 Astra Trident 将无法选取这些更改。</block>
   <block id="1a59d0d7850406f157c314978eb3b821" category="paragraph">现有连接将不受影响；如果凭据由 SVM 上的 Astra Trident 更新，则这些连接将继续保持活动状态。新连接将使用更新后的凭据，现有连接将继续保持活动状态。断开并重新连接旧的 PV 将导致它们使用更新后的凭据。</block>
-  <block id="fe1db7f37fb893d9995534febe29a78b" category="summary">了解如何使用提供的示例配置将 Cloud Volumes Service for AWS 配置为 Astra Trident 安装的后端。</block>
-  <block id="6e399579bcb032270367d78455e1976f" category="doc">为 AWS 后端配置 CVS</block>
-  <block id="f7dc2116b38f0f6097d64ca1dfdcd0b7" category="paragraph">了解如何使用提供的示例配置将适用于 AWS 的 NetApp Cloud Volumes Service （ CVS ）配置为 Astra Trident 安装的后端。</block>
-  <block id="0eb1a8be2d6b9505f3b9940718c0c492" category="admonition">Cloud Volumes Service for AWS 不支持小于 100 GB 的卷。如果请求的卷较小， Trident 会自动创建 100 GB 的卷。</block>
-  <block id="11873d2393ac3286e0e2949c7fb94c92" category="paragraph">以配置和使用<block ref="9185b014ee020a0dd27e376023f04353" category="inline-link-rx"></block> 后端，您需要满足以下要求：</block>
-  <block id="162fd644b5a366df1c98de24d39a28e4" category="list-text">配置了 NetApp CVS 的 AWS 帐户</block>
-  <block id="65e26b8fa373ad7924b14a196242b605" category="list-text">CVS 帐户的 API 区域， URL 和密钥</block>
-  <block id="f8d960efa7386a75b65e6abbdb9e3c36" category="cell">"AWS-CVS"</block>
-  <block id="a6a8368ae9ff89e7a4ca4c9e2b64ab56" category="cell">CVS 帐户区域。您可以在 CVS Web 门户中的帐户设置 /API 访问中找到此值。</block>
-  <block id="3639c86d22a854ef10a2cacfe9eed25d" category="cell">`apiURL`</block>
-  <block id="9aea3113f9edf591b1b341775bd7d092" category="cell">CVS 帐户 API URL 。您可以在 CVS Web 门户中的帐户设置 /API 访问中找到此值。</block>
-  <block id="3fc6085f3573a8e927eea401950de8d3" category="cell">CVS 帐户 API 密钥。您可以在 CVS Web 门户中的帐户设置 /API 访问中找到此值。</block>
   <block id="9a5b66949f53f92871d3e1a8aae0cc19" category="cell">`secreKey`</block>
-  <block id="e3891e2d275bb1f55f9de70059eed199" category="cell">CVS 帐户密钥。您可以在 CVS Web 门户中的帐户设置 /API 访问中找到此值。</block>
-  <block id="1394ee99ba1680da948a315df62a7b62" category="admonition">每个 `区域` 的 "apiURL"` 都是唯一的。 `例如， us-west-2 `apiRegion` 具有<block ref="445c370e1a8fd8a5bb35e4bcf66dc8ff" category="inline-link-rx"></block> `apiURL` 。同样， us-east-1 `apiRegion` 也具有<block ref="89a36317c553c294eadd1c2b2e179f46" category="inline-link-rx"></block> `apiURL` 。请务必查看 CVS 信息板，了解后端配置的正确 `apiRegion` 和 `apiURL` 参数。</block>
-  <block id="b4ba9ff8dbbcd251a1cb4e16ba80c36c" category="paragraph">每个后端都会在一个 AWS 区域中配置卷。要在其他区域创建卷，您可以定义其他后端。</block>
-  <block id="781e781b44169c656fb79130bd8bd062" category="cell">控制 ` .snapshot` 目录的可访问性</block>
   <block id="ef81b740be2293b7e3c41047afe98764" category="cell">"100 克 "</block>
-  <block id="635686d413c736dacb149d183959f020" category="admonition">对于在 CVS AWS 后端创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对存储池中创建的所有卷进行分组。这样，您就可以根据后端配置中提供的一组可自定义标签来方便地区分卷了。</block>
-  <block id="2f51b29f400aa735b4f4bd32f0eeed4f" category="paragraph">如果您刚刚开始使用 CVS AWS 并尝试执行相关操作，则此配置是理想的选择，但实际上您希望为所配置的卷提供更多范围界定。</block>
   <block id="55c1dd55273b867b995333cc3abd250e" category="section-title">示例 2 ：单服务级别配置</block>
-  <block id="f8ee3192003a383290a06e5d20105030" category="paragraph">此示例显示了一个后端文件，该文件对 AWS us-east-1 区域中由 Astra Trident 创建的所有存储应用相同的方面。此示例还显示了后端文件中使用的 `proxyURL` 。</block>
   <block id="2b00c4aa6134b525e9355d880ecb0c8d" category="section-title">示例 3 ：虚拟存储池配置</block>
   <block id="ff342df7522d6b527768cc6bfe5f9fae" category="summary">通过 Astra Trident ， Kubernetes 用户可以在创建卷后对其进行扩展。查找有关扩展 iSCSI 和 NFS 卷所需配置的信息。</block>
   <block id="15d79b565b148caa23e6f2b53813413d" category="section-title">展开 iSCSI 卷</block>
@@ -1778,7 +1721,6 @@
   <block id="eabf614ed44fe1c3e78cb2300949eb63" category="section-title">第 5 步：验证扩展</block>
   <block id="28abbd693f528f04d0ff068b3013fcd6" category="paragraph">您可以通过检查 PVC ， PV 和 Astra Trident 卷的大小来验证扩展是否正常运行：</block>
   <block id="75b8249751a8ea5869a0b5a8e465efc1" category="section-title">展开 NFS 卷</block>
-  <block id="b5d3e13cbbf4f66f0d6b13357e86f974" category="paragraph">Astra Trident 支持对在 `ontap-nas` ， `ontap-nas-economy` ， `ontap-nas-flexgroup` ， `AWS-CVS` ， `GCP-CVS` 上配置的 NFS PV 进行卷扩展。 和 `azure-netapp-files` 后端。</block>
   <block id="578f10bb7cad2abad1cbbcb9a9a732f9" category="paragraph">要调整 NFS PV 的大小，管理员首先需要将 `allowVolumeExpansion` 字段设置为 `true` 来配置存储类以允许卷扩展：</block>
   <block id="27b4a9ed8609e35526601aa8d8be1ab9" category="paragraph">如果您已创建没有此选项的存储类，则只需使用 `kubectl edit storageclass` 编辑现有存储类即可进行卷扩展。</block>
   <block id="784f78e647973a0dcfa11b7a028c7eae" category="paragraph">Astra Trident 应为此 PVC 创建一个 20 MiB NFS PV ：</block>
@@ -1828,12 +1770,8 @@
   <block id="4b8f39874197ebe1407531bd66624aa3" category="section-title">元素导入</block>
   <block id="b00215e0583bb02c2474fa62f51462fa" category="paragraph">您可以使用 Trident 将 NetApp Element 软件 /NetApp HCI 卷导入到 Kubernetes 集群中。您需要提供 Astra Trident 后端的名称以及卷和 PVC 文件的唯一名称作为 `tridentctl import` 命令的参数。</block>
   <block id="c517a1b34541565def824e8e9aeb0524" category="admonition">Element 驱动程序支持重复的卷名称。如果卷名称重复，则 Trident 的卷导入过程将返回错误。作为临时解决策，克隆卷并提供唯一的卷名称。然后导入克隆的卷。</block>
-  <block id="441d2edc083114ed813856f0b61524d4" category="section-title">AWS-CVS 导入</block>
-  <block id="828c3f28cef558031e2f55632d27b6f4" category="admonition">要在 AWS 中导入由 NetApp Cloud Volumes Service 支持的卷，请按卷路径而非名称来标识该卷。</block>
-  <block id="91676978c9f14db1332e3c5b60f4d681" category="paragraph">要在后端导入名为 `awscvs_YEppr` 的 `AWS-CVS` 卷，并且卷路径为 `adrot-joly-swift` ，请使用以下命令：</block>
   <block id="87e30ad820e5b10036bd18284c1f25ad" category="admonition">卷路径是卷导出路径中： / 之后的部分。例如，如果导出路径为 `10.0.0.1 ： /adrot-joly-swift` ，则卷路径为 `adrot-joly-swift` 。</block>
   <block id="3be8989f2135d86f8b2d60f19eed3846" category="section-title">GCP-CVS 导入</block>
-  <block id="ea6ab4f91ea921bc82295089f42da373" category="paragraph">导入 `GCP-CVS` 卷与导入 `AWS-CVS` 卷的工作原理相同。</block>
   <block id="9f25c8d8bca8641faa974c73a8d2f5da" category="section-title">Azure-netapp-files 导入</block>
   <block id="e8945ce1398c6d24aa1d518bca08034c" category="paragraph">要在后端导入 `azure-netapp-files` 卷，该卷名为 `azurenetappfiles_40517` ，卷路径为 `importvol1` ，请运行以下命令：</block>
   <block id="c3417eb755bee1658ae5b42ff2115193" category="admonition">ANF 卷的卷路径位于： / 之后的挂载路径中。例如，如果挂载路径为 `10.0.0.2 ： /importvol1` ，则卷路径为 `importvol1` 。</block>
@@ -2061,10 +1999,6 @@
   <block id="c11257eff6563de2c05e353770c514ca" category="cell">字段问题描述</block>
   <block id="93c5bebdea9c94a0740fe6fd9bb250f0" category="paragraph">clientId</block>
   <block id="012e85295e2f1f744cfb8757f8dd4830" category="paragraph">应用程序注册中的客户端 ID</block>
-  <block id="c9ff119073ea2567730fb42e3a4fe805" category="paragraph">apiKey</block>
-  <block id="defb11bd732dde7d185fcc4583818851" category="paragraph">CVS 帐户 API 密钥</block>
-  <block id="ce656850400574e9f9cffb285ee8abc0" category="paragraph">secretKey</block>
-  <block id="5324944de62956f7d758fd5d2f6d8826" category="paragraph">CVS 帐户密钥</block>
   <block id="ee64ef6c307cfcfe5c0f085471cd61fa" category="paragraph">private_key_id</block>
   <block id="1e31c22f827d25c5973eee697baace79" category="paragraph">专用密钥的 ID 。具有 CVS 管理员角色的 GCP 服务帐户的 API 密钥的一部分</block>
   <block id="156a17333e77a3c504018cae5ada8c3b" category="paragraph">private_key</block>
@@ -2465,8 +2399,6 @@
   <block id="3d79668ab3683a20086b2953dd541cfc" category="summary">后端定义了 Astra Trident 与存储系统之间的关系。它告诉 Astra Trident 如何与该存储系统进行通信，以及 Astra Trident 如何从该存储系统配置卷。Astra Trident 将自动从后端提供符合存储类定义的要求的存储池。了解有关根据您拥有的存储系统类型配置后端的更多信息。</block>
   <block id="87dc0337d3ded2211d9b01c32e22d90d" category="doc">配置后端</block>
   <block id="2acbb5dd492d792d00383b0c76ade4ad" category="list-text"><block ref="2acbb5dd492d792d00383b0c76ade4ad" category="inline-link-macro-rx"></block></block>
-  <block id="bf50e8af5395f90aa84ae77d9267a6d6" category="inline-link-macro">为 AWS 后端配置 Cloud Volumes Service</block>
-  <block id="cda28963ed4e2275760c1b26ef6c78e0" category="list-text"><block ref="cda28963ed4e2275760c1b26ef6c78e0" category="inline-link-macro-rx"></block></block>
   <block id="252e63ff646a0204671ca04a26b88e06" category="inline-link-macro">配置适用于 Google 云平台的 Cloud Volumes Service 后端</block>
   <block id="c00b6e370d4496e06d2135275a992af5" category="list-text"><block ref="c00b6e370d4496e06d2135275a992af5" category="inline-link-macro-rx"></block></block>
   <block id="b1064b6f7a5906eac23601dc24ba95a8" category="list-text"><block ref="b1064b6f7a5906eac23601dc24ba95a8" category="inline-link-macro-rx"></block></block>
@@ -2540,7 +2472,6 @@
   <block id="e43783d5a51a10670edf444f0b58b6af" category="list-text"><block ref="e43783d5a51a10670edf444f0b58b6af" category="inline-link-rx"></block></block>
   <block id="5e152ff33f3262612abc4b942db27ad1" category="inline-link">Astra Trident 19.01</block>
   <block id="977636e26059252def0425dca74811ef" category="list-text"><block ref="977636e26059252def0425dca74811ef" category="inline-link-rx"></block></block>
-  <block id="e84181a29f4e43a18b27e7d82797adef" category="summary">适用于 Docker 的 Astra Trident 可与适用于 NetApp 存储平台的 Docker 生态系统以及 AWS 中的 Cloud Volumes Service 直接集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。</block>
   <block id="d2eb05d1990246a079aeb2f56e3a4237" category="paragraph">Astra Trident 的多个实例可以同时在同一主机上运行。这样可以同时连接到多个存储系统和存储类型，并能够自定义用于 Docker 卷的存储。</block>
   <block id="89bcbd8e4ba49b7310e9fa748e878c4b" category="inline-link-macro">部署的前提条件</block>
   <block id="d1e7215d070e62d3e82e915d703ceaa9" category="paragraph">请参见 <block ref="a51fda4654690ac4414966ed4956599c" category="inline-link-macro-rx"></block>。确保满足前提条件后，即可部署 Astra Trident 。</block>
@@ -2652,13 +2583,9 @@
   <block id="7afe0c73e341cee7c90b4d4dda4600d9" category="paragraph">在上述配置中，我们有三个策略定义：铜牌，银牌和金牌。这些名称是任意的。</block>
   <block id="cb5b68dacb07bd02a5152bf4ad1de8c6" category="list-text">创建 10 GiB 黄金卷：</block>
   <block id="89014c611c13195dc852587ef9d2bb16" category="list-text">创建 100GiB 铜牌卷：</block>
-  <block id="7f65aa9497b5352a28e3eed539643ea7" category="section-title">AWS 卷选项上的 Cloud Volumes Service （ CVS ）</block>
-  <block id="97f74fbb7a82eb99b7ea43017c0bfbe2" category="paragraph">AWS 上的 CVS 驱动程序的卷创建选项包括以下内容：</block>
   <block id="742a301c15fea3569e5059520217090e" category="paragraph">卷的大小默认为 100 GB 。</block>
   <block id="326ea14a491277cac4032c7b6413a545" category="paragraph">卷的 CVS 服务级别默认为标准。有效值包括标准，高级和极高。</block>
-  <block id="a6b420fe5da257523d2105e9aae9fbc1" category="paragraph">`此操作会将快照预留设置为所需百分比。默认值为 no 值，表示 CVS 将选择快照预留（通常为 0% ）。</block>
   <block id="fe0bb617c9579d2f1d51ca5a627839fb" category="list-text">创建 200 GiB 卷：</block>
-  <block id="6f5c2d108fc1cf862350561160c4ecac" category="list-text">创建一个 500 GiB 高级卷：</block>
   <block id="84e002f675928fb7347e346a6214eefc" category="paragraph">最小卷大小为 100 GB 。</block>
   <block id="c3fa12e6fe179aa6330774fb658371a5" category="section-title">GCP 上的 CVS 卷选项</block>
   <block id="c112845976cf3ccb7ec927bea467b805" category="paragraph">基于 GCP 的 CVS 驱动程序的卷创建选项包括以下内容：</block>
@@ -2684,7 +2611,6 @@
   <block id="7959e3701f7a7fba7713c7530d496324" category="admonition">使用 `solidfire-san` 驱动程序时，上述示例将删除并清除卷。</block>
   <block id="5a1345d94751fc14bedf8f6f5e77a0ff" category="paragraph">执行以下步骤以升级适用于 Docker 的 Astra Trident 。</block>
   <block id="d50044469c0bf9ab38eff9cf7243fb25" category="section-title">克隆卷</block>
-  <block id="d9bab73e26d2aaa2f602f32954ab9cd7" category="paragraph">使用 `ontap-nas` ， `ontap-san` ， `solidfire-san` ， `AWS-CVS` 和 `GCP-CVS 存储驱动程序` 时， Astra Trident 可以克隆卷。使用 `ontap-nas-flexgroup` 或 `ontap-nas-economy-经济` 驱动程序时，不支持克隆。从现有卷创建新卷将创建新快照。</block>
   <block id="9374b766b9dd78063440afd69afabf38" category="list-text">检查卷以枚举快照：</block>
   <block id="2747096689037792fa87de7a0e8440e2" category="list-text">从现有卷创建新卷。这将导致创建新快照：</block>
   <block id="31d9b5ed201aa44dbeae6d17d38c0c6f" category="list-text">从卷上的现有快照创建新卷。此操作不会创建新快照：</block>
@@ -2709,7 +2635,6 @@
   <block id="63b276a6c28274ed5e553d4ce3fe7eb1" category="paragraph">配置文件版本号</block>
   <block id="c4ca4238a0b923820dcc509a6f75849b" category="paragraph">1.</block>
   <block id="ac5eb8fcbd1ed9c85a98d91e10e26a38" category="paragraph">存储驱动程序的名称</block>
-  <block id="86561da64fcea64abfe5587158ea1c15" category="paragraph">`ontap-nas` ， `ontap-san` ， `ontap-nas-economics` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` ， `AWS-CVS` 或 `GCP-CVS`</block>
   <block id="3f2b20ce3aa5e39b0dbfe20326747a7b" category="paragraph">卷名称的可选前缀。默认值： "netappdvp_ " 。</block>
   <block id="46fa46eed970046d03e2dedc95cdc83b" category="paragraph">暂存 _</block>
   <block id="fcf783284187f1e80e772eacd9266ee1" category="paragraph">卷大小的可选限制。默认值： " " （未强制实施）</block>
@@ -2799,13 +2724,6 @@
   <block id="8d3aa50a0f9c3c059677927a3fbbfcda" category="paragraph">"netappdvp- "</block>
   <block id="36f9c7b615268efec7f4c56c387a55bb" category="paragraph">`solidfire-san` 驱动程序不支持 Docker Swarm 。</block>
   <block id="1059bb8540c48e6b455e802384bad65d" category="section-title">Element 软件配置文件示例</block>
-  <block id="8898f8d83fe6ae40ee889ae1b53dd2a1" category="section-title">AWS 上的 Cloud Volumes Service （ CVS ）配置</block>
-  <block id="51a61fe7c333c9b247fa4a36f100af60" category="paragraph">在 AWS 上使用 CVS 时，除了全局配置值之外，还可以使用这些选项。所有必需值均可在 CVS Web 用户界面中使用。</block>
-  <block id="87cb49c3ba3ad2b7881daec6cbe2c058" category="paragraph">CVS 帐户区域（必需）。可以在 CVS Web 门户中的 "Account settings" &gt;"API access" 中找到。</block>
-  <block id="ab62ad1f18caedc5173216159619af30" category="paragraph">"us-east-1"</block>
-  <block id="72bb1da9c467950d42f276dd60372f9d" category="paragraph">CVS 帐户 API URL （必需）。可以在 CVS Web 门户中的 "Account settings" &gt;"API access" 中找到。</block>
-  <block id="90ecc3761b44b9c5f99193048d67b991" category="paragraph">https://cds-aws-bundles.netapp.com:8080/v1”</block>
-  <block id="14d4df12da21ca887a11026db7d26c5a" category="paragraph">CVS 帐户 API 密钥（必需）。可以在 CVS Web 门户中的 "Account settings" &gt;"API access" 中找到。</block>
   <block id="49df949d63ad2fe5a679bea21beb739f" category="paragraph">CVS 帐户密钥（必需）。可以在 CVS Web 门户中的 "Account settings" &gt;"API access" 中找到。</block>
   <block id="eccfbdf9565fdb1f0b53121d07c0ca4d" category="paragraph">代理服务器需要连接到 CVS 帐户时的代理 URL 。代理服务器可以是 HTTP 代理，也可以是 HTTPS 代理。对于 HTTPS 代理，系统会跳过证书验证，以允许在代理服务器中使用自签名证书。* 不支持已启用身份验证的代理服务器 * 。</block>
   <block id="58b40a255bdd79778c81b51b0189d3bc" category="paragraph">http://proxy-server-hostname/”</block>
@@ -2813,15 +2731,10 @@
   <block id="c0c057b1fbdbb4b3fbff5af024800013" category="paragraph">"nfsver=3 ， proto=tcp ， timeo=600"</block>
   <block id="989640232ebd1cee1600241dcaf3092b" category="paragraph">性能级别（标准，高级，极高），默认为 " 标准 "</block>
   <block id="6dc6830d3f5eeef9925e20cb2872face" category="paragraph">高级版</block>
-  <block id="4c4783b692750885787114cffe439cc4" category="admonition">NetApp Cloud Volumes Service for AWS 不支持小于 100 GB 的卷。为了便于部署应用程序，如果请求的卷较小， Trident 会自动创建 100 GB 的卷。</block>
-  <block id="2141207c4b192cfda3ca9862d3051c75" category="paragraph">在 AWS 上使用 CVS 时，可以使用这些默认卷选项设置。</block>
   <block id="0b4473f186b60c3a658cb10df719e6e7" category="paragraph">NFS 访问列表（地址和 / 或 CIDR 子网），默认为 "0.0.0.0/0 "</block>
   <block id="4fd06576654815d69b61384ef4f9e084" category="paragraph">"10.0.1.0/24 10.0.0.2.100"</block>
   <block id="6cac9fafaf62c70b75f827e614328121" category="paragraph">Snapshot 预留百分比，默认值为 " " 以接受 CVS 默认值 0</block>
   <block id="c669350437225628cf4fcc3d0ec9d8f6" category="paragraph">10</block>
-  <block id="24e52229704d0addd6cb9915c2e78093" category="paragraph">卷大小，默认为 100 GB</block>
-  <block id="36a1049642c95770e66c6905f890a00a" category="paragraph">"500 克 "</block>
-  <block id="f0fe7c79add8387e161dd776e6af2313" category="section-title">AWS 上的 CVS 配置文件示例</block>
   <block id="4c4a4e3967b80166b1c89a42bb702c5c" category="section-title">GCP 配置上的 Cloud Volumes Service （ CVS ）</block>
   <block id="c731f72e1d22a7c5e01a7cb789a8885e" category="inline-link">GCP</block>
   <block id="16aba044aae8d4a1f104875fadfa8b7a" category="paragraph">Trident 现在支持使用默认 CVS 服务类型的较小卷<block ref="ba449b67e05ccd893d094c64611dfdac" category="inline-link-rx"></block>。对于使用 `storageClass=software` 创建的后端，卷的最小配置大小将为 300 GiB 。* NetApp 建议客户将低于 1 TiB 的卷用于非生产工作负载 * 。CVS 目前在 " 受控可用性 " 下提供此功能，不提供技术支持。</block>
@@ -2975,7 +2888,6 @@
   <block id="705db3afa1c1d4451f7b0f7f8552f1b5" category="list-text">您对运行 Kubernetes 1.17 及更高版本的受支持 Kubernetes 集群拥有完全权限。</block>
   <block id="3b4c548466953befff1962ac2426cb8e" category="paragraph">要查看您的 Kubernetes 版本是否高于 1.17 ，请运行以下命令：</block>
   <block id="cf282b9c05ab0f84b1690e644cd3f68e" category="list-text">对于 `ontap-nas-flexgroup` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexGroup 。因此，卷快照会创建为 NetApp FlexGroup 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
-  <block id="ba9e76e1be4705136fd15fd947717d07" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
   <block id="b89df534de66f446ec6482f9d7898bb2" category="cell">`控制器插件节点选择器`</block>
   <block id="15cfc4bea44cee69551eb577fb0dcd8a" category="cell">运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。格式与 pod.spec.nodeSelector 相同。</block>
   <block id="8d414af35aeb82413205fa45551a5545" category="cell">无默认值；可选</block>
@@ -2990,7 +2902,6 @@
   <block id="d6601a8eb863a49ea065281f70a5956b" category="summary">Astra Trident 是一个受全面支持的开源项目，由 NetApp 作为 Astra 产品系列的一部分进行维护。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
   <block id="bb453665f57f6823950856f7a9bad0c3" category="inline-link-macro">Astra 产品系列</block>
   <block id="9f469e7cb13566d8a664e8ab4d46f9e1" category="paragraph">Astra Trident 是一个完全受支持的开源项目，由 NetApp 在中维护 <block ref="a1650a2308dbba03b9ca704756a5a37d" category="inline-link-macro-rx"></block>。它旨在帮助您使用容器存储接口（ CSI ）等行业标准接口满足容器化应用程序的持久性需求。</block>
-  <block id="fdc319eb193763016bf0bff75d0c0abc" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSx for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）， Astra 数据存储以及 Azure NetApp Files 服务， Google Cloud 上的 Cloud Volumes Service 和 AWS 上的 Cloud Volumes Service 。</block>
   <block id="165fe4b78b5877cf8db8ac6361e5c85a" category="paragraph">您可以在 Astra 页面上注册免费试用版。</block>
   <block id="d13de4a83d7b44c2e65495def8ef1c7b" category="section-title">有关详细信息 ...</block>
   <block id="fa80e31eb77798b8dd995ddd9553be6e" category="inline-link">NetApp Astra 产品系列</block>
@@ -3018,7 +2929,6 @@
   <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
   <block id="29db8b676d0a02f8179869506102c8ce" category="doc">使用 ONTAP 或 Cloud Volumes ONTAP SAN 驱动程序配置后端</block>
   <block id="133184f8c608809bdc057abf1397d10d" category="paragraph">了解如何使用 ONTAP 和 Cloud Volumes ONTAP SAN 驱动程序配置 ONTAP 后端。</block>
-  <block id="879d65b9b2cc663b2ff6a01cfe8d4c72" category="paragraph">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` 支持。 `GCP-CVS` 和 `azure-netapp-files` 驱动程序。</block>
   <block id="311847a44163ac40ccf470fcf81e74fb" category="admonition">如果在 GKE- 环境中设置按需卷快照，请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
   <block id="75419edaab27be09afdb3415e83d93f6" category="paragraph">`sudo mpathconf -enable -for_multipathd y -find_multipaths n`</block>
   <block id="60c268e00db3206011b54b01705d7211" category="admonition">确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.</block>
@@ -3147,7 +3057,6 @@
   <block id="45d2174daba36b76955e69d2eddf26ca" category="list-text">PVC 访问模式为 RW 。</block>
   <block id="ba5b62efad4f90a8f4bb806cba4a3ea4" category="paragraph">对于 NFS 存储驱动程序， NFS 导出中已存在文件系统。要使用 `fsGroup` ，存储类仍需要指定 `FSType` 。您可以将其设置为 `NFS` 或任何非空值。</block>
   <block id="4811aaaf5eedea1ea9f703353903b5b5" category="list-text">请参见 <block ref="c35b155baa39b6aa36cf9bc59eea88f3" category="inline-link-macro-rx"></block> 有关卷扩展的更多详细信息。</block>
-  <block id="853119066470e5145f87024e7c6accdb" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files</block>
   <block id="23038d88eea805ac06a26959fc129ca5" category="admonition">Trident 目前不支持 NetApp 聚合加密（ NAE ）。</block>
   <block id="fa8bc73a8436dd2f79aafaa731d248e4" category="list-text">`limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
   <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
@@ -3206,5 +3115,27 @@
   <block id="4dc3529fbf05312075f0aa52f9c0908e" category="paragraph">已知使用 ` -kubelet-dir` 指定 kubelet 位置适用于 Trident Operator ， Helm 和 `tridentctl` 部署。</block>
   <block id="8fad5c21cf613e120f249eadc62cda2f" category="paragraph">Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。</block>
   <block id="7054a9a8c9f6d4b0bcf8cfe758a2e14d" category="paragraph">NetApp 产品组合中的每个存储平台都具有独特的功能，无论应用程序是容器化还是非容器化，都能从中受益。Trident 可与 ONTAP 和 Element 结合使用。没有一个平台比另一个平台更适合所有应用程序和场景，但是，在选择平台时，应考虑应用程序和设备管理团队的需求。</block>
-  <block id="0f1a50993db502cac54d3679b60ad5a3" category="paragraph">创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` &lt;prefix&gt;-&lt;volume-name&gt;` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` &lt;prefix&gt;_&lt;volume-name&gt;` ）。对于 Element 后端，它会将下划线替换为连字符。对于对唯一卷创建令牌实施 16 到 36 个字符限制的 CVS （ AWS ）， Trident 会为每个卷的内部名称生成一个随机字符串。</block>
+  <block id="23901d5a815c5a1c2f5ce4e4863e4fb6" category="paragraph">`ontap-nas` ， `ontap-san` ， `ontap-nas-economics` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` 或 `GCP-CVS`</block>
+  <block id="82720d84ad009f069fd0b2cfaf6c3dac" category="summary">适用于 Docker 的 Astra Trident 可直接与适用于 NetApp 存储平台的 Docker 生态系统集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。</block>
+  <block id="6798a0701cedf1202e1d70210a3a9a83" category="paragraph">使用 `ontap-nas` ， `ontap-san` ， `solidfire-san` 和 `GCP-CVS 存储驱动程序` 时， Astra Trident 可以克隆卷。使用 `ontap-nas-flexgroup` 或 `ontap-nas-economy-经济` 驱动程序时，不支持克隆。从现有卷创建新卷将创建新快照。</block>
+  <block id="a264f15eaddf1d50155847119366be6b" category="list-text">对于 `ontap-nas` ， `ontap-san` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexVol 。因此，卷快照会创建为 NetApp 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
+  <block id="5db45af67ca348841844b1b2503a2aee" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用 NetApp 广泛产品组合中的永久性存储，这些产品组合包括 ONTAP （ AFF/FAS/Select/Cloud/Amazon FSX for NetApp ONTAP ）， Element 软件（ NetApp HCI/SolidFire ）， Astra 数据存储以及 Azure NetApp Files 服务以及 Google Cloud 上的 Cloud Volumes Service 。</block>
+  <block id="72dfd0afcd8b2eda3e5ec2268b7da6b2" category="paragraph">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `GCP-CVS` 支持。 和 `azure-netapp-files` 驱动程序。</block>
+  <block id="2c7e2299fa3c14b5e6f60015eb016a87" category="admonition">要在 GCP 中导入由 NetApp Cloud Volumes Service 支持的卷，请按卷路径而非名称来标识该卷。</block>
+  <block id="37202a3ee6673127b64f84af27fdf523" category="paragraph">要在后端导入名为 `gcpcvs_yEppr` 的 `GCP-CVS` 卷，并将卷路径设置为 `adrot-joly-swift` ，请使用以下命令：</block>
+  <block id="ec2577b4770848fd294d6ca069c34a43" category="paragraph">Astra Trident 支持对在 `ontap-nas` ， `ontap-nas-economy` ， `ontap-nas-flexgroup` ， `GCP-CVS` 和 `azure-netapp-files` 后端配置的 NFS PV 进行卷扩展。</block>
+  <block id="986d46700a93c1b67573285912b2a857" category="paragraph">Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存储功能，包括文件共享和为 NAS 和 SAN 协议（ NFS ， SMB/CIFS 和 iSCSI ）提供服务的块级存储。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-san` 和 `ontap-san-economy.`它们适用于适用于 Azure 的 Cloud Volume ONTAP ，适用于 GCP 的 Cloud Volume ONTAP 。</block>
+  <block id="ae2ddf83f2f62edc7ed33084b587d464" category="paragraph">创建后端时，通常可以指定一组参数。管理员无法使用相同的存储凭据和一组不同的参数创建另一个后端。随着虚拟存储池的推出，此问题描述得以缓解。虚拟存储池是在后端和 Kubernetes 存储类之间引入的级别抽象，因此管理员可以定义参数以及标签，这些参数和标签可以通过 Kubernetes 存储类作为选择器进行引用，并且与后端无关。可以使用 Astra Trident 为所有受支持的 NetApp 后端定义虚拟存储池。该列表包括 SolidFire/NetApp HCI ， ONTAP ， GCP 上的 Cloud Volumes Service 以及 Azure NetApp Files 。</block>
+  <block id="d7408ac84cade8c304e36b634d891b6d" category="paragraph">可以设计虚拟存储池来模拟服务类。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。为 ANF 后端配置多个标签，以表示不同的性能级别。将 `servicelevel` Aspect 设置为适当的性能级别，并在每个标签下添加其他所需的内容。现在，创建可映射到不同虚拟存储池的不同 Kubernetes 存储类。使用 `parameters.selector` 字段，每个 StorageClass 都会调用可用于托管卷的虚拟池。</block>
+  <block id="62e0abd2d56d565a2b31e85b446fa800" category="paragraph">通过卷导入，可以将现有存储卷导入到 Kubernetes 环境中。目前， `ontap-nas` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` 和 `GCP-CVS` 驱动程序均支持此功能。在将现有应用程序移植到 Kubernetes 或在灾难恢复场景中，此功能非常有用。</block>
+  <block id="555c97661fe540a8eabda5c4680e2f81" category="paragraph">如果使用了 `azure-netapp-files` 或 `gcp-cvs` 驱动程序，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume path&gt; -f /path/vc.yaml` 将卷导入到 Kubernetes 中，以供 Astra Trident 管理。这样可以确保卷引用是唯一的。</block>
+  <block id="cca7544fa2044ea81b43c1e0896bf58e" category="cell">ontap-nas ， ontap-san ， solidfire-san ， azure-netapp-files ， gcp-cvs ， ontap-san-economy.</block>
+  <block id="870594bba77423ccae9ad70861e02951" category="cell">ontap-nas ， ontap-nas-flexgroup ， ontap-san ， GCP-CVS</block>
+  <block id="91511a1d98e80c77f75faa79a0e82734" category="paragraph">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， E 系列 iSCSI ， GCP-CVS ， azure-netapp-files ， ontap-san-economy.</block>
+  <block id="33dece0bdda0f88a645c739f3714c038" category="cell">ontap-nas ， ontap-san ， solidfire-san ， gcp-cvs</block>
+  <block id="2e647c10640a301eccdc45d7ad72507d" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， gcp-cvs ， azure-netapp-files</block>
+  <block id="051fb2c3f62667c87a197ae412a4dbeb" category="cell">ONTAP （ NAS ， SAN ）和 SolidFire — * ：要从中克隆的卷的名称</block>
+  <block id="c12963ed77d398c8f97e09be58a20fed" category="paragraph">创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` &lt;prefix&gt;-&lt;volume-name&gt;` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` &lt;prefix&gt;_&lt;volume-name&gt;` ）。对于 Element 后端，它会将下划线替换为连字符。</block>
+  <block id="ba600e29b197aa569df1df520cc4e4c9" category="paragraph">是的， Astra Trident 支持 Azure 中的 Azure NetApp Files 服务以及 GCP 中的 Cloud Volumes Service 。</block>
+  <block id="804a6c22698fe4782c44f1e8d446964e" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
 </blocks>

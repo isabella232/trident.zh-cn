@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/ads.html 
-keywords: trident backend, cloud volumes service for AWS 
+keywords: trident backend, astra data store, storage class 
 summary: 了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。 
 ---
 = 配置 Astra 数据存储后端

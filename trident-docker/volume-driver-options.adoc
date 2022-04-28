@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-docker/volume-driver-options.html 
-keywords: create volumes, astra trident, trident for docker, docker, docker volume, driver options, ontap, element volumes, cloud volumes service on aws, cvs, cloud volumes service on gcp, azure netapp files 
+keywords: create volumes, astra trident, trident for docker, docker, docker volume, driver options, ontap, element volumes, cvs, cloud volumes service on gcp, azure netapp files 
 summary: 每个存储驱动程序都有一组不同的选项，您可以在创建卷时指定这些选项来自定义结果。有关适用于您配置的存储系统的选项，请参见以下内容。 
 ---
 = 驱动程序专用的卷选项
@@ -234,51 +234,6 @@ docker volume create -d solidfire --name sfGold -o type=Gold -o size=10G
 docker volume create -d solidfire --name sfBronze -o type=Bronze -o size=100G
 ----
 
-
-
-
-== AWS 卷选项上的 Cloud Volumes Service （ CVS ）
-
-AWS 上的 CVS 驱动程序的卷创建选项包括以下内容：
-
-[cols="2*"]
-|===
-| 选项 | Description 
-
-
-| `s大小`  a| 
-卷的大小默认为 100 GB 。
-
-
-
-| `s服务级别`  a| 
-卷的 CVS 服务级别默认为标准。有效值包括标准，高级和极高。
-
-
-
-| `sSnapshot 预留`  a| 
-`此操作会将快照预留设置为所需百分比。默认值为 no 值，表示 CVS 将选择快照预留（通常为 0% ）。
-
-|===
-
-
-=== 示例
-
-* 创建 200 GiB 卷：
-+
-[listing]
-----
-docker volume create -d netapp --name demo -o size=200G
-----
-* 创建一个 500 GiB 高级卷：
-+
-[listing]
-----
-docker volume create -d netapp --name demo -o size=500G -o serviceLevel=premium
-----
-
-
-最小卷大小为 100 GB 。
 
 
 

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/ontap-nas.html 
-keywords: trident backend, ontap nas, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups 
+keywords: trident backend, ontap nas, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups, fsx 
 summary: 了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。 
 ---
 = 使用 ONTAP NAS 驱动程序配置后端

@@ -39,11 +39,6 @@ summary: '您可以使用 `tridentctl import` 将现有存储卷作为 Kubernete
 
 
 
-| `AWS-CVS`  a| 
-19.04
-
-
-
 | `azure-netapp-files`  a| 
 19.04
 
@@ -205,31 +200,25 @@ NOTE: Element 驱动程序支持重复的卷名称。如果卷名称重复，则
 
 
 
-== AWS-CVS 导入
+== GCP-CVS 导入
 
 
-TIP: 要在 AWS 中导入由 NetApp Cloud Volumes Service 支持的卷，请按卷路径而非名称来标识该卷。
+TIP: 要在 GCP 中导入由 NetApp Cloud Volumes Service 支持的卷，请按卷路径而非名称来标识该卷。
 
-要在后端导入名为 `awscvs_YEppr` 的 `AWS-CVS` 卷，并且卷路径为 `adrot-joly-swift` ，请使用以下命令：
+要在后端导入名为 `gcpcvs_yEppr` 的 `GCP-CVS` 卷，并将卷路径设置为 `adrot-joly-swift` ，请使用以下命令：
 
 [listing]
 ----
-$ tridentctl import volume awscvs_YEppr adroit-jolly-swift -f <path-to-pvc-file> -n trident
+$ tridentctl import volume gcpcvs_YEppr adroit-jolly-swift -f <path-to-pvc-file> -n trident
 
 +------------------------------------------+--------+---------------+----------+--------------------------------------+--------+---------+
 |                   NAME                   |  SIZE  | STORAGE CLASS | PROTOCOL |             BACKEND UUID             | STATE  | MANAGED |
 +------------------------------------------+--------+---------------+----------+--------------------------------------+--------+---------+
-| pvc-a46ccab7-44aa-4433-94b1-e47fc8c0fa55 | 93 GiB | aws-storage   | file     | e1a6e65b-299e-4568-ad05-4f0a105c888f | online | true    |
+| pvc-a46ccab7-44aa-4433-94b1-e47fc8c0fa55 | 93 GiB | gcp-storage   | file     | e1a6e65b-299e-4568-ad05-4f0a105c888f | online | true    |
 +------------------------------------------+--------+---------------+----------+--------------------------------------+--------+---------+
 ----
 
 NOTE: 卷路径是卷导出路径中： / 之后的部分。例如，如果导出路径为 `10.0.0.1 ： /adrot-joly-swift` ，则卷路径为 `adrot-joly-swift` 。
-
-
-
-== GCP-CVS 导入
-
-导入 `GCP-CVS` 卷与导入 `AWS-CVS` 卷的工作原理相同。
 
 
 

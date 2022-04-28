@@ -49,7 +49,7 @@ Kubernetes `PersistentVolumeClaim` 对象是 Kubernetes 集群用户发出的存
 | trident.netapp.io/fileSystem | 文件系统 | ontap-san ， solidfire-san ， E 系列 -iscsi ， ontap-san-economy. 
 
 
-| trident.netapp.io/cloneFromPVC | cloneSourceVolume | ontap-nas ， ontap-san ， solidfire-san ， AWS-CVS ， azure-netapp-files ， GCP-CVS ， ontap-san-economy. 
+| trident.netapp.io/cloneFromPVC | cloneSourceVolume | ontap-nas ， ontap-san ， solidfire-san ， azure-netapp-files ， gcp-cvs ， ontap-san-economy. 
 
 
 | trident.netapp.io/splitOnClone | splitOnClone | ontap-NAS ， ontap-san 
@@ -64,7 +64,7 @@ Kubernetes `PersistentVolumeClaim` 对象是 Kubernetes 集群用户发出的存
 | trident.netapp.io/snapshotPolicy | snapshotPolicy | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san 
 
 
-| trident.netapp.io/snapshotReserve | SnapshotReserve | ontap-nas ， ontap-nas-flexgroup ， ontap-san ， AWS-CVS ， GCP-CVS 
+| trident.netapp.io/snapshotReserve | SnapshotReserve | ontap-nas ， ontap-nas-flexgroup ， ontap-san ， GCP-CVS 
 
 
 | trident.netapp.io/snapshotDirectory | snapshotDirectory | ontap-nas ， ontap-nas-economy-、 ontap-nas-flexgroup 
@@ -173,14 +173,14 @@ volumeBindingMode: Immediate
 
 
 | 后端类型 | string  a| 
-ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， E 系列 iSCSI ， AWS-CVS ， GCP-CVS ， azure-netapp-files ， ontap-san-economy.
+ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， E 系列 iSCSI ， GCP-CVS ， azure-netapp-files ， ontap-san-economy.
 | 池属于此类型的后端 | 指定后端 | 所有驱动程序 
 
 
-| snapshots | 池 | true false | Pool 支持具有快照的卷 | 启用了快照的卷 | ontap-NAS ， ontap-san ， solidfire-san ， AWS-CVS ， GCP-CVS 
+| snapshots | 池 | true false | Pool 支持具有快照的卷 | 启用了快照的卷 | ontap-nas ， ontap-san ， solidfire-san ， gcp-cvs 
 
 
-| 克隆 | 池 | true false | Pool 支持克隆卷 | 启用了克隆的卷 | ontap-NAS ， ontap-san ， solidfire-san ， AWS-CVS ， GCP-CVS 
+| 克隆 | 池 | true false | Pool 支持克隆卷 | 启用了克隆的卷 | ontap-nas ， ontap-san ， solidfire-san ， gcp-cvs 
 
 
 | 加密 | 池 | true false | 池支持加密卷 | 已启用加密的卷 | ontap-nas ， ontap-nas-economy-、 ontap-nas-flexgroups ， ontap-san 
@@ -218,7 +218,7 @@ ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire
 | FSType | string | ext4 ， ext3 ， xfs 等 | 块卷的文件系统类型 | solidfire-san ， ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy-、 E 系列 -iscsi | 全部 
 
 
-| 允许卷扩展 | boolean | true false | 启用或禁用对增加 PVC 大小的支持 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， AWS-CVS ， GCP-CVS ， azure-netapp-files | 1.11 及更高版本 
+| 允许卷扩展 | boolean | true false | 启用或禁用对增加 PVC 大小的支持 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， gcp-cvs ， azure-netapp-files | 1.11 及更高版本 
 
 
 | 卷绑定模式 | string | 即时， WaitForFirstConsumer" | 选择何时进行卷绑定和动态配置 | 全部 | 1.17 及更高版本 
@@ -370,7 +370,7 @@ TIP: 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * �
 | 内部名称 | string | 否 | 存储系统上的对象名称；由 Trident 生成 
 
 
-| cloneSourceVolume | string | 否 | ONTAP （ NAS ， SAN ） & SolidFire AWS-* 和 AWS-CVS* ：要从中克隆的卷的名称 
+| cloneSourceVolume | string | 否 | ONTAP （ NAS ， SAN ）和 SolidFire — * ：要从中克隆的卷的名称 
 
 
 | splitOnClone | string | 否 | ONTAP （ NAS ， SAN ）：将克隆从其父级拆分 
@@ -396,7 +396,7 @@ TIP: 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * �
 
 | 文件系统 | string | 否 | 文件系统类型 
 |===
-创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` <prefix>-<volume-name>` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` <prefix>_<volume-name>` ）。对于 Element 后端，它会将下划线替换为连字符。对于对唯一卷创建令牌实施 16 到 36 个字符限制的 CVS （ AWS ）， Trident 会为每个卷的内部名称生成一个随机字符串。
+创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` <prefix>-<volume-name>` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` <prefix>_<volume-name>` ）。对于 Element 后端，它会将下划线替换为连字符。
 
 您可以使用卷配置使用 REST API 直接配置卷，但在 Kubernetes 部署中，我们希望大多数用户使用标准的 Kubernetes `PersistentVolumeClaim` 方法。Trident 会在配置过程中自动创建此卷对象。
 

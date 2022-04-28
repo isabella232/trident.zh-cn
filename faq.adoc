@@ -121,7 +121,7 @@ Astra Trident 只是 Kubernetes Pod ，可安装在 Kubernetes 运行的任何�
 
 === Astra Trident 是否支持 Cloud Volumes Services ？
 
-是的， Astra Trident 支持 Azure 中的 Azure NetApp Files 服务以及 AWS 和 GCP 中的 Cloud Volumes Service 。
+是的， Astra Trident 支持 Azure 中的 Azure NetApp Files 服务以及 GCP 中的 Cloud Volumes Service 。
 
 
 
@@ -380,7 +380,7 @@ Trident 19.10 支持使用 CSI 配置程序扩展 iSCSI PV 。
 
 === 哪些驱动程序支持 Astra Trident 卷快照？
 
-从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `AWS-CVS` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。
+从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。
 
 
 

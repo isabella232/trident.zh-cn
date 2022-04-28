@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-reference/k8s-netapp.html 
-keywords: kubernetes, netapp storage, ontap, cloud columes ontap, santricity, element software, netapp hci, anf, azure netapp files, cloud volumes service for google cloud, cloud volumes service for aws, gcp, aws 
+keywords: kubernetes, netapp storage, ontap, cloud columes ontap, santricity, element software, netapp hci, anf, azure netapp files, cloud volumes service for google cloud, gcp, aws, fsx 
 summary: NetApp 存储产品组合可与 Kubernetes 集群的许多不同方面相集成，从而提供高级数据管理功能，从而增强 Kubernetes 部署的功能，功能，性能和可用性。 
 ---
 = 与 Kubernetes 集成的 NetApp 产品
@@ -56,23 +56,9 @@ Trident 完全支持 NetApp HCI 。Trident 可以直接在底层 NetApp HCI 存�
 
 
 
-== SANtricity
-
-NetApp 的 E 系列和 EF 系列存储平台使用 https://www.netapp.com/us/products/data-management-software/santricity-os.aspx["SANtricity"^] 操作系统，可提供功能强大的存储，该存储具有高可用性，高性能，能够为任何规模的应用程序提供存储服务。
-
-Trident 可以在整个产品组合中创建和管理 SANtricity 卷。
-
-
-
 == Azure NetApp Files
 
 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 是一种企业级 Azure 文件共享服务，由 NetApp 提供支持。您可以在 Azure 中以本机方式运行要求最苛刻的基于文件的工作负载，同时享受 NetApp 应有的性能和丰富的数据管理功能。
-
-
-
-== 适用于 AWS 的 Cloud Volumes Service
-
-https://cloud.netapp.com/cloud-volumes-service-for-aws?utm_source=GitHub&utm_campaign=Trident["适用于 AWS 的 NetApp Cloud Volumes Service"^] 是一种云原生文件服务，可通过 NFS 和 SMB 提供具有全闪存性能的 NAS 卷。此服务支持在 AWS 云中运行任何工作负载，包括原有应用程序。它提供了一种完全托管的服务，可提供稳定一致的高性能，即时克隆，数据保护以及对弹性容器服务（ Elastic Container Service ， ECS ）实例的安全访问。
 
 
 
