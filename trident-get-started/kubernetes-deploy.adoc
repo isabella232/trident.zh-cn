@@ -14,6 +14,9 @@ summary: '您可以使用 Trident 运算符或使用 `tridentctl` 来部署 Astr
 您可以使用 Trident 运算符或使用 `tridentctl` 来部署 Astra Trident 。
 
 
+NOTE: 从 22.04 版开始，每次安装 Astra Trident 时， AES 密钥将不再重新生成。在此版本中， Astra Trident 将安装一个新的机密对象，该对象会在安装之间持续存在。这意味着， 22.04 中的 `tridentctl` 可以卸载先前版本的 Trident ，但早期版本无法卸载 22.04 安装。
+
+
 
 == 选择部署方法
 

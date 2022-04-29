@@ -23,16 +23,16 @@ NOTE: 要了解 Astra Trident 使用的端口，请参见 link:../trident-refere
 Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
 * Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10
-* Kubernetes 1.17 或更高版本（最新版本： 1.23 ）
+* Kubernetes 1.18 或更高版本（最新版本： 1.23 ）
 * Mirantis Kubernetes Engine 3.4
-* OpenShift 4.7 ， 4.8 ， 4.9
+* OpenShift 4.7 ， 4.8 ， 4.9 ， 4.10
 
 
 以下版本支持 Trident 操作符：
 
 * Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10
-* Kubernetes 1.17 或更高版本（最新版本： 1.23 ）
-* OpenShift 4.7 ， 4.8 ， 4.9
+* Kubernetes 1.18 或更高版本（最新版本： 1.23 ）
+* OpenShift 4.7 ， 4.8 ， 4.9 ， 4.10
 
 
 
@@ -168,92 +168,92 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 
 | v1.17.0  a| 
-* NetApp/trident ： 22.01.1
-* netapp/trident autosupport ： 22.01
+* netapp/trident ： 22.04.0-custom
+* netapp/trident autosupport ： 22.04
 * K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2
 * K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0
-* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0
+* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0
 * K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3
-* k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0
-* netapp/trident 操作符： 22.01.1 （可选）
+* K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0
+* netapp/trident 操作符： 22.04.0-custom （可选）
 
 
 
 
 | v1.18.0  a| 
-* NetApp/trident ： 22.01.1
-* netapp/trident autosupport ： 22.01
+* netapp/trident ： 22.04.0-custom
+* netapp/trident autosupport ： 22.04
 * K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2
 * K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0
-* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0
+* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0
 * K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3
-* k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0
-* netapp/trident 操作符： 22.01.1 （可选）
+* K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0
+* netapp/trident 操作符： 22.04.0-custom （可选）
 
 
 
 
 | v1.19.0  a| 
-* NetApp/trident ： 22.01.1
-* netapp/trident autosupport ： 22.01
+* netapp/trident ： 22.04.0-custom
+* netapp/trident autosupport ： 22.04
 * K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2
 * K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0
-* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0
+* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0
 * K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3
-* k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0
-* netapp/trident 操作符： 22.01.1 （可选）
+* K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0
+* netapp/trident 操作符： 22.04.0-custom （可选）
 
 
 
 
 | v1.20.0  a| 
-* NetApp/trident ： 22.01.1
-* netapp/trident autosupport ： 22.01
-* K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0
+* netapp/trident ： 22.04.0-custom
+* netapp/trident autosupport ： 22.04
+* K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2
 * K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0
-* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0
+* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0
 * K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3
-* k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0
-* netapp/trident 操作符： 22.01.1 （可选）
+* K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0
+* netapp/trident 操作符： 22.04.0-custom （可选）
 
 
 
 
 | v1.21.0  a| 
-* NetApp/trident ： 22.01.1
-* netapp/trident autosupport ： 22.01
-* K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0
+* netapp/trident ： 22.04.0-custom
+* netapp/trident autosupport ： 22.04
+* K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2
 * K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0
-* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0
+* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0
 * K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3
-* k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0
-* netapp/trident 操作符： 22.01.1 （可选）
+* K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0
+* netapp/trident 操作符： 22.04.0-custom （可选）
 
 
 
 
 | v1.22.0  a| 
-* NetApp/trident ： 22.01.1
-* netapp/trident autosupport ： 22.01
-* K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0
+* netapp/trident ： 22.04.0-custom
+* netapp/trident autosupport ： 22.04
+* K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2
 * K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0
-* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0
+* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0
 * K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3
-* k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0
-* netapp/trident 操作符： 22.01.1 （可选）
+* K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0
+* netapp/trident 操作符： 22.04.0-custom （可选）
 
 
 
 
 | v1.23.0  a| 
-* NetApp/trident ： 22.01.1
-* netapp/trident autosupport ： 22.01
-* K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0
+* netapp/trident ： 22.04.0-custom
+* netapp/trident autosupport ： 22.04
+* K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2
 * K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0
-* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0
+* K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0
 * K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3
-* k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0
-* netapp/trident 操作符： 22.01.1 （可选）
+* K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0
+* netapp/trident 操作符： 22.04.0-custom （可选）
 
 
 |===

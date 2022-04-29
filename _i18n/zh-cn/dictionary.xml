@@ -2923,7 +2923,6 @@
   <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
   <block id="dc5ac69fee94d861f0bed64729b712cf" category="paragraph">Astra Trident 可能需要先对存储系统进行一些更改，然后后端配置才能使用它。请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="b0b4b8e52878f03279584f43bc961472" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2</block>
-  <block id="3c8910d4db724229b566887801de96bb" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.3.0</block>
   <block id="681d715b456f6d29a501b8f132e941a1" category="cell">v1.22.0</block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
   <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
@@ -2983,25 +2982,18 @@
   <block id="9f81aabbbba9f61bfecaf1340c407ed1" category="list-text">为 ANF 卷增加了对 "unixPermissions" 选项的支持。（<block ref="b2ee1a79cce917ad1d60b3bec442914a" category="inline-link-macro-rx"></block>）</block>
   <block id="a4233200da50a08b295311036bb03ac1" category="section-title">已弃用</block>
   <block id="de6284c149d2e011da3909f1ef2af627" category="paragraph">Trident REST 接口只能在 127.0.0.1 或 [ ：：： 1 ）地址处侦听和提供服务</block>
-  <block id="b4ffe37e7e4ec63b5a66f2d1ecdbf6c0" category="section-title">Astra Trident 21.10.1 中的变更</block>
   <block id="cdb544a92bee555749f43046d53ef34e" category="admonition">v21.10.0 版本具有一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时， Trident 控制器可以将其置于 CrashLoopBackOff 状态。此问题描述在 v21.10.1 中得到了修复（ GitHub 问题描述 669 ）。</block>
   <block id="cd1bf2431d703fd3c62a278b9c812d56" category="list-text">修复了在 GCP CVS 后端导入卷导致导入失败的潜在争用情况。</block>
   <block id="8e1e1dad95de3dc781f25f58483acdf3" category="list-text">修复了一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时，可能会将 Trident 控制器置于 CrashLoopBackOff 状态（ GitHub 问题描述 669 ）。</block>
   <block id="d7c32cb5ff2be4aaff3a8eaea9d18e0d" category="list-text">修复了在未指定 SVM 名称的情况下不再发现 SVM 的问题描述（ GitHub 问题描述 612 ）。</block>
-  <block id="f306ba062619a23c0afe1a50a50799f6" category="section-title">21.10.0 中的更改（自 Astra Trident 21.07 以来）</block>
   <block id="2f1ab5b99f1893144b69718c274415f4" category="paragraph">同时 <block ref="a3b750e7ac33c9792c64627692f306aa" category="inline-link-macro-rx"></block> 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。</block>
   <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
   <block id="94912f7fb206038e8527957b44dfbf25" category="paragraph">此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。</block>
   <block id="498784627f42c14468b84a1a351bd462" category="sidebar">配置 ADS 后端</block>
-  <block id="fe3b4c5750a12d7254dee5e87c55bb40" category="list-text">Kubernetes 1.17 或更高版本（最新版本： 1.23 ）</block>
-  <block id="10ae2729ec6b89f9c276ab2da5409336" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9</block>
   <block id="f2f0da9b50bd2001bc802c121fc76254" category="admonition">如果使用的版本低于 4.6-8 ， Red Hat OpenShift 容器平台用户可能会发现其 initiatorname.iscsi 文件为空。这是 RedHat 已确定的一个错误，需要通过 OpenShift 4.6-8 进行修复。请参见此内容<block ref="ac064f2337a2fc6c16c562bc9e386352" category="inline-link-rx"></block>。NetApp 建议您在 OpenShift 4.6.8 及更高版本上使用 Astra Trident 。</block>
   <block id="0f6e0df69462b7a5d101ec1a3fa8a376" category="list-text">NetApp HCI/ Element 软件 11 或更高版本</block>
   <block id="597a56086e1f9d7ca5e8f55c40a0153a" category="list-text">OpenShift 容器平台支持的 RedHat CoreOS （ RHCOS ）版本</block>
-  <block id="0e3db22955e0ef2a04155e743fdcd843" category="list-text">netapp/trident autosupport ： 22.01</block>
   <block id="52d5de12f37c2ff6a4de253d20947ca2" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher ： v3.4.0</block>
-  <block id="f86452b351d644230a6ab4c2d580e193" category="list-text">k8s.gcr.io/sig-storage/CsI-node-driver-registry:v2.4.0</block>
-  <block id="ad9d572821da9bfff3397f2d3260509d" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v3.1.0</block>
   <block id="73e93ad328287e5ce4c06228cfdba2bf" category="cell">v1.23.0</block>
   <block id="08ee53e1d5cefb7967a295e98036598e" category="cell">控制 .snapshot 目录的可见性</block>
   <block id="9837781971083d3fe119b0217014d301" category="list-text">至少包含一个的 Azure `位置`<block ref="c5f14b2142014dc234282a513132bad4" category="inline-link-rx"></block>。从 Trident 22.01 开始， `location` 参数是后端配置文件顶层的必填字段。在虚拟池中指定的位置值将被忽略。</block>
@@ -3033,7 +3025,6 @@
   <block id="54042b89155d99a3568a196cb5ff1da8" category="paragraph">这是绝对的最低后端配置。使用此配置， Astra Trident 会发现在已配置位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个池和子网上。</block>
   <block id="a78703e6fcb2511d5a565496df5b2082" category="section-title">示例 2 ：使用容量池筛选器的特定服务级别配置</block>
   <block id="6da664b0342ea1be008211c33f1eb020" category="paragraph">此后端配置会将卷放置在 Azure 的 `Easus` 位置的 `超高` 容量池中。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。</block>
-  <block id="b0f4f0ac7ea6be4c3047dd422c23539b" category="paragraph">如果您运行的不是 Astra Trident 22.01 ，则可以参考先前版本的文档。</block>
   <block id="cce172403b73af5c2a4e93081affcc7f" category="inline-link">Astra Trident 21.10</block>
   <block id="606b9e83fb467a43b3065d4fd5037094" category="list-text"><block ref="606b9e83fb467a43b3065d4fd5037094" category="inline-link-rx"></block></block>
   <block id="ee50d481128d1543f9945b4a4f3fbe9d" category="paragraph">对于带气的安装，下面列出了安装 Astra Trident 所需的容器映像。使用 `tridentctl images` 命令验证所需容器映像的列表。</block>
@@ -3062,15 +3053,10 @@
   <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
   <block id="76df2d4e2a105a35b5db1ce7b060bbe1" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10</block>
   <block id="9c99c91edd7eddead4f870a324f880bd" category="list-text">添加 Trident 的 Helm 存储库：</block>
-  <block id="b9baa6fa560066bf0c9e87d66d1c0664" category="doc">Astra Trident 22.01.1 文档</block>
-  <block id="583a5308ed42c99426f964d094ea527d" category="list-text">NetApp/trident ： 22.01.1</block>
-  <block id="e2393935037062665875a528ef53dd36" category="list-text">netapp/trident 操作符： 22.01.1 （可选）</block>
-  <block id="6e7239a6c6cfd378a1e55314b7490e32" category="section-title">22.01.1 中的新增功能</block>
   <block id="368b120a3b5f53a49dc3ab96ec9b8dbd" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见<block ref="25da125dffad1d6323c21354bccf0203" category="inline-link-rx"></block>。</block>
   <block id="a98b2ebbcbb381d3abc81e2ecfb2054c" category="inline-link-macro">GitHub 问题描述 第 691 号</block>
   <block id="61465c1d4383dd4afdf168925e15e767" category="list-text">修复了已删除节点上的卷已取消发布的问题描述 。（<block ref="5fee6ab43e8008edba54375694a29266" category="inline-link-macro-rx"></block>）</block>
   <block id="e50f1057ba4b67b255c98fa09c5ba6f8" category="list-text">修复了访问 ONTAP API 响应中聚合空间的 " 无 " 字段时的崩溃问题。</block>
-  <block id="f064e09978a6df920139de5d0ebddd77" category="section-title">22.01.0 中的更改（从 22.10.1 开始）</block>
   <block id="3c72f47eeb46270dd13a77b32ec10dd3" category="list-text">* Kubernetes ： * 增加大型集群的节点注册回退重试时间。</block>
   <block id="0ef48234390855900384d0bc8a0a8a24" category="list-text">修复了问题描述 ，其中 azure-netapp-files 驱动程序可能会被同名的多个资源混淆。</block>
   <block id="7eaa7391130c13b3bf9a7e4ae755d908" category="list-text">如果使用括号指定 ONTAP SAN IPv6 数据 LIF ，则此 LIF 现在可以正常工作。</block>
@@ -3138,4 +3124,35 @@
   <block id="c12963ed77d398c8f97e09be58a20fed" category="paragraph">创建卷时， Trident 会生成 `internalName` 。这包括两个步骤。首先，它会将存储前缀（默认值 `trident` 或后端配置中的前缀）预先添加到卷名称中，从而使名称格式为 ` &lt;prefix&gt;-&lt;volume-name&gt;` 。然后，它将继续清理名称，替换后端不允许使用的字符。对于 ONTAP 后端，它会将连字符替换为下划线（因此，内部名称将变为 ` &lt;prefix&gt;_&lt;volume-name&gt;` ）。对于 Element 后端，它会将下划线替换为连字符。</block>
   <block id="ba600e29b197aa569df1df520cc4e4c9" category="paragraph">是的， Astra Trident 支持 Azure 中的 Azure NetApp Files 服务以及 GCP 中的 Cloud Volumes Service 。</block>
   <block id="804a6c22698fe4782c44f1e8d446964e" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
+  <block id="65b584d1b3cd0ab857283c862b5ddc53" category="doc">Astra Trident 22.04 文档</block>
+  <block id="679683afa169f4c501ded1ebe8a942e2" category="list-text">Kubernetes 1.18 或更高版本（最新版本： 1.23 ）</block>
+  <block id="41b5e6bb7f3d484ece37970d944243a6" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9 ， 4.10</block>
+  <block id="d4e01cba0135fad4e9e87e274b6665ad" category="list-text">netapp/trident ： 22.04.0-custom</block>
+  <block id="2e7762de21d705936d61fb36a7138a5c" category="list-text">netapp/trident autosupport ： 22.04</block>
+  <block id="b940865cd29b95c004f3c7f7ba60de73" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0</block>
+  <block id="719605430ab8445a9b97c7e6a4d03f30" category="list-text">K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0</block>
+  <block id="b661c0f1dfe5c381a73bb09f637a6cdf" category="list-text">netapp/trident 操作符： 22.04.0-custom （可选）</block>
+  <block id="deef9d6bf4083f81d7bd15ae0c9121b6" category="admonition">从 22.04 版开始，每次安装 Astra Trident 时， AES 密钥将不再重新生成。在此版本中， Astra Trident 将安装一个新的机密对象，该对象会在安装之间持续存在。这意味着， 22.04 中的 `tridentctl` 可以卸载先前版本的 Trident ，但早期版本无法卸载 22.04 安装。</block>
+  <block id="485e8e209b502a7975830960817b875e" category="paragraph">如果您运行的不是 Astra Trident 22.04 ，则可以参考先前版本的文档。</block>
+  <block id="4af8991c21dff2f779496b8350d1124b" category="inline-link">Astra Trident 22.01</block>
+  <block id="7669b0b69333e81c7c208aea3d1a3c6f" category="list-text"><block ref="7669b0b69333e81c7c208aea3d1a3c6f" category="inline-link-rx"></block></block>
+  <block id="bef370ebb83a8a4dbadc9284705776cd" category="section-title">22.04 中的新增功能</block>
+  <block id="6f66437376d2298f51dedcad975af0af" category="list-text">改进了 iSCSI 启动程序名称的解析。（问题描述 [#681]<block ref="5ff0c0b84f149d5e05cdbfc15134c7d3" category="inline-link-rx"></block></block>
+  <block id="ade01ecb73e019f3380c2b0afb3dfffb" category="list-text">修复了不允许使用 CSI 存储类参数的问题描述 。（问题描述 ##598]<block ref="03c929eaa36e8820e6d58a181cadf31a" category="inline-link-rx"></block></block>
+  <block id="9ecc72f60e2733db28108cec786393d8" category="list-text">修复了 Trident CRD 中的重复密钥声明。（问题描述 [#671]<block ref="39dd525b3820bd54c741d90842f0cfba" category="inline-link-rx"></block></block>
+  <block id="bc654279a27ed7dbc53dea073443c6dd" category="list-text">修复了不准确的 CSI Snapshot 日志。（问题描述 [#629]<block ref="74e80876204be50984fd2b886b478da3" category="inline-link-rx"></block></block>
+  <block id="9b67ffa13416ea48750dbec9f4ad66a4" category="list-text">修复了已删除节点上的卷已取消发布的问题描述 。（问题描述 [#691]<block ref="960ecda0072df209a8be9a21824adbbd" category="inline-link-rx"></block></block>
+  <block id="f30177308b538e761b8feff560b90f3b" category="list-text">增加了对块设备上文件系统不一致问题的处理。（问题描述 （ #656 ）<block ref="20be7e8a45944ca857b23f51f1b33662" category="inline-link-rx"></block></block>
+  <block id="6c2b4c2b9ff739282a9a8c949c9eba0b" category="list-text">修复了在安装期间设置 `imageRegistry` 标志时问题描述 提取自动支持映像的问题。（问题描述 （ #715 ）<block ref="95a736f0b6cf1bb3063434410ab25226" category="inline-link-rx"></block></block>
+  <block id="682c6ce09c9faae3a3e22c55c8db592e" category="list-text">修复了问题描述 ，其中 ANF 驱动程序无法使用多个导出规则克隆卷。</block>
+  <block id="b6cf920e86b3fc991f2480bd036eeb18" category="list-text">现在，与 Trident 安全端点的入站连接至少需要 TLS 1.3 。（问题描述 （第 698 号）<block ref="d975aaa0c5042a84e62298e5fd05553c" category="inline-link-rx"></block></block>
+  <block id="723b30bcece2d0d47914a6eaf0c550cc" category="list-text">现在， Trident 会将 HSTS 标头添加到其安全端点的响应中。</block>
+  <block id="621b9733ee07089711b96dd6b0b7861a" category="list-text">Trident 现在会尝试自动启用 Azure NetApp Files UNIX 权限功能。</block>
+  <block id="3bbc276ce14cf6f098250ed3dc320964" category="list-text">* Kubernetes * ： Trident demonset 现在以 system-node-critical 优先级类运行。（问题描述 [#694/]<block ref="b7e94b834f1f212aacf3741fb6fee33f" category="inline-link-rx"></block></block>
+  <block id="3f39a3207529d5f8129199a33e60ef87" category="section-title">删除</block>
+  <block id="3d0d8392962843a02a6fa979f76b5a91" category="paragraph">已删除 E 系列驱动程序（自 2007 年 20 月 20 日起禁用）。</block>
+  <block id="72387bfdb0acfd8a27877f000a3abeac" category="section-title">22.01.1 中的更改</block>
+  <block id="135c438d01a49275c458e22005e39c6e" category="section-title">22.01.0 中的更改</block>
+  <block id="58a2e8c17107cc1ca9cb1317cd0c1ee9" category="section-title">21.10.1 中的更改</block>
+  <block id="43e92857220d1a7ea1da88250ea5e2e3" category="section-title">21.10.0 中的更改</block>
 </blocks>

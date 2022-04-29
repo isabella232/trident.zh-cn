@@ -18,12 +18,46 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 22.01.1 中的新增功能
+== 22.04 中的新增功能
 
 NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见 https://docs.netapp.com/us-en/trident/earlier-versions.html["文档的早期版本"]。
 
 
 IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetApp Files ，则 ``location`` config 参数现在是一个必填字段。
+
+
+
+=== 修复
+
+* 改进了 iSCSI 启动程序名称的解析。（问题描述 [#681](https://github.com/NetApp/trident/issues/681))[]
+* 修复了不允许使用 CSI 存储类参数的问题描述 。（问题描述 ##598](https://github.com/NetApp/trident/issues/598))[]
+* 修复了 Trident CRD 中的重复密钥声明。（问题描述 [#671](https://github.com/NetApp/trident/issues/671))[]
+* 修复了不准确的 CSI Snapshot 日志。（问题描述 [#629](https://github.com/NetApp/trident/issues/629))[]
+* 修复了已删除节点上的卷已取消发布的问题描述 。（问题描述 [#691](https://github.com/NetApp/trident/issues/691))[]
+* 增加了对块设备上文件系统不一致问题的处理。（问题描述 （ #656 ）(https://github.com/NetApp/trident/issues/656))[]
+* 修复了在安装期间设置 `imageRegistry` 标志时问题描述 提取自动支持映像的问题。（问题描述 （ #715 ）(https://github.com/NetApp/trident/issues/715))[]
+* 修复了问题描述 ，其中 ANF 驱动程序无法使用多个导出规则克隆卷。
+
+
+
+
+=== 增强功能
+
+* 现在，与 Trident 安全端点的入站连接至少需要 TLS 1.3 。（问题描述 （第 698 号）(https://github.com/NetApp/trident/issues/698))[]
+* 现在， Trident 会将 HSTS 标头添加到其安全端点的响应中。
+* Trident 现在会尝试自动启用 Azure NetApp Files UNIX 权限功能。
+* * Kubernetes * ： Trident demonset 现在以 system-node-critical 优先级类运行。（问题描述 [#694/](https://github.com/NetApp/trident/issues/694))[]
+
+
+
+
+=== 删除
+
+已删除 E 系列驱动程序（自 2007 年 20 月 20 日起禁用）。
+
+
+
+== 22.01.1 中的更改
 
 
 
@@ -35,7 +69,7 @@ IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetAp
 
 
 
-== 22.01.0 中的更改（从 22.10.1 开始）
+== 22.01.0 中的更改
 
 
 
@@ -73,7 +107,7 @@ Trident REST 接口只能在 127.0.0.1 或 [ ：：： 1 ）地址处侦听和�
 
 
 
-== Astra Trident 21.10.1 中的变更
+== 21.10.1 中的更改
 
 
 WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时， Trident 控制器可以将其置于 CrashLoopBackOff 状态。此问题描述在 v21.10.1 中得到了修复（ GitHub 问题描述 669 ）。
@@ -89,7 +123,7 @@ WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重�
 
 
 
-== 21.10.0 中的更改（自 Astra Trident 21.07 以来）
+== 21.10.0 中的更改
 
 
 
