@@ -3127,11 +3127,9 @@
   <block id="65b584d1b3cd0ab857283c862b5ddc53" category="doc">Astra Trident 22.04 文档</block>
   <block id="679683afa169f4c501ded1ebe8a942e2" category="list-text">Kubernetes 1.18 或更高版本（最新版本： 1.23 ）</block>
   <block id="41b5e6bb7f3d484ece37970d944243a6" category="list-text">OpenShift 4.7 ， 4.8 ， 4.9 ， 4.10</block>
-  <block id="d4e01cba0135fad4e9e87e274b6665ad" category="list-text">netapp/trident ： 22.04.0-custom</block>
   <block id="2e7762de21d705936d61fb36a7138a5c" category="list-text">netapp/trident autosupport ： 22.04</block>
   <block id="b940865cd29b95c004f3c7f7ba60de73" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer ： v1.4.0</block>
   <block id="719605430ab8445a9b97c7e6a4d03f30" category="list-text">K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.0</block>
-  <block id="b661c0f1dfe5c381a73bb09f637a6cdf" category="list-text">netapp/trident 操作符： 22.04.0-custom （可选）</block>
   <block id="deef9d6bf4083f81d7bd15ae0c9121b6" category="admonition">从 22.04 版开始，每次安装 Astra Trident 时， AES 密钥将不再重新生成。在此版本中， Astra Trident 将安装一个新的机密对象，该对象会在安装之间持续存在。这意味着， 22.04 中的 `tridentctl` 可以卸载先前版本的 Trident ，但早期版本无法卸载 22.04 安装。</block>
   <block id="485e8e209b502a7975830960817b875e" category="paragraph">如果您运行的不是 Astra Trident 22.04 ，则可以参考先前版本的文档。</block>
   <block id="4af8991c21dff2f779496b8350d1124b" category="inline-link">Astra Trident 22.01</block>
@@ -3155,4 +3153,6 @@
   <block id="135c438d01a49275c458e22005e39c6e" category="section-title">22.01.0 中的更改</block>
   <block id="58a2e8c17107cc1ca9cb1317cd0c1ee9" category="section-title">21.10.1 中的更改</block>
   <block id="43e92857220d1a7ea1da88250ea5e2e3" category="section-title">21.10.0 中的更改</block>
+  <block id="bd366d7eff02dab7788621c07458488c" category="list-text">NetApp/trident：22.04.0</block>
+  <block id="6c2d28c058f7c688140000721ee0d18f" category="list-text">netapp/trident操作符：22.04.0 (可选)</block>
 </blocks>
