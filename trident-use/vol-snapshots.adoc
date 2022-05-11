@@ -17,34 +17,73 @@ summary: 从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创�
 NOTE: 此功能可从 Kubernetes 1.17 （测试版）获得，从 1.20 开始正式上市。要了解从测试版迁移到 GA 所涉及的变化，请参见 https://kubernetes.io/blog/2020/12/10/kubernetes-1.20-volume-snapshot-moves-to-ga/["发布博客"^]。升级到 GA 后，将推出 `v1` API 版本，并向后兼容 `v1bea1` 快照。
 
 .您需要什么？ #8217 ；将需要什么
-* 要创建卷快照，需要创建外部快照控制器以及一些自定义资源定义（ Custom Resource Definitions ， CRD ）。这是所使用的 Kubernetes 流程编排程序（例如： Kubeadm ， GKEE ， OpenShift ）的职责。
+* 创建卷快照需要创建外部快照控制器和自定义资源定义(Custom Resource Definitions、CRD)。这是所使用的Kubernetes流程编排程序(例如：Kubeadm、GKE、OpenShift)的责任。
 
 
-您可以按如下所示创建外部快照控制器和快照 CRD ：
+如果您的Kubernetes分发版不包含快照控制器和CRD、则可以按如下所示进行部署。
 
-. 创建卷快照 CRD ：
+. 创建卷快照CRD。
 +
-[listing]
+对于Kubernetes 1.20及更高版本、请使用v5.0或更高版本的Snapshot组件的v1 Snapshot CRD。对于Kubernetes 1.17-1.19版、请将v1bea1与v3.0.3 Snapshot组件结合使用。
+
++
+[role="tabbed-block"]
+====
+.5.0版组件
+--
+[source, yaml]
 ----
 $ cat snapshot-setup.sh
 #!/bin/bash
 # Create volume snapshot CRDs
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-5.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-5.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-5.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
 ----
-. 在所需命名空间中创建 snapshot-controller 。编辑以下 YAML 清单以修改命名空间。
+--
+.v3.0.3组件
+--
+[source, yaml]
+----
+$ cat snapshot-setup.sh
+#!/bin/bash
+# Create volume snapshot CRDs
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/v3.0.3/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/v3.0.3/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/v3.0.3/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
+----
+--
+====
+. 在所需命名空间中创建Snapshot控制器。编辑以下 YAML 清单以修改命名空间。
++
+对于Kubernetes 1.20及更高版本、请使用5.0或更高版本。对于Kubernetes 1.17-1.19、请使用v3.0.3
+
 +
 
-NOTE: 如果在 GKE- 环境中设置按需卷快照，请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。
+NOTE: 如果在GKE-环境中设置按需卷快照、请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。
 
-
-
-[listing]
++
+[role="tabbed-block"]
+====
+.5.0版控制器
+--
+[source, yaml]
 ----
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-5.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-5.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
 ----
+--
+.v3.0.3控制器
+--
+[source, yaml]
+----
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/v3.0.3/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/v3.0.3/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
+----
+--
+====
+
+
 
 TIP: CSI Snapshotter 提供了 https://github.com/kubernetes-csi/external-snapshotter#validating-webhook["正在验证 webhook"^] 帮助用户验证现有 v1bea1 快照并确认它们是有效的资源对象。正在验证的 webhook 会自动标记无效的快照对象，并防止将来创建无效对象。验证 webhook 由 Kubernetes 流程编排程序部署。请参见有关手动部署验证 webhook 的说明 https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/deploy/kubernetes/webhook-example/README.md["此处"^]。查找无效快照清单的示例 https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0/examples/kubernetes["此处"^]。
 

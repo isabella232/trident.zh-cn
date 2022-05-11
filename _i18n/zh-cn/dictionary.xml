@@ -2374,10 +2374,6 @@
   <block id="141da5e3f576179cbf2f6506b07ef538" category="summary">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建永久性卷（ PV ）的快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。</block>
   <block id="332138092a1597c4d5e69679199e490c" category="inline-link">发布博客</block>
   <block id="006b05a472974308122f7f05ef147e80" category="admonition">此功能可从 Kubernetes 1.17 （测试版）获得，从 1.20 开始正式上市。要了解从测试版迁移到 GA 所涉及的变化，请参见<block ref="02a1c904d0035e03c61e261dbe622345" category="inline-link-rx"></block>。升级到 GA 后，将推出 `v1` API 版本，并向后兼容 `v1bea1` 快照。</block>
-  <block id="e197a057bfe0ae792bb2b9ce9a78761e" category="list-text">要创建卷快照，需要创建外部快照控制器以及一些自定义资源定义（ Custom Resource Definitions ， CRD ）。这是所使用的 Kubernetes 流程编排程序（例如： Kubeadm ， GKEE ， OpenShift ）的职责。</block>
-  <block id="3923fe4170ab3f204b53d4caf958045f" category="paragraph">您可以按如下所示创建外部快照控制器和快照 CRD ：</block>
-  <block id="7737ff29322b0df9949b5d44ad3809a9" category="list-text">创建卷快照 CRD ：</block>
-  <block id="7a993e4667899d0bca97d13e0bc37568" category="list-text">在所需命名空间中创建 snapshot-controller 。编辑以下 YAML 清单以修改命名空间。</block>
   <block id="26c4fe55fc424c7b41b517701f54f074" category="inline-link">正在验证 webhook</block>
   <block id="46b189b23dfbd5f3f622a1c04590b05e" category="admonition">CSI Snapshotter 提供了<block ref="927ab0e919f8034deab1249bed53a289" category="inline-link-rx"></block> 帮助用户验证现有 v1bea1 快照并确认它们是有效的资源对象。正在验证的 webhook 会自动标记无效的快照对象，并防止将来创建无效对象。验证 webhook 由 Kubernetes 流程编排程序部署。请参见有关手动部署验证 webhook 的说明<block ref="07cb3cdda0599ec9f2e82062ecd12e82" category="inline-link-rx"></block>。查找无效快照清单的示例<block ref="bceda34f0850fc68d82f08741abbc69e" category="inline-link-rx"></block>。</block>
   <block id="f535be08d3997f1a801b132862d99a5c" category="paragraph">下面详细介绍的示例说明了使用快照所需的构造，并说明了如何创建和使用快照。</block>
@@ -2928,7 +2924,6 @@
   <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>。</block>
   <block id="29db8b676d0a02f8179869506102c8ce" category="doc">使用 ONTAP 或 Cloud Volumes ONTAP SAN 驱动程序配置后端</block>
   <block id="133184f8c608809bdc057abf1397d10d" category="paragraph">了解如何使用 ONTAP 和 Cloud Volumes ONTAP SAN 驱动程序配置 ONTAP 后端。</block>
-  <block id="311847a44163ac40ccf470fcf81e74fb" category="admonition">如果在 GKE- 环境中设置按需卷快照，请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
   <block id="75419edaab27be09afdb3415e83d93f6" category="paragraph">`sudo mpathconf -enable -for_multipathd y -find_multipaths n`</block>
   <block id="60c268e00db3206011b54b01705d7211" category="admonition">确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.</block>
   <block id="b85c80e2af7e3d7dd06b874ed048d430" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`</block>
@@ -3155,4 +3150,16 @@
   <block id="43e92857220d1a7ea1da88250ea5e2e3" category="section-title">21.10.0 中的更改</block>
   <block id="bd366d7eff02dab7788621c07458488c" category="list-text">NetApp/trident：22.04.0</block>
   <block id="6c2d28c058f7c688140000721ee0d18f" category="list-text">netapp/trident操作符：22.04.0 (可选)</block>
+  <block id="67b47f9232c8507cb74ec2668b3bb75d" category="list-text">创建卷快照需要创建外部快照控制器和自定义资源定义(Custom Resource Definitions、CRD)。这是所使用的Kubernetes流程编排程序(例如：Kubeadm、GKE、OpenShift)的责任。</block>
+  <block id="9c87569b835a8f66b7490390d350d9a4" category="paragraph">如果您的Kubernetes分发版不包含快照控制器和CRD、则可以按如下所示进行部署。</block>
+  <block id="469f7ca16938508b5dcb777767828b70" category="list-text">创建卷快照CRD。</block>
+  <block id="2f30b620baa463b151147c434eb1c308" category="paragraph">对于Kubernetes 1.20及更高版本、请使用v5.0或更高版本的Snapshot组件的v1 Snapshot CRD。对于Kubernetes 1.17-1.19版、请将v1bea1与v3.0.3 Snapshot组件结合使用。</block>
+  <block id="351d6da9c87ca81d91cd4755e4730d82" category="open-title">5.0版组件</block>
+  <block id="3d5442333756ee7fdf64adf51439d855" category="open-title">v3.0.3组件</block>
+  <block id="65b146df7d5c27b212f54a7c9980960b" category="list-text">在所需命名空间中创建Snapshot控制器。编辑以下 YAML 清单以修改命名空间。</block>
+  <block id="c99740d72de1d916747c317140dc330d" category="paragraph">对于Kubernetes 1.20及更高版本、请使用5.0或更高版本。对于Kubernetes 1.17-1.19、请使用v3.0.3</block>
+  <block id="1cfbd89d099907d91122529e677f1c71" category="admonition">如果在GKE-环境中设置按需卷快照、请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
+  <block id="5e393c0ca8392e0c84201770c8b544ca" category="open-title">5.0版控制器</block>
+  <block id="ea567d0d1a58b120efa89893cae2966a" category="open-title">v3.0.3控制器</block>
+  <block id="086e6c16e3fe8e13c336612ef636aa02" category="sidebar">Astra Trident</block>
 </blocks>
