@@ -48,12 +48,12 @@ homepage:
   tiles:
   - title: 入门
     links:
+    - title: 发行说明
+      url: trident-rn.html
     - title: Astra Trident 简介
       url: "/trident-concepts/intro.html"
     - title: Astra Trident 要求
       url: "/trident-get-started/requirements.html"
-    - title: 新增功能
-      url: trident-rn.html
     - title: 试用
       url: "/trident-get-started/quickstart.html"
     - title: 常见问题解答
