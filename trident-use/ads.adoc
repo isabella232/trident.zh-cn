@@ -108,7 +108,7 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
 
 这是绝对的最低后端配置。
 
-.展开示例
+.示例
 ====
 [source, CLI]
 ----
@@ -127,7 +127,7 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
 
 此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。
 
-.展开示例
+.示例
 ====
 [source, CLI]
 ----
@@ -152,7 +152,7 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
 
 此示例显示了使用虚拟存储池配置的后端定义文件以及引用这些池的 StorageClasses 。
 
-.展开示例
+.示例
 ====
 [source, CLI]
 ----
@@ -191,7 +191,7 @@ NOTE: 对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储
 ====
 以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。
 
-.展开示例
+.示例
 ====
 [source, CLI]
 ----
