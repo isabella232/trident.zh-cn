@@ -3161,5 +3161,7 @@
   <block id="5e393c0ca8392e0c84201770c8b544ca" category="open-title">5.0版控制器</block>
   <block id="ea567d0d1a58b120efa89893cae2966a" category="open-title">v3.0.3控制器</block>
   <block id="086e6c16e3fe8e13c336612ef636aa02" category="sidebar">Astra Trident</block>
-  <block id="756909f99bc1a720d318a5f5b94eb094" category="section-title">收集日志以进行故障排除</block>
+  <block id="d24bae93d00d821b3a8e7ee57c3bd468" category="section-title">收集日志以进行故障排除</block>
+  <block id="5a333b18a215ecfd4457ba0e1732654b" category="section-title">Trident是否可以在配置了负载共享镜像的SVM上配置卷？</block>
+  <block id="0e7629426b9d7596800cd5d72f558a7f" category="paragraph">可以为通过NFS提供数据的SVM的根卷创建负载共享镜像。ONTAP 会自动为Trident创建的卷更新负载共享镜像。这可能会导致卷挂载延迟。使用Trident创建多个卷时、配置卷取决于ONTAP 更新负载共享镜像。</block>
 </blocks>

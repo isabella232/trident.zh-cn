@@ -102,4 +102,6 @@ homepage:
       url: https://netapp.io/
     - title: Slack
       url: https://netapppub.slack.com/
-product-family: {}
+product-family:
+  name: Astra
+  repo: astra-family
