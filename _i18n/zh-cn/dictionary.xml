@@ -2064,7 +2064,6 @@
   <block id="0606b09e12901baae5719fde5a162beb" category="paragraph">详细了解驱动程序功能 <block ref="36417a02a2b8551d9a22837b23ac7abd" category="inline-link-macro-rx"></block>。</block>
   <block id="55449fd175613962d882ab450cfc5f3c" category="inline-link">FabricPool</block>
   <block id="d07e2d99267e4fc3c508f6701be977b4" category="paragraph">适用于 NetApp ONTAP 的 Amazon FSX 使用<block ref="d1584952da6bdedb0a24d5dbd43ce0bf" category="inline-link-rx"></block> 以管理存储层。通过它，您可以根据数据是否经常访问来将数据存储在层中。</block>
-  <block id="0066f4a006b2b4f192583757b5f7a3c2" category="paragraph">Astra Trident 应以 ONTAP 或 SVM 管理员身份运行，使用集群 `fsxadmin` user 或 `vsadmin` SVM 用户，或者使用具有相同角色的其他名称的用户。`fsxadmin` 用户是对 `admin` cluster 用户的有限替代。对于非 Amazon FSX for ONTAP 部署， Astra Trident 通常使用 `admin` cluster 用户。</block>
   <block id="8e64a609e66214066595e6300aaab281" category="section-title">驱动程序</block>
   <block id="5979964b20770952072578428e9c11cb" category="paragraph">您可以使用以下驱动程序将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 集成：</block>
   <block id="79a4618bb191cb293c330f8189531a13" category="list-text">`ontap-san` ：配置的每个 PV 都是其自己的 Amazon FSX for NetApp ONTAP 卷中的一个 LUN 。</block>
@@ -2073,7 +2072,6 @@
   <block id="94a834f420b7c21f3a1053e6dc705a31" category="list-text">`ontap-nas-economy.` ：配置的每个 PV 都是一个 qtree ，对于 NetApp ONTAP 卷，每个 Amazon FSx 的 qtree 数量是可配置的。</block>
   <block id="e42b07a9f050ef51ea1211004a50f223" category="list-text">`ontap-nas-flexgroup` ：配置的每个 PV 都是适用于 NetApp ONTAP FlexGroup 卷的完整 Amazon FSX 。</block>
   <block id="9dd7dc44e4a27c9a2c567d6b2a8b221a" category="paragraph">Astra Trident 提供两种身份验证模式：</block>
-  <block id="5cefadbc856e5afd968e0dbf6f90ad85" category="list-text">基于凭据：您可以使用文件系统的 `fsxadmin` 用户或为 SVM 配置的 `vsadmin` 用户。建议使用 `vsadmin` 用户配置后端。Astra Trident 将使用此用户名和密码与 FSX 文件系统进行通信。</block>
   <block id="ed2536bee60113131cf25b2de3ec8734" category="list-text">基于证书： Astra Trident 将使用 SVM 上安装的证书与 FSX 文件系统上的 SVM 进行通信。</block>
   <block id="28e8b87c947c614dcb6e6f51703815e1" category="paragraph">要了解有关身份验证的详细信息，请参见以下链接：</block>
   <block id="619b69dca5d7c9f1f67ec55897733162" category="inline-link-macro">ONTAP NAS</block>
@@ -3044,7 +3042,6 @@
   <block id="4811aaaf5eedea1ea9f703353903b5b5" category="list-text">请参见 <block ref="c35b155baa39b6aa36cf9bc59eea88f3" category="inline-link-macro-rx"></block> 有关卷扩展的更多详细信息。</block>
   <block id="23038d88eea805ac06a26959fc129ca5" category="admonition">Trident 目前不支持 NetApp 聚合加密（ NAE ）。</block>
   <block id="fa8bc73a8436dd2f79aafaa731d248e4" category="list-text">`limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
-  <block id="7b3ecf601e0eee1c9d097083281abafa" category="example-title">展开示例</block>
   <block id="76df2d4e2a105a35b5db1ce7b060bbe1" category="list-text">Anthos on-Prem （ VMware ）和 Anthos on bare metal 1.8 ， 1.9 ， 1.10</block>
   <block id="9c99c91edd7eddead4f870a324f880bd" category="list-text">添加 Trident 的 Helm 存储库：</block>
   <block id="368b120a3b5f53a49dc3ab96ec9b8dbd" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见<block ref="25da125dffad1d6323c21354bccf0203" category="inline-link-rx"></block>。</block>
@@ -3164,4 +3161,7 @@
   <block id="d24bae93d00d821b3a8e7ee57c3bd468" category="section-title">收集日志以进行故障排除</block>
   <block id="5a333b18a215ecfd4457ba0e1732654b" category="section-title">Trident是否可以在配置了负载共享镜像的SVM上配置卷？</block>
   <block id="0e7629426b9d7596800cd5d72f558a7f" category="paragraph">可以为通过NFS提供数据的SVM的根卷创建负载共享镜像。ONTAP 会自动为Trident创建的卷更新负载共享镜像。这可能会导致卷挂载延迟。使用Trident创建多个卷时、配置卷取决于ONTAP 更新负载共享镜像。</block>
+  <block id="de781ae8dbfd68aeef56f40c5dc767da" category="paragraph">Astra Trident应以`vsadmin` SVM用户或具有相同角色的其他名称的用户的身份运行。适用于NetApp ONTAP 的Amazon FSX具有一个`fsxadmin`用户、该用户是ONTAP `admin` cluster用户的有限替代。建议不要在Trident中使用`fsxadmin`用户、因为`vsadmin` SVM用户可以访问更多Astra Trident功能。</block>
+  <block id="d5d195efeafde24a6a22effd3dd39339" category="list-text">基于凭据：您可以使用文件系统的 `fsxadmin` 用户或为 SVM 配置的 `vsadmin` 用户。</block>
+  <block id="be5736bb27c63c0a404a25abaa033c45" category="admonition">我们强烈建议使用`vsadmin` user而非`fsxadmin`来配置后端。Astra Trident 将使用此用户名和密码与 FSX 文件系统进行通信。</block>
 </blocks>
