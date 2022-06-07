@@ -1232,7 +1232,6 @@
   <block id="dd3de2609b612d76ef4c71b97b8d6100" category="inline-link">按照其步骤启用 CLI 访问</block>
   <block id="c585967fa32d82c5e3c24bd63926c6a0" category="list-text">如果您将 Kubernetes 与 Docker Enterprise 结合使用，<block ref="57562caf1c76e1a261b7e2f8c3d113f9" category="inline-link-rx"></block>。</block>
   <block id="b430504ce0f6755a2be91a9a221c144e" category="paragraph">明白了吗？太棒了！让我们开始吧。</block>
-  <block id="f9589cad119238efbce2b063d5225fb4" category="section-title">使用 Helm 部署 Trident 操作员</block>
   <block id="8a414e5c564a0c9e7a0f799a3c8cf47c" category="paragraph">执行列出的步骤以使用 Helm 部署 Trident 操作员。</block>
   <block id="dc2d0674739dcd145f5287a7d619ee05" category="paragraph">除了上述前提条件之外，要使用 Helm 部署 Trident 操作员，还需要满足以下条件：</block>
   <block id="8f5e62e2d03d87aeaafa8d4776fb7a79" category="list-text">Kubernetes 1.17 及更高版本</block>
@@ -3164,4 +3163,10 @@
   <block id="d5d195efeafde24a6a22effd3dd39339" category="list-text">基于凭据：您可以使用文件系统的 `fsxadmin` 用户或为 SVM 配置的 `vsadmin` 用户。</block>
   <block id="be5736bb27c63c0a404a25abaa033c45" category="admonition">我们强烈建议使用`vsadmin` user而非`fsxadmin`来配置后端。Astra Trident 将使用此用户名和密码与 FSX 文件系统进行通信。</block>
   <block id="0b4a92a731cb582bd951a7aa481f0602" category="list-text">Anthos on-Prem (VMware)和Anthos on bare metal 1.9、1.10、1.11</block>
+  <block id="6173739ff97dc1bdcd8c5d867134724c" category="paragraph">您可以使用Trident操作员部署Astra Trident。您可以通过以下两种方式之一部署Trident操作员：</block>
+  <block id="7d3f46589c43a64fd040e4f0e0691a86" category="inline-link-macro">Helm图表</block>
+  <block id="5d2b4e1d078f05c18e07065fa7df166d" category="list-text">使用Trident <block ref="cdacb2b0d49176a3c0d8cc9d693de833" category="inline-link-macro-rx"></block>：Helm图表将部署Trident操作符并分步安装Trident。</block>
+  <block id="0d472c887b61206765c1caa63a9290ec" category="inline-link-macro">bundle.yaml</block>
+  <block id="179000091737641056a247acf2c59dc4" category="list-text">手动：Trident提供 <block ref="6f41841ada1b81573b5db54c90d512f9" category="inline-link-macro-rx"></block> 可用于安装操作员和创建关联对象的文件。</block>
+  <block id="c9ffe59301b588bbc33bb004cfd312ee" category="section-title">部署Trident操作员并使用Helm安装Astra Trident</block>
 </blocks>
