@@ -125,8 +125,8 @@ NOTE: 从 21.01 开始， Trident 操作符的范围为集群范围。使用 Tri
 +
 [listing]
 ----
-wget https://github.com/NetApp/trident/releases/download/v21.04/trident-installer-21.04.tar.gz
-tar -xf trident-installer-21.04.tar.gz
+wget https://github.com/NetApp/trident/releases/download/v22.04.0/trident-installer-22.04.0.tar.gz
+tar -xf trident-installer-22.04.0.tar.gz
 cd trident-installer
 ----
 . 使用适当的 CRD 清单创建 `TridentOrchestrator` CRD 。然后，您可以稍后创建一个 `TridentOrchestrator` Custom Resource ，以通过操作员实例化安装。
