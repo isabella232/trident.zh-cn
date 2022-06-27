@@ -81,6 +81,9 @@ NOTE: 使用默认 CVS 服务类型（ `storageClass=software` ）部署后端�
 | `s服务级别` | 新卷的 CVS 服务级别。这些值包括 "standard" ， "premer" 和 "Extreme " 。 | 标准 
 
 
+| `网络` | 用于CVS卷的GCP网络 | default 
+
+
 | `debugTraceFlags` | 故障排除时要使用的调试标志。示例， ` \ ｛ "api" ： false ， "method ： true" ｝` 。除非您正在进行故障排除并需要详细的日志转储，否则请勿使用此功能。 | 空 
 |===
 如果使用共享 VPC 网络，则必须同时指定 `projectNumber` 和 `hostProjectNumber` 。在这种情况下， `projectNumber` 是服务项目，而 `hostProjectNumber` 是主机项目。
