@@ -3170,4 +3170,7 @@
   <block id="179000091737641056a247acf2c59dc4" category="list-text">手动：Trident提供 <block ref="6f41841ada1b81573b5db54c90d512f9" category="inline-link-macro-rx"></block> 可用于安装操作员和创建关联对象的文件。</block>
   <block id="c9ffe59301b588bbc33bb004cfd312ee" category="section-title">部署Trident操作员并使用Helm安装Astra Trident</block>
   <block id="3f44baef815aed01560d6764fea49ebc" category="cell">用于CVS卷的GCP网络</block>
+  <block id="6aef79110fe63635bdb5452c3a08ead7" category="section-title">使用Cloud Manager管理Kubernetes集群</block>
+  <block id="865ec115b3646a7d42d94fd0d6f64ca5" category="inline-link-macro">使用Cloud Manager的Astra Trident</block>
+  <block id="70ef9708acb1f72d9648f625edc21d7b" category="paragraph">使用 <block ref="d2f4359fbe3252be146a4ecb37a6f90e" category="inline-link-macro-rx"></block>、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。Cloud Manager支持使用Trident操作员手动或使用Helm部署Astra Trident。</block>
 </blocks>

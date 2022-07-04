@@ -61,6 +61,12 @@ NOTE: 如果集群升级到不受支持的版本，则操作员会阻止安装 A
 
 
 
+==== 使用Cloud Manager管理Kubernetes集群
+
+使用 link:https://docs.netapp.com/us-en/cloud-manager-kubernetes/concept-kubernetes.html["使用Cloud Manager的Astra Trident"^]、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。Cloud Manager支持使用Trident操作员手动或使用Helm部署Astra Trident。
+
+
+
 === 为什么要使用 Helm ？
 
 如果您还有其他要使用 Helm 管理的应用程序，从 Astra Trident 21.01 开始，您也可以使用 Helm 管理您的部署。
