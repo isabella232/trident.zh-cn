@@ -20,6 +20,25 @@ WARNING: 安装 NFS 或 iSCSI 工具后，您应始终重新启动工作节点�
 
 
 
+== 节点服务发现
+
+从22.07开始、Astra Trident会尝试自动检测节点是否能够运行iSCSI或NFS服务。Astra Trident会为节点创建事件以标识发现的服务。您可以使用命令查看这些事件：
+
+[listing]
+----
+kubectl get event -A --field-selector involvedObject.name=<Kubernetes node name>
+----
+Trident还标识为Trident节点CR上的每个节点启用的服务。要查看发现的服务、请使用命令：
+
+[listing]
+----
+tridentctl get node -o wide -n <Trident namespace>
+----
+
+NOTE: 节点服务发现可识别已发现的服务、但无法保证服务已正确配置。相反、如果没有发现的服务、则无法保证卷挂载将失败。
+
+
+
 == NFS volumes
 
 [cols="3*"]
@@ -51,8 +70,7 @@ NOTE: 您应确保 NFS 服务在启动期间启动。
 
 * Kubernetes 集群中的每个节点都必须具有唯一的 IQN 。* 这是必要的前提条件 * 。
 * 如果将 RHCOS 4.5 或更高版本，或者将 RHEL 或 CentOS 8.2 或更高版本与 `solidfire-san` 驱动程序结合使用，请确保在 ` /etc/iscsi/iscsid.conf` 中将 CHAP 身份验证算法设置为 MD5 。
-
-
++
 [listing]
 ----
 sudo sed -i 's/^\(node.session.auth.chap_algs\).*/\1 = MD5/' /etc/iscsi/iscsid.conf
@@ -132,6 +150,3 @@ NOTE: 确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults 
 |===
 
 NOTE: 对于 Ubuntu 18.04 ，您必须先使用 `iscsiadm` 发现目标端口，然后再启动 `open-iscsi` ， iSCSI 守护进程才能启动。您也可以将 `iscsi` 服务修改为自动启动 `iscsid` 。
-
-
-NOTE: 如果您希望了解有关自动员工节点准备的更多信息，这是一项测试功能，请参见 link:automatic-workernode.html["此处"^]。

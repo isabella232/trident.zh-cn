@@ -53,7 +53,7 @@ summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规�
 | `TridentImage` | 要安装的 Astra Trident 映像 | "NetApp/Trident ： 21.04" 
 
 
-| `imageRegistry` | 内部注册表的路径，格式为 ` < 注册表 FQDN>[ ：端口 ]/subpath]` | "K8s.gcr.io/SIG-storage （ K8s 1.17+ ）或 quay.io/k8scsi " 
+| `imageRegistry` | 内部注册表的路径，格式为 ` < 注册表 FQDN>[ ：端口 ]/subpath]` | "K8s.gcr.io/SIG-storage (K8s 1.19+)或quay.io/k8scsi " 
 
 
 | `kubeletDir` | 主机上的 kubelet 目录的路径 | "/var/lib/kubelet" 
@@ -78,9 +78,6 @@ summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规�
 |===
 
 IMPORTANT: 在 `TridentOrchestrator` 中指定 `spec.namespace` ，以表示安装了哪个命名空间 Astra Trident 。此参数 * 安装 Astra Trident 后无法更新 * 。尝试执行此操作会导致 `TridentOrchestrator` 的状态更改为 `Failed` 。Astra Trident 不适用于跨命名空间迁移。
-
-
-NOTE: 自动员工节点准备是一项 * 测试版功能 * ，仅用于非生产环境。
 
 
 TIP: 有关格式化 POD 参数的详细信息，请参见 link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["将 Pod 分配给节点"^]。

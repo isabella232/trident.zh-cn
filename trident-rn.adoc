@@ -18,7 +18,60 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 22.04 中的新增功能
+== 22.07中的新增功能
+
+
+
+=== 修复
+
+*
+
+* 修复了使用Helm或Trident运算符配置Trident时用于处理节点选择器的布尔值和数字值的问题描述。（link:https://github.com/NetApp/trident/issues/700["GitHub问题描述 700"^]）
+* 修复了问题描述 处理非CHAP路径错误的问题、以便kubelet在失败时重试。 link:https://github.com/NetApp/trident/issues/736["GitHub问题描述 #736"^]）
+
+
+
+
+=== 增强功能
+
+* 从K8s.gcr.io过渡到registry.k8s.io作为CSI映像的默认注册表
+* 现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。如果Trident确定在不影响活动工作负载的情况下安全执行此操作、现有卷将有机会切换到新的igroup方案。
+* 包含一个包含Trident安装的ResourceQuota、以确保在默认情况下限制使用PriorityClass时计划Trident DemonSet。
+* 为ANF驱动程序增加了对网络功能的支持。（link:https://github.com/NetApp/trident/issues/717["GitHub问题描述 #717"^]）
+* 为ONTAP 驱动程序添加了技术预览自动MetroCluster 切换检测功能。（link:https://github.com/NetApp/trident/issues/228["GitHub问题描述 #228"^]）
+
+
+
+
+=== 已弃用
+
+* *。*。*。*。
+* Astra数据存储(ADS)驱动程序已更新为v1bea1 CRD、因此此版本的Trident需要ADS 22.5.0或更高版本。
+* 后端配置不再允许在一个配置中使用多种身份验证类型。
+
+
+
+
+=== 删除
+
+* 已删除AWS CVS驱动程序(自22.04起已弃用)。
+* Kubernetes
++
+** 从节点Pod中删除了不必要的SYS_ADMIN功能。
+** 将nodeprep减少为简单的主机信息和主动服务发现、以便尽力确认工作节点上是否提供NFS/iSCSI服务。
+
+
+
+
+
+
+=== 文档。
+
+新的 link:https://docs.netapp.com/us-en/trident/trident-reference/pod-security.html["POD安全标准"] 添加了(PSS)部分、详细介绍了Astra Trident在安装时启用的权限。
+
+
+
+== 22.04中的更改
 
 NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见 https://docs.netapp.com/us-en/trident/earlier-versions.html["文档的早期版本"]。
 
@@ -29,13 +82,13 @@ IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetAp
 
 === 修复
 
-* 改进了 iSCSI 启动程序名称的解析。（问题描述 [#681](https://github.com/NetApp/trident/issues/681))[]
-* 修复了不允许使用 CSI 存储类参数的问题描述 。（问题描述 ##598](https://github.com/NetApp/trident/issues/598))[]
-* 修复了 Trident CRD 中的重复密钥声明。（问题描述 [#671](https://github.com/NetApp/trident/issues/671))[]
-* 修复了不准确的 CSI Snapshot 日志。（问题描述 [#629](https://github.com/NetApp/trident/issues/629))[]
-* 修复了已删除节点上的卷已取消发布的问题描述 。（问题描述 [#691](https://github.com/NetApp/trident/issues/691))[]
-* 增加了对块设备上文件系统不一致问题的处理。（问题描述 （ #656 ）(https://github.com/NetApp/trident/issues/656))[]
-* 修复了在安装期间设置 `imageRegistry` 标志时问题描述 提取自动支持映像的问题。（问题描述 （ #715 ）(https://github.com/NetApp/trident/issues/715))[]
+* 改进了 iSCSI 启动程序名称的解析。（link:https://github.com/NetApp/trident/issues/681["GitHub问题描述 #681"^]）
+* 修复了不允许使用 CSI 存储类参数的问题描述 。（link:https://github.com/NetApp/trident/issues/598["GitHub问题描述 598"^]）
+* 修复了 Trident CRD 中的重复密钥声明。（link:https://github.com/NetApp/trident/issues/671["GitHub问题描述 #6771"^]）
+* 修复了不准确的 CSI Snapshot 日志。（link:https://github.com/NetApp/trident/issues/629["GitHub问题描述 #629"^])
+* 修复了已删除节点上的卷已取消发布的问题描述 。（link:https://github.com/NetApp/trident/issues/691["GitHub 问题描述 第 691 号"^]）
+* 增加了对块设备上文件系统不一致问题的处理。（link:https://github.com/NetApp/trident/issues/656["GitHub问题描述 #656"^]）
+* 修复了在安装期间设置 `imageRegistry` 标志时问题描述 提取自动支持映像的问题。（link:https://github.com/NetApp/trident/issues/715["GitHub问题描述 #715"^]）
 * 修复了问题描述 ，其中 ANF 驱动程序无法使用多个导出规则克隆卷。
 
 
@@ -43,10 +96,10 @@ IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetAp
 
 === 增强功能
 
-* 现在，与 Trident 安全端点的入站连接至少需要 TLS 1.3 。（问题描述 （第 698 号）(https://github.com/NetApp/trident/issues/698))[]
+* 现在，与 Trident 安全端点的入站连接至少需要 TLS 1.3 。（link:https://github.com/NetApp/trident/issues/698["GitHub问题描述 #698"^]）
 * 现在， Trident 会将 HSTS 标头添加到其安全端点的响应中。
 * Trident 现在会尝试自动启用 Azure NetApp Files UNIX 权限功能。
-* * Kubernetes * ： Trident demonset 现在以 system-node-critical 优先级类运行。（问题描述 [#694/](https://github.com/NetApp/trident/issues/694))[]
+* * Kubernetes * ： Trident demonset 现在以 system-node-critical 优先级类运行。（link:https://github.com/NetApp/trident/issues/694["GitHub问题描述 #694"^]）
 
 
 

@@ -15,7 +15,7 @@ summary: 了解如何使用提供的示例配置为 Astra Trident 安装配置 A
 
 以配置和使用 https://cloud.netapp.com/astra-data-store["Astra 数据存储"^] 后端，您需要满足以下要求：
 
-* 支持的 ADS 存储系统。请参见 link:https://docs.netapp.com/us-en/astra-data-store/index.html["Astra Data Store 预览文档"^] 了解详细信息。
+* Astra Data Store 22.05或更高版本。请参见 link:https://docs.netapp.com/us-en/astra-data-store/index.html["Astra Data Store 文档"^] 了解详细信息。
 * 托管 ADS 的 Kubernetes 集群的凭据。托管 ADS 的 Kubernetes 集群必须具有一个专用于此 Astra Trident 后端创建和管理的卷，快照和导出策略资源的命名空间。必须为托管支持以下功能的 ADS 的 Kubernetes 集群提供 `kubeconfig` ：
 +
 ** 读取 `astrads-system` 命名空间中的所有对象

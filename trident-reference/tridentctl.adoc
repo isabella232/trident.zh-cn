@@ -83,7 +83,6 @@ Usage:
 可用选项：
 
 * `后端` ：从 Astra Trident 中删除一个或多个存储后端。
-* `node` ：从 Astra Trident 中删除一个或多个 CSI 节点。
 * `snapshot` ：从 Astra Trident 中删除一个或多个卷快照。
 * `storageclass` ：从 Astra Trident 中删除一个或多个存储类。
 * `volume` ：从 Astra Trident 中删除一个或多个存储卷。

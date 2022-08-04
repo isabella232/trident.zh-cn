@@ -10,6 +10,9 @@ settings:
   versions:
   - name: Astra Trident
     url: "/trident"
+    version-number: '22.07'
+  - name: Astra Trident
+    url: "/trident-2204"
     version-number: '22.04'
   - name: Astra Trident
     url: "/trident-2201"
@@ -17,9 +20,6 @@ settings:
   - name: Astra Trident
     url: "/trident-2110"
     version-number: '21.10'
-  - name: Astra Trident
-    url: "/trident-2107"
-    version-number: '21.07'
   langs: zh-cn,us-en,ja-jp,zh-tw,ko-kr
 sidebar:
   entries:
@@ -48,11 +48,11 @@ homepage:
   tiles:
   - title: 入门
     links:
+    - title: 了解 Astra Trident
+      url: "/trident-concepts/intro.html"
     - title: 发行说明
       url: trident-rn.html
-    - title: Astra Trident 简介
-      url: "/trident-concepts/intro.html"
-    - title: Astra Trident 要求
+    - title: 要求
       url: "/trident-get-started/requirements.html"
     - title: 试用
       url: "/trident-get-started/quickstart.html"

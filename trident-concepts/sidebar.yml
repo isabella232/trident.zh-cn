@@ -2,7 +2,7 @@
 section: trident-concepts
 title: 概念
 entries:
-- title: Astra Trident 简介
+- title: 了解 Astra Trident
   url: "/trident-concepts/intro.html"
 - title: ONTAP 驱动程序
   url: "/trident-concepts/ontap-drivers.html"

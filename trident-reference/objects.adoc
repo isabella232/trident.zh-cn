@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-reference/objects.html 
-keywords: kubernetes objects, trident objects, persistent volume claim, storage class, backend, snapshot 
+keywords: kubernetes objects, trident objects, persistent volume claim, storage class, backend, snapshot, priority class, system-node-critical, daemonset, resource quota, resourcequota, system node critical 
 summary: Kubernetes 与 Trident ， Trident 与存储以及 Kubernetes 与存储之间的关系由多个资源对象决定。其中一些对象通过 Kubernetes 进行管理，而另一些对象则通过 Trident 进行管理。 
 ---
 = Kubernetes 和 Trident 对象
@@ -221,7 +221,7 @@ ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire
 | 允许卷扩展 | boolean | true false | 启用或禁用对增加 PVC 大小的支持 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， gcp-cvs ， azure-netapp-files | 1.11 及更高版本 
 
 
-| 卷绑定模式 | string | 即时， WaitForFirstConsumer" | 选择何时进行卷绑定和动态配置 | 全部 | 1.17 及更高版本 
+| 卷绑定模式 | string | 即时， WaitForFirstConsumer" | 选择何时进行卷绑定和动态配置 | 全部 | 1.19 - 1.24 
 |===
 [TIP]
 ====
@@ -234,7 +234,7 @@ ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire
 +
 对于 NFS 存储驱动程序， NFS 导出中已存在文件系统。要使用 `fsGroup` ，存储类仍需要指定 `FSType` 。您可以将其设置为 `NFS` 或任何非空值。
 
-* 请参见 link:https://docs.netapp.com/us-en/trident/trident-use/vol-expansion.html["展开卷"^] 有关卷扩展的更多详细信息。
+* 请参见 link:https://docs.netapp.com/us-en/trident/trident-use/vol-expansion.html["展开卷"] 有关卷扩展的更多详细信息。
 * Trident 安装程序包提供了几个示例存储类定义，可用于 ``sample-input/storage-class-* 。 yaml`` 中的 Trident 。删除 Kubernetes 存储类也会删除相应的 Trident 存储类。
 
 
@@ -298,7 +298,7 @@ CRD 是一种 Kubernetes 构造。上述资源的对象由 Trident 创建。例�
 
 * 安装 Trident 时，系统会创建一组 CRD ，并可像使用任何其他资源类型一样使用。
 * 从先前版本的 Trident （使用 `etcd` 保持状态的版本）升级时， Trident 安装程序会从 `etcd` key-value 数据存储库迁移数据并创建相应的 CRD 对象。
-* 使用 `tridentctl uninstall` 命令卸载 Trident 时， Trident Pod 会被删除，但不会清理创建的 CRD 。请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Trident"^] 了解如何从头开始完全删除和重新配置 Trident 。
+* 使用 `tridentctl uninstall` 命令卸载 Trident 时， Trident Pod 会被删除，但不会清理创建的 CRD 。请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Trident"] 了解如何从头开始完全删除和重新配置 Trident 。
 
 
 
@@ -323,7 +323,7 @@ NOTE: 使用 Kubernetes 时，如果注册了使用 Trident 作为配置程序�
 
 NOTE: 这是您自己创建和管理的两种对象类型之一。另一个是 Kubernetes `StorageClass` 对象。
 
-有关如何构建这些对象的详细信息，请参见后端配置。
+有关如何构建这些对象的详细信息、请参见 link:../trident-use/backends.html["正在配置后端"]。
 
 
 
@@ -441,3 +441,51 @@ TIP: 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * �
 NOTE: 在 Kubernetes 中，这些对象会自动进行管理。您可以查看它们以查看 Trident 配置的内容。
 
 创建 Kubernetes `VolumeSnapshot` 对象请求时， Trident 会在备用存储系统上创建 Snapshot 对象。此快照对象的 `internalName` 是通过将前缀 `snapshot-` 与 `VolumeSnapshot` 对象的 `UID` （例如， `snapshot-e8d8a0ca-9826-11e9-9807-525400f3f660` ）组合而生成的。`VolumeName` 和 `volumeInternalName` 可通过获取后备卷的详细信息来填充。
+
+
+
+== Astra Trident ResourceQuota对象
+
+Trident降级会使用`ssystem-node-critical` Priority Class-the highest priority Class available in Kubernetes—以确保Astra Trident能够在正常节点关闭期间识别和清理卷、并允许Trident demonset Pod在资源压力较高的集群中以较低优先级抢占工作负载。
+
+为此、Astra Trident会使用`ResourceQuota`对象来确保满足Trident子集上的"系统节点关键"优先级类。在部署和创建emonset之前、Astra Trident会查找`ResourceQuota`对象、如果未发现、则会应用该对象。
+
+如果您需要对默认资源配额和优先级类进行更多控制、可以使用Helm图表生成`custom.yaml`或配置`ResourceQuota`对象。
+
+以下是一个`ResourceQuota`对象的示例、该对象会优先处理Trident子集。
+
+[source, yaml]
+----
+apiVersion: <version>
+kind: ResourceQuota
+metadata:
+  name: trident-csi
+  labels:
+    app: node.csi.trident.netapp.io
+spec:
+  scopeSelector:
+     matchExpressions:
+       - operator : In
+         scopeName: PriorityClass
+         values: ["system-node-critical"]
+----
+有关资源配额的详细信息、请参见 link:https://kubernetes.io/docs/concepts/policy/resource-quotas/["Kubernetes：资源配额"^]。
+
+
+
+=== 如果安装失败、请清理ResourceQuota
+
+在极少数情况下、如果在创建`ResourceQuota`对象后安装失败、请先尝试 link:../trident-managing-k8s/uninstall-trident.html["正在卸载"] 然后重新安装。
+
+如果不起作用、请手动删除`ResourceQuota`对象。
+
+
+
+=== 删除ResourceQuota
+
+如果您希望控制自己的资源分配、则可以使用以下命令删除Astra Trident `ResourceQuota`对象：
+
+[source, cli]
+----
+kubectl delete quota trident-csi -n trident
+----

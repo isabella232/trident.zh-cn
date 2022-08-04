@@ -33,7 +33,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
 
 
-| `m年` 月 日 | 集群或 SVM 管理 LIF 的 IP 地址 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
+| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。此功能为*技术预览*。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
 
 
 | `dataLIF` | 协议 LIF 的 IP 地址。对于 IPv6 ，请使用方括号。设置后无法更新 | 由 SVM 派生，除非另有说明 
@@ -84,7 +84,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `limitAggregateUsage` | 如果使用量超过此百分比，则配置失败。* 不适用于适用于 ONTAP 的 Amazon FSx * | " （默认情况下不强制实施） 
 
 
-| `limitVolumeSize` | 如果经济型驱动程序请求的卷大小超过此值，则配置失败。 | " （默认情况下不强制实施） 
+| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。 | " （默认情况下不强制实施） 
 
 
 | `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 | 100 
@@ -93,11 +93,16 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `debugTraceFlags` | 故障排除时要使用的调试标志。示例 ｛ "api" ： false ， "method " ： true ｝ | 空 
 
 
-| `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 * | false 
+| `useREST` | 用于使用 ONTAP REST API 的布尔参数。MetroCluster 不支持*技术预览*。 | false 
 |===
+[WARNING]
+.<code>useREST</code>注意事项
+====
+* `useREST` 提供了一个 * 技术预览 * ，建议用于测试环境，而不是生产工作负载。如果设置为 `true` ，则 Astra Trident 将使用 ONTAP REST API 与后端进行通信。此功能需要使用ONTAP 9.10及更高版本。此外，使用的 ONTAP 登录角色必须能够访问 `ONTAP` 应用程序。这一点可通过预定义的 `vsadmin` 和 `cluster-admin` 角色来满足。
+* MetroCluster 不支持`useREST`。
 
-NOTE: `useREST` 提供了一个 * 技术预览 * ，建议用于测试环境，而不是生产工作负载。如果设置为 `true` ，则 Astra Trident 将使用 ONTAP REST API 与后端进行通信。此功能需要使用 ONTAP 9.9 及更高版本。此外，使用的 ONTAP 登录角色必须能够访问 `ONTAP` 应用程序。这一点可通过预定义的 `vsadmin` 和 `cluster-admin` 角色来满足。
 
+====
 要与 ONTAP 集群通信，您应提供身份验证参数。这可以是安全登录的用户名 / 密码，也可以是已安装的证书。
 
 

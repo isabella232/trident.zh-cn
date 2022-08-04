@@ -127,7 +127,7 @@ NOTE: 如果集群升级到不受支持的版本，则操作员会阻止安装 A
 
 
 
-IMPORTANT: 如果您使用的是私有映像存储库，则应在专用注册表 URL 的末尾添加 ` /k8scsi` （对于 1.17 之前的 Kubernetes 版本）或 ` /SIG-storage` （对于 1.17 之后的 Kubernetes 版本）。在使用私有注册表进行 `tridentctl` 部署时，应将 ` -trident 映像` 和 ` -autosupport-image` 与 ` -image-regRegistry` 结合使用。如果要使用 Trident 操作符部署 Astra Trident ，请确保 Orchestrator CR 在安装参数中包含 `tridentImage` 和 `autosupportImage` 。
+IMPORTANT: 如果您使用的是私有映像存储库、则应将`/SIG-storage`添加到专用注册表URL的末尾。在使用私有注册表进行 `tridentctl` 部署时，应将 ` -trident 映像` 和 ` -autosupport-image` 与 ` -image-regRegistry` 结合使用。如果要使用 Trident 操作符部署 Astra Trident ，请确保 Orchestrator CR 在安装参数中包含 `tridentImage` 和 `autosupportImage` 。
 
 
 

@@ -22,7 +22,7 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 
 要部署 Astra Trident ，应满足以下前提条件：
 
-* 您对运行 Kubernetes 1.17 及更高版本的受支持 Kubernetes 集群拥有完全权限。
+* 您对运行Kubernetes 1.19 - 1.24的受支持Kubernetes集群拥有完全权限。
 * 您可以访问受支持的 NetApp 存储系统。
 * 您可以从所有 Kubernetes 工作节点挂载卷。
 * 您安装了一个安装了 `kubectl` （如果使用的是 OpenShift ，则为 `oc` ）的 Linux 主机，并将其配置为管理要使用的 Kubernetes 集群。
@@ -41,7 +41,7 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 
 除了上述前提条件之外，要使用 Helm 部署 Trident 操作员，还需要满足以下条件：
 
-* Kubernetes 1.17 及更高版本
+* Kubernetes 1.19 - 1.24
 * Helm 版本 3
 
 
@@ -56,7 +56,7 @@ helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 +
 [listing]
 ----
-helm install <release-name> netapp-trident/trident-operator --version 22.1.0 --namespace <trident-namespace>
+helm install <release-name> netapp-trident/trident-operator --version 22.7.0 --namespace <trident-namespace>
 ----
 +
 
@@ -74,7 +74,7 @@ NOTE: 如果尚未为 Trident 创建命名空间，则可以将 ` -create-namesp
 
 [listing]
 ----
-$ helm install <name> netapp-trident/trident-operator --version 22.1.0 --set tridentDebug=true
+$ helm install <name> netapp-trident/trident-operator --version 22.7.0 --set tridentDebug=true
 ----
 Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。
 
@@ -95,7 +95,7 @@ Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。
 
 NOTE: 使用 OpenShift 时，在以下所有示例中使用 `oc` 而不是 `kubectl` ，并首先以 * 系统： admin* 的身份运行 `oc login -u system ： admin` 或 `oc login -u Kube-admin` 进行登录。
 
-要查看您的 Kubernetes 版本是否高于 1.17 ，请运行以下命令：
+要验证Kubernetes版本、请运行以下命令：
 
 [listing]
 ----
@@ -220,7 +220,6 @@ Status:
     Autosupport Proxy:
     Autosupport Serial Number:
     Debug:                     true
-    Enable Node Prep:          false
     Image Pull Secrets:
     Image Registry:
     k8sTimeout:           30

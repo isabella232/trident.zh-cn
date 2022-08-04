@@ -86,6 +86,9 @@ NOTE: 注意： Astra Trident 不支持手动 QoS 容量池。
 | `ssubnet` | 委派给 `Microsoft.Netapp/volumes` 的子网的名称 | "" 
 
 
+| `网络功能` | 卷的一组vNet功能可以是`Basic`或`Standard` | "" 
+
+
 | `nfsMountOptions` | 精细控制 NFS 挂载选项。 | "nfsvers=3" 
 
 
@@ -99,6 +102,9 @@ WARNING: 如果在尝试创建 PVC 时遇到 " 未找到容量池 " 错误，则
 
 
 NOTE: 如果要使用 NFS 4.1 挂载卷，可以在逗号分隔的挂载选项列表中包含 ``nfsver=4`` 以选择 NFS v4.1 。存储类中设置的任何挂载选项都会覆盖后端配置文件中设置的挂载选项。
+
+
+NOTE: 。 https://docs.microsoft.com/en-us/azure/azure-netapp-files/configure-network-features["网络功能"^] 功能并非通常在所有地区都可用、可能需要在订阅中启用。如果在未启用此功能时指定`networkfeatures` config选项、则Trident中的发生原因 卷配置将失败。
 
 可以使用短名称或完全限定名称指定 `resourceGroups` ， `netappAccounts` ， `capacityPools` ， `virtualNetwork` 和 `ssubnet` 的值。短名称可以与多个同名资源匹配，因此在大多数情况下，建议使用完全限定名称。`resourceGroups` ， `netappAccounts` 和 `capacityPools` 值是一种筛选器，可将发现的一组资源限制为此存储后端提供的资源，并可通过任意组合方式指定。完全限定名称的格式如下：
 
@@ -210,6 +216,7 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
 ],
         "virtualNetwork": "my-virtual-network",
         "subnet": "my-subnet",
+        "networkFeatures": "Standard",
         "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
         "limitVolumeSize": "500Gi",
         "defaults": {
@@ -217,7 +224,6 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
             "snapshotDir": "true",
             "size": "200Gi",
             "unixPermissions": "0777"
-=======
         }
     }
 ----
@@ -238,6 +244,7 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
         "clientSecret": "SECRET",
         "location": "eastus",
         "resourceGroups": ["application-group-1"],
+        "networkFeatures": "Basic",
         "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
         "labels": {
             "cloud": "azure"
@@ -250,7 +257,8 @@ NOTE: 对于在 ANF 后端创建的所有卷， Astra Trident 会在配置存储
                     "performance": "gold"
                 },
                 "serviceLevel": "Ultra",
-                "capacityPools": ["ultra-1", "ultra-2"]
+                "capacityPools": ["ultra-1", "ultra-2"],
+                "networkFeatures": "Standard"
             },
             {
                 "labels": {

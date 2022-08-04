@@ -19,7 +19,7 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 * 您应安装基于 CRD 的 Trident 。这表示 19.07 及更高版本的所有版本。如果您安装的是基于 CSI 的安装，则很可能是基于 CRD 的安装。
 * 如果您已卸载 CSI Trident ，并且安装中的元数据仍然存在，则可以使用操作员进行升级。
 * 在给定 Kubernetes 集群中的所有命名空间中，只应安装一个 Astra Trident 。
-* 您应使用运行的 Kubernetes 集群 link:requirements.html["1.17 及更高版本"^]。
+* 您应使用运行的 Kubernetes 集群 link:requirements.html["版本1.19-1.24"^]。
 * 如果存在字母快照 CRD ，则应使用 `tridentctl obliviate alpha-snapshot-crd` 将其删除。此操作将删除 alpha snapshot 规范的 CRD 。有关应删除 / 迁移的现有快照，请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^]。
 
 
