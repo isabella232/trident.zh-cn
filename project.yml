@@ -100,8 +100,8 @@ homepage:
       url: https://cloud.netapp.com/kubernetes-hub
     - title: netapp.io
       url: https://netapp.io/
-    - title: Slack
-      url: https://netapppub.slack.com/
+    - title: 不和
+      url: https://discord.gg/NetApp
 product-family:
   name: Astra
   repo: astra-family

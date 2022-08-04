@@ -793,11 +793,8 @@
   <block id="7a183359334a99fc80b796244313284c" category="section-title">使用 Element 快照恢复数据</block>
   <block id="2d51cea50aa816e6be9c663c2ad2686a" category="paragraph">通过为 Element 卷设置快照计划并确保按所需间隔创建快照来备份此卷上的数据。您应使用 Element UI 或 API 设置快照计划。目前，无法通过 `solidfire-san` 驱动程序为卷设置快照计划。</block>
   <block id="c42cc84c1560600f6f5986a958de0735" category="paragraph">如果发生数据损坏，您可以使用 Element UI 或 API 选择特定快照并手动将卷回滚到快照。此操作将还原自创建快照以来对卷所做的任何更改。</block>
-  <block id="e20acf6d4b1275a0b5d2eb01c845adff" category="summary">NetApp 以多种方式为 Trident 提供支持。全天候提供广泛的免费自助支持选项，例如，可提供宽松通道。</block>
   <block id="db5eb84117d06047c97c9a0191b5fffe" category="doc">支持</block>
   <block id="14340f3a4eb25a54f8446036d807d7c8" category="paragraph">Astra Trident 是一个官方支持的 NetApp 项目。您可以使用任何标准机制联系 NetApp ，并获得所需的企业级支持。</block>
-  <block id="31521e7ff20a98e479b412febf1ac4b4" category="inline-link">NetApp 的工作时间很长</block>
-  <block id="b622c74429f1282e8ed1f79ee8d53260" category="paragraph">此外，在 `containers` Channel on 上还有一个由容器用户（包括 Astra Trident 开发人员）组成的活跃公有社区<block ref="e5c49b87a1fe6d362b72260d2620cf35" category="inline-link-rx"></block>。这是一个很好的地方，可以提出有关项目的一般问题，并与志同道合的同行讨论相关主题。</block>
   <block id="dec54888538ac86f51d29a3d043e6bf6" category="summary">您可以使用操作员轻松升级现有的 Astra Trident 安装。</block>
   <block id="5ff3faebb0ff710340bdbee89a4667ad" category="doc">使用操作员升级</block>
   <block id="b8ce48f9165ac0cead930cd72b36b5ac" category="paragraph">要使用运算符进行升级，应满足以下条件：</block>
@@ -1075,14 +1072,10 @@
   <block id="3e77e87e5ee8fb4f6f910f4cf0594fc2" category="section-title">如何生成支持日志包？</block>
   <block id="7938aed248d09a5120eaf414e6c1d574" category="paragraph">您可以运行 `tridentctl logs -a` 来创建支持包。除了在捆绑包中捕获的日志之外，还可以捕获 kubelet 日志以诊断 Kubernetes 端的挂载问题。获取 kubelet 日志的说明因 Kubernetes 的安装方式而异。</block>
   <block id="2c3543f339dc749a508ed5e5e5aaae23" category="section-title">如果需要提出新功能请求，我该怎么办？</block>
-  <block id="42bfc6e3acd67192d42135138102a1de" category="inline-link">Trident Github</block>
-  <block id="c2146fea25aea76bae1b5853f60a2f87" category="paragraph">在上创建问题描述<block ref="47273b71915582ec6db59ad21099cfb9" category="inline-link-rx"></block> 并在问题描述的主题和问题描述中提及 * RFE* 。</block>
   <block id="0aa1d7a95d75c0faa8302a803356b7b7" category="section-title">我应在何处提出缺陷？</block>
   <block id="4c1d312c39e7048d2c634824e243fdba" category="inline-link">Astra Trident Github</block>
   <block id="a814c59a6fef2fb64a2a32dedcf6f82e" category="paragraph">在上创建问题描述<block ref="e71a8230f1c77ee7d957187295b859e4" category="inline-link-rx"></block>。请务必包含与问题描述相关的所有必要信息和日志。</block>
   <block id="fd0759571f12527967b660b5b327c65b" category="section-title">如果我有有关 Astra Trident 的快速问题需要澄清，会发生什么情况？是否有社区或论坛？</block>
-  <block id="3561f3a3c5576e2ce0dc0d1e268bb9b2" category="inline-link">Slack</block>
-  <block id="f549c74b636d0ad80493d063fe6ecfc3" category="paragraph">如果您有任何问题，问题或请求，请通过我们的联系我们<block ref="2d9f7b5a7f56881c42c3b026a068eb36" category="inline-link-rx"></block> 团队或 GitHub 。</block>
   <block id="264c3819b5a8fdae87f1dc9af1988a90" category="section-title">我的存储系统密码已更改， Astra Trident 不再工作，如何恢复？</block>
   <block id="061ec2ab4d383b8f20e15eda656db8f7" category="paragraph">使用 `tridentctl update backend myBackend -f &lt;/path/to_new_backend.json&gt; -n trident` 更新后端的密码。将示例中的 `myBackend` 替换为后端名称，将 `` /path/to_new_backend.json` 替换为正确的 `backend.json` 文件的路径。</block>
   <block id="6100f37d544e87e462129f21e52bae7f" category="section-title">Astra Trident 找不到我的 Kubernetes 节点。如何修复此问题？</block>
@@ -3314,4 +3307,10 @@
   <block id="3786cba0bc294f586b13783c69b08371" category="inline-link-macro">GitHub问题描述 #694</block>
   <block id="c0f60be70f5b8a5bc6c7c8071f4481fb" category="list-text">* Kubernetes * ： Trident demonset 现在以 system-node-critical 优先级类运行。（<block ref="b04869f92878b510e393bc41361c825d" category="inline-link-macro-rx"></block>）</block>
   <block id="269e4d9baae2c39648f68ccfde3d8135" category="doc">Astra Trident 22.07文档</block>
+  <block id="4169ad079be240db45893881a795d255" category="paragraph">在上创建问题描述<block ref="e71a8230f1c77ee7d957187295b859e4" category="inline-link-rx"></block> 并在问题描述的主题和问题描述中提及 * RFE* 。</block>
+  <block id="a7cfd917113a9ee9c1e789887d1d809f" category="inline-link-macro">渠道不和</block>
+  <block id="c0ecc0f40acc112b78de6c3fd3c29e83" category="paragraph">如有任何问题、问题或请求、请通过我们的Astra联系我们 <block ref="6130664377fa14615bb1abd5257e9714" category="inline-link-macro-rx"></block> 或GitHub。</block>
+  <block id="c217b0ac2dd5504f79ba78b220a9c358" category="summary">NetApp 以多种方式为 Trident 提供支持。全天候提供广泛的免费自助支持选项、例如不和的渠道。</block>
+  <block id="1b3d6decfa71cc52ecc9b041f40a02e5" category="paragraph">在我们的Astra上、还有一个由容器用户(包括Astra Trident开发人员)参与的活跃公有 社区 <block ref="6130664377fa14615bb1abd5257e9714" category="inline-link-macro-rx"></block>。这是一个很好的地方，可以提出有关项目的一般问题，并与志同道合的同行讨论相关主题。</block>
+  <block id="8f5cc6430613f1c12f36965050bb7197" category="sidebar">不和</block>
 </blocks>
