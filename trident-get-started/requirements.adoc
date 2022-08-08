@@ -24,7 +24,7 @@ Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
 * Anthos on-Prem (VMware)和Anthos on bare metal 1.9、1.10、1.11
 * Kubernetes 1.19 - 1.24
-* Mirantis Kubernetes Engine 3.4
+* Mirantis Kubernetes Engine 3.5
 * OpenShift 4.7 (支持截止日期为2022年8月24日)、4.8、4.9、4.10
 
 

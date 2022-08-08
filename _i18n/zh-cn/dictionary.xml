@@ -1383,7 +1383,6 @@
   <block id="0582c93c9857a8b6d0380be79128eefc" category="admonition">要了解 Astra Trident 使用的端口，请参见 <block ref="c6b87a878d50568ac1e654ad3964af7b" category="inline-link-macro-rx"></block>。</block>
   <block id="c777be7f669397b0a376fe32ca5cd9c3" category="section-title">支持的前端（编排程序）</block>
   <block id="74aefc05d193afd5c50a0df882997656" category="paragraph">Astra Trident 支持多个容器引擎和流程编排程序，其中包括：</block>
-  <block id="37696641960d6c73a7dadab603c1877e" category="list-text">Mirantis Kubernetes Engine 3.4</block>
   <block id="201eb37826a33e35adff9119f25946bd" category="paragraph">以下版本支持 Trident 操作符：</block>
   <block id="f787cd4b6963b13f12fa53131f58ef6c" category="section-title">支持的后端（存储）</block>
   <block id="843e2f0c722d25903a6010b62ac4f13b" category="paragraph">要使用 Astra Trident ，您需要以下一个或多个受支持的后端：</block>
@@ -3313,4 +3312,5 @@
   <block id="c217b0ac2dd5504f79ba78b220a9c358" category="summary">NetApp 以多种方式为 Trident 提供支持。全天候提供广泛的免费自助支持选项、例如不和的渠道。</block>
   <block id="1b3d6decfa71cc52ecc9b041f40a02e5" category="paragraph">在我们的Astra上、还有一个由容器用户(包括Astra Trident开发人员)参与的活跃公有 社区 <block ref="6130664377fa14615bb1abd5257e9714" category="inline-link-macro-rx"></block>。这是一个很好的地方，可以提出有关项目的一般问题，并与志同道合的同行讨论相关主题。</block>
   <block id="8f5cc6430613f1c12f36965050bb7197" category="sidebar">不和</block>
+  <block id="094a6e8342b02106129112ad2ff3d374" category="list-text">Mirantis Kubernetes Engine 3.5</block>
 </blocks>
