@@ -1237,7 +1237,6 @@
   <block id="f67b776be47148789a46badee3f77607" category="paragraph">要验证是否可以从 Docker Hub 启动使用映像的 POD 并通过 Pod 网络访问存储系统，请运行以下命令：</block>
   <block id="b51ca564a2763a36e8eff661a1e45814" category="section-title">第 2 步：下载并设置操作员</block>
   <block id="2078c81a90072659fba28be2f6863a52" category="admonition">从 21.01 开始， Trident 操作符的范围为集群范围。使用 Trident 操作符安装 Trident 需要创建 `TridentOrchestrator` Custom Resource Definition （ CRD ）并定义其他资源。在安装 Astra Trident 之前，您应执行以下步骤来设置操作员。</block>
-  <block id="76e266ddd09c36b072fda03f840a24df" category="list-text">下载最新版本的<block ref="d4cf8040e05d7d00be7e40a7abf8ee09" category="inline-link-rx"></block> 从 _Downloads_部分 中提取该文件。</block>
   <block id="f3d3e6090d613a233f190256fd5f4fa3" category="list-text">使用适当的 CRD 清单创建 `TridentOrchestrator` CRD 。然后，您可以稍后创建一个 `TridentOrchestrator` Custom Resource ，以通过操作员实例化安装。</block>
   <block id="337d79852891a37d41285c9101c3fff4" category="paragraph">运行以下命令：</block>
   <block id="2fd9409a1ac929d355820ffd5accc531" category="list-text">创建 `TridentOrchestrator` CRD 后，创建操作员部署所需的以下资源：</block>
@@ -1430,7 +1429,6 @@
   <block id="b80293f6b9048d95e7f975e831ef4da6" category="paragraph">确定 Kubernetes 服务器版本。您将在安装 Astra Trident 时使用它。</block>
   <block id="57786106edaa9a7d85847431f0aa5559" category="section-title">第 2 步：下载并提取安装程序</block>
   <block id="f838f032d9e83a6229936c3a7784f752" category="admonition">Trident 安装程序将创建 Trident Pod ，配置用于保持其状态的 CRD 对象，并初始化执行配置卷和将卷附加到集群主机等操作的 CSI sidecars 。</block>
-  <block id="92c4cf66727cb67866ebf0c3ec416382" category="paragraph">您可以下载最新版本的<block ref="e796e94083ba305bee55a53ec1dc755d" category="inline-link-rx"></block> 从 _Downloads_部分 中提取该文件。</block>
   <block id="31dfa917b0ab09bc8fa9aa62c5b68b9b" category="paragraph">例如，如果最新版本为 21.07.1 ：</block>
   <block id="9b7632bed019c72ffa74193e1808fd78" category="section-title">第 3 步：安装 Astra Trident</block>
   <block id="326f6498f188018e71d4ea9c3a240042" category="paragraph">执行 `tridentctl install` 命令，在所需命名空间中安装 Astra Trident 。</block>
@@ -2000,19 +1998,11 @@
   <block id="ff27e75635c1ff1e88fbc656b16e56ce" category="section-title">了解 Astra Trident</block>
   <block id="ac7bd35f3efc1fd44a6368cea5fa9c21" category="paragraph">如果您是 Astra Trident 的新用户，请使用下面提供的链接进行熟悉：</block>
   <block id="483a5da192f46e3cfe8391d3ef234fc4" category="inline-link-macro">常见问题解答</block>
-  <block id="291df90d8802914b42223577bb41f627" category="list-text"><block ref="291df90d8802914b42223577bb41f627" category="inline-link-macro-rx"></block></block>
   <block id="d977410bdd2db39b51f9b9fbdbcc8061" category="inline-link-macro">使用 Astra Trident 的要求</block>
-  <block id="4d644a71fe6f2b6c8e2bcc86d5aaed77" category="list-text"><block ref="4d644a71fe6f2b6c8e2bcc86d5aaed77" category="inline-link-macro-rx"></block></block>
   <block id="486632f7d2196e772b742db4a4a0ad7c" category="inline-link-macro">部署 Astra Trident</block>
-  <block id="70638242b92c90c812dfa8f50f272806" category="list-text"><block ref="70638242b92c90c812dfa8f50f272806" category="inline-link-macro-rx"></block></block>
   <block id="bec2d42d896d0905cf546e4b5ca33b97" category="inline-link-macro">配置适用于 NetApp ONTAP 的 ONTAP ， Cloud Volumes ONTAP 和 Amazon FSX 的最佳实践</block>
-  <block id="80a1961bd7058b357bb20148eaf24ec2" category="list-text"><block ref="80a1961bd7058b357bb20148eaf24ec2" category="inline-link-macro-rx"></block></block>
-  <block id="80e431e9c3f38eb259dc9d255c8f4cf2" category="list-text"><block ref="80e431e9c3f38eb259dc9d255c8f4cf2" category="inline-link-macro-rx"></block></block>
   <block id="a479f33489c8d81410024a41c9544214" category="inline-link-macro">ONTAP SAN 后端配置</block>
-  <block id="9b405a9aada0c758f606770edf5e729c" category="list-text"><block ref="9b405a9aada0c758f606770edf5e729c" category="inline-link-macro-rx"></block></block>
   <block id="3db2a44c712d8cff702c0fe05daddb2c" category="inline-link-macro">ONTAP NAS 后端配置</block>
-  <block id="88cc0a1e56925a83682b7c1f999e281b" category="list-text"><block ref="88cc0a1e56925a83682b7c1f999e281b" category="inline-link-macro-rx"></block></block>
-  <block id="0606b09e12901baae5719fde5a162beb" category="paragraph">详细了解驱动程序功能 <block ref="36417a02a2b8551d9a22837b23ac7abd" category="inline-link-macro-rx"></block>。</block>
   <block id="55449fd175613962d882ab450cfc5f3c" category="inline-link">FabricPool</block>
   <block id="d07e2d99267e4fc3c508f6701be977b4" category="paragraph">适用于 NetApp ONTAP 的 Amazon FSX 使用<block ref="d1584952da6bdedb0a24d5dbd43ce0bf" category="inline-link-rx"></block> 以管理存储层。通过它，您可以根据数据是否经常访问来将数据存储在层中。</block>
   <block id="8e64a609e66214066595e6300aaab281" category="section-title">驱动程序</block>
@@ -2026,30 +2016,21 @@
   <block id="ed2536bee60113131cf25b2de3ec8734" category="list-text">基于证书： Astra Trident 将使用 SVM 上安装的证书与 FSX 文件系统上的 SVM 进行通信。</block>
   <block id="28e8b87c947c614dcb6e6f51703815e1" category="paragraph">要了解有关身份验证的详细信息，请参见以下链接：</block>
   <block id="619b69dca5d7c9f1f67ec55897733162" category="inline-link-macro">ONTAP NAS</block>
-  <block id="b773e97e2ae2aebea91c33b771a98316" category="list-text"><block ref="b773e97e2ae2aebea91c33b771a98316" category="inline-link-macro-rx"></block></block>
   <block id="548fedaf4074fe2826e3c53dfd92a19e" category="inline-link-macro">ONTAP SAN</block>
-  <block id="58ec862225833e810e6a7f94667d42db" category="list-text"><block ref="58ec862225833e810e6a7f94667d42db" category="inline-link-macro-rx"></block></block>
   <block id="9f6c198d85b31b573b56186f8ecc4394" category="section-title">使用适用于 NetApp ONTAP 的 Amazon FSX 在 EKS 上部署和配置 Astra Trident</block>
   <block id="80d13d3dbe137e8fb646193f275eceeb" category="list-text">已安装 `kubectl` 的现有 Amazon EKS 集群或自管理 Kubernetes 集群。</block>
   <block id="52d48fdd62aa109d7f163f0ef8a31b83" category="list-text">可从集群的工作节点访问的适用于 NetApp ONTAP 文件系统和 Storage Virtual Machine （ SVM ）的现有 Amazon FSX 。</block>
   <block id="ae9a35d29039db87d65a796241a9043d" category="inline-link-macro">NFS 和 / 或 iSCSI</block>
-  <block id="26717a7ec67b264dcb09707406b962ef" category="list-text">为准备工作的工作节点 <block ref="b4b6a021fd40b8007c50db2baa5f32f0" category="inline-link-macro-rx"></block>。</block>
   <block id="fe914214000491758957f04647f8da36" category="inline-link">Amazon Machine 映像</block>
   <block id="b048d74c93505355f9535fd30cba1a60" category="admonition">确保按照 Amazon Linux 和 Ubuntu 所需的节点准备步骤进行操作<block ref="70013ee128d5437b3d9579d66ece4066" category="inline-link-rx"></block> （ AMIS ），具体取决于您的 EKS AMI 类型。</block>
-  <block id="7b94315b87c307aaeb6180ba3d298112" category="paragraph">有关其他 Astra Trident 要求，请参见 <block ref="9754671a728b750cb0063ea36c5205bc" category="inline-link-macro-rx"></block>。</block>
-  <block id="a63af3333b229a7d3d80f554369071d3" category="list-text">使用 ./trident 部署 Astra Trident 。 Get-started/Kubernetes 部署 .html[ 部署方法^ ] 之一部署 Astra Trident 。</block>
   <block id="064bdeb131b9f896a140c3620503f952" category="list-text">按照以下步骤配置 Astra Trident ：</block>
   <block id="0416f36f8f02433e530639fd76b0721d" category="list-text">收集 SVM 的管理 LIF DNS 名称。例如，通过使用 AWS 命令行界面，在运行以下命令后，在 `Endpoints` -&gt; `Management` 下找到 `DNSName` 条目：</block>
-  <block id="d4eca488acc4ec18f87e7f00d23309cd" category="list-text">创建并安装用于身份验证的证书。如果您使用的是 `ontap-san` 后端，请参见 <block ref="db35e24c08f3bb29e6d31cbaa530e9d6" category="inline-link-macro-rx"></block>。如果您使用的是 `ontap-nas` 后端，请参见 <block ref="118a5731ca660935428e52a749b9e8a6" category="inline-link-macro-rx"></block>。</block>
   <block id="3e25473814d436a2ebac91120e147b0b" category="admonition">您可以从可以访问文件系统的任何位置使用 SSH 登录到文件系统（例如，安装证书）。使用 `fsxadmin` 用户，创建文件系统时配置的密码以及 `AWS FSx describe 文件系统` 中的管理 DNS 名称。</block>
   <block id="860958fe641e0edbd80fe522c36d0560" category="list-text">使用您的证书和管理 LIF 的 DNS 名称创建后端文件，如以下示例所示：</block>
   <block id="1584837635038d443115ce4eeb3b33e4" category="paragraph">有关创建后端的信息，请参见以下链接：</block>
   <block id="6f95a39ae3c518928ed5e4681a0fd49b" category="inline-link-macro">使用 ONTAP NAS 驱动程序配置后端</block>
-  <block id="82744a46443ebff9011b85aa2468fdc2" category="list-text"><block ref="82744a46443ebff9011b85aa2468fdc2" category="inline-link-macro-rx"></block></block>
-  <block id="d1e8ff43d93982813a74a45f9b721655" category="list-text"><block ref="d1e8ff43d93982813a74a45f9b721655" category="inline-link-macro-rx"></block></block>
   <block id="408cf26cdce3db57f4b0cfb372f60739" category="admonition">请勿为 `ontap-san` 和 `ontap-san-economy-` 驱动程序指定 `dataLIF` ，以允许 Astra Trident 使用多路径。</block>
   <block id="d11f02b39cdb338286053b2f1315c6b4" category="inline-link-macro">存储类，配置卷以及将卷挂载到 Pod 中</block>
-  <block id="95a5f873da165cd068ef3ec7e17364f3" category="paragraph">部署完成后，执行以下步骤以创建 <block ref="15bf5a6bf382a8a35f58cdae8ebe845c" category="inline-link-macro-rx"></block>。</block>
   <block id="cc788b7e72b2a734dd0985bd1e0e9fe3" category="inline-link">Amazon FSX for NetApp ONTAP 文档</block>
   <block id="fd570b75466e2daca21a032e6fd5981c" category="list-text"><block ref="fd570b75466e2daca21a032e6fd5981c" category="inline-link-rx"></block></block>
   <block id="0ef79cb4bb284d3ca9c3e95489919301" category="inline-link">有关适用于 NetApp ONTAP 的 Amazon FSX 的博客文章</block>
@@ -3315,4 +3296,25 @@
   <block id="adcc762b8bd0076278dedcc49cc85154" category="paragraph">如果您运行的不是Astra Trident 22.07、则可以参考先前版本的文档。</block>
   <block id="c53358822905bb04d312060d1cb568af" category="inline-link">Astra Trident 22.04</block>
   <block id="fdd380631ba8063e7b8f842282a01e40" category="list-text"><block ref="fdd380631ba8063e7b8f842282a01e40" category="inline-link-rx"></block></block>
+  <block id="53f614673eb31d64cdc3c16cb7ef696f" category="list-text"><block ref="53f614673eb31d64cdc3c16cb7ef696f" category="inline-link-macro-rx"></block></block>
+  <block id="b5f63f8036cd45ad0dc5a15e89d892bf" category="list-text"><block ref="b5f63f8036cd45ad0dc5a15e89d892bf" category="inline-link-macro-rx"></block></block>
+  <block id="8143e4f4516fa5201a1d83b531123ee5" category="list-text"><block ref="8143e4f4516fa5201a1d83b531123ee5" category="inline-link-macro-rx"></block></block>
+  <block id="1f5ad17ec2adfcbcca138359dcca4309" category="list-text"><block ref="1f5ad17ec2adfcbcca138359dcca4309" category="inline-link-macro-rx"></block></block>
+  <block id="0d44cca315d52e83c252d5eed702283b" category="list-text"><block ref="0d44cca315d52e83c252d5eed702283b" category="inline-link-macro-rx"></block></block>
+  <block id="ac46d22bcca3547de74d6810bd9095bb" category="list-text"><block ref="ac46d22bcca3547de74d6810bd9095bb" category="inline-link-macro-rx"></block></block>
+  <block id="eb94455af06a2b40161cf0d3b707fca3" category="list-text"><block ref="eb94455af06a2b40161cf0d3b707fca3" category="inline-link-macro-rx"></block></block>
+  <block id="512dd8d451859a17bafc26e226ad34d1" category="paragraph">详细了解驱动程序功能 <block ref="c08a919e469d70485a0d1e4b10e88988" category="inline-link-macro-rx"></block>。</block>
+  <block id="d95ad4459662eb677c0657aef7db46fc" category="list-text"><block ref="d95ad4459662eb677c0657aef7db46fc" category="inline-link-macro-rx"></block></block>
+  <block id="9d7c78d461d656f21ecd151d34bd9568" category="list-text"><block ref="9d7c78d461d656f21ecd151d34bd9568" category="inline-link-macro-rx"></block></block>
+  <block id="2a5101c9e38785c60e11907de68b4d1f" category="list-text">为准备工作的工作节点 <block ref="ee6f44b53daa58b65b5a080b473f1d0b" category="inline-link-macro-rx"></block>。</block>
+  <block id="8cbd88bfa5b70d4cd8cb86c593d7749d" category="paragraph">有关其他 Astra Trident 要求，请参见 <block ref="bc9b0af11ea271e4b171d84a070646c9" category="inline-link-macro-rx"></block>。</block>
+  <block id="ccb5eb98656346cbfa0b207e7d363bef" category="inline-link-macro">部署方法</block>
+  <block id="e2bcf5dc117f31569d413bd9b7698bf2" category="list-text">使用其中一种部署Astra Trident <block ref="71cad0f2a077aa26894105299bf47b53" category="inline-link-macro-rx"></block>。</block>
+  <block id="41a3c58da2506ba6d3de6fb07fdfd7f5" category="list-text">创建并安装用于身份验证的证书。如果您使用的是 `ontap-san` 后端，请参见 <block ref="4945bdd45855343701d117c66ca7ca72" category="inline-link-macro-rx"></block>。如果您使用的是 `ontap-nas` 后端，请参见 <block ref="b79e58a81f7951e201e878065c9630a2" category="inline-link-macro-rx"></block>。</block>
+  <block id="26798b67dd2e5b4c8d4f03c4c16170c7" category="list-text"><block ref="26798b67dd2e5b4c8d4f03c4c16170c7" category="inline-link-macro-rx"></block></block>
+  <block id="85d7b73826973ab07bfe78af69bd85f4" category="list-text"><block ref="85d7b73826973ab07bfe78af69bd85f4" category="inline-link-macro-rx"></block></block>
+  <block id="781a249bcdf6c4a42778c442a1b98ff0" category="paragraph">部署完成后，执行以下步骤以创建 <block ref="71dee6d7db1737892d8ac3c68402b3c3" category="inline-link-macro-rx"></block>。</block>
+  <block id="a1142049a82a11e90102d655bb7e234d" category="inline-link-macro">GitHub上的_assets_部分</block>
+  <block id="28b29acf4f44cae9d70c63d88b52ba30" category="list-text">从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
+  <block id="da434b04f7985eff0b8eba0189b03041" category="paragraph">您可以从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
 </blocks>

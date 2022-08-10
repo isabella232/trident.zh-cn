@@ -72,7 +72,7 @@ kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
 
 NOTE: Trident 安装程序将创建 Trident Pod ，配置用于保持其状态的 CRD 对象，并初始化执行配置卷和将卷附加到集群主机等操作的 CSI sidecars 。
 
-您可以下载最新版本的 https://github.com/NetApp/trident/releases/latest["Trident 安装程序包"^] 从 _Downloads_部分 中提取该文件。
+您可以从下载并提取最新版本的Trident安装程序包 link:https://github.com/NetApp/trident/releases/latest["GitHub上的_assets_部分"^]。
 
 例如，如果最新版本为 21.07.1 ：
 

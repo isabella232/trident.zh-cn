@@ -121,7 +121,7 @@ kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
 
 NOTE: 从 21.01 开始， Trident 操作符的范围为集群范围。使用 Trident 操作符安装 Trident 需要创建 `TridentOrchestrator` Custom Resource Definition （ CRD ）并定义其他资源。在安装 Astra Trident 之前，您应执行以下步骤来设置操作员。
 
-. 下载最新版本的 https://github.com/NetApp/trident/releases/latest["Trident 安装程序包"] 从 _Downloads_部分 中提取该文件。
+. 从下载并提取最新版本的Trident安装程序包 link:https://github.com/NetApp/trident/releases/latest["GitHub上的_assets_部分"^]。
 +
 [listing]
 ----
