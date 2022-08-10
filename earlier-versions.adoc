@@ -12,11 +12,12 @@ summary: 如果您未运行最新版本，则可以参考有关先前版本的 A
 
 
 [role="lead"]
-如果您运行的不是 Astra Trident 22.04 ，则可以参考先前版本的文档。
+如果您运行的不是Astra Trident 22.07、则可以参考先前版本的文档。
 
 
 NOTE: 对于 21.07 之前的版本，您将重定向到旧版文档站点。
 
+* https://docs.netapp.com/us-en/trident-2204/index.html["Astra Trident 22.04"^]
 * https://docs.netapp.com/us-en/trident-2201/index.html["Astra Trident 22.01"^]
 * https://docs.netapp.com/us-en/trident-2110/index.html["Astra Trident 21.10"^]
 * https://docs.netapp.com/us-en/trident-2107/index.html["Astra Trident 21.07"^]

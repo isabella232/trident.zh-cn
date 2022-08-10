@@ -3054,7 +3054,6 @@
   <block id="ba600e29b197aa569df1df520cc4e4c9" category="paragraph">是的， Astra Trident 支持 Azure 中的 Azure NetApp Files 服务以及 GCP 中的 Cloud Volumes Service 。</block>
   <block id="804a6c22698fe4782c44f1e8d446964e" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
   <block id="deef9d6bf4083f81d7bd15ae0c9121b6" category="admonition">从 22.04 版开始，每次安装 Astra Trident 时， AES 密钥将不再重新生成。在此版本中， Astra Trident 将安装一个新的机密对象，该对象会在安装之间持续存在。这意味着， 22.04 中的 `tridentctl` 可以卸载先前版本的 Trident ，但早期版本无法卸载 22.04 安装。</block>
-  <block id="485e8e209b502a7975830960817b875e" category="paragraph">如果您运行的不是 Astra Trident 22.04 ，则可以参考先前版本的文档。</block>
   <block id="4af8991c21dff2f779496b8350d1124b" category="inline-link">Astra Trident 22.01</block>
   <block id="7669b0b69333e81c7c208aea3d1a3c6f" category="list-text"><block ref="7669b0b69333e81c7c208aea3d1a3c6f" category="inline-link-rx"></block></block>
   <block id="682c6ce09c9faae3a3e22c55c8db592e" category="list-text">修复了问题描述 ，其中 ANF 驱动程序无法使用多个导出规则克隆卷。</block>
@@ -3313,4 +3312,7 @@
   <block id="1b3d6decfa71cc52ecc9b041f40a02e5" category="paragraph">在我们的Astra上、还有一个由容器用户(包括Astra Trident开发人员)参与的活跃公有 社区 <block ref="6130664377fa14615bb1abd5257e9714" category="inline-link-macro-rx"></block>。这是一个很好的地方，可以提出有关项目的一般问题，并与志同道合的同行讨论相关主题。</block>
   <block id="8f5cc6430613f1c12f36965050bb7197" category="sidebar">不和</block>
   <block id="094a6e8342b02106129112ad2ff3d374" category="list-text">Mirantis Kubernetes Engine 3.5</block>
+  <block id="adcc762b8bd0076278dedcc49cc85154" category="paragraph">如果您运行的不是Astra Trident 22.07、则可以参考先前版本的文档。</block>
+  <block id="c53358822905bb04d312060d1cb568af" category="inline-link">Astra Trident 22.04</block>
+  <block id="fdd380631ba8063e7b8f842282a01e40" category="list-text"><block ref="fdd380631ba8063e7b8f842282a01e40" category="inline-link-rx"></block></block>
 </blocks>
