@@ -3243,7 +3243,6 @@
   <block id="318a2b6d7e7889951c0d77c3d1ba8546" category="list-text">K8s.IO/SIG-storage/CsI-provisioner：v3.2.1</block>
   <block id="df89a3576bef4d7cad64e69dfa24fdf9" category="list-text">K8s.IO/SIG-storage/CSI-snapshotter：v6.0.1</block>
   <block id="468bc1e7f7712a8dc9b91d063523cdff" category="cell">v1.24.0</block>
-  <block id="ec94999ad88afd0106b8352731ec0d9f" category="admonition">在Kubernetes 1.20及更高版本上、只有当`v1`版本提供了`volumesnapshots.snapshot.storage.k8s.io/ssi-storage/CsI-snapshotter：v4.x`映像时、才使用经过验证的`regation.k8s.io/sI-snapshotter：v4.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
   <block id="82e48d2f97b89a148187e2a719308e68" category="admonition">如果您使用的是私有映像存储库、则应将`/SIG-storage`添加到专用注册表URL的末尾。在使用私有注册表进行 `tridentctl` 部署时，应将 ` -trident 映像` 和 ` -autosupport-image` 与 ` -image-regRegistry` 结合使用。如果要使用 Trident 操作符部署 Astra Trident ，请确保 Orchestrator CR 在安装参数中包含 `tridentImage` 和 `autosupportImage` 。</block>
   <block id="9bef5437c66d7ae75dabd12519ecc5ac" category="section-title">22.07中的新增功能</block>
   <block id="05759468b045fc55d22e8e6881dca01f" category="paragraph">*</block>
@@ -3317,4 +3316,5 @@
   <block id="a1142049a82a11e90102d655bb7e234d" category="inline-link-macro">GitHub上的_assets_部分</block>
   <block id="28b29acf4f44cae9d70c63d88b52ba30" category="list-text">从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
   <block id="da434b04f7985eff0b8eba0189b03041" category="paragraph">您可以从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
+  <block id="deb871bb56992a4738611a0463ca443d" category="admonition">在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.io/ssi-storage/CsI-snapshotter：v6.x` image时、才使用经过验证的`regation.k8s.io/sI-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
 </blocks>

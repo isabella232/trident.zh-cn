@@ -242,4 +242,4 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 |===
 
-NOTE: 在Kubernetes 1.20及更高版本上、只有当`v1`版本提供了`volumesnapshots.snapshot.storage.k8s.io/ssi-storage/CsI-snapshotter：v4.x`映像时、才使用经过验证的`regation.k8s.io/sI-snapshotter：v4.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.IO/SIG-storage/CsI-snapshotter：v3.x`映像。
+NOTE: 在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.io/ssi-storage/CsI-snapshotter：v6.x` image时、才使用经过验证的`regation.k8s.io/sI-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.IO/SIG-storage/CsI-snapshotter：v3.x`映像。
