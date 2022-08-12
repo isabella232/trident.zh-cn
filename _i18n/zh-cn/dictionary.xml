@@ -3056,7 +3056,6 @@
   <block id="5e393c0ca8392e0c84201770c8b544ca" category="open-title">5.0版控制器</block>
   <block id="ea567d0d1a58b120efa89893cae2966a" category="open-title">v3.0.3控制器</block>
   <block id="086e6c16e3fe8e13c336612ef636aa02" category="sidebar">Astra Trident</block>
-  <block id="d24bae93d00d821b3a8e7ee57c3bd468" category="section-title">收集日志以进行故障排除</block>
   <block id="5a333b18a215ecfd4457ba0e1732654b" category="section-title">Trident是否可以在配置了负载共享镜像的SVM上配置卷？</block>
   <block id="0e7629426b9d7596800cd5d72f558a7f" category="paragraph">可以为通过NFS提供数据的SVM的根卷创建负载共享镜像。ONTAP 会自动为Trident创建的卷更新负载共享镜像。这可能会导致卷挂载延迟。使用Trident创建多个卷时、配置卷取决于ONTAP 更新负载共享镜像。</block>
   <block id="de781ae8dbfd68aeef56f40c5dc767da" category="paragraph">Astra Trident应以`vsadmin` SVM用户或具有相同角色的其他名称的用户的身份运行。适用于NetApp ONTAP 的Amazon FSX具有一个`fsxadmin`用户、该用户是ONTAP `admin` cluster用户的有限替代。建议不要在Trident中使用`fsxadmin`用户、因为`vsadmin` SVM用户可以访问更多Astra Trident功能。</block>
@@ -3317,4 +3316,5 @@
   <block id="28b29acf4f44cae9d70c63d88b52ba30" category="list-text">从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
   <block id="da434b04f7985eff0b8eba0189b03041" category="paragraph">您可以从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
   <block id="deb871bb56992a4738611a0463ca443d" category="admonition">在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.io/ssi-storage/CsI-snapshotter：v6.x` image时、才使用经过验证的`regation.k8s.io/sI-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
+  <block id="756909f99bc1a720d318a5f5b94eb094" category="section-title">收集日志以进行故障排除</block>
 </blocks>
