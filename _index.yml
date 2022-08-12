@@ -1,0 +1,60 @@
+---
+indexpage:
+  lead: Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。
+  tiles:
+  - title: 入门
+    links:
+    - title: 了解 Astra Trident
+      url: "/trident-concepts/intro.html"
+    - title: 发行说明
+      url: trident-rn.html
+    - title: 要求
+      url: "/trident-get-started/requirements.html"
+    - title: 试用
+      url: "/trident-get-started/quickstart.html"
+    - title: 常见问题解答
+      url: "/faq.html"
+  - title: 部署 Astra Trident
+    links:
+    - title: 使用 Trident 操作员进行部署
+      url: "/trident-get-started/kubernetes-deploy-operator.html"
+    - title: 使用 tridentctl 进行部署
+      url: "/trident-get-started/kubernetes-deploy-tridentctl.html"
+    - title: 部署适用于 Docker 的 Astra Trident
+      url: "/trident-docker/deploy-docker.html"
+  - title: 升级 Astra Trident
+    links:
+    - title: 使用 Trident 操作员进行升级
+      url: "/trident-managing-k8s/upgrade-operator.html"
+    - title: 使用 tridentctl 进行升级
+      url: "/trident-managing-k8s/upgrade-tridentctl.html"
+  - title: 使用 Astra Trident
+    links:
+    - title: 配置后端
+      url: "/trident-use/backends.html"
+    - title: 使用 kubectl 创建后端
+      url: "/trident-use/backend-kubectl.html"
+    - title: 在后端管理选项之间移动
+      url: "/trident-use/backend_options.html"
+    - title: 管理存储类
+      url: "/trident-use/manage-stor-class.html"
+    - title: 执行卷操作
+      url: "/trident-use/vol-operations.html"
+    - title: 监控 Astra Trident
+      url: "/trident-use/monitor-trident.html"
+  - title: 演示教程
+    links:
+    - title: Astra Trident 视频
+      url: https://tv.netapp.com/detail/video/5995831475001/using-trident-with-kubernetes
+  - title: 博客社区
+    links:
+    - title: Astra 博客
+      url: https://cloud.netapp.com/blog/topic/astra
+    - title: Astra Trident 博客
+      url: https://netapp.io/persistent-storage-provisioner-for-kubernetes/
+    - title: Kubernetes Hub
+      url: https://cloud.netapp.com/kubernetes-hub
+    - title: netapp.io
+      url: https://netapp.io/
+    - title: 不和
+      url: https://discord.gg/NetApp
