@@ -135,7 +135,7 @@ Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产
 虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：
 
 * OpenShift 容器平台支持的 RedHat CoreOS （ RHCOS ）版本
-* RHEL或CentOS 7.9或更高版本(最新9.10)
+* RHEL或CentOS 7.
 * Ubuntu 18.04或更高版本(最新版本22.04)
 
 

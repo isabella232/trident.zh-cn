@@ -30,21 +30,21 @@ docker --version
 
 
 | NFS  a| 
-RHEL/CentOS
+RHEL/CentOS 7.
  a| 
 `sudo yum install -y nfs-utils`
 
 
 
 | NFS  a| 
-Ubuntu 或 Debian
+Ubuntu
  a| 
 `sudo apt-get install -y nfs-common`
 
 
 
 | iSCSI  a| 
-RHEL/CentOS
+RHEL/CentOS 7.
  a| 
 . 安装以下系统软件包：
 +
@@ -75,7 +75,7 @@ RHEL/CentOS
 
 
 | iSCSI  a| 
-Ubuntu 或 Debian
+Ubuntu
  a| 
 . 安装以下系统软件包：
 +

@@ -1887,13 +1887,11 @@
   <block id="c441ee50c88f6e5e3a7c69fc69dad8b8" category="cell">命令</block>
   <block id="3fb1c9901f28248a22f47bd3917b5dc9" category="paragraph">RHEL/CentOS</block>
   <block id="e0b19bed1baf46134f4079471e193b01" category="paragraph">`sudo yum install -y nfs-utils`</block>
-  <block id="7eaf289636bc8d4f8b29b333a0f32dc2" category="paragraph">Ubuntu 或 Debian</block>
   <block id="1054b270f1635a3dd940e995cbc7ed78" category="paragraph">`sudo apt-get install -y nfs-common`</block>
   <block id="31562df6c30f7b7efb939eaa0ee48415" category="admonition">您应确保 NFS 服务在启动期间启动。</block>
   <block id="29ba980a9e9adedc9414ea868c74ebd5" category="section-title">iSCSI 卷</block>
   <block id="222194999a60d89dfcd0ff5867f49e88" category="paragraph">使用 iSCSI 卷时，请考虑以下事项：</block>
   <block id="12fe03bf2457cc4e4e90af10a2f7092f" category="list-text">Kubernetes 集群中的每个节点都必须具有唯一的 IQN 。* 这是必要的前提条件 * 。</block>
-  <block id="aaa200e86b57cd2a527761ec2bf4b9b0" category="list-text">如果将 RHCOS 4.5 或更高版本，或者将 RHEL 或 CentOS 8.2 或更高版本与 `solidfire-san` 驱动程序结合使用，请确保在 ` /etc/iscsi/iscsid.conf` 中将 CHAP 身份验证算法设置为 MD5 。</block>
   <block id="0bad70dcf33f40dcc0d528d58b9eac76" category="inline-link">RedHat 的文档</block>
   <block id="dbb4705e17a1f8ba49af109d4f366609" category="list-text">使用运行 RHEL/RedHat CoreOS 和 iSCSI PV 的工作节点时，请确保在 StorageClass 中指定 `discard` mountOption 以执行实时空间回收。请参见<block ref="166e862efdc516354d90f75a38532ddd" category="inline-link-rx"></block>。</block>
   <block id="8cd5b262d8d9950185128d052d55f7c8" category="list-text">安装以下系统软件包：</block>
@@ -2435,7 +2433,6 @@
   <block id="5ff2e3e853922fdb84ef21b85ffdac2e" category="list-text">启动容器时配置 Docker 卷：</block>
   <block id="8f6a91f5f21d0478e3fd89095fc28ab9" category="list-text">删除 Docker 卷：</block>
   <block id="e63e2a2b9c9184e703ff8d93bb92508b" category="section-title">在系统启动时启动 Astra Trident</block>
-  <block id="34f4e076aba0519cebd8bb63617b2f7e" category="paragraph">有关基于 systemd 的系统的示例单元文件，请参见 Git repo 中的 `contrib/trident.service.example` 。要将此文件与 CentOS/RHEL 结合使用，请执行以下操作：</block>
   <block id="5b51496da86e5a2073e0c618390c3d2a" category="list-text">将文件复制到正确的位置。</block>
   <block id="44103de0a164f687d305ad91e919d8ee" category="paragraph">如果正在运行多个实例，则单元文件应使用唯一名称。</block>
   <block id="3223aadc84a3ccb4a3473ba01c895184" category="list-text">编辑文件，更改问题描述（第 2 行）以匹配驱动程序名称和配置文件路径（第 9 行）以反映您的环境。</block>
@@ -3229,7 +3226,6 @@
   <block id="ca3cbba69cf4bb9d3450c7c6c27983aa" category="list-text">OpenShift 4.7 (支持截止日期为2022年8月24日)、4.8、4.9、4.10</block>
   <block id="d603df1e8927b05892b2c331ab76174c" category="list-text">Astra Data Store 22.05或更高版本</block>
   <block id="6b51834314ece904405eb0ce1a6e6bd8" category="list-text">NetApp HCI/ Element软件11或更高版本</block>
-  <block id="948a0e05793c0c2484acb4582f13d9f0" category="list-text">RHEL或CentOS 7.9或更高版本(最新9.10)</block>
   <block id="6ebf7ae9dffc55cf86792ea266344b3a" category="list-text">Ubuntu 18.04或更高版本(最新版本22.04)</block>
   <block id="ea3ab43acafe15e8b0f7e22cb2ad9cfd" category="list-text">NetApp/trident：22.07.0</block>
   <block id="3e04900915c3d18500b5db27afcc7f36" category="list-text">netapp/trident autosupport：22.07</block>
@@ -3317,4 +3313,9 @@
   <block id="da434b04f7985eff0b8eba0189b03041" category="paragraph">您可以从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
   <block id="deb871bb56992a4738611a0463ca443d" category="admonition">在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.io/ssi-storage/CsI-snapshotter：v6.x` image时、才使用经过验证的`regation.k8s.io/sI-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
   <block id="756909f99bc1a720d318a5f5b94eb094" category="section-title">收集日志以进行故障排除</block>
+  <block id="98a2ec14e38e4acf26c70e52b70bf5f8" category="list-text">RHEL或CentOS 7.</block>
+  <block id="c5e9849ca6abd11c3d0615c338c6a231" category="paragraph">RHEL/CentOS 7.</block>
+  <block id="3d945423f8e9496c429a5d8c65b4604f" category="paragraph">Ubuntu</block>
+  <block id="269efd38c7d91afd7e1339da498a391f" category="list-text">如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux版本以及`solidfire-san`驱动程序、请确保在`/etc/iscsi/iscsid.conf`中将CHAP身份验证算法设置为MD5。</block>
+  <block id="b437164523254b34902d49bbf5e996aa" category="paragraph">有关基于 systemd 的系统的示例单元文件，请参见 Git repo 中的 `contrib/trident.service.example` 。要在CentOS 7/RHEL中使用此文件、请执行以下操作：</block>
 </blocks>
