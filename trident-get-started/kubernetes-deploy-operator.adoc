@@ -48,19 +48,19 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 .步骤
 . 添加 Trident 的 Helm 存储库：
 +
-[listing]
+[source, cli]
 ----
 helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 ----
 . 使用 `helm install` 命令并为您的部署指定一个名称。请参见以下示例：
 +
-[listing]
+[source, cli]
 ----
-helm install <release-name> netapp-trident/trident-operator --version 22.7.0 --namespace <trident-namespace>
+helm install <release-name> netapp-trident/trident-operator --version 22.4.0 --create-namespace <trident-namespace>
 ----
 +
 
-NOTE: 如果尚未为 Trident 创建命名空间，则可以将 ` -create-namespace` 参数添加到 `helm install` 命令中。然后， Helm 将自动为您创建命名空间。
+NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会创建额外的命名空间。
 
 
 
@@ -72,7 +72,7 @@ NOTE: 如果尚未为 Trident 创建命名空间，则可以将 ` -create-namesp
 
 例如，要更改默认值 `debug` ，请运行以下 ` -set` 命令：
 
-[listing]
+[source, cli]
 ----
 $ helm install <name> netapp-trident/trident-operator --version 22.7.0 --set tridentDebug=true
 ----
@@ -97,19 +97,19 @@ NOTE: 使用 OpenShift 时，在以下所有示例中使用 `oc` 而不是 `kube
 
 要验证Kubernetes版本、请运行以下命令：
 
-[listing]
+[source, cli]
 ----
 kubectl version
 ----
 要查看您是否具有 Kubernetes 集群管理员权限，请运行以下命令：
 
-[listing]
+[source, cli]
 ----
 kubectl auth can-i '*' '*' --all-namespaces
 ----
 要验证是否可以从 Docker Hub 启动使用映像的 POD 并通过 Pod 网络访问存储系统，请运行以下命令：
 
-[listing]
+[source, cli]
 ----
 kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
   ping <management IP>
@@ -123,7 +123,7 @@ NOTE: 从 21.01 开始， Trident 操作符的范围为集群范围。使用 Tri
 
 . 从下载并提取最新版本的Trident安装程序包 link:https://github.com/NetApp/trident/releases/latest["GitHub上的_assets_部分"^]。
 +
-[listing]
+[source, cli]
 ----
 wget https://github.com/NetApp/trident/releases/download/v22.04.0/trident-installer-22.04.0.tar.gz
 tar -xf trident-installer-22.04.0.tar.gz
@@ -134,7 +134,7 @@ cd trident-installer
 运行以下命令：
 
 +
-[listing]
+[source, cli]
 ----
 kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
 ----
@@ -148,7 +148,7 @@ kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.1
 Trident 安装程序包含用于定义这些资源的清单。默认情况下，操作符部署在 `trident` 命名空间中。如果 `trident` 命名空间不存在，请使用以下清单创建一个。
 
 +
-[listing]
+[source, cli]
 ----
 $ kubectl apply -f deploy/namespace.yaml
 ----
@@ -159,7 +159,7 @@ $ kubectl apply -f deploy/namespace.yaml
 运行以下命令以更新 YAML 清单并使用 `kucstation.yaml` 生成您的 `bundle.yaml` ：
 
 +
-[listing]
+[source, cli]
 ----
 kubectl kustomize deploy/ > deploy/bundle.yaml
 ----
@@ -167,13 +167,13 @@ kubectl kustomize deploy/ > deploy/bundle.yaml
 运行以下命令以创建资源并部署操作员：
 
 +
-[listing]
+[source, cli]
 ----
 kubectl create -f deploy/bundle.yaml
 ----
 . 要在部署后验证操作员的状态，请执行以下操作：
 +
-[listing]
+[source, cli]
 ----
 $ kubectl get deployment -n <operator-namespace>
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
@@ -196,7 +196,7 @@ IMPORTANT: 在 Kubernetes 集群中只能有 * 一个操作符实例 * 。请勿
 
 现在，您可以使用操作员安装 Astra Trident 了！这需要创建 `TridentOrchestrator` 。Trident 安装程序附带了用于创建 `TridentOrchestrator` 的示例定义。这将在 `trident` 命名空间中启动安装。
 
-[listing]
+[source, cli]
 ----
 $ kubectl create -f deploy/crds/tridentorchestrator_cr.yaml
 tridentorchestrator.trident.netapp.io/trident created
@@ -268,7 +268,7 @@ Events:
 
 您可以通过查看已创建的 Pod 来确认 Astra Trident 安装是否已完成：
 
-[listing]
+[source, cli]
 ----
 $ kubectl get pod -n trident
 NAME                                READY   STATUS    RESTARTS   AGE
@@ -280,7 +280,7 @@ trident-operator-766f7b8658-ldzsv   1/1     Running   0           3m
 ----
 您也可以使用 `tridentctl` 检查已安装的 Astra Trident 版本。
 
-[listing]
+[source, cli]
 ----
 $ ./tridentctl -n trident version
 +----------------+----------------+

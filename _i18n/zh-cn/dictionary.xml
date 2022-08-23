@@ -2834,7 +2834,6 @@
   <block id="9f687b4e8cbf2fbb623b26b30fd92717" category="admonition">对于 21.07 之前的版本，您将重定向到旧版文档站点。</block>
   <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
-  <block id="e088e1f9fcd6d6a9509bd529db24c8f3" category="admonition">如果尚未为 Trident 创建命名空间，则可以将 ` -create-namespace` 参数添加到 `helm install` 命令中。然后， Helm 将自动为您创建命名空间。</block>
   <block id="8035d5d39b2b48f6ec1a3133b688513c" category="list-text">Astra 数据存储</block>
   <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">已测试主机操作系统</block>
   <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
@@ -3318,4 +3317,5 @@
   <block id="3d945423f8e9496c429a5d8c65b4604f" category="paragraph">Ubuntu</block>
   <block id="269efd38c7d91afd7e1339da498a391f" category="list-text">如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux版本以及`solidfire-san`驱动程序、请确保在`/etc/iscsi/iscsid.conf`中将CHAP身份验证算法设置为MD5。</block>
   <block id="b437164523254b34902d49bbf5e996aa" category="paragraph">有关基于 systemd 的系统的示例单元文件，请参见 Git repo 中的 `contrib/trident.service.example` 。要在CentOS 7/RHEL中使用此文件、请执行以下操作：</block>
+  <block id="134bf17c90c90b5aeed99dde262bf14d" category="admonition">如果已为Trident创建命名空间、则`-create-namespace`参数不会创建额外的命名空间。</block>
 </blocks>
