@@ -1652,8 +1652,6 @@
   <block id="1a59d0d7850406f157c314978eb3b821" category="paragraph">现有连接将不受影响；如果凭据由 SVM 上的 Astra Trident 更新，则这些连接将继续保持活动状态。新连接将使用更新后的凭据，现有连接将继续保持活动状态。断开并重新连接旧的 PV 将导致它们使用更新后的凭据。</block>
   <block id="9a5b66949f53f92871d3e1a8aae0cc19" category="cell">`secreKey`</block>
   <block id="ef81b740be2293b7e3c41047afe98764" category="cell">"100 克 "</block>
-  <block id="55c1dd55273b867b995333cc3abd250e" category="section-title">示例 2 ：单服务级别配置</block>
-  <block id="2b00c4aa6134b525e9355d880ecb0c8d" category="section-title">示例 3 ：虚拟存储池配置</block>
   <block id="ff342df7522d6b527768cc6bfe5f9fae" category="summary">通过 Astra Trident ， Kubernetes 用户可以在创建卷后对其进行扩展。查找有关扩展 iSCSI 和 NFS 卷所需配置的信息。</block>
   <block id="15d79b565b148caa23e6f2b53813413d" category="section-title">展开 iSCSI 卷</block>
   <block id="0b981ab19df55a28a02578aa5f326db8" category="paragraph">您可以使用 CSI 配置程序扩展 iSCSI 永久性卷（ PV ）。</block>
@@ -2834,7 +2832,6 @@
   <block id="9f687b4e8cbf2fbb623b26b30fd92717" category="admonition">对于 21.07 之前的版本，您将重定向到旧版文档站点。</block>
   <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
-  <block id="8035d5d39b2b48f6ec1a3133b688513c" category="list-text">Astra 数据存储</block>
   <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">已测试主机操作系统</block>
   <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
   <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
@@ -2851,38 +2848,7 @@
   <block id="f4f833852bac4217eff92d53c1bd24dc" category="list-text"><block ref="f4f833852bac4217eff92d53c1bd24dc" category="inline-link-macro-rx"></block></block>
   <block id="df7d9b009cdb0a2623872cb3f905e161" category="list-text"><block ref="df7d9b009cdb0a2623872cb3f905e161" category="inline-link-macro-rx"></block></block>
   <block id="4d80e2460d711b841338dfbeea2ca8c1" category="paragraph">了解如何使用 ONTAP 和 Cloud Volumes ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
-  <block id="3381a309aeefac050f7f5319f6757afe" category="summary">了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。</block>
-  <block id="83caf3e7a6bf2dcce3d7d6eab3c8905c" category="doc">配置 Astra 数据存储后端</block>
-  <block id="0b1c01b976c493a4217d6f4b772849b0" category="paragraph">了解如何使用提供的示例配置为 Astra Trident 安装配置 Astra 数据存储（ ADS ）后端。</block>
-  <block id="efd5e8dbeec263f783a6cd6ac036c6a9" category="paragraph">以配置和使用<block ref="a026c15058b831feb6de8c4c836387ae" category="inline-link-rx"></block> 后端，您需要满足以下要求：</block>
-  <block id="c7f6917a3ac9bd1d4133a82dc3260748" category="list-text">托管 ADS 的 Kubernetes 集群的凭据。托管 ADS 的 Kubernetes 集群必须具有一个专用于此 Astra Trident 后端创建和管理的卷，快照和导出策略资源的命名空间。必须为托管支持以下功能的 ADS 的 Kubernetes 集群提供 `kubeconfig` ：</block>
-  <block id="cebbe731acfa0b8c520f355bcbfa6dd1" category="list-text">读取 `astrads-system` 命名空间中的所有对象</block>
-  <block id="cb90bccb2cf5bc16b37e39d379d5a5ea" category="list-text">读取 / 写入为该 Astra Trident 后端使用而创建的命名空间中的对象</block>
-  <block id="2f191460bd4d4750f88513ea54101bed" category="list-text">列出所有集群命名空间</block>
-  <block id="e269f9fe19f18e73c77815dddc019d7b" category="cell">"astrads-NAS"</block>
-  <block id="5b4fc65310144922f0384b20a00bd6ae" category="cell">ADS 集群名称</block>
-  <block id="65e18a0bb1868a9c1e181302d4733dba" category="cell">`集群`</block>
-  <block id="d24ec3d66e6303208e4767ec5cccbc76" category="cell">AstraDSCluster 资源的名称</block>
-  <block id="a4c39aafd14948aacfcc4f9c6374a875" category="cell">Astra Trident 将在其中创建所有 ADS 自定义资源的命名空间</block>
-  <block id="995c6425a4a00f961b0c8a2000c5497c" category="cell">`kubeconfig`</block>
-  <block id="dc37fa78a7cf3d9ae1dbf70f4430a142" category="cell">ADS Kubernetes 集群的凭据（ Base64 Compact JSON ）</block>
-  <block id="e5f77e38f271802a5a75ecdffe577104" category="cell">"vers=4.1"</block>
-  <block id="2949ef191693d444cc1f96962c1fd8ae" category="cell">启用 `AutoExportPolicy` 时用于筛选 Kubernetes 节点 IP 的 CIDR 列表</block>
-  <block id="1abbe16b7053d16fb89efaebd94484be" category="cell">["0.0.0.0/0 ， " ：： /0"</block>
-  <block id="857a0a2e6dd17cb6e0022d80855b338a" category="cell">故障排除时要使用的调试标志。示例： ｛ "api" ： false ， "method ： true ｝</block>
-  <block id="0ffdeb640d4a5fc9f33736feec8d274f" category="admonition">您应先将 `kubeconfig` 值从 YAML 转换为紧凑型 JSON 格式，然后再转换为 Base64 格式，然后再将其包含在后端配置中。</block>
-  <block id="5ef844cc326d7b10c0f674ac9b2b3c74" category="paragraph">每个后端都会在托管 ADS 的 Kubernetes 集群上的一个命名空间中配置卷。要在其他命名空间中创建卷，您可以定义其他后端。可以将 ADS 卷附加到托管集群中的任何命名空间，任何其他 Kubernetes 集群或可以挂载 NFS 共享的任何其他位置。</block>
-  <block id="f2319c1b13782c7170018cdd5fb7fd49" category="paragraph">您可以在配置文件的特殊部分中使用这些选项控制每个卷的默认配置。</block>
-  <block id="77c62856cfaac230e7c2fd8139d7c2c8" category="paragraph">请参见以下配置示例。</block>
-  <block id="ef616ce0e78a1254437e682f723bb5e6" category="cell">新卷的模式必须为八进制，并且以 "0" 开头</block>
-  <block id="6474dd374337126fa99c86e653ebfd64" category="cell">"0777"</block>
-  <block id="5964a48430cb8e8190dbd855a8514a0c" category="cell">"5"</block>
-  <block id="115261f04e7f7d964bc608b63a82b482" category="cell">要为创建的卷分配的 QoS 策略</block>
   <block id="9d4568c009d203ab10e33ea9953a0264" category="cell">""</block>
-  <block id="cf04ead37df0a76237b27de327c0cd03" category="admonition">对于在 ADS 后端创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对每个存储池创建的所有卷进行分组。这样，您就可以根据后端配置文件中提供的一组可自定义标签来方便地区分卷了。</block>
-  <block id="b53453343f074fd64ef7129def93f57d" category="section-title">示例 1 ：最小后端配置</block>
-  <block id="8f3db75549f212e0fdab2c542531a95e" category="paragraph">此示例显示了一个后端文件，该文件对所有由 Astra Trident 创建的存储应用相同的方面。</block>
-  <block id="a2c81e41622f2e2616b33a689e229c72" category="paragraph">以下 StorageClass 定义引用了上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 StorageClass 指定用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
   <block id="7072ec708b0ea7e3243747d8b79c0d20" category="admonition">如果要从先前的任何 Trident 版本升级并使用 Azure NetApp Files ，则 ``location`` config 参数现在是一个必填字段。</block>
   <block id="b956e1f58f802db57dd9f871ac59ed6c" category="paragraph">固定的 ANF 驱动程序，允许重复的资源名称并将操作限制在一个位置。</block>
   <block id="851679bec9b3e6c8e6284128fb750b1e" category="list-text">Kubernetes 增强功能：</block>
@@ -2902,7 +2868,6 @@
   <block id="2f1ab5b99f1893144b69718c274415f4" category="paragraph">同时 <block ref="a3b750e7ac33c9792c64627692f306aa" category="inline-link-macro-rx"></block> 是与 Astra Trident 的 REST API 进行交互的最简单方式，您可以根据需要直接使用 REST 端点。</block>
   <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
   <block id="94912f7fb206038e8527957b44dfbf25" category="paragraph">此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。</block>
-  <block id="498784627f42c14468b84a1a351bd462" category="sidebar">配置 ADS 后端</block>
   <block id="597a56086e1f9d7ca5e8f55c40a0153a" category="list-text">OpenShift 容器平台支持的 RedHat CoreOS （ RHCOS ）版本</block>
   <block id="73e93ad328287e5ce4c06228cfdba2bf" category="cell">v1.23.0</block>
   <block id="08ee53e1d5cefb7967a295e98036598e" category="cell">控制 .snapshot 目录的可见性</block>
@@ -3074,7 +3039,6 @@
   <block id="f3aff8b93ad58c4831861213ffc9bbe7" category="paragraph">从22.07开始、Astra Trident会尝试自动检测节点是否能够运行iSCSI或NFS服务。Astra Trident会为节点创建事件以标识发现的服务。您可以使用命令查看这些事件：</block>
   <block id="6a3314aee95c1c78527e5f122976ec80" category="paragraph">Trident还标识为Trident节点CR上的每个节点启用的服务。要查看发现的服务、请使用命令：</block>
   <block id="2b6ab5193160f5eaca51526b15f27e3a" category="admonition">节点服务发现可识别已发现的服务、但无法保证服务已正确配置。相反、如果没有发现的服务、则无法保证卷挂载将失败。</block>
-  <block id="cf4aa5147f5ffc050878ff7f615b9f05" category="list-text">Astra Data Store 22.05或更高版本。请参见 <block ref="14a53a0276a7d83573eeaa3a25171559" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="a8a2b2d9e5637b41609ebc0c72058699" category="list-text">运行1.19 -1.24的Kubernetes集群。</block>
   <block id="3bb4e1a94d47c9447ecf5ab6ce7c23de" category="cell">集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。此功能为*技术预览*。</block>
   <block id="66896c99fb06e0b6c86498b249f8217a" category="cell">如果请求的卷大小超过此值、则配置失败。</block>
@@ -3228,14 +3192,7 @@
   <block id="6ebf7ae9dffc55cf86792ea266344b3a" category="list-text">Ubuntu 18.04或更高版本(最新版本22.04)</block>
   <block id="ea3ab43acafe15e8b0f7e22cb2ad9cfd" category="list-text">NetApp/trident：22.07.0</block>
   <block id="3e04900915c3d18500b5db27afcc7f36" category="list-text">netapp/trident autosupport：22.07</block>
-  <block id="0cdfc1d8350d0adcf6d641abf16a1046" category="list-text">K8s.IO/SIG-storage/CsI-provisioner：v2.2.2.</block>
-  <block id="ef50726ac477d7ed25cf94fd26f6e4ce" category="list-text">K8s.IO/SIG-storage/CSI-attacher：v3.5.0</block>
-  <block id="c47f8ab6695c185dd1cc8187e762b91f" category="list-text">K8s.IO/SIG-storage/CsI-resizer：v1.5.0</block>
-  <block id="a33ee60bce887d9934eaa4c257ba369e" category="list-text">K8s.IO/SIG-storage/CSI-snapshotter：v3.0.3</block>
-  <block id="b5df2cef5efcb0eb27dd766a59e4b345" category="list-text">K8s.IO/SIG-storage/CsI-node-driver-registry:v2.5.1</block>
   <block id="465c644c0e7ced87df9adbc6d3657f18" category="list-text">netapp/trident操作符：22.07.0 (可选)</block>
-  <block id="318a2b6d7e7889951c0d77c3d1ba8546" category="list-text">K8s.IO/SIG-storage/CsI-provisioner：v3.2.1</block>
-  <block id="df89a3576bef4d7cad64e69dfa24fdf9" category="list-text">K8s.IO/SIG-storage/CSI-snapshotter：v6.0.1</block>
   <block id="468bc1e7f7712a8dc9b91d063523cdff" category="cell">v1.24.0</block>
   <block id="82e48d2f97b89a148187e2a719308e68" category="admonition">如果您使用的是私有映像存储库、则应将`/SIG-storage`添加到专用注册表URL的末尾。在使用私有注册表进行 `tridentctl` 部署时，应将 ` -trident 映像` 和 ` -autosupport-image` 与 ` -image-regRegistry` 结合使用。如果要使用 Trident 操作符部署 Astra Trident ，请确保 Orchestrator CR 在安装参数中包含 `tridentImage` 和 `autosupportImage` 。</block>
   <block id="9bef5437c66d7ae75dabd12519ecc5ac" category="section-title">22.07中的新增功能</block>
@@ -3310,7 +3267,6 @@
   <block id="a1142049a82a11e90102d655bb7e234d" category="inline-link-macro">GitHub上的_assets_部分</block>
   <block id="28b29acf4f44cae9d70c63d88b52ba30" category="list-text">从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
   <block id="da434b04f7985eff0b8eba0189b03041" category="paragraph">您可以从下载并提取最新版本的Trident安装程序包 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
-  <block id="deb871bb56992a4738611a0463ca443d" category="admonition">在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.io/ssi-storage/CsI-snapshotter：v6.x` image时、才使用经过验证的`regation.k8s.io/sI-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
   <block id="756909f99bc1a720d318a5f5b94eb094" category="section-title">收集日志以进行故障排除</block>
   <block id="98a2ec14e38e4acf26c70e52b70bf5f8" category="list-text">RHEL或CentOS 7.</block>
   <block id="c5e9849ca6abd11c3d0615c338c6a231" category="paragraph">RHEL/CentOS 7.</block>
@@ -3318,4 +3274,12 @@
   <block id="269efd38c7d91afd7e1339da498a391f" category="list-text">如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux版本以及`solidfire-san`驱动程序、请确保在`/etc/iscsi/iscsid.conf`中将CHAP身份验证算法设置为MD5。</block>
   <block id="b437164523254b34902d49bbf5e996aa" category="paragraph">有关基于 systemd 的系统的示例单元文件，请参见 Git repo 中的 `contrib/trident.service.example` 。要在CentOS 7/RHEL中使用此文件、请执行以下操作：</block>
   <block id="134bf17c90c90b5aeed99dde262bf14d" category="admonition">如果已为Trident创建命名空间、则`-create-namespace`参数不会创建额外的命名空间。</block>
+  <block id="b0b4b8e52878f03279584f43bc961472" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner ： v2.2.2</block>
+  <block id="2afb1f98073f71c0d17fc9ca4a9e90c1" category="list-text">K8s.gcr.io/SIG-storage/CsI-attacher：v3.5.0</block>
+  <block id="1df82264c4305cc7b13edf95e4c3ac44" category="list-text">K8s.gcr.io/SIG-storage/CsI-resizer：v1.5.0</block>
+  <block id="ca2e728c8f17fef48811518aaed4de43" category="list-text">K8s.gcr.io/SIG-storage/CsI-snapshotter ： v3.0.3</block>
+  <block id="c7a50ec55e482100e18c09b42c5f13ad" category="list-text">K8s.gcr.io/SIG-storage/CsI-node-driver-registry:v2.5.1</block>
+  <block id="300646415618445143d2c1ccbf8526a5" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner：v3.2.1</block>
+  <block id="7e2f92592397ec9dbbc41011e750def4" category="list-text">K8s.gcr.io/SIG-storage/CsI-snapshotter：v6.0.1</block>
+  <block id="92027c79fbf95308efaf2ec1db03f661" category="admonition">在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.k8s.gcr.io/sig-storage/CsI-snapshotter：v6.x`映像时、才使用经过验证的`regation.k8s.gcr.io/ssi-storage/cs-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.GCR.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
 </blocks>

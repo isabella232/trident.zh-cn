@@ -7,8 +7,6 @@ entries:
   entries:
   - title: 配置 ANF 后端
     url: "/trident-use/anf.html"
-  - title: 配置 ADS 后端
-    url: "/trident-use/ads.html"
   - title: 为 GCP 后端配置 CVS
     url: "/trident-use/gcp.html"
   - title: 配置 NetApp HCI 或 SolidFire 后端
