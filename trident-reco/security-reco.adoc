@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-reco/security-reco.html 
-keywords: security, chap, trident, namespace 
+keywords: security, chap, trident, namespace, nve, nae, encryption, volume encryption, aggregate encryption 
 summary: 使用此处列出的建议确保您的 Astra Trident 安装安全。 
 ---
 = 安全性
@@ -27,7 +27,7 @@ summary: 使用此处列出的建议确保您的 Astra Trident 安装安全。
 
 Astra Trident 支持对 ONTAP SAN 工作负载进行基于 CHAP 的身份验证（使用 `ontap-san` 和 `ontap-san-economy.` 驱动程序）。NetApp 建议将双向 CHAP 与 Astra Trident 结合使用，以便在主机和存储后端之间进行身份验证。
 
-对于使用 SAN 存储驱动程序的 ONTAP 后端， Astra Trident 可以通过 `tridentctl` 设置双向 CHAP 并管理 CHAP 用户名和密码。请参见 link:../trident-use/ontap-san-prep.html["此处"^] 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。
+对于使用 SAN 存储驱动程序的 ONTAP 后端， Astra Trident 可以通过 `tridentctl` 设置双向 CHAP 并管理 CHAP 用户名和密码。请参见 link:../trident-use/ontap-san-prep.html["此处"] 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。
 
 
 NOTE: Trident 20.04 及更高版本支持 ONTAP 后端的 CHAP 。
@@ -42,3 +42,31 @@ NetApp 建议部署双向 CHAP ，以确保主机与 NetApp HCI 和 SolidFire �
 NOTE: CSI Trident 创建的卷不与任何卷访问组关联。
 
 在非 CSI 前端中，作为辅助节点上的设备连接卷的操作由 Kubernetes 处理。创建卷后，如果该租户的密钥尚不存在，则 Astra Trident 会对 NetApp HCI/SolidFire 系统进行 API 调用，以检索这些密钥。然后， Astra Trident 将这些机密传递给 Kubernetes 。位于每个节点上的 kubelet 通过 Kubernetes API 访问这些机密，并使用它们在访问卷的每个节点与卷所在的 NetApp HCI/SolidFire 系统之间运行 / 启用 CHAP 。
+
+
+
+== Astra Trident如何与NVE和NAE配合使用
+
+NetApp ONTAP 提供空闲数据加密、可在磁盘被盗、退回或重新利用时保护敏感数据。有关详细信息，请参见 link:https://docs.netapp.com/us-en/ontap/encryption-at-rest/configure-netapp-volume-encryption-concept.html["配置 NetApp 卷加密概述"^]。
+
+* 如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。
+* 如果后端未启用NAE、则在Astra Trident中配置的任何卷都将启用NVE、除非您在后端配置中将NVE加密标志设置为`false`。
+
+
+[NOTE]
+====
+在启用了NAE的后端的Astra Trident中创建的卷必须经过NVE或NAE加密。
+
+* 您可以在Trident后端配置中将NVE加密标志设置为`true`、以覆盖NAE加密并按卷使用特定的加密密钥。
+* 在启用了NAE的后端将NVE加密标志设置为`false`将创建启用了NAE的卷。您不能通过将NVE加密标志设置为`false`来禁用NAE加密。
+
+
+====
+* 您可以通过将NVE加密标志显式设置为`true`来在Astra Trident中手动创建NVE卷。
+
+
+有关后端配置选项的详细信息、请参见：
+
+* link:https://docs.netapp.com/us-en/trident/trident-use/ontap-san-examples.html["ONTAP SAN配置选项"]
+* link:https://docs.netapp.com/us-en/trident/trident-use/ontap-nas-examples.html["ONTAP NAS配置选项"]
+

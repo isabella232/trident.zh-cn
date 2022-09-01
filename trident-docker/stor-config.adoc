@@ -190,7 +190,11 @@ false
 
 
 | `加密`  a| 
-启用 NetApp 卷加密，默认为 "false"
+在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。
+
+如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。
+
+有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]。
  a| 
 true
 

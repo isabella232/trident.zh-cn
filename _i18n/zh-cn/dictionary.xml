@@ -385,7 +385,6 @@
   <block id="f40aef657c875e42158050f63dcfbb6f" category="section-title">对 ONTAP SAN 后端使用 CHAP 身份验证</block>
   <block id="2738c60dc60977d9eb6af2bf2a98c193" category="paragraph">Astra Trident 支持对 ONTAP SAN 工作负载进行基于 CHAP 的身份验证（使用 `ontap-san` 和 `ontap-san-economy.` 驱动程序）。NetApp 建议将双向 CHAP 与 Astra Trident 结合使用，以便在主机和存储后端之间进行身份验证。</block>
   <block id="6c92285fa6d3e827b198d120ea3ac674" category="inline-link-macro">此处</block>
-  <block id="c34904efabe33827baaa88ebf031ffab" category="paragraph">对于使用 SAN 存储驱动程序的 ONTAP 后端， Astra Trident 可以通过 `tridentctl` 设置双向 CHAP 并管理 CHAP 用户名和密码。请参见 <block ref="eda040c33c51e3cee067cf2f06789687" category="inline-link-macro-rx"></block> 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。</block>
   <block id="97f83fd51c89f4f9d3fc271b9f7291ab" category="admonition">Trident 20.04 及更高版本支持 ONTAP 后端的 CHAP 。</block>
   <block id="d4e0ad8fd8e11d87eb431051692db344" category="section-title">对 NetApp HCI 和 SolidFire 后端使用 CHAP 身份验证</block>
   <block id="b6a8ac29724d88dfaec657edda424d98" category="paragraph">NetApp 建议部署双向 CHAP ，以确保主机与 NetApp HCI 和 SolidFire 后端之间的身份验证。Astra Trident 使用一个机密对象，每个租户包含两个 CHAP 密码。当 Trident 作为 CSI 配置程序安装时，它会管理 CHAP 密码并将其存储在相应 PV 的 `tridentvolume` CR 对象中。创建 PV 时， CSI Astra Trident 会使用 CHAP 密码启动 iSCSI 会话并通过 CHAP 与 NetApp HCI 和 SolidFire 系统进行通信。</block>
@@ -1122,7 +1121,6 @@
   <block id="ae6bc3659bb0be0a7d9f98a63775b7c2" category="section-title">如何将配置的卷设置为特定导出策略？</block>
   <block id="700a2008fea63d02c24b85f2f75d357e" category="paragraph">要允许相应的主机访问卷，请使用后端定义文件中配置的 `exportPolicy` 参数。</block>
   <block id="9d5813dee71bcbf3d3a03c62354c3e55" category="section-title">如何使用 ONTAP 通过 Astra Trident 设置卷加密？</block>
-  <block id="5467ffdca7c34378117097446e6a4408" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。</block>
   <block id="ef1581716b653c4364dd5005dbe9e40a" category="section-title">通过 Astra Trident 为 ONTAP 实施 QoS 的最佳方式是什么？</block>
   <block id="f412d672b51ea3c57812ebf3be0ddccb" category="paragraph">使用 `StorageClasses` 为 ONTAP 实施 QoS 。</block>
   <block id="1c771b761835123a135e64f70567d768" category="section-title">如何通过 Astra Trident 指定精简配置或厚配置？</block>
@@ -1834,7 +1832,6 @@
   <block id="6f5c0c94b1a17baffd2c33facaa10db6" category="cell">创建克隆时，从其父级拆分该克隆</block>
   <block id="19b4c847405d74614976bd1228f59c9f" category="cell">false</block>
   <block id="b091cbafedf94db98f17823d044434bd" category="cell">`加密`</block>
-  <block id="4ecb8b22870f9fb0645228cd38177c49" category="cell">启用 NetApp 卷加密</block>
   <block id="a463baaf6666da7178b6fc6a3c8a3fee" category="cell">`securityStyle`</block>
   <block id="41da49bdd3fd88b2ddc6be7d6df1b335" category="cell">新卷的安全模式</block>
   <block id="4cda9f87625c6278fae1a50fcbbf96d3" category="cell">"unix"</block>
@@ -2468,7 +2465,6 @@
   <block id="91853d7e2338a1395280185fc93d4650" category="paragraph">此操作会将 Snapshot 策略设置为所需的值。默认值为 `none` ，表示不会自动为卷创建快照。除非存储管理员修改，否则所有 ONTAP 系统上都存在一个名为 "defaultion" 的策略，该策略会创建并保留六个每小时快照，两个每日快照和两个每周快照。通过浏览到卷中任意目录中的 ` .snapshot` 目录，可以恢复快照中保留的数据。</block>
   <block id="b8a0fde33bd7662b7b9cb4158f04ef52" category="paragraph">此操作会将快照预留设置为所需百分比。默认值为 no 值，这意味着如果您选择了 snapshotPolicy ， ONTAP 将选择 snapshotReserve （通常为 5% ）；如果 snapshotPolicy 为 none ，则选择 0% 。您可以在配置文件中为所有 ONTAP 后端设置默认 snapshotReserve 值，并可将其用作除 ontap-nas-economy. 以外的所有 ONTAP 后端的卷创建选项。</block>
   <block id="0625856b9dc58db03a6e2c49b1f029e3" category="paragraph">克隆卷时，此操作将使发生原因 ONTAP 立即从其父卷拆分克隆。默认值为 `false` 。在克隆卷的某些使用情形中，最好在创建后立即将克隆从其父卷中拆分，因为不太可能有任何提高存储效率的机会。例如，克隆空数据库可以节省大量时间，但节省的存储很少，因此最好立即拆分克隆。</block>
-  <block id="be94792f601f829d9b2be22553c6bf31" category="paragraph">这将在新卷上启用 NetApp 卷加密（ NVE ），默认为 `false` 。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。</block>
   <block id="cdaf246fba737b75127faa65456baa30" category="paragraph">设置要用于卷的分层策略。这将决定数据在变为非活动状态（冷）时是否移至云层。</block>
   <block id="1c46d85ab16f6b373409ad15260b1b0a" category="paragraph">以下附加选项适用于 NFS * 仅 * ：</block>
   <block id="ce46e8f3fc6eaddbe03115e0d62090ac" category="cell">`unixPermissions`</block>
@@ -2596,7 +2592,6 @@
   <block id="e35ead0e9e7038a6c58695bfa4741686" category="paragraph">Snapshot 预留百分比，默认值为 " " 以接受 ONTAP 的默认值</block>
   <block id="d3d9446802a44259755d38e6d163e820" category="paragraph">10</block>
   <block id="eb28cb6308c229ba4561cf02d78b9a07" category="paragraph">创建克隆时将其从父级拆分，默认为 "false"</block>
-  <block id="988726bbf32c455be56acbfb0da3aad0" category="paragraph">启用 NetApp 卷加密，默认为 "false"</block>
   <block id="b326b5062b2f0e69046810717534cb09" category="paragraph">true</block>
   <block id="a3b703e23c8d0caf2b2fb4f46057013b" category="paragraph">已配置 NFS 卷的 NAS 选项，默认为 "777"</block>
   <block id="f1c1592588411002af340cbaedd6fc33" category="paragraph">777.</block>
@@ -2921,7 +2916,6 @@
   <block id="6dd29ca7439e52dcf2fbc569066b3d67" category="list-text">在存储类中设置 `FSType` 。</block>
   <block id="45d2174daba36b76955e69d2eddf26ca" category="list-text">PVC 访问模式为 RW 。</block>
   <block id="ba5b62efad4f90a8f4bb806cba4a3ea4" category="paragraph">对于 NFS 存储驱动程序， NFS 导出中已存在文件系统。要使用 `fsGroup` ，存储类仍需要指定 `FSType` 。您可以将其设置为 `NFS` 或任何非空值。</block>
-  <block id="23038d88eea805ac06a26959fc129ca5" category="admonition">Trident 目前不支持 NetApp 聚合加密（ NAE ）。</block>
   <block id="fa8bc73a8436dd2f79aafaa731d248e4" category="list-text">`limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
   <block id="9c99c91edd7eddead4f870a324f880bd" category="list-text">添加 Trident 的 Helm 存储库：</block>
   <block id="368b120a3b5f53a49dc3ab96ec9b8dbd" category="paragraph">NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见<block ref="25da125dffad1d6323c21354bccf0203" category="inline-link-rx"></block>。</block>
@@ -3282,4 +3276,25 @@
   <block id="300646415618445143d2c1ccbf8526a5" category="list-text">K8s.gcr.io/SIG-storage/CsI-provisioner：v3.2.1</block>
   <block id="7e2f92592397ec9dbbc41011e750def4" category="list-text">K8s.gcr.io/SIG-storage/CsI-snapshotter：v6.0.1</block>
   <block id="92027c79fbf95308efaf2ec1db03f661" category="admonition">在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.k8s.gcr.io/sig-storage/CsI-snapshotter：v6.x`映像时、才使用经过验证的`regation.k8s.gcr.io/ssi-storage/cs-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.GCR.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
+  <block id="76ab201466ec43d71ec9051f8a556457" category="paragraph">对于使用 SAN 存储驱动程序的 ONTAP 后端， Astra Trident 可以通过 `tridentctl` 设置双向 CHAP 并管理 CHAP 用户名和密码。请参见 <block ref="2e905590b15db776a189c7b5f90d9174" category="inline-link-macro-rx"></block> 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。</block>
+  <block id="ea4a2eeab32b5cd82414bd4a2fc3e8e6" category="section-title">Astra Trident如何与NVE和NAE配合使用</block>
+  <block id="c638f77e97a62d0d11f775816222d62a" category="inline-link-macro">配置 NetApp 卷加密概述</block>
+  <block id="b65b10bf779c45e4940c255ecf83bdc3" category="paragraph">NetApp ONTAP 提供空闲数据加密、可在磁盘被盗、退回或重新利用时保护敏感数据。有关详细信息，请参见 <block ref="e0b51490e5d435c82abc702d0a4ca15c" category="inline-link-macro-rx"></block>。</block>
+  <block id="2f96099170687a6fc94d47d5c9e1db78" category="list-text">如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。</block>
+  <block id="f2e4034ee02b84093370b28f55809870" category="list-text">如果后端未启用NAE、则在Astra Trident中配置的任何卷都将启用NVE、除非您在后端配置中将NVE加密标志设置为`false`。</block>
+  <block id="82d9a35a126449139766a969834999ca" category="paragraph">在启用了NAE的后端的Astra Trident中创建的卷必须经过NVE或NAE加密。</block>
+  <block id="1bb1c0791a9e9cff8de216ed44b1de31" category="list-text">您可以在Trident后端配置中将NVE加密标志设置为`true`、以覆盖NAE加密并按卷使用特定的加密密钥。</block>
+  <block id="c376f853ae2704beeb8bbb6836ada303" category="list-text">在启用了NAE的后端将NVE加密标志设置为`false`将创建启用了NAE的卷。您不能通过将NVE加密标志设置为`false`来禁用NAE加密。</block>
+  <block id="5991606c4d185f50bd7f678053004989" category="list-text">您可以通过将NVE加密标志显式设置为`true`来在Astra Trident中手动创建NVE卷。</block>
+  <block id="b6c7fef7b7bcf035a4f4ad02ff8808c2" category="paragraph">有关后端配置选项的详细信息、请参见：</block>
+  <block id="06c4db929b729ddf158ceb5cc15b122b" category="inline-link-macro">ONTAP SAN配置选项</block>
+  <block id="ba6742159ffc869573e70b67c08565e4" category="list-text"><block ref="ba6742159ffc869573e70b67c08565e4" category="inline-link-macro-rx"></block></block>
+  <block id="b17af583fc89a3146e5ae28b0712c99c" category="inline-link-macro">ONTAP NAS配置选项</block>
+  <block id="66299b6466e6eab6aeefa2ab995fca55" category="list-text"><block ref="66299b6466e6eab6aeefa2ab995fca55" category="inline-link-macro-rx"></block></block>
+  <block id="6d9333eebb991611d29a4f8b7cc21fec" category="cell">在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： <block ref="00deada136b55f176f599153703cf50d" category="inline-link-macro-rx"></block>。</block>
+  <block id="e6c17edbc8ff331856d1dc0b7667563c" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="00deada136b55f176f599153703cf50d" category="inline-link-macro-rx"></block></block>
+  <block id="911675212835161abe9bce3f33c70af0" category="paragraph">在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。</block>
+  <block id="1811ba2842625864e8f6233e19051566" category="paragraph">如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。</block>
+  <block id="cd6eb5bfdf9299ea3a76e2eb822c8293" category="paragraph">有关详细信息、请参见： <block ref="00deada136b55f176f599153703cf50d" category="inline-link-macro-rx"></block>。</block>
+  <block id="2bc97a247278d92f5552529c55ab7f0d" category="paragraph">在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。</block>
 </blocks>
