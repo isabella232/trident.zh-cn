@@ -640,7 +640,6 @@
   <block id="033dcaefcc578c987d32d4bdb6f6b1e2" category="paragraph">但是， Astra Trident 不支持在后端之间自动移动卷。这包括在同一集群中的 SVM 之间，集群之间或不同存储平台上（即使该存储系统是连接到 Astra Trident 的存储系统也是如此）。</block>
   <block id="302be77289f337115411c01846d9a489" category="paragraph">如果将卷复制到其他位置，则可以使用卷导入功能将当前卷导入到 Astra Trident 中。</block>
   <block id="2243e252be826d6ec5e767668d9f961d" category="section-title">展开卷</block>
-  <block id="a059bca2035a0befa11f641fdabde223" category="paragraph">Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident 会自动调整存储集群上卷的大小。</block>
   <block id="40a28a40c11a193f8911cf4143a6ae6a" category="section-title">将现有卷导入到 Kubernetes 中</block>
   <block id="5d9f64103cac7a58da69304bc3320e98" category="paragraph">使用 ONTAP 和 `solidfire-san` 驱动程序时，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume-name&gt; -f /path/PVC.YAML` 将现有卷导入到要由 Astra Trident 管理的 Kubernetes 中。导入卷命令中使用的 PVC YAML 或 JSON 文件指向将 Astra Trident 标识为配置程序的存储类。使用 NetApp HCI/SolidFire 后端时，请确保卷名称是唯一的。如果卷名称重复，请将卷克隆为唯一名称，以便卷导入功能可以区分它们。</block>
   <block id="cb619cd0109686b5f82562b63e44a107" category="paragraph">执行上述命令后， Astra Trident 将在后端找到卷并读取其大小。它将自动添加（并在必要时覆盖）已配置的 PVC 卷大小。然后， Astra Trident 会创建新的 PV ， Kubernetes 会将 PVC 绑定到 PV 。</block>
@@ -695,7 +694,6 @@
   <block id="210ecadaccb6088b0dfbd2e6a0b5d0a0" category="inline-link-macro">RedHat OpenShift Container Platform 3.11 文档</block>
   <block id="67f3e99678cc7c568f4ed29074cdc41c" category="paragraph">但是，如果在初始安装后进行部署，则 Ansible 需要使用组件攻略手册。此过程可能会因 OpenShift 的不同版本而略有变化，因此请务必阅读并遵循 <block ref="a2226808e95b8487c66dd3b8cbea118e" category="inline-link-macro-rx"></block> 适用于您的版本。</block>
   <block id="3dbf527ac3caf41ab150ec99a1737217" category="section-title">指标服务</block>
-  <block id="12a5438ab4c44c9ad4dec6edc191eb7a" category="paragraph">指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外， POD 自动调整功能也需要使用此功能，许多组织会将来自指标服务的数据用于其成本分摊和 / 或成本分摊应用程序。</block>
   <block id="d0ed828e153e9bad2da040ddf6ad8f45" category="paragraph">与日志记录服务和 OpenShift 作为一个整体一样， Ansible 用于部署指标服务。此外，与日志记录服务一样，可以在集群初始设置期间或使用组件安装方法运行之后部署指标服务。下表包含在为指标服务配置永久性存储时非常重要的变量。</block>
   <block id="69aa4440020e49c654aeb910f38c6bb9" category="admonition">下表仅包含与存储配置相关的变量，因为这些变量与指标服务相关。文档中还有许多其他选项，应根据您的部署情况进行查看，配置和使用。</block>
   <block id="4f692d78f978a73b157571022c1d1ba7" category="cell">`OpenShift_metrics_storage_kind`</block>
@@ -2901,8 +2899,6 @@
   <block id="ec3f9af8f611100a0182ffb9ab2e5ef8" category="paragraph">虽然可以在 ONTAP 中创建 Trident 驱动程序可以使用的限制性更强的角色，但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。</block>
   <block id="ee50ce7340da5b018abe62c8e613cae0" category="summary">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项，并可通过特定端口进行通信。</block>
   <block id="94efe0c9471991c69d2a3b0970a56744" category="paragraph">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项。您可以使用这些选项修改部署。</block>
-  <block id="be1c3d3113c4023e29e8dd947523c711" category="inline-link">Astra Data Store 文档</block>
-  <block id="c54241e3258a450b02a723d6d751a4f1" category="list-text"><block ref="c54241e3258a450b02a723d6d751a4f1" category="inline-link-rx"></block></block>
   <block id="55f3fc550e9a03a95334f3a19f0920cc" category="cell">solidfire-san ， ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy-、 E 系列 -iscsi</block>
   <block id="6add71a247c8f4513060920be14857bc" category="cell">允许卷扩展</block>
   <block id="84e2c64f38f78ba3ea5c905ab5a2da27" category="cell">boolean</block>
@@ -3181,7 +3177,6 @@
   <block id="d85ea0185bbd496941944ab1e486ddb8" category="list-text">Kubernetes 1.19 - 1.24</block>
   <block id="0b0c130cbadeba098951b51bf8268b3f" category="paragraph">要验证Kubernetes版本、请运行以下命令：</block>
   <block id="ca3cbba69cf4bb9d3450c7c6c27983aa" category="list-text">OpenShift 4.7 (支持截止日期为2022年8月24日)、4.8、4.9、4.10</block>
-  <block id="d603df1e8927b05892b2c331ab76174c" category="list-text">Astra Data Store 22.05或更高版本</block>
   <block id="6b51834314ece904405eb0ce1a6e6bd8" category="list-text">NetApp HCI/ Element软件11或更高版本</block>
   <block id="6ebf7ae9dffc55cf86792ea266344b3a" category="list-text">Ubuntu 18.04或更高版本(最新版本22.04)</block>
   <block id="ea3ab43acafe15e8b0f7e22cb2ad9cfd" category="list-text">NetApp/trident：22.07.0</block>
@@ -3203,7 +3198,6 @@
   <block id="cab6f6f91105d87aa3f65650df43c553" category="inline-link-macro">GitHub问题描述 #228</block>
   <block id="00ea108f36897d9ed3523b970b09e6ea" category="list-text">为ONTAP 驱动程序添加了技术预览自动MetroCluster 切换检测功能。（<block ref="0c9c84232975bfb33d3481050e5ef924" category="inline-link-macro-rx"></block>）</block>
   <block id="0b4fe975279063a2d1790cd061a8b8d1" category="list-text">*。*。*。*。</block>
-  <block id="582d0eb7263de5a3b80e9e2a917c494c" category="list-text">Astra数据存储(ADS)驱动程序已更新为v1bea1 CRD、因此此版本的Trident需要ADS 22.5.0或更高版本。</block>
   <block id="108e9d089b04380952a04c1021cdad80" category="list-text">后端配置不再允许在一个配置中使用多种身份验证类型。</block>
   <block id="de278730ee66ed696db3f71d20aa30a5" category="list-text">已删除AWS CVS驱动程序(自22.04起已弃用)。</block>
   <block id="16cbbf51150ac75556b3850ff4a5a013" category="list-text">从节点Pod中删除了不必要的SYS_ADMIN功能。</block>
@@ -3297,4 +3291,6 @@
   <block id="1811ba2842625864e8f6233e19051566" category="paragraph">如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。</block>
   <block id="cd6eb5bfdf9299ea3a76e2eb822c8293" category="paragraph">有关详细信息、请参见： <block ref="00deada136b55f176f599153703cf50d" category="inline-link-macro-rx"></block>。</block>
   <block id="2bc97a247278d92f5552529c55ab7f0d" category="paragraph">在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。</block>
+  <block id="17d79009c5c2bb6bd570bb6f87552a2d" category="paragraph">Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident会自动调整存储集群上卷的大小。</block>
+  <block id="ee3d8ea22d8bf88f2f7fcd6d6dbf26d2" category="paragraph">指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外、POD自动扩展功能也需要使用此功能、许多组织会将来自指标服务的数据用于其成本分摊和/或成本分摊应用程序。</block>
 </blocks>

@@ -62,7 +62,7 @@ Astra Trident 为 ONTAP 提供了 2 个 SAN 驱动程序，其功能如下所示
 | `ontap-san` | 是的。 | 是的。 | 是脚注： 4[] | 是的。 | 是脚注： 1[] | 是的。 | 是脚注： 1[] 
 
 
-| `ontap-san-economy.` | 是的。 | 是的。 | 是脚注： 4[] | 是的。 | 是脚注： 3[] | 是脚注： 1[] | 是脚注： 3[] 
+| `ontap-san-economy.` | 是的。 | 是的。 | 是脚注： 4[] | 是的。 | 是脚注： 3[] | 是的。 | 是脚注： 3[] 
 |===
 [verse]
 上述表的脚注：是脚注： 1[] ：不受 Astra Trident 管理是脚注： 2[] ：由 Astra Trident 管理，但不是 PV 粒度 Yesfootnote ： 3[] ：不受 Astra Trident 管理，也不是 PV 粒度 Yesnote ： 4[] ：支持原始块卷是脚注： 5[] ： CSI Trident 支持
@@ -269,7 +269,7 @@ Astra Trident 还支持从卷快照创建 PersistentVolumes 。为此，只需�
 
 === 展开卷
 
-Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident 会自动调整存储集群上卷的大小。
+Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident会自动调整存储集群上卷的大小。
 
 
 
@@ -382,7 +382,7 @@ NOTE: 下表仅包含与存储配置相关的变量，因为这些变量与日�
 
 == 指标服务
 
-指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外， POD 自动调整功能也需要使用此功能，许多组织会将来自指标服务的数据用于其成本分摊和 / 或成本分摊应用程序。
+指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外、POD自动扩展功能也需要使用此功能、许多组织会将来自指标服务的数据用于其成本分摊和/或成本分摊应用程序。
 
 与日志记录服务和 OpenShift 作为一个整体一样， Ansible 用于部署指标服务。此外，与日志记录服务一样，可以在集群初始设置期间或使用组件安装方法运行之后部署指标服务。下表包含在为指标服务配置永久性存储时非常重要的变量。
 
