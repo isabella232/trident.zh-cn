@@ -86,7 +86,7 @@ TIP: 有关格式化 POD 参数的详细信息，请参见 link:https://kubernet
 
 [listing]
 ----
-$ cat deploy/crds/tridentorchestrator_cr_imagepullsecrets.yaml
+cat deploy/crds/tridentorchestrator_cr_imagepullsecrets.yaml
 apiVersion: trident.netapp.io/v1
 kind: TridentOrchestrator
 metadata:

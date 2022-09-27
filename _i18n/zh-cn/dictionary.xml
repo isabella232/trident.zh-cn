@@ -828,7 +828,6 @@
   <block id="1869e61179995eed8692bfc705434d2b" category="list-text">运行 `Helm list` 以验证图表和应用程序版本均已升级。</block>
   <block id="1d0b5ffc29a6dba36314ccbba6a46038" category="admonition">要在升级期间传递配置数据，请使用 ` -set` 。</block>
   <block id="4a6b869a481b52472aa62cfa4d9d255e" category="paragraph">例如，要更改默认值 `tridentDebug` ，请运行以下命令：</block>
-  <block id="6b30e95bff9143b45494dd9486e9515d" category="paragraph">如果您运行的是 ` $tridentctl logs` ，则可以看到调试消息。</block>
   <block id="ad00f75f90e86259efc5e8512fe4c23a" category="admonition">如果在初始安装期间设置了任何非默认选项，请确保这些选项包含在 upgrade 命令中，否则，这些值将重置为其默认值。</block>
   <block id="5c83dd886f5edc620e809e7800bc225f" category="section-title">从非操作员安装升级</block>
   <block id="69f43f0aadf9091408f80d6d1e0fdd45" category="paragraph">如果您的 CSI Trident 实例满足上述前提条件，则可以升级到最新版本的 Trident 操作符。</block>
@@ -3293,4 +3292,6 @@
   <block id="17d79009c5c2bb6bd570bb6f87552a2d" category="paragraph">Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident会自动调整存储集群上卷的大小。</block>
   <block id="ee3d8ea22d8bf88f2f7fcd6d6dbf26d2" category="paragraph">指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外、POD自动扩展功能也需要使用此功能、许多组织会将来自指标服务的数据用于其成本分摊和/或成本分摊应用程序。</block>
   <block id="5e5cb863d5fe17c205c3d2201a1a2235" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用NetApp广泛产品组合中的永久性存储、这些产品组合包括ONTAP (AFF/FAS/Select/Cloud/Amazon FSX for NetApp ONTAP)、Element软件(NetApp HCI/SolidFire)以及Azure NetApp Files 服务以及Google Cloud上的Cloud Volumes Service。</block>
+  <block id="e73292b954f1f9bb2feaf96e6032765a" category="paragraph">如果运行`tridentctl logs`、则可以看到调试消息。</block>
+  <block id="f21f22dde0e0692333a7a28cce456b08" category="sidebar">所有Astra文档</block>
 </blocks>

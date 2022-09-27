@@ -22,12 +22,12 @@ summary: 根据 Astra Trident 的安装方式，有多种卸载方法。
 [listing]
 ----
 #List the Helm release corresponding to the Astra Trident install.
-$ helm ls -n trident
+helm ls -n trident
 NAME          NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
 trident       trident         1               2021-04-20 00:26:42.417764794 +0000 UTC deployed        trident-operator-21.07.1        21.07.1
 
 #Uninstall Helm release to remove Trident
-$ helm uninstall trident -n trident
+helm uninstall trident -n trident
 release "trident" uninstalled
 ----
 
@@ -40,7 +40,7 @@ release "trident" uninstalled
 +
 [listing]
 ----
-$  kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"uninstall":true}}'
+kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"uninstall":true}}'
 ----
 +
 当 `uninstall` 标志设置为 `true` 时， Trident 操作员将卸载 Trident ，但不会删除 Trident Orchestrator 本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。
@@ -50,7 +50,7 @@ $  kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"uni
 
 [listing]
 ----
-$ kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"wipeout":["crds"],"uninstall":true}}'
+kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"wipeout":["crds"],"uninstall":true}}'
 ----
 这将完全卸载 Astra Trident 并清除与后端及其管理的卷相关的所有元数据。后续安装将视为全新安装。
 

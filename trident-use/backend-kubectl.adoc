@@ -89,7 +89,7 @@ TIP: 使用 `tridentctl` 创建的后端没有关联的 `TridentBackendConfig` �
 
 [listing]
 ----
-$ kubectl -n trident create -f backend-tbc-ontap-san-secret.yaml
+kubectl -n trident create -f backend-tbc-ontap-san-secret.yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -192,7 +192,7 @@ CHAP 目标启动程序密钥。如果 useCHAP=true ，则为必需项。适用�
 
 [listing]
 ----
-$ kubectl -n trident create -f backend-tbc-ontap-san.yaml
+kubectl -n trident create -f backend-tbc-ontap-san.yaml
 ----
 [listing]
 ----
@@ -218,7 +218,7 @@ spec:
 
 [listing]
 ----
-$ kubectl -n trident get tbc backend-tbc-ontap-san
+kubectl -n trident get tbc backend-tbc-ontap-san
 NAME                    BACKEND NAME          BACKEND UUID                           PHASE   STATUS
 backend-tbc-ontap-san   ontap-san-backend     8d24fce7-6f60-4d4a-8ef6-bab2699e6ab8   Bound   Success
 ----
@@ -259,7 +259,7 @@ backend-tbc-ontap-san   ontap-san-backend   8d24fce7-6f60-4d4a-8ef6-bab2699e6ab8
 
 [listing]
 ----
-$ kubectl -n trident get tbc backend-tbc-ontap-san -o yaml
+kubectl -n trident get tbc backend-tbc-ontap-san -o yaml
 ----
 [listing]
 ----

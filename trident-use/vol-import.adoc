@@ -87,7 +87,7 @@ spec:
 
 [listing]
 ----
-$ tridentctl import volume <backendName> <volumeName> -f <path-to-pvc-file>
+tridentctl import volume <backendName> <volumeName> -f <path-to-pvc-file>
 ----
 要导入存储卷，请指定包含该卷的 Astra Trident 后端的名称以及用于唯一标识存储上的卷的名称（例如： ONTAP FlexVol ， Element Volume ， CVS 卷路径）。存储卷必须允许读 / 写访问，并可由指定的 Astra Trident 后端访问。需要 ` -f` 字符串参数，并指定 YAML 或 JSON PVC 文件的路径。
 
@@ -115,7 +115,7 @@ IMPORTANT: `ontap-NAS` 驱动程序无法导入和管理 qtree 。`ontap-nas` �
 
 [listing]
 ----
-$ tridentctl import volume ontap_nas managed_volume -f <path-to-pvc-file>
+tridentctl import volume ontap_nas managed_volume -f <path-to-pvc-file>
 
 +------------------------------------------+---------+---------------+----------+--------------------------------------+--------+---------+
 |                   NAME                   |  SIZE   | STORAGE CLASS | PROTOCOL |             BACKEND UUID             | STATE  | MANAGED |
@@ -127,7 +127,7 @@ $ tridentctl import volume ontap_nas managed_volume -f <path-to-pvc-file>
 
 [listing]
 ----
-$ tridentctl import volume nas_blog unmanaged_volume -f <path-to-pvc-file> --no-manage
+tridentctl import volume nas_blog unmanaged_volume -f <path-to-pvc-file> --no-manage
 
 +------------------------------------------+---------+---------------+----------+--------------------------------------+--------+---------+
 |                   NAME                   |  SIZE   | STORAGE CLASS | PROTOCOL |             BACKEND UUID             | STATE  | MANAGED |
@@ -168,7 +168,7 @@ TIP: 建议导入没有活动连接的卷。如果要导入当前使用的卷，
 
 [listing]
 ----
-$ tridentctl import volume ontapsan_san_default ontap-san-managed -f pvc-basic-import.yaml -n trident -d
+tridentctl import volume ontapsan_san_default ontap-san-managed -f pvc-basic-import.yaml -n trident -d
 
 +------------------------------------------+--------+---------------+----------+--------------------------------------+--------+---------+
 |                   NAME                   |  SIZE  | STORAGE CLASS | PROTOCOL |             BACKEND UUID             | STATE  | MANAGED |
@@ -187,7 +187,7 @@ IMPORTANT: ONTAP 卷的类型必须为 RW ，才能由 Astra Trident 导入。�
 
 [listing]
 ----
-$ tridentctl import volume element_default element-managed -f pvc-basic-import.yaml -n trident -d
+tridentctl import volume element_default element-managed -f pvc-basic-import.yaml -n trident -d
 
 +------------------------------------------+--------+---------------+----------+--------------------------------------+--------+---------+
 |                   NAME                   |  SIZE  | STORAGE CLASS | PROTOCOL |             BACKEND UUID             | STATE  | MANAGED |
@@ -209,7 +209,7 @@ TIP: 要在 GCP 中导入由 NetApp Cloud Volumes Service 支持的卷，请按�
 
 [listing]
 ----
-$ tridentctl import volume gcpcvs_YEppr adroit-jolly-swift -f <path-to-pvc-file> -n trident
+tridentctl import volume gcpcvs_YEppr adroit-jolly-swift -f <path-to-pvc-file> -n trident
 
 +------------------------------------------+--------+---------------+----------+--------------------------------------+--------+---------+
 |                   NAME                   |  SIZE  | STORAGE CLASS | PROTOCOL |             BACKEND UUID             | STATE  | MANAGED |
@@ -228,7 +228,7 @@ NOTE: 卷路径是卷导出路径中： / 之后的部分。例如，如果导�
 
 [listing]
 ----
-$ tridentctl import volume azurenetappfiles_40517 importvol1 -f <path-to-pvc-file> -n trident
+tridentctl import volume azurenetappfiles_40517 importvol1 -f <path-to-pvc-file> -n trident
 
 +------------------------------------------+---------+---------------+----------+--------------------------------------+--------+---------+
 |                   NAME                   |  SIZE   | STORAGE CLASS | PROTOCOL |             BACKEND UUID             | STATE  | MANAGED |

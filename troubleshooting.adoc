@@ -34,7 +34,7 @@ TIP: 有关故障排除文章的完整列表，请参见 https://kb.netapp.com/A
 --
 [listing]
 ----
-# kubectl patch torc trident -n <namespace> --type=merge -p '{"spec":{"debug":true}}'
+kubectl patch torc trident -n <namespace> --type=merge -p '{"spec":{"debug":true}}'
 ----
 此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。
 
@@ -46,7 +46,7 @@ TIP: 有关故障排除文章的完整列表，请参见 https://kb.netapp.com/A
 --
 [listing]
 ----
-$ helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true`
+helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true`
 ----
 --
 使用 tridentctl 安装::
@@ -93,7 +93,7 @@ tridentctl logs -l trident-operator
 
 [listing]
 ----
-$ kubectl describe torc trident-2
+kubectl describe torc trident-2
 Name:         trident-2
 Namespace:
 Labels:       <none>
@@ -131,7 +131,7 @@ Events:
 
 [listing]
 ----
-$ kubectl get pods -n trident
+kubectl get pods -n trident
 
 NAME                                READY   STATUS             RESTARTS   AGE
 trident-csi-4p5kq                   1/2     ImagePullBackOff   0          5m18s

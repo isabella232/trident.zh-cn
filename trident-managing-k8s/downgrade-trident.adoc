@@ -68,12 +68,12 @@ summary: 了解降级到早期版本的 Astra Trident 所涉及的步骤。
 [listing]
 ----
 #Check to see if there are any tridentorchestrators present
-$ kubectl get torc
+kubectl get torc
 NAME        AGE
 trident     20h
 
 #Looks like there is a tridentorchestrator that needs deleting
-$ kubectl delete torc trident
+kubectl delete torc trident
 tridentorchestrator.trident.netapp.io "trident" deleted
 ----
 . 删除集群范围的运算符。为此，您需要使用清单来部署操作员。您可以从此处获取 https://github.com/NetApp/trident/blob/stable/v21.07/deploy/bundle.yaml["Trident GitHub 报告"^]。确保切换到所需的分支。
@@ -82,10 +82,14 @@ tridentorchestrator.trident.netapp.io "trident" deleted
 [listing]
 ----
 #Check to see if ``tridentorchestrators.trident.netapp.io`` CRD is present and delete it.
-$ kubectl get crd tridentorchestrators.trident.netapp.io
+
+kubectl get crd tridentorchestrators.trident.netapp.io
+
 NAME                                     CREATED AT
 tridentorchestrators.trident.netapp.io   2021-01-21T21:11:37Z
-$ kubectl delete crd tridentorchestrators.trident.netapp.io
+
+kubectl delete crd tridentorchestrators.trident.netapp.io
+
 customresourcedefinition.apiextensions.k8s.io "tridentorchestrators.trident.netapp.io" deleted
 ----
 +
@@ -102,7 +106,7 @@ customresourcedefinition.apiextensions.k8s.io "tridentorchestrators.trident.neta
 
 [listing]
 ----
-$ helm rollback trident [revision #]
+helm rollback trident [revision #]
 ----
 
 
@@ -125,14 +129,14 @@ NOTE: 在开始降级之前，您应创建 Kubernetes 集群的 `etcd` 的快照
 +
 [listing]
 ----
-$ tridentctl version -n trident
+tridentctl version -n trident
 +----------------+----------------+
 | SERVER VERSION | CLIENT VERSION |
 +----------------+----------------+
 | 21.07.0        | 21.07.0        |
 +----------------+----------------+
 
-$ tridentctl uninstall -n trident
+tridentctl uninstall -n trident
 INFO Deleted Trident deployment.
 INFO Deleted Trident daemonset.
 INFO Deleted Trident service.
@@ -148,8 +152,8 @@ INFO Trident uninstallation succeeded.
 +
 [listing]
 ----
-$ cd 20.07/trident-installer/
-$ ./tridentctl install -n trident-ns
+cd 20.07/trident-installer/
+./tridentctl install -n trident-ns
 INFO Created installer service account.            serviceaccount=trident-installer
 INFO Created installer cluster role.               clusterrole=trident-installer
 INFO Created installer cluster role binding.       clusterrolebinding=trident-installer

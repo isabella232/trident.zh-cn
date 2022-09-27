@@ -22,10 +22,10 @@ summary: 您可以收集日志以帮助进行故障排除。收集日志的方�
 +
 [listing]
 ----
-# docker plugin ls
+docker plugin ls
 ID                  NAME                DESCRIPTION                          ENABLED
 4fb97d2b956b        netapp:latest       nDVP - NetApp Docker Volume Plugin   false
-# journalctl -u docker | grep 4fb97d2b956b
+journalctl -u docker | grep 4fb97d2b956b
 ----
 +
 标准日志记录级别应允许您诊断大多数问题。如果您发现这还不够，则可以启用调试日志记录。

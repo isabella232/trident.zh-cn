@@ -42,7 +42,7 @@ sudo docker run --rm -v /backup:/backup \
 +
 [listing]
 ----
-# etcdctl snapshot restore '/backup/etcd-snapshot-latest.db' ; mv /default.etcd/member/ /var/lib/etcd/
+etcdctl snapshot restore '/backup/etcd-snapshot-latest.db' ; mv /default.etcd/member/ /var/lib/etcd/
 ----
 . 在初始化 Kubernetes 集群之前，请复制所有必要的证书。
 . 使用 `` -ignore-prefly-errors=DirAvailable-var-lib-etcd`` 标志创建集群。

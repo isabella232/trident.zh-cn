@@ -49,14 +49,14 @@ summary: 了解如何在 Astra Trident 中管理后端。
 
 [listing]
 ----
-$ tridentctl get backend ontap-nas-backend -n trident
+tridentctl get backend ontap-nas-backend -n trident
 +---------------------+----------------+--------------------------------------+--------+---------+
 |          NAME       | STORAGE DRIVER |                 UUID                 | STATE  | VOLUMES |
 +---------------------+----------------+--------------------------------------+--------+---------+
 | ontap-nas-backend   | ontap-nas      | 52f2eb10-e4c6-4160-99fc-96b3be5ab5d7 | online |      25 |
 +---------------------+----------------+--------------------------------------+--------+---------+
 
-$ cat ontap-nas-backend.json
+cat ontap-nas-backend.json
 
 {
     "version": 1,
@@ -104,7 +104,7 @@ $ cat ontap-nas-backend.json
 
 [listing]
 ----
-$ cat tbc-ontap-nas-backend-secret.yaml
+cat tbc-ontap-nas-backend-secret.yaml
 
 apiVersion: v1
 kind: Secret
@@ -115,7 +115,7 @@ stringData:
   username: cluster-admin
   passWord: admin-password
 
-$ kubectl create -f tbc-ontap-nas-backend-secret.yaml -n trident
+kubectl create -f tbc-ontap-nas-backend-secret.yaml -n trident
 secret/backend-tbc-ontap-san-secret created
 ----
 
@@ -134,7 +134,7 @@ secret/backend-tbc-ontap-san-secret created
 
 [listing]
 ----
-$ cat backend-tbc-ontap-nas.yaml
+cat backend-tbc-ontap-nas.yaml
 apiVersion: trident.netapp.io/v1
 kind: TridentBackendConfig
 metadata:
@@ -172,7 +172,7 @@ spec:
       encryption: 'false'
       unixPermissions: '0775'
 
-$ kubectl create -f backend-tbc-ontap-nas.yaml -n trident
+kubectl create -f backend-tbc-ontap-nas.yaml -n trident
 tridentbackendconfig.trident.netapp.io/tbc-ontap-nas-backend created
 ----
 
@@ -183,12 +183,12 @@ tridentbackendconfig.trident.netapp.io/tbc-ontap-nas-backend created
 
 [listing]
 ----
-$ kubectl -n trident get tbc tbc-ontap-nas-backend -n trident
+kubectl -n trident get tbc tbc-ontap-nas-backend -n trident
 NAME                   BACKEND NAME          BACKEND UUID                           PHASE   STATUS
 tbc-ontap-nas-backend  ontap-nas-backend     52f2eb10-e4c6-4160-99fc-96b3be5ab5d7   Bound   Success
 
 #confirm that no new backends were created (i.e., TridentBackendConfig did not end up creating a new backend)
-$ tridentctl get backend -n trident
+tridentctl get backend -n trident
 +---------------------+----------------+--------------------------------------+--------+---------+
 |          NAME       | STORAGE DRIVER |                 UUID                 | STATE  | VOLUMES |
 +---------------------+----------------+--------------------------------------+--------+---------+
@@ -211,11 +211,11 @@ $ tridentctl get backend -n trident
 
 [listing]
 ----
-$ kubectl get tbc backend-tbc-ontap-san -n trident -o wide
+kubectl get tbc backend-tbc-ontap-san -n trident -o wide
 NAME                    BACKEND NAME        BACKEND UUID                           PHASE   STATUS    STORAGE DRIVER   DELETION POLICY
 backend-tbc-ontap-san   ontap-san-backend   81abcb27-ea63-49bb-b606-0a5315ac5f82   Bound   Success   ontap-san        delete
 
-$ tridentctl get backend ontap-san-backend -n trident
+tridentctl get backend ontap-san-backend -n trident
 +-------------------+----------------+--------------------------------------+--------+---------+
 |       NAME        | STORAGE DRIVER |                 UUID                 | STATE  | VOLUMES |
 +-------------------+----------------+--------------------------------------+--------+---------+
@@ -232,16 +232,16 @@ $ tridentctl get backend ontap-san-backend -n trident
 
 [listing]
 ----
-$ kubectl get tbc backend-tbc-ontap-san -n trident -o wide
+kubectl get tbc backend-tbc-ontap-san -n trident -o wide
 NAME                    BACKEND NAME        BACKEND UUID                           PHASE   STATUS    STORAGE DRIVER   DELETION POLICY
 backend-tbc-ontap-san   ontap-san-backend   81abcb27-ea63-49bb-b606-0a5315ac5f82   Bound   Success   ontap-san        delete
 
 # Patch value of deletionPolicy to retain
-$ kubectl patch tbc backend-tbc-ontap-san --type=merge -p '{"spec":{"deletionPolicy":"retain"}}' -n trident
+kubectl patch tbc backend-tbc-ontap-san --type=merge -p '{"spec":{"deletionPolicy":"retain"}}' -n trident
 tridentbackendconfig.trident.netapp.io/backend-tbc-ontap-san patched
 
 #Confirm the value of deletionPolicy
-$ kubectl get tbc backend-tbc-ontap-san -n trident -o wide
+kubectl get tbc backend-tbc-ontap-san -n trident -o wide
 NAME                    BACKEND NAME        BACKEND UUID                           PHASE   STATUS    STORAGE DRIVER   DELETION POLICY
 backend-tbc-ontap-san   ontap-san-backend   81abcb27-ea63-49bb-b606-0a5315ac5f82   Bound   Success   ontap-san        retain
 ----
@@ -256,10 +256,10 @@ NOTE: 请勿继续执行下一步，除非将 `deletionPolicy` 设置为 `retain
 
 [listing]
 ----
-$ kubectl delete tbc backend-tbc-ontap-san -n trident
+kubectl delete tbc backend-tbc-ontap-san -n trident
 tridentbackendconfig.trident.netapp.io "backend-tbc-ontap-san" deleted
 
-$ tridentctl get backend ontap-san-backend -n trident
+tridentctl get backend ontap-san-backend -n trident
 +-------------------+----------------+--------------------------------------+--------+---------+
 |       NAME        | STORAGE DRIVER |                 UUID                 | STATE  | VOLUMES |
 +-------------------+----------------+--------------------------------------+--------+---------+
