@@ -3173,7 +3173,6 @@
   <block id="ff3e13aad771f1b75db023012e96d057" category="list-text">您对运行Kubernetes 1.19 - 1.24的受支持Kubernetes集群拥有完全权限。</block>
   <block id="d85ea0185bbd496941944ab1e486ddb8" category="list-text">Kubernetes 1.19 - 1.24</block>
   <block id="0b0c130cbadeba098951b51bf8268b3f" category="paragraph">要验证Kubernetes版本、请运行以下命令：</block>
-  <block id="ca3cbba69cf4bb9d3450c7c6c27983aa" category="list-text">OpenShift 4.7 (支持截止日期为2022年8月24日)、4.8、4.9、4.10</block>
   <block id="6b51834314ece904405eb0ce1a6e6bd8" category="list-text">NetApp HCI/ Element软件11或更高版本</block>
   <block id="6ebf7ae9dffc55cf86792ea266344b3a" category="list-text">Ubuntu 18.04或更高版本(最新版本22.04)</block>
   <block id="ea3ab43acafe15e8b0f7e22cb2ad9cfd" category="list-text">NetApp/trident：22.07.0</block>
@@ -3294,4 +3293,5 @@
   <block id="e73292b954f1f9bb2feaf96e6032765a" category="paragraph">如果运行`tridentctl logs`、则可以看到调试消息。</block>
   <block id="f21f22dde0e0692333a7a28cce456b08" category="sidebar">所有Astra文档</block>
   <block id="f943c993a92ee9c5049454147c981fc1" category="paragraph">以下 `S存储类` 定义是指上述存储池。通过使用`parameters.selector`字段、您可以为每个`StorageClass`指定用于托管卷的虚拟池。卷将在选定池中定义各个方面。</block>
+  <block id="08367c27454c4c2ca57c42b7991575f7" category="list-text">OpenShift 4.8、4.9、4.10、4.11</block>
 </blocks>
