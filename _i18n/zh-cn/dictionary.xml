@@ -2253,7 +2253,6 @@
   <block id="725ae241ec74eed978f0b099030236b8" category="section-title">示例 3 ：高级配置</block>
   <block id="a83f4a534ccef7ac1d209fb0015cd907" category="paragraph">此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。</block>
   <block id="198188b722e4e8ee2004b3bd2a9348ed" category="paragraph">此后端配置可在一个文件中定义多个存储池。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。</block>
-  <block id="db471f3119123601d175fe8d2ef2dd0a" category="paragraph">以下 `S存储类` 定义是指上述存储池。通过使用 `parameters.selector` 字段，您可以为每个 `StorageClass` 指定用于托管卷的实际池。卷将在选定池中定义各个方面。</block>
   <block id="0cc7642bbaf969ea355ea12764841c91" category="summary">了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。</block>
   <block id="a0f3a965c12688befda99da850903dcb" category="cell">`autosExportPolicy`</block>
   <block id="4a5695a4c9eea28a296b0b2f210a15f8" category="cell">启用自动创建和更新导出策略 [ 布尔值 ]</block>
@@ -3294,4 +3293,5 @@
   <block id="5e5cb863d5fe17c205c3d2201a1a2235" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用NetApp广泛产品组合中的永久性存储、这些产品组合包括ONTAP (AFF/FAS/Select/Cloud/Amazon FSX for NetApp ONTAP)、Element软件(NetApp HCI/SolidFire)以及Azure NetApp Files 服务以及Google Cloud上的Cloud Volumes Service。</block>
   <block id="e73292b954f1f9bb2feaf96e6032765a" category="paragraph">如果运行`tridentctl logs`、则可以看到调试消息。</block>
   <block id="f21f22dde0e0692333a7a28cce456b08" category="sidebar">所有Astra文档</block>
+  <block id="f943c993a92ee9c5049454147c981fc1" category="paragraph">以下 `S存储类` 定义是指上述存储池。通过使用`parameters.selector`字段、您可以为每个`StorageClass`指定用于托管卷的虚拟池。卷将在选定池中定义各个方面。</block>
 </blocks>
