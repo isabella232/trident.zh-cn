@@ -120,7 +120,7 @@ Kubernetes `StorageClass` 对象在 `PersistentVolumeClass` 中按名称指定�
 
 使用 Trident 的 Kubernetes `StorageClass` 对象如下所示：
 
-[source, yaml]
+[listing]
 ----
 apiVersion: storage.k8s.io/v1beta1
 kind: StorageClass
@@ -247,7 +247,7 @@ Kubernetes `VolumeSnapshotClass` 对象类似于 `StorageClasses` 。它们有�
 
 要创建快照，管理员应定义 `VolumeSnapshotClass` 。此时将使用以下定义创建卷快照类：
 
-[source, yaml]
+[listing]
 ----
 apiVersion: snapshot.storage.k8s.io/v1beta1
 kind: VolumeSnapshotClass
@@ -454,7 +454,7 @@ Trident降级会使用`ssystem-node-critical` Priority Class-the highest priorit
 
 以下是一个`ResourceQuota`对象的示例、该对象会优先处理Trident子集。
 
-[source, yaml]
+[listing]
 ----
 apiVersion: <version>
 kind: ResourceQuota
@@ -485,7 +485,7 @@ spec:
 
 如果您希望控制自己的资源分配、则可以使用以下命令删除Astra Trident `ResourceQuota`对象：
 
-[source, cli]
+[listing]
 ----
 kubectl delete quota trident-csi -n trident
 ----

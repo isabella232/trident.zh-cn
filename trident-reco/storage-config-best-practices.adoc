@@ -85,7 +85,7 @@ vserver modify -vserver <svm_name> -max-volumes <num_of_volumes>
 
 您可以通过几个步骤为 SVM 创建 QoS 策略。有关最准确的信息，请参见适用于您的 ONTAP 版本的文档。以下示例将创建一个 QoS 策略，将 SVM 可用的总 IOPS 限制为 5000 。
 
-[source, console]
+[listing]
 ----
 # create the policy group for the SVM
 qos policy-group create -policy-group <policy_name> -vserver <svm_name> -max-throughput 5000iops
@@ -120,7 +120,7 @@ ONTAP 有两种类型的 QoS 策略组：传统和自适应。传统策略组以
 * 您应在后端配置的 `defaults` 块中设置 `qosPolicy` 密钥。请参见以下后端配置示例：
 
 
-[source, console]
+[listing]
 ----
   {
     "version": 1,

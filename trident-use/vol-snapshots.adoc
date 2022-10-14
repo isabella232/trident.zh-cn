@@ -31,7 +31,7 @@ NOTE: 此功能可从 Kubernetes 1.17 （测试版）获得，从 1.20 开始正
 ====
 .5.0版组件
 --
-[source, yaml]
+[listing]
 ----
 cat snapshot-setup.sh
 #!/bin/bash
@@ -43,7 +43,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snaps
 --
 .v3.0.3组件
 --
-[source, yaml]
+[listing]
 ----
 cat snapshot-setup.sh
 #!/bin/bash
@@ -67,7 +67,7 @@ NOTE: 如果在GKE-环境中设置按需卷快照、请勿创建快照控制器�
 ====
 .5.0版控制器
 --
-[source, yaml]
+[listing]
 ----
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-5.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-5.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
@@ -75,7 +75,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snaps
 --
 .v3.0.3控制器
 --
-[source, yaml]
+[listing]
 ----
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/v3.0.3/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/v3.0.3/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
