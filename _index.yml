@@ -30,12 +30,10 @@ indexpage:
       url: "/trident-managing-k8s/upgrade-tridentctl.html"
   - title: 使用 Astra Trident
     links:
+    - title: 准备工作节点
+      url: "/trident-use/worker-node-prep.html"
     - title: 配置后端
       url: "/trident-use/backends.html"
-    - title: 使用 kubectl 创建后端
-      url: "/trident-use/backend-kubectl.html"
-    - title: 在后端管理选项之间移动
-      url: "/trident-use/backend_options.html"
     - title: 管理存储类
       url: "/trident-use/manage-stor-class.html"
     - title: 执行卷操作

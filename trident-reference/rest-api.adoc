@@ -34,7 +34,7 @@ API 的工作原理如下：
 
 `post <trident 地址 >/trident /v1/< 对象类型 >` ：创建指定类型的对象。
 
-* 需要为要创建的对象配置 JSON 。有关每种对象类型的规范，请参见 link:tridentctl.html["`tridentctl` 命令和选项"]。
+* 需要为要创建的对象配置 JSON 。有关每种对象类型的规范，请参见 link:tridentctl.html["ce87eb03803d5633c163541464e9e7f2"]。
 * 如果对象已存在，则行为会有所不同：后端更新现有对象，而所有其他对象类型将使操作失败。
 
 
@@ -45,6 +45,6 @@ API 的工作原理如下：
 `delete <trident 地址 >/trident /v1/< 对象类型 >/< 对象名称 >` ：删除指定的资源。
 
 
-NOTE: 与后端或存储类关联的卷将继续存在；必须单独删除这些卷。有关详细信息，请参见 link:tridentctl.html["`tridentctl` 命令和选项"]。
+NOTE: 与后端或存储类关联的卷将继续存在；必须单独删除这些卷。有关详细信息，请参见 link:tridentctl.html["ce87eb03803d5633c163541464e9e7f2"]。
 
-有关如何调用这些 API 的示例，请传递 debug （` -d` ）标志。有关详细信息，请参见 link:tridentctl.html["`tridentctl` 命令和选项"]。
+有关如何调用这些 API 的示例，请传递 debug （` -d` ）标志。有关详细信息，请参见 link:tridentctl.html["ce87eb03803d5633c163541464e9e7f2"]。

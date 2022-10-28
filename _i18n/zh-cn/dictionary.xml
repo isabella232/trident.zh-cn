@@ -11,7 +11,6 @@
   <block id="c34156b367bae1b376f09b89d3be7992" category="list-text">`get &lt;trident 地址 &gt;/trident /v1/&lt; 对象类型 &gt;/&lt; 对象名称 &gt;` ：获取命名对象的详细信息。</block>
   <block id="a02439ec229d8be0e74b0c1602392310" category="section-title">发布</block>
   <block id="6692e2cd6834e6b9b2151799cac2a9f8" category="paragraph">`post &lt;trident 地址 &gt;/trident /v1/&lt; 对象类型 &gt;` ：创建指定类型的对象。</block>
-  <block id="ce87eb03803d5633c163541464e9e7f2" category="inline-link-macro">`tridentctl` 命令和选项</block>
   <block id="3d2bacacf0178e742d5abb2abc32d431" category="list-text">需要为要创建的对象配置 JSON 。有关每种对象类型的规范，请参见 <block ref="e87a326653960de9774fcc58ee9fa490" category="inline-link-macro-rx"></block>。</block>
   <block id="5b2f45c3d098b61927afda859c9144f8" category="list-text">如果对象已存在，则行为会有所不同：后端更新现有对象，而所有其他对象类型将使操作失败。</block>
   <block id="32f68a60cef40faedbc6af20298c1a1e" category="section-title">删除</block>
@@ -769,7 +768,6 @@
   <block id="19f60a36276037e5b82b5096d2ba7a5c" category="paragraph">下面简要介绍了 ONTAP SnapMirror 卷复制设置步骤：</block>
   <block id="c4e9d0a10c58301ad78e9e9bf74f9229" category="list-text">在卷所在的集群与从卷提供数据的 SVM 之间设置对等关系。</block>
   <block id="b1c132fa6284fd6d42f93781032cd962" category="list-text">创建一个 SnapMirror 策略，用于控制关系的行为并指定该关系的配置属性。</block>
-  <block id="d9934e78a9254dde4a227181c30fa2d2" category="inline-link">`snapmirror create` 命令</block>
   <block id="0a30bcd5b223c18be449821765a8ec07" category="list-text">使用在目标卷和源卷之间创建 SnapMirror 关系<block ref="bfbfdbcdb00ddafcc3e3ca740d1d316b" category="inline-link-rx"></block> 并分配相应的 SnapMirror 策略。</block>
   <block id="20872623d19783e0dbe00afcdcb9ba46" category="list-text">创建 SnapMirror 关系后，初始化此关系，以便完成从源卷到目标卷的基线传输。</block>
   <block id="af1fe101ed84f2b2bc465f0a9e92a35f" category="image-alt">显示了 SnapMirror 卷复制设置。</block>
@@ -901,8 +899,6 @@
   <block id="558ab0bef1894a7a726109d36632d09d" category="inline-link-macro">已知问题</block>
   <block id="33966eba1ed0cde6afda5a97ffaffb09" category="inline-link">安全上下文</block>
   <block id="ceb268093ddd5aa9df1769eda5d1c8cd" category="inline-link">输入示例：</block>
-  <block id="9d267d893296d1b56789c03ad196afc8" category="inline-link">`storage-class-basic 。 yaml.temp`</block>
-  <block id="4e4578e23d9d48bd9338b1581f884392" category="inline-link">`storage-class-brone-default.yaml`</block>
   <block id="1ca02e26ff81cefae18a0a8d994ca94a" category="admonition">升级时，请务必提供 `parameter.FSType` in `StorageClasses` used by Astra Trident 。您可以删除并重新创建 `StorageClasses` ，而不会中断已有卷。这是执行的一项 * 要求 *<block ref="cafe4c6014d8c45aaac70e49318f1a2a" category="inline-link-rx"></block> SAN 卷。。<block ref="25daec0b57549a6ad43dbc62a9e717ca" category="inline-link-rx"></block> 目录包含示例，例如<block ref="d308f4d12b21bf269d64643e1eceeeb2" category="inline-link-rx"></block> 和<block ref="b6ff3ec2ac914a047085c08d5843e316" category="inline-link-rx"></block>。有关详细信息，请参见 <block ref="139a59f2208174d2bf825b80dc580275" category="inline-link-macro-rx"></block>。</block>
   <block id="17cfb8bd7f378fa26b63ee73d467cb82" category="section-title">我应选择哪种升级路径？</block>
   <block id="46940159293e259bcf0bb4df75448100" category="paragraph">您可以使用以下路径之一进行升级：</block>
@@ -924,7 +920,6 @@
   <block id="9c83e144e5481ac6766f4055e566594d" category="section-title">了解更多信息</block>
   <block id="7d224494dc0d22edaed4c965cdddffe6" category="inline-link-macro">使用 Trident 操作符进行升级</block>
   <block id="85f4fc5b4c12e5ede408e45a6d484dc1" category="list-text"><block ref="85f4fc5b4c12e5ede408e45a6d484dc1" category="inline-link-macro-rx"></block></block>
-  <block id="b41f68e89b7b02a9077fb800d31a2fbe" category="inline-link-macro">使用 `tridentctl` 进行升级</block>
   <block id="efb20f59615d4d5ee0437ba57aecbe50" category="list-text"><block ref="efb20f59615d4d5ee0437ba57aecbe50" category="inline-link-macro-rx"></block></block>
   <block id="f71fd95d4de4797557e6830c1448c945" category="summary">您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安装。</block>
   <block id="6224e22d5a77816dd8b659c25a3f88a5" category="paragraph">升级到最新版本的 Astra Trident 时，请考虑以下事项：</block>
@@ -1319,7 +1314,6 @@
   <block id="4c774e8a2d80dbc16b0bf55be6c7b358" category="paragraph">有关自定义部署的详细信息，请参见以下链接：</block>
   <block id="711011f15ff69da45006043e93ed8981" category="inline-link-macro">自定义基于操作员的部署</block>
   <block id="8f863c0ccd38c8782b36eedbea08fc5b" category="list-text"><block ref="8f863c0ccd38c8782b36eedbea08fc5b" category="inline-link-macro-rx"></block></block>
-  <block id="85cda507040c129ee606d4d8df583b90" category="inline-link-macro">自定义基于 `tridentctl` 的部署</block>
   <block id="16486d6f9e6411719306bdb76f0b34fa" category="list-text"><block ref="16486d6f9e6411719306bdb76f0b34fa" category="inline-link-macro-rx"></block></block>
   <block id="47c0166da57a75ed65ddb766c838a91c" category="section-title">远程部署</block>
   <block id="761bf14d8b8339a8f345e63dc12c36bb" category="paragraph">下面简要概述了远程部署过程：</block>
@@ -2296,7 +2290,6 @@
   <block id="46b189b23dfbd5f3f622a1c04590b05e" category="admonition">CSI Snapshotter 提供了<block ref="927ab0e919f8034deab1249bed53a289" category="inline-link-rx"></block> 帮助用户验证现有 v1bea1 快照并确认它们是有效的资源对象。正在验证的 webhook 会自动标记无效的快照对象，并防止将来创建无效对象。验证 webhook 由 Kubernetes 流程编排程序部署。请参见有关手动部署验证 webhook 的说明<block ref="07cb3cdda0599ec9f2e82062ecd12e82" category="inline-link-rx"></block>。查找无效快照清单的示例<block ref="bceda34f0850fc68d82f08741abbc69e" category="inline-link-rx"></block>。</block>
   <block id="f535be08d3997f1a801b132862d99a5c" category="paragraph">下面详细介绍的示例说明了使用快照所需的构造，并说明了如何创建和使用快照。</block>
   <block id="551730f3a084f9dee63029647e815d3a" category="section-title">第 1 步：设置 VolumeSnapshotClass</block>
-  <block id="d7ca7162c394dee752c35d07a92823da" category="inline-link-macro">`VolumeSnapshotClass`</block>
   <block id="b91e58d7d80a51e4fa86b9ab27dca505" category="paragraph">在创建卷快照之前，请设置 <block ref="c740b46915208e935cb2017421ec0264" category="inline-link-macro-rx"></block>。</block>
   <block id="4744d2c82c1c470ab40280b2ebba0c08" category="paragraph">`d河` 指向 Astra Trident 的 CSI 驱动程序。`deeltionPolicy` 可以是 `Delete` 或 `Retain` 。如果设置为 `Retain` ，则即使删除了 `VolumeSnapshot` 对象，存储集群上的底层物理快照也会保留。</block>
   <block id="0ab6380edce0d0e7b8538ebf3215ebbd" category="section-title">第 2 步：创建现有 PVC 的快照</block>
@@ -2352,7 +2345,6 @@
   <block id="91186d69835ccf9911e356f74938c539" category="list-text">在多个 Astra Trident 实例之间使用后端时，每个后端配置文件对于 ONTAP 后端应具有不同的 `storagePrefix` 值，或者对于 SolidFire 后端使用不同的 `租户名称` 。Astra Trident 无法检测其他 Astra Trident 实例创建的卷。尝试在 ONTAP 或 SolidFire 后端创建现有卷会成功，因为 Astra Trident 会将卷创建视为一项幂等操作。如果 `storagePrefix` 或 `租户名称` 不存在差异，则在同一后端创建的卷可能会发生名称冲突。</block>
   <block id="9bf4c601179068ff3574d2cf87536564" category="list-text">安装 Astra Trident （使用 `tridentctl` 或 Trident 操作员）并使用 `tridentctl` 管理 Astra Trident 时，应确保设置 `KUBECONFIG` 环境变量。这是 `需要对` tridentctl 进行处理的 Kubernetes 集群进行指示的。在使用多个 Kubernetes 环境时，您应确保准确获取 `KUBECONFIG` 文件。</block>
   <block id="6d791d3b45515fd8619e489b938f39e8" category="inline-link">挂载选项</block>
-  <block id="d4b9b9554fd820f43eae492d33e41167" category="inline-link">`s存储类`</block>
   <block id="a5c785ee36f0f2d14349653f744c8e3b" category="list-text">要对 iSCSI PV 执行联机空间回收，工作节点上的底层操作系统可能需要将挂载选项传递到卷。这一点适用于需要 `discard` 的 RHEL/RedHat CoreOS 实例<block ref="2ee633fb26bfccf07d490458d29f92a2" category="inline-link-rx"></block>；确保中包含 Discard mountOption<block ref="b44436f062a8f5a535d8cafcffeb70b2" category="inline-link-rx"></block> 支持联机块丢弃。</block>
   <block id="c2ebda3702872aaa7ad44122f2343d7e" category="list-text">如果每个 Kubernetes 集群有多个 Astra Trident 实例，则 Astra Trident 将无法与其他实例通信，也无法发现它们创建的其他卷，如果集群中运行多个实例，则会导致意外的错误行为。每个 Kubernetes 集群只能有一个 Astra Trident 实例。</block>
   <block id="294f8c33b7ccdbcbf422998b64c9c931" category="list-text">如果在 Astra Trident 脱机时从 Kubernetes 中删除了基于 Astra Trident 的 `StorageClass` 对象，则 Astra Trident 不会在恢复联机后从其数据库中删除相应的存储类。您应使用 `tridentctl` 或 REST API 删除这些存储类。</block>
@@ -3294,4 +3286,6 @@
   <block id="f21f22dde0e0692333a7a28cce456b08" category="sidebar">所有Astra文档</block>
   <block id="f943c993a92ee9c5049454147c981fc1" category="paragraph">以下 `S存储类` 定义是指上述存储池。通过使用`parameters.selector`字段、您可以为每个`StorageClass`指定用于托管卷的虚拟池。卷将在选定池中定义各个方面。</block>
   <block id="08367c27454c4c2ca57c42b7991575f7" category="list-text">OpenShift 4.8、4.9、4.10、4.11</block>
+  <block id="5d40a2b5dc4a222fe46fe927bb2bb348" category="inline-link-macro">自定义基于&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix="category="inline-code"/&gt;"的部署</block>
+  <block id="d874cb235ec1b03394e3293dc2c95d44" category="inline-link-macro">使用&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix="" category="inline-code"/&gt;进行升级</block>
 </blocks>

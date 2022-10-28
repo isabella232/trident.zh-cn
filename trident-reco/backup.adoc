@@ -130,7 +130,7 @@ ONTAP SnapMirror 卷复制是一项灾难恢复功能，可用于在卷级别从
 
 * 在卷所在的集群与从卷提供数据的 SVM 之间设置对等关系。
 * 创建一个 SnapMirror 策略，用于控制关系的行为并指定该关系的配置属性。
-* 使用在目标卷和源卷之间创建 SnapMirror 关系 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr-970/snapmirror__create.html["`snapmirror create` 命令"^] 并分配相应的 SnapMirror 策略。
+* 使用在目标卷和源卷之间创建 SnapMirror 关系 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr-970/snapmirror__create.html["d9934e78a9254dde4a227181c30fa2d2"^] 并分配相应的 SnapMirror 策略。
 * 创建 SnapMirror 关系后，初始化此关系，以便完成从源卷到目标卷的基线传输。
 
 

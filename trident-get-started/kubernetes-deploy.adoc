@@ -123,7 +123,7 @@ NOTE: 如果集群升级到不受支持的版本，则操作员会阻止安装 A
 有关自定义部署的详细信息，请参见以下链接：
 
 * link:kubernetes-customize-deploy.html["自定义基于操作员的部署"^]
-* link:kubernetes-customize-deploy-tridentctl.html["自定义基于 `tridentctl` 的部署"^]
+* link:kubernetes-customize-deploy-tridentctl.html["85cda507040c129ee606d4d8df583b90"^]
 
 
 

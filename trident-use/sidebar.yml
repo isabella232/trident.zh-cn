@@ -2,6 +2,8 @@
 section: trident-use
 title: 使用 Astra Trident
 entries:
+- title: 准备工作节点
+  url: "/trident-use/worker-node-prep.html"
 - title: 配置后端
   url: "/trident-use/backends.html"
   entries:
@@ -48,7 +50,5 @@ entries:
     url: "/trident-use/vol-expansion.html"
   - title: 导入卷
     url: "/trident-use/vol-import.html"
-- title: 准备工作节点
-  url: "/trident-use/worker-node-prep.html"
 - title: 监控 Astra Trident
   url: "/trident-use/monitor-trident.html"
