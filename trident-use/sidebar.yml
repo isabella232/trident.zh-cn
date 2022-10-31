@@ -55,5 +55,7 @@ entries:
     url: "/trident-use/vol-expansion.html"
   - title: 导入卷
     url: "/trident-use/vol-import.html"
+- title: 在命名空间之间共享NFS卷
+  url: "/trident-use/volume-share.html"
 - title: 监控 Astra Trident
   url: "/trident-use/monitor-trident.html"

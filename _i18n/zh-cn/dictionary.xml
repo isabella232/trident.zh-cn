@@ -3259,17 +3259,13 @@
   <block id="4a9eb9834d90361e1b70e6ac3c8b9a5c" category="list-text">删除了Astra Trident iSCSI工作流中的粒度重试、以快速失败并缩短外部重试间隔。</block>
   <block id="08e9e62a917aaf944b6ff85929a9f1dd" category="list-text">修复了问题描述 、在刷新iSCSI设备时、如果已刷新相应的多路径设备、则会返回错误。</block>
   <block id="bc5611c731b034c5f323419d0258aa44" category="list-text">Kubernetes：</block>
-  <block id="abe9531089246868d8feb9fc90094ded" category="list-text">增加了对Kubernetes 1.25的支持。</block>
   <block id="98f7f8fbd26f9272ad6a29f2fb6c930b" category="list-text">为Trident部署和DemonSet添加了单独的ServiceAccount、ClusterRole和ClusterRoleBinding-以增强未来的权限。</block>
   <block id="609df46dff884c3eec4386eb8db4e358" category="inline-link-macro">跨命名空间卷共享</block>
-  <block id="1e3f3077b23f32ee539108a794a4dbf0" category="list-text">增加了对的支持 <block ref="15d011c7489618b0619a476c161a167b" category="inline-link-macro-rx"></block>。</block>
   <block id="09065204259df86d4fe38c35ea23f5af" category="list-text">所有Trident<block ref="aa44e980d222d5134b5e0d8a062e1543" prefix=" " category="inline-code"></block> 现在、存储驱动程序可与ONTAP REST API配合使用。</block>
   <block id="8485ea08789af7b6b7b44e024b526f9b" category="list-text">添加了新的运算符YAML <block ref="5a02ebff4889c2de0379a0fb10bed282" prefix="(" category="inline-code"></block>)、而不使用<block ref="316707d12484dd3afede08839dee49bc" prefix=" " category="inline-code"></block> 以支持Kubernetes 1.25。</block>
   <block id="26e871bef43095263845143b043aee4f" category="inline-link-macro">支持LUKS加密卷</block>
-  <block id="9f3977bacc22a3fba29a00ba6c5cc576" category="list-text">已添加 <block ref="261f23d09d0ceadbb1dc66073d75dd94" category="inline-link-macro-rx"></block> 适用于<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 存储驱动程序。</block>
   <block id="30b044636a9c63ab4b202192eec30c1c" category="list-text">增加了对Windows Server 2019节点的支持。</block>
   <block id="38b9dc57f44121e6d970b34eede9ad0d" category="inline-link-macro">支持Windows节点上的SMB卷</block>
-  <block id="010b8885e154301004ffd0bf8bdeb32a" category="list-text">已添加 <block ref="cb6afbce245edd6983ec2b18e6a61dda" category="inline-link-macro-rx"></block> 通过<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 存储驱动程序。</block>
   <block id="af8a9d07c7391207db96957ab59cb459" category="list-text">** Kubernetes：*已将支持的最低Kubernetes更新为1.20。</block>
   <block id="d667cfc8e8d6ec0c2352fe97b0f09e40" category="list-text">已删除Astra数据存储(ADS)驱动程序。</block>
   <block id="9b363ea2db99fe0dc5e9b43f47a37f20" category="list-text">删除了对的支持<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block> 和<block ref="8c319f28d81d1527a9428e9a5c2195f5" prefix=" " category="inline-code"></block> 选项<block ref="19b30dc119e514235b739e076be9b3cc" prefix=" " category="inline-code"></block> 为iSCSI配置工作节点多路径时。</block>
@@ -3435,4 +3431,9 @@
   <block id="9ead1c7bd3c9e30f2ce85ab0768005fc" category="sidebar">准备配置ANF后端</block>
   <block id="74e5369c29dfffd1c167b754a55ac30d" category="sidebar">ANF配置选项和示例</block>
   <block id="ee7bdcae9fbde9976cf62161a22434cf" category="sidebar">准备使用ONTAP NAS驱动程序配置后端</block>
+  <block id="ef0f938ae67a04ac3370fe516c2a6baf" category="list-text">增加了对Kubernetes 1.25的支持。在升级到Kubernetes 1.25之前、您必须将Astra Trident升级到22.10。</block>
+  <block id="d041a310ba7cc2599250e64801594107" category="list-text">增加了对的支持 <block ref="ca184a2eda203b6d98158bdf24e5cf7d" category="inline-link-macro-rx"></block>。</block>
+  <block id="9f010916f3fa12858d7cef8c56ca32b2" category="list-text">已添加 <block ref="79adf4cd0300f2fbcb360d22cc5460b5" category="inline-link-macro-rx"></block> 适用于<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 存储驱动程序。</block>
+  <block id="adbfe36f6399f2846983b2901604a962" category="list-text">已添加 <block ref="40be42d37bc6014716dcd0a1d368ffb5" category="inline-link-macro-rx"></block> 通过<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 存储驱动程序。</block>
+  <block id="f18a50f02f48551895d57b81dd288142" category="sidebar">在命名空间之间共享NFS卷</block>
 </blocks>
