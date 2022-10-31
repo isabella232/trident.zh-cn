@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-use/gcp.html 
 keywords: trident backend, cloud volumes service for google cloud platform, Google Cloud Platform 
-summary: 了解如何使用提供的示例配置将 Cloud Volumes Service for Google Cloud 配置为 Astra Trident 安装的后端。 
+summary: 了解如何使用提供的示例配置将适用于Google Cloud的Cloud Volumes Service 配置为Astra Trident安装的后端。 
 ---
 = 为 GCP 后端配置 CVS
 :hardbreaks:
@@ -11,30 +11,24 @@ summary: 了解如何使用提供的示例配置将 Cloud Volumes Service for Go
 :imagesdir: ../media/
 
 
-了解如何使用提供的示例配置将适用于 Google 云平台（ GCP ）的 NetApp Cloud Volumes Service （ CVS ）配置为 Astra Trident 安装的后端。
+了解如何使用提供的示例配置将适用于Google Cloud Platform (GCP)的NetApp Cloud Volumes Service (CVS)配置为Astra Trident安装的后端。
+
+Astra Trident支持默认CVS服务类型为on的卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["GCP"^]。无论CVS服务类型允许的最小值如何、Astra Trident都不支持小于100 GiB的CVS卷。因此、如果请求的卷小于最小大小、Trident会自动创建100 GiB卷。
+
+[NOTE]
+====
+* NetApp建议客户将低于1 TiB的卷用于非生产工作负载。
+* 使用默认CVS服务类型部署后端时 `storageClass=software`、注册后可访问GCP上的子1TiB卷功能、以获取相关项目编号和项目ID。这对于 Trident 配置低于 1TiB 的卷是必需的。否则、对于小于600 GiB的PVC、卷创建*将失败*。
+* link:https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["注册以访问低于1TiB的卷。"]
 
 
-NOTE: NetApp Cloud Volumes Service for Google Cloud 不支持大小小于 100 GiB 的 CVS-Performance 卷或小于 300 GiB 的 CVS 卷。如果请求的卷小于最小大小，则 Astra Trident 会自动创建最小大小的卷。
-
+====
 以配置和使用 https://cloud.netapp.com/cloud-volumes-service-for-gcp?utm_source=NetAppTrident_ReadTheDocs&utm_campaign=Trident["适用于 Google Cloud 的 Cloud Volumes Service"^] 后端，您需要满足以下要求：
 
 * 配置了 NetApp CVS 的 Google Cloud 帐户
 * Google Cloud 帐户的项目编号
 * 具有 `netappcloudvolumes.admin` 角色的 Google Cloud 服务帐户
 * CVS 服务帐户的 API 密钥文件
-
-
-Astra Trident 现在支持使用默认值的较小卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-type["GCP 上的 CVS 服务类型"^]。对于使用 `storageClass=software` 创建的后端，卷的最小配置大小将为 300 GiB 。CVS 目前在 " 受控可用性 " 下提供此功能，不提供技术支持。用户必须注册才能访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此处"^]。NetApp 建议客户对非生产工作负载使用 1 TiB 以下的卷。
-
-
-NOTE: 使用默认 CVS 服务类型（ `storageClass=software` ）部署后端时，用户必须获得 GCP 上有关项目编号和项目 ID 的 1 TiB 卷功能的访问权限。这对于 Astra Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建将失败。使用访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此表单"^]。
-
-由 Astra Trident 为默认 CVS 服务级别创建的卷将按以下方式进行配置：
-
-* 小于 300 GiB 的 PVC 将导致 Astra Trident 创建 300 GiB CVS 卷。
-* 如果 PVC 介于 300 GiB 到 600 GiB 之间，则 Astra Trident 将创建请求大小的 CVS 卷。
-* 介于 600 GiB 和 1 TiB 之间的 PVC 将导致 Astra Trident 创建 1 TiB CVS 卷。
-* 如果 PVC 大于 1 TiB ，则 Astra Trident 将创建请求大小的 CVS 卷。
 
 
 

@@ -4,7 +4,7 @@ permalink: trident-use/ontap-nas-prep.html
 keywords: trident backend, ontap nas, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups 
 summary: 了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。 
 ---
-= 准备
+= 准备使用ONTAP NAS驱动程序配置后端
 :hardbreaks:
 :allow-uri-read: 
 :icons: font

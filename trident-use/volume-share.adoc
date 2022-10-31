@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: trident-use/volume-share.html 
+keywords: volref, volume reference, share, pvc, pv, nfs, namespace 
+summary:  
+---
+= 在命名空间之间共享NFS卷
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+使用Astra TridentVolumeReference CR、您可以在一个或多个Kubernetes命名空间之间安全地共享ReadWriteMany (rwx) NFS卷。此Kubernetes本机解决方案 具有以下优势：
+
+* 可通过多个级别的访问控制来确保安全性
+* 适用于所有Trident NFS卷驱动程序
+* 不依赖于tridentctl或任何其他非本机Kubernetes功能
+
+
+此图显示了两个Kubernetes命名空间之间的NFS卷共享。
+
+image::cross-namespace-sharing.png[跨命名空间共享的概念图。]
+
+
+
+== 快速入门
+
+只需几个步骤即可设置NFS卷共享。
+
+[role="quick-margin-para"]
+源命名空间所有者授予访问源PVC中数据的权限。
+
+[role="quick-margin-para"]
+集群管理员向目标命名空间的所有者授予创建TridentVolumeReference CR的权限。
+
+[role="quick-margin-para"]
+目标命名空间的所有者将创建TridentVolumeReference CR以引用源PVC。
+
+[role="quick-margin-para"]
+目标命名空间的所有者创建从属PVC以使用源PVC中的数据源。
+
+
+
+== 配置源和目标命名空间
+
+为了确保安全性、跨命名空间共享需要源命名空间所有者、集群管理员和目标命名空间所有者的协作和操作。每个步骤都会指定用户角色。
+
+.步骤
+. *源命名空间所有者：*创建PVC (`pvc1`)、以授予与目标命名空间共享的权限 (`namespace2`) `shareToNamespace` 标注。
++
+[listing]
+----
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc1
+  namespace: namespace1
+  annotations:
+    trident.netapp.io/shareToNamespace: namespace2
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: trident-csi
+  resources:
+    requests:
+      storage: 100Gi
+----
++
+Astra Trident会创建PV及其后端NFS存储卷。
+
++
+[NOTE]
+====
+** 您可以使用逗号分隔列表将PVC共享给多个命名空间。例如： `trident.netapp.io/shareToNamespace: namespace2,namespace3,namespace4`。
+** 您可以使用共享到所有命名空间 `*`。例如： `trident.netapp.io/shareToNamespace: *`
+** 您可以更新PVC以包括 `shareToNamespace` 随时添加标注。
+
+
+====
+. *集群管理员：*创建自定义角色并执行kubeconfig、以授予目标命名空间所有者在目标命名空间中创建TridentVolumeReference CR的权限。
+. *目标命名空间所有者：*在目标命名空间中创建引用源命名空间的TridentVolumeReference CR `pvc1`。
++
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentVolumeReference
+metadata:
+  name: my-first-tvr
+  namespace: namespace2
+spec:
+  pvcName: pvc1
+  pvcNamespace: namespace1
+----
+. *目标命名空间所有者：*创建PVC (`pvc2`) (`namespace2`) `shareFromPVC` 用于指定源PVC的标注。
++
+[listing]
+----
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  annotations:
+    trident.netapp.io/shareFromPVC: namespace1/pvc1
+  name: pvc2
+  namespace: namespace2
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: trident-csi
+  resources:
+    requests:
+      storage: 100Gi
+----
++
+
+NOTE: 目标PVC的大小必须小于或等于源PVC。
+
+
+
+Astra Trident读取 `shareFromPVC` 在目标PVC上添加标注、并将目标PV创建为一个从属卷、而其自身没有指向源PV的存储资源、并共享源PV存储资源。目标PVC和PV显示为正常绑定。
+
+
+
+== 删除共享卷
+
+您可以删除跨多个命名空间共享的卷。Astra Trident将删除对源命名空间上卷的访问、并保持对共享该卷的其他命名空间的访问。删除引用卷的所有命名空间后、Astra Trident将删除该卷。
+
+
+
+== 使用tridentctl get查询从属卷
+
+使用[`tridentctl` 实用程序中、您可以运行 `get` 用于获取从属卷的命令。有关详细信息、请参见链接：./trident referation/tridentctl.html[`tridentctl` 命令和选项]。
+
+[listing]
+----
+Usage:
+  tridentctl get [option]
+----
+flags
+
+* ``-h, --help`：卷帮助。
+* `--parentOfSubordinate string`：将查询限制为从源卷。
+* `--subordinateOf string`：将查询限制为卷的下属。
+
+
+
+
+== 限制
+
+* Astra Trident无法阻止目标命名空间写入共享卷。您应使用文件锁定或其他进程来防止覆盖共享卷数据。
+* 您不能通过删除来撤消对源PVC的访问 `shareToNamespace` 或 `shareFromNamepace` 标注或删除 `TridentVolumeReference` CR.要撤消访问、必须删除从属PVC。
+* 无法在从属卷上执行快照、克隆和镜像。
+

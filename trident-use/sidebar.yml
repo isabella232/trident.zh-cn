@@ -9,6 +9,11 @@ entries:
   entries:
   - title: 配置 ANF 后端
     url: "/trident-use/anf.html"
+    entries:
+    - title: 准备配置ANF后端
+      url: "/trident-use/anf-prep.html"
+    - title: ANF配置选项和示例
+      url: "/trident-use/anf-examples.html"
   - title: 为 GCP 后端配置 CVS
     url: "/trident-use/gcp.html"
   - title: 配置 NetApp HCI 或 SolidFire 后端
@@ -16,16 +21,16 @@ entries:
   - title: 使用 ONTAP SAN 驱动程序配置后端
     url: "/trident-use/ontap-san.html"
     entries:
-    - title: 准备
+    - title: 准备使用ONTAP SAN驱动程序配置后端
       url: "/trident-use/ontap-san-prep.html"
-    - title: 配置选项和示例
+    - title: ONTAP SAN配置选项和示例
       url: "/trident-use/ontap-san-examples.html"
   - title: 使用 ONTAP NAS 驱动程序配置后端
     url: "/trident-use/ontap-nas.html"
     entries:
-    - title: 准备
+    - title: 准备使用ONTAP NAS驱动程序配置后端
       url: "/trident-use/ontap-nas-prep.html"
-    - title: 配置选项和示例
+    - title: ONTAP NAS配置选项和示例
       url: "/trident-use/ontap-nas-examples.html"
   - title: 将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSX 结合使用
     url: "/trident-use/trident-fsx.html"

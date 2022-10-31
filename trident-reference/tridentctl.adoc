@@ -107,6 +107,8 @@ Usage:
 * `volume` ：从 Astra Trident 获取一个或多个卷。
 
 
+`volume` 标志：* ``-h, --help`：卷帮助。* `--parentOfSubordinate string`：将查询限制为从源卷。* `--subordinateOf string`：将查询限制为卷的下属。
+
 
 
 == 映像

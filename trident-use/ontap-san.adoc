@@ -4,7 +4,7 @@ permalink: trident-use/ontap-san.html
 keywords: trident backend, ontap san, ontap-san, ontap-san-economy, fsx 
 summary: 了解如何使用 ONTAP SAN 驱动程序配置 ONTAP 后端。 
 ---
-= 使用 ONTAP 或 Cloud Volumes ONTAP SAN 驱动程序配置后端
+= 使用 ONTAP SAN 驱动程序配置后端
 :hardbreaks:
 :allow-uri-read: 
 :icons: font

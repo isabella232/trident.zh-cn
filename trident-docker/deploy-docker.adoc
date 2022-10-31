@@ -145,8 +145,8 @@ curl -fsSL https://get.docker.com/ | sh
 +
 [listing]
 ----
-wget https://github.com/NetApp/trident/releases/download/v21.04.0/trident-installer-21.07.0.tar.gz
-tar zxf trident-installer-21.07.0.tar.gz
+wget https://github.com/NetApp/trident/releases/download/v22.10.0/trident-installer-22.10.0.tar.gz
+tar zxf trident-installer-22.10.0.tar.gz
 ----
 .. 移动到托箱路径中的某个位置：
 +

@@ -20,6 +20,23 @@ summary: 您可以使用 Trident 操作员部署 Astra Trident 。您可以手�
 
 TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]，现在是一个实现这一目标的好时机。
 
+
+
+== 有关Astra Trident 22.10的关键信息
+
+*在升级到Astra Trident 22.10之前、您必须阅读以下关键信息。*
+
+[WARNING]
+.<Strong>有关Astra Trident 22.10的关键信息</Strong>
+====
+* 现在、Trident支持Kubernetes 1.25。在升级到Kubernetes 1.25之前、您必须先升级到Astra Trident 22.10。
+* Astra Trident现在严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
++
+使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
+
+
+
+====
 要部署 Astra Trident ，应满足以下前提条件：
 
 * 您对运行Kubernetes 1.19 - 1.24的受支持Kubernetes集群拥有完全权限。
@@ -127,8 +144,8 @@ NOTE: 从 21.01 开始， Trident 操作符的范围为集群范围。使用 Tri
 +
 [listing]
 ----
-wget https://github.com/NetApp/trident/releases/download/v22.04.0/trident-installer-22.04.0.tar.gz
-tar -xf trident-installer-22.04.0.tar.gz
+wget https://github.com/NetApp/trident/releases/download/v22.10.0/trident-installer-22.10.0.tar.gz
+tar -xf trident-installer-22.10.0.tar.gz
 cd trident-installer
 ----
 . 使用适当的 CRD 清单创建 `TridentOrchestrator` CRD 。然后，您可以稍后创建一个 `TridentOrchestrator` Custom Resource ，以通过操作员实例化安装。
@@ -223,7 +240,7 @@ Status:
   Current Installation Params:
     IPv6:                      false
     Autosupport Hostname:
-    Autosupport Image:         netapp/trident-autosupport:21.04
+    Autosupport Image:         netapp/trident-autosupport:22.10
     Autosupport Proxy:
     Autosupport Serial Number:
     Debug:                     true

@@ -248,7 +248,7 @@ docker volume create -d solidfire --name sfBronze -o type=Bronze -o size=100G
 
 
 | `s大小`  a| 
-卷的大小，默认情况下， CVS-Performance 卷为 100 GiB ， CVS 卷为 300 GiB 。
+卷的大小默认为100 GiB。
 
 
 
@@ -279,7 +279,7 @@ docker volume create -d netapp --name demo -o size=5T -o serviceLevel=premium
 ----
 
 
-对于 CVS-Performance 卷，最小卷大小为 100 GiB ，对于 CVS 卷，最小卷大小为 300 GiB 。
+最小卷大小为100 GiB。
 
 
 

@@ -18,7 +18,63 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 22.07中的新增功能
+== 22.10中的新增功能
+
+*在升级到Astra Trident 22.10之前、您必须阅读以下关键信息。*
+
+[WARNING]
+.<Strong>有关Astra Trident 22.10的关键信息</Strong>
+====
+* 现在、Trident支持Kubernetes 1.25。在升级到Kubernetes 1.25之前、您必须将Astra Trident升级到22.10。
+* Astra Trident现在严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
++
+使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
+
+
+
+====
+
+
+=== 修复
+
+* 已修复使用创建的ONTAP 后端专用的问题描述 `credentials` 字段在22.07.0升级期间无法联机(link:https://github.com/NetApp/trident/issues/759["问题描述 #759"^]）。
+* "** Docker："*修复了导致Docker卷插件在某些环境中无法启动的问题描述 (link:https://github.com/NetApp/trident/issues/548["问题描述 #548"^] 和 link:https://github.com/NetApp/trident/issues/760["问题描述 760"^]）。
+* 修复了ONTAP SAN后端专用的SLM问题描述 、以确保仅发布属于报告节点的部分数据LIF。
+* 修复了连接卷时发生不必要的iSCSI LUN扫描的性能问题描述。
+* 删除了Astra Trident iSCSI工作流中的粒度重试、以快速失败并缩短外部重试间隔。
+* 修复了问题描述 、在刷新iSCSI设备时、如果已刷新相应的多路径设备、则会返回错误。
+
+
+
+
+=== 增强功能
+
+* Kubernetes：
++
+** 增加了对Kubernetes 1.25的支持。
+** 为Trident部署和DemonSet添加了单独的ServiceAccount、ClusterRole和ClusterRoleBinding-以增强未来的权限。
+** 增加了对的支持 link:../trident-use/volume-share.html["跨命名空间卷共享"]。
+
+
+* 所有Trident `ontap-*` 现在、存储驱动程序可与ONTAP REST API配合使用。
+* 添加了新的运算符YAML (`bundle_post_1_25.yaml`)、而不使用 `PodSecurityPolicy` 以支持Kubernetes 1.25。
+* 已添加 link:../trident-reco/security-reco.html#use-linux-unified-key-setup-luks["支持LUKS加密卷"] 适用于 `ontap-san` 和 `ontap-san-economy` 存储驱动程序。
+* 增加了对Windows Server 2019节点的支持。
+* 已添加 link:../trident-use/anf.html["支持Windows节点上的SMB卷"] 通过 `azure-netapp-files` 存储驱动程序。
+
+
+
+
+=== 已弃用
+
+* ** Kubernetes：*已将支持的最低Kubernetes更新为1.20。
+* 已删除Astra数据存储(ADS)驱动程序。
+* 删除了对的支持 `yes` 和 `smart` 选项 `find_multipaths` 为iSCSI配置工作节点多路径时。
+
+
+
+
+== 22.07中的更改
 
 
 

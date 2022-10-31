@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: trident-use/anf-prep.html 
+keywords: trident backend, azure netapp files, smb volumes, smb, windows, active directory, csi proxy 
+summary: 在配置ANF后端之前、您需要确保满足以下要求。 
+---
+= 准备配置Azure NetApp Files 后端
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+在配置ANF后端之前、您需要确保满足以下要求。
+
+如果您是首次使用 Azure NetApp Files 或在新位置使用，则需要进行一些初始配置。
+
+* 要设置Azure NetApp Files 并创建NFS卷、请参见 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-quickstart-set-up-account-create-volumes["Azure：设置Azure NetApp Files 并创建NFS卷"^]。
+* 要配置Azure NetApp Files 并添加SMB卷、请参见： https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-create-volumes-smb["Azure：为Azure NetApp Files 创建SMB卷"^]。
+
+
+
+
+== 要求
+
+配置和使用 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 后端，您需要满足以下要求：
+
+* `ssubscriptionID` 来自启用了 Azure NetApp Files 的 Azure 订阅。
+* `tenantID`， `clientID`，和 `clientSecret` 从 link:https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal["应用程序注册"^] 在 Azure Active Directory 中，具有足够的 Azure NetApp Files 服务权限。应用程序注册应使用以下任一项：
++
+** 所有者或贡献者角色 link:https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles["由Azure预定义"^]
+** 答 link:https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles-portal["自定义贡献者角色"] 订阅级别 (`assignableScopes`)、并具有以下权限、这些权限仅限于Astra Trident所需的权限。创建自定义角色后、 link:https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal["使用Azure门户分配角色"^]。
++
+[source, JSON]
+----
+{
+    "id": "/subscriptions/<subscription-id>/providers/Microsoft.Authorization/roleDefinitions/<role-definition-id>",
+    "properties": {
+        "roleName": "custom-role-with-limited-perms",
+        "description": "custom role providing limited permissions",
+        "assignableScopes": [
+            "/subscriptions/<subscription-id>"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/read",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/write",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/read",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/write",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/delete",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/snapshots/read",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/snapshots/write",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/snapshots/delete",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/subvolumes/read",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/subvolumes/write",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/subvolumes/delete",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/subvolumes/GetMetadata/action",
+                    "Microsoft.NetApp/netAppAccounts/capacityPools/volumes/MountTargets/read",
+                    "Microsoft.Network/virtualNetworks/read",
+                    "Microsoft.Network/virtualNetworks/subnets/read",
+                    "Microsoft.Features/featureProviders/subscriptionFeatureRegistrations/read",
+                    "Microsoft.Features/featureProviders/subscriptionFeatureRegistrations/write",
+                    "Microsoft.Features/featureProviders/subscriptionFeatureRegistrations/delete",
+                    "Microsoft.Features/features/read",
+                    "Microsoft.Features/operations/read",
+                    "Microsoft.Features/providers/features/read",
+                    "Microsoft.Features/providers/features/register/action",
+                    "Microsoft.Features/providers/features/unregister/action",
+                    "Microsoft.Features/subscriptionFeatureRegistrations/read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
+----
+
+
+* Azure `location` 至少包含一个 link:https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["委派子网"^]。自Trident 22.01日开始 `location` 参数是后端配置文件顶层的必填字段。在虚拟池中指定的位置值将被忽略。
+
+
+
+
+== SMB卷的其他要求
+
+* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+* 至少有一个包含Active Directory凭据的Astra Trident密钥、以便ANF可以向Active Directory进行身份验证。以生成密钥 `smbcreds`：
++
+[listing]
+----
+kubectl create secret generic smbcreds --from-literal username=user --from-literal password='pw'
+----
+* 配置为Windows服务的CSI代理。配置 `csi-proxy`、请参见 link:https://github.com/kubernetes-csi/csi-proxy["GitHub：CSI代理"^] 或 link:https://github.com/Azure/aks-engine/blob/master/docs/topics/csi-proxy-windows.md["GitHub：适用于Windows的CSI代理"^] 适用于在Windows上运行的Kubernetes节点。
+

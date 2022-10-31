@@ -4,7 +4,7 @@ permalink: trident-use/ontap-san-examples.html
 keywords: map backends, storage classes, trident backend, ontap san, ontap san economy, options, storageclasses, fsx 
 summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。 
 ---
-= 配置选项和示例
+= ONTAP SAN配置选项和示例
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -176,6 +176,9 @@ NOTE: Astra Trident 会在使用 `ontap-san` 驱动程序创建的所有卷的 "
 
 
 | `加密` | 在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]。 | false 
+
+
+| `luksEncryption` | 启用LUKS加密。请参见 link:../trident-reco/security-reco.html#Use-Linux-Unified-Key-Setup-(LUKS)["使用Linux统一密钥设置(LUKS)"]。 | "" 
 
 
 | `securityStyle` | 新卷的安全模式 | "unix" 

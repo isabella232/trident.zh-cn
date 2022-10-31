@@ -74,11 +74,11 @@ NOTE: 如果状态显示 `Updating` ，请确保先解决此问题，然后再�
 +
 [listing]
 ----
-# Download the release required [21.01]
-mkdir 21.07.1
-cd 21.07.1
-wget https://github.com/NetApp/trident/releases/download/v21.07.1/trident-installer-21.07.1.tar.gz
-tar -xf trident-installer-21.07.1.tar.gz
+# Download the release required [22.10.0]
+mkdir 22.10.0
+cd 22.10.0
+wget https://github.com/NetApp/trident/releases/download/v22.10.0/trident-installer-22.10.0.tar.gz
+tar -xf trident-installer-22.10.0.tar.gz
 cd trident-installer
 kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
 ----
@@ -134,7 +134,7 @@ kubectl patch tprov <trident-provisioner-name> -n <trident-namespace> --type=mer
 . 安装集群范围的运算符。
 +
 
-NOTE: 安装集群范围的运算符会启动将 `TridentProvider` 对象迁移到 `TridentOrchestrator` 对象的操作，删除 `TridentProvider` 对象和 `tridentProvisioner` CRD ，并将 Astra Trident 升级到所使用的集群范围运算符版本。在以下示例中， Trident 会升级到 21.07.1 。
+NOTE: 安装集群范围的运算符可启动的迁移 `TridentProvisioner` 对象 `TridentOrchestrator` 对象、删除 `TridentProvisioner` 对象和 `tridentprovisioner` CRD、并将Astra Trident升级到所使用的集群范围运算符版本。在以下示例中、Trident会升级到22.10.0。
 
 +
 
@@ -145,7 +145,7 @@ IMPORTANT: 使用集群范围的运算符升级 Astra Trident 会将 `tridentPro
 ----
 #Ensure you are in the correct directory
 pwd
-/root/21.07.1/trident-installer
+/root/22.10.0/trident-installer
 
 #Install the cluster-scoped operator in the **same namespace**
 kubectl create -f deploy/bundle.yaml
@@ -176,7 +176,7 @@ kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
-Version:                v21.07.1
+Version:                v22.10.0
 ----
 
 
@@ -192,10 +192,10 @@ Version:                v21.07.1
 +
 [listing]
 ----
-helm upgrade <name> trident-operator-21.07.1.tgz
+helm upgrade <name> trident-operator-22.10.0.tgz
 ----
 +
-其中 `trident 操作符 -21.071.tgz` 反映了要升级到的版本。
+其中： `trident-operator-22.10.0.tgz` 反映了要升级到的版本。
 
 . 运行 `Helm list` 以验证图表和应用程序版本均已升级。
 
@@ -207,7 +207,7 @@ NOTE: 要在升级期间传递配置数据，请使用 ` -set` 。
 
 [listing]
 ----
-helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true
+helm upgrade <name> trident-operator-22.10.0-custom.tgz --set tridentDebug=true
 ----
 如果运行`tridentctl logs`、则可以看到调试消息。
 
@@ -225,11 +225,11 @@ NOTE: 如果在初始安装期间设置了任何非默认选项，请确保这�
 +
 [listing]
 ----
-# Download the release required [21.07.1]
-mkdir 21.07.1
-cd 21.07.1
-wget https://github.com/NetApp/trident/releases/download/v21.07.1/trident-installer-21.07.1.tar.gz
-tar -xf trident-installer-21.07.1.tar.gz
+# Download the release required [22.10.0]
+mkdir 22.10.0
+cd 22.10.0
+wget https://github.com/NetApp/trident/releases/download/v22.10.0/trident-installer-22.10.0.tar.gz
+tar -xf trident-installer-22.10.0.tar.gz
 cd trident-installer
 ----
 . 从清单中创建 `tridentorchator` CRD 。
@@ -283,7 +283,7 @@ kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
-Version:                v21.07.1
+Version:                v22.10.0
 ----
 
 

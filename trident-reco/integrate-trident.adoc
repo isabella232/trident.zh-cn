@@ -127,8 +127,10 @@ Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 link:https://azu
 Astra Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 GCP 后端，您需要在后端文件中指定 `projectNumber` ， `apiRegion` 和 `apiKey` 。项目编号可在 GCP Web 门户中找到，而 API 密钥必须从您在 GCP 上为 Cloud Volumes 设置 API 访问时创建的服务帐户专用密钥文件中获取。Astra Trident 可以在两个卷中创建 CVS 卷之一 link:https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["服务类型"^]：
 
 . * CVS* ：基本 CVS 服务类型，可提供较高的区域可用性，但性能级别有限 / 中等。
-. * CVS-Performance* ：经过性能优化的服务类型最适合重视性能的生产工作负载。从三个独特的服务级别中进行选择 `standard` ， `Premium` 和 `Extreme` 。目前， 100 GiB 是要配置的最小 CVS-Performance 卷大小，而 CVS 卷必须至少为 300 GiB 。未来版本的 CVS 可能会删除此限制。
+. * CVS-Performance* ：经过性能优化的服务类型最适合重视性能的生产工作负载。从三个独特的服务级别中进行选择 [`standard`， `premium`，和 `extreme`]。
 
+
+CVS和CVS-Performance卷的最小大小为100 GiB。
 
 
 CAUTION: 使用默认 CVS 服务类型 `storageClass=software` 部署后端时，用户 * 必须获得 * 对 GCP 上相关项目编号和项目 ID 的子 1TiB 卷功能的访问权限。这对于 Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建 * 将失败 * 。使用 ... link:https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此表单"^] 以访问低于 1 TiB 的卷。

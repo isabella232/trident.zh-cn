@@ -458,22 +458,16 @@ QoS 规范
 
 == GCP 配置上的 Cloud Volumes Service （ CVS ）
 
-Trident 现在支持使用默认 CVS 服务类型的较小卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["GCP"^]。对于使用 `storageClass=software` 创建的后端，卷的最小配置大小将为 300 GiB 。* NetApp 建议客户将低于 1 TiB 的卷用于非生产工作负载 * 。CVS 目前在 " 受控可用性 " 下提供此功能，不提供技术支持。
+Astra Trident支持默认CVS服务类型为on的卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["GCP"^]。无论CVS服务类型允许的最小值如何、Astra Trident都不支持小于100 GiB的CVS卷。因此、如果请求的卷小于最小大小、Trident会自动创建100 GiB卷。
+
+[NOTE]
+====
+* NetApp建议客户将低于1 TiB的卷用于非生产工作负载。
+* 使用默认CVS服务类型部署后端时 `storageClass=software`、注册后可访问GCP上的子1TiB卷功能、以获取相关项目编号和项目ID。这对于 Trident 配置低于 1TiB 的卷是必需的。否则、对于小于600 GiB的PVC、卷创建*将失败*。
+* link:https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["注册以访问低于1TiB的卷。"]
 
 
-NOTE: 注册以访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此处"^]。
-
-
-WARNING: 使用默认 CVS 服务类型 `storageClass=software` 部署后端时，您应获得 GCP 上有关项目编号和项目 ID 的子 1TiB 卷功能的访问权限。这对于 Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建 * 将失败 * 。使用访问低于 1TiB 的卷 https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此表单"^]。
-
-Trident 为默认 CVS 服务级别创建的卷将按以下方式进行配置：
-
-* 小于 300 GiB 的 PVC 将导致 Trident 创建 300 GiB 的 CVS 卷。
-* 如果 PVC 介于 300 GiB 到 600 GiB 之间，则 Trident 将创建一个请求大小的 CVS 卷。
-* 介于 600 GiB 和 1 TiB 之间的 PVC 将导致 Trident 创建 1 TiB CVS 卷。
-* 如果 PVC 大于 1 TiB ，则 Trident 将创建一个请求大小的 CVS 卷。
-
-
+====
 除了全局配置值之外，在 GCP 上使用 CVS 时，还可以使用这些选项。
 
 [cols="3*"]
@@ -545,9 +539,6 @@ default
 |===
 
 NOTE: 如果使用共享 VPC 网络，则应同时指定 `projectNumber` 和 `hostProjectNumber` 。在这种情况下， `projectNumber` 是服务项目， `hostProjectNumber` 是主机项目。
-
-
-NOTE: NetApp Cloud Volumes Service for GCP 不支持小于 100 GiB 的 CVS-Performance 卷或小于 300 GiB 的 CVS 卷。为了便于部署应用程序，如果请求的卷太小， Trident 会自动创建最小大小的卷。
 
 在 GCP 上使用 CVS 时，可以使用这些默认卷选项设置。
 
