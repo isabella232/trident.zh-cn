@@ -2950,9 +2950,6 @@
   <block id="179000091737641056a247acf2c59dc4" category="list-text">手动：Trident提供 <block ref="6f41841ada1b81573b5db54c90d512f9" category="inline-link-macro-rx"></block> 可用于安装操作员和创建关联对象的文件。</block>
   <block id="c9ffe59301b588bbc33bb004cfd312ee" category="section-title">部署Trident操作员并使用Helm安装Astra Trident</block>
   <block id="3f44baef815aed01560d6764fea49ebc" category="cell">用于CVS卷的GCP网络</block>
-  <block id="6aef79110fe63635bdb5452c3a08ead7" category="section-title">使用Cloud Manager管理Kubernetes集群</block>
-  <block id="865ec115b3646a7d42d94fd0d6f64ca5" category="inline-link-macro">使用Cloud Manager的Astra Trident</block>
-  <block id="70ef9708acb1f72d9648f625edc21d7b" category="paragraph">使用 <block ref="d2f4359fbe3252be146a4ecb37a6f90e" category="inline-link-macro-rx"></block>、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。Cloud Manager支持使用Trident操作员手动或使用Helm部署Astra Trident。</block>
   <block id="1ea1b160621872df5909653ebde1bf7f" category="paragraph">您可以更新现有后端、以便在基于凭据的方法和基于证书的方法之间移动。但是、一次仅支持一种身份验证方法。要切换到其他身份验证方法、必须从后端配置中删除现有方法。</block>
   <block id="7335992f174c029a990442aca68aacbd" category="admonition">如果您尝试同时提供*凭据和证书*、则后端创建将失败、并显示一条错误、指出配置文件中提供了多种身份验证方法。</block>
   <block id="d1914bc190cdc3bc9eee6db0c81021bc" category="section-title">节点服务发现</block>
@@ -3436,4 +3433,7 @@
   <block id="adbfe36f6399f2846983b2901604a962" category="list-text">已添加 <block ref="40be42d37bc6014716dcd0a1d368ffb5" category="inline-link-macro-rx"></block> 通过<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 存储驱动程序。</block>
   <block id="f18a50f02f48551895d57b81dd288142" category="sidebar">在命名空间之间共享NFS卷</block>
   <block id="0da21d7acd742e8c3833231cf3efcc96" category="list-text">NetApp/Trident：22.10.0</block>
+  <block id="9a2de1d16997c70e89ecdce4706d67c3" category="section-title">使用BlueXP (以前称为Cloud Manager)管理Kubernetes集群</block>
+  <block id="fd1117c82327fbe8671f26e897ceb8f4" category="inline-link-macro">使用BlueXP的Astra Trident</block>
+  <block id="a76a1e164520105317267dc41b95e8ce" category="paragraph">使用 <block ref="f8c16e8c21124ccc028d2db7fd32a98f" category="inline-link-macro-rx"></block>、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。BlueXP支持使用Trident操作员手动或使用Helm部署Astra Trident。</block>
 </blocks>
