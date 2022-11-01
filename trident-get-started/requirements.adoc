@@ -181,7 +181,7 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 
 | v1.20.0  a| 
-* netapp/trident：22.10.0-custom
+* NetApp/Trident：22.10.0
 * netapp/trident autosupport：22.10
 * K8s.IO/SIG-storage/CsI-provisioner：v3.3.0
 * K8s.IO/SIG-storage/CSI-attacher：v4.0.0
@@ -194,7 +194,7 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 
 | v1.21.0  a| 
-* netapp/trident：22.10.0-custom
+* NetApp/Trident：22.10.0
 * netapp/trident autosupport：22.10
 * K8s.IO/SIG-storage/CsI-provisioner：v3.3.0
 * K8s.IO/SIG-storage/CSI-attacher：v4.0.0
@@ -207,7 +207,7 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 
 | v1.22.0  a| 
-* netapp/trident：22.10.0-custom
+* NetApp/Trident：22.10.0
 * netapp/trident autosupport：22.10
 * K8s.IO/SIG-storage/CsI-provisioner：v3.3.0
 * K8s.IO/SIG-storage/CSI-attacher：v4.0.0
@@ -220,7 +220,7 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 
 | v1.23.0  a| 
-* netapp/trident：22.10.0-custom
+* NetApp/Trident：22.10.0
 * netapp/trident autosupport：22.10
 * K8s.IO/SIG-storage/CsI-provisioner：v3.3.0
 * K8s.IO/SIG-storage/CSI-attacher：v4.0.0
@@ -233,7 +233,7 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 
 | v1.24.0  a| 
-* netapp/trident：22.10.0-custom
+* NetApp/Trident：22.10.0
 * netapp/trident autosupport：22.10
 * K8s.IO/SIG-storage/CsI-provisioner：v3.3.0
 * K8s.IO/SIG-storage/CSI-attacher：v4.0.0
@@ -246,7 +246,7 @@ Astra Trident 可能需要先对存储系统进行一些更改，然后后端配
 
 
 | v1.25.0  a| 
-* netapp/trident：22.10.0-custom
+* NetApp/Trident：22.10.0
 * netapp/trident autosupport：22.10
 * K8s.IO/SIG-storage/CsI-provisioner：v3.3.0
 * K8s.IO/SIG-storage/CSI-attacher：v4.0.0
