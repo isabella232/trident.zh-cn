@@ -311,7 +311,7 @@ Astra Trident 会将后端凭据存储为 Kubernetes Secretes 。
 
 === 如何使用 ONTAP 通过 Astra Trident 设置卷加密？
 
-您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]
+您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： link:https://docs.netapp.com/us-en/trident/trident-reco/security-reco.html#use-astra-trident-with-nve-and-nae["Astra Trident如何与NVE和NAE配合使用"]
 
 
 

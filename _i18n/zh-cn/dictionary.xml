@@ -3194,7 +3194,6 @@
   <block id="06c4db929b729ddf158ceb5cc15b122b" category="inline-link-macro">ONTAP SAN配置选项</block>
   <block id="ba6742159ffc869573e70b67c08565e4" category="list-text"><block ref="ba6742159ffc869573e70b67c08565e4" category="inline-link-macro-rx"></block></block>
   <block id="6d9333eebb991611d29a4f8b7cc21fec" category="cell">在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： <block ref="00deada136b55f176f599153703cf50d" category="inline-link-macro-rx"></block>。</block>
-  <block id="e6c17edbc8ff331856d1dc0b7667563c" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="00deada136b55f176f599153703cf50d" category="inline-link-macro-rx"></block></block>
   <block id="911675212835161abe9bce3f33c70af0" category="paragraph">在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。</block>
   <block id="1811ba2842625864e8f6233e19051566" category="paragraph">如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。</block>
   <block id="cd6eb5bfdf9299ea3a76e2eb822c8293" category="paragraph">有关详细信息、请参见： <block ref="00deada136b55f176f599153703cf50d" category="inline-link-macro-rx"></block>。</block>
@@ -3436,4 +3435,5 @@
   <block id="9a2de1d16997c70e89ecdce4706d67c3" category="section-title">使用BlueXP (以前称为Cloud Manager)管理Kubernetes集群</block>
   <block id="fd1117c82327fbe8671f26e897ceb8f4" category="inline-link-macro">使用BlueXP的Astra Trident</block>
   <block id="a76a1e164520105317267dc41b95e8ce" category="paragraph">使用 <block ref="f8c16e8c21124ccc028d2db7fd32a98f" category="inline-link-macro-rx"></block>、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。BlueXP支持使用Trident操作员手动或使用Helm部署Astra Trident。</block>
+  <block id="6ce33e8f1e198bf1c3583bc5ef789b75" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="3260a21902518174ce8d9bfef42be276" category="inline-link-macro-rx"></block></block>
 </blocks>

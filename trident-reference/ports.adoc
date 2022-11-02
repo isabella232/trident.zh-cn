@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: trident-reference/trident-ports.html 
+permalink: trident-reference/ports.html 
 keywords: astra trident, port, ports 
 summary: 详细了解 Astra Trident 所通过的端口。 
 ---
