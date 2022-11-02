@@ -810,8 +810,6 @@
   <block id="683d018a2f7c70469fd74ba0eeae2a79" category="list-text">使用 Trident 安装程序随附的清单创建 `TridentOrchestrator` CRD 。</block>
   <block id="ede3d39a1c5211985b126b3f166cf601" category="inline-link">Trident 存储库</block>
   <block id="af39f09efb6e7b7133433dff92d0fffe" category="list-text">使用其清单删除命名空间范围的运算符。要完成此步骤，您需要使用 `bundle.yaml` 文件来部署命名空间范围的运算符。您可以从获取 `bundle.yaml`<block ref="1403b813895a8a78c447fca96240f2ac" category="inline-link-rx"></block>。请确保使用相应的分支。</block>
-  <block id="5451265740f1553dff7af7814faa5277" category="inline-link-macro">参数列表</block>
-  <block id="8afea862003d4f613fcffecc022fb20c" category="admonition">在删除命名空间范围的运算符后以及安装集群范围的运算符之前，您应对 Trident 安装参数进行必要的更改（例如，更改 `tridentImage` ， `autosupportImage` ，私有映像存储库以及提供 `imagePullSecs` 的值）。有关可更新的参数的完整列表，请参见 <block ref="e5ef433069537d0999d9cf3f906affdb" category="inline-link-macro-rx"></block>。</block>
   <block id="5fbede7820945c99130183fd2fd0f4b3" category="paragraph">此时，将删除 `trident 操作符 -xxxxxx-xxxxx` Pod 。</block>
   <block id="86463d362af5835ff8c3fd6587fbd24f" category="list-text">（可选）如果需要修改安装参数，请更新 `TridentProvider` 规范。这些更改可能包括修改私有映像注册表以从中提取容器映像，启用调试日志或指定映像提取密钥等。</block>
   <block id="df486b34cec5fdfba24de79fe6b388d4" category="list-text">安装集群范围的运算符。</block>
@@ -3436,4 +3434,6 @@
   <block id="fd1117c82327fbe8671f26e897ceb8f4" category="inline-link-macro">使用BlueXP的Astra Trident</block>
   <block id="a76a1e164520105317267dc41b95e8ce" category="paragraph">使用 <block ref="f8c16e8c21124ccc028d2db7fd32a98f" category="inline-link-macro-rx"></block>、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。BlueXP支持使用Trident操作员手动或使用Helm部署Astra Trident。</block>
   <block id="6ce33e8f1e198bf1c3583bc5ef789b75" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="3260a21902518174ce8d9bfef42be276" category="inline-link-macro-rx"></block></block>
+  <block id="cae73b6a00921ef48cee176b0d4336fe" category="inline-link-macro">配置选项</block>
+  <block id="094d2b2ef4b98bdb0943b10cc4e305f4" category="admonition">您应对Trident安装参数进行必要的更改(例如、更改的值<block ref="d771848c80f96e5954a8658655cf79d7" prefix=" " category="inline-code"></block>，<block ref="7ecc687ea7566f05fd13fde7be607bfc" prefix=" " category="inline-code"></block>、私有映像存储库和提供<block ref="0d9b54b29da54379cca6b8782b9faae5" prefix=" " category="inline-code"></block>)。有关可更新的完整参数列表、请参见 <block ref="d752d8869a42e1b0fd341b92b54677e0" category="inline-link-macro-rx"></block>。</block>
 </blocks>

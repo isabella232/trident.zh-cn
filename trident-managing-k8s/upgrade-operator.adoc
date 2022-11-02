@@ -85,7 +85,7 @@ kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.1
 . 使用其清单删除命名空间范围的运算符。要完成此步骤，您需要使用 `bundle.yaml` 文件来部署命名空间范围的运算符。您可以从获取 `bundle.yaml` https://github.com/NetApp/trident/blob/stable/v20.10/deploy/bundle.yaml["Trident 存储库"^]。请确保使用相应的分支。
 +
 
-NOTE: 在删除命名空间范围的运算符后以及安装集群范围的运算符之前，您应对 Trident 安装参数进行必要的更改（例如，更改 `tridentImage` ， `autosupportImage` ，私有映像存储库以及提供 `imagePullSecs` 的值）。有关可更新的参数的完整列表，请参见 link:../trident-deploy-k8s/kubernetes-customize-deploy.html["参数列表"^]。
+NOTE: 您应对Trident安装参数进行必要的更改(例如、更改的值 `tridentImage`， `autosupportImage`、私有映像存储库和提供 `imagePullSecrets`)。有关可更新的完整参数列表、请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy.html#configuration-options["配置选项"]。
 
 +
 [listing]
