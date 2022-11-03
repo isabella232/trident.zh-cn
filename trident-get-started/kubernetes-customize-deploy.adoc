@@ -11,6 +11,7 @@ summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规�
 :imagesdir: ../media/
 
 
+[role="lead"]
 使用Trident操作员可以使用中的属性自定义Astra Trident安装 `TridentOrchestrator` 规格
 
 如果您要对安装进行自定义、使其超出预期范围 `TridentOrchestrator` 参数允许、您应考虑使用 `tridentctl` 生成可根据需要修改的自定义YAML清单。

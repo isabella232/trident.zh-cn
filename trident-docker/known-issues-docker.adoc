@@ -11,6 +11,7 @@ summary: 查找有关将 Astra Trident 与 Docker 结合使用时的已知问题
 :imagesdir: ../media/
 
 
+[role="lead"]
 查找有关将 Astra Trident 与 Docker 结合使用时的已知问题和限制的信息。
 
 

@@ -11,14 +11,8 @@ summary: 您可以使用 Trident 操作员部署 Astra Trident 。您可以手�
 :imagesdir: ../media/
 
 
-您可以使用Trident操作员部署Astra Trident。您可以通过以下两种方式之一部署Trident操作员：
-
-* 使用Trident link:https://artifacthub.io/packages/helm/netapp-trident/trident-operator["Helm图表"^]：Helm图表将部署Trident操作符并分步安装Trident。
-* 手动：Trident提供 link:https://github.com/NetApp/trident/blob/master/deploy/bundle.yaml["bundle.yaml"^] 可用于安装操作员和创建关联对象的文件。
-
-
-
-TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]，现在是一个实现这一目标的好时机。
+[role="lead"]
+您可以使用Trident操作员部署Astra Trident。
 
 
 
@@ -37,6 +31,23 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 
 
 ====
+
+
+== Trident操作员部署选项
+
+您可以通过以下两种方式之一部署Trident操作员：
+
+* 使用Trident link:https://artifacthub.io/packages/helm/netapp-trident/trident-operator["Helm图表"^]：Helm图表将部署Trident操作符并分步安装Trident。
+* 手动：Trident提供 link:https://github.com/NetApp/trident/blob/master/deploy/bundle.yaml["bundle.yaml"^] 可用于安装操作员和创建关联对象的文件。
+
+
+
+TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]，现在是一个实现这一目标的好时机。
+
+
+
+== 验证前提条件
+
 要部署 Astra Trident ，应满足以下前提条件：
 
 * 您对运行Kubernetes 1.19 - 1.24的受支持Kubernetes集群拥有完全权限。
@@ -101,7 +112,7 @@ Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。
 
 
 
-== 手动部署 Trident 操作员
+== 手动部署Trident操作员并安装Trident
 
 执行列出的步骤以手动部署 Trident 操作员。
 

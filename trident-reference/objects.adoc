@@ -11,6 +11,7 @@ summary: Kubernetes 与 Trident ， Trident 与存储以及 Kubernetes 与存储
 :imagesdir: ../media/
 
 
+[role="lead"]
 您可以通过读取和写入资源对象来使用 REST API 与 Kubernetes 和 Trident 进行交互。Kubernetes 与 Trident ， Trident 与存储以及 Kubernetes 与存储之间的关系由多个资源对象决定。其中一些对象通过 Kubernetes 进行管理，而另一些对象则通过 Trident 进行管理。
 
 

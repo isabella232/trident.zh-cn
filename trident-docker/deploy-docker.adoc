@@ -11,6 +11,7 @@ summary: 适用于 Docker 的 Astra Trident 可直接与适用于 NetApp 存储�
 :imagesdir: ../media/
 
 
+[role="lead"]
 适用于 Docker 的 Astra Trident 可直接与适用于 NetApp 存储平台的 Docker 生态系统集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。
 
 Astra Trident 的多个实例可以同时在同一主机上运行。这样可以同时连接到多个存储系统和存储类型，并能够自定义用于 Docker 卷的存储。

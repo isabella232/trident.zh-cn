@@ -11,7 +11,12 @@ summary: 虚拟存储池在 Astra Trident 的存储后端和 Kubernetes 的 Stor
 :imagesdir: ../media/
 
 
+[role="lead"]
 虚拟存储池在 Astra Trident 的存储后端与 Kubernetes 的 `StorageClasses` 之间提供了一个抽象层。通过这些功能，管理员可以在不受后端影响的情况下以一种通用方式为每个后端定义位置，性能和保护等方面，而无需使用 `StorageClass` 指定要用于满足所需条件的物理后端，后端池或后端类型。
+
+
+
+== 了解虚拟存储池
 
 存储管理员可以在 JSON 或 YAML 定义文件中的任一 Astra Trident 后端定义虚拟存储池。
 

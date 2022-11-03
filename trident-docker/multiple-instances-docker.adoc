@@ -11,6 +11,7 @@ summary: 如果您希望同时提供多个存储配置，则需要多个 Astra T
 :imagesdir: ../media/
 
 
+[role="lead"]
 如果希望同时提供多个存储配置，则需要多个 Trident 实例。多个实例的关键在于，在主机上实例化 Trident 时，使用容器化插件的 ` -alias` 选项或 ` -volume-driver` 选项为其提供不同的名称。
 
 

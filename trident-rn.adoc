@@ -11,6 +11,7 @@ summary: NetApp 不断改进和完善其产品和服务。以下是最新版 Ast
 :imagesdir: ../media/
 
 
+[role="lead"]
 发行说明提供了有关最新版本的 Astra Trident 中的新增功能，增强功能和错误修复的信息。
 
 

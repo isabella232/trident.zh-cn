@@ -11,6 +11,7 @@ summary: 使用此处列出的建议确保您的 Astra Trident 安装安全。
 :imagesdir: ../media/
 
 
+[role="lead"]
 使用此处列出的建议确保Astra Trident安装安全。
 
 
@@ -67,8 +68,8 @@ NetApp ONTAP 提供空闲数据加密、可在磁盘被盗、退回或重新利�
 
 有关后端配置选项的详细信息、请参见：
 
-* link:https://docs.netapp.com/us-en/trident/trident-use/ontap-san-examples.html["ONTAP SAN配置选项"]
-* link:https://docs.netapp.com/us-en/trident/trident-use/ontap-nas-examples.html["ONTAP NAS配置选项"]
+* link:../trident-use/ontap-san-examples.html["ONTAP SAN配置选项"]
+* link:../trident-use/ontap-nas-examples.html["ONTAP NAS配置选项"]
 
 
 
@@ -77,7 +78,7 @@ NetApp ONTAP 提供空闲数据加密、可在磁盘被盗、退回或重新利�
 
 您可以启用Linux统一密钥设置(LUKS)来对Astra Trident上的ONTAP SAN和ONTAP SAN经济卷进行加密。在Astra Trident中、LUKS加密的卷会按照建议使用AES-XTS-plain64 Cypher和模式 link:https://csrc.nist.gov/publications/detail/sp/800-38e/final["NIST"^]。
 
-有关ONTAP SAN的后端配置选项的详细信息、请参见 link:https://docs.netapp.com/us-en/trident/trident-use/ontap-san-examples.html["ONTAP SAN配置选项"]
+有关ONTAP SAN的后端配置选项的详细信息、请参见 link:../trident-use/ontap-san-examples.html["ONTAP SAN配置选项"]
 
 .开始之前
 * 工作节点必须安装Cryptsetup 2.1或更高版本。有关详细信息，请访问 link:https://gitlab.com/cryptsetup/cryptsetup["Gitlab：密码设置"^]。

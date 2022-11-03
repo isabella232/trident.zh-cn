@@ -11,8 +11,17 @@ summary: 在 Astra Trident 中配置有两个主要阶段。第一阶段会将�
 :imagesdir: ../media/
 
 
+[role="lead"]
 在 Astra Trident 中配置有两个主要阶段。第一阶段会将存储类与一组合适的后端存储池相关联，并在配置之前进行必要的准备。第二阶段包括卷创建本身，需要从与待定卷的存储类关联的存储池中选择一个存储池。
 
+
+
+== 存储类关联
+
 将后端存储池与存储类关联取决于存储类请求的属性及其 `storagePools` ， `addtionalStoragePools` 和 `excludeStoragePools` 列表。创建存储类时， Trident 会将其每个后端提供的属性和池与存储类请求的属性和池进行比较。如果存储池的属性和名称与请求的所有属性和池名称匹配，则 Astra Trident 会将该存储池添加到该存储类的一组合适存储池中。此外， Astra Trident 会将 `addtionalStoragePools` 列表中列出的所有存储池添加到该集中，即使其属性不满足存储类请求的所有或任何属性也是如此。您应使用 `excludeStoragePools` 列表覆盖存储池并将其从存储类中删除。每次添加新后端时， Astra Trident 都会执行类似的过程，检查其存储池是否满足现有存储类的要求，并删除任何已标记为已排除的。
+
+
+
+== 卷创建
 
 然后， Astra Trident 会使用存储类和存储池之间的关联来确定在何处配置卷。创建卷时， Astra Trident 会首先获取该卷的存储类的一组存储池， 此外，如果为卷指定协议，则 Astra Trident 会删除无法提供所请求协议的存储池（例如， NetApp HCI/SolidFire 后端无法提供基于文件的卷，而 ONTAP NAS 后端无法提供基于块的卷）。Astra Trident 会随机分配此结果集的顺序，以便均匀分布卷，然后迭代并依次尝试在每个存储池上配置卷。如果在一个上成功，则它会成功返回，并记录在此过程中遇到的任何故障。只有在 * 无法在 * 所有 * 可用于请求的存储类和协议的存储池上配置时， Astra Trident 才会返回故障。

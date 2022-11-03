@@ -11,7 +11,12 @@ summary: 了解降级到早期版本的 Astra Trident 所涉及的步骤。
 :imagesdir: ../media/
 
 
+[role="lead"]
 了解降级到早期版本的 Astra Trident 所涉及的步骤。
+
+
+
+== 何时降级
 
 您可能会考虑降级的各种原因，例如：
 
@@ -20,11 +25,9 @@ summary: 了解降级到早期版本的 Astra Trident 所涉及的步骤。
 * 依赖关系问题，升级失败和不完整
 
 
+迁移到使用 CRD 的 Astra Trident 版本时，应考虑降级。由于Astra Trident使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有关联的CRD对象、而不是写入到中的数据 `trident` PV (由早期安装的Astra Trident版本使用)。新创建的 PV ，后端和存储类均作为 CRD 对象进行维护。
 
-
-== 何时降级
-
-迁移到使用 CRD 的 Astra Trident 版本时，应考虑降级。由于 Astra Trident 现在使用 CRD 来保持状态，因此创建的所有存储实体（后端，存储类， PV 和卷快照）都已关联 CRD 对象，而不是写入到 `trident` PV （由早期安装的 Astra Trident 版本使用）中的数据。新创建的 PV ，后端和存储类均作为 CRD 对象进行维护。如果需要降级，则只能对使用 CRD （ 19.07 及更高版本）运行的 Astra Trident 版本尝试执行此操作。这是为了确保在降级后，当前 Astra Trident 版本上执行的所有操作均可见。
+请仅尝试对使用CRD运行的Astra Trident版本(19.07及更高版本)进行降级。这样可以确保在降级后可以看到对当前Astra Trident版本执行的操作。
 
 
 

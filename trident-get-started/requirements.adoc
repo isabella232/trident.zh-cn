@@ -11,6 +11,7 @@ summary: 首先查看支持的前端，后端和主机配置。
 :imagesdir: ../media/
 
 
+[role="lead"]
 首先查看支持的前端，后端和主机配置。
 
 

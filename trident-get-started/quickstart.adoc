@@ -11,7 +11,14 @@ summary: 如果您刚刚开始使用 Kubernetes ，请按照说明安装 Kuberne
 :imagesdir: ../media/
 
 
-NetApp 提供了一个可随时使用的实验室映像，您可以通过该映像进行请求 link:https://www.netapp.com/us/try-and-buy/test-drive/index.aspx["NetApp 试用"^]。此测试驱动器为您提供了一个沙盒环境，该环境附带安装和配置了三节点 Kubernetes 集群和 Astra Trident 。这是熟悉 Astra Trident 并了解其功能的好方法。
+[role="lead"]
+NetApp 提供了一个可随时使用的实验室映像，您可以通过该映像进行请求 link:https://www.netapp.com/us/try-and-buy/test-drive/index.aspx["NetApp 试用"^]。
+
+
+
+== 了解测试活动
+
+此测试驱动器为您提供了一个沙盒环境，该环境附带安装和配置了三节点 Kubernetes 集群和 Astra Trident 。这是熟悉 Astra Trident 并了解其功能的好方法。
 
 另一个选项是查看 link:https://kubernetes.io/docs/setup/independent/install-kubeadm/["《 kubeadm 安装指南》"] 由 Kubernetes 提供。
 

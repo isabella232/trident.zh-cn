@@ -11,6 +11,7 @@ summary: Astra Trident 遵循季度发布节奏，每个日历年提供四个主
 :imagesdir: ../media/
 
 
+[role="lead"]
 Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的，可提供新功能和性能增强以及错误修复和改进功能。我们建议您每年至少升级一次，以利用 Astra Trident 中的新功能。
 
 

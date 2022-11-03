@@ -11,6 +11,7 @@ summary: NetApp 以多种方式为 Trident 提供支持。全天候提供广泛�
 :imagesdir: ../media/
 
 
+[role="lead"]
 Astra Trident 是一个官方支持的 NetApp 项目。您可以使用任何标准机制联系 NetApp ，并获得所需的企业级支持。
 
 在我们的Astra上、还有一个由容器用户(包括Astra Trident开发人员)参与的活跃公有 社区 link:https://discord.gg/NetApp["渠道不和"^]。这是一个很好的地方，可以提出有关项目的一般问题，并与志同道合的同行讨论相关主题。

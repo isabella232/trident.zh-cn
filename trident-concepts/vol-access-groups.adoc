@@ -11,10 +11,15 @@ summary: 详细了解 Astra Trident 如何使用卷访问组。
 :imagesdir: ../media/
 
 
+[role="lead"]
 了解有关 Astra Trident 如何使用的更多信息 https://docs.netapp.com/us-en/element-software/concepts/concept_solidfire_concepts_volume_access_groups.html["卷访问组"^]。
 
 
 NOTE: 如果使用的是 CHAP ，请忽略此部分，建议使用此部分来简化管理并避免下面所述的扩展限制。此外，如果您在 CSI 模式下使用 Astra Trident ，则可以忽略此部分。在作为增强型 CSI 配置程序安装时， Astra Trident 会使用 CHAP 。
+
+
+
+== 了解卷访问组
 
 Astra Trident 可以使用卷访问组来控制对其配置的卷的访问。如果禁用了 CHAP ，则它会查找名为 `trident` 的访问组，除非您在配置中指定了一个或多个访问组 ID 。
 

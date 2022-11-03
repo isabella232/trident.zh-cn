@@ -11,15 +11,9 @@ summary: '您可以使用 `tridentctl` 来部署 Astra Trident 。'
 :imagesdir: ../media/
 
 
-您可以使用部署Astra Trident `tridentctl`。
+[role="lead"]
+您可以使用部署Astra Trident `tridentctl`。最好熟悉一下 link:../trident-concepts/intro.html["基本概念"]。以自定义 `tridentctl` 部署、请参见 link:kubernetes-customize-deploy-tridentctl.html["自定义 tridentctl 部署"]。
 
-[NOTE]
-====
-* 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"]，现在是一个实现这一目标的好时机。
-* 以自定义 `tridentctl` 部署、请参见 link:kubernetes-customize-deploy-tridentctl.html["自定义 tridentctl 部署"]。
-
-
-====
 
 
 == 有关Astra Trident 22.10的关键信息
@@ -37,6 +31,10 @@ summary: '您可以使用 `tridentctl` 来部署 Astra Trident 。'
 
 
 ====
+
+
+== 验证前提条件
+
 要部署 Astra Trident ，应满足以下前提条件：
 
 * 对受支持的Kubernetes集群具有完全权限。

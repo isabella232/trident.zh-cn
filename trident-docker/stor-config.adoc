@@ -11,6 +11,7 @@ summary: 请参见适用于您的 Astra Trident 配置的配置选项。
 :imagesdir: ../media/
 
 
+[role="lead"]
 请参见适用于您的 Astra Trident 配置的配置选项。
 
 
@@ -371,9 +372,9 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
 
 
 | `端点`  a| 
-https://<login>:<password>@<mvip>/json-rpc/<element-version>[]
+https://<login>:<password>@<mvip>/json-rpc/<element-version>
  a| 
-https://admin:admin@192.168.160.3/json-rpc/8.0[]
+https://admin:admin@192.168.160.3/json-rpc/8.0
 
 
 
