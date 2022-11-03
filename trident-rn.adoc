@@ -61,6 +61,7 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 * 已添加 link:https://docs.netapp.com/us-en/trident/trident-reco/security-reco.html#enable-per-volume-host-side-encryption-using-linux-unified-key-setup-luks["支持LUKS加密卷"] 适用于 `ontap-san` 和 `ontap-san-economy` 存储驱动程序。
 * 增加了对Windows Server 2019节点的支持。
 * 已添加 link:https://docs.netapp.com/us-en/trident/trident-use/anf.html["支持Windows节点上的SMB卷"] 通过 `azure-netapp-files` 存储驱动程序。
+* ONTAP 驱动程序的自动MetroCluster 切换检测现已全面推出。
 
 
 

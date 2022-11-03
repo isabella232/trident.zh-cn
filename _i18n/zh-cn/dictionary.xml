@@ -3436,4 +3436,5 @@
   <block id="6ce33e8f1e198bf1c3583bc5ef789b75" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="3260a21902518174ce8d9bfef42be276" category="inline-link-macro-rx"></block></block>
   <block id="cae73b6a00921ef48cee176b0d4336fe" category="inline-link-macro">配置选项</block>
   <block id="094d2b2ef4b98bdb0943b10cc4e305f4" category="admonition">您应对Trident安装参数进行必要的更改(例如、更改的值<block ref="d771848c80f96e5954a8658655cf79d7" prefix=" " category="inline-code"></block>，<block ref="7ecc687ea7566f05fd13fde7be607bfc" prefix=" " category="inline-code"></block>、私有映像存储库和提供<block ref="0d9b54b29da54379cca6b8782b9faae5" prefix=" " category="inline-code"></block>)。有关可更新的完整参数列表、请参见 <block ref="d752d8869a42e1b0fd341b92b54677e0" category="inline-link-macro-rx"></block>。</block>
+  <block id="66f2c42a4ca561f5472459301bc7d096" category="list-text">ONTAP 驱动程序的自动MetroCluster 切换检测现已全面推出。</block>
 </blocks>
