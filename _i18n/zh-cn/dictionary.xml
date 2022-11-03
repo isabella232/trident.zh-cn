@@ -2955,14 +2955,12 @@
   <block id="6a3314aee95c1c78527e5f122976ec80" category="paragraph">Trident还标识为Trident节点CR上的每个节点启用的服务。要查看发现的服务、请使用命令：</block>
   <block id="2b6ab5193160f5eaca51526b15f27e3a" category="admonition">节点服务发现可识别已发现的服务、但无法保证服务已正确配置。相反、如果没有发现的服务、则无法保证卷挂载将失败。</block>
   <block id="a8a2b2d9e5637b41609ebc0c72058699" category="list-text">运行1.19 -1.24的Kubernetes集群。</block>
-  <block id="3bb4e1a94d47c9447ecf5ab6ce7c23de" category="cell">集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。此功能为*技术预览*。</block>
   <block id="66896c99fb06e0b6c86498b249f8217a" category="cell">如果请求的卷大小超过此值、则配置失败。</block>
   <block id="67183086f9356a825023b7315f5c3b99" category="cell">用于使用 ONTAP REST API 的布尔参数。MetroCluster 不支持*技术预览*。</block>
   <block id="6c1cf09676baae03b976277c6c163155" category="admonition-title">&lt;code&gt;useREST&lt;/code&gt;注意事项</block>
   <block id="cc000fddfbaaf7d7224962be55624657" category="list-text">`useREST` 提供了一个 * 技术预览 * ，建议用于测试环境，而不是生产工作负载。如果设置为 `true` ，则 Astra Trident 将使用 ONTAP REST API 与后端进行通信。此功能需要使用ONTAP 9.10及更高版本。此外，使用的 ONTAP 登录角色必须能够访问 `ONTAP` 应用程序。这一点可通过预定义的 `vsadmin` 和 `cluster-admin` 角色来满足。</block>
   <block id="747fac2d713255095ea0ae3786ea4b77" category="list-text">MetroCluster 不支持`useREST`。</block>
   <block id="412427d9207c4cc4b01539aff3c50e7c" category="cell">`网络功能`</block>
-  <block id="183f3ea9e133b02a796a810dda5e539e" category="cell">集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。此功能为*技术预览*。</block>
   <block id="6dc4cb19f2792a3eadfa64d4b4b6d177" category="paragraph">所有Kubernetes工作节点都必须安装适当的NFS工具。请参见 <block ref="f1f954e59a21e3ffe189e77dd2ee9f86" category="inline-link-macro-rx"></block> 有关详细信息：</block>
   <block id="6adbf3424e5de1b4e2baad3b4d632c4a" category="paragraph">您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此、您必须删除现有身份验证方法并添加新的身份验证方法。然后、使用包含所需参数的更新后端.json文件执行`tridentctl backend update`。</block>
   <block id="da5e3ce6518bd669264e1e0768c2d9f1" category="paragraph">所有Kubernetes工作节点都必须安装适当的iSCSI工具。请参见 <block ref="f1f954e59a21e3ffe189e77dd2ee9f86" category="inline-link-macro-rx"></block> 有关详细信息：</block>
@@ -3437,4 +3435,5 @@
   <block id="cae73b6a00921ef48cee176b0d4336fe" category="inline-link-macro">配置选项</block>
   <block id="094d2b2ef4b98bdb0943b10cc4e305f4" category="admonition">您应对Trident安装参数进行必要的更改(例如、更改的值<block ref="d771848c80f96e5954a8658655cf79d7" prefix=" " category="inline-code"></block>，<block ref="7ecc687ea7566f05fd13fde7be607bfc" prefix=" " category="inline-code"></block>、私有映像存储库和提供<block ref="0d9b54b29da54379cca6b8782b9faae5" prefix=" " category="inline-code"></block>)。有关可更新的完整参数列表、请参见 <block ref="d752d8869a42e1b0fd341b92b54677e0" category="inline-link-macro-rx"></block>。</block>
   <block id="66f2c42a4ca561f5472459301bc7d096" category="list-text">ONTAP 驱动程序的自动MetroCluster 切换检测现已全面推出。</block>
+  <block id="0ae86fe6c7f12cff95cb90a50097ca60" category="cell">集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。</block>
 </blocks>

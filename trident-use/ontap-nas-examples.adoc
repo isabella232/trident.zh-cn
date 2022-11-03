@@ -33,7 +33,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
 
 
-| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。此功能为*技术预览*。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
+| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
 
 
 | `dataLIF` | 协议 LIF 的 IP 地址。对于 IPv6 ，请使用方括号。设置后无法更新 | 由 SVM 派生，除非另有说明 
