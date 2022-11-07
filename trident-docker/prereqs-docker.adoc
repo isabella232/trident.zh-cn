@@ -54,25 +54,29 @@ RHEL/CentOS 7.
 +
 `sudo yum install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath`
 
-. 启动多路径守护进程：
+. 检查 iscsi-initiator-utils 版本是否为 6.2.0.877-2.el7 或更高版本：
 +
-`sudo mpathconf -enable -with multipathd y`
+`rpm -q iscsi-initiator-utils`
 
-. 确保已启用 `iscsid` 和 `multipathd` 并正在运行：
+. 将扫描设置为手动：
 +
-`sudo systemctl enable iscsid multipathd` `sudo systemctl start iscsid multipathd`
+`sUdo sed -i 's/^ \ （ node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf`
 
-. 发现 iSCSI 目标：
+. 启用多路径：
 +
-`sudo iscsiadm -m discoverydb -t st -p <data_LIF_IP> -discover`
+`sudo mpathconf -enable -for_multipathd y -find_multipaths n`
 
-. 登录到发现的 iSCSI 目标：
 +
-`sudo iscsiadm -m node -p <data_LIF_IP> -login`
+
+NOTE: 确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.
+
+. 确保 `iscsid` 和 `multipathd` 正在运行：
++
+`sudo systemctl enable -now iscsid multipathd`
 
 . 启用并启动 `iSCSI` ：
 +
-`sudo systemctl enable iscsi` `sudo systemctl start iscsi`
+`sudo systemctl enable —现在为 iSCSI`
 
 
 
@@ -85,21 +89,25 @@ Ubuntu
 +
 `sUdo apt-get install -y open-iscsi lsscsi sg3-utils multipath-tools scsitool`
 
+. 检查 open-iscsi 版本是否为 2.0.877-5ubuntu2.10 或更高版本（对于双子系统）或 2.0.877-7.1ubuntu6.1 或更高版本（对于 Focal ）：
++
+`dpkg -l open-iscsi`
+
+. 将扫描设置为手动：
++
+`sUdo sed -i 's/^ \ （ node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf`
+
 . 启用多路径：
 +
-`sUdo tee /etc/multipath.conf <<-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo service multipath-tools restart`
+`sUdo tee /etc/multipath.conf <<-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`
 
-. 确保 `iscsid` 和 `multipathd` 正在运行：
 +
-`sudo service open-iscsi start sudo service multipath-tools start`
 
-. 发现 iSCSI 目标：
-+
-`sudo iscsiadm -m discoverydb -t st -p <data_LIF_IP> -discover`
+NOTE: 确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.
 
-. 登录到发现的 iSCSI 目标：
+. 确保已启用并运行 `open-iscsi` 和 `multipath-tools` ：
 +
-`sudo iscsiadm -m node -p <data_LIF_IP> -login`
+`sudo systemctl status multipath-tools` `sudo systemctl enable -now open-iscsi.service` `sudo systemctl status open-iscsi`
 
 
 
