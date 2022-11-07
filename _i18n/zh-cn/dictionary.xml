@@ -1841,7 +1841,6 @@
   <block id="19955b3c2d2c1cfc1c82c2fe0347a065" category="list-text">将扫描设置为手动：</block>
   <block id="d2db641a196e6107eecf8c32f7cd7a4e" category="paragraph">`sUdo sed -i 's/^ \ （ node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf`</block>
   <block id="d0b02d407fd5c75d0e7eac549a852191" category="list-text">启用多路径：</block>
-  <block id="87772a853423d643181e2b56bcb4b17f" category="paragraph">`sudo mpathconf -enable -with multipathd y`</block>
   <block id="8bec0eea71974a9138ccfa96983ddcfc" category="list-text">确保 `iscsid` 和 `multipathd` 正在运行：</block>
   <block id="90a9d2e9b1b4ae58a957ff989f0732ba" category="paragraph">`sudo systemctl enable -now iscsid multipathd`</block>
   <block id="8018f5d6ddc4e67678d1659757828deb" category="list-text">启用并启动 `iSCSI` ：</block>
@@ -2375,16 +2374,6 @@
   <block id="d46ecc35447a8c17ef014ff6daf07bba" category="inline-link">安装或更新它</block>
   <block id="1035fa0ac2c3ed19f6ba56cafe7e121f" category="list-text">验证您是否安装了受支持的 Docker 版本。如果您的 Docker 版本已过时，<block ref="0b011811ae105895ca4da9769d7e6f99" category="inline-link-rx"></block>。</block>
   <block id="7760c52227ccba10f5bc395571ca7a60" category="list-text">验证是否已在主机上安装和配置协议前提条件：</block>
-  <block id="7f50d5e5825124658e17cc8cfaa7f823" category="list-text">启动多路径守护进程：</block>
-  <block id="43ce2a55c085b27f271203155d2745e1" category="list-text">确保已启用 `iscsid` 和 `multipathd` 并正在运行：</block>
-  <block id="04c298ec3fc67bce1115cddcc2b3b829" category="paragraph">`sudo systemctl enable iscsid multipathd` `sudo systemctl start iscsid multipathd`</block>
-  <block id="2cfaa468af4e9de7ba9933d9e0081572" category="list-text">发现 iSCSI 目标：</block>
-  <block id="f0c700b766cfcc86bc21496513c58391" category="paragraph">`sudo iscsiadm -m discoverydb -t st -p &lt;data_LIF_IP&gt; -discover`</block>
-  <block id="18124bf28831e04dabc4dc81d1d4e69f" category="list-text">登录到发现的 iSCSI 目标：</block>
-  <block id="ba64ec4efdc69990967a75a918b83635" category="paragraph">`sudo iscsiadm -m node -p &lt;data_LIF_IP&gt; -login`</block>
-  <block id="8bd830b1ea0595874b57cfd34c877123" category="paragraph">`sudo systemctl enable iscsi` `sudo systemctl start iscsi`</block>
-  <block id="e6693412ed2252a87ece3f264fb334ed" category="paragraph">`sUdo tee /etc/multipath.conf &lt;&lt;-'EOF' defaults ｛ user_friendly_names yes find_multipaths yes ｝ eOF sudo service multipath-tools restart`</block>
-  <block id="0d29eaa34aa7badaae0d49b35a2a0d12" category="paragraph">`sudo service open-iscsi start sudo service multipath-tools start`</block>
   <block id="0e9e734e557a02db30a20e5ac259cfb9" category="summary">每个存储驱动程序都有一组不同的选项，您可以在创建卷时指定这些选项来自定义结果。有关适用于您配置的存储系统的选项，请参见以下内容。</block>
   <block id="11e1b165c1d718d825f4bb9aaf0b884e" category="doc">驱动程序专用的卷选项</block>
   <block id="bca0712c590c8d3c228bf1044aed730b" category="paragraph">在卷创建操作期间使用这些选项非常简单。在命令行界面操作期间，使用 ` -o` 运算符提供选项和值。这些参数将覆盖 JSON 配置文件中的任何等效值。</block>
@@ -2741,7 +2730,6 @@
   <block id="ea643bf7aaf130341a17f697a7009368" category="list-text"><block ref="ea643bf7aaf130341a17f697a7009368" category="inline-link-rx"></block></block>
   <block id="9d6ffa6ef31bd0b92876314219f18ef5" category="inline-link">Astra API 文档</block>
   <block id="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="list-text"><block ref="9c2cf0e947812ecb3fc0bfccaa8b3c61" category="inline-link-rx"></block></block>
-  <block id="4546bbd46f06879787b5670b13277b28" category="paragraph">在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。</block>
   <block id="9f687b4e8cbf2fbb623b26b30fd92717" category="admonition">对于 21.07 之前的版本，您将重定向到旧版文档站点。</block>
   <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
@@ -2934,7 +2922,6 @@
   <block id="f3aff8b93ad58c4831861213ffc9bbe7" category="paragraph">从22.07开始、Astra Trident会尝试自动检测节点是否能够运行iSCSI或NFS服务。Astra Trident会为节点创建事件以标识发现的服务。您可以使用命令查看这些事件：</block>
   <block id="6a3314aee95c1c78527e5f122976ec80" category="paragraph">Trident还标识为Trident节点CR上的每个节点启用的服务。要查看发现的服务、请使用命令：</block>
   <block id="2b6ab5193160f5eaca51526b15f27e3a" category="admonition">节点服务发现可识别已发现的服务、但无法保证服务已正确配置。相反、如果没有发现的服务、则无法保证卷挂载将失败。</block>
-  <block id="a8a2b2d9e5637b41609ebc0c72058699" category="list-text">运行1.19 -1.24的Kubernetes集群。</block>
   <block id="66896c99fb06e0b6c86498b249f8217a" category="cell">如果请求的卷大小超过此值、则配置失败。</block>
   <block id="67183086f9356a825023b7315f5c3b99" category="cell">用于使用 ONTAP REST API 的布尔参数。MetroCluster 不支持*技术预览*。</block>
   <block id="6c1cf09676baae03b976277c6c163155" category="admonition-title">&lt;code&gt;useREST&lt;/code&gt;注意事项</block>
@@ -3051,7 +3038,6 @@
   <block id="402b7d2d5aea5e79576f9a964df89a32" category="cell">提供了一个条目、用于将此SCC绑定到Trident命名空间中的Trident用户。</block>
   <block id="274b68192b056e268f128ff63bfcd4a4" category="cell">不适用</block>
   <block id="50af2a553c2117ddd78da33865c6e35b" category="cell">`hostPath、downwardAPI、projected、emptyDir`</block>
-  <block id="8401929e252299acc0120c7b139be18b" category="cell">1.19 - 1.24</block>
   <block id="b8f52a0e5f45341fb88241356af7f0c7" category="list-text">请参见 <block ref="7c28a1514d14039d3824999236c4890d" category="inline-link-macro-rx"></block> 有关卷扩展的更多详细信息。</block>
   <block id="d63b67088a9f91802e555f6613dfc7e2" category="list-text">使用 `tridentctl uninstall` 命令卸载 Trident 时， Trident Pod 会被删除，但不会清理创建的 CRD 。请参见 <block ref="3e5b286354565ddfee44ed92d763b424" category="inline-link-macro-rx"></block> 了解如何从头开始完全删除和重新配置 Trident 。</block>
   <block id="6386b0f17b85463db72887bca8ae2bb7" category="inline-link-macro">正在配置后端</block>
@@ -3071,8 +3057,6 @@
   <block id="ba991f2f6d0f733e9b8a2136cedc99b2" category="paragraph">如果您希望控制自己的资源分配、则可以使用以下命令删除Astra Trident `ResourceQuota`对象：</block>
   <block id="9337cac2cd1105449cd4e78ff2a353a4" category="cell">"K8s.gcr.io/SIG-storage (K8s 1.19+)或quay.io/k8scsi "</block>
   <block id="702fa57eedc6ee8490a7294016f8b14f" category="list-text">`trident资源库ota.yaml`</block>
-  <block id="ff3e13aad771f1b75db023012e96d057" category="list-text">您对运行Kubernetes 1.19 - 1.24的受支持Kubernetes集群拥有完全权限。</block>
-  <block id="d85ea0185bbd496941944ab1e486ddb8" category="list-text">Kubernetes 1.19 - 1.24</block>
   <block id="0b0c130cbadeba098951b51bf8268b3f" category="paragraph">要验证Kubernetes版本、请运行以下命令：</block>
   <block id="6b51834314ece904405eb0ce1a6e6bd8" category="list-text">NetApp HCI/ Element软件11或更高版本</block>
   <block id="6ebf7ae9dffc55cf86792ea266344b3a" category="list-text">Ubuntu 18.04或更高版本(最新版本22.04)</block>
@@ -3454,4 +3438,10 @@
   <block id="ece92ff52ed3cf9a5447ce0db82396ed" category="list-text">您应使用运行的 Kubernetes 集群 <block ref="d502dc64864e79085bee32826e6fe213" category="inline-link-macro-rx"></block>。</block>
   <block id="26dbe1fe275b741e7240a373222d3480" category="paragraph">迁移到使用 CRD 的 Astra Trident 版本时，应考虑降级。由于Astra Trident使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有关联的CRD对象、而不是写入到中的数据<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> PV (由早期安装的Astra Trident版本使用)。新创建的 PV ，后端和存储类均作为 CRD 对象进行维护。</block>
   <block id="06b33bc9cc124539c964174ecd43eb43" category="paragraph">请仅尝试对使用CRD运行的Astra Trident版本(19.07及更高版本)进行降级。这样可以确保在降级后可以看到对当前Astra Trident版本执行的操作。</block>
+  <block id="c6ab9f98e5a2b50f51aba6c04795101d" category="list-text">您对运行受支持的Kubernetes版本的受支持Kubernetes集群具有完全权限。查看 <block ref="3675fd04b78685cacd6e23511ab11d10" category="inline-link-macro-rx"></block>。</block>
+  <block id="c27e444dab3a08bf8ec59794897c1a27" category="inline-link-macro">支持的Kubernetes版本</block>
+  <block id="774b87dcd517dd9ece61db4ebf307bef" category="list-text">答 <block ref="54886eff1282d00a4f74bc7c51429511" category="inline-link-macro-rx"></block></block>
+  <block id="62f6f68c0a7691973a4c0e16939d5709" category="cell">1.19 - 1.25</block>
+  <block id="279d526c0cf636b7292c2cfddc1d9957" category="list-text">运行的Kubernetes集群 <block ref="54886eff1282d00a4f74bc7c51429511" category="inline-link-macro-rx"></block></block>
+  <block id="87aa97ac70530bd54af65d5fc819f906" category="paragraph">在此步骤中、Trident操作员将确定现有的Astra Trident安装并将其升级到与操作员相同的版本。</block>
 </blocks>

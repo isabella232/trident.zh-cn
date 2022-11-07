@@ -50,7 +50,7 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 
 要部署 Astra Trident ，应满足以下前提条件：
 
-* 您对运行Kubernetes 1.19 - 1.24的受支持Kubernetes集群拥有完全权限。
+* 您对运行受支持的Kubernetes版本的受支持Kubernetes集群具有完全权限。查看 link:requirements.html["要求"]。
 * 您可以访问受支持的 NetApp 存储系统。
 * 您可以从所有 Kubernetes 工作节点挂载卷。
 * 您安装了一个安装了 `kubectl` （如果使用的是 OpenShift ，则为 `oc` ）的 Linux 主机，并将其配置为管理要使用的 Kubernetes 集群。
@@ -69,7 +69,7 @@ TIP: 如果您尚未熟悉 link:../trident-concepts/intro.html["基本概念"^]�
 
 除了上述前提条件之外，要使用 Helm 部署 Trident 操作员，还需要满足以下条件：
 
-* Kubernetes 1.19 - 1.24
+* 答 link:requirements.html["支持的Kubernetes版本"]
 * Helm 版本 3
 
 
@@ -84,9 +84,7 @@ helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 +
 [listing]
 ----
-
-helm install <release-name> netapp-trident/trident-operator --version 22.4.0 --create-namespace <trident-namespace>
-
+helm install <name> netapp-trident/trident-operator --version 22.10.0 --create-namespace --namespace <trident-namespace>
 ----
 +
 
@@ -104,7 +102,7 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 22.7.0 --set tridentDebug=true
+helm install <name> netapp-trident/trident-operator --version 22.10.0 --create-namespace --namespace --set tridentDebug=true
 ----
 Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。
 

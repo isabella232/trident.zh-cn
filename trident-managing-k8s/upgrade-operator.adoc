@@ -38,18 +38,18 @@ WARNING: 在 OpenShift 容器平台上使用操作符升级 Trident 时，应升
 +
 [listing]
 ----
-kubectl delete -f 21.01/trident-installer/deploy/bundle.yaml -n trident
+kubectl delete -f 22.01/trident-installer/deploy/bundle.yaml -n trident
 ----
 . （可选）如果要修改安装参数，请编辑在安装 Trident 时创建的 `TridentOrchestrator` 对象。这可能包括一些更改，例如修改自定义 Trident 映像，从其中提取容器映像的专用映像注册表，启用调试日志或指定映像提取密钥。
 . 使用为新版本设置 Trident 操作符的 `bundle.yaml` 文件安装 Astra Trident 。运行以下命令：
 +
 [listing]
 ----
-kubectl create -f 21.10.0/trident-installer/deploy/bundle.yaml -n trident
+kubectl create -f 22.10.0/trident-installer/deploy/bundle.yaml -n trident
 ----
 
 
-在此步骤中， 21.10.0 Trident 操作员将确定现有的 Astra Trident 安装并将其升级到与操作员相同的版本。
+在此步骤中、Trident操作员将确定现有的Astra Trident安装并将其升级到与操作员相同的版本。
 
 
 
