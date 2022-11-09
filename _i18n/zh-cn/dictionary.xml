@@ -3366,7 +3366,6 @@
   <block id="c51cc3b801a879870aea846bdde1c7a3" category="section-title">创建后端</block>
   <block id="7d8058d93ec1d95c673d83bf303326ff" category="doc">ONTAP NAS配置选项和示例</block>
   <block id="618a7676e411bbfbd9dbdb2411019951" category="summary">您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NAS和SMB卷。</block>
-  <block id="eff2c83d669b1ff76a985e4f55a7dcdf" category="list-text"><block ref="eff2c83d669b1ff76a985e4f55a7dcdf" category="inline-link-macro-rx"></block></block>
   <block id="9d556ecfb4757173c93a34a5466447d7" category="list-text"><block ref="9d556ecfb4757173c93a34a5466447d7" category="inline-link-macro-rx"></block></block>
   <block id="ea61e2c2ff507048203824add1eb7c21" category="section-title">注意事项</block>
   <block id="8f395c84ad002394e9f070a25937dcc4" category="list-text">Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。</block>
@@ -3444,4 +3443,5 @@
   <block id="62f6f68c0a7691973a4c0e16939d5709" category="cell">1.19 - 1.25</block>
   <block id="279d526c0cf636b7292c2cfddc1d9957" category="list-text">运行的Kubernetes集群 <block ref="54886eff1282d00a4f74bc7c51429511" category="inline-link-macro-rx"></block></block>
   <block id="87aa97ac70530bd54af65d5fc819f906" category="paragraph">在此步骤中、Trident操作员将确定现有的Astra Trident安装并将其升级到与操作员相同的版本。</block>
+  <block id="482d7c15b1a7200b3981ee1f99a86fef" category="list-text"><block ref="482d7c15b1a7200b3981ee1f99a86fef" category="inline-link-macro-rx"></block></block>
 </blocks>
