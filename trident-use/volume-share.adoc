@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/volume-share.html 
-keywords: volref, volume reference, share, pvc, pv, nfs, namespace 
-summary:  
+keywords: volref, volume reference, share, pvc, pv, nfs, namespace, cvna, cross-namespace, sharing 
+summary: 使用Astra Trident、您可以在主命名空间中创建卷、并在一个或多个二级命名空间中共享该卷。 
 ---
 = 在命名空间之间共享NFS卷
 :hardbreaks:
@@ -10,6 +10,13 @@ summary:
 :icons: font
 :imagesdir: ../media/
 
+
+[role="lead"]
+使用Astra Trident、您可以在主命名空间中创建卷、并在一个或多个二级命名空间中共享该卷。
+
+
+
+== 功能
 
 使用Astra TridentVolumeReference CR、您可以在一个或多个Kubernetes命名空间之间安全地共享ReadWriteMany (rwx) NFS卷。此Kubernetes本机解决方案 具有以下优势：
 
@@ -150,4 +157,14 @@ flags
 * Astra Trident无法阻止目标命名空间写入共享卷。您应使用文件锁定或其他进程来防止覆盖共享卷数据。
 * 您不能通过删除来撤消对源PVC的访问 `shareToNamespace` 或 `shareFromNamepace` 标注或删除 `TridentVolumeReference` CR.要撤消访问、必须删除从属PVC。
 * 无法在从属卷上执行快照、克隆和镜像。
+
+
+
+
+== 有关详细信息 ...
+
+要了解有关跨命名空间卷访问的详细信息、请执行以下操作：
+
+* 请访问 link:https://cloud.netapp.com/blog/astra-blg-sharing-volumes-between-namespaces-say-hello-to-cross-namespace-volume-access["在命名空间之间共享卷：对跨命名空间卷访问说Hello"^]。
+* 观看演示 link:http://netapp.tv/cloud/details/29594?playlist_id=81&mcid=63262890210074608700682715883688763007["NetAppTV"^]。
 
