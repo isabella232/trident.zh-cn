@@ -2323,7 +2323,6 @@
   <block id="977636e26059252def0425dca74811ef" category="list-text"><block ref="977636e26059252def0425dca74811ef" category="inline-link-rx"></block></block>
   <block id="d2eb05d1990246a079aeb2f56e3a4237" category="paragraph">Astra Trident 的多个实例可以同时在同一主机上运行。这样可以同时连接到多个存储系统和存储类型，并能够自定义用于 Docker 卷的存储。</block>
   <block id="89bcbd8e4ba49b7310e9fa748e878c4b" category="inline-link-macro">部署的前提条件</block>
-  <block id="d1e7215d070e62d3e82e915d703ceaa9" category="paragraph">请参见 <block ref="a51fda4654690ac4414966ed4956599c" category="inline-link-macro-rx"></block>。确保满足前提条件后，即可部署 Astra Trident 。</block>
   <block id="88f0ab229fa9d759d74fcf6ab7cc17b1" category="section-title">Docker 托管插件方法（ 1.13/17.03 及更高版本）</block>
   <block id="135b308ed83c53f1516b7c754566d1c4" category="admonition-title">开始之前</block>
   <block id="070ecb002d71e4e7618a4b46a5ba690f" category="admonition">如果您在传统守护进程方法中使用了 Astra Trident 之前的 Docker 1.13/ 17.03 ，请确保在使用受管插件方法之前停止 Astra Trident 进程并重新启动 Docker 守护进程。</block>
@@ -2338,7 +2337,6 @@
   <block id="45ed67026a1141006588fcc698646141" category="list-text">`debug` ：指定是否启用调试日志记录。默认值为 false 。如果为 true ，则覆盖日志级别。</block>
   <block id="3bed6f89999b483af7f55024d9e7c02a" category="list-text">为配置文件创建一个位置：</block>
   <block id="28156615c51d4bad2ee47d0a9f43f404" category="list-text">创建配置文件：</block>
-  <block id="4e2deef4eda7b7593f1e94279c96a31d" category="list-text">使用受管插件系统启动 Astra Trident 。</block>
   <block id="a4574d19d34a14aa0accde782f35318b" category="list-text">开始使用 Astra Trident 消耗已配置系统中的存储。</block>
   <block id="a9c521f25a3bacb94ad1dd4705b3585f" category="list-text">创建名为 "firstVolume" 的卷：</block>
   <block id="4fbca4f67cbe96bc7d7a16691d2912c2" category="list-text">在容器启动时创建默认卷：</block>
@@ -3444,4 +3442,6 @@
   <block id="279d526c0cf636b7292c2cfddc1d9957" category="list-text">运行的Kubernetes集群 <block ref="54886eff1282d00a4f74bc7c51429511" category="inline-link-macro-rx"></block></block>
   <block id="87aa97ac70530bd54af65d5fc819f906" category="paragraph">在此步骤中、Trident操作员将确定现有的Astra Trident安装并将其升级到与操作员相同的版本。</block>
   <block id="482d7c15b1a7200b3981ee1f99a86fef" category="list-text"><block ref="482d7c15b1a7200b3981ee1f99a86fef" category="inline-link-macro-rx"></block></block>
+  <block id="756efcb3a97cdd37e8b34de3913c3d8f" category="paragraph">请参见 <block ref="18d5551396fb2ce2e009cfdb709e4875" category="inline-link-macro-rx"></block>。确保满足前提条件后，即可部署 Astra Trident 。</block>
+  <block id="0d41f8565b8b74a59fc029ccf2becd83" category="list-text">使用受管插件系统启动 Astra Trident 。替换<block ref="3d689bd3819ead35ed794427bd12f459" prefix=" " category="inline-code"></block> 您正在使用的插件版本(xxx.xx.x)。</block>
 </blocks>
