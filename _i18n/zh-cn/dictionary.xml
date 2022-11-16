@@ -3452,4 +3452,5 @@
   <block id="2780f690b7670efc296ac19ef3029d0c" category="list-text">请访问 <block ref="b0d29f1b2abb2cc552e4cc47177582ef" category="inline-link-macro-rx"></block>。</block>
   <block id="96e1384807331548bf745acde0fe1b73" category="inline-link-macro">NetAppTV</block>
   <block id="414883f8b6ef58c7b3b37e66fbfd482f" category="list-text">观看演示 <block ref="1945a2d4809e81668f29485f6ae1bbc8" category="inline-link-macro-rx"></block>。</block>
+  <block id="387492c079b6cb13a8ba91c4a60f67b7" category="section-title">部署卷快照控制器</block>
 </blocks>
