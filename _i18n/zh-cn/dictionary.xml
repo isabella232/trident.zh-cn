@@ -798,15 +798,11 @@
   <block id="199ed8c975e8bb544d18428ba17adbc3" category="inline-link">GitHub 上的问题描述详细信息</block>
   <block id="398b69b685d2969c9e5d2f8cfbff3972" category="admonition">在 OpenShift 容器平台上使用操作符升级 Trident 时，应升级到 Trident 21.01.1 或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息，请参见<block ref="bcebcdd21adcbb3d7c640d63a711c6fb" category="inline-link-rx"></block>。</block>
   <block id="2f6881ec6a84d1ac9ef2e551f3ca8466" category="section-title">升级集群范围的操作员安装</block>
-  <block id="532223fc600c8862511462ff30738c55" category="paragraph">要从 * Trident 21.01 及更高版本 * 升级，请执行以下步骤。</block>
   <block id="238e63aecc23c1bc2611ca883f075f1f" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如，如果要从 21.01 升级，请运行以下命令：</block>
-  <block id="09b615e18699c6675b3705c00a495375" category="list-text">使用为新版本设置 Trident 操作符的 `bundle.yaml` 文件安装 Astra Trident 。运行以下命令：</block>
   <block id="d06b5297af318d2581021098f6b0d44d" category="section-title">升级命名空间范围的操作员安装</block>
   <block id="ddfa75d059a999aedec16392aae03bc4" category="paragraph">要从使用命名空间范围的运算符（版本 20.07 至 20.10 ）安装的 Astra Trident 实例进行升级，需要遵循以下步骤：</block>
   <block id="edf5c542759186ded2c7eeaae6b340a5" category="list-text">验证现有 Trident 安装的状态。要执行此操作，请检查 `TridentProvider` 的 * 状态 * 。状态应为 `installed` 。</block>
   <block id="683d018a2f7c70469fd74ba0eeae2a79" category="list-text">使用 Trident 安装程序随附的清单创建 `TridentOrchestrator` CRD 。</block>
-  <block id="ede3d39a1c5211985b126b3f166cf601" category="inline-link">Trident 存储库</block>
-  <block id="af39f09efb6e7b7133433dff92d0fffe" category="list-text">使用其清单删除命名空间范围的运算符。要完成此步骤，您需要使用 `bundle.yaml` 文件来部署命名空间范围的运算符。您可以从获取 `bundle.yaml`<block ref="1403b813895a8a78c447fca96240f2ac" category="inline-link-rx"></block>。请确保使用相应的分支。</block>
   <block id="5fbede7820945c99130183fd2fd0f4b3" category="paragraph">此时，将删除 `trident 操作符 -xxxxxx-xxxxx` Pod 。</block>
   <block id="86463d362af5835ff8c3fd6587fbd24f" category="list-text">（可选）如果需要修改安装参数，请更新 `TridentProvider` 规范。这些更改可能包括修改私有映像注册表以从中提取容器映像，启用调试日志或指定映像提取密钥等。</block>
   <block id="df486b34cec5fdfba24de79fe6b388d4" category="list-text">安装集群范围的运算符。</block>
@@ -842,14 +838,10 @@
   <block id="0d8778040c29d89141a733b060314da3" category="section-title">降级为集群范围的运算符</block>
   <block id="12a3bd4ff105bed8650ca128636a078f" category="paragraph">要将 Astra Trident 降级为使用集群范围运算符的版本，请执行以下步骤。</block>
   <block id="43f17763173fe230bdd78477152f5f7d" category="inline-link-macro">卸载 Astra Trident</block>
-  <block id="f472e2d2602fec8483b064616fa5f543" category="list-text"><block ref="e6c6ebb45af4a1845e181c2b5544dbb0" category="inline-link-macro-rx"></block>。* 除非要完全删除现有安装，否则请勿删除这些 CRD</block>
-  <block id="3864c0c37bf26f8a7686e5c04435974c" category="inline-link">Trident GitHub 报告</block>
-  <block id="78a26b79451266c6562d8d11cdb86ad0" category="list-text">删除集群范围的运算符。为此，您需要使用清单来部署操作员。您可以从获取<block ref="08fa9926a4347665a77bd7911809a1ce" category="inline-link-rx"></block>。确保切换到所需的分支。</block>
   <block id="44d9737dc7f423d188a4b34663c5f06e" category="list-text">通过安装所需版本的 Astra Trident 继续降级。按照所需版本的文档进行操作。</block>
   <block id="0e792058c21e7156d25e8ae8f2d784a0" category="section-title">降级到命名空间范围的运算符</block>
   <block id="8ad79c030a4ebdd2f446157ba529561e" category="paragraph">本节总结了降级到 20.07 到 20.10 范围内的 Astra Trident 版本所涉及的步骤，该版本将使用命名空间范围的运算符进行安装。</block>
   <block id="a7c80f52f9be4831ca776b56dc642a45" category="list-text"><block ref="e6c6ebb45af4a1845e181c2b5544dbb0" category="inline-link-macro-rx"></block>。`除非要完全删除现有安装，否则请勿删除 CRD 。确保已删除` tridentOrchestrator 。</block>
-  <block id="141ed8ae2dd3c3efac0c25f12b058c87" category="list-text">删除集群范围的运算符。为此，您需要使用清单来部署操作员。您可以从此处获取<block ref="08fa9926a4347665a77bd7911809a1ce" category="inline-link-rx"></block>。确保切换到所需的分支。</block>
   <block id="2389eabedca3341193952356ec53cd0c" category="list-text">删除 `tridentorchator` CRD 。</block>
   <block id="2982be9f91f77222d75873452bfc7696" category="paragraph">已卸载 Astra Trident 。</block>
   <block id="0f46a51f24c3700da8c74b9a5294a22f" category="list-text">通过安装所需版本继续降级。按照所需版本的文档进行操作。</block>
@@ -2848,7 +2840,6 @@
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隐私政策</block>
   <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
   <block id="056b6e39cb1ae24d946674f95697989a" category="paragraph">您可以使用操作员轻松升级现有的 Astra Trident 安装。</block>
-  <block id="d10c9260fe9a1660c2f75dddda0220e4" category="list-text">（可选）如果要修改安装参数，请编辑在安装 Trident 时创建的 `TridentOrchestrator` 对象。这可能包括一些更改，例如修改自定义 Trident 映像，从其中提取容器映像的专用映像注册表，启用调试日志或指定映像提取密钥。</block>
   <block id="25c11af81bf0b01ce7b0f24ddc9f7136" category="section-title">其他已知配置选项</block>
   <block id="ffedfe711d36cdc8c41927063ae77027" category="paragraph">在 VMware Tanzu Portfolio 产品上安装 Astra Trident 时：</block>
   <block id="8ded34c5caad3971bb6d0a2b202d7b32" category="list-text">集群必须支持有权限的工作负载。</block>
@@ -2907,8 +2898,6 @@
   <block id="0b4a92a731cb582bd951a7aa481f0602" category="list-text">Anthos on-Prem (VMware)和Anthos on bare metal 1.9、1.10、1.11</block>
   <block id="7d3f46589c43a64fd040e4f0e0691a86" category="inline-link-macro">Helm图表</block>
   <block id="5d2b4e1d078f05c18e07065fa7df166d" category="list-text">使用Trident <block ref="cdacb2b0d49176a3c0d8cc9d693de833" category="inline-link-macro-rx"></block>：Helm图表将部署Trident操作符并分步安装Trident。</block>
-  <block id="0d472c887b61206765c1caa63a9290ec" category="inline-link-macro">bundle.yaml</block>
-  <block id="179000091737641056a247acf2c59dc4" category="list-text">手动：Trident提供 <block ref="6f41841ada1b81573b5db54c90d512f9" category="inline-link-macro-rx"></block> 可用于安装操作员和创建关联对象的文件。</block>
   <block id="c9ffe59301b588bbc33bb004cfd312ee" category="section-title">部署Trident操作员并使用Helm安装Astra Trident</block>
   <block id="3f44baef815aed01560d6764fea49ebc" category="cell">用于CVS卷的GCP网络</block>
   <block id="1ea1b160621872df5909653ebde1bf7f" category="paragraph">您可以更新现有后端、以便在基于凭据的方法和基于证书的方法之间移动。但是、一次仅支持一种身份验证方法。要切换到其他身份验证方法、必须从后端配置中删除现有方法。</block>
@@ -3453,4 +3442,16 @@
   <block id="96e1384807331548bf745acde0fe1b73" category="inline-link-macro">NetAppTV</block>
   <block id="414883f8b6ef58c7b3b37e66fbfd482f" category="list-text">观看演示 <block ref="1945a2d4809e81668f29485f6ae1bbc8" category="inline-link-macro-rx"></block>。</block>
   <block id="387492c079b6cb13a8ba91c4a60f67b7" category="section-title">部署卷快照控制器</block>
+  <block id="6c5b68b88f6af6f28b3bf69ad9c17b70" category="list-text"><block ref="e6c6ebb45af4a1845e181c2b5544dbb0" category="inline-link-macro-rx"></block>。*除非要完全删除现有安装、否则请勿删除这些CRD</block>
+  <block id="c97d8f6272d9a08ec67b35acba91f6d3" category="list-text">可以使用与您的Trident版本关联的操作员清单来删除Trident运算符。例如：<block ref="e4411f2e6de8cc67724fb259f247dc3e" prefix=" " category="inline-code"></block> 其中：<block ref="7d2e512472107955c1b3fb2ce2e19bc4" prefix=" " category="inline-code"></block> 是版本号(例如<block ref="ea99d71aa7a32717f8398c406b38b062" prefix=" " category="inline-code"></block>)和<block ref="5765a306f9d7568469e1db22a96adfd0" prefix=" " category="inline-code"></block> 是捆绑包YAML文件名。</block>
+  <block id="842f7d2dee66406b4e092b9dc8dbc5ce" category="paragraph">按照以下步骤从* Trident 21.01及更高版本*升级。</block>
+  <block id="913e57b3917474dfe6ca9cea5d7eff80" category="list-text">您也可以编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 安装Trident时创建的对象、用于修改安装参数。这可能包括修改自定义Trident映像、从中提取容器映像的专用映像注册表、启用调试日志或指定映像提取密钥等更改。</block>
+  <block id="974ed9054c7bfd411e970e032a99cecc" category="list-text">使用适用于您的环境的正确捆绑包YAML文件安装Astra Trident、并从安装Astra Trident版本<block ref="79243f20ce3e723d13bf0774e8348ca2" prefix=" " category="inline-code"></block> 其中：<block ref="7d2e512472107955c1b3fb2ce2e19bc4" prefix=" " category="inline-code"></block> 是版本号(例如<block ref="ea99d71aa7a32717f8398c406b38b062" prefix=" " category="inline-code"></block>)和<block ref="32f68f45f3f6badcd1aa2343bbbce67c" prefix=" " category="inline-code"></block> 是捆绑包YAML文件名。</block>
+  <block id="bd2cc8575fe69c7f775292759380c838" category="inline-link-macro">bundle_pre_1_25.yaml</block>
+  <block id="5864824c62bdf7d1f44d7205b8eff89c" category="list-text">对于运行Kubernetes 1.24或更低版本的集群、请使用 <block ref="8c84c30a1d2b42d50c58aaa8b58402f2" category="inline-link-macro-rx"></block>。</block>
+  <block id="5a02ebff4889c2de0379a0fb10bed282" category="inline-link-macro">bundle_post_1_25.yaml</block>
+  <block id="418f390286f9ad416740a7939ee1ace3" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用 <block ref="ec1ceb0b8c89561ced4cfd4f0d7d3066" category="inline-link-macro-rx"></block>。</block>
+  <block id="fe3799e555192a4be0f491c2a4b889cb" category="paragraph">例如、如果要为Kubernetes 1.25安装Astra Trident 22.10、请运行以下命令：</block>
+  <block id="6abd06de383c0d8eca2b08e0ec8775e1" category="list-text">使用其清单删除命名空间范围的运算符。要完成此步骤、您需要使用捆绑包YAML文件从部署命名空间范围的运算符<block ref="79243f20ce3e723d13bf0774e8348ca2" prefix=" " category="inline-code"></block> 其中：<block ref="7d2e512472107955c1b3fb2ce2e19bc4" prefix=" " category="inline-code"></block> 是版本号(例如<block ref="ea99d71aa7a32717f8398c406b38b062" prefix=" " category="inline-code"></block>)和<block ref="32f68f45f3f6badcd1aa2343bbbce67c" prefix=" " category="inline-code"></block> 是捆绑包YAML文件名。</block>
+  <block id="ef4941fc3b8697a8f43fd6782250b64c" category="list-text">手动：Trident提供了一个文件、可用于安装操作员和创建关联对象。</block>
 </blocks>

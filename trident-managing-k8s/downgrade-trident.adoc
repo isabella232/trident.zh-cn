@@ -54,8 +54,8 @@ summary: 了解降级到早期版本的 Astra Trident 所涉及的步骤。
 要将 Astra Trident 降级为使用集群范围运算符的版本，请执行以下步骤。
 
 .步骤
-. link:uninstall-trident.html["卸载 Astra Trident"^]。* 除非要完全删除现有安装，否则请勿删除这些 CRD
-. 删除集群范围的运算符。为此，您需要使用清单来部署操作员。您可以从获取 https://github.com/NetApp/trident/blob/stable/v21.07/deploy/bundle.yaml["Trident GitHub 报告"^]。确保切换到所需的分支。
+. link:uninstall-trident.html["卸载 Astra Trident"^]。*除非要完全删除现有安装、否则请勿删除这些CRD
+. 可以使用与您的Trident版本关联的操作员清单来删除Trident运算符。例如： `\https://github.com/NetApp/trident/tree/stable/_vXX.XX_/deploy/_bundle.yaml_` 其中： `_vXX.XX_` 是版本号(例如 `v22.10`)和 `_bundle.yaml_` 是捆绑包YAML文件名。
 . 通过安装所需版本的 Astra Trident 继续降级。按照所需版本的文档进行操作。
 
 
@@ -79,7 +79,7 @@ trident     20h
 kubectl delete torc trident
 tridentorchestrator.trident.netapp.io "trident" deleted
 ----
-. 删除集群范围的运算符。为此，您需要使用清单来部署操作员。您可以从此处获取 https://github.com/NetApp/trident/blob/stable/v21.07/deploy/bundle.yaml["Trident GitHub 报告"^]。确保切换到所需的分支。
+. 可以使用与您的Trident版本关联的操作员清单来删除Trident运算符。例如： `\https://github.com/NetApp/trident/tree/stable/_vXX.XX_/deploy/_bundle.yaml_` 其中： `_vXX.XX_` 是版本号(例如 `v22.10`)和 `_bundle.yaml_` 是捆绑包YAML文件名。
 . 删除 `tridentorchator` CRD 。
 +
 [listing]

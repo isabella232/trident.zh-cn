@@ -148,6 +148,7 @@ NOTE: 对于在ANF后端创建的所有卷、Astra Trident会在配置存储池�
 == 示例配置
 
 .示例 1 ：最低配置
+[%collapsible%open]
 ====
 这是绝对的最低后端配置。使用此配置， Astra Trident 会发现在已配置位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个池和子网上。因为 `nasType` 省略 `nfs` 默认情况下适用、后端将为NFS卷配置。
 
@@ -167,6 +168,7 @@ NOTE: 对于在ANF后端创建的所有卷、Astra Trident会在配置存储池�
 ----
 ====
 .示例 2 ：使用容量池筛选器的特定服务级别配置
+[%collapsible%open]
 ====
 此后端配置会将卷放置在Azure中 `eastus` 位置 `Ultra` 容量池。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。
 
@@ -189,6 +191,7 @@ NOTE: 对于在ANF后端创建的所有卷、Astra Trident会在配置存储池�
 ----
 ====
 .示例 3 ：高级配置
+[%collapsible%open]
 ====
 此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。
 
@@ -222,6 +225,7 @@ NOTE: 对于在ANF后端创建的所有卷、Astra Trident会在配置存储池�
 ----
 ====
 .示例 4 ：虚拟存储池配置
+[%collapsible%open]
 ====
 此后端配置可在一个文件中定义多个存储池。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。
 
@@ -318,6 +322,7 @@ allowVolumeExpansion: true
 使用 `nasType`， `node-stage-secret-name`，和  `node-stage-secret-namespace`、您可以指定SMB卷并提供所需的Active Directory凭据。
 
 .示例1：默认命名空间上的基本配置
+[%collapsible%open]
 ====
 [listing]
 ----
@@ -335,6 +340,7 @@ parameters:
 ----
 ====
 .示例2：每个命名空间使用不同的密钥
+[%collapsible%open]
 ====
 [listing]
 ----
@@ -351,6 +357,7 @@ parameters:
 ----
 ====
 .示例3：每个卷使用不同的密钥
+[%collapsible%open]
 ====
 [listing]
 ----

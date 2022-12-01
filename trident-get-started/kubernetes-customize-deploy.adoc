@@ -99,6 +99,7 @@ NOTE: 有关格式化 POD 参数的详细信息，请参见 link:https://kuberne
 您可以在定义时使用上述属性 `TridentOrchestrator` 自定义安装。
 
 .示例1：基本自定义配置
+[%collapsible%open]
 ====
 这是一个基本自定义配置示例。
 
@@ -117,6 +118,7 @@ spec:
 ----
 ====
 .示例2：使用节点选择器部署
+[%collapsible%open]
 ====
 此示例说明了如何使用节点选择器部署Trident：
 
@@ -136,6 +138,7 @@ spec:
 ----
 ====
 .示例3：在Windows工作节点上部署
+[%collapsible%open]
 ====
 此示例说明了如何在Windows工作节点上部署。
 

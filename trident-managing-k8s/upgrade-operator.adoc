@@ -31,25 +31,37 @@ WARNING: 在 OpenShift 容器平台上使用操作符升级 Trident 时，应升
 
 == 升级集群范围的操作员安装
 
-要从 * Trident 21.01 及更高版本 * 升级，请执行以下步骤。
+按照以下步骤从* Trident 21.01及更高版本*升级。
 
 .步骤
 . 删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如，如果要从 21.01 升级，请运行以下命令：
 +
 [listing]
 ----
-kubectl delete -f 22.01/trident-installer/deploy/bundle.yaml -n trident
+kubectl delete -f 22.01/trident-installer/deploy/BUNDLE.YAML -n trident
 ----
-. （可选）如果要修改安装参数，请编辑在安装 Trident 时创建的 `TridentOrchestrator` 对象。这可能包括一些更改，例如修改自定义 Trident 映像，从其中提取容器映像的专用映像注册表，启用调试日志或指定映像提取密钥。
-. 使用为新版本设置 Trident 操作符的 `bundle.yaml` 文件安装 Astra Trident 。运行以下命令：
+. 您也可以编辑 `TridentOrchestrator` 安装Trident时创建的对象、用于修改安装参数。这可能包括修改自定义Trident映像、从中提取容器映像的专用映像注册表、启用调试日志或指定映像提取密钥等更改。
+. 使用适用于您的环境的正确捆绑包YAML文件安装Astra Trident、并从安装Astra Trident版本 `\https://github.com/NetApp/trident/tree/stable/_vXX.XX_/deploy/_BUNDLE.YAML_` 其中： `_vXX.XX_` 是版本号(例如 `v22.10`)和 `_BUNDLE.YAML_` 是捆绑包YAML文件名。
++
+[NOTE]
+====
+** 对于运行Kubernetes 1.24或更低版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v22.10/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
+** 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v22.10/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
+
+
+====
++
+例如、如果要为Kubernetes 1.25安装Astra Trident 22.10、请运行以下命令：
+
 +
 [listing]
 ----
-kubectl create -f 22.10.0/trident-installer/deploy/bundle.yaml -n trident
+kubectl create -f 22.10.0/trident-installer/deploy/bundle_post_1_25.yaml -n trident
 ----
-
-
++
 在此步骤中、Trident操作员将确定现有的Astra Trident安装并将其升级到与操作员相同的版本。
+
+
 
 
 
@@ -83,7 +95,7 @@ tar -xf trident-installer-22.10.0.tar.gz
 cd trident-installer
 kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
 ----
-. 使用其清单删除命名空间范围的运算符。要完成此步骤，您需要使用 `bundle.yaml` 文件来部署命名空间范围的运算符。您可以从获取 `bundle.yaml` https://github.com/NetApp/trident/blob/stable/v20.10/deploy/bundle.yaml["Trident 存储库"^]。请确保使用相应的分支。
+. 使用其清单删除命名空间范围的运算符。要完成此步骤、您需要使用捆绑包YAML文件从部署命名空间范围的运算符 `\https://github.com/NetApp/trident/tree/stable/_vXX.XX_/deploy/_BUNDLE.YAML_` 其中： `_vXX.XX_` 是版本号(例如 `v22.10`)和 `_BUNDLE.YAML_` 是捆绑包YAML文件名。
 +
 
 NOTE: 您应对Trident安装参数进行必要的更改(例如、更改的值 `tridentImage`， `autosupportImage`、私有映像存储库和提供 `imagePullSecrets`)。有关可更新的完整参数列表、请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy.html#configuration-options["配置选项"]。
@@ -96,7 +108,7 @@ pwd
 /root/20.10.1/trident-installer
 
 #Delete the namespace-scoped operator
-kubectl delete -f deploy/bundle.yaml
+kubectl delete -f deploy/<BUNDLE.YAML>
 serviceaccount "trident-operator" deleted
 clusterrole.rbac.authorization.k8s.io "trident-operator" deleted
 clusterrolebinding.rbac.authorization.k8s.io "trident-operator" deleted
@@ -149,7 +161,7 @@ pwd
 /root/22.10.0/trident-installer
 
 #Install the cluster-scoped operator in the **same namespace**
-kubectl create -f deploy/bundle.yaml
+kubectl create -f deploy/<BUNDLE.YAML>
 serviceaccount/trident-operator created
 clusterrole.rbac.authorization.k8s.io/trident-operator created
 clusterrolebinding.rbac.authorization.k8s.io/trident-operator created
@@ -244,7 +256,7 @@ kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.1
 [listing]
 ----
 #Install the cluster-scoped operator in the **same namespace**
-kubectl create -f deploy/bundle.yaml
+kubectl create -f deploy/<BUNDLE.YAML>
 serviceaccount/trident-operator created
 clusterrole.rbac.authorization.k8s.io/trident-operator created
 clusterrolebinding.rbac.authorization.k8s.io/trident-operator created
