@@ -13,12 +13,13 @@ summary: 了解如何在 Astra Trident 安装中创建和使用 Element 后端�
 
 了解如何在 Astra Trident 安装中创建和使用 Element 后端。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 运行 Element 软件的受支持存储系统。
 * NetApp HCI/SolidFire 集群管理员或租户用户的凭据，可用于管理卷。
 * 所有 Kubernetes 工作节点都应安装适当的 iSCSI 工具。请参见 link:../trident-use/worker-node-prep.html["工作节点准备信息"^]。
 
 
+.您需要了解的信息
 `solidfire-san` 存储驱动程序支持两种卷模式： file 和 block 。对于 `filesystem` volumemode ， Astra Trident 将创建一个卷并创建一个文件系统。文件系统类型由 StorageClass 指定。
 
 [cols="5"]
@@ -138,7 +139,7 @@ NOTE: 对于创建的所有卷， Astra Trident 会在配置存储池时将存�
 
 
 
-== 示例 1 ：具有三种卷类型的 solidfire-san 驱动程序的后端配置
+== 示例1：的后端配置 `solidfire-san` 具有三种卷类型的驱动程序
 
 此示例显示了一个后端文件，该文件使用 CHAP 身份验证并使用特定 QoS 保证对三种卷类型进行建模。然后，您很可能会使用 `IOPS` storage class 参数定义存储类以使用其中的每种类型。
 
@@ -159,7 +160,7 @@ NOTE: 对于创建的所有卷， Astra Trident 会在配置存储池时将存�
 ----
 
 
-== 示例 2 ：具有虚拟存储池的 solidfire-san 驱动程序的后端和存储类配置
+== 示例2：的后端和存储类配置 `solidfire-san` 具有虚拟存储池的驱动程序
 
 此示例显示了使用虚拟存储池配置的后端定义文件以及引用这些池的 StorageClasses 。
 

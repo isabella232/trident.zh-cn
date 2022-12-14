@@ -234,7 +234,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 
 
 
-=== 具有基于证书的身份验证的 ONTAP NAS 驱动程序
+=== `ontap-nas` 具有基于证书的身份验证的驱动程序
 
 这是一个最低后端配置示例。`clientCertificate` ， `clientPrivateKey` 和 `trustedCACertifate` （如果使用可信 CA ，则可选）分别填充在 `backend.json` 中，并采用客户端证书，私钥和可信 CA 证书的 base64 编码值。
 
@@ -255,7 +255,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ----
 
 
-=== 具有自动导出策略的 ontap-NAS 驱动程序
+=== `ontap-nas` 具有自动导出策略的驱动程序
 
 此示例显示了如何指示 Astra Trident 使用动态导出策略自动创建和管理导出策略。这对于 `ontap-nas-economy.` 和 `ontap-nas-flexgroup` 驱动程序也是如此。
 
@@ -277,7 +277,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ----
 
 
-=== ontap-nas-flexgroup 驱动程序
+=== `ontap-nas-flexgroup` 驱动程序
 
 [listing]
 ----
@@ -294,7 +294,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ----
 
 
-=== 使用 IPv6 的 ONTAP NAS 驱动程序
+=== `ontap-nas` 支持IPv6的驱动程序
 
 [listing]
 ----
@@ -311,7 +311,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ----
 
 
-=== ontap-nas-economy-driver
+=== `ontap-nas-economy` 驱动程序
 
 [listing]
 ----
@@ -335,7 +335,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 
 
 
-=== ontap-NAS 驱动程序
+=== `ontap-nas` 驱动程序
 
 [listing]
 ----
@@ -400,7 +400,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ----
 
 
-=== ontap-nas-flexgroup 驱动程序
+=== `ontap-nas-flexgroup` 驱动程序
 
 [listing]
 ----
@@ -461,7 +461,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ----
 
 
-=== ontap-nas-economy-driver
+=== `ontap-nas-economy` 驱动程序
 
 [listing]
 ----

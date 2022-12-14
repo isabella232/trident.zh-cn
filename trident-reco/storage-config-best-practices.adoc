@@ -193,7 +193,7 @@ ONTAP 有两种类型的 QoS 策略组：传统和自适应。传统策略组以
 
 
 
-=== 为应用程序 SVM 禁用 showmount
+=== 禁用 `showmount` 用于应用程序SVM
 
 通过 `showmount` 功能， NFS 客户端可以向 SVM 查询可用 NFS 导出列表。部署到 Kubernetes 集群的 Pod 可以对数据 LIF 执行问题描述 `showmount -e` 命令，并接收可用挂载列表，包括其无权访问的挂载。虽然这本身并不会影响安全，但它确实会提供不必要的信息，可能有助于未经授权的用户连接到 NFS 导出。
 

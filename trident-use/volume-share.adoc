@@ -35,15 +35,19 @@ image::cross-namespace-sharing.png[跨命名空间共享的概念图。]
 
 只需几个步骤即可设置NFS卷共享。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 配置源PVC以共享卷
 [role="quick-margin-para"]
 源命名空间所有者授予访问源PVC中数据的权限。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] 授予在目标命名空间中创建CR的权限
 [role="quick-margin-para"]
 集群管理员向目标命名空间的所有者授予创建TridentVolumeReference CR的权限。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"] 在目标命名空间中创建TridentVolumeReference
 [role="quick-margin-para"]
 目标命名空间的所有者将创建TridentVolumeReference CR以引用源PVC。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"] 在目标命名空间中创建从属PVC
 [role="quick-margin-para"]
 目标命名空间的所有者创建从属PVC以使用源PVC中的数据源。
 
@@ -124,6 +128,7 @@ NOTE: 目标PVC的大小必须小于或等于源PVC。
 
 
 
+.结果
 Astra Trident读取 `shareFromPVC` 在目标PVC上添加标注、并将目标PV创建为一个从属卷、而其自身没有指向源PV的存储资源、并共享源PV存储资源。目标PVC和PV显示为正常绑定。
 
 
@@ -134,7 +139,7 @@ Astra Trident读取 `shareFromPVC` 在目标PVC上添加标注、并将目标PV�
 
 
 
-== 使用tridentctl get查询从属卷
+== 使用 ... `tridentctl get` 查询从属卷
 
 使用[`tridentctl` 实用程序中、您可以运行 `get` 用于获取从属卷的命令。有关详细信息、请参见链接：./trident referation/tridentctl.html[`tridentctl` 命令和选项]。
 

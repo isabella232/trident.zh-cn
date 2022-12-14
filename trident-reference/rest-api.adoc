@@ -30,7 +30,7 @@ API 的工作原理如下：
 
 
 
-=== 获取
+=== `GET`
 
 * `get <trident 地址 >/trident /v1/< 对象类型 >` ：列出此类型的所有对象。
 * `get <trident 地址 >/trident /v1/< 对象类型 >/< 对象名称 >` ：获取命名对象的详细信息。
@@ -38,7 +38,7 @@ API 的工作原理如下：
 
 
 
-=== 发布
+=== `POST`
 
 `post <trident 地址 >/trident /v1/< 对象类型 >` ：创建指定类型的对象。
 
@@ -48,7 +48,7 @@ API 的工作原理如下：
 
 
 
-=== 删除
+=== `DELETE`
 
 `delete <trident 地址 >/trident /v1/< 对象类型 >/< 对象名称 >` ：删除指定的资源。
 

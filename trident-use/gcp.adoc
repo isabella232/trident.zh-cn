@@ -23,6 +23,7 @@ Astra Trident支持默认CVS服务类型为on的卷 https://cloud.google.com/arc
 
 
 ====
+.您需要的内容
 以配置和使用 https://cloud.netapp.com/cloud-volumes-service-for-gcp?utm_source=NetAppTrident_ReadTheDocs&utm_campaign=Trident["适用于 Google Cloud 的 Cloud Volumes Service"^] 后端，您需要满足以下要求：
 
 * 配置了 NetApp CVS 的 Google Cloud 帐户

@@ -121,7 +121,7 @@ NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.
 
 === 卷配置
 
-您可以通过在配置文件的特殊部分中指定以下选项来控制默认卷配置。请参见  configurations 了解详细信息。
+您可以通过在配置文件的特殊部分中指定以下选项来控制默认卷配置。请参见 <<示例配置>> 了解详细信息。
 
 [cols=",,"]
 |===
@@ -282,7 +282,7 @@ NOTE: 对于在ANF后端创建的所有卷、Astra Trident会在配置存储池�
 
 
 
-=== 使用parameter.selector字段的示例定义
+=== 使用的示例定义 `parameter.selector` 字段
 
 使用 `parameter.selector` 您可以为每个指定 `StorageClass` 用于托管卷的虚拟池。卷将在选定池中定义各个方面。
 

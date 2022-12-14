@@ -113,7 +113,7 @@ helm rollback trident [revision #]
 ----
 
 
-== 使用 tridentctl 安装 Astra Trident 时的降级过程
+== 使用安装Astra Trident时的降级过程 `tridentctl`
 
 如果您使用 `tridentctl` 安装了 Astra Trident ，则降级过程涉及以下步骤。此顺序将指导您完成从 Astra Trident 21.07 迁移到 20.07 的降级过程。
 

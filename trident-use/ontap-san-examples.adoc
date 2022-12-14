@@ -240,7 +240,7 @@ NOTE: 如果您正在将 NetApp ONTAP 上的 Amazon FSx 与 Astra Trident 结合
 
 
 
-=== 具有基于证书的身份验证的 ontap-san 驱动程序
+=== `ontap-san` 具有基于证书的身份验证的驱动程序
 
 这是一个最低后端配置示例。`clientCertificate` ， `clientPrivateKey` 和 `trustedCACertifate` （如果使用可信 CA ，则可选）分别填充在 `backend.json` 中，并采用客户端证书，私钥和可信 CA 证书的 base64 编码值。
 
@@ -266,7 +266,7 @@ NOTE: 如果您正在将 NetApp ONTAP 上的 Amazon FSx 与 Astra Trident 结合
 ----
 
 
-=== 具有双向 CHAP 的 ONTAP SAN 驱动程序
+=== `ontap-san` 具有双向CHAP的驱动程序
 
 这是一个最低后端配置示例。此基本配置将创建一个 `ontap-san` 后端，并将 `useCHAP` 设置为 `true` 。
 
@@ -291,7 +291,7 @@ NOTE: 如果您正在将 NetApp ONTAP 上的 Amazon FSx 与 Astra Trident 结合
 ----
 
 
-=== ontap-san-economy-driver
+=== `ontap-san-economy` 驱动程序
 
 [listing]
 ----

@@ -15,7 +15,7 @@ summary: '后端定义了 Astra Trident 与存储系统之间的关系。它告�
 
 
 
-== TridentBackendConfig
+== `TridentBackendConfig`
 
 `TridentBackendConfig` （`tbc` ， `tbconfig` ， `tbackendconfig` ）是一个前端命名的 CRD ，可用于使用 `kubectl` 管理 Astra Trident 后端。现在， Kubernetes 和存储管理员可以直接通过 Kubernetes 命令行界面创建和管理后端，而无需专用命令行实用程序（`tridentctl` ）。
 
@@ -186,7 +186,7 @@ CHAP 目标启动程序密钥。如果 useCHAP=true ，则为必需项。适用�
 
 
 
-== 第 2 步：创建 TridentBackendConfig CR
+== 第2步：创建 `TridentBackendConfig` CR
 
 现在，您可以创建 `TridentBackendConfig` CR 了。在此示例中，使用 `TriventBackendConfig` 对象创建使用` ontap-san `驱动程序的后端，如下所示：
 
@@ -212,7 +212,7 @@ spec:
 ----
 
 
-== 第 3 步：验证 TridentBackendConfig CR 的状态
+== 第3步：验证的状态 `TridentBackendConfig` CR
 
 现在，您已创建 `TridentBackendConfig` CR ，可以验证状态。请参见以下示例：
 

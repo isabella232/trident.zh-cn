@@ -36,7 +36,7 @@ TIP: 要进一步了解 Kubernetes 对象，强烈建议您阅读 https://kubern
 
 
 
-== Kubernetes PersistentVolumeClaim 对象
+== Kubernetes `PersistentVolumeClaim` 对象
 
 Kubernetes `PersistentVolumeClaim` 对象是 Kubernetes 集群用户发出的存储请求。
 
@@ -98,7 +98,7 @@ NOTE: 您可以将 `cloneFromPVC` 和 `splitOnClone` 标注与 CSI Trident 以�
 
 
 
-== Kubernetes PersistentVolume 对象
+== Kubernetes `PersistentVolume` 对象
 
 Kubernetes `PersistentVolume` 对象表示可供 Kubernetes 集群使用的一段存储。它的生命周期与使用它的 POD 无关。
 
@@ -113,7 +113,7 @@ NOTE: Trident 会创建 `PersistentVolume` 对象，并根据其配置的卷自�
 
 
 
-== Kubernetes StorageClass 对象
+== Kubernetes `StorageClass` 对象
 
 Kubernetes `StorageClass` 对象在 `PersistentVolumeClass` 中按名称指定，用于使用一组属性配置存储。存储类本身可标识要使用的配置程序，并按配置程序所了解的术语定义该属性集。
 
@@ -242,7 +242,7 @@ ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire
 ====
 
 
-== Kubernetes VolumeSnapshotClass 对象
+== Kubernetes `VolumeSnapshotClass` 对象
 
 Kubernetes `VolumeSnapshotClass` 对象类似于 `StorageClasses` 。它们有助于定义多个存储类，并由卷快照引用以将快照与所需的快照类关联。每个卷快照都与一个卷快照类相关联。
 
@@ -261,7 +261,7 @@ deletionPolicy: Delete
 
 
 
-== Kubernetes VolumeSnapshot 对象
+== Kubernetes `VolumeSnapshot` 对象
 
 Kubernetes `VolumeSnapshot` 对象是创建卷快照的请求。就像 PVC 代表用户对卷发出的请求一样，卷快照也是用户为现有 PVC 创建快照的请求。
 
@@ -272,7 +272,7 @@ NOTE: VolumeSnapshot 的生命周期与源 PVC 无关：即使删除了源 PVC �
 
 
 
-== Kubernetes VolumeSnapshotContent 对象
+== Kubernetes `VolumeSnapshotContent` 对象
 
 Kubernetes `VolumeSnapshotContent` 对象表示从已配置的卷创建的快照。它类似于 `PersistentVolume` ，表示存储集群上配置的快照。与 `PersistentVolumeClaim` 和 `PersistentVolume` 对象类似，创建快照时， `VolumeSnapshotContent` 对象会与请求创建快照的 `VolumeSnapshot` 对象保持一对一映射。
 
@@ -285,7 +285,7 @@ NOTE: Trident 会创建 `VolumeSnapshotContent` 对象，并根据其配置的�
 
 
 
-== Kubernetes CustomResourceDefinition 对象
+== Kubernetes `CustomResourceDefinition` 对象
 
 Kubernetes 自定义资源是 Kubernetes API 中的端点，由管理员定义并用于对类似对象进行分组。Kubernetes 支持创建自定义资源以存储对象集合。您可以通过运行 `kubectl get crds` 来获取这些资源定义。
 
@@ -304,7 +304,7 @@ CRD 是一种 Kubernetes 构造。上述资源的对象由 Trident 创建。例�
 
 
 
-== Trident StorageClass 对象
+== Trident `StorageClass` 对象
 
 Trident 会为 Kubernetes `StorageClass` 在其配置程序字段中指定 `csi.trident.netapp.io`/`netapp.io/trident` 的对象创建匹配的存储类。存储类名称与 Kubernetes `StorageClass` 其所代表的对象的名称匹配。
 
@@ -328,7 +328,7 @@ NOTE: 这是您自己创建和管理的两种对象类型之一。另一个是 K
 
 
 
-== Trident StoragePool 对象
+== Trident `StoragePool` 对象
 
 存储池表示可在每个后端配置的不同位置。对于 ONTAP ，这些聚合对应于 SVM 中的聚合。对于 NetApp HCI/SolidFire ，这些 QoS 分段对应于管理员指定的 QoS 分段。对于 Cloud Volumes Service ，这些区域对应于云提供商区域。每个存储池都有一组不同的存储属性，用于定义其性能特征和数据保护特征。
 
@@ -336,7 +336,7 @@ NOTE: 这是您自己创建和管理的两种对象类型之一。另一个是 K
 
 
 
-== Trident Volume 对象
+== Trident `Volume` 对象
 
 卷是基本配置单元，由后端端点组成，例如 NFS 共享和 iSCSI LUN 。在 Kubernetes 中，这些卷直接对应于 `PersistentVolumes` 。创建卷时，请确保其具有存储类，此类可确定可配置该卷的位置以及大小。
 
@@ -403,7 +403,7 @@ TIP: 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * �
 
 
 
-== Trident Snapshot 对象
+== Trident `Snapshot` 对象
 
 快照是卷的时间点副本，可用于配置新卷或还原状态。在 Kubernetes 中，这些对象直接对应于 `VolumeSnapshotContent` 对象。每个快照都与一个卷相关联，该卷是快照的数据源。
 
@@ -445,7 +445,7 @@ NOTE: 在 Kubernetes 中，这些对象会自动进行管理。您可以查看�
 
 
 
-== Astra Trident ResourceQuota对象
+== Astra Trident `ResourceQuota` 对象
 
 Trident降级会使用`ssystem-node-critical` Priority Class-the highest priority Class available in Kubernetes—以确保Astra Trident能够在正常节点关闭期间识别和清理卷、并允许Trident demonset Pod在资源压力较高的集群中以较低优先级抢占工作负载。
 
@@ -474,7 +474,7 @@ spec:
 
 
 
-=== 如果安装失败、请清理ResourceQuota
+=== 清理 `ResourceQuota` 如果安装失败
 
 在极少数情况下、如果在创建`ResourceQuota`对象后安装失败、请先尝试 link:../trident-managing-k8s/uninstall-trident.html["正在卸载"] 然后重新安装。
 
@@ -482,7 +482,7 @@ spec:
 
 
 
-=== 删除ResourceQuota
+=== 删除 `ResourceQuota`
 
 如果您希望控制自己的资源分配、则可以使用以下命令删除Astra Trident `ResourceQuota`对象：
 

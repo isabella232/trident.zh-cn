@@ -60,7 +60,7 @@ WARNING: 只有在执行完全卸载时，才应考虑擦除 CRD 。此操作无
 
 
 
-== 使用 tridentctl 卸载
+== 使用卸载 `tridentctl`
 
 在 `tridentctl` 中运行 `uninstall` 命令，如下所示删除除 CRD 和相关对象之外与 Astra Trident 关联的所有资源，从而可以轻松地重新运行安装程序以更新到最新版本。
 

@@ -16,7 +16,7 @@ summary: 了解 NetApp 存储平台提供的数据保护和可恢复性选项。
 
 
 
-== 备份 etcd 集群数据
+== 备份 `etcd` 集群数据
 
 Astra Trident 会将其元数据存储在 Kubernetes 集群的 `etcd` 数据库中。定期备份 `etcd` 集群数据对于在发生灾难时恢复 Kubernetes 集群非常重要。
 

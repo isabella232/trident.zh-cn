@@ -24,7 +24,7 @@ Astra Trident 提供了一组 Prometheus 指标端点，您可以使用这些端
 
 NOTE: 默认情况下， Trident 的指标会显示在 `/metrics` 端点的目标端口` 8001 ` 上。安装 Trident 时，这些指标默认为 * 已启用 * 。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 安装了 Astra Trident 的 Kubernetes 集群。
 * 一个 Prometheus 实例。可以是 https://github.com/prometheus-operator/prometheus-operator["容器化 Prometheus 部署"^] 或者，您也可以选择将 Prometheus 作为运行 https://prometheus.io/download/["原生应用程序"^]。
 

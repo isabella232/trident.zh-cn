@@ -147,7 +147,7 @@ trident-operator-766f7b8658-ldzsv   1/1     Running            0          8m17s
 
 
 
-== 使用 tridentctl 对未成功的 Trident 部署进行故障排除
+== 使用对未成功的Trident部署进行故障排除 `tridentctl`
 
 为了帮助您找出出现问题的原因，您可以使用 `` -d`` 参数再次运行安装程序，该参数将打开调试模式并帮助您了解问题所在：
 

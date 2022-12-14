@@ -101,7 +101,7 @@ Trident 19.07 及更高版本可处理 PV 的连接，并在导入卷时挂载�
 
 
 
-== ontap-nas 和 ontap-nas-flexgroup 导入
+== `ontap-nas` 和 `ontap-nas-flexgroup` 导入
 
 使用 `ontap-nas` 驱动程序创建的每个卷都是 ONTAP 集群上的一个 FlexVol 。使用 `ontap-NAS` 驱动程序导入 FlexVol 的工作原理相同。ONTAP 集群上已存在的 FlexVol 可以导入为 `ONONTAP -NAS` PVC 。同样，可以将 FlexGroup vols 导入为 `ontap-nas-flexgroup` PVC 。
 
@@ -142,7 +142,7 @@ NOTE: 先前存在的使用自定义 UnixPermissions 导入卷的错误已得到
 
 
 
-== ontap-san 导入
+== `ontap-san` 导入
 
 Astra Trident 还可以导入包含单个 LUN 的 ONTAP SAN FlexVol 。这与 `ontap-san` 驱动程序一致，该驱动程序会为 FlexVol 中的每个 PVC 和 LUN 创建一个 FlexVol 。您可以像在其他情况下一样使用 `tridentctl import` 命令：
 
@@ -181,7 +181,7 @@ IMPORTANT: ONTAP 卷的类型必须为 RW ，才能由 Astra Trident 导入。�
 
 
 
-== 元素导入
+== `element` 导入
 
 您可以使用 Trident 将 NetApp Element 软件 /NetApp HCI 卷导入到 Kubernetes 集群中。您需要提供 Astra Trident 后端的名称以及卷和 PVC 文件的唯一名称作为 `tridentctl import` 命令的参数。
 
@@ -200,7 +200,7 @@ NOTE: Element 驱动程序支持重复的卷名称。如果卷名称重复，则
 
 
 
-== GCP-CVS 导入
+== `gcp-cvs` 导入
 
 
 TIP: 要在 GCP 中导入由 NetApp Cloud Volumes Service 支持的卷，请按卷路径而非名称来标识该卷。
@@ -222,7 +222,7 @@ NOTE: 卷路径是卷导出路径中： / 之后的部分。例如，如果导�
 
 
 
-== Azure-netapp-files 导入
+== `azure-netapp-files` 导入
 
 要在后端导入 `azure-netapp-files` 卷，该卷名为 `azurenetappfiles_40517` ，卷路径为 `importvol1` ，请运行以下命令：
 

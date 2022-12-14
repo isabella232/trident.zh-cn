@@ -14,6 +14,7 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 [role="lead"]
 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 
+.您需要的内容
 要使用运算符进行升级，应满足以下条件：
 
 * 您应安装基于 CSI 的 Astra Trident 。要检查是否正在运行 CSI Trident ，请检查 Trident 命名空间中的 Pod 。如果它们遵循 `trident CSI - *` 命名模式，则表示您正在运行 CSI Trident 。

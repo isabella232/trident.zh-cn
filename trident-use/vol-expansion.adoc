@@ -22,6 +22,7 @@ summary: 通过 Astra Trident ， Kubernetes 用户可以在创建卷后对其�
 
 NOTE: iSCSI 卷扩展受 `ontap-san` ， `ontap-san-economy` ， `solidfire-san` 驱动程序支持，需要 Kubernetes 1.16 及更高版本。
 
+.概述
 扩展 iSCSI PV 包括以下步骤：
 
 * 编辑 StorageClass 定义以将 `allowVolumeExpansion` 字段设置为 `true` 。

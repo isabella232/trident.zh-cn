@@ -25,6 +25,7 @@ Kubernetes 提供了两种唯一的卷绑定模式：
 
 NOTE: `WaitForFirstConsumer"` 绑定模式不需要拓扑标签。此功能可独立于 CSI 拓扑功能使用。
 
+.您需要的内容
 要使用 CSI 拓扑，您需要满足以下条件：
 
 * 运行的Kubernetes集群 link:requirements.html["支持的Kubernetes版本"]
@@ -250,7 +251,7 @@ pvc-san   Bound    pvc-ecb1e1a0-840c-463b-8b65-b3d033e2e62b   300Mi      RWO    
 ----
 
 
-== 更新后端以包括支持的拓扑
+== 更新后端以包括 `supportedTopologies`
 
 可以使用 `tridentctl backend update` 更新原有后端，以包含 `supportedTopologies` 列表。这不会影响已配置的卷，并且仅用于后续的 PVC 。
 

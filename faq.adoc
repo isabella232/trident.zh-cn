@@ -60,7 +60,7 @@ Astra Trident 与其他 NetApp 软件产品没有任何依赖关系，它可以�
 
 
 
-=== 支持哪些版本的 etcd ？
+=== 支持的版本是什么 `etcd`？
 
 Astra Trident 不再需要 `etcd` 。它使用 CRD 来保持状态。
 
