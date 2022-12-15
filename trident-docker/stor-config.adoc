@@ -461,14 +461,6 @@ QoS 规范
 
 Astra Trident支持默认CVS服务类型为on的卷 https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["GCP"^]。无论CVS服务类型允许的最小值如何、Astra Trident都不支持小于100 GiB的CVS卷。因此、如果请求的卷小于最小大小、Trident会自动创建100 GiB卷。
 
-[NOTE]
-====
-* NetApp建议客户将低于1 TiB的卷用于非生产工作负载。
-* 使用默认CVS服务类型部署后端时 `storageClass=software`、注册后可访问GCP上的子1TiB卷功能、以获取相关项目编号和项目ID。这对于 Trident 配置低于 1TiB 的卷是必需的。否则、对于小于600 GiB的PVC、卷创建*将失败*。
-* link:https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["注册以访问低于1TiB的卷。"]
-
-
-====
 除了全局配置值之外，在 GCP 上使用 CVS 时，还可以使用这些选项。
 
 [cols="3*"]

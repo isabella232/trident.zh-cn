@@ -18,15 +18,17 @@ summary: Kubernetes 集群通常由两种类型的节点组成，每种节点负
 
 == 驱动程序选择和部署
 
+为存储系统选择并部署后端驱动程序。
 
 
-=== 为 ONTAP 选择后端驱动程序
 
-ONTAP 系统可使用四种不同的后端驱动程序。这些驱动程序根据所使用的协议以及在存储系统上配置卷的方式进行了区分。因此，请仔细考虑要部署的驱动程序。
+=== ONTAP 后端驱动程序
+
+ONTAP 后端驱动程序可通过所使用的协议以及在存储系统上配置卷的方式来区分。因此、在确定要部署的驱动程序时、请仔细考虑。
 
 更高级别的是，如果您的应用程序中的组件需要共享存储（多个 Pod 访问同一个 PVC ），则基于 NAS 的驱动程序将成为默认选项，而基于块的 iSCSI 驱动程序则可满足非共享存储的需求。根据应用程序要求以及存储和基础架构团队的舒适程度选择协议。一般来说，对于大多数应用程序来说，它们之间没有什么区别，因此通常是根据是否需要共享存储（多个 POD 需要同时访问）来决定的。
 
-下面列出了 ONTAP 后端的五个驱动程序：
+可用的ONTAP 后端驱动程序包括：
 
 * `ontap-NAS` ：配置的每个 PV 都是一个完整的 ONTAP FlexVolume 。
 * `ontap-nas-economy.` ：配置的每个 PV 都是一个 qtree ，每个 FlexVolume 的 qtree 数量是可配置的（默认值为 200 ）。
@@ -76,19 +78,19 @@ NOTE: `solidfire-san` 驱动程序还能够克隆 PVC 。
 
 
 
-=== 为 Cloud Volumes ONTAP 选择后端驱动程序
+=== Cloud Volumes ONTAP 后端驱动程序
 
 Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存储功能，包括文件共享和为 NAS 和 SAN 协议（ NFS ， SMB/CIFS 和 iSCSI ）提供服务的块级存储。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-san` 和 `ontap-san-economy.`它们适用于适用于 Azure 的 Cloud Volume ONTAP ，适用于 GCP 的 Cloud Volume ONTAP 。
 
 
 
-=== 为适用于 ONTAP 的 Amazon FSX 选择后端驱动程序
+=== 适用于ONTAP 的Amazon FSX后端驱动程序
 
 借助适用于 ONTAP 的 Amazon FSX ，客户可以利用他们熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX for ONTAP 支持 ONTAP 的许多文件系统功能和管理 API 。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-nas-flexgroup` ， `ontap-san` 和 `ontap-san-economy.`
 
 
 
-=== 为 NetApp HCI/SolidFire 选择后端驱动程序
+=== NetApp HCI/SolidFire后端驱动程序
 
 与 NetApp HCI/SolidFire 平台结合使用的 `solidfire-san` 驱动程序可帮助管理员根据 QoS 限制为 Trident 配置 Element 后端。如果您希望设计后端，以便为 Trident 配置的卷设置特定的 QoS 限制，请在后端文件中使用 `type` 参数。管理员还可以使用 `limitVolumeSize` 参数限制可在存储上创建的卷大小。目前， `solidfire-san` 驱动程序不支持卷大小调整和卷复制等 Element 存储功能。这些操作应通过 Element Software Web UI 手动完成。
 
@@ -104,7 +106,7 @@ Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存
 
 
 
-=== 为 Azure NetApp Files 选择后端驱动程序
+=== Azure NetApp Files 后端驱动程序
 
 Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 link:https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 服务
 
@@ -122,7 +124,7 @@ Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 link:https://azu
 
 
 
-=== 为采用 GCP 的 Cloud Volumes Service 选择后端驱动程序
+=== 具有GCP后端驱动程序的Cloud Volumes Service
 
 Astra Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 GCP 后端，您需要在后端文件中指定 `projectNumber` ， `apiRegion` 和 `apiKey` 。项目编号可在 GCP Web 门户中找到，而 API 密钥必须从您在 GCP 上为 Cloud Volumes 设置 API 访问时创建的服务帐户专用密钥文件中获取。Astra Trident 可以在两个卷中创建 CVS 卷之一 link:https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["服务类型"^]：
 
@@ -131,9 +133,6 @@ Astra Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Servi
 
 
 CVS和CVS-Performance卷的最小大小为100 GiB。
-
-
-CAUTION: 使用默认 CVS 服务类型 `storageClass=software` 部署后端时，用户 * 必须获得 * 对 GCP 上相关项目编号和项目 ID 的子 1TiB 卷功能的访问权限。这对于 Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建 * 将失败 * 。使用 ... link:https://docs.google.com/forms/d/e/1FAIpQLSc7_euiPtlV8bhsKWvwBl3gm9KUL4kOhD7lnbHC3LlQ7m02Dw/viewform["此表单"^] 以访问低于 1 TiB 的卷。
 
 [cols="20,10,10,10,10,10,10"]
 |===
@@ -155,7 +154,7 @@ CAUTION: 使用默认 CVS 服务类型 `storageClass=software` 部署后端时�
 
 
 
-=== 针对特定后端利用率的存储类设计
+=== 特定后端利用率
 
 可以在特定存储类对象中使用筛选功能来确定要将哪个存储池或一组池与该特定存储类结合使用。可以在存储类中设置三组筛选器： `storagePools` ， `addtionalStoragePools` 和 / 或 `excludeStoragePools` 。
 
@@ -165,19 +164,19 @@ CAUTION: 使用默认 CVS 服务类型 `storageClass=software` 部署后端时�
 
 
 
-=== 用于模拟 QoS 策略的存储类设计
+=== 模拟QoS策略
 
 如果要设计存储类以模拟服务质量策略，请创建一个存储类，其中 `mmedia` attribute 为 `HDD` 或 `sSD` 。根据存储类中提及的 `mmedia` 属性， Trident 将选择提供 `HDD` 或 `sSD` 聚合的相应后端，以便与介质属性匹配，然后将卷配置定向到特定聚合。因此，我们可以创建一个存储类高级版，该高级版会将 `mmedia` attribute 设置为 `sSD` ，该高级版可归类为高级 QoS 策略。我们可以创建另一个存储类标准，该标准会将介质属性设置为 `HDD' ，并可归类为标准 QoS 策略。我们还可以使用存储类中的 ``IOPS' 属性将配置重定向到可定义为 QoS 策略的 Element 设备。
 
 
 
-=== 存储类设计，可根据特定功能利用后端
+=== 根据特定功能使用后端
 
 存储类可设计为在启用了精简和厚配置，快照，克隆和加密等功能的特定后端直接配置卷。要指定要使用的存储，请创建存储类，以指定启用了所需功能的相应后端。
 
 
 
-=== 虚拟存储池的存储类设计
+=== 虚拟存储池
 
 所有 Astra Trident 后端均可使用虚拟存储池。您可以使用 Astra Trident 提供的任何驱动程序为任何后端定义虚拟存储池。
 
@@ -194,13 +193,13 @@ NOTE: 定义虚拟存储池时，建议不要尝试在后端定义中重新排�
 
 
 
-=== 设计虚拟存储池以模拟不同的服务级别 /QoS
+=== 模拟不同的服务级别/QoS
 
 可以设计虚拟存储池来模拟服务类。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。为 ANF 后端配置多个标签，以表示不同的性能级别。将 `servicelevel` Aspect 设置为适当的性能级别，并在每个标签下添加其他所需的内容。现在，创建可映射到不同虚拟存储池的不同 Kubernetes 存储类。使用 `parameters.selector` 字段，每个 StorageClass 都会调用可用于托管卷的虚拟池。
 
 
 
-=== 设计用于分配特定方面的虚拟池
+=== 分配特定的方面
 
 可以从一个存储后端设计具有一组特定方面的多个虚拟存储池。为此，请为后端配置多个标签，并在每个标签下设置所需的方面。现在，使用 `parameters.selector` 字段创建不同的 Kubernetes 存储类，该字段将映射到不同的虚拟存储池。在后端配置的卷将在选定的虚拟存储池中定义相关方面。
 

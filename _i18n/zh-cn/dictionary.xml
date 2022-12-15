@@ -503,10 +503,7 @@
   <block id="748c130a6179b02d614cf9a027294302" category="doc">集成 Astra Trident</block>
   <block id="463c6e3deb27d776ba0302b5b90f6607" category="paragraph">要集成 Astra Trident ，需要集成以下设计和架构要素：驱动程序选择和部署，存储类设计，虚拟存储池设计，永久性卷声明（ PVC ）对存储配置的影响，卷操作以及使用 Astra Trident 部署 OpenShift 服务。</block>
   <block id="1fdc23c8579638d050b7b219da011f2b" category="section-title">驱动程序选择和部署</block>
-  <block id="150d96898b109ac670a955fd616679fe" category="section-title">为 ONTAP 选择后端驱动程序</block>
-  <block id="3b81f3dbce48d5a5e5f6f338de47bb44" category="paragraph">ONTAP 系统可使用四种不同的后端驱动程序。这些驱动程序根据所使用的协议以及在存储系统上配置卷的方式进行了区分。因此，请仔细考虑要部署的驱动程序。</block>
   <block id="815a377da65ae5b66c84438c43416d82" category="paragraph">更高级别的是，如果您的应用程序中的组件需要共享存储（多个 Pod 访问同一个 PVC ），则基于 NAS 的驱动程序将成为默认选项，而基于块的 iSCSI 驱动程序则可满足非共享存储的需求。根据应用程序要求以及存储和基础架构团队的舒适程度选择协议。一般来说，对于大多数应用程序来说，它们之间没有什么区别，因此通常是根据是否需要共享存储（多个 POD 需要同时访问）来决定的。</block>
-  <block id="3e5fda6b2fdf8b78a529ee58e0289c8d" category="paragraph">下面列出了 ONTAP 后端的五个驱动程序：</block>
   <block id="c2c889ded63fbe94cf7f1d5fe4747b2d" category="list-text">`ontap-NAS` ：配置的每个 PV 都是一个完整的 ONTAP FlexVolume 。</block>
   <block id="9418583a1b7e700d24bcc735aa4682b5" category="list-text">`ontap-nas-economy.` ：配置的每个 PV 都是一个 qtree ，每个 FlexVolume 的 qtree 数量是可配置的（默认值为 200 ）。</block>
   <block id="bc8f11db54909209ba09d55ee0b46990" category="list-text">`ontap-nas-flexgroup` ：使用配置为完整 ONTAP FlexGroup 的每个 PV ，以及分配给 SVM 的所有聚合。</block>
@@ -539,17 +536,13 @@
   <block id="74b4b41be17ac9897921032dfd4e94a8" category="paragraph">非 PV 粒度功能将应用于整个 FlexVolume ，而所有 PV （即共享 FlexVol 中的 qtree 或 LUN ）将共享一个通用计划。</block>
   <block id="b483d59c54aea739f0806cf2f30c057e" category="paragraph">如上表所示， `ontap-nas` 与 `ontap-nas-economy` 之间的大部分功能是相同的。但是，由于 `ontap-nas-economy` 驱动程序限制了按 PV 粒度控制计划的能力，因此这可能会特别影响灾难恢复和备份规划。对于希望在 ONTAP 存储上利用 PVC 克隆功能的开发团队，只有在使用 `ontap-NAS` ， `ontap-san` 或 `ontap-san-economy-经济` 驱动程序时，才可能实现这一点。</block>
   <block id="45f7f2e55c0930a28d1a9e481e602a09" category="admonition">`solidfire-san` 驱动程序还能够克隆 PVC 。</block>
-  <block id="5ea8a1263c170a1b26153c03919a84f2" category="section-title">为 Cloud Volumes ONTAP 选择后端驱动程序</block>
-  <block id="6b1a08ddb7e74488a9039997d4961ff8" category="section-title">为适用于 ONTAP 的 Amazon FSX 选择后端驱动程序</block>
   <block id="168b96624733268bb4b4ebfbebea0449" category="paragraph">借助适用于 ONTAP 的 Amazon FSX ，客户可以利用他们熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX for ONTAP 支持 ONTAP 的许多文件系统功能和管理 API 。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-nas-flexgroup` ， `ontap-san` 和 `ontap-san-economy.`</block>
-  <block id="d0030e26d7e1baf13ad36649449f3689" category="section-title">为 NetApp HCI/SolidFire 选择后端驱动程序</block>
   <block id="e040ac9827d856d3ad8ae9ac0da92295" category="paragraph">与 NetApp HCI/SolidFire 平台结合使用的 `solidfire-san` 驱动程序可帮助管理员根据 QoS 限制为 Trident 配置 Element 后端。如果您希望设计后端，以便为 Trident 配置的卷设置特定的 QoS 限制，请在后端文件中使用 `type` 参数。管理员还可以使用 `limitVolumeSize` 参数限制可在存储上创建的卷大小。目前， `solidfire-san` 驱动程序不支持卷大小调整和卷复制等 Element 存储功能。这些操作应通过 Element Software Web UI 手动完成。</block>
   <block id="77e9d6f249e4626d5b5c3aec863459d3" category="cell">SolidFire 驱动程序</block>
   <block id="9ef2bbb12ff72558472202561a25058d" category="cell">CHAP</block>
   <block id="57ee8ed0b2796ea5f35b10f9ae5d68cd" category="cell">`solidfire-san`</block>
   <block id="0929973a1c9993903f6193add75b3fcf" category="cell">是脚注： 2[]</block>
   <block id="bccbad684880808562152ac1d82d7b73" category="verse-content-simple">脚注：是脚注： 1[] ：不由 Astra Trident 管理是脚注： 2[] ：支持原始块卷</block>
-  <block id="bb1da85f123c0dbedeb19d1f5c676112" category="section-title">为 Azure NetApp Files 选择后端驱动程序</block>
   <block id="657e0fa57d574227dd7520919f55ff92" category="paragraph">Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 <block ref="d617d79fbb5ee3bc8bd280353eeb1349" category="inline-link-macro-rx"></block> 服务</block>
   <block id="1f65578a7accdff5ca6ff9f8dc42d9c6" category="inline-link-macro">适用于 Azure NetApp Files 的 Astra Trident 后端配置</block>
   <block id="e4eb3683baaad2a9ce9e264a37fb519e" category="paragraph">有关此驱动程序及其配置方法的详细信息，请参见 <block ref="452e5754c64fc2b52b13e03114bfeff6" category="inline-link-macro-rx"></block>。</block>
@@ -557,32 +550,22 @@
   <block id="8098b34f582537833b36b58273c3545b" category="cell">展开</block>
   <block id="e228843381960c06d1035c4219901307" category="cell">`azure-netapp-files`</block>
   <block id="2fdc8a66565228c15d355a7849997337" category="verse-content-simple">脚注：是脚注： 1[] ：不由 Astra Trident 管理</block>
-  <block id="88d040295b5885489339e969bf92517c" category="section-title">为采用 GCP 的 Cloud Volumes Service 选择后端驱动程序</block>
   <block id="1d326a2a7f267c800fe3eafb89e5c7cd" category="inline-link-macro">服务类型</block>
   <block id="f888f12905dbaabc09dd3e50073d862f" category="paragraph">Astra Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 GCP 后端，您需要在后端文件中指定 `projectNumber` ， `apiRegion` 和 `apiKey` 。项目编号可在 GCP Web 门户中找到，而 API 密钥必须从您在 GCP 上为 Cloud Volumes 设置 API 访问时创建的服务帐户专用密钥文件中获取。Astra Trident 可以在两个卷中创建 CVS 卷之一 <block ref="a3cd55e5a9ff014b76f6953040234c24" category="inline-link-macro-rx"></block>：</block>
   <block id="3481817b04a40b0420a940c0c9c1f82d" category="list-text">* CVS* ：基本 CVS 服务类型，可提供较高的区域可用性，但性能级别有限 / 中等。</block>
-  <block id="4525f6e1d5124cd80f38341d78e8a67d" category="inline-link-macro">此表单</block>
-  <block id="51e6e54f894aa900f8a1822598ef3c5a" category="admonition">使用默认 CVS 服务类型 `storageClass=software` 部署后端时，用户 * 必须获得 * 对 GCP 上相关项目编号和项目 ID 的子 1TiB 卷功能的访问权限。这对于 Trident 配置低于 1TiB 的卷是必需的。否则，对于小于 600 GiB 的 PVC ，卷创建 * 将失败 * 。使用 ... <block ref="0c921b807a9a638a24dd843d24ed0800" category="inline-link-macro-rx"></block> 以访问低于 1 TiB 的卷。</block>
   <block id="6219f23a135db2efc679d38117420cf0" category="cell">适用于 GCP 的 CVS 驱动程序</block>
   <block id="949a374fc5a78d436e3067ee2de19cbe" category="cell">`GCP-CVS`</block>
   <block id="439d990c21037b37b51c4373a7aa9811" category="paragraph">`GCP-CVS` 驱动程序使用虚拟存储池。虚拟存储池会对后端进行抽象化，从而使 Astra Trident 决定卷的放置。管理员在 backend.json 文件中定义虚拟存储池。存储类使用标签标识虚拟存储池。</block>
   <block id="3af6198d49c40c18f13c73c5ce15cf34" category="section-title">存储类设计</block>
   <block id="388bdf78cbb5b6bf4248ddf5613f7cc3" category="paragraph">要创建 Kubernetes 存储类对象，需要配置并应用各个存储类。本节讨论如何为您的应用程序设计存储类。</block>
-  <block id="964c7dcda39ec7b9c8717c3369e2fc25" category="section-title">针对特定后端利用率的存储类设计</block>
   <block id="a09acd5f665bdf96b6dce47f8d4265e3" category="paragraph">可以在特定存储类对象中使用筛选功能来确定要将哪个存储池或一组池与该特定存储类结合使用。可以在存储类中设置三组筛选器： `storagePools` ， `addtionalStoragePools` 和 / 或 `excludeStoragePools` 。</block>
   <block id="fc01760e8c283c2f128543ae8b8a67cc" category="paragraph">`storagePools` 参数有助于将存储限制为与任何指定属性匹配的一组池。`addtionalStoragePools` 参数用于扩展 Astra Trident 用于配置的池集以及由属性和 `storagePools` 参数选择的池集。您可以单独使用参数，也可以同时使用这两个参数，以确保选择适当的存储池集。</block>
   <block id="74476e892d2681775eb41ec00a11e8da" category="paragraph">`excludeStoragePools` 参数用于明确排除列出的一组与属性匹配的池。</block>
-  <block id="072c88043b516dbbbadd8bb0182445c7" category="section-title">用于模拟 QoS 策略的存储类设计</block>
   <block id="ab807e6bd2f9cb9872eed98161bdd4e1" category="paragraph">如果要设计存储类以模拟服务质量策略，请创建一个存储类，其中 `mmedia` attribute 为 `HDD` 或 `sSD` 。根据存储类中提及的 `mmedia` 属性， Trident 将选择提供 `HDD` 或 `sSD` 聚合的相应后端，以便与介质属性匹配，然后将卷配置定向到特定聚合。因此，我们可以创建一个存储类高级版，该高级版会将 `mmedia` attribute 设置为 `sSD` ，该高级版可归类为高级 QoS 策略。我们可以创建另一个存储类标准，该标准会将介质属性设置为 `HDD' ，并可归类为标准 QoS 策略。我们还可以使用存储类中的 ``IOPS' 属性将配置重定向到可定义为 QoS 策略的 Element 设备。</block>
-  <block id="eb47104f276a8955680299ff2f4bd39d" category="section-title">存储类设计，可根据特定功能利用后端</block>
   <block id="0bc0e72aefbf8f8ec0b28cc0486f98a2" category="paragraph">存储类可设计为在启用了精简和厚配置，快照，克隆和加密等功能的特定后端直接配置卷。要指定要使用的存储，请创建存储类，以指定启用了所需功能的相应后端。</block>
-  <block id="f45e814b7c305f5341f031df78bf2f07" category="section-title">虚拟存储池的存储类设计</block>
   <block id="bd755d43092fcea772b8e9ab21e9951e" category="paragraph">所有 Astra Trident 后端均可使用虚拟存储池。您可以使用 Astra Trident 提供的任何驱动程序为任何后端定义虚拟存储池。</block>
   <block id="365b4529a5f01ced729944db23d237a5" category="paragraph">通过虚拟存储池，管理员可以在后端创建一个抽象级别，并可通过存储类进行引用，从而提高卷在后端的灵活性和效率。可以使用相同的服务类定义不同的后端。此外，可以在同一后端创建多个存储池，但其特征不同。如果为存储类配置了具有特定标签的选择器，则 Astra Trident 会选择与所有选择器标签匹配的后端来放置卷。如果存储类选择器标签与多个存储池匹配，则 Astra Trident 将选择其中一个存储池来配置卷。</block>
-  <block id="830a7882918fba200333b9c6ea7db363" category="section-title">虚拟存储池设计</block>
   <block id="3c4f3a478663d0f7aab5180da0b1356a" category="admonition">定义虚拟存储池时，建议不要尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。</block>
-  <block id="d96c9f641b35ec82dabdc46092afe1d0" category="section-title">设计虚拟存储池以模拟不同的服务级别 /QoS</block>
-  <block id="85d73d477f633146bd32af7aaedd54da" category="section-title">设计用于分配特定方面的虚拟池</block>
   <block id="c011d5d6ca18de1df954b81c6bb49d4a" category="paragraph">可以从一个存储后端设计具有一组特定方面的多个虚拟存储池。为此，请为后端配置多个标签，并在每个标签下设置所需的方面。现在，使用 `parameters.selector` 字段创建不同的 Kubernetes 存储类，该字段将映射到不同的虚拟存储池。在后端配置的卷将在选定的虚拟存储池中定义相关方面。</block>
   <block id="421f7dd5bb37a6401aa6326ad33dae20" category="section-title">影响存储配置的 PVC 特征</block>
   <block id="3800921d8c248cc0de59c64d110e570a" category="paragraph">创建 PVC 时，请求的存储类以外的某些参数可能会影响 Astra Trident 的配置决策过程。</block>
@@ -3107,10 +3090,6 @@
   <block id="5c1e968ca0bce026584d3fc9d64a4960" category="list-text">* CVS-Performance* ：经过性能优化的服务类型最适合重视性能的生产工作负载。从三个独特的服务级别中进行选择 <block ref="c00f0c4675b91fb8b918e4079a0b1bac" prefix="[" category="inline-code"></block>，<block ref="a288195832f8717bca4671416014a464" prefix=" " category="inline-code"></block>，和<block ref="287e9593819b2fcdf9945e7ccacd637d" prefix=" " category="inline-code"></block>]。</block>
   <block id="1e762f06d425a76063c136c036c7cba4" category="paragraph">CVS和CVS-Performance卷的最小大小为100 GiB。</block>
   <block id="2d80803a1331d08c92eaff73f953f03e" category="paragraph">Astra Trident支持默认CVS服务类型为on的卷<block ref="ba449b67e05ccd893d094c64611dfdac" category="inline-link-rx"></block>。无论CVS服务类型允许的最小值如何、Astra Trident都不支持小于100 GiB的CVS卷。因此、如果请求的卷小于最小大小、Trident会自动创建100 GiB卷。</block>
-  <block id="0a50d9e61aaa5f7bb56fd60728d73597" category="list-text">NetApp建议客户将低于1 TiB的卷用于非生产工作负载。</block>
-  <block id="4cd1358d3611ab0d7bcd7ad2b43847b4" category="list-text">使用默认CVS服务类型部署后端时<block ref="c7237d9128f41df56bf2ba9c87fd26e8" prefix=" " category="inline-code"></block>、注册后可访问GCP上的子1TiB卷功能、以获取相关项目编号和项目ID。这对于 Trident 配置低于 1TiB 的卷是必需的。否则、对于小于600 GiB的PVC、卷创建*将失败*。</block>
-  <block id="b11c9a154c078b6bf02fa8ed6a553e1e" category="inline-link-macro">注册以访问低于1TiB的卷。</block>
-  <block id="5dff3ad20327882e57a7b202c6f84775" category="list-text"><block ref="5dff3ad20327882e57a7b202c6f84775" category="inline-link-macro-rx"></block></block>
   <block id="32c3761f462178e923b3b0f28ac81d7d" category="paragraph">卷的大小默认为100 GiB。</block>
   <block id="93ff31eec39816bcda8ac94256a28b69" category="paragraph">最小卷大小为100 GiB。</block>
   <block id="54ea7e6338e0f0344fe8c3d401d1f7d8" category="paragraph">如果您运行的不是Astra Trident 22.10、则可以参考先前版本的文档。您可以使用版本选择器在最新版本和以前的四个版本之间导航、也可以使用以下链接。</block>
@@ -3463,4 +3442,21 @@
   <block id="e4bcff97a02bbf2d15fc5a1c18b2b3dc" category="section-title"><block ref="32f68a60cef40faedbc6af20298c1a1e" prefix="" category="inline-code"></block></block>
   <block id="56588499ccc533c0c70c77e5c90a971d" category="section-title">22.10中的新增功能</block>
   <block id="eb986b66b0c0e8cc5c2dc961400fa5a2" category="admonition">要了解 Astra Trident 使用的端口，请参见 <block ref="2c106ae790df4d1b7393cb54039be95e" category="inline-link-macro-rx"></block>。</block>
+  <block id="cc414e256eb2f4bb405602498ece0af6" category="section-title">了解适用于GCP的CVS的Astra Trident支持</block>
+  <block id="a3edb76d25dfeb8d67e4711eafd2b5ca" category="paragraph">为存储系统选择并部署后端驱动程序。</block>
+  <block id="a57628924f909d4edd5cb81ee4f10896" category="section-title">ONTAP 后端驱动程序</block>
+  <block id="4ea57c8a88545a4fc2039131bc6fd74d" category="paragraph">ONTAP 后端驱动程序可通过所使用的协议以及在存储系统上配置卷的方式来区分。因此、在确定要部署的驱动程序时、请仔细考虑。</block>
+  <block id="642b59503457da90c85cbb7a35e02089" category="paragraph">可用的ONTAP 后端驱动程序包括：</block>
+  <block id="e44e590e4645ab9ef08fb84f61cede17" category="section-title">Cloud Volumes ONTAP 后端驱动程序</block>
+  <block id="fdde450e1a16aa1461e62c6fa5ac621f" category="section-title">适用于ONTAP 的Amazon FSX后端驱动程序</block>
+  <block id="d079959bb7c738f4e1704de5ff69b897" category="section-title">NetApp HCI/SolidFire后端驱动程序</block>
+  <block id="64648abd6d020446c9c8d556a1584d71" category="section-title">Azure NetApp Files 后端驱动程序</block>
+  <block id="363b58349b62e68509f4a9818299f10e" category="section-title">具有GCP后端驱动程序的Cloud Volumes Service</block>
+  <block id="0dceb918cb4a4d7dcbe5af26d08e7657" category="section-title">特定后端利用率</block>
+  <block id="ebaf90f7386ae95e7960a2fc0084116e" category="section-title">模拟QoS策略</block>
+  <block id="125ad0610423d53866d257eb097320e4" category="section-title">根据特定功能使用后端</block>
+  <block id="5765e79987cbe135c91aec607af0aceb" category="section-title">虚拟存储池</block>
+  <block id="c0e37f832e8a72edd734ffdce2ad0bed" category="section-title">虚拟存储池设计</block>
+  <block id="b6e026d8066036cf2628237905a58384" category="section-title">模拟不同的服务级别/QoS</block>
+  <block id="628fd4af2a4e2fce014efbf03b84bb71" category="section-title">分配特定的方面</block>
 </blocks>
