@@ -3142,7 +3142,6 @@
   <block id="d667cfc8e8d6ec0c2352fe97b0f09e40" category="list-text">已删除Astra数据存储(ADS)驱动程序。</block>
   <block id="9b363ea2db99fe0dc5e9b43f47a37f20" category="list-text">删除了对的支持<block ref="a6105c0a611b41b08f1209506350279e" prefix=" " category="inline-code"></block> 和<block ref="8c319f28d81d1527a9428e9a5c2195f5" prefix=" " category="inline-code"></block> 选项<block ref="19b30dc119e514235b739e076be9b3cc" prefix=" " category="inline-code"></block> 为iSCSI配置工作节点多路径时。</block>
   <block id="1407cfeeb5e3916e1435ddea0f1c0a28" category="section-title">22.07中的更改</block>
-  <block id="69aee7c313747b82ae4058823af52367" category="admonition">要了解 Astra Trident 使用的端口，请参见 <block ref="57c598517438aa55a5fd43810a31a037" category="inline-link-macro-rx"></block>。</block>
   <block id="992477217ed235c960b4b3e266b78bb3" category="section-title">有关Astra Trident 22.10的关键信息</block>
   <block id="2e44d2afbcec8f918cac113e6d910eea" category="list-text">现在、Trident支持Kubernetes 1.25。在升级到Kubernetes 1.25之前、您必须先升级到Astra Trident 22.10。</block>
   <block id="fad7d46c16a119c490585d8b68fa0362" category="list-text">Kubernetes 1.20 - 1.25</block>
@@ -3463,4 +3462,5 @@
   <block id="1713a64319d60f7c9dce75d4e48ee14f" category="section-title"><block ref="a02439ec229d8be0e74b0c1602392310" prefix="" category="inline-code"></block></block>
   <block id="e4bcff97a02bbf2d15fc5a1c18b2b3dc" category="section-title"><block ref="32f68a60cef40faedbc6af20298c1a1e" prefix="" category="inline-code"></block></block>
   <block id="56588499ccc533c0c70c77e5c90a971d" category="section-title">22.10中的新增功能</block>
+  <block id="eb986b66b0c0e8cc5c2dc961400fa5a2" category="admonition">要了解 Astra Trident 使用的端口，请参见 <block ref="2c106ae790df4d1b7393cb54039be95e" category="inline-link-macro-rx"></block>。</block>
 </blocks>

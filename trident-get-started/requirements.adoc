@@ -15,7 +15,7 @@ summary: 首先查看支持的前端，后端和主机配置。
 首先查看支持的前端，后端和主机配置。
 
 
-NOTE: 要了解 Astra Trident 使用的端口，请参见 link:../trident-reference/trident-ports.html["此处"]。
+NOTE: 要了解 Astra Trident 使用的端口，请参见 link:../trident-reference/ports.html["此处"]。
 
 
 
