@@ -2140,25 +2140,14 @@
   <block id="daabb7db82ac9f3f074671a1185c462e" category="paragraph">在升级 Astra Trident 时，先前安装的现有后端将按照上述说明配置卷。对于在升级之前创建的卷，您应调整其卷的大小，以便观察到所做的更改。例如，一个 2 GiB PVC ，其 `snapshotReserve=50` earlier 会导致一个卷提供 1 GiB 的可写空间。例如，将卷大小调整为 3GiB 可为应用程序在一个 6 GiB 卷上提供 3GiB 的可写空间。</block>
   <block id="f35c0fe4b6581c16866c964cef229bfa" category="admonition">如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为 LIF 指定 DNS 名称，而不是 IP 地址。</block>
   <block id="8c35a9f7d631f51e05811b36617db641" category="paragraph">此示例显示了如何指示 Astra Trident 使用动态导出策略自动创建和管理导出策略。这对于 `ontap-nas-economy.` 和 `ontap-nas-flexgroup` 驱动程序也是如此。</block>
-  <block id="141da5e3f576179cbf2f6506b07ef538" category="summary">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建永久性卷（ PV ）的快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。</block>
-  <block id="332138092a1597c4d5e69679199e490c" category="inline-link">发布博客</block>
-  <block id="006b05a472974308122f7f05ef147e80" category="admonition">此功能可从 Kubernetes 1.17 （测试版）获得，从 1.20 开始正式上市。要了解从测试版迁移到 GA 所涉及的变化，请参见<block ref="02a1c904d0035e03c61e261dbe622345" category="inline-link-rx"></block>。升级到 GA 后，将推出 `v1` API 版本，并向后兼容 `v1bea1` 快照。</block>
-  <block id="26c4fe55fc424c7b41b517701f54f074" category="inline-link">正在验证 webhook</block>
-  <block id="46b189b23dfbd5f3f622a1c04590b05e" category="admonition">CSI Snapshotter 提供了<block ref="927ab0e919f8034deab1249bed53a289" category="inline-link-rx"></block> 帮助用户验证现有 v1bea1 快照并确认它们是有效的资源对象。正在验证的 webhook 会自动标记无效的快照对象，并防止将来创建无效对象。验证 webhook 由 Kubernetes 流程编排程序部署。请参见有关手动部署验证 webhook 的说明<block ref="07cb3cdda0599ec9f2e82062ecd12e82" category="inline-link-rx"></block>。查找无效快照清单的示例<block ref="bceda34f0850fc68d82f08741abbc69e" category="inline-link-rx"></block>。</block>
-  <block id="f535be08d3997f1a801b132862d99a5c" category="paragraph">下面详细介绍的示例说明了使用快照所需的构造，并说明了如何创建和使用快照。</block>
-  <block id="b91e58d7d80a51e4fa86b9ab27dca505" category="paragraph">在创建卷快照之前，请设置 <block ref="c740b46915208e935cb2017421ec0264" category="inline-link-macro-rx"></block>。</block>
   <block id="4744d2c82c1c470ab40280b2ebba0c08" category="paragraph">`d河` 指向 Astra Trident 的 CSI 驱动程序。`deeltionPolicy` 可以是 `Delete` 或 `Retain` 。如果设置为 `Retain` ，则即使删除了 `VolumeSnapshot` 对象，存储集群上的底层物理快照也会保留。</block>
   <block id="0ab6380edce0d0e7b8538ebf3215ebbd" category="section-title">第 2 步：创建现有 PVC 的快照</block>
-  <block id="ef55488b02c4b0173eb6f7bb867db086" category="paragraph">正在为名为 `PVC1` 的 PVC 创建快照，并且快照名称设置为 `PVC1-Snap` 。</block>
   <block id="501470eb266ff6637de993e3f193ba40" category="paragraph">这样就创建了一个 `VolumeSnapshot` 对象。VolumeSnapshot 类似于 PVC ，并与代表实际快照的 `VolumeSnapshotContent` 对象关联。</block>
   <block id="320e7c242b569ab5bbdaa490b3df817e" category="paragraph">可以通过描述来标识 `PVC1-Snap` VolumeSnapshot 的 `VolumeSnapshotContent` 对象。</block>
   <block id="b3841b02d7da01fde480332e3295a08e" category="paragraph">`Snapshot Content Name` 用于标识提供此快照的 VolumeSnapshotContent 对象。`Ready to Use` 参数表示可使用 Snapshot 创建新的 PVC 。</block>
   <block id="7957320b126678e9b713ef146b3ac009" category="section-title">第 3 步：从 VolumeSnapshots 创建 PVC</block>
-  <block id="4d780b57cad08f64bcd1ea7351a15588" category="paragraph">有关使用快照创建 PVC 的示例，请参见以下示例：</block>
   <block id="2592284f87bba60e4c05337a134ef047" category="paragraph">`dataSource` 显示必须使用名为 `PVC1-Snap` 的 VolumeSnapshot 作为数据源来创建 PVC 。此操作将指示 Astra Trident 从快照创建 PVC 。创建 PVC 后，可以将其附加到 Pod 上，并像使用任何其他 PVC 一样使用。</block>
   <block id="bda01e3aa44c411129a6fbf29445bfb4" category="admonition">删除具有关联快照的永久性卷时，相应的 Trident 卷将更新为 " 正在删除 " 状态。要删除 Astra Trident 卷，应删除该卷的快照。</block>
-  <block id="fab3fcd54585164dbc9d7adf57f8e3d9" category="list-text"><block ref="fab3fcd54585164dbc9d7adf57f8e3d9" category="inline-link-macro-rx"></block></block>
-  <block id="c740b46915208e935cb2017421ec0264" category="list-text"><block ref="c740b46915208e935cb2017421ec0264" category="inline-link-macro-rx"></block></block>
   <block id="3d79668ab3683a20086b2953dd541cfc" category="summary">后端定义了 Astra Trident 与存储系统之间的关系。它告诉 Astra Trident 如何与该存储系统进行通信，以及 Astra Trident 如何从该存储系统配置卷。Astra Trident 将自动从后端提供符合存储类定义的要求的存储池。了解有关根据您拥有的存储系统类型配置后端的更多信息。</block>
   <block id="87dc0337d3ded2211d9b01c32e22d90d" category="doc">配置后端</block>
   <block id="2acbb5dd492d792d00383b0c76ade4ad" category="list-text"><block ref="2acbb5dd492d792d00383b0c76ade4ad" category="inline-link-macro-rx"></block></block>
@@ -2774,7 +2763,6 @@
   <block id="82720d84ad009f069fd0b2cfaf6c3dac" category="summary">适用于 Docker 的 Astra Trident 可直接与适用于 NetApp 存储平台的 Docker 生态系统集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。</block>
   <block id="6798a0701cedf1202e1d70210a3a9a83" category="paragraph">使用 `ontap-nas` ， `ontap-san` ， `solidfire-san` 和 `GCP-CVS 存储驱动程序` 时， Astra Trident 可以克隆卷。使用 `ontap-nas-flexgroup` 或 `ontap-nas-economy-经济` 驱动程序时，不支持克隆。从现有卷创建新卷将创建新快照。</block>
   <block id="a264f15eaddf1d50155847119366be6b" category="list-text">对于 `ontap-nas` ， `ontap-san` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexVol 。因此，卷快照会创建为 NetApp 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
-  <block id="72dfd0afcd8b2eda3e5ec2268b7da6b2" category="paragraph">从 Astra Trident 的 20.01 版开始，您可以在 Kubernetes 层创建 PV 快照。您可以使用这些快照维护由 Astra Trident 创建的卷的时间点副本，并计划创建其他卷（克隆）。卷快照受 `ontap-nas` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `GCP-CVS` 支持。 和 `azure-netapp-files` 驱动程序。</block>
   <block id="2c7e2299fa3c14b5e6f60015eb016a87" category="admonition">要在 GCP 中导入由 NetApp Cloud Volumes Service 支持的卷，请按卷路径而非名称来标识该卷。</block>
   <block id="37202a3ee6673127b64f84af27fdf523" category="paragraph">要在后端导入名为 `gcpcvs_yEppr` 的 `GCP-CVS` 卷，并将卷路径设置为 `adrot-joly-swift` ，请使用以下命令：</block>
   <block id="ec2577b4770848fd294d6ca069c34a43" category="paragraph">Astra Trident 支持对在 `ontap-nas` ， `ontap-nas-economy` ， `ontap-nas-flexgroup` ， `GCP-CVS` 和 `azure-netapp-files` 后端配置的 NFS PV 进行卷扩展。</block>
@@ -2804,15 +2792,9 @@
   <block id="135c438d01a49275c458e22005e39c6e" category="section-title">22.01.0 中的更改</block>
   <block id="58a2e8c17107cc1ca9cb1317cd0c1ee9" category="section-title">21.10.1 中的更改</block>
   <block id="43e92857220d1a7ea1da88250ea5e2e3" category="section-title">21.10.0 中的更改</block>
-  <block id="67b47f9232c8507cb74ec2668b3bb75d" category="list-text">创建卷快照需要创建外部快照控制器和自定义资源定义(Custom Resource Definitions、CRD)。这是所使用的Kubernetes流程编排程序(例如：Kubeadm、GKE、OpenShift)的责任。</block>
   <block id="9c87569b835a8f66b7490390d350d9a4" category="paragraph">如果您的Kubernetes分发版不包含快照控制器和CRD、则可以按如下所示进行部署。</block>
   <block id="469f7ca16938508b5dcb777767828b70" category="list-text">创建卷快照CRD。</block>
-  <block id="351d6da9c87ca81d91cd4755e4730d82" category="open-title">5.0版组件</block>
-  <block id="3d5442333756ee7fdf64adf51439d855" category="open-title">v3.0.3组件</block>
   <block id="65b146df7d5c27b212f54a7c9980960b" category="list-text">在所需命名空间中创建Snapshot控制器。编辑以下 YAML 清单以修改命名空间。</block>
-  <block id="1cfbd89d099907d91122529e677f1c71" category="admonition">如果在GKE-环境中设置按需卷快照、请勿创建快照控制器。GKE- 使用内置的隐藏快照控制器。</block>
-  <block id="5e393c0ca8392e0c84201770c8b544ca" category="open-title">5.0版控制器</block>
-  <block id="ea567d0d1a58b120efa89893cae2966a" category="open-title">v3.0.3控制器</block>
   <block id="086e6c16e3fe8e13c336612ef636aa02" category="sidebar">Astra Trident</block>
   <block id="5a333b18a215ecfd4457ba0e1732654b" category="section-title">Trident是否可以在配置了负载共享镜像的SVM上配置卷？</block>
   <block id="0e7629426b9d7596800cd5d72f558a7f" category="paragraph">可以为通过NFS提供数据的SVM的根卷创建负载共享镜像。ONTAP 会自动为Trident创建的卷更新负载共享镜像。这可能会导致卷挂载延迟。使用Trident创建多个卷时、配置卷取决于ONTAP 更新负载共享镜像。</block>
@@ -2839,8 +2821,6 @@
   <block id="6dc4cb19f2792a3eadfa64d4b4b6d177" category="paragraph">所有Kubernetes工作节点都必须安装适当的NFS工具。请参见 <block ref="f1f954e59a21e3ffe189e77dd2ee9f86" category="inline-link-macro-rx"></block> 有关详细信息：</block>
   <block id="6adbf3424e5de1b4e2baad3b4d632c4a" category="paragraph">您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此、您必须删除现有身份验证方法并添加新的身份验证方法。然后、使用包含所需参数的更新后端.json文件执行`tridentctl backend update`。</block>
   <block id="da5e3ce6518bd669264e1e0768c2d9f1" category="paragraph">所有Kubernetes工作节点都必须安装适当的iSCSI工具。请参见 <block ref="f1f954e59a21e3ffe189e77dd2ee9f86" category="inline-link-macro-rx"></block> 有关详细信息：</block>
-  <block id="4b38dd8e9c8be42320db7f14bd043f55" category="paragraph">对于Kubernetes 1.20及更高版本、请使用v5.0或更高版本的Snapshot组件的v1 Snapshot CRD。对于Kubernetes 1.19、请将v1beta1与v3.0.3 Snapshot组件结合使用。</block>
-  <block id="95454921c0beb7e02eef219b349c8b2e" category="paragraph">对于Kubernetes 1.20及更高版本、请使用5.0或更高版本。对于Kubernetes 1.19版、请使用v3.0.3</block>
   <block id="880cacf6429ab3c253b14beac8b73951" category="summary">Kubernetes Pod安全标准(PSS)和Pod安全策略(PSP)定义权限级别并限制Pod的行为。OpenShift安全上下文约束(SCC)同样定义了特定于OpenShift Kubernetes引擎的POD限制。为了提供此自定义设置、Astra Trident会在安装期间启用某些权限。</block>
   <block id="bc3c69459955aa51e6720ee4098db2c2" category="doc">POD安全标准(PSS)和安全上下文限制(SCC)</block>
   <block id="9d482ecca4ba8a41fd8e1180c97a4b97" category="paragraph">Kubernetes Pod安全标准(PSS)和Pod安全策略(PSP)定义权限级别并限制Pod的行为。OpenShift安全上下文约束(SCC)同样定义了特定于OpenShift Kubernetes引擎的POD限制。为了提供此自定义设置、Astra Trident会在安装期间启用某些权限。以下各节详细介绍了Astra Trident设置的权限。</block>
@@ -3407,7 +3387,6 @@
   <block id="701fd6484c41253418049cc2bf503a1e" category="section-title"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block> 支持IPv6的驱动程序</block>
   <block id="4a8519b09a0b2a70d40200e88ec2c5dc" category="section-title"><block ref="caafdf62a2c609bfa5316118231a1007" prefix="" category="inline-code"></block> 驱动程序</block>
   <block id="c495273b4c0d19189acec3e2135954e0" category="section-title"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block> 驱动程序</block>
-  <block id="cd694f8c60b5f42437f7390e015a46b5" category="section-title">第1步：设置<block ref="19476662cd814e0aa085eca121de89b8" prefix=" " category="inline-code"></block></block>
   <block id="454631312fab234fc91bb2f85a751fac" category="section-title"><block ref="913a4b06671d1e04e6582a85afe3abbe" prefix="" category="inline-code"></block></block>
   <block id="e892fda55ead7e15eed753e850d35f12" category="section-title">第2步：创建<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR</block>
   <block id="a0d777cf1acc36406564409adef85b17" category="section-title">支持的版本是什么<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block>？</block>
@@ -3459,4 +3438,18 @@
   <block id="c0e37f832e8a72edd734ffdce2ad0bed" category="section-title">虚拟存储池设计</block>
   <block id="b6e026d8066036cf2628237905a58384" category="section-title">模拟不同的服务级别/QoS</block>
   <block id="628fd4af2a4e2fce014efbf03b84bb71" category="section-title">分配特定的方面</block>
+  <block id="2068f3aa095d99b45558d078cf0ccef1" category="summary">您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照)、以维护Astra Trident卷的时间点副本。此外、您还可以从现有卷快照创建一个新卷、也称为_clone_。支持卷快照<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block>，<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block>，<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block>，和<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="1ee74a3407fb0558688a68f8a4011d8b" category="paragraph">您必须具有外部快照控制器和自定义资源定义(CRD)。这是Kubernetes流程编排程序(例如：Kubeadm、GKE、OpenShift)的职责。</block>
+  <block id="4e9d71562a7ee4d135b94aa7e33203d4" category="paragraph">如果您的Kubernetes分发版不包含快照控制器和CRD、请参见 <block ref="66b3d1bc7c4350b2c78856aa6724afe9" category="inline-xref-macro-rx"></block>。</block>
+  <block id="af79c649a1b22da7699446c292250fcc" category="admonition">如果在GKE-环境中创建按需卷快照、请勿创建快照控制器。GKE-使用内置的隐藏快照控制器。</block>
+  <block id="a19c6b176bcf5d5df56d61bfda053c09" category="section-title">第1步：创建<block ref="19476662cd814e0aa085eca121de89b8" prefix=" " category="inline-code"></block></block>
+  <block id="5113d8074a0a5072af49f1e1fa6901bd" category="paragraph">此示例将创建一个卷快照类。</block>
+  <block id="ce43eda1a51d5de70f422e14ca195db3" category="paragraph">有关详细信息、请参见链接：./trident引用/objects.html#Kubernetes -volumesnapshotclass-objects<block ref="19476662cd814e0aa085eca121de89b8" prefix="[" category="inline-code"></block>]。</block>
+  <block id="a599393b295f7ad56a8c7f1d327290de" category="paragraph">此示例将创建现有PVC的快照。</block>
+  <block id="4191daf22334ac03a54cdf8adbfd6dfe" category="paragraph">在此示例中、为名为的PVC创建快照<block ref="30520f4f96804df83914260b79f55962" prefix=" " category="inline-code"></block> 快照的名称设置为<block ref="2599ab7993e15386327b6345bc1cc4e1" prefix=" " category="inline-code"></block>。</block>
+  <block id="b2b2f8b28370c274887f8aa2f82bb5d4" category="paragraph">以下示例将使用快照创建PVC：</block>
+  <block id="f6bd0d7447ff66cc6b859603a88fbde9" category="section-title">相关链接</block>
+  <block id="35aa4a2a819e526c2e930e487df8d423" category="list-text"><block ref="35aa4a2a819e526c2e930e487df8d423" category="inline-link-macro-rx"></block></block>
+  <block id="19476662cd814e0aa085eca121de89b8" category="inline-link-macro">VolumeSnapshotClass</block>
+  <block id="d63cadc96caf4b05f8fa532b08e889da" category="list-text"><block ref="d63cadc96caf4b05f8fa532b08e889da" category="inline-link-macro-rx"></block></block>
 </blocks>
