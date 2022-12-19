@@ -2635,7 +2635,6 @@
   <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
   <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">已测试主机操作系统</block>
   <block id="57b3e1695eb7d16642702fbce3837b86" category="paragraph">默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。</block>
-  <block id="814a65adc75608da31ab5685f9b1c1ce" category="paragraph">虽然 Astra Trident 不会正式 " 支持 " 特定的操作系统，但已知以下 Linux 版本可以正常运行：</block>
   <block id="dc5ac69fee94d861f0bed64729b712cf" category="paragraph">Astra Trident 可能需要先对存储系统进行一些更改，然后后端配置才能使用它。请参见 <block ref="49641f5ab61d7a6ce07b1b6ba31204f8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="681d715b456f6d29a501b8f132e941a1" category="cell">v1.22.0</block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
@@ -3452,4 +3451,6 @@
   <block id="35aa4a2a819e526c2e930e487df8d423" category="list-text"><block ref="35aa4a2a819e526c2e930e487df8d423" category="inline-link-macro-rx"></block></block>
   <block id="19476662cd814e0aa085eca121de89b8" category="inline-link-macro">VolumeSnapshotClass</block>
   <block id="d63cadc96caf4b05f8fa532b08e889da" category="list-text"><block ref="d63cadc96caf4b05f8fa532b08e889da" category="inline-link-macro-rx"></block></block>
+  <block id="2f82d12ae3ce8f940e10b062c5134f3d" category="paragraph">虽然Astra Trident不会正式"支持"特定的操作系统、但已知以下操作系统有效：</block>
+  <block id="31f8757839909e87266f2b53482c86ef" category="list-text">Windows Server 2019</block>
 </blocks>
