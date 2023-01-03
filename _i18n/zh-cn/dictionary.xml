@@ -917,21 +917,16 @@
   <block id="2a778cf7220cdde142651975e1bcd90f" category="paragraph">在虚拟池列表之外指定的任何方面对于后端都是全局的，并将应用于所有虚拟池，而每个虚拟池可能会分别指定一个或多个方面（覆盖任何后端 - 全局方面）。</block>
   <block id="6aefc2a02fa1ec1f6ac8e9dbd5104efe" category="admonition">定义虚拟存储池时，请勿尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。</block>
   <block id="5a53576f0ba98311e845ad0243bed6b7" category="paragraph">大多数方面都以后端特定术语来指定。重要的是，这些宽高值不会在后端驱动程序之外公开，也不能在 `StorageClasses` 中进行匹配。而是管理员为每个虚拟池定义一个或多个标签。每个标签都是一个键：值对，标签可能在唯一的后端通用。与其他方面一样，可以为每个池指定标签，也可以为后端指定全局标签。与具有预定义名称和值的方面不同，管理员可以根据需要全权定义标签键和值。</block>
-  <block id="a4d6bfb65b6541e04772c0d5180e726e" category="paragraph">`StorageClass` 通过引用选择器参数中的标签来标识要使用的虚拟池。虚拟池选择器支持六个运算符：</block>
   <block id="e1b3ec89ead7f83a9245ed5c9cacfdbf" category="cell">运算符</block>
   <block id="0a52730597fb4ffa01fc117d9e71e3a9" category="cell">示例</block>
   <block id="499badcb6f450c7f46c51d873eb84286" category="cell">` =`</block>
   <block id="354653142ec321459dfd6d71444e992e" category="cell">性能 = 高级</block>
-  <block id="d2c49c25d96d87e40bc641b9d5302b36" category="cell">池的标签值必须匹配</block>
   <block id="5a5292b0a0d0379f0f1b12801b09b266" category="cell">` ！ =`</block>
   <block id="eccde6822783bd75209c9b6a2d357f6c" category="cell">性能！ = 至高</block>
-  <block id="2944853a5f146abd2671adbecd5c25a3" category="cell">池的标签值不能匹配</block>
   <block id="ae2bef277194f73d24a36a78009aac1e" category="cell">`在` 中</block>
   <block id="f8cf8c23afb5459dbf7c24b685caf85b" category="cell">位置（东部，西部）</block>
-  <block id="26aac934d614b1b3e5db46d8fc664ec6" category="cell">池的标签值必须位于一组值中</block>
   <block id="1a031eecbce49366e550273b9321b909" category="cell">`注释`</block>
   <block id="b5585f3f9b45f391fee5dd15e6516450" category="cell">性能注释（银牌，铜牌）</block>
-  <block id="499fec8ad2646f2de982559111e26a4c" category="cell">池的标签值不能为 b</block>
   <block id="ae8e28c37a725c4bb4a74663ac8615ea" category="summary">详细了解 Astra Trident 如何使用卷访问组。</block>
   <block id="b4621305109716b02eed0cf25fabab13" category="doc">卷访问组</block>
   <block id="33911b1eec54b4b5a7fbc504e6569989" category="inline-link">卷访问组</block>
@@ -3453,4 +3448,16 @@
   <block id="d63cadc96caf4b05f8fa532b08e889da" category="list-text"><block ref="d63cadc96caf4b05f8fa532b08e889da" category="inline-link-macro-rx"></block></block>
   <block id="2f82d12ae3ce8f940e10b062c5134f3d" category="paragraph">虽然Astra Trident不会正式"支持"特定的操作系统、但已知以下操作系统有效：</block>
   <block id="31f8757839909e87266f2b53482c86ef" category="list-text">Windows Server 2019</block>
+  <block id="758ef9050bcb89a046f8b79d56db9490" category="paragraph">答<block ref="e1e2a331ab1d8dccfea06fc8e04e2f5d" prefix=" " category="inline-code"></block> 通过引用选择器参数中的标签来标识要使用的虚拟池。虚拟池选择器支持以下运算符：</block>
+  <block id="3b64653c97a388d828849314b6a1b383" category="cell">池的标签值必须：</block>
+  <block id="6da89265a9a8b0b28eb4946bb2ec0c6d" category="cell">匹配</block>
+  <block id="ecf92052d55345fee4602d9eb8c22063" category="cell">不匹配</block>
+  <block id="c6c1caf73b0f83d807abe5a717014ab7" category="cell">位于一组值中</block>
+  <block id="8daf6b016f4033d59900c23f162c0f73" category="cell">不在值集内</block>
+  <block id="c6bfba38b789fec8271d1d1496a9ee59" category="cell"><block ref="42538adbdb6240b2b083a000a615d5bd" prefix="" category="inline-code"></block></block>
+  <block id="152f5dc0f7ac734f8e8ee17d4a482462" category="cell">protection</block>
+  <block id="7b532e697a35209f3df3956577cc3d9c" category="cell">存在任何值</block>
+  <block id="eb0254f1d0a82e646c239d4d2e2f83ac" category="cell"><block ref="f65e5ff2a1bb1af969dccabe7dcd5cdd" prefix="" category="inline-code"></block></block>
+  <block id="67a3b723b2d9024808eb2c6e686d00a0" category="cell">！保护</block>
+  <block id="1fde97909b90bb329db2062f7744bd45" category="cell">不存在</block>
 </blocks>
