@@ -69,7 +69,7 @@ NOTE: 您应确保 NFS 服务在启动期间启动。
 使用 iSCSI 卷时，请考虑以下事项：
 
 * Kubernetes 集群中的每个节点都必须具有唯一的 IQN 。* 这是必要的前提条件 * 。
-* 如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux版本以及`solidfire-san`驱动程序、请确保在`/etc/iscsi/iscsid.conf`中将CHAP身份验证算法设置为MD5。
+* 如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux分发版、请与结合使用 `solidfire-san` 驱动程序和Element OS 12：5或更早版本、请确保中的CHAP身份验证算法设置为MD5 `/etc/iscsi/iscsid.conf`。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。
 +
 [listing]
 ----

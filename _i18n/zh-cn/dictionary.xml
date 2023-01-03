@@ -2191,7 +2191,6 @@
   <block id="ddab3f1d971a7608afb4c30c688a32ac" category="list-text">如果用户在删除相应的 PVC 之前删除了由 Astra Trident 配置的 PV ，则 Astra Trident 不会自动删除后备卷。您应通过 `tridentctl` 或 REST API 删除此卷。</block>
   <block id="0821431aba133adbfa7fa0ca1781eedd" category="list-text">ONTAP 不能同时配置多个 FlexGroup ，除非聚合集对于每个配置请求是唯一的。</block>
   <block id="38699c45ccc629a8b46bd780d7aef2f6" category="list-text">使用基于 IPv6 的 Astra Trident 时，应在后端定义中方括号内指定 `managementLIF` 和 `dataLIF` 。例如， `` FD20 ： 8b1e ： b258 ： 2000 ： f816 ： 3effe ： feec ： 0`` 。</block>
-  <block id="d83c67344719a209c50396895dd2fbe1" category="list-text">如果将 `solidfire-san` 驱动程序与 OpenShift 4.5 结合使用，请确保底层工作节点使用 MD5 作为 CHAP 身份验证算法。</block>
   <block id="e9a7080bd6d1b50ff15cef6f14fa1d64" category="inline-link">Astra Trident GitHub</block>
   <block id="b94e036fb032554ca486dd8fc2e3fafe" category="list-text"><block ref="b94e036fb032554ca486dd8fc2e3fafe" category="inline-link-rx"></block></block>
   <block id="3334dfda9735f9b3ed55a34ef316b599" category="inline-link">Astra Trident 博客</block>
@@ -3013,7 +3012,6 @@
   <block id="98a2ec14e38e4acf26c70e52b70bf5f8" category="list-text">RHEL或CentOS 7.</block>
   <block id="c5e9849ca6abd11c3d0615c338c6a231" category="paragraph">RHEL/CentOS 7.</block>
   <block id="3d945423f8e9496c429a5d8c65b4604f" category="paragraph">Ubuntu</block>
-  <block id="269efd38c7d91afd7e1339da498a391f" category="list-text">如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux版本以及`solidfire-san`驱动程序、请确保在`/etc/iscsi/iscsid.conf`中将CHAP身份验证算法设置为MD5。</block>
   <block id="b437164523254b34902d49bbf5e996aa" category="paragraph">有关基于 systemd 的系统的示例单元文件，请参见 Git repo 中的 `contrib/trident.service.example` 。要在CentOS 7/RHEL中使用此文件、请执行以下操作：</block>
   <block id="134bf17c90c90b5aeed99dde262bf14d" category="admonition">如果已为Trident创建命名空间、则`-create-namespace`参数不会创建额外的命名空间。</block>
   <block id="92027c79fbf95308efaf2ec1db03f661" category="admonition">在Kubernetes版本1.20及更高版本上、只有当`v1`版本正在提供`volumesnapshots.snapshot.storage.k8s.k8s.gcr.io/sig-storage/CsI-snapshotter：v6.x`映像时、才使用经过验证的`regation.k8s.gcr.io/ssi-storage/cs-snapshotter：v6.x` image。如果`v1bea1`版本在使用/不使用`v1`版本的情况下为CRD提供服务、请使用经验证的`regation.K8s.GCR.IO/SIG-storage/CsI-snapshotter：v3.x`映像。</block>
@@ -3460,4 +3458,6 @@
   <block id="eb0254f1d0a82e646c239d4d2e2f83ac" category="cell"><block ref="f65e5ff2a1bb1af969dccabe7dcd5cdd" prefix="" category="inline-code"></block></block>
   <block id="67a3b723b2d9024808eb2c6e686d00a0" category="cell">！保护</block>
   <block id="1fde97909b90bb329db2062f7744bd45" category="cell">不存在</block>
+  <block id="5eb07a7cb7d445ef6bbb17270c65cf52" category="list-text">如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux分发版、请与结合使用<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序和Element OS 12：5或更早版本、请确保中的CHAP身份验证算法设置为MD5<block ref="104f48adc29dc1e1d7c9bbe7b5dd3f8d" prefix=" " category="inline-code"></block>。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。</block>
+  <block id="18c20e5d2e368f36f420dd39019d460f" category="list-text">如果使用<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序对于OpenShift 4.5、请确保底层工作节点使用MD5作为CHAP身份验证算法。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。</block>
 </blocks>

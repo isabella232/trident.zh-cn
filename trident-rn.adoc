@@ -293,7 +293,7 @@ WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重�
 * 如果用户在删除相应的 PVC 之前删除了由 Astra Trident 配置的 PV ，则 Astra Trident 不会自动删除后备卷。您应通过 `tridentctl` 或 REST API 删除此卷。
 * ONTAP 不能同时配置多个 FlexGroup ，除非聚合集对于每个配置请求是唯一的。
 * 使用基于 IPv6 的 Astra Trident 时，应在后端定义中方括号内指定 `managementLIF` 和 `dataLIF` 。例如， `` FD20 ： 8b1e ： b258 ： 2000 ： f816 ： 3effe ： feec ： 0`` 。
-* 如果将 `solidfire-san` 驱动程序与 OpenShift 4.5 结合使用，请确保底层工作节点使用 MD5 作为 CHAP 身份验证算法。
+* 如果使用 `solidfire-san` 驱动程序对于OpenShift 4.5、请确保底层工作节点使用MD5作为CHAP身份验证算法。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。
 
 
 
