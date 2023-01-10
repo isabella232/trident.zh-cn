@@ -2122,7 +2122,6 @@
   <block id="e98c128dda80ebab208244e4f62e7372" category="paragraph">对于 `ontap-nas-economy` 驱动程序， `limitVolumeSize` 选项还会限制它为 qtree 和 FlexVol 管理的卷的最大大小，而 `qtreesPerFlexvol` 选项允许自定义每个 的最大 qtree 数。</block>
   <block id="92e660f52759e323dbc0ec71541a2e9e" category="paragraph">可以使用 `nfsMountOptions` 参数指定挂载选项。Kubernetes 永久性卷的挂载选项通常在存储类中指定，但如果在存储类中未指定挂载选项，则 Astra Trident 将回退为使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项，则 Astra Trident 不会在关联的永久性卷上设置任何挂载选项。</block>
   <block id="7587c806a60b3f88688668f32e0b766c" category="admonition">Astra Trident 会在使用 `ontap-NAS` 和 `ontap-nas-flexgroup` 创建的所有卷的 "Comments" 字段中设置配置标签。根据所使用的驱动程序，注释将在 FlexVol （`ontap-NAS` ）或 FlexGroup （`ontap-nas-flexgroup` ）上进行设置。Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对存储池中创建的所有卷进行分组。这样，您就可以根据后端配置中提供的一组可自定义标签来方便地区分卷了。</block>
-  <block id="831924abd31e90baedabed887dbfc24c" category="cell">要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。不受 ontap-nas-economy.</block>
   <block id="3e9a232d025270ed6767c385b8291871" category="cell">新卷的模式</block>
   <block id="2ad2c2d9206a1be7e744bb13b2b126dd" category="cell">777.</block>
   <block id="7ad68fdac2eac069eb8ed0fc45b0fb74" category="cell">snapshotDir</block>
@@ -3460,4 +3459,5 @@
   <block id="1fde97909b90bb329db2062f7744bd45" category="cell">不存在</block>
   <block id="5eb07a7cb7d445ef6bbb17270c65cf52" category="list-text">如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux分发版、请与结合使用<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序和Element OS 12：5或更早版本、请确保中的CHAP身份验证算法设置为MD5<block ref="104f48adc29dc1e1d7c9bbe7b5dd3f8d" prefix=" " category="inline-code"></block>。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。</block>
   <block id="18c20e5d2e368f36f420dd39019d460f" category="list-text">如果使用<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序对于OpenShift 4.5、请确保底层工作节点使用MD5作为CHAP身份验证算法。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。</block>
+  <block id="5896cc977dd7b9854957e18a2a5bf072" category="cell">要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。不受 ontap-nas-economy.</block>
 </blocks>
