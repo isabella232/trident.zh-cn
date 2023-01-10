@@ -47,7 +47,7 @@ Kubernetes `PersistentVolumeClaim` 对象是 Kubernetes 集群用户发出的存
 | 标注 | 卷选项 | 支持的驱动程序 
 
 
-| trident.netapp.io/fileSystem | 文件系统 | ontap-san ， solidfire-san ， E 系列 -iscsi ， ontap-san-economy. 
+| trident.netapp.io/fileSystem | 文件系统 | ontap-san、solidfire-san、ontap-san-economy. 
 
 
 | trident.netapp.io/cloneFromPVC | cloneSourceVolume | ontap-nas ， ontap-san ， solidfire-san ， azure-netapp-files ， gcp-cvs ， ontap-san-economy. 
@@ -170,11 +170,11 @@ volumeBindingMode: Immediate
 | 介质^1^ | string | HDD ，混合， SSD | Pool 包含此类型的介质；混合表示两者 | 指定的介质类型 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san 
 
 
-| 配置类型 | string | 精简，厚 | Pool 支持此配置方法 | 指定的配置方法 | 厚：全 ONTAP 和 E 系列 iSCSI ；精简：全 ONTAP 和 solidfire-san 
+| 配置类型 | string | 精简，厚 | Pool 支持此配置方法 | 指定的配置方法 | Thick：All ONTAP ；Thin：All ONTAP & solidfire-san 
 
 
 | 后端类型 | string  a| 
-ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， E 系列 iSCSI ， GCP-CVS ， azure-netapp-files ， ontap-san-economy.
+ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、solidfire-san、GCP-CVS、azure-netapp-files、ontap-san-economy.
 | 池属于此类型的后端 | 指定后端 | 所有驱动程序 
 
 
@@ -216,7 +216,7 @@ ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire
 | 属性 | Type | 值 | Description | 相关驱动程序 | Kubernetes 版本 
 
 
-| FSType | string | ext4 ， ext3 ， xfs 等 | 块卷的文件系统类型 | solidfire-san ， ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy-、 E 系列 -iscsi | 全部 
+| FSType | string | ext4 ， ext3 ， xfs 等 | 块卷的文件系统类型 | solidfire-san、ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、ontap-san-economy. | 全部 
 
 
 | 允许卷扩展 | boolean | true false | 启用或禁用对增加 PVC 大小的支持 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， gcp-cvs ， azure-netapp-files | 1.11 及更高版本 

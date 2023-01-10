@@ -157,7 +157,6 @@
   <block id="db8a0bbeae97b94338c1b7a61e2a1ec3" category="cell">支持的驱动程序</block>
   <block id="f3780100617165ed98557e3a6d2be72d" category="cell">trident.netapp.io/fileSystem</block>
   <block id="44d4d4eb1f08d8eb29766160086f61dd" category="cell">文件系统</block>
-  <block id="59c54cb66816513690f886c6cbd45d7e" category="cell">ontap-san ， solidfire-san ， E 系列 -iscsi ， ontap-san-economy.</block>
   <block id="979f70bf9da982ee97ac075df4f048c3" category="cell">trident.netapp.io/cloneFromPVC</block>
   <block id="b4ead50a5ca4f307f7d61da7763ad204" category="cell">cloneSourceVolume</block>
   <block id="46ec89aa5290ead7b514dd5182caa0a7" category="cell">trident.netapp.io/splitOnClone</block>
@@ -233,7 +232,6 @@
   <block id="6026fbd9abd05590949de220154e3262" category="cell">精简，厚</block>
   <block id="3064025fe3541bec9942e14fcaedfab7" category="cell">Pool 支持此配置方法</block>
   <block id="cf65591e3da90317fc132ea7464105d8" category="cell">指定的配置方法</block>
-  <block id="ef2577df8468ab39e993a1938ba7f38d" category="cell">厚：全 ONTAP 和 E 系列 iSCSI ；精简：全 ONTAP 和 solidfire-san</block>
   <block id="55b56fb238360663afa6230ad82e74a0" category="cell">后端类型</block>
   <block id="d41d8cd98f00b204e9800998ecf8427e" category="doc"></block>
   <block id="0e1201d4d96df2d9d03c9c66b90874a1" category="cell">池属于此类型的后端</block>
@@ -2691,7 +2689,6 @@
   <block id="ec3f9af8f611100a0182ffb9ab2e5ef8" category="paragraph">虽然可以在 ONTAP 中创建 Trident 驱动程序可以使用的限制性更强的角色，但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。</block>
   <block id="ee50ce7340da5b018abe62c8e613cae0" category="summary">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项，并可通过特定端口进行通信。</block>
   <block id="94efe0c9471991c69d2a3b0970a56744" category="paragraph">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项。您可以使用这些选项修改部署。</block>
-  <block id="55f3fc550e9a03a95334f3a19f0920cc" category="cell">solidfire-san ， ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy-、 E 系列 -iscsi</block>
   <block id="6add71a247c8f4513060920be14857bc" category="cell">允许卷扩展</block>
   <block id="84e2c64f38f78ba3ea5c905ab5a2da27" category="cell">boolean</block>
   <block id="675e3f37a9adfd7ab6433906c490fa06" category="cell">启用或禁用对增加 PVC 大小的支持</block>
@@ -2765,7 +2762,6 @@
   <block id="555c97661fe540a8eabda5c4680e2f81" category="paragraph">如果使用了 `azure-netapp-files` 或 `gcp-cvs` 驱动程序，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume path&gt; -f /path/vc.yaml` 将卷导入到 Kubernetes 中，以供 Astra Trident 管理。这样可以确保卷引用是唯一的。</block>
   <block id="cca7544fa2044ea81b43c1e0896bf58e" category="cell">ontap-nas ， ontap-san ， solidfire-san ， azure-netapp-files ， gcp-cvs ， ontap-san-economy.</block>
   <block id="870594bba77423ccae9ad70861e02951" category="cell">ontap-nas ， ontap-nas-flexgroup ， ontap-san ， GCP-CVS</block>
-  <block id="91511a1d98e80c77f75faa79a0e82734" category="paragraph">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， solidfire-san ， E 系列 iSCSI ， GCP-CVS ， azure-netapp-files ， ontap-san-economy.</block>
   <block id="33dece0bdda0f88a645c739f3714c038" category="cell">ontap-nas ， ontap-san ， solidfire-san ， gcp-cvs</block>
   <block id="2e647c10640a301eccdc45d7ad72507d" category="cell">ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， gcp-cvs ， azure-netapp-files</block>
   <block id="051fb2c3f62667c87a197ae412a4dbeb" category="cell">ONTAP （ NAS ， SAN ）和 SolidFire — * ：要从中克隆的卷的名称</block>
@@ -3460,4 +3456,8 @@
   <block id="5eb07a7cb7d445ef6bbb17270c65cf52" category="list-text">如果使用RHCOS 4.5或更高版本或其他与RHEL兼容的Linux分发版、请与结合使用<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序和Element OS 12：5或更早版本、请确保中的CHAP身份验证算法设置为MD5<block ref="104f48adc29dc1e1d7c9bbe7b5dd3f8d" prefix=" " category="inline-code"></block>。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。</block>
   <block id="18c20e5d2e368f36f420dd39019d460f" category="list-text">如果使用<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序对于OpenShift 4.5、请确保底层工作节点使用MD5作为CHAP身份验证算法。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。</block>
   <block id="5896cc977dd7b9854957e18a2a5bf072" category="cell">要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。不受 ontap-nas-economy.</block>
+  <block id="19ab49765cdd2c8ab592eb40eeff08cf" category="cell">ontap-san、solidfire-san、ontap-san-economy.</block>
+  <block id="054b5072368dea4f8748909c16c7de98" category="cell">Thick：All ONTAP ；Thin：All ONTAP &amp; solidfire-san</block>
+  <block id="dbdc06f8742b98dcacdf7fdb1af111ea" category="paragraph">ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、solidfire-san、GCP-CVS、azure-netapp-files、ontap-san-economy.</block>
+  <block id="f888aa18c19e41f8c1263fa99ca8b94c" category="cell">solidfire-san、ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、ontap-san-economy.</block>
 </blocks>
