@@ -13,9 +13,12 @@ summary: 了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。
 
 了解如何使用 ONTAP 和 Cloud Volumes ONTAP NAS 驱动程序配置 ONTAP 后端。
 
-* link:ontap-nas-prep.html["准备"^]
-* link:ontap-nas-examples.html["配置和示例"^]
+* link:ontap-nas-prep.html["准备"]
+* link:ontap-nas-examples.html["配置和示例"]
 
+
+
+WARNING: 客户必须使用 `ontap-nas` 适用于需要数据保护、灾难恢复和移动性的生产工作负载的驱动程序。Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性 `ontap-nas` 驱动程序。。 `ontap-nas-economy` 驱动程序仅适用于预期卷使用量远高于ONTAP 支持的有限使用情形、并且没有预期的数据保护、灾难恢复或移动性(在Kubernetes集群之间移动卷)要求。
 
 
 

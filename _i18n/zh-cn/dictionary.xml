@@ -2148,8 +2148,6 @@
   <block id="b1064b6f7a5906eac23601dc24ba95a8" category="list-text"><block ref="b1064b6f7a5906eac23601dc24ba95a8" category="inline-link-macro-rx"></block></block>
   <block id="d7f015aa2f1d488e17e175dac6de3149" category="list-text"><block ref="d7f015aa2f1d488e17e175dac6de3149" category="inline-link-macro-rx"></block></block>
   <block id="24ca391029d6df294c5d5b8f1fe5b4eb" category="summary">了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
-  <block id="df3afb1ce4cf5592326d7f536313cbc9" category="list-text"><block ref="df3afb1ce4cf5592326d7f536313cbc9" category="inline-link-macro-rx"></block></block>
-  <block id="6a60ddae29750feed1e12421a92ea824" category="list-text"><block ref="6a60ddae29750feed1e12421a92ea824" category="inline-link-macro-rx"></block></block>
   <block id="0f5dc79c8003190ab8f758b1748ba0d8" category="summary">NetApp 不断改进和完善其产品和服务。以下是最新版 Astra Trident 中的一些最新功能，增强功能和错误修复。</block>
   <block id="5dd03e8d039863e563e049be198c3fd3" category="doc">发行说明</block>
   <block id="2e6ce374ac42de81aea6a3d682b92e33" category="paragraph">发行说明提供了有关最新版本的 Astra Trident 中的新增功能，增强功能和错误修复的信息。</block>
@@ -3460,4 +3458,7 @@
   <block id="054b5072368dea4f8748909c16c7de98" category="cell">Thick：All ONTAP ；Thin：All ONTAP &amp; solidfire-san</block>
   <block id="dbdc06f8742b98dcacdf7fdb1af111ea" category="paragraph">ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、solidfire-san、GCP-CVS、azure-netapp-files、ontap-san-economy.</block>
   <block id="f888aa18c19e41f8c1263fa99ca8b94c" category="cell">solidfire-san、ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、ontap-san-economy.</block>
+  <block id="a64f78ea5d42780118e8f5c7f6cfdcbb" category="list-text"><block ref="a64f78ea5d42780118e8f5c7f6cfdcbb" category="inline-link-macro-rx"></block></block>
+  <block id="65a38da8aec2b99cf44dbf919fbd6991" category="list-text"><block ref="65a38da8aec2b99cf44dbf919fbd6991" category="inline-link-macro-rx"></block></block>
+  <block id="5e91194ed6174e8f5eb09a2fffc13dad" category="admonition">客户必须使用<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 适用于需要数据保护、灾难恢复和移动性的生产工作负载的驱动程序。Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序。。<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 驱动程序仅适用于预期卷使用量远高于ONTAP 支持的有限使用情形、并且没有预期的数据保护、灾难恢复或移动性(在Kubernetes集群之间移动卷)要求。</block>
 </blocks>
