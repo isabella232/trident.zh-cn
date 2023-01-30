@@ -224,7 +224,7 @@ Usage:
 Usage:
   tridentctl uninstall [flags]
 ----
-标志： * ` -h ， -help` ：卸载帮助。* ` —静默` ：在卸载期间禁用大多数输出。
+标志：* `-h, --help`：卸载帮助。* `--silent`：卸载期间禁用大多数输出。
 
 
 

@@ -7,33 +7,40 @@ entries:
 - title: 配置后端
   url: "/trident-use/backends.html"
   entries:
-  - title: 配置 ANF 后端
-    url: "/trident-use/anf.html"
+  - title: Azure NetApp Files
     entries:
-    - title: 准备配置ANF后端
+    - title: 概述
+      url: "/trident-use/anf.html"
+    - title: 准备配置
       url: "/trident-use/anf-prep.html"
-    - title: ANF配置选项和示例
+    - title: 配置选项和示例
       url: "/trident-use/anf-examples.html"
-  - title: 为 GCP 后端配置 CVS
+  - title: 适用于 Google Cloud 的 Cloud Volumes Service
     url: "/trident-use/gcp.html"
-  - title: 配置 NetApp HCI 或 SolidFire 后端
+  - title: NetApp HCI 或SolidFire
     url: "/trident-use/element.html"
-  - title: 使用 ONTAP SAN 驱动程序配置后端
+  - title: ONTAP SAN 驱动程序
     url: "/trident-use/ontap-san.html"
     entries:
-    - title: 准备使用ONTAP SAN驱动程序配置后端
+    - title: 准备配置
       url: "/trident-use/ontap-san-prep.html"
-    - title: ONTAP SAN配置选项和示例
+    - title: 配置选项和示例
       url: "/trident-use/ontap-san-examples.html"
-  - title: 使用 ONTAP NAS 驱动程序配置后端
+  - title: ONTAP NAS 驱动程序
     url: "/trident-use/ontap-nas.html"
     entries:
-    - title: 准备使用ONTAP NAS驱动程序配置后端
+    - title: 准备配置
       url: "/trident-use/ontap-nas-prep.html"
-    - title: ONTAP NAS配置选项和示例
+    - title: 配置选项和示例
       url: "/trident-use/ontap-nas-examples.html"
-  - title: 将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSX 结合使用
-    url: "/trident-use/trident-fsx.html"
+  - title: 适用于 NetApp ONTAP 的 Amazon FSX
+    entries:
+    - title: 概述
+      url: "/trident-use/trident-fsx.html"
+    - title: 集成适用于ONTAP 的Amazon FSX
+      url: "/trident-use/trident-fsx-prep.html"
+    - title: 配置选项和示例
+      url: "/trident-use/trident-fsx-examples.html"
 - title: 使用 kubectl 创建后端
   url: "/trident-use/backend-kubectl.html"
 - title: 使用 kubectl 执行后端管理

@@ -1,0 +1,194 @@
+---
+sidebar: sidebar 
+permalink: trident-use/trident-fsx-examples.html 
+keywords: map backends, storage classes, trident backend, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups, options, storageclasses, fsx 
+summary: 了解适用于ONTAP 的Amazon FSX的后端配置选项。本节提供了后端配置示例。 
+---
+= 适用于ONTAP 的FSX配置选项和示例
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+了解适用于ONTAP 的Amazon FSX的后端配置选项。本节提供了后端配置示例。
+
+
+
+== 后端配置选项
+
+有关后端配置选项，请参见下表：
+
+[cols="3"]
+|===
+| 参数 | Description | 示例 
+
+
+| `ve版本` |  | 始终为 1 
+
+
+| `storageDriverName` | 存储驱动程序的名称 | "ontap-nas" ， "ontap-nas-economy-" ， "ontap-nas-flexgroup" ， "ontap-san " ， "ontap-san-economy-" 
+
+
+| `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
+
+
+| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。可以指定完全限定域名(FQDN)。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
+
+
+| `dataLIF` | 协议 LIF 的 IP 地址。* ONTAP NAS驱动程序*：建议指定dataLIF。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 。* ONTAP SAN驱动程序*：不为iSCSI指定。Astra Trident使用ONTAP 选择性LUN映射来发现建立多路径会话所需的iSCI LIF。如果明确定义了dataLIF、则会生成警告。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 |  
+
+
+| `autosExportPolicy` | 启用自动创建和更新导出策略[布尔值]。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | false 
+
+
+| `autosExportCIDR` | 用于筛选Kubernetes节点IP的CIDR列表 `autoExportPolicy` 已启用。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | "["0.0.0.0/0 "、"：：/0 "]" 
+
+
+| `标签` | 要应用于卷的一组任意 JSON 格式的标签 | "" 
+
+
+| `客户端证书` | 客户端证书的 Base64 编码值。用于基于证书的身份验证 | "" 
+
+
+| `clientPrivateKey` | 客户端专用密钥的 Base64 编码值。用于基于证书的身份验证 | "" 
+
+
+| `trustedCACertifate` | 受信任 CA 证书的 Base64 编码值。可选。用于基于证书的身份验证。 | "" 
+
+
+| `用户名` | 用于连接到集群或SVM的用户名。用于基于凭据的身份验证。例如、vsadmin。 |  
+
+
+| `密码` | 用于连接到集群或SVM的密码。用于基于凭据的身份验证。 |  
+
+
+| `sVM` | 要使用的 Storage Virtual Machine | 如果指定SVM管理LIF则派生。 
+
+
+| `igroupName` | 要使用的SAN卷的igroup的名称。请参见 。 | "trident — < 后端 UUID >" 
+
+
+| `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。创建后无法修改。要更新此参数、您需要创建一个新的后端。 | Trident 
+
+
+| `limitAggregateUsage` | *请勿为适用于NetApp ONTAP 的Amazon FSX指定。*提供的 `fsxadmin` 和 `vsadmin` 请勿包含检索聚合使用情况所需的权限、并使用Astra Trident对其进行限制。 | 请勿使用。 
+
+
+| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 | " （默认情况下不强制实施） 
+
+
+| `lunsPerFlexvol` | 每个FlexVol 的最大LUN数必须在50、200范围内。仅限SAN。 | "100" 
+
+
+| `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用 `debugTraceFlags` 除非您正在进行故障排除并需要详细的日志转储。 | 空 
+
+
+| `nfsMountOptions` | NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。 | "" 
+
+
+| `nasType` | 配置NFS或SMB卷创建。选项包括 `nfs`， `smb`或为空。*必须设置为 `smb` 对于SMB卷。*如果设置为空、则默认为NFS卷。 | "NFs" 
+
+
+| `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | "200" 
+
+
+| `smbShare` | 使用共享文件夹Microsoft管理控制台创建的SMB共享的名称。*对于SMB卷为必需项。* | "smb-share" 
+
+
+| `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
+`useREST` 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时 `true`、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问 `ontap` 应用程序。这一点可通过预定义来满足 `vsadmin` 和 `cluster-admin` 角色。 | false 
+|===
+
+
+=== 详细信息 `igroupName`
+
+`igroupName` 可以设置为已在ONTAP 集群上创建的igroup。如果未指定、则Astra Trident会自动创建名为的igroup `trident-<backend-UUID>`。
+
+如果要在环境之间共享SVM、则如果要提供预定义的igroupName、建议为每个Kubernetes集群使用一个igroup。这对于Astra Trident自动维护IQN添加和删除是必需的。
+
+* `igroupName` 可以更新为指向在Astra Trident之外的SVM上创建和管理的新igroup。
+* `igroupName` 可以省略。在这种情况下、Astra Trident将创建并管理名为的igroup `trident-<backend-UUID>` 自动。
+
+
+在这两种情况下，仍可访问卷附件。未来的卷附件将使用更新后的 igroup 。此更新不会中断对后端卷的访问。
+
+
+
+=== 更新 `dataLIF` 初始配置后
+
+您可以在初始配置后更改数据LIF、方法是运行以下命令、为新的后端JSON文件提供更新的数据LIF。
+
+[listing]
+----
+tridentctl update backend <backend-name> -f <path-to-backend-json-file-with-updated-dataLIF>
+----
+
+NOTE: 如果PVC连接到一个或多个Pod、则必须关闭所有对应Pod、然后将其恢复到、新数据LIF才能生效。
+
+
+
+== 用于配置卷的后端配置选项
+
+您可以在中使用这些选项控制默认配置 `defaults` 配置部分。有关示例，请参见以下配置示例。
+
+[cols="3"]
+|===
+| 参数 | Description | Default 
+
+
+| `spaceAllocation` | LUN 的空间分配 | true 
+
+
+| `s页面预留` | 空间预留模式； " 无 " （精简）或 " 卷 " （厚） | 无 
+
+
+| `sSnapshot 策略` | 要使用的 Snapshot 策略 | 无 
+
+
+| `qosPolicy` | 要为创建的卷分配的 QoS 策略组。选择每个存储池或后端的qosPolicy或adaptiveQosPolicy之一。在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享QoS策略组、并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。 | " 
+
+
+| `adaptiveQosPolicy` | 要为创建的卷分配的自适应 QoS 策略组。选择每个存储池或后端的qosPolicy或adaptiveQosPolicy之一。不受 ontap-nas-economy. | " 
+
+
+| `sSnapshot 预留` | 为快照预留的卷百分比为 "0" | 如果 `snapshotPolicy` 为 " 无 " ，则为 " 无 " ，否则为 " " 
+
+
+| `splitOnClone` | 创建克隆时，从其父级拆分该克隆 | false 
+
+
+| `加密` | 在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]。 | false 
+
+
+| `luksEncryption` | 启用LUKS加密。请参见 link:../trident-reco/security-reco.html#Use-Linux-Unified-Key-Setup-(LUKS)["使用Linux统一密钥设置(LUKS)"]。仅限SAN。 | "" 
+
+
+| `分层策略` | 使用 " 无 " 的分层策略 | 适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 " 
+
+
+| `unixPermissions` | 新卷的模式。*对于SMB卷保留为空。* | "" 
+
+
+| `securityStyle` | 新卷的安全模式。 | 对于NFS卷、为"UNIX"；对于SMB卷、为"NTFS" 
+|===
+
+
+== 示例
+
+使用 `nasType`， `node-stage-secret-name`，和 `node-stage-secret-namespace`、您可以指定SMB卷并提供所需的Active Directory凭据。SMB卷支持使用 `ontap-nas` 仅限驱动程序。
+
+[listing]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nas-smb-sc
+provisioner: csi.trident.netapp.io
+parameters:
+  backendType: "ontap-nas"
+  trident.netapp.io/nasType: "smb"
+  csi.storage.k8s.io/node-stage-secret-name: "smbcreds"
+  csi.storage.k8s.io/node-stage-secret-namespace: "default"
+----

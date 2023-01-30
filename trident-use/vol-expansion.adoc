@@ -97,7 +97,7 @@ pvc-8a814d62-bd58-4253-b0d1-82f2885db671   1Gi        RWO            Delete     
 ----
  kubectl get pod
 NAME         READY   STATUS    RESTARTS   AGE
-centos-pod   1/1     Running   0          65s
+ubuntu-pod   1/1     Running   0          65s
 
  kubectl describe pvc san-pvc
 Name:          san-pvc
@@ -113,7 +113,7 @@ Finalizers:    [kubernetes.io/pvc-protection]
 Capacity:      1Gi
 Access Modes:  RWO
 VolumeMode:    Filesystem
-Mounted By:    centos-pod
+Mounted By:    ubuntu-pod
 ----
 
 

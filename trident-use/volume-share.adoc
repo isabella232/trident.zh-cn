@@ -160,7 +160,7 @@ flags
 == 限制
 
 * Astra Trident无法阻止目标命名空间写入共享卷。您应使用文件锁定或其他进程来防止覆盖共享卷数据。
-* 您不能通过删除来撤消对源PVC的访问 `shareToNamespace` 或 `shareFromNamepace` 标注或删除 `TridentVolumeReference` CR.要撤消访问、必须删除从属PVC。
+* 您不能通过删除来撤消对源PVC的访问 `shareToNamespace` 或 `shareFromNamespace` 标注或删除 `TridentVolumeReference` CR.要撤消访问、必须删除从属PVC。
 * 无法在从属卷上执行快照、克隆和镜像。
 
 

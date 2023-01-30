@@ -4,7 +4,7 @@ permalink: trident-get-started/kubernetes-customize-deploy.html
 keywords: deploy, trident, methods, operator, tridentctl, helm, attributes, customize, tridentorchestrator, smb, windows 
 summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。' 
 ---
-= 自定义 Trident 操作员部署
+= 自定义Trident操作员安装
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -51,7 +51,7 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | `enableNodePrep` | 自动管理工作节点依赖关系（ * 测试版 * ） | false 
 
 
-| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trident自动支持：22.10.0" 
+| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trident自动支持：23.01.0" 
 
 
 | `autosupport 代理` | 用于发送 AutoSupport 遥测的代理的地址 / 端口 | "http://proxy.example.com:8888"[] 
@@ -76,6 +76,12 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 
 
 | `imagePullSecs` | 从内部注册表中提取映像的机密信息 |  
+
+
+| `imagePullPolicy` | 设置Trident运算符的映像提取策略。有效值为：
+`Always` 以始终提取映像。
+`IfNotPresent` 仅当节点上尚不存在映像时才提取该映像。
+`Never` 从不提取映像。 | `IfNotPresent` 
 
 
 | `控制器插件节点选择器` | 运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。格式与 pod.spec.nodeSelector 相同。 | 无默认值；可选 
@@ -144,7 +150,7 @@ spec:
 
 [listing]
 ----
-$ cat deploy/crds/tridentorchestrator_cr.yaml
+cat deploy/crds/tridentorchestrator_cr.yaml
 apiVersion: trident.netapp.io/v1
 kind: TridentOrchestrator
 metadata:

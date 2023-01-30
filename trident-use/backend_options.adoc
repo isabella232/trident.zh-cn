@@ -126,7 +126,7 @@ secret/backend-tbc-ontap-san-secret created
 
 * 在 `sPec.backendName` 中定义了相同的后端名称。
 * 配置参数与原始后端相同。
-* 虚拟存储池（如果存在）必须与原始后端保持相同的顺序。
+* 虚拟池(如果存在)必须与原始后端的顺序相同。
 * 凭据通过 Kubernetes Secret 提供，而不是以纯文本形式提供。
 
 

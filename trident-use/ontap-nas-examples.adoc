@@ -33,16 +33,16 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
 
 
-| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
+| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。可以指定完全限定域名(FQDN)。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
 
 
-| `dataLIF` | 协议 LIF 的 IP 地址。对于 IPv6 ，请使用方括号。设置后无法更新 | 由 SVM 派生，除非另有说明 
+| `dataLIF` | 协议 LIF 的 IP 地址。建议指定 `dataLIF`。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 | 指定的地址或派生自SVM (如果未指定)(不建议) 
 
 
-| `autosExportPolicy` | 启用自动创建和更新导出策略 [ 布尔值 ] | false 
+| `autosExportPolicy` | 启用自动创建和更新导出策略[布尔值]。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | false 
 
 
-| `autosExportCIDR` | 启用 `AutoExportPolicy` 时用于筛选 Kubernetes 节点 IP 的 CIDR 列表 | [ "0.0.0.0/0 " ， " ：： /0 "]` 
+| `autosExportCIDR` | 用于筛选Kubernetes节点IP的CIDR列表 `autoExportPolicy` 已启用。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | [ "0.0.0.0/0 " ， " ：： /0 "]` 
 
 
 | `标签` | 要应用于卷的一组任意 JSON 格式的标签 | " 
@@ -66,9 +66,6 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `sVM` | 要使用的 Storage Virtual Machine | 如果指定了 SVM `managementLIF` ，则派生 
 
 
-| `igroupName` | 要使用的 SAN 卷的 igroup 的名称 | "trident — < 后端 UUID >" 
-
-
 | `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。设置后无法更新 | Trident 
 
 
@@ -78,54 +75,30 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。 | " （默认情况下不强制实施） 
 
 
-| `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 | 100 
+| " （默认情况下不强制实施） | `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 
 
 
-| `debugTraceFlags` | 故障排除时要使用的调试标志。示例 ｛ "api" ： false ， "method " ： true ｝ | 空 
+| " （默认情况下不强制实施） | `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 
 
 
-| `nfsMountOptions` | NFS 挂载选项的逗号分隔列表 | " 
+| 100 | `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用 `debugTraceFlags` 除非您正在进行故障排除并需要详细的日志转储。 
 
 
-| `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | 200 
+| 空 | `nfsMountOptions` | NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。 
 
 
-| `useREST` | 用于使用 ONTAP REST API 的布尔参数。MetroCluster 不支持*技术预览*。 | false 
+| " | `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 
+
+
+| 200 | `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
+`useREST` 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时 `true`、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问 `ontap` 应用程序。这一点可通过预定义来满足 `vsadmin` 和 `cluster-admin` 角色。
+`useREST` MetroCluster 不支持。 
 |===
-[WARNING]
-.<code>useREST</code>注意事项
-====
-* `useREST` 提供了一个 * 技术预览 * ，建议用于测试环境，而不是生产工作负载。如果设置为 `true` ，则 Astra Trident 将使用 ONTAP REST API 与后端进行通信。此功能需要使用ONTAP 9.10及更高版本。此外，使用的 ONTAP 登录角色必须能够访问 `ONTAP` 应用程序。这一点可通过预定义的 `vsadmin` 和 `cluster-admin` 角色来满足。
-* MetroCluster 不支持`useREST`。
 
 
-====
-要与 ONTAP 集群通信，您应提供身份验证参数。这可以是安全登录的用户名 / 密码，也可以是已安装的证书。
+=== 用于配置卷的后端配置选项
 
-
-WARNING: 如果您使用适用于 NetApp ONTAP 后端的 Amazon FSX ，请勿指定 `limitAggregateUsage` 参数。Amazon FSX for NetApp ONTAP 提供的 `fsxadmin` 和 `vsadmin` 角色不包含检索聚合使用情况并通过 Astra Trident 对其进行限制所需的访问权限。
-
-
-WARNING: 请勿使用 `debugTraceFlags` ，除非您正在进行故障排除并需要详细的日志转储。
-
-
-NOTE: 创建后端时，请记住，创建后无法修改 `dataLIF` 和 `storagePrefix` 。要更新这些参数，您需要创建一个新的后端。
-
-可以为 `managementLIF` 选项指定完全限定域名（ FQDN ）。也可以为 `dataLIF` 选项指定 FQDN ，在这种情况下， FQDN 将用于 NFS 挂载操作。这样，您就可以创建循环 DNS ，以便在多个数据 LIF 之间实现负载平衡。
-
-对于所有 ONTAP 驱动程序，也可以将 `managementLIF` 设置为 IPv6 地址。请务必使用 ` -use-ipv6` 标志安装 Astra Trident 。必须 `m方括号内的` anagementLIF IPv6 地址。
-
-
-WARNING: 使用 IPv6 地址时，请确保在方括号内定义 `managementLIF` 和 `dataLIF` （如果包含在后端定义中），例如 [28e8 ： d9fb ： a825 ： b7bf ： 69a8 ： d02f ： 9e7b ： 3555] 。如果未提供 `dataLIF` ，则 Astra Trident 将从 SVM 提取 IPv6 数据 LIF 。
-
-使用 `autosExportPolicy` 和 `autosExportCIDR` 选项， CSI Trident 可以自动管理导出策略。所有 ontap-nas-* 驱动程序均支持此功能。
-
-对于 `ontap-nas-economy` 驱动程序， `limitVolumeSize` 选项还会限制它为 qtree 和 FlexVol 管理的卷的最大大小，而 `qtreesPerFlexvol` 选项允许自定义每个 的最大 qtree 数。
-
-可以使用 `nfsMountOptions` 参数指定挂载选项。Kubernetes 永久性卷的挂载选项通常在存储类中指定，但如果在存储类中未指定挂载选项，则 Astra Trident 将回退为使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项，则 Astra Trident 不会在关联的永久性卷上设置任何挂载选项。
-
-
-NOTE: Astra Trident 会在使用 `ontap-NAS` 和 `ontap-nas-flexgroup` 创建的所有卷的 "Comments" 字段中设置配置标签。根据所使用的驱动程序，注释将在 FlexVol （`ontap-NAS` ）或 FlexGroup （`ontap-nas-flexgroup` ）上进行设置。Astra Trident 会在配置存储池时将存储池上的所有标签复制到该存储卷。存储管理员可以为每个存储池定义标签，并对存储池中创建的所有卷进行分组。这样，您就可以根据后端配置中提供的一组可自定义标签来方便地区分卷了。
+您可以在中使用这些选项控制默认配置 `defaults` 配置部分。有关示例，请参见以下配置示例。
 
 
 
@@ -162,25 +135,32 @@ NOTE: Astra Trident 会在使用 `ontap-NAS` 和 `ontap-nas-flexgroup` 创建的
 | `加密` | 在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]。 | false 
 
 
-| `securityStyle` | 新卷的安全模式 | "unix" 
-
-
 | `分层策略` | 使用 " 无 " 的分层策略 | 适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 " 
 
 
-| unixPermissions | 新卷的模式 | 777. 
+| `unixPermissions` | 新卷的模式 | 对于NFS卷为"777"；对于SMB卷为空(不适用) 
 
 
-| snapshotDir | 控制 ` .snapshot` 目录的可见性 | false 
+| `snapshotDir` | 控制 ` .snapshot` 目录的可见性 | false 
 
 
-| 导出策略 | 要使用的导出策略 | default 
+| `snapshotDir` | 控制 ` .snapshot` 目录的可见性 | false 
 
 
-| securityStyle | 新卷的安全模式 | "unix" 
+| `exportPolicy` | 要使用的导出策略 | default 
+
+
+| `exportPolicy` | 要使用的导出策略 | default 
+
+
+| `securityStyle` | 新卷的安全模式 | 对于NFS卷、为"UNIX"；对于SMB卷、为"NTFS" 
 |===
 
 NOTE: 在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享 QoS 策略组，并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。
+
+
+
+==== 卷配置示例
 
 下面是定义了默认值的示例：
 
@@ -225,17 +205,36 @@ image::../media/volume-show-nas.png[显示了 volume show 命令的输出。]
 
 
 
-== 最低配置示例
+== 示例
+
+
+
+=== 最低配置示例
 
 以下示例显示了将大多数参数保留为默认值的基本配置。这是定义后端的最简单方法。
 
 
 NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为 LIF 指定 DNS 名称，而不是 IP 地址。
 
-
-
-=== `ontap-nas` 具有基于证书的身份验证的驱动程序
-
+.<code> 中的默认选项tap </code> 中的默认选项
+[%collapsible%open]
+====
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas-economy",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "secret"
+}
+----
+====
+.基于证书的身份验证
+[%collapsible%open]
+====
 这是一个最低后端配置示例。`clientCertificate` ， `clientPrivateKey` 和 `trustedCACertifate` （如果使用可信 CA ，则可选）分别填充在 `backend.json` 中，并采用客户端证书，私钥和可信 CA 证书的 base64 编码值。
 
 [listing]
@@ -253,12 +252,13 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
   "storagePrefix": "myPrefix_"
 }
 ----
+====
+.自动导出策略
+[%collapsible%open]
+====
+以下示例显示了如何指示Astra Trident使用动态导出策略自动创建和管理导出策略。此操作对于也是如此 `ontap-nas-economy` 和 `ontap-nas-flexgroup` 驱动程序。
 
-
-=== `ontap-nas` 具有自动导出策略的驱动程序
-
-此示例显示了如何指示 Astra Trident 使用动态导出策略自动创建和管理导出策略。这对于 `ontap-nas-economy.` 和 `ontap-nas-flexgroup` 驱动程序也是如此。
-
+.ontap-nas-economy-driver
 [listing]
 ----
 {
@@ -275,10 +275,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     "nfsMountOptions": "nfsvers=4",
 }
 ----
-
-
-=== `ontap-nas-flexgroup` 驱动程序
-
+.<code> </code> 驱动程序
 [listing]
 ----
 {
@@ -292,9 +289,11 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     "password": "secret",
 }
 ----
-
-
-=== `ontap-nas` 支持IPv6的驱动程序
+====
+.使用IPv6地址
+[%collapsible%open]
+====
+此示例显示了 `managementLIF` 使用IPv6地址。
 
 [listing]
 ----
@@ -309,6 +308,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
  "password": "netapp123"
 }
 ----
+====
 
 
 === `ontap-nas-economy` 驱动程序
@@ -327,16 +327,37 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ----
 
 
-== 虚拟存储池后端示例
+=== `ontap-nas` 适用于使用SMB卷的Amazon FSX for ONTAP 的驱动程序
 
-在下面显示的示例后端定义文件中，会为所有存储池设置特定的默认值，例如 `spaceReserve` at none ， `spaceAllocation` at false 和 `encryption` at false 。虚拟存储池在存储部分中进行定义。
+[listing]
+----
+{
+  "version": 1,
+  "backendName": "SMBBackend",
+  "storageDriverName": "ontap-nas",
+  "managementLIF": "example.mgmt.fqdn.aws.com",
+  “nasType”: “smb”,
+  "dataLIF": "10.0.0.15",
+  "svm": "nfs_svm",
+  "clientCertificate": "ZXR0ZXJwYXB...ICMgJ3BhcGVyc2",
+  "clientPrivateKey": "vciwKIyAgZG...0cnksIGRlc2NyaX",
+  "trustedCACertificate": "zcyBbaG...b3Igb3duIGNsYXNz",
+  "storagePrefix": "myPrefix_"
+}
+----
+
+
+== 虚拟池后端示例
+
+在下面所示的示例后端定义文件中、会为所有存储池设置特定的默认值、例如 `spaceReserve` 无、 `spaceAllocation` 为false、和 `encryption` 为false。虚拟池在存储部分中进行定义。
+
+Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上为设置 `ontap-nas` 或FlexGroup `ontap-nas-flexgroup`。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。
 
 在此示例中，某些存储池会设置自己的 `spaceReserve` ， `spaceAllocation` 和 `encryption` 值，而某些池会覆盖上述设置的默认值。
 
-
-
-=== `ontap-nas` 驱动程序
-
+.<code> tap p p p—</code> 驱动程序
+[%collapsible%open]
+====
 [listing]
 ----
 {
@@ -398,10 +419,10 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     ]
 }
 ----
-
-
-=== `ontap-nas-flexgroup` 驱动程序
-
+====
+.<code> </code> 驱动程序
+[%collapsible%open]
+====
 [listing]
 ----
 {
@@ -459,10 +480,10 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     ]
 }
 ----
-
-
-=== `ontap-nas-economy` 驱动程序
-
+====
+.<code> 中的</code> 驱动程序
+[%collapsible%open]
+====
 [listing]
 ----
 {
@@ -520,20 +541,34 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     ]
 }
 ----
+====
+
+
+== 更新 `dataLIF` 初始配置后
+
+您可以在初始配置后更改数据LIF、方法是运行以下命令、为新的后端JSON文件提供更新的数据LIF。
+
+[listing]
+----
+tridentctl update backend <backend-name> -f <path-to-backend-json-file-with-updated-dataLIF>
+----
+
+NOTE: 如果PVC连接到一个或多个Pod、则必须关闭所有对应Pod、然后将其恢复到、新数据LIF才能生效。
+
 
 
 == 将后端映射到 StorageClasses
 
-以下 StorageClass 定义引用了上述虚拟存储池。使用 `parameters.selector` 字段，每个 StorageClass 都会调用可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。
+以下StorageClass定义引用了上述虚拟池。使用 `parameters.selector` 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。
 
-* 第一个 StorageClass （`protection-gold` ）将映射到 `ontap-nas-flexgroup` 后端的第一个，第二个虚拟存储池以及 `ontap-san` 后端的第一个虚拟存储池。这是唯一一个提供黄金级保护的池。
-* 第二个 StorageClass （`protection-not-gold` ）将映射到 `ontap-nas-flexgroup` 后端的第三个，第四个虚拟存储池以及 `ontap-san` 后端的第二个，第三个虚拟存储池。这些池是唯一提供黄金级以外保护级别的池。
-* 第三个 StorageClass （`app-mysqldb` ）将映射到 `ontap-NAS` 后端的第四个虚拟存储池和 `ontap-san-economy-backend` 的第三个虚拟存储池。这些池是唯一为 mysqldb 类型的应用程序提供存储池配置的池。
-* 第四个存储类（`protection-silver-creditpoins-20k` ）将映射到 `ontap-nas-flexgroup` 后端的第三个虚拟存储池和 `ontap-san` 后端的第二个虚拟存储池。这些池是唯一以 20000 个信用点提供黄金级保护的池。
-* 第五个存储类（`credits-5k` ）将映射到 `ontap-nas-economy-backend` 中的第二个虚拟存储池和 `ontap-san` 后端的第三个虚拟存储池。这些是唯一一款具有 5000 个信用点的池产品。
+* 第一个StorageClass (`protection-gold`)将映射到中的第一个、第二个虚拟池 `ontap-nas-flexgroup` 中的后端和第一个虚拟池 `ontap-san` 后端。这是唯一一个提供黄金级保护的池。
+* 第二个StorageClass (`protection-not-gold`)将映射到中的第三个、第四个虚拟池 `ontap-nas-flexgroup` 中的后端和第二个、第三个虚拟池 `ontap-san` 后端。这些池是唯一提供黄金级以外保护级别的池。
+* 第三个StorageClass (`app-mysqldb`)将映射到中的第四个虚拟池 `ontap-nas` 中的后端和第三个虚拟池 `ontap-san-economy` 后端。这些池是唯一为 mysqldb 类型的应用程序提供存储池配置的池。
+* 第四个StorageClass (`protection-silver-creditpoints-20k`)将映射到中的第三个虚拟池 `ontap-nas-flexgroup` 中的后端和第二个虚拟池 `ontap-san` 后端。这些池是唯一以 20000 个信用点提供黄金级保护的池。
+* 第五个StorageClass (`creditpoints-5k`)将映射到中的第二个虚拟池 `ontap-nas-economy` 中的后端和第三个虚拟池 `ontap-san` 后端。这些是唯一一款具有 5000 个信用点的池产品。
 
 
-Astra Trident 将决定选择哪个虚拟存储池，并确保满足存储要求。
+Astra Trident将决定选择哪个虚拟池、并确保满足存储要求。
 
 [listing]
 ----

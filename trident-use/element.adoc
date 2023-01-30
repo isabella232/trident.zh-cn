@@ -16,7 +16,7 @@ summary: 了解如何在 Astra Trident 安装中创建和使用 Element 后端�
 .您需要的内容
 * 运行 Element 软件的受支持存储系统。
 * NetApp HCI/SolidFire 集群管理员或租户用户的凭据，可用于管理卷。
-* 所有 Kubernetes 工作节点都应安装适当的 iSCSI 工具。请参见 link:../trident-use/worker-node-prep.html["工作节点准备信息"^]。
+* 所有 Kubernetes 工作节点都应安装适当的 iSCSI 工具。请参见 link:../trident-use/worker-node-prep.html["工作节点准备信息"]。
 
 
 .您需要了解的信息
@@ -135,9 +135,6 @@ WARNING: 只有适用于 Astra Trident 的传统非 CSI 框架才支持卷访问
 WARNING: 请勿使用 `debugTraceFlags` ，除非您正在进行故障排除并需要详细的日志转储。
 
 
-NOTE: 对于创建的所有卷， Astra Trident 会在配置存储池时将存储池上的所有标签复制到备用存储 LUN 。存储管理员可以为每个存储池定义标签，并对存储池中创建的所有卷进行分组。这样，您就可以根据后端配置中提供的一组可自定义标签来方便地区分卷了。
-
-
 
 == 示例1：的后端配置 `solidfire-san` 具有三种卷类型的驱动程序
 
@@ -160,11 +157,13 @@ NOTE: 对于创建的所有卷， Astra Trident 会在配置存储池时将存�
 ----
 
 
-== 示例2：的后端和存储类配置 `solidfire-san` 具有虚拟存储池的驱动程序
+== 示例2：的后端和存储类配置 `solidfire-san` 具有虚拟池的驱动程序
 
-此示例显示了使用虚拟存储池配置的后端定义文件以及引用这些池的 StorageClasses 。
+此示例显示了使用虚拟池配置的后端定义文件以及引用这些池的StorageClasses。
 
-在下面所示的示例后端定义文件中，为所有存储池设置了特定的默认值，即将 `type` 设置为 Silver 。虚拟存储池在 `s存储` 部分中进行定义。在此示例中，某些存储池设置了自己的类型，而某些池将覆盖上述默认值。
+在配置时、Astra Trident会将存储池上的标签复制到后端存储LUN。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。
+
+在下面所示的示例后端定义文件中、为所有存储池设置了特定的默认值、这些存储池设置了 `type` 在Silver。虚拟池在中进行定义 `storage` 部分。在此示例中，某些存储池设置了自己的类型，而某些池将覆盖上述默认值。
 
 [listing]
 ----
@@ -206,9 +205,9 @@ NOTE: 对于创建的所有卷， Astra Trident 会在配置存储池时将存�
     ]
 }
 ----
-以下 StorageClass 定义引用了上述虚拟存储池。使用 `parameters.selector` 字段，每个 StorageClass 都会调用可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。
+以下StorageClass定义引用了上述虚拟池。使用 `parameters.selector` 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。
 
-第一个 StorageClass （ `solidfire-gold-四` ）将映射到第一个虚拟存储池。这是唯一一个性能卓越的池，其 `卷类型 QoS` 值为金牌。最后一个 StorageClass （ `solidfire-silver` ）调用可提供银牌性能的任何存储池。Astra Trident 将决定选择哪个虚拟存储池，并确保满足存储要求。
+第一个StorageClass (`solidfire-gold-four`)将映射到第一个虚拟池。这是唯一一个可通过提供金牌性能的池 `Volume Type QoS` 金牌。最后一个StorageClass (`solidfire-silver`)调用提供银牌性能的任何存储池。Astra Trident将决定选择哪个虚拟池、并确保满足存储要求。
 
 [listing]
 ----

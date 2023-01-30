@@ -11,7 +11,7 @@ summary: '您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。
 :imagesdir: ../media/
 
 
-您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NAS和SMB卷。
+您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NFS和SMB卷。
 
 * link:anf-prep.html["准备"]
 * link:anf-examples.html["配置选项和示例"]

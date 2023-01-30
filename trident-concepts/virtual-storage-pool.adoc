@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: trident-concepts/virtual-storage-pool.html 
-keywords: virtual storage pools, astra trident, backends 
-summary: 虚拟存储池在 Astra Trident 的存储后端和 Kubernetes 的 StorageClasses 之间提供了一个抽象层。管理员可以通过这些协议以一种通用的，与后端无关的方式定义各个方面，例如每个后端的位置，性能和保护，而不会使 StorageClass 指定要用于满足所需条件的物理后端，后端池或后端类型。 
+keywords: virtual pools, astra trident, backends 
+summary: 虚拟池在Astra Trident的存储后端和Kubernetes的StorageClasses之间提供了一个抽象层。管理员可以通过这些协议以一种通用的，与后端无关的方式定义各个方面，例如每个后端的位置，性能和保护，而不会使 StorageClass 指定要用于满足所需条件的物理后端，后端池或后端类型。 
 ---
-= 虚拟存储池
+= 虚拟池
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,22 +12,26 @@ summary: 虚拟存储池在 Astra Trident 的存储后端和 Kubernetes 的 Stor
 
 
 [role="lead"]
-虚拟存储池在 Astra Trident 的存储后端与 Kubernetes 的 `StorageClasses` 之间提供了一个抽象层。通过这些功能，管理员可以在不受后端影响的情况下以一种通用方式为每个后端定义位置，性能和保护等方面，而无需使用 `StorageClass` 指定要用于满足所需条件的物理后端，后端池或后端类型。
+虚拟池在Astra Trident存储后端和Kubernetes之间提供了一个抽象层 `StorageClasses`。管理员可以通过这些协议以一种通用的、与后端无关的方式定义各个方面、例如每个后端的位置、性能和保护、而无需创建 `StorageClass` 指定要用于满足所需条件的物理后端、后端池或后端类型。
 
 
 
-== 了解虚拟存储池
+== 了解虚拟池
 
-存储管理员可以在 JSON 或 YAML 定义文件中的任一 Astra Trident 后端定义虚拟存储池。
+存储管理员可以在JSON或YAML定义文件中的任一Astra Trident后端定义虚拟池。
 
-image::virtual_storage_pools.png[显示了虚拟存储池的概念图。]
+image::virtual_storage_pools.png[显示了虚拟池的概念图。]
 
 在虚拟池列表之外指定的任何方面对于后端都是全局的，并将应用于所有虚拟池，而每个虚拟池可能会分别指定一个或多个方面（覆盖任何后端 - 全局方面）。
 
+[NOTE]
+====
+* 定义虚拟池时、请勿尝试在后端定义中重新排列现有虚拟池的顺序。
+* 建议不要修改现有虚拟池的属性。您应定义一个新的虚拟池以进行更改。
 
-NOTE: 定义虚拟存储池时，请勿尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。
 
-大多数方面都以后端特定术语来指定。重要的是，这些宽高值不会在后端驱动程序之外公开，也不能在 `StorageClasses` 中进行匹配。而是管理员为每个虚拟池定义一个或多个标签。每个标签都是一个键：值对，标签可能在唯一的后端通用。与其他方面一样，可以为每个池指定标签，也可以为后端指定全局标签。与具有预定义名称和值的方面不同，管理员可以根据需要全权定义标签键和值。
+====
+大多数方面都以后端特定术语来指定。重要的是、宽高值不会公开在后端驱动程序之外、也不能在中进行匹配 `StorageClasses`。而是管理员为每个虚拟池定义一个或多个标签。每个标签都是一个键：值对，标签可能在唯一的后端通用。与其他方面一样，可以为每个池指定标签，也可以为后端指定全局标签。与具有预定义名称和值的方面不同，管理员可以根据需要全权定义标签键和值。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。
 
 答 `StorageClass` 通过引用选择器参数中的标签来标识要使用的虚拟池。虚拟池选择器支持以下运算符：
 

@@ -3,7 +3,7 @@ indexpage:
   lead: Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。有关升级到Astra
     Trident 22.10的关键信息、请阅读发行说明
   tiles:
-  - title: 22.10版的关键信息
+  - title: 23.01版的关键信息
     links:
     - title: 发行说明
       url: trident-rn.html

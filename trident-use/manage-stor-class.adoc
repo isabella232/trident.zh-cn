@@ -46,7 +46,7 @@ kubectl delete storageclass <storage-class>
 通过此存储类创建的任何永久性卷将保持不变， Astra Trident 将继续对其进行管理。
 
 
-NOTE: Astra Trident 会为其创建的卷强制使用空的 `FSType` 。对于 iSCSI 后端，建议在 StorageClass 中强制实施 `parameters.FSType` 。您应删除现有 StorageClasses 并使用指定的 `parameters.FSType` 重新创建它们。
+NOTE: Astra Trident强制使用空 `fsType` 创建的卷。对于iSCSI后端、建议强制实施 `parameters.fsType` 在StorageClass中。您应删除现有StorageClasses并使用重新创建它们 `parameters.fsType` 已指定。
 
 
 

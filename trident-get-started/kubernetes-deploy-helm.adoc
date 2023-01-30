@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-deploy-helm.html 
+keywords: deploy, astra trident, operator, helm, helm chart, configuration, values, standard, registry 
+summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像不会存储在专用注册表中。 
+---
+= 使用Helm部署Trident操作员(标准模式)
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用Helm部署Trident操作员并安装Astra Trident。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像不会存储在专用注册表中。如果您有专用映像注册表、请使用 link:kubernetes-deploy-helm-mirror.html["脱机部署过程"]。
+
+
+
+== 有关Astra Trident 23.01的关键信息
+
+*您必须阅读以下有关Astra Trident的重要信息。*
+
+.<strong> 中有关Astra </strong> 的信息
+[%collapsible%open]
+====
+* Trident现在支持Kubernetes 1.26。在升级Kubernetes之前升级Trident。
+* Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
++
+使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
+
+
+
+====
+
+
+== 部署Trident操作员并使用Helm安装Astra Trident
+
+使用Trident link:https://artifacthub.io/packages/helm/netapp-trident/trident-operator["Helm图表"^] 您可以一步部署Trident操作员并安装Trident。
+
+请查看 link:../trident-get-started/kubernetes-deploy.html["安装概述"] 以确保满足安装前提条件并为您的环境选择正确的安装选项。
+
+.开始之前
+除了 link:../trident-get-started/kubernetes-deploy.html#before-you-deploy["部署前提条件"] 您需要 link:https://v3.helm.sh/["Helm 版本 3"^]。
+
+.步骤
+. 添加Astra Trident Helm存储库：
++
+[listing]
+----
+helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
+----
+. 使用 ... `helm install` 并为您的部署指定一个名称、如以下示例中所示 `23.01.0` 是您要安装的Astra Trident版本。
++
+[listing]
+----
+helm install <name> netapp-trident/trident-operator --version 23.01.0 --create-namespace --namespace <trident-namespace>
+----
++
+
+NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会创建额外的命名空间。
+
+
+
+您可以使用 `helm list` 查看安装详细信息、例如名称、命名空间、图表、状态、应用程序版本、和修订版号。
+
+
+
+== 在安装期间传递配置数据
+
+在安装期间，可以通过两种方式传递配置数据：
+
+[cols="2"]
+|===
+| 选项 | Description 
+
+
+| `--values` (或 `-f`）  a| 
+指定包含覆盖的YAML文件。可以多次指定此值，最右侧的文件将优先。
+
+
+
+| `--set`  a| 
+在命令行上指定覆盖。
+
+|===
+例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `23.01.0` 是您要安装的Astra Trident版本：
+
+[listing]
+----
+helm install <name> netapp-trident/trident-operator --version 23.01.0  --create-namespace --namespace --set tridentDebug=true
+----
+
+NOTE: Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。
+
+
+
+== 下一步行动
+
+现在可以了 link:kubernetes-postdeployment.html["创建创建后端和存储类、配置卷并将卷挂载到Pod中"]。

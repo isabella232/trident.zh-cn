@@ -19,7 +19,51 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 22.10中的新增功能
+== 23.01中的新增功能
+
+
+IMPORTANT: Trident现在支持Kubernetes 1.26。请先升级Trident、然后再升级Kubernetes。
+
+
+
+=== 修复
+
+* Kubernetes：添加了一些选项、用于排除通过Helm (link:https://github.com/NetApp/trident/issues/794["问题783、794"^]）。
+
+
+
+
+=== 增强功能
+
+.Kubernetes
+* 增加了对Kubernetes 1.26的支持。
+* 提高了Trident RBAC资源的整体利用率(link:https://github.com/NetApp/trident/issues/757["问题描述 #757"^]）。
+* 增加了自动化功能、可检测和修复主机节点上中断或陈旧的iSCSI会话。
+* 增加了对扩展LUKS加密卷的支持。
+* Kubernetes：增加了对LUKS加密卷的凭据轮换支持。
+
+
+.Astra Trident
+* 在ONONTAP -NAS存储驱动程序中增加了对使用Amazon FSX for ONTAP 的SMB卷的支持。
+* 增加了对使用SMB卷时的NTFS权限的支持。
+* 增加了对具有CVS服务级别的GCP卷的存储池的支持。
+* 增加了在使用ontap-nas-flexgroup存储驱动程序创建FlexGroup时可选使用FlexgroupAggregateList的支持。
+* 在管理多个FlexVol时提高了ONTAP NAS经济型存储驱动程序的性能。
+* 已为所有ONTAP NAS存储驱动程序启用数据LIF更新。
+* 更新了Trident部署和DemonSet命名约定、以反映主机节点操作系统。
+
+
+
+
+=== 已弃用
+
+* Kubernetes：已将支持的最低Kubernetes更新为1.21。
+* 配置时、不应再指定数据LIF `ontap-san` 或 `ontap-san-economy` 驱动程序。
+
+
+
+
+== 22.10中的更改
 
 *在升级到Astra Trident 22.10之前、您必须阅读以下关键信息。*
 
@@ -59,7 +103,7 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 * 所有Trident `ontap-*` 现在、存储驱动程序可与ONTAP REST API配合使用。
 * 添加了新的运算符YAML (`bundle_post_1_25.yaml`)、而不使用 `PodSecurityPolicy` 以支持Kubernetes 1.25。
-* 已添加 link:https://docs.netapp.com/us-en/trident/trident-reco/security-reco.html#enable-per-volume-host-side-encryption-using-linux-unified-key-setup-luks["支持LUKS加密卷"] 适用于 `ontap-san` 和 `ontap-san-economy` 存储驱动程序。
+* 已添加 link:https://docs.netapp.com/us-en/trident/trident-reco/security-luks.html["支持LUKS加密卷"] 适用于 `ontap-san` 和 `ontap-san-economy` 存储驱动程序。
 * 增加了对Windows Server 2019节点的支持。
 * 已添加 link:https://docs.netapp.com/us-en/trident/trident-use/anf.html["支持Windows节点上的SMB卷"] 通过 `azure-netapp-files` 存储驱动程序。
 * ONTAP 驱动程序的自动MetroCluster 切换检测现已全面推出。
@@ -293,6 +337,10 @@ WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重�
 * 如果用户在删除相应的 PVC 之前删除了由 Astra Trident 配置的 PV ，则 Astra Trident 不会自动删除后备卷。您应通过 `tridentctl` 或 REST API 删除此卷。
 * ONTAP 不能同时配置多个 FlexGroup ，除非聚合集对于每个配置请求是唯一的。
 * 使用基于 IPv6 的 Astra Trident 时，应在后端定义中方括号内指定 `managementLIF` 和 `dataLIF` 。例如， `` FD20 ： 8b1e ： b258 ： 2000 ： f816 ： 3effe ： feec ： 0`` 。
++
+
+NOTE: 您无法指定 `dataLIF` 在ONTAP SAN后端。Astra Trident会发现所有可用的iSCSI LIF并使用它们建立多路径会话。
+
 * 如果使用 `solidfire-san` 驱动程序对于OpenShift 4.5、请确保底层工作节点使用MD5作为CHAP身份验证算法。Element 12.7提供了符合FIPS的安全CHAP算法SHA1、SHA-256和SHA3-256。
 
 

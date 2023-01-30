@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-reco/integrate-trident.html 
-keywords: kubernetes, clusters, nodes, components, master, compute, fsx, flexgroup, flexvolume, solidfire, hci, virtual storage pool, cvs, gcp, volumes 
+keywords: kubernetes, clusters, nodes, components, master, compute, fsx, flexgroup, flexvolume, solidfire, hci, virtual pool, cvs, gcp, volumes 
 summary: Kubernetes 集群通常由两种类型的节点组成，每种节点负责不同的功能方面。 
 ---
 = 集成 Astra Trident
@@ -12,7 +12,7 @@ summary: Kubernetes 集群通常由两种类型的节点组成，每种节点负
 
 
 [role="lead"]
-要集成 Astra Trident ，需要集成以下设计和架构要素：驱动程序选择和部署，存储类设计，虚拟存储池设计，永久性卷声明（ PVC ）对存储配置的影响，卷操作以及使用 Astra Trident 部署 OpenShift 服务。
+要集成Astra Trident、需要集成以下设计和架构要素：驱动程序选择和部署、存储类设计、虚拟池设计、永久性卷声明(PVC)对存储配置的影响、卷操作以及使用Astra Trident部署OpenShift服务。
 
 
 
@@ -124,28 +124,35 @@ Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 link:https://azu
 
 
 
-=== 具有GCP后端驱动程序的Cloud Volumes Service
+=== Google Cloud上的Cloud Volumes Service 后端驱动程序
 
-Astra Trident 使用 `GCP-CVS` 驱动程序与 GCP 后端的 Cloud Volumes Service 链接。要在 Trident 上配置 GCP 后端，您需要在后端文件中指定 `projectNumber` ， `apiRegion` 和 `apiKey` 。项目编号可在 GCP Web 门户中找到，而 API 密钥必须从您在 GCP 上为 Cloud Volumes 设置 API 访问时创建的服务帐户专用密钥文件中获取。Astra Trident 可以在两个卷中创建 CVS 卷之一 link:https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["服务类型"^]：
+Astra Trident使用 `gcp-cvs` 用于链接到Google Cloud上的Cloud Volumes Service 的驱动程序。
 
-. * CVS* ：基本 CVS 服务类型，可提供较高的区域可用性，但性能级别有限 / 中等。
-. * CVS-Performance* ：经过性能优化的服务类型最适合重视性能的生产工作负载。从三个独特的服务级别中进行选择 [`standard`， `premium`，和 `extreme`]。
+。 `gcp-cvs` 驱动程序使用虚拟池抽象化后端、并允许Astra Trident确定卷的放置位置。管理员在中定义虚拟池 `backend.json` 文件。存储类使用选择器按标签标识虚拟池。
+
+* 如果在后端定义了虚拟池、则Astra Trident将尝试在这些虚拟池所受限制的Google Cloud存储池中创建卷。
+* 如果未在后端定义虚拟池、则Astra Trident将从该区域的可用存储池中选择Google Cloud存储池。
 
 
-CVS和CVS-Performance卷的最小大小为100 GiB。
+要在Astra Trident上配置Google Cloud后端、必须指定 `projectNumber`， `apiRegion`，和 `apiKey` 在后端文件中。您可以在Google Cloud控制台中找到项目编号。API密钥来自您在Google Cloud上为Cloud Volumes Service 设置API访问时创建的服务帐户专用密钥文件。
+
+有关Google Cloud上的Cloud Volumes Service 服务类型和服务级别的详细信息、请参见 link:../trident-use/gcp.html["了解适用于GCP的CVS的Astra Trident支持"]。
 
 [cols="20,10,10,10,10,10,10"]
 |===
-| 适用于 GCP 的 CVS 驱动程序 | 快照 | 克隆 | 多连接 | QoS | 展开 | Replication 
+| 适用于Google Cloud的Cloud Volumes Service 驱动程序 | 快照 | 克隆 | 多连接 | QoS | 展开 | Replication 
 
 
-| `GCP-CVS` | 是的。 | 是的。 | 是的。 | 是的。 | 是的。 | 是脚注： 1[] 
+| `GCP-CVS` | 是的。 | 是的。 | 是的。 | 是的。 | 是的。 | 仅适用于CVS-Performance服务类型。 
 |===
-[verse]
-脚注：是脚注： 1[] ：不由 Astra Trident 管理
+[NOTE]
+====
+.复制注释
+* 复制不受Astra Trident管理。
+* 克隆将在与源卷相同的存储池中创建。
 
-`GCP-CVS` 驱动程序使用虚拟存储池。虚拟存储池会对后端进行抽象化，从而使 Astra Trident 决定卷的放置。管理员在 backend.json 文件中定义虚拟存储池。存储类使用标签标识虚拟存储池。
 
+====
 
 
 == 存储类设计
@@ -176,38 +183,38 @@ CVS和CVS-Performance卷的最小大小为100 GiB。
 
 
 
-=== 虚拟存储池
+=== 虚拟池
 
-所有 Astra Trident 后端均可使用虚拟存储池。您可以使用 Astra Trident 提供的任何驱动程序为任何后端定义虚拟存储池。
+所有Astra Trident后端均可使用虚拟池。您可以使用Astra Trident提供的任何驱动程序为任何后端定义虚拟池。
 
-通过虚拟存储池，管理员可以在后端创建一个抽象级别，并可通过存储类进行引用，从而提高卷在后端的灵活性和效率。可以使用相同的服务类定义不同的后端。此外，可以在同一后端创建多个存储池，但其特征不同。如果为存储类配置了具有特定标签的选择器，则 Astra Trident 会选择与所有选择器标签匹配的后端来放置卷。如果存储类选择器标签与多个存储池匹配，则 Astra Trident 将选择其中一个存储池来配置卷。
-
-
-
-== 虚拟存储池设计
-
-创建后端时，通常可以指定一组参数。管理员无法使用相同的存储凭据和一组不同的参数创建另一个后端。随着虚拟存储池的推出，此问题描述得以缓解。虚拟存储池是在后端和 Kubernetes 存储类之间引入的级别抽象，因此管理员可以定义参数以及标签，这些参数和标签可以通过 Kubernetes 存储类作为选择器进行引用，并且与后端无关。可以使用 Astra Trident 为所有受支持的 NetApp 后端定义虚拟存储池。该列表包括 SolidFire/NetApp HCI ， ONTAP ， GCP 上的 Cloud Volumes Service 以及 Azure NetApp Files 。
+通过虚拟池、管理员可以在后端创建一个抽象级别、并可通过存储类进行引用、从而提高卷在后端的灵活性和效率。可以使用相同的服务类定义不同的后端。此外、可以在同一后端创建多个存储池、但其特征不同。如果为存储类配置了具有特定标签的选择器，则 Astra Trident 会选择与所有选择器标签匹配的后端来放置卷。如果存储类选择器标签与多个存储池匹配、则Astra Trident将选择其中一个存储池来配置卷。
 
 
-NOTE: 定义虚拟存储池时，建议不要尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。
+
+== 虚拟池设计
+
+创建后端时，通常可以指定一组参数。管理员无法使用相同的存储凭据和一组不同的参数创建另一个后端。随着虚拟池的推出、此问题描述 得以缓解。虚拟池是在后端和Kubernetes存储类之间引入的级别抽象、因此管理员可以定义参数以及标签、这些参数和标签可以通过Kubernetes存储类作为选择器进行引用、并且与后端无关。可以使用Astra Trident为所有受支持的NetApp后端定义虚拟池。该列表包括 SolidFire/NetApp HCI ， ONTAP ， GCP 上的 Cloud Volumes Service 以及 Azure NetApp Files 。
+
+
+NOTE: 定义虚拟池时、建议不要尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。
 
 
 
 === 模拟不同的服务级别/QoS
 
-可以设计虚拟存储池来模拟服务类。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。为 ANF 后端配置多个标签，以表示不同的性能级别。将 `servicelevel` Aspect 设置为适当的性能级别，并在每个标签下添加其他所需的内容。现在，创建可映射到不同虚拟存储池的不同 Kubernetes 存储类。使用 `parameters.selector` 字段，每个 StorageClass 都会调用可用于托管卷的虚拟池。
+可以为模拟服务类设计虚拟池。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。为 ANF 后端配置多个标签，以表示不同的性能级别。设置 `servicelevel` 添加适当的性能级别、并在每个标签下添加其他所需的方面。现在、创建可映射到不同虚拟池的不同Kubernetes存储类。使用 `parameters.selector` 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。
 
 
 
 === 分配特定的方面
 
-可以从一个存储后端设计具有一组特定方面的多个虚拟存储池。为此，请为后端配置多个标签，并在每个标签下设置所需的方面。现在，使用 `parameters.selector` 字段创建不同的 Kubernetes 存储类，该字段将映射到不同的虚拟存储池。在后端配置的卷将在选定的虚拟存储池中定义相关方面。
+可以从一个存储后端设计具有一组特定方面的多个虚拟池。为此，请为后端配置多个标签，并在每个标签下设置所需的方面。现在、使用创建不同的Kubernetes存储类 `parameters.selector` 要映射到不同虚拟池的字段。在后端配置的卷将在选定虚拟池中定义相关方面。
 
 
 
 === 影响存储配置的 PVC 特征
 
-创建 PVC 时，请求的存储类以外的某些参数可能会影响 Astra Trident 的配置决策过程。
+在创建PVC时、请求的存储类以外的某些参数可能会影响Astra Trident配置决策过程。
 
 
 

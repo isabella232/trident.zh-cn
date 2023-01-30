@@ -12,7 +12,7 @@ summary: '您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安�
 
 
 [role="lead"]
-您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安装。
+您可以使用轻松升级现有的Astra Trident安装 `tridentctl`。
 
 
 

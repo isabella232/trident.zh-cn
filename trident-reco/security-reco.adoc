@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-reco/security-reco.html 
-keywords: security, chap, trident, namespace, nve, nae, encryption, volume encryption, aggregate encryption, luks, linux unified key setup, encryption 
+keywords: security, chap, trident, namespace, nve, nae, encryption, volume encryption, aggregate encryption 
 summary: 使用此处列出的建议确保您的 Astra Trident 安装安全。 
 ---
 = 安全性
@@ -70,85 +70,4 @@ NetApp ONTAP 提供空闲数据加密、可在磁盘被盗、退回或重新利�
 
 * link:../trident-use/ontap-san-examples.html["ONTAP SAN配置选项"]
 * link:../trident-use/ontap-nas-examples.html["ONTAP NAS配置选项"]
-
-
-
-
-== 使用Linux统一密钥设置(Unified Key Setup、LUKS)启用每个卷的主机端加密
-
-您可以启用Linux统一密钥设置(LUKS)来对Astra Trident上的ONTAP SAN和ONTAP SAN经济卷进行加密。在Astra Trident中、LUKS加密的卷会按照建议使用AES-XTS-plain64 Cypher和模式 link:https://csrc.nist.gov/publications/detail/sp/800-38e/final["NIST"^]。
-
-有关ONTAP SAN的后端配置选项的详细信息、请参见 link:../trident-use/ontap-san-examples.html["ONTAP SAN配置选项"]
-
-.开始之前
-* 工作节点必须安装Cryptsetup 2.1或更高版本。有关详细信息，请访问 link:https://gitlab.com/cryptsetup/cryptsetup["Gitlab：密码设置"^]。
-* 出于性能原因、我们建议员工节点支持高级加密标准新指令(AES-NI)。要验证AES-NI支持、请运行以下命令：
-+
-[listing]
-----
-grep "aes" /proc/cpuinfo
-----
-+
-如果未返回任何内容、则您的处理器不支持AES-NI。有关AES-NI的详细信息、请访问： link:https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html["Intel：高级加密标准说明(AES-NI)"^]。
-
-
-
-.步骤
-. 在后端配置中定义LUKS加密属性。
-+
-[listing]
-----
-"storage": [
-    {
-        "labels":{"luks": "true"},
-        "zone":"us_east_1a",
-        "defaults": {
-            "luksEncryption": "true"
-        }
-    },
-    {
-        "labels":{"luks": "false"},
-        "zone":"us_east_1a",
-        "defaults": {
-            "luksEncryption": "false"
-        }
-    },
-]
-----
-. 使用 ... `parameters.selector` 使用LUKS加密定义存储池。例如：
-+
-[listing]
-----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: luks
-provisioner: netapp.io/trident
-parameters:
-  selector: "luks=true"
-  csi.storage.k8s.io/node-stage-secret-name: luks-${pvc.name}
-  csi.storage.k8s.io/node-stage-secret-namespace: ${pvc.namespace}
-----
-. 创建包含LUKS密码短语的密码短语。例如：
-+
-[listing]
-----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: luks-pvc1
-stringData:
-  luks-passphrase-name: B
-  luks-passphrase: secretB
-  previous-luks-passphrase-name: A
-  previous-luks-passphrase: secretA
-----
-
-
-
-
-=== 限制
-
-* LUKS加密卷将无法利用ONTAP 重复数据删除和数据压缩功能。
-* 目前不支持LUKS密码短语轮换。要更改密码短语、请手动将数据从一个PVC复制到另一个PVC。
 

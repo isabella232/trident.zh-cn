@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: trident-get-started/kubernetes-customize-deploy-tridentctl.html 
-keywords: deploy, astra trident, methods, operator, tridentctl, helm, attributes, customize, tridentorchestrator 
+keywords: deploy, astra trident, methods, operator, tridentctl, helm, attributes, customize 
 summary: 您可以使用Astra Trident安装程序自定义部署。 
 ---
-= 自定义 tridentctl 部署
+= 自定义tridentctl安装
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,7 +12,7 @@ summary: 您可以使用Astra Trident安装程序自定义部署。
 
 
 [role="lead"]
-您可以使用Astra Trident安装程序自定义部署。
+您可以使用Astra Trident安装程序自定义安装。
 
 
 

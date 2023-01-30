@@ -12,7 +12,7 @@ summary: 部署 Astra Trident 后，您可以继续创建后端，创建存储�
 
 
 [role="lead"]
-部署 Astra Trident 后，您可以继续创建后端，创建存储类，配置卷以及将卷挂载到 Pod 中。
+安装Astra Trident后、您可以继续创建后端、创建存储类、配置卷以及将卷挂载到Pod中。
 
 
 

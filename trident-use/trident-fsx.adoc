@@ -11,53 +11,42 @@ summary: 通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合
 :imagesdir: ../media/
 
 
-https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["适用于 NetApp ONTAP 的 Amazon FSX"^]是一种完全受管的 AWS 服务，支持客户启动和运行由 NetApp 的 ONTAP 存储操作系统提供支持的文件系统。Amazon FSX for NetApp ONTAP 支持您利用您熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX 支持 ONTAP 的许多文件系统功能和管理 API 。
+[role="lead"]
+https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["适用于 NetApp ONTAP 的 Amazon FSX"^] 是一种完全托管的AWS服务、可使客户启动和运行由NetApp ONTAP 存储操作系统提供支持的文件系统。借助适用于ONTAP 的FSx、您可以利用您熟悉的NetApp功能、性能和管理功能、同时利用在AWS上存储数据的简便性、灵活性、安全性和可扩展性。FSX for ONTAP 支持ONTAP 文件系统功能和管理API。
 
 文件系统是 Amazon FSX 中的主要资源，类似于内部部署的 ONTAP 集群。在每个 SVM 中，您可以创建一个或多个卷，这些卷是将文件和文件夹存储在文件系统中的数据容器。借助适用于 NetApp ONTAP 的 Amazon FSX ， Data ONTAP 将作为云中的托管文件系统提供。新的文件系统类型称为 * NetApp ONTAP * 。
 
 通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 备份的块和文件永久性卷。
 
-[WARNING]
-.创建适用于 ONTAP 的 Amazon FSX 文件系统
-====
-Trident 无法删除在启用了自动备份的 Amazon FSx 文件系统上创建的卷。要删除 PVC ，您需要手动删除 PV 和 ONTAP 的 FSX 卷。
+适用于 NetApp ONTAP 的 Amazon FSX 使用 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mgng-stor-tier-fp/GUID-5A78F93F-7539-4840-AB0B-4A6E3252CF84.html["FabricPool"^] 以管理存储层。通过它，您可以根据数据是否经常访问来将数据存储在层中。
 
-要防止此问题描述 ，请执行以下操作：
 
-* 请勿使用 "* 快速创建 "* 来创建适用于 ONTAP 的 FSX 文件系统。快速创建工作流可启用自动备份，但不提供选择退出选项。
-* 使用 "** 标准创建 " 时，禁用自动备份。禁用自动备份可以使 Trident 成功删除卷，而无需进一步手动干预。
+
+== 注意事项
+
+* SMB卷：
++
+** SMB卷支持使用 `ontap-nas` 仅限驱动程序。
+** Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+** Astra Trident不支持Windows ARM 架构。
+
+
+* Trident无法删除在启用了自动备份的Amazon FSX文件系统上创建的卷。要删除 PVC ，您需要手动删除 PV 和 ONTAP 的 FSX 卷。要防止此问题描述 ，请执行以下操作：
++
+** 请勿使用 "* 快速创建 "* 来创建适用于 ONTAP 的 FSX 文件系统。快速创建工作流可启用自动备份，但不提供选择退出选项。
+** 使用 "** 标准创建 " 时，禁用自动备份。禁用自动备份可以使 Trident 成功删除卷，而无需进一步手动干预。
 +
 image:screenshot-fsx-backup-disable.png["AWS 控制台禁用自动备份的屏幕截图。"]
 
 
 
-====
-
-
-== 了解 Astra Trident
-
-如果您是 Astra Trident 的新用户，请使用下面提供的链接进行熟悉：
-
-* link:../faq.html["常见问题解答"]
-* link:../trident-get-started/requirements.html["使用 Astra Trident 的要求"]
-* link:../trident-get-started/kubernetes-deploy.html["部署 Astra Trident"]
-* link:../trident-reco/storage-config-best-practices.html["配置适用于 NetApp ONTAP 的 ONTAP ， Cloud Volumes ONTAP 和 Amazon FSX 的最佳实践"]
-* link:../trident-reco/integrate-trident.html#ontap["集成 Astra Trident"]
-* link:ontap-san.html["ONTAP SAN 后端配置"]
-* link:ontap-nas.html["ONTAP NAS 后端配置"]
-
-
-详细了解驱动程序功能 link:../trident-concepts/ontap-drivers.html["此处"]。
-
-适用于 NetApp ONTAP 的 Amazon FSX 使用 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mgng-stor-tier-fp/GUID-5A78F93F-7539-4840-AB0B-4A6E3252CF84.html["FabricPool"^] 以管理存储层。通过它，您可以根据数据是否经常访问来将数据存储在层中。
-
-Astra Trident应以`vsadmin` SVM用户或具有相同角色的其他名称的用户的身份运行。适用于NetApp ONTAP 的Amazon FSX具有一个`fsxadmin`用户、该用户是ONTAP `admin` cluster用户的有限替代。建议不要在Trident中使用`fsxadmin`用户、因为`vsadmin` SVM用户可以访问更多Astra Trident功能。
 
 
 
-=== 驱动程序
 
-您可以使用以下驱动程序将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 集成：
+== 驱动程序
+
+您可以使用以下驱动程序将Astra Trident与适用于NetApp ONTAP 的Amazon FSx集成：
 
 * `ontap-san` ：配置的每个 PV 都是其自己的 Amazon FSX for NetApp ONTAP 卷中的一个 LUN 。
 * `ontap-san-economi` ：为 NetApp ONTAP 卷配置的每个 PV 都是一个 LUN ，每个 Amazon FSX 具有可配置的 LUN 数量。
@@ -66,94 +55,29 @@ Astra Trident应以`vsadmin` SVM用户或具有相同角色的其他名称的用
 * `ontap-nas-flexgroup` ：配置的每个 PV 都是适用于 NetApp ONTAP FlexGroup 卷的完整 Amazon FSX 。
 
 
+有关驱动程序详细信息、请参见 link:../trident-concepts/ontap-drivers.html["ONTAP 驱动程序"]。
 
 
-=== 身份验证
 
-Astra Trident 提供两种身份验证模式：
+== 身份验证
+
+Astra Trident提供两种身份验证模式。
 
 * 基于证书： Astra Trident 将使用 SVM 上安装的证书与 FSX 文件系统上的 SVM 进行通信。
 * 基于凭据：您可以使用文件系统的 `fsxadmin` 用户或为 SVM 配置的 `vsadmin` 用户。
 +
 
-WARNING: 我们强烈建议使用`vsadmin` user而非`fsxadmin`来配置后端。Astra Trident 将使用此用户名和密码与 FSX 文件系统进行通信。
+WARNING: Astra Trident应作为运行 `vsadmin` SVM用户或具有相同角色的其他名称的用户。适用于NetApp ONTAP 的Amazon FSX具有 `fsxadmin` 有限更换ONTAP 的用户 `admin` 集群用户。我们强烈建议使用 `vsadmin` 使用Astra Trident。
 
 
 
-您可以更新现有后端、以便在基于凭据的方法和基于证书的方法之间移动。但是、一次仅支持一种身份验证方法。要切换到其他身份验证方法、必须从后端配置中删除现有方法。
+您可以更新后端以在基于凭据的方法和基于证书的方法之间移动。但是、如果您尝试提供*凭据和证书*、则后端创建将失败。要切换到其他身份验证方法、必须从后端配置中删除现有方法。
 
+有关启用身份验证的详细信息、请参阅适用于您的驱动程序类型的身份验证：
 
-WARNING: 如果您尝试同时提供*凭据和证书*、则后端创建将失败、并显示一条错误、指出配置文件中提供了多种身份验证方法。
+* link:ontap-nas-prep.html["ONTAP NAS身份验证"]
+* link:ontap-san-prep.html["ONTAP SAN身份验证"]
 
-要了解有关身份验证的详细信息，请参见以下链接：
-
-* link:ontap-nas-prep.html["ONTAP NAS"]
-* link:ontap-san-prep.html["ONTAP SAN"]
-
-
-
-
-== 使用适用于 NetApp ONTAP 的 Amazon FSX 在 EKS 上部署和配置 Astra Trident
-
-.您需要的内容
-* 已安装 `kubectl` 的现有 Amazon EKS 集群或自管理 Kubernetes 集群。
-* 可从集群的工作节点访问的适用于 NetApp ONTAP 文件系统和 Storage Virtual Machine （ SVM ）的现有 Amazon FSX 。
-* 为准备工作的工作节点 link:worker-node-prep.html["NFS 和 / 或 iSCSI"]。
-+
-
-NOTE: 确保按照 Amazon Linux 和 Ubuntu 所需的节点准备步骤进行操作 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html["Amazon Machine 映像"^] （ AMIS ），具体取决于您的 EKS AMI 类型。
-
-
-
-有关其他 Astra Trident 要求，请参见 link:../trident-get-started/requirements.html["此处"]。
-
-.步骤
-. 使用其中一种部署Astra Trident link:../trident-get-started/kubernetes-deploy.html["部署方法"]。
-. 按照以下步骤配置 Astra Trident ：
-+
-.. 收集 SVM 的管理 LIF DNS 名称。例如，通过使用 AWS 命令行界面，在运行以下命令后，在 `Endpoints` -> `Management` 下找到 `DNSName` 条目：
-+
-[listing]
-----
-aws fsx describe-storage-virtual-machines --region <file system region>
-----
-
-
-. 创建并安装用于身份验证的证书。如果您使用的是 `ontap-san` 后端，请参见 link:ontap-san.html["此处"]。如果您使用的是 `ontap-nas` 后端，请参见 link:ontap-nas.html["此处"]。
-+
-
-NOTE: 您可以从可以访问文件系统的任何位置使用 SSH 登录到文件系统（例如，安装证书）。使用 `fsxadmin` 用户，创建文件系统时配置的密码以及 `AWS FSx describe 文件系统` 中的管理 DNS 名称。
-
-. 使用您的证书和管理 LIF 的 DNS 名称创建后端文件，如以下示例所示：
-+
-[listing]
-----
-{
-  "version": 1,
-  "storageDriverName": "ontap-san",
-  "backendName": "customBackendName",
-  "managementLIF": "svm-XXXXXXXXXXXXXXXXX.fs-XXXXXXXXXXXXXXXXX.fsx.us-east-2.aws.internal",
-  "svm": "svm01",
-  "clientCertificate": "ZXR0ZXJwYXB...ICMgJ3BhcGVyc2",
-  "clientPrivateKey": "vciwKIyAgZG...0cnksIGRlc2NyaX",
-  "trustedCACertificate": "zcyBbaG...b3Igb3duIGNsYXNz",
- }
-----
-
-
-有关创建后端的信息，请参见以下链接：
-
-* link:ontap-nas.html["使用 ONTAP NAS 驱动程序配置后端"]
-* link:ontap-san.html["使用 ONTAP SAN 驱动程序配置后端"]
-
-
-
-NOTE: 请勿为 `ontap-san` 和 `ontap-san-economy-` 驱动程序指定 `dataLIF` ，以允许 Astra Trident 使用多路径。
-
-
-WARNING: `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。
-
-部署完成后，执行以下步骤以创建 link:../trident-get-started/kubernetes-postdeployment.html["存储类，配置卷以及将卷挂载到 Pod 中"]。
 
 
 

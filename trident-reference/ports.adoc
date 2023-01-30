@@ -12,7 +12,11 @@ summary: 详细了解 Astra Trident 所通过的端口。
 
 
 [role="lead"]
-详细了解 Astra Trident 所通过的端口。
+详细了解Astra Trident用于通信的端口。
+
+
+
+== Astra Trident 端口
 
 Astra Trident 通过以下端口进行通信：
 
@@ -33,4 +37,4 @@ Astra Trident 通过以下端口进行通信：
 | 17546 | Trident demonset Pod 使用的活动性 / 就绪性探测端口 
 |===
 
-NOTE: 可以在安装期间使用 ` -probe-port` 标志更改活跃度 / 就绪性探测端口。请务必确保此端口未被工作节点上的其他进程使用。
+NOTE: 在安装期间、可以使用更改活跃度/就绪性探测端口 `--probe-port` 标志。请务必确保此端口未被工作节点上的其他进程使用。

@@ -34,7 +34,7 @@ docker --version
 
 
 | NFS  a| 
-RHEL/CentOS 7.
+RHEL 8+
  a| 
 `sudo yum install -y nfs-utils`
 
@@ -48,7 +48,7 @@ Ubuntu
 
 
 | iSCSI  a| 
-RHEL/CentOS 7.
+RHEL 8+
  a| 
 . 安装以下系统软件包：
 +

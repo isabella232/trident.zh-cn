@@ -148,7 +148,7 @@ image::SM1.PNG[显示了 SnapMirror 卷复制设置。]
 . 将与 Kubernetes 集群相关的所有必需证书复制到 ` /etc/Kubernetes /PKI` 下，并将 etcd `mMember` files 复制到 ` /var/lib/etcd` 下。
 . 通过运行 `kubeadm init` 命令和 ` -ignore-prefly-errors=DirAvailable-var-lib/etcd` 标志来创建 Kubernetes 集群。主机名应与源 Kubernetes 集群相同。
 . 运行 `kubectl get crd` 命令以验证所有 Trident 自定义资源是否均已启动并检索 Trident 对象，以确保所有数据均可用。
-. 清理先前的后端并在 Trident 上创建新的后端。指定目标 SVM 的新管理和数据 LIF ，新 SVM 名称和密码。
+. 清理先前的后端并在 Trident 上创建新的后端。指定目标SVM的新管理LIF、新SVM名称和密码。
 
 
 
