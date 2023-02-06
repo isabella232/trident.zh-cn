@@ -75,24 +75,24 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。 | " （默认情况下不强制实施） 
 
 
-| " （默认情况下不强制实施） | `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 
+| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 | " （默认情况下不强制实施） 
 
 
-| " （默认情况下不强制实施） | `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 
+| `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 | 100 
 
 
-| 100 | `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用 `debugTraceFlags` 除非您正在进行故障排除并需要详细的日志转储。 
+| `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用 `debugTraceFlags` 除非您正在进行故障排除并需要详细的日志转储。 | 空 
 
 
-| 空 | `nfsMountOptions` | NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。 
+| `nfsMountOptions` | NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。 | " 
 
 
-| " | `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 
+| `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | 200 
 
 
-| 200 | `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
+| `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
 `useREST` 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时 `true`、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问 `ontap` 应用程序。这一点可通过预定义来满足 `vsadmin` 和 `cluster-admin` 角色。
-`useREST` MetroCluster 不支持。 
+`useREST` MetroCluster 不支持。 | false 
 |===
 
 
@@ -142,12 +142,6 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 
 
 | `snapshotDir` | 控制 ` .snapshot` 目录的可见性 | false 
-
-
-| `snapshotDir` | 控制 ` .snapshot` 目录的可见性 | false 
-
-
-| `exportPolicy` | 要使用的导出策略 | default 
 
 
 | `exportPolicy` | 要使用的导出策略 | default 
