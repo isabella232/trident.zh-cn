@@ -1462,7 +1462,6 @@
   <block id="f703d18584e163e18762e4dc13ad96a0" category="cell">`useREST`</block>
   <block id="73e65f4bf1c67cf81e3531ab80adee7e" category="paragraph">在这两种情况下，仍可访问卷附件。未来的卷附件将使用更新后的 igroup 。此更新不会中断对后端卷的访问。</block>
   <block id="193a49bcfb561fea878daa5efe72cad9" category="section-title">用于配置卷的后端配置选项</block>
-  <block id="4b162a795c1916b18df8b6a76a8fef49" category="paragraph">您可以在配置的特殊部分中使用这些选项来控制默认配置每个卷的方式。有关示例，请参见以下配置示例。</block>
   <block id="a0ee23c5b4cbd6a28a4143933891f927" category="cell">`spaceAllocation`</block>
   <block id="26161d08a960162cd8633d0e23058aed" category="cell">LUN 的空间分配</block>
   <block id="3be488c6a2bc52ceb7e8685ca24927d7" category="cell">true</block>
@@ -2638,7 +2637,6 @@
   <block id="ee3d8ea22d8bf88f2f7fcd6d6dbf26d2" category="paragraph">指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外、POD自动扩展功能也需要使用此功能、许多组织会将来自指标服务的数据用于其成本分摊和/或成本分摊应用程序。</block>
   <block id="5e5cb863d5fe17c205c3d2201a1a2235" category="paragraph">Astra Trident 作为 Pod 部署在 Kubernetes 集群中，并为您的 Kubernetes 工作负载提供动态存储编排服务。它可以让您的容器化应用程序快速轻松地使用NetApp广泛产品组合中的永久性存储、这些产品组合包括ONTAP (AFF/FAS/Select/Cloud/Amazon FSX for NetApp ONTAP)、Element软件(NetApp HCI/SolidFire)以及Azure NetApp Files 服务以及Google Cloud上的Cloud Volumes Service。</block>
   <block id="f21f22dde0e0692333a7a28cce456b08" category="sidebar">所有Astra文档</block>
-  <block id="271eadf9144a35af6e28eb2db28db36c" category="summary">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。有关升级到Astra Trident 22.10的关键信息、请阅读发行说明</block>
   <block id="06d5b814514e67e2a36b491b2493aed1" category="paragraph">使用此处列出的建议确保Astra Trident安装安全。</block>
   <block id="252ee40ccbd23adc008945e85af83513" category="section-title">将Astra Trident与NVE和NAE结合使用</block>
   <block id="676ad90ce2543d29917d8a5a6fc02e01" category="inline-link-macro">ONTAP NAS配置选项</block>
@@ -3564,4 +3562,5 @@
   <block id="58834b137fd6fa7a9ca23468a5c91fd6" category="sidebar">准备配置</block>
   <block id="6fc0b7515ecca271c88eae4a685da613" category="sidebar">NetApp HCI 或SolidFire</block>
   <block id="60be48bb4b3314965bf50e88e7ae728c" category="sidebar">集成适用于ONTAP 的Amazon FSX</block>
+  <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="sidebar">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
 </blocks>
