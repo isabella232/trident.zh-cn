@@ -2559,7 +2559,6 @@
   <block id="9337cac2cd1105449cd4e78ff2a353a4" category="cell">"K8s.gcr.io/SIG-storage (K8s 1.19+)或quay.io/k8scsi "</block>
   <block id="702fa57eedc6ee8490a7294016f8b14f" category="list-text">`trident资源库ota.yaml`</block>
   <block id="6b51834314ece904405eb0ce1a6e6bd8" category="list-text">NetApp HCI/ Element软件11或更高版本</block>
-  <block id="6ebf7ae9dffc55cf86792ea266344b3a" category="list-text">Ubuntu 18.04或更高版本(最新版本22.04)</block>
   <block id="468bc1e7f7712a8dc9b91d063523cdff" category="cell">v1.24.0</block>
   <block id="05759468b045fc55d22e8e6881dca01f" category="paragraph">*</block>
   <block id="a885c202ff7951e3ed11491edbe869b2" category="inline-link-macro">GitHub问题描述 700</block>
@@ -3563,4 +3562,5 @@
   <block id="6fc0b7515ecca271c88eae4a685da613" category="sidebar">NetApp HCI 或SolidFire</block>
   <block id="60be48bb4b3314965bf50e88e7ae728c" category="sidebar">集成适用于ONTAP 的Amazon FSX</block>
   <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="sidebar">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
+  <block id="784060ce5e49eff75eaca62337b5ff53" category="list-text">Ubuntu 22.04或更高版本</block>
 </blocks>
