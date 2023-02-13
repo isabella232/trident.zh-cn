@@ -2975,7 +2975,6 @@
   <block id="f888aa18c19e41f8c1263fa99ca8b94c" category="cell">solidfire-san、ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、ontap-san-economy.</block>
   <block id="a64f78ea5d42780118e8f5c7f6cfdcbb" category="list-text"><block ref="a64f78ea5d42780118e8f5c7f6cfdcbb" category="inline-link-macro-rx"></block></block>
   <block id="65a38da8aec2b99cf44dbf919fbd6991" category="list-text"><block ref="65a38da8aec2b99cf44dbf919fbd6991" category="inline-link-macro-rx"></block></block>
-  <block id="5e91194ed6174e8f5eb09a2fffc13dad" category="admonition">客户必须使用<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 适用于需要数据保护、灾难恢复和移动性的生产工作负载的驱动程序。Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序。。<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 驱动程序仅适用于预期卷使用量远高于ONTAP 支持的有限使用情形、并且没有预期的数据保护、灾难恢复或移动性(在Kubernetes集群之间移动卷)要求。</block>
   <block id="05a2712653dfbf7d695c18242d9848e6" category="paragraph">RHEL 8+</block>
   <block id="bba4e1b8d8614fe9da2d67e2dcef4b52" category="paragraph"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block>，<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block></block>
   <block id="c95cada2a569592345ebc18e5ef4c7aa" category="paragraph">协议 LIF 的 IP 地址。</block>
@@ -3563,4 +3562,10 @@
   <block id="60be48bb4b3314965bf50e88e7ae728c" category="sidebar">集成适用于ONTAP 的Amazon FSX</block>
   <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="sidebar">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
   <block id="784060ce5e49eff75eaca62337b5ff53" category="list-text">Ubuntu 22.04或更高版本</block>
+  <block id="e267c2490c7d73d0ffa909b77267cfaf" category="inline-link-macro">Astra Control复制前提条件</block>
+  <block id="9814801b0db6e324ebd72f671418de64" category="paragraph">Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷)<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，和<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。请参见 <block ref="dfc981ac97be73172a3119f3b831eaf8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="783c2760a502e1f1537de458c9dceb7a" category="list-text">您必须使用<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 适用于需要数据保护、灾难恢复和移动性的生产工作负载。</block>
+  <block id="a743248a7032cdf1d468935cf180bdee" category="list-text">使用 ...<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 预期的卷使用量应远远高于ONTAP 支持的容量。</block>
+  <block id="0655cc918eb576b740cfd35bbff9c8ac" category="list-text">使用 ...<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 仅当预期的卷使用量应远高于ONTAP 支持的容量时、以及<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 无法使用驱动程序。</block>
+  <block id="df7dec428425115b59101028bbebe58c" category="list-text">请勿使用<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 预测数据保护、灾难恢复或移动性的需求。</block>
 </blocks>
