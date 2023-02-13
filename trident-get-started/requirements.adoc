@@ -53,6 +53,9 @@ Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。
 
 
+WARNING: 在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本之前、请参见 link:../trident-managing-k8s/upgrade-operator.html#upgrade-a-helm-based-operator-installation["升级基于 Helm 的操作员安装"]。
+
+
 
 == 支持的后端（存储）
 

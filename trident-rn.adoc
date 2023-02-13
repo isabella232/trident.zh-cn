@@ -328,6 +328,7 @@ WARNING: v21.10.0 版本具有一个问题描述，在删除节点并将其重�
 
 已知问题用于确定可能会阻止您成功使用本产品的问题。
 
+* 将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本时、必须将values.yaml更新为set `excludePodSecurityPolicy` to `true` 或添加 `--set excludePodSecurityPolicy=true` 到 `helm upgrade` 命令。
 * 对于在其 StorageClass 中未指定 `FSType` 的卷， Astra Trident 现在会强制使用空的 `FSType` （`FSTtype=""` ）。使用 Kubernetes 1.17 或更高版本时， Trident 支持为 NFS 卷提供一个空的 `FSType` 。对于 iSCSI 卷，在使用安全上下文强制执行 `fsGroup` 时，您需要在 StorageClass 上设置 `FSType` 。
 * 在多个 Astra Trident 实例之间使用后端时，每个后端配置文件对于 ONTAP 后端应具有不同的 `storagePrefix` 值，或者对于 SolidFire 后端使用不同的 `租户名称` 。Astra Trident 无法检测其他 Astra Trident 实例创建的卷。尝试在 ONTAP 或 SolidFire 后端创建现有卷会成功，因为 Astra Trident 会将卷创建视为一项幂等操作。如果 `storagePrefix` 或 `租户名称` 不存在差异，则在同一后端创建的卷可能会发生名称冲突。
 * 安装 Astra Trident （使用 `tridentctl` 或 Trident 操作员）并使用 `tridentctl` 管理 Astra Trident 时，应确保设置 `KUBECONFIG` 环境变量。这是 `需要对` tridentctl 进行处理的 Kubernetes 集群进行指示的。在使用多个 Kubernetes 环境时，您应确保准确获取 `KUBECONFIG` 文件。
