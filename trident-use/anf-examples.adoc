@@ -371,7 +371,7 @@ parameters:
 ----
 ====
 
-NOTE: `nasType: "smb"` 支持SMB卷的池的筛选器。 `nasType: "nfs"`` 或 `nasType: "null"` NFS池的筛选器。
+NOTE: `nasType: `smb` 支持SMB卷的池的筛选器。 `nasType: `nfs` 或 `nasType: `null` NFS池的筛选器。
 
 
 

@@ -1482,7 +1482,6 @@
   <block id="b091cbafedf94db98f17823d044434bd" category="cell">`加密`</block>
   <block id="a463baaf6666da7178b6fc6a3c8a3fee" category="cell">`securityStyle`</block>
   <block id="41da49bdd3fd88b2ddc6be7d6df1b335" category="cell">新卷的安全模式</block>
-  <block id="4cda9f87625c6278fae1a50fcbbf96d3" category="cell">"unix"</block>
   <block id="31aa018945eb62580d68d360cba8ba54" category="cell">`分层策略`</block>
   <block id="592a5879ac095ef6ca504cc43a9d7939" category="cell">使用 " 无 " 的分层策略</block>
   <block id="ee6508d5290be6edafccc6e0f471f120" category="cell">适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 "</block>
@@ -2118,8 +2117,6 @@
   <block id="525eba0ced0a1c122a9112c4d10fbdc2" category="paragraph">用于访问 ` .snapshot` 目录的 NAS 选项，默认为 "false"</block>
   <block id="b60dd25e9d373b87424c30a74da2703f" category="paragraph">要使用的 NFS 导出策略的 NAS 选项，默认为 " 默认 "</block>
   <block id="c21f969b5f03d33d43e04f8f136e7682" category="paragraph">default</block>
-  <block id="af6bd5b29a0589f7c6a47f47fae230c7" category="paragraph">用于访问已配置 NFS 卷的 NAS 选项，默认为 "UNIX"</block>
-  <block id="1d770934d44de09b0d24f04fd01708ba" category="paragraph">混合</block>
   <block id="79c6531f572824f3178c8b1fb0f35d26" category="paragraph">SAN 选项要选择文件系统类型，默认为 "ext4"</block>
   <block id="310201b6353c5f38bc039e0e51b079d3" category="paragraph">XFS</block>
   <block id="3cec6d01b4f10a61939982ecfb47fc7f" category="paragraph">要使用的分层策略，对于 ONTAP 9.5 SVM-DR 之前的配置，默认为 " 无 " ； " 仅快照 "</block>
@@ -2786,7 +2783,6 @@
   <block id="6de60e9a6b0ad8adcd762a8c85d540e2" category="example-title">示例1：默认命名空间上的基本配置</block>
   <block id="1d8d21debc328526252944d2264246ca" category="example-title">示例2：每个命名空间使用不同的密钥</block>
   <block id="06bb6ebc4dada525717294b660ba2b3b" category="example-title">示例3：每个卷使用不同的密钥</block>
-  <block id="9ea7a115be7698c1faf58be7dd1c1525" category="admonition"><block ref="cf9584714c41fff1f543c95add5abfba" prefix="" category="inline-code"></block> 支持SMB卷的池的筛选器。<block ref="c096ee7a39f7b434b6c54679f46d93df" prefix=" " category="inline-code"></block> 或<block ref="132dd1337fc5c16fd006eb7df262223c" prefix=" " category="inline-code"></block> NFS池的筛选器。</block>
   <block id="c51cc3b801a879870aea846bdde1c7a3" category="section-title">创建后端</block>
   <block id="7d8058d93ec1d95c673d83bf303326ff" category="doc">ONTAP NAS配置选项和示例</block>
   <block id="618a7676e411bbfbd9dbdb2411019951" category="summary">您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NAS和SMB卷。</block>
@@ -3410,9 +3406,6 @@
   <block id="7a17b79b33ad0814114d5c433d21f0e8" category="cell">使用共享文件夹Microsoft管理控制台创建的SMB共享的名称。例如"smb-share"。*对于SMB卷为必需项。*</block>
   <block id="595b9128da266e4c0415d8a11362e974" category="cell">"smb-share"</block>
   <block id="3b84c7b88317953423192c633a83db9f" category="cell">*必须设置为<block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix=" " category="inline-code"></block>如果为空、则默认为<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block>。</block>
-  <block id="234b2ef6793060261788750585f4bd97" category="cell">"SMB"</block>
-  <block id="7f3a472f7fd496d171830675e5502926" category="cell">新卷的安全模式。对于SMB卷、*必须设置为"NTFS"。*</block>
-  <block id="70cb79b6185f5d91111d270bd49ff191" category="cell">"NTFS"</block>
   <block id="1928bae58ae496b53ef1a163c3dbeeb4" category="cell">新卷的模式。对于SMB卷、*必须留空。*</block>
   <block id="ded47128219e64b5f24343dab357151b" category="admonition">Astra Trident强制使用空<block ref="7cfbb6f07899c8071ff38e69dca190e2" prefix=" " category="inline-code"></block> 创建的卷。对于iSCSI后端、建议强制实施<block ref="01cd995fd9a843d3ca767e057de28873" prefix=" " category="inline-code"></block> 在StorageClass中。您应删除现有StorageClasses并使用重新创建它们<block ref="01cd995fd9a843d3ca767e057de28873" prefix=" " category="inline-code"></block> 已指定。</block>
   <block id="5b7532a7b48ec4e7b24ef0f5977589de" category="cell">集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。可以指定完全限定域名(FQDN)。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
@@ -3459,7 +3452,6 @@
   <block id="5c8b39f8ec19acb1fddb0b5c021f090d" category="cell">故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用<block ref="effa2d809c72dcb6cce15a1e0b040e63" prefix=" " category="inline-code"></block> 除非您正在进行故障排除并需要详细的日志转储。</block>
   <block id="b660669829d401dc613c20939ed01e6e" category="cell">NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。</block>
   <block id="a2b63939d1ced2a10bc8dec4d3ef2604" category="cell">对于NFS卷为"777"；对于SMB卷为空(不适用)</block>
-  <block id="27bbf9cd851fa8da1709eb40594ee590" category="cell">对于NFS卷、为"UNIX"；对于SMB卷、为"NTFS"</block>
   <block id="97ff13c76d92207c0bae60ad6c586e7e" category="example-title">&lt;code&gt; 中的默认选项tap &lt;/code&gt; 中的默认选项</block>
   <block id="e7a2472a002479764cade728d64dcd9e" category="example-title">基于证书的身份验证</block>
   <block id="30cc3e263c594cde4b2a573283348bb1" category="example-title">自动导出策略</block>
@@ -3498,7 +3490,6 @@
   <block id="8336fb38c3b943161d5d6e73af8f4a12" category="cell">启用LUKS加密。请参见 <block ref="3646c7a69a11bdd94c010bf856bda313" category="inline-link-macro-rx"></block>。仅限SAN。</block>
   <block id="8ba802b52dc84f4e82bfbbf2e2d4a807" category="cell">新卷的模式。*对于SMB卷保留为空。*</block>
   <block id="ce627e1ba8a6bccff2793f66b44012fa" category="cell">""</block>
-  <block id="8c8ef50456e6410120c074d6ee65bdb1" category="cell">新卷的安全模式。</block>
   <block id="88b0b88c998957f004af42563d5e5b40" category="paragraph">使用<block ref="296026821ada2ab8aebcf13547a63df5" prefix=" " category="inline-code"></block>，<block ref="e12fdd044232e643620eed06bf33c7af" prefix=" " category="inline-code"></block>，和<block ref="1ad68a6a046942b7c1666aed825df70a" prefix=" " category="inline-code"></block>、您可以指定SMB卷并提供所需的Active Directory凭据。SMB卷支持使用<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 仅限驱动程序。</block>
   <block id="98e45a92edd75cce26a32a68de45f178" category="summary">后端定义了 Astra Trident 与存储系统之间的关系。它告诉 Astra Trident 如何与该存储系统进行通信，以及 Astra Trident 如何从该存储系统配置卷。</block>
   <block id="a576cff5a76e67426a0051b7e1b93331" category="paragraph">Astra Trident会自动从后端提供符合存储类定义的要求的存储池。了解如何为存储系统配置后端。</block>
@@ -3568,4 +3559,14 @@
   <block id="a743248a7032cdf1d468935cf180bdee" category="list-text">使用 ...<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 预期的卷使用量应远远高于ONTAP 支持的容量。</block>
   <block id="0655cc918eb576b740cfd35bbff9c8ac" category="list-text">使用 ...<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 仅当预期的卷使用量应远高于ONTAP 支持的容量时、以及<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 无法使用驱动程序。</block>
   <block id="df7dec428425115b59101028bbebe58c" category="list-text">请勿使用<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 预测数据保护、灾难恢复或移动性的需求。</block>
+  <block id="f5d176b3de4662ca3603a69ab08bc166" category="paragraph">用于访问已配置NFS卷的NAS选项。</block>
+  <block id="053b422d907cb55ac105c173adde1080" category="paragraph">NFS支持<block ref="1d770934d44de09b0d24f04fd01708ba" prefix=" " category="inline-code"></block> 和<block ref="4913a9178621eadcdf191db17915fbcb" prefix=" " category="inline-code"></block> 安全模式。默认值为<block ref="4913a9178621eadcdf191db17915fbcb" prefix=" " category="inline-code"></block>。</block>
+  <block id="69f25314e2d927ebcaa0f19c9f2a57da" category="paragraph"><block ref="4913a9178621eadcdf191db17915fbcb" prefix="" category="inline-code"></block></block>
+  <block id="2bd69c3354973375e1abed3c9beb1eff" category="cell"><block ref="f777ab485270937cd9b9efc63021484f" prefix="" category="inline-code"></block></block>
+  <block id="767b06b78582b463da02281e05c82e45" category="cell"><block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix="" category="inline-code"></block></block>
+  <block id="11d7f0efe30199fc66cbc43c427e147d" category="cell">新卷的安全模式。*必须设置为<block ref="68e98b83f5bd746f1468dff89f529d1b" prefix=" " category="inline-code"></block> 或<block ref="1d770934d44de09b0d24f04fd01708ba" prefix=" " category="inline-code"></block> 用于SMB卷。*</block>
+  <block id="e76ea7f2be658dc914f9c95fe8d14fcf" category="cell"><block ref="68e98b83f5bd746f1468dff89f529d1b" prefix="" category="inline-code"></block> 或<block ref="1d770934d44de09b0d24f04fd01708ba" prefix=" " category="inline-code"></block> 对于SMB卷</block>
+  <block id="375aa0b790f300787cdecf0f896b97f5" category="cell">新卷的安全模式。NFS支持<block ref="1d770934d44de09b0d24f04fd01708ba" prefix=" " category="inline-code"></block> 和<block ref="4913a9178621eadcdf191db17915fbcb" prefix=" " category="inline-code"></block> 安全模式。SMB支持<block ref="1d770934d44de09b0d24f04fd01708ba" prefix=" " category="inline-code"></block> 和<block ref="68e98b83f5bd746f1468dff89f529d1b" prefix=" " category="inline-code"></block> 安全模式。</block>
+  <block id="4a359bdcdb3ce547581bdea3ce6c5bd7" category="cell">NFS默认值为<block ref="4913a9178621eadcdf191db17915fbcb" prefix=" " category="inline-code"></block>。SMB默认值为<block ref="68e98b83f5bd746f1468dff89f529d1b" prefix=" " category="inline-code"></block>。</block>
+  <block id="15bee4120a83692e1e575f756f0259e2" category="admonition"><block ref="ed48900d86ac476d7fed80ae1701877f" prefix="" category="inline-code"></block> 支持SMB卷的池的筛选器。<block ref="7b2498fa5e66ef102dc531d0bf5c27a4" prefix=" " category="inline-code"></block> 或<block ref="45e1f49760c85197cd1d0fb6ee50f180" prefix=" " category="inline-code"></block> NFS池的筛选器。</block>
 </blocks>

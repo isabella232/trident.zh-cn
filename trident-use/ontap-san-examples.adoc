@@ -152,7 +152,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `luksEncryption` | 启用LUKS加密。请参见 link:../trident-reco/security-luks.html["使用Linux统一密钥设置(LUKS)"]。 | "" 
 
 
-| `securityStyle` | 新卷的安全模式 | "unix" 
+| `securityStyle` | 新卷的安全模式 | `unix` 
 
 
 | `分层策略` | 使用 " 无 " 的分层策略 | 适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 " 

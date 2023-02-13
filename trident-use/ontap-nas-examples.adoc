@@ -141,7 +141,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `exportPolicy` | 要使用的导出策略 | default 
 
 
-| `securityStyle` | 新卷的安全模式 | 对于NFS卷、为"UNIX"；对于SMB卷、为"NTFS" 
+| `securityStyle` | 新卷的安全模式。NFS支持 `mixed` 和 `unix` 安全模式。SMB支持 `mixed` 和 `ntfs` 安全模式。 | NFS默认值为 `unix`。SMB默认值为 `ntfs`。 
 |===
 
 NOTE: 在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享 QoS 策略组，并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。

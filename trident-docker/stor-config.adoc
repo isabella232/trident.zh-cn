@@ -228,9 +228,11 @@ default
 
 
 | `securityStyle`  a| 
-用于访问已配置 NFS 卷的 NAS 选项，默认为 "UNIX"
+用于访问已配置NFS卷的NAS选项。
+
+NFS支持 `mixed` 和 `unix` 安全模式。默认值为 `unix`。
  a| 
-混合
+`unix`
 
 
 

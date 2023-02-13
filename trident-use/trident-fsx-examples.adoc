@@ -171,7 +171,7 @@ NOTE: 如果PVC连接到一个或多个Pod、则必须关闭所有对应Pod、�
 | `unixPermissions` | 新卷的模式。*对于SMB卷保留为空。* | "" 
 
 
-| `securityStyle` | 新卷的安全模式。 | 对于NFS卷、为"UNIX"；对于SMB卷、为"NTFS" 
+| `securityStyle` | 新卷的安全模式。NFS支持 `mixed` 和 `unix` 安全模式。SMB支持 `mixed` 和 `ntfs` 安全模式。 | NFS默认值为 `unix`。SMB默认值为 `ntfs`。 
 |===
 
 

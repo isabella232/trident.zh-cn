@@ -123,13 +123,13 @@ NOTE: 请参见 link:https://docs.netapp.com/us-en/ontap/smb-config/create-share
 | 参数 | Description | 示例 
 
 
-| `smbShare` | 使用共享文件夹Microsoft管理控制台创建的SMB共享的名称。例如"smb-share"。*对于SMB卷为必需项。* | "smb-share" 
+| `smbShare` | 使用共享文件夹Microsoft管理控制台创建的SMB共享的名称。例如"smb-share"。*对于SMB卷为必需项。* | `smb-share` 
 
 
-| `nasType` | *必须设置为 `smb`如果为空、则默认为 `nfs`。 | "SMB" 
+| `nasType` | *必须设置为 `smb`如果为空、则默认为 `nfs`。 | `smb` 
 
 
-| `securityStyle` | 新卷的安全模式。对于SMB卷、*必须设置为"NTFS"。* | "NTFS" 
+| `securityStyle` | 新卷的安全模式。*必须设置为 `ntfs` 或 `mixed` 用于SMB卷。* | `ntfs` 或 `mixed` 对于SMB卷 
 
 
 | `unixPermissions` | 新卷的模式。对于SMB卷、*必须留空。* | "" 
