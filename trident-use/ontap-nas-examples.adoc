@@ -246,7 +246,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ====
 以下示例显示了如何指示Astra Trident使用动态导出策略自动创建和管理导出策略。此操作对于也是如此 `ontap-nas-economy` 和 `ontap-nas-flexgroup` 驱动程序。
 
-.ontap-nas-economy-driver
+.ontap-NAS 驱动程序
 [listing]
 ----
 {

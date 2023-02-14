@@ -3455,7 +3455,6 @@
   <block id="e7a2472a002479764cade728d64dcd9e" category="example-title">基于证书的身份验证</block>
   <block id="30cc3e263c594cde4b2a573283348bb1" category="example-title">自动导出策略</block>
   <block id="41dfe08f09251bf83a4f15ec1a47eebe" category="paragraph">以下示例显示了如何指示Astra Trident使用动态导出策略自动创建和管理导出策略。此操作对于也是如此<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
-  <block id="e3d163236efea4513c9df89a9c1be381" category="listing-title">ontap-nas-economy-driver</block>
   <block id="0491780b1bb26f4feb8296034f975c9e" category="listing-title">&lt;code&gt; &lt;/code&gt; 驱动程序</block>
   <block id="85435c5aae5ecdb04ef9ad8f7d48e88a" category="example-title">使用IPv6地址</block>
   <block id="0275de02c3bba722f4540469d23cc535" category="paragraph">此示例显示了<block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix=" " category="inline-code"></block> 使用IPv6地址。</block>
@@ -3571,4 +3570,5 @@
   <block id="36b8e64fc53799e09b318940d0d01c3b" category="admonition">在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本之前、请参见 <block ref="b78a528fa331707807c1d5b493daab09" category="inline-link-macro-rx"></block>。</block>
   <block id="e69dee79b2104ff7c08b095e6212f492" category="list-text">将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本时、必须将values.yaml更新为set<block ref="94ef2a130a825358ab3002442d6e5145" prefix=" " category="inline-code"></block> to<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 或添加<block ref="96d5d0b9a6e3e01b2ae2ed889f75d22e" prefix=" " category="inline-code"></block> 到<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令。</block>
   <block id="3936420db557853e037e33725ba2e1b4" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="13eee8d0c5cbca0f1ea5bc4275d5bc8d" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
+  <block id="412b252fa44d1a73e3e7bf22113f99a2" category="listing-title">ontap-NAS 驱动程序</block>
 </blocks>
