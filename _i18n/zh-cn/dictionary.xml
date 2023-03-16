@@ -1162,7 +1162,6 @@
   <block id="37bdb0f602c1d2a2a6f285533e4ce5c8" category="paragraph">另一个选项是查看 <block ref="c7dbb75618a5e106a360075f923cb87f" category="inline-link-macro-rx"></block> 由 Kubernetes 提供。</block>
   <block id="2cf0c4e99dd3c0b2e7e0f63af3531622" category="admonition">您不应在生产环境中使用使用这些说明构建的 Kubernetes 集群。使用您的分发版提供的生产部署指南创建可随时投入生产的集群。</block>
   <block id="e3ecede511471cf67c294e427e2f012e" category="paragraph">如果这是您第一次使用 Kubernetes ，请熟悉相关概念和工具 <block ref="22f850f308b2d2016502017a1dcd1044" category="inline-link-macro-rx"></block>。</block>
-  <block id="aa452927f1dec9709a523a0de496d6c5" category="summary">您可以使用 `tridentctl` 来部署 Astra Trident 。</block>
   <block id="b928e0aee19c1e2cc91c85e8a0856936" category="summary">使用此处提供的指针排除安装和使用 Astra Trident 时可能遇到的问题。</block>
   <block id="231cf4c70d866b616c21baddaeed0696" category="doc">故障排除</block>
   <block id="8ef0ab9bbedaa7608c9abed7c7213218" category="admonition">要获得有关 Astra Trident 的帮助，请使用 `tridentctl logs -a -n trident` 创建支持包，并将其发送到 `NetApp 支持 &lt; 获取帮助 &gt;` 。</block>
@@ -3107,9 +3106,7 @@
   <block id="e0755e6cf0a80c2d8535ac3b7eae0b4b" category="section-title">第2步：创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> CRD</block>
   <block id="04bed90b9e7d65b6d7dd48211e0a9f6c" category="paragraph">创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 自定义资源定义(CRD)。您将创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 稍后自定义资源。使用中相应的CRD YAML版本<block ref="91ff3926f7c7983bb4a56689f631e6c9" prefix=" " category="inline-code"></block> 以创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> CRD：</block>
   <block id="ad9aaefb573cd08d43c2b039449b1f0e" category="section-title">第3步：更新操作符中的注册表位置</block>
-  <block id="694dbbe2d19406bc64c44e8f6458ce7a" category="paragraph">在中<block ref="9fa80de5781893b057ff1d535201893b" prefix=" " category="inline-code"></block>、更新<block ref="f9fa807329a3c6418caaaa1874b599f4" prefix=" " category="inline-code"></block> 以反映映像注册表的位置。例如：。</block>
   <block id="7becac85824dceb67af52a0fe0415be5" category="list-text"><block ref="18256f9d9de108b07ce48faa1d8de290" prefix="" category="inline-code"></block> 如果您的映像全部位于一个注册表中。</block>
-  <block id="cd378ec6ef8ecebc3a4659986728ae7e" category="list-text"><block ref="7dcfa8a76be931076dc77a59f6470141" prefix="" category="inline-code"></block> 如果Trident和CSI映像位于不同的注册表中。</block>
   <block id="7e1c8354fb2b2ecb65abfa6a63e08970" category="section-title">第3步：部署Trident操作员</block>
   <block id="bb336dd58b442c31f8bab7909d55dd42" category="paragraph">Trident安装程序在中部署操作员<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> 命名空间。如果<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> 命名空间不存在、请使用<block ref="fd71c571b96c493189b63aa659012e87" prefix=" " category="inline-code"></block> 以创建它。</block>
   <block id="81ba9d708af383a3ede5475fabdd91bf" category="paragraph">在非命名空间中部署操作员<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> 命名空间、更新<block ref="8610cac3beb01fb0b43bc94c587a807d" prefix=" " category="inline-code"></block>，<block ref="a3df76a4fb69b2a5e9ec42d242e90ea3" prefix=" " category="inline-code"></block> 和<block ref="9fa80de5781893b057ff1d535201893b" prefix=" " category="inline-code"></block> 部署操作员之前。</block>
@@ -3118,12 +3115,7 @@
   <block id="e8972e07c1fa789317997dff35db7e78" category="list-text">对于运行Kubernetes 1.24或更低版本的集群、请使用<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block>。</block>
   <block id="a615299877ce0660ab19510814b9dedd" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block>。</block>
   <block id="64458d8f3e4ba02b2bf50e5a1ad00c81" category="list-text">验证是否已部署此操作员。</block>
-  <block id="57847ee4f12e28355134067e1b928b9b" category="section-title">第4步：更新中的映像注册表位置<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block></block>
-  <block id="1f13432df75f47eb32309278571c5983" category="paragraph">Trident和CSI映像可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。更新<block ref="7b4b81fb05ca7f2a09fe73526ac95482" prefix=" " category="inline-code"></block> 根据注册表配置添加其他位置规格。</block>
-  <block id="0ac14b025f53f0b1dc50b2632045e4ce" category="open-title">一个注册表中包含Trident和CSI映像</block>
-  <block id="4ab5d35b32e3d4a3ca86f398bec0e486" category="open-title">不同注册表中的Trident和CSI映像</block>
   <block id="69301f05825d437597b636d8b7e9d918" category="paragraph">您必须附加<block ref="4134d52569bb4a6545ebff1e4c83f2bc" prefix=" " category="inline-code"></block> 到<block ref="990dc1a09e10c7b5378e6bc8a1956cb8" prefix=" " category="inline-code"></block> 使用不同的注册表位置。</block>
-  <block id="fb4fb1e73c66032be5f92dd05f69cff3" category="section-title">第5步：创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 并安装Trident</block>
   <block id="78f538d1739cfd8c70698ec72269da17" category="inline-link-macro">自定义Trident安装</block>
   <block id="60b02b15eaf058a3b9da12633792321f" category="paragraph">现在、您可以创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 并安装Astra Trident。您也可以选择继续操作 <block ref="af79c767b326b6188dbe7366c85a8007" category="inline-link-macro-rx"></block> 使用中的属性<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 规格以下示例显示了Trident和CSI映像位于不同注册表中的安装。</block>
   <block id="9c0f95d6de9186b24cce94c1c19ad0bb" category="section-title">验证安装。</block>
@@ -3140,17 +3132,13 @@
   <block id="9023b4b442239b429817bc22fb401e02" category="summary">您可以使用Helm部署Trident操作员并安装Astra Trident。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像存储在专用注册表中。</block>
   <block id="3e8935de45b1559e2ec2b01c1bbb06c2" category="doc">使用Helm部署Trident操作员(脱机模式)</block>
   <block id="dc0316b52aa2ab6526bdaee13c162530" category="paragraph">您可以使用Helm部署Trident操作员并安装Astra Trident。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像存储在专用注册表中。如果您没有专用映像注册表、请使用 <block ref="2230544d14bc4ba0c61a5a1b2030a1d4" category="inline-link-macro-rx"></block>。</block>
-  <block id="266321104888c2174d7545226d7adc9b" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为您的部署和映像注册表位置指定一个名称、如以下示例所示。在示例中、<block ref="93edfe5491b7772fd10045fef48289e7" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
   <block id="3d289dfc040026f9fd5fd0d307821b6c" category="doc">使用tridentctl进行安装</block>
-  <block id="925c7af7f037e06594c62d6b07e51aa4" category="paragraph">您可以使用安装Astra Trident<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。此过程将在适用场景 中安装Trident和CSI映像<block ref="0b505db73d92bac18356fa3feb3cf7e3" prefix=" " category="inline-code"></block> 和<block ref="95d6355f896a633ab07c528c03b44c8e" prefix=" " category="inline-code"></block> 或私有的镜像注册表。以自定义<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 部署、请参见 <block ref="8e7a26c9800a78fa0b68fb2423ba3fb4" category="inline-link-macro-rx"></block>。</block>
   <block id="61697702c419c08b19643e7defded065" category="section-title">使用安装Astra Trident<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
   <block id="953aeeea088f5f969f2eba121ae81f15" category="paragraph">开始安装之前、请登录到Linux主机并验证它是否正在管理一个正常运行的、 <block ref="ac355729d1ddc95a290738ca862fed08" category="inline-link-macro-rx"></block> 并且您拥有必要的特权。</block>
   <block id="8e00e0acac84eb708bf35882acdffca9" category="paragraph">Astra Trident安装程序包可创建Trident Pod、配置用于保持其状态的CRD对象、并初始化CSI sidecars以执行配置卷以及将卷附加到集群主机等操作。从下载并提取最新版本的Trident安装程序 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。在示例中、使用选定的&lt;trident-installer-XX.XX.X.tar.gz&gt; Trident版本更新_Astra Trident。</block>
   <block id="4fba6bba4e54639c0f1d19c0a5679833" category="section-title">第2步：安装Astra Trident</block>
   <block id="c0e89c01626a7378d795a618051fccbf" category="paragraph">通过执行在所需命名空间中安装Astra Trident<block ref="430bf77bee6c59d385d4194f84c21b16" prefix=" " category="inline-code"></block> 命令：您可以添加其他参数来指定映像注册表位置。</block>
   <block id="53c512e9599c71e1a585d636a5229820" category="open-title">标准模式</block>
-  <block id="8fbc0757e481d43e9851a350de41bf97" category="open-title">一个镜像注册表中的Trident和CSI映像</block>
-  <block id="300ff219aca64776fed1d1675a5011fa" category="open-title">不同镜像注册表中的Trident和CSI映像</block>
   <block id="ca5380881d4e3b38f359d5d05acd6163" category="paragraph">您的安装状态应如下所示。</block>
   <block id="c5e8fc3926c956e64487a70aa036ec8c" category="paragraph">您可以使用POD创建状态或验证安装<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
   <block id="5ba19178fb1b2111306714e923b35945" category="inline-link-macro">打开调试模式</block>
@@ -3571,4 +3559,16 @@
   <block id="412b252fa44d1a73e3e7bf22113f99a2" category="listing-title">ontap-NAS 驱动程序</block>
   <block id="f39486d0f9f7ffc885eca61e8823ea0a" category="inline-link-macro">使用tridentctl进行安装</block>
   <block id="ea71d8757e4d8afc8f6253684f5a7f1c" category="paragraph">如果您的现有部署必须升级、或者您希望对部署进行高度自定义、则应考虑 <block ref="004ed44e395c472642e5a257ee453413" category="inline-link-macro-rx"></block>。这是部署 Astra Trident 的传统方法。</block>
+  <block id="b3735f022036728c24121c449da97183" category="inline-link-macro">Trident和CSI映像</block>
+  <block id="0f01246331dd1197a1889bf13d7131a8" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为部署和映像注册表位置指定一个名称。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、<block ref="93edfe5491b7772fd10045fef48289e7" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
+  <block id="c4ffea098f78924a9b9331b8f5e9c8b4" category="open-title">一个注册表中的映像</block>
+  <block id="4847c552b2ff9251806e41c8fa907e19" category="open-title">不同注册表中的映像</block>
+  <block id="7a958030f69f08aa24ff2b440556c305" category="summary">您可以使用安装Astra Trident<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像是否存储在专用注册表中。</block>
+  <block id="9b809d56a3bb0caddcd0793e74d8e636" category="paragraph">您可以使用安装Astra Trident<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像是否存储在专用注册表中。以自定义<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 部署、请参见 <block ref="8e7a26c9800a78fa0b68fb2423ba3fb4" category="inline-link-macro-rx"></block>。</block>
+  <block id="88177d8e2425600f2b95afd270e60008" category="paragraph">在中<block ref="02f3115b006f7541a477d52ea8c0f861" prefix=" " category="inline-code"></block>、更新<block ref="f9fa807329a3c6418caaaa1874b599f4" prefix=" " category="inline-code"></block> 以反映映像注册表的位置。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。例如：</block>
+  <block id="791b3a9990d4b0b2af1866f25ede97d6" category="list-text"><block ref="7dcfa8a76be931076dc77a59f6470141" prefix="" category="inline-code"></block> 如果Trident映像与CSI映像位于不同的注册表中。</block>
+  <block id="7a79f435dcaa0ca2322cde1d80c13868" category="section-title">第4步：部署Trident操作员</block>
+  <block id="579b44412770c0d6b65bc3fd9bf7c61c" category="section-title">第5步：更新中的映像注册表位置<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block></block>
+  <block id="d0ebde94f92d8c1bae0c6660a5847bba" category="paragraph">Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。更新<block ref="7b4b81fb05ca7f2a09fe73526ac95482" prefix=" " category="inline-code"></block> 根据注册表配置添加其他位置规格。</block>
+  <block id="5295ac8fb520b71deb8a1b57857b2562" category="section-title">第6步：创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 并安装Trident</block>
 </blocks>

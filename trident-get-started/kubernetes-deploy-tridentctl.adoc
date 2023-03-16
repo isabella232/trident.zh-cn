@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-get-started/kubernetes-deploy-tridentctl.html 
 keywords: deploy, astra trident, methods, tridentctl, windows 
-summary: '您可以使用 `tridentctl` 来部署 Astra Trident 。' 
+summary: '您可以使用安装Astra Trident `tridentctl`。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像是否存储在专用注册表中。' 
 ---
 = 使用tridentctl进行安装
 :hardbreaks:
@@ -12,7 +12,7 @@ summary: '您可以使用 `tridentctl` 来部署 Astra Trident 。'
 
 
 [role="lead"]
-您可以使用安装Astra Trident `tridentctl`。此过程将在适用场景 中安装Trident和CSI映像 `docker.io` 和 `registry.k8s.io` 或私有的镜像注册表。以自定义 `tridentctl` 部署、请参见 link:kubernetes-customize-deploy-tridentctl.html["自定义 tridentctl 部署"]。
+您可以使用安装Astra Trident `tridentctl`。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像是否存储在专用注册表中。以自定义 `tridentctl` 部署、请参见 link:kubernetes-customize-deploy-tridentctl.html["自定义 tridentctl 部署"]。
 
 
 
@@ -97,14 +97,14 @@ NOTE: 要使Astra Trident能够在Windows节点上运行、请添加 `--windows`
 ./tridentctl install -n trident
 ----
 --
-.一个镜像注册表中的Trident和CSI映像
+.一个注册表中的映像
 --
 [listing]
 ----
 ./tridentctl install -n trident --image-registry <your-registry> --autosupport-image <your-registry>/trident-autosupport:23.01 --trident-image <your-registry>/trident:23.01.0
 ----
 --
-.不同镜像注册表中的Trident和CSI映像
+.不同注册表中的映像
 --
 您必须附加 `sig-storage` 到 `imageRegistry` 使用不同的注册表位置。
 

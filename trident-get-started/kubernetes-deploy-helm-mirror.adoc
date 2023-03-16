@@ -49,18 +49,18 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 ----
 helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 ----
-. 使用 ... `helm install` 并为您的部署和映像注册表位置指定一个名称、如以下示例所示。在示例中、 `23.01.0` 是您要安装的Astra Trident版本。
+. 使用 ... `helm install` 并为部署和映像注册表位置指定一个名称。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、 `23.01.0` 是您要安装的Astra Trident版本。
 +
 [role="tabbed-block"]
 ====
-.一个注册表中包含Trident和CSI映像
+.一个注册表中的映像
 --
 [listing]
 ----
 helm install <name> netapp-trident/trident-operator --version 23.01.0 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
 ----
 --
-.不同注册表中的Trident和CSI映像
+.不同注册表中的映像
 --
 您必须附加 `sig-storage` 到 `imageRegistry` 使用不同的注册表位置。
 

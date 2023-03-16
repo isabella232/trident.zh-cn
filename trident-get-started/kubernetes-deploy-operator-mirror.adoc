@@ -93,15 +93,15 @@ kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_<VERSIO
 
 === 第3步：更新操作符中的注册表位置
 
-在中 `operator.yaml`、更新 `image: docker.io/netapp/trident-operator:23.01.0` 以反映映像注册表的位置。例如：。
+在中 `/deploy/operator.yaml`、更新 `image: docker.io/netapp/trident-operator:23.01.0` 以反映映像注册表的位置。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。例如：
 
 * `image: <your-registry>/trident-operator:23.01.0` 如果您的映像全部位于一个注册表中。
-* `image: <your-registry>/netapp/trident-operator:23.01.0` 如果Trident和CSI映像位于不同的注册表中。
+* `image: <your-registry>/netapp/trident-operator:23.01.0` 如果Trident映像与CSI映像位于不同的注册表中。
 
 
 
 
-=== 第3步：部署Trident操作员
+=== 第4步：部署Trident操作员
 
 Trident安装程序在中部署操作员 `trident` 命名空间。如果 `trident` 命名空间不存在、请使用 `kubectl apply -f deploy/namespace.yaml` 以创建它。
 
@@ -139,13 +139,13 @@ IMPORTANT: 在 Kubernetes 集群中只能有 * 一个操作符实例 * 。请勿
 
 
 
-=== 第4步：更新中的映像注册表位置 `TridentOrchestrator`
+=== 第5步：更新中的映像注册表位置 `TridentOrchestrator`
 
-Trident和CSI映像可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。更新 `deploy/crds/tridentorchestrator_cr.yaml` 根据注册表配置添加其他位置规格。
+Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。更新 `deploy/crds/tridentorchestrator_cr.yaml` 根据注册表配置添加其他位置规格。
 
 [role="tabbed-block"]
 ====
-.一个注册表中包含Trident和CSI映像
+.一个注册表中的映像
 --
 [listing]
 ----
@@ -154,7 +154,7 @@ autosupportImage: "<your-registry>/trident-autosupport:23.01"
 tridentImage: "<your-registry>/trident:23.01.0"
 ----
 --
-.不同注册表中的Trident和CSI映像
+.不同注册表中的映像
 --
 您必须附加 `sig-storage` 到 `imageRegistry` 使用不同的注册表位置。
 
@@ -168,7 +168,7 @@ tridentImage: "<your-registry>/netapp/trident:23.01.0"
 ====
 
 
-=== 第5步：创建 `TridentOrchestrator` 并安装Trident
+=== 第6步：创建 `TridentOrchestrator` 并安装Trident
 
 现在、您可以创建 `TridentOrchestrator` 并安装Astra Trident。您也可以选择继续操作 link:kubernetes-customize-deploy.html["自定义Trident安装"] 使用中的属性 `TridentOrchestrator` 规格以下示例显示了Trident和CSI映像位于不同注册表中的安装。
 
