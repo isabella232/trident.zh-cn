@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-use/vol-snapshots.html 
 keywords: volumes, on-demand volume snapshots, create snapshots, backends, kubernetes, create PVCs, PVCs 
-summary: '您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照)、以维护Astra Trident卷的时间点副本。此外、您还可以从现有卷快照创建一个新卷、也称为_clone_。支持卷快照 `ontap-nas`， `ontap-san`， `ontap-san-economy`， `solidfire-san`， `gcp-cvs`，和 `azure-netapp-files` 驱动程序。' 
+summary: '您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照)、以维护Astra Trident卷的时间点副本。此外、您还可以从现有卷快照创建一个新卷、也称为_clone_。支持卷快照 `ontap-nas`， `ontap-nas-flexgroup`， `ontap-san`， `ontap-san-economy`， `solidfire-san`， `gcp-cvs`，和 `azure-netapp-files` 驱动程序。' 
 ---
 = 使用快照
 :hardbreaks:
@@ -12,7 +12,7 @@ summary: '您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照
 
 
 [role="lead"]
-您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照)、以维护Astra Trident卷的时间点副本。此外、您还可以从现有卷快照创建一个新卷、也称为_clone_。支持卷快照 `ontap-nas`， `ontap-san`， `ontap-san-economy`， `solidfire-san`， `gcp-cvs`，和 `azure-netapp-files` 驱动程序。
+您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照)、以维护Astra Trident卷的时间点副本。此外、您还可以从现有卷快照创建一个新卷、也称为_clone_。支持卷快照 `ontap-nas`， `ontap-nas-flexgroup`， `ontap-san`， `ontap-san-economy`， `solidfire-san`， `gcp-cvs`，和 `azure-netapp-files` 驱动程序。
 
 .开始之前
 您必须具有外部快照控制器和自定义资源定义(CRD)。这是Kubernetes流程编排程序(例如：Kubeadm、GKE、OpenShift)的职责。
