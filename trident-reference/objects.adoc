@@ -123,7 +123,7 @@ Kubernetes `StorageClass` 对象在 `PersistentVolumeClass` 中按名称指定�
 
 [listing]
 ----
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: <Name>
@@ -250,7 +250,7 @@ Kubernetes `VolumeSnapshotClass` 对象类似于 `StorageClasses` 。它们有�
 
 [listing]
 ----
-apiVersion: snapshot.storage.k8s.io/v1beta1
+apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass
 metadata:
   name: csi-snapclass
