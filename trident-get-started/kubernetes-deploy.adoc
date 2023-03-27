@@ -111,9 +111,9 @@ NOTE: 如果集群升级到不受支持的版本，则操作员会阻止安装 A
 ====
 
 
-=== 使用 `tridenctl`
+=== 使用 `tridentctl`
 
-如果您的现有部署必须升级、或者您希望对部署进行高度自定义、则应考虑 link:kubernetes-deploy-tridentctl.html["使用tridentctl进行安装"]。这是部署 Astra Trident 的传统方法。
+如果您的现有部署必须升级、或者您希望对部署进行高度自定义、则应考虑 。这是部署 Astra Trident 的传统方法。
 
 您可以  生成Trident资源的清单。其中包括 Astra Trident 在安装过程中创建的部署，取消设置，服务帐户和集群角色。
 

@@ -19,10 +19,25 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 23.01中的新增功能
+== 23.01.1中的新增功能
 
 
-IMPORTANT: Trident现在支持Kubernetes 1.26。请先升级Trident、然后再升级Kubernetes。
+
+=== 修复
+
+* 修复了在规范中指定的情况下使用IPv6 localhost进行安装的Trident操作员。
+* 修复了Trident操作员集群角色权限与捆绑包权限同步的问题 link:https://github.com/NetApp/trident/issues/799["问题描述 #799"^]。
+* 添加了一个修复程序、允许外部进程运行到完成状态。
+* 采用rwx模式在多个节点上附加原始块卷的固定问题描述。
+* 修复了SMB卷的FlexGroup 克隆支持和卷导入。
+
+
+
+
+== 2001年23月的变更
+
+
+IMPORTANT: Trident现在支持Kubernetes 1.26。请先升级Astra Trident、然后再升级Kubernetes。
 
 
 

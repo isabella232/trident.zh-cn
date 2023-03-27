@@ -94,7 +94,7 @@ Source:
 +
 PV 是使用 `netapp.io/trident` 配置程序创建的，其类型为 NFS 。要支持 Astra Trident 提供的所有新功能，应将此 PV 升级到 CSI 类型。
 
-. 运行 `tridenctl upgrade volume <name-o-trident -volume>` 命令将原有的 Astra Trident 卷升级到 CSI 规范。
+. 运行 `tridentctl upgrade volume <name-of-trident-volume>` 用于将原有Astra Trident卷升级到CSI规范的命令。
 +
 [listing]
 ----
