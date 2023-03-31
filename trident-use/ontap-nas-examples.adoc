@@ -216,7 +216,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret"
+    "password": "password"
 }
 ----
 ====
@@ -259,7 +259,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     "autoExportPolicy": true,
     "autoExportCIDRs": ["10.0.0.0/24"],
     "username": "admin",
-    "password": "secret",
+    "password": "password",
     "nfsMountOptions": "nfsvers=4",
 }
 ----
@@ -274,7 +274,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     "labels": {"k8scluster": "test-cluster-east-1b", "backend": "test1-ontap-cluster"},
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
 }
 ----
 ====
@@ -293,7 +293,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
  "labels": {"k8scluster": "test-cluster-east-1a", "backend": "test1-ontap-ipv6"},
  "svm": "nas_ipv6_svm",
  "username": "vsadmin",
- "password": "netapp123"
+ "password": "password"
 }
 ----
 ====
@@ -310,7 +310,7 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret"
+    "password": "password"
 }
 ----
 
@@ -356,7 +356,7 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "admin",
-    "password": "secret",
+    "password": "password",
     "nfsMountOptions": "nfsvers=4",
 
     "defaults": {
@@ -420,7 +420,7 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
 
     "defaults": {
           "spaceReserve": "none",
@@ -481,7 +481,7 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
 
     "defaults": {
           "spaceReserve": "none",

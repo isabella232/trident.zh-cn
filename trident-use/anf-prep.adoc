@@ -91,7 +91,7 @@ summary: 在配置ANF后端之前、您需要确保满足以下要求。
 +
 [listing]
 ----
-kubectl create secret generic smbcreds --from-literal username=user --from-literal password='pw'
+kubectl create secret generic smbcreds --from-literal username=user --from-literal password='password'
 ----
 * 配置为Windows服务的CSI代理。配置 `csi-proxy`、请参见 link:https://github.com/kubernetes-csi/csi-proxy["GitHub：CSI代理"^] 或 link:https://github.com/Azure/aks-engine/blob/master/docs/topics/csi-proxy-windows.md["GitHub：适用于Windows的CSI代理"^] 适用于在Windows上运行的Kubernetes节点。
 

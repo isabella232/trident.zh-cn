@@ -292,7 +292,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
     "aggregate": "aggr1",
     "defaults": {
       "size": "10G",
@@ -312,7 +312,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
     "defaults": {
       "size": "100G",
       "spaceReserve": "none",
@@ -331,7 +331,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
     "dataLIF": "10.0.0.2",
     "svm": "svm_nfs",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
     "aggregate": "aggr1"
 }
 ----
@@ -346,7 +346,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
     "dataLIF": "10.0.0.3",
     "svm": "svm_iscsi",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
     "aggregate": "aggr1",
     "igroupName": "myigroup"
 }
@@ -362,7 +362,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
     "dataLIF": "10.0.0.3",
     "svm": "svm_iscsi_eco",
     "username": "vsadmin",
-    "password": "secret",
+    "password": "password",
     "aggregate": "aggr1",
     "igroupName": "myigroup"
 }
