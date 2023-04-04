@@ -43,6 +43,12 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 按照以下步骤升级集群范围的Trident操作员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。
 
 .步骤
+. 验证Astra Trident版本：
++
+[listing]
+----
+./tridentctl -n trident version
+----
 . 删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从22.01升级、请运行以下命令：
 +
 [listing]
@@ -116,7 +122,7 @@ pwd
 /root/20.10.1/trident-installer
 
 #Delete the namespace-scoped operator
-kubectl delete -f deploy/<BUNDLE.YAML>
+kubectl delete -f deploy/<BUNDLE.YAML> -n trident
 serviceaccount "trident-operator" deleted
 clusterrole.rbac.authorization.k8s.io "trident-operator" deleted
 clusterrolebinding.rbac.authorization.k8s.io "trident-operator" deleted

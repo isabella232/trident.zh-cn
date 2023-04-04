@@ -3577,4 +3577,5 @@
   <block id="21b2b5bca26be7b23af4468b85c68b34" category="list-text">修复了SMB卷的FlexGroup 克隆支持和卷导入。</block>
   <block id="190a9f9a8311c8a23bff1fd7a5693342" category="section-title">2001年23月的变更</block>
   <block id="8b418db90259290a719e83f1a2509366" category="admonition">Trident现在支持Kubernetes 1.26。请先升级Astra Trident、然后再升级Kubernetes。</block>
+  <block id="1cb76b1c7887cad1e077a4cbdc765b9b" category="list-text">验证Astra Trident版本：</block>
 </blocks>
