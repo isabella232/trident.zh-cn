@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: trident-concepts/architecture.html 
+keywords: trident backend, AFF, FAS, ONTAP Select, Cloud, Amazon FSx for NetApp ONTAP, drivers, ONTAP drivers 
+summary: 了解Astra Trident如何在Kubernetes集群中运行。 
+---
+= Astra Trident架构
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+了解Astra Trident如何在Kubernetes集群中运行。

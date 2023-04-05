@@ -12,18 +12,28 @@ summary: '使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规�
 
 
 [role="lead"]
-使用Trident操作员可以使用中的属性自定义Astra Trident安装 `TridentOrchestrator` 规格
-
-如果您要对安装进行自定义、使其超出预期范围 `TridentOrchestrator` 参数允许、您应考虑使用 `tridentctl` 生成可根据需要修改的自定义YAML清单。
+使用Trident操作员可以使用中的属性自定义Astra Trident安装 `TridentOrchestrator` 规格如果您要对安装进行自定义、使其超出预期范围 `TridentOrchestrator` 参数允许、请考虑使用 `tridentctl` 生成自定义YAML清单以根据需要进行修改。
 
 
-WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astra Trident的命名空间。此参数 * 安装 Astra Trident 后无法更新 * 。如果尝试执行此操作、则会导致 `TridentOrchestrator` 要更改为的状态 `Failed`。Astra Trident不能跨命名空间迁移。
+
+== 了解控制器Pod和节点Pod
+
+Astra Trident作为一个控制器POD运行、并在集群中的每个工作节点上运行一个节点POD。节点POD必须在任何可能要挂载Astra Trident卷的主机上运行。
+
+Kubernetes link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["节点选择器"^] 和 link:https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/["容忍和损害"^] 用于限制Pod在特定节点或首选节点上运行。使用`ControllerPlugin`和 `NodePlugin`、您可以指定约束和覆盖。
+
+* 控制器插件负责卷配置和管理、例如快照和调整大小。
+* 节点插件负责将存储连接到节点。
+
 
 
 
 == 配置选项
 
-此表详细介绍了相关信息 `TridentOrchestrator` 属性：
+
+WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astra Trident的命名空间。此参数 * 安装 Astra Trident 后无法更新 * 。如果尝试执行此操作、则会导致 `TridentOrchestrator` 要更改为的状态 `Failed`。Astra Trident不能跨命名空间迁移。
+
+此表详细介绍了相关信息 `TridentOrchestrator` 属性。
 
 [cols="3"]
 |===
@@ -84,16 +94,16 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 `Never` 从不提取映像。 | `IfNotPresent` 
 
 
-| `控制器插件节点选择器` | 运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。格式与 pod.spec.nodeSelector 相同。 | 无默认值；可选 
+| `控制器插件节点选择器` | Pod的其他节点选择器。格式与 pod.spec.nodeSelector 相同。 | 无默认值；可选 
 
 
-| `控制器插件公差` | 覆盖运行 Trident 控制器 CSI 插件的 Pod 的容错。格式与 po.spec.Tolerations 相同。 | 无默认值；可选 
+| `控制器插件公差` | 覆盖Kubernetes对Pod的容错。格式与 po.spec.Tolerations 相同。 | 无默认值；可选 
 
 
-| `nodePluginNodeSelector` | 运行 Trident Node CSI 插件的 Pod 的其他节点选择器。格式与 pod.spec.nodeSelector 相同。 | 无默认值；可选 
+| `nodePluginNodeSelector` | Pod的其他节点选择器。格式与 pod.spec.nodeSelector 相同。 | 无默认值；可选 
 
 
-| `nodePluginTholeations` | 覆盖运行 Trident Node CSI 插件的 Pod 的容错。格式与 po.spec.Tolerations 相同。 | 无默认值；可选 
+| `nodePluginTholeations` | 覆盖Kubernetes对Pod的容错。格式与 po.spec.Tolerations 相同。 | 无默认值；可选 
 |===
 
 NOTE: 有关格式化 POD 参数的详细信息，请参见 link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["将 Pod 分配给节点"^]。
