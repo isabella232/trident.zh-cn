@@ -11,24 +11,24 @@ summary: 在配置ANF后端之前、您需要确保满足以下要求。
 :imagesdir: ../media/
 
 
+[role="lead"]
 在配置Azure NetApp Files 后端之前、您需要确保满足以下要求。
 
-如果您是首次使用 Azure NetApp Files 或在新位置使用，则需要进行一些初始配置。
 
-* 要设置Azure NetApp Files 并创建NFS卷、请参见 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-quickstart-set-up-account-create-volumes["Azure：设置Azure NetApp Files 并创建NFS卷"^]。
-* 要配置Azure NetApp Files 并添加SMB卷、请参见： https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-create-volumes-smb["Azure：为Azure NetApp Files 创建SMB卷"^]。
+NOTE: 如果您是首次使用Azure NetApp Files 或在新位置使用、则需要进行一些初始配置来设置Azure NetApp Files 并创建NFS卷。请参见 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-quickstart-set-up-account-create-volumes["Azure：设置Azure NetApp Files 并创建NFS卷"^]。
 
 
 
-
-== 要求
+== NFS和SMB卷的前提条件
 
 配置和使用 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 后端，您需要满足以下要求：
 
+* 一个容量池。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-set-up-capacity-pool["Microsoft：为Azure NetApp Files 创建容量池"^]。
+* 委派给Azure NetApp Files 的子网。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["Microsoft：将子网委派给Azure NetApp Files"^]。
 * `ssubscriptionID` 来自启用了 Azure NetApp Files 的 Azure 订阅。
 * `tenantID`， `clientID`，和 `clientSecret` 从 link:https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal["应用程序注册"^] 在 Azure Active Directory 中，具有足够的 Azure NetApp Files 服务权限。应用程序注册应使用以下任一项：
 +
-** 所有者或贡献者角色 link:https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles["由Azure预定义"^]
+** 所有者或贡献者角色 link:https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles["由Azure预定义"^]。
 ** 答 link:https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles-portal["自定义贡献者角色"] 订阅级别 (`assignableScopes`)、并具有以下权限、这些权限仅限于Astra Trident所需的权限。创建自定义角色后、 link:https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal["使用Azure门户分配角色"^]。
 +
 [source, JSON]
@@ -86,8 +86,11 @@ summary: 在配置ANF后端之前、您需要确保满足以下要求。
 
 == SMB卷的其他要求
 
+要创建SMB卷、您必须具有：
+
+* 已配置Active Directory并连接到Azure NetApp Files。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/create-active-directory-connections["Microsoft：创建和管理Azure NetApp Files 的Active Directory连接"^]。
 * 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
-* 至少有一个包含Active Directory凭据的Astra Trident密钥、以便ANF可以向Active Directory进行身份验证。以生成密钥 `smbcreds`：
+* 至少一个包含Active Directory凭据的Astra Trident密钥、以便Azure NetApp Files 可以向Active Directory进行身份验证。以生成密钥 `smbcreds`：
 +
 [listing]
 ----

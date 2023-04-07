@@ -2717,21 +2717,15 @@
   <block id="3908892c437778f8b161a2ca006782cd" category="list-text">无法在从属卷上执行快照、克隆和镜像。</block>
   <block id="e6fe09cae66ba22c6abbd2511f660545" category="summary">在配置ANF后端之前、您需要确保满足以下要求。</block>
   <block id="aec47cf6a0cb83824b504b756eb4b71c" category="doc">准备配置Azure NetApp Files 后端</block>
-  <block id="fafa3c0a3cb069057415a83c6ebcceba" category="paragraph">如果您是首次使用 Azure NetApp Files 或在新位置使用，则需要进行一些初始配置。</block>
   <block id="97d64245613ba751b698ce77fd51779a" category="inline-link">Azure：设置Azure NetApp Files 并创建NFS卷</block>
-  <block id="2aa05cb8290726bf399391736b2c3515" category="list-text">要设置Azure NetApp Files 并创建NFS卷、请参见<block ref="b6e93c3bfc36cf835c63e42e55586d97" category="inline-link-rx"></block>。</block>
-  <block id="a2d5857c3b9121391e94a67cf08493ee" category="inline-link">Azure：为Azure NetApp Files 创建SMB卷</block>
-  <block id="04c87c2db0b97d613ced591af56ad5bb" category="list-text">要配置Azure NetApp Files 并添加SMB卷、请参见：<block ref="c33ad357613bf495746b18bdb4ed3ee8" category="inline-link-rx"></block>。</block>
   <block id="caa7dc98c21b44b17c214508b9b0fa3c" category="list-text"><block ref="bc54592d6183695b841c6d1880ec0bf8" prefix="" category="inline-code"></block>，<block ref="93c5bebdea9c94a0740fe6fd9bb250f0" prefix=" " category="inline-code"></block>，和<block ref="2b53761249254ce6b502f521e5cc0683" prefix=" " category="inline-code"></block> 从 <block ref="63405c89f422580946169fa59c41e7ae" category="inline-link-macro-rx"></block> 在 Azure Active Directory 中，具有足够的 Azure NetApp Files 服务权限。应用程序注册应使用以下任一项：</block>
   <block id="ee495045d2c4c5131217a0248a404b4d" category="inline-link-macro">由Azure预定义</block>
-  <block id="0b0da58ea52df6ff74bcbb53ae7ba931" category="list-text">所有者或贡献者角色 <block ref="76b3209c91e1786a477c35a6e91cf55f" category="inline-link-macro-rx"></block></block>
   <block id="2fbc632d5939633cc9c3b254d116080f" category="inline-link-macro">自定义贡献者角色</block>
   <block id="b0ee19cc46a4fb3df97c1c676c0a5d57" category="inline-link-macro">使用Azure门户分配角色</block>
   <block id="993c1a80e778c965961521eeb4afd398" category="list-text">答 <block ref="8ad3956583058d3582a7dd1281d1f882" category="inline-link-macro-rx"></block> 订阅级别 <block ref="e023f2926fb9af676f2809a760efeb14" prefix="(" category="inline-code"></block>)、并具有以下权限、这些权限仅限于Astra Trident所需的权限。创建自定义角色后、 <block ref="af58105ed429db29198b767444ed6d0d" category="inline-link-macro-rx"></block>。</block>
   <block id="daba51cb28ea016a4e85ad77defc5a2c" category="list-text">Azure<block ref="d5189de027922f81005951e6efe0efd5" prefix=" " category="inline-code"></block> 至少包含一个 <block ref="e2df5d3690a644a8599397d798c15f56" category="inline-link-macro-rx"></block>。自Trident 22.01日开始<block ref="d5189de027922f81005951e6efe0efd5" prefix=" " category="inline-code"></block> 参数是后端配置文件顶层的必填字段。在虚拟池中指定的位置值将被忽略。</block>
   <block id="77a4a369d552f7d3be163bda86f9113f" category="section-title">SMB卷的其他要求</block>
   <block id="1f43150a13f29c496f07ed4a9750b2ff" category="list-text">一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。</block>
-  <block id="43950c84ce08a6b99dc3b224bc37d814" category="list-text">至少有一个包含Active Directory凭据的Astra Trident密钥、以便ANF可以向Active Directory进行身份验证。以生成密钥<block ref="e47a193687dde960f6b6f80d394142a3" prefix=" " category="inline-code"></block>：</block>
   <block id="7595de66780a622cdd37b4823afebc07" category="inline-link-macro">GitHub：CSI代理</block>
   <block id="c680a0c023a6d45186b9752a07e9938c" category="inline-link-macro">GitHub：适用于Windows的CSI代理</block>
   <block id="2d6b406e65ac91f2af09f4228e3efe4f" category="list-text">配置为Windows服务的CSI代理。配置<block ref="0f8126c17871ed45f2a848f15d96a1bb" prefix=" " category="inline-code"></block>、请参见 <block ref="3ca23c6eadaac7aa23a492aef5e5d012" category="inline-link-macro-rx"></block> 或 <block ref="0b56a9ad79a8fef177779e7d3d856994" category="inline-link-macro-rx"></block> 适用于在Windows上运行的Kubernetes节点。</block>
@@ -3585,4 +3579,15 @@
   <block id="d4cc4428c9a6422247c8ff288ea4b5eb" category="cell">Pod的其他节点选择器。格式与 pod.spec.nodeSelector 相同。</block>
   <block id="a5353a10ead2905c577659fdd805af0a" category="summary">了解Astra Trident如何在Kubernetes集群中运行。</block>
   <block id="c350769115c3c8e4132e9c428b166b12" category="doc">Astra Trident架构</block>
+  <block id="d90582d42d65d5af05c3d40ad0eb4987" category="admonition">如果您是首次使用Azure NetApp Files 或在新位置使用、则需要进行一些初始配置来设置Azure NetApp Files 并创建NFS卷。请参见<block ref="b6e93c3bfc36cf835c63e42e55586d97" category="inline-link-rx"></block>。</block>
+  <block id="84444089b52eed627a838de74ae8d652" category="section-title">NFS和SMB卷的前提条件</block>
+  <block id="99c7065ab76131a7b7763287bb5b6735" category="inline-link-macro">Microsoft：为Azure NetApp Files 创建容量池</block>
+  <block id="ee59ecaa79882c8dc8f7f897c113094a" category="list-text">一个容量池。请参见 <block ref="96caced282b604468ab13f86483cd9f6" category="inline-link-macro-rx"></block>。</block>
+  <block id="7ed0731ff411d37210b51a78b95c1fc3" category="inline-link-macro">Microsoft：将子网委派给Azure NetApp Files</block>
+  <block id="c896cfae248dc2b000cc04c39d8a8de6" category="list-text">委派给Azure NetApp Files 的子网。请参见 <block ref="795b5e8f62d2267a0996a3b260968048" category="inline-link-macro-rx"></block>。</block>
+  <block id="856955b6cbc3fe2168b2dcd43fb0a5dd" category="list-text">所有者或贡献者角色 <block ref="76b3209c91e1786a477c35a6e91cf55f" category="inline-link-macro-rx"></block>。</block>
+  <block id="227e516e7258b6dcab3e7bcb4148f7f1" category="paragraph">要创建SMB卷、您必须具有：</block>
+  <block id="d8c74c31c4550aed073521ba0fb8984a" category="inline-link-macro">Microsoft：创建和管理Azure NetApp Files 的Active Directory连接</block>
+  <block id="6bb7e9dc5268dcbdde1a91b151d9a94b" category="list-text">已配置Active Directory并连接到Azure NetApp Files。请参见 <block ref="2f3bcda54aaf4e8e45316bb04708293f" category="inline-link-macro-rx"></block>。</block>
+  <block id="3742b45a8312c4721cad63322a4932ac" category="list-text">至少一个包含Active Directory凭据的Astra Trident密钥、以便Azure NetApp Files 可以向Active Directory进行身份验证。以生成密钥<block ref="e47a193687dde960f6b6f80d394142a3" prefix=" " category="inline-code"></block>：</block>
 </blocks>
