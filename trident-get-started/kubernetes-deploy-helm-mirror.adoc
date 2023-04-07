@@ -105,7 +105,131 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 helm install <name> netapp-trident/trident-operator --version 23.01.1  --create-namespace --namespace --set tridentDebug=true
 ----
 
-NOTE: Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。
+
+== 配置选项
+
+此表和 `values.yaml` 文件(属于Helm图表的一部分)提供了键列表及其默认值。
+
+[cols="3"]
+|===
+| 选项 | Description | Default 
+
+
+| `nodeSelector` | 用于POD分配的节点标签 |  
+
+
+| `podAnnotations` | POD标注 |  
+
+
+| `deploymentAnnotations` | 部署标注 |  
+
+
+| `tolerations` | POD分配的差值 |  
+
+
+| `affinity` | 用于Pod分配的相关性 |  
+
+
+| `tridentControllerPluginNodeSelector` | Pod的其他节点选择器。请参见 <<了解控制器Pod和节点Pod>> 了解详细信息。 |  
+
+
+| `tridentControllerPluginTolerations` | 覆盖Kubernetes对Pod的容错。请参见 <<了解控制器Pod和节点Pod>> 了解详细信息。 |  
+
+
+| `tridentNodePluginNodeSelector` | Pod的其他节点选择器。请参见 <<了解控制器Pod和节点Pod>> 了解详细信息。 |  
+
+
+| `tridentNodePluginTolerations` | 覆盖Kubernetes对Pod的容错。请参见 <<了解控制器Pod和节点Pod>> 了解详细信息。 |  
+
+
+| `imageRegistry` | 标识的注册表 `trident-operator`， `trident`和其他图像。留空以接受默认值。 | "" 
+
+
+| `imagePullPolicy` | 设置的映像提取策略 `trident-operator`。 | `IfNotPresent` 
+
+
+| `imagePullSecs` | 设置的映像提取密钥 `trident-operator`， `trident`和其他图像。 |  
+
+
+| `kubeletDir` | 允许覆盖kubelet内部状态的主机位置。 | "/var/lib/kubelet"` 
+
+
+| `operatorLogLevel` | 允许将Trident操作符的日志级别设置为： `trace`， `debug`， `info`， `warn`， `error`或 `fatal`。 | `"info"` 
+
+
+| `operatorDebug` | 允许将Trident操作符的日志级别设置为DEBUG。 | `true` 
+
+
+| `operatorImage` | 允许完全覆盖的映像 `trident-operator`。 | "" 
+
+
+| `operatorImageTag` | 允许覆盖的标记 `trident-operator` 图像。 | "" 
+
+
+| `tridentIPv6` | 允许在IPv6集群中使用Astra Trident。 | `false` 
+
+
+| `tridentK8sTimeout` | 覆盖大多数Kubernetes API操作的默认30秒超时(如果不为零、则以秒为单位)。 | `0` 
+
+
+| `tridentHttpRequestTimeout` | 使用覆盖HTTP请求的默认90秒超时 `0s` 为超时的无限持续时间。不允许使用负值。 | `"90s"` 
+
+
+| `tridentSilenceAutosupport` | 允许禁用Astra Trident定期AutoSupport 报告。 | `false` 
+
+
+| `tridentAutosupportImageTag` | 允许覆盖Astra Trident AutoSupport 容器的映像标记。 | `<version>` 
+
+
+| `tridentAutosupportProxy` | 允许Astra Trident AutoSupport 容器通过HTTP代理进行回拨。 | "" 
+
+
+| `tridentLogFormat` | 设置Astra Trident日志记录格式 (`text` 或 `json`）。 | `"text"` 
+
+
+| `tridentDisableAuditLog` | 禁用Astra Trident审核日志程序。 | `true` 
+
+
+| `tridentLogLevel` | 允许将Astra Trident的日志级别设置为： `trace`， `debug`， `info`， `warn`， `error`或 `fatal`。 | `"info"` 
+
+
+| `tridentDebug` | 允许将Astra Trident的日志级别设置为 `debug`。 | `false` 
+
+
+| `tridentLogWorkflows` | 允许为跟踪日志记录或日志禁止启用特定的Astra Trident工作流。 | "" 
+
+
+| `tridentLogLayers` | 允许为跟踪日志记录或日志禁止启用特定的Astra Trident层。 | "" 
+
+
+| `TridentImage` | 允许完全覆盖Astra Trident的映像。 | "" 
+
+
+| `tridentImageTag` | 允许覆盖Astra Trident的映像标记。 | "" 
+
+
+| `tridentProbePort` | 允许覆盖用于Kubernetes活动/就绪性探测的默认端口。 | "" 
+
+
+| `windows` | 允许在Windows工作节点上安装Astra Trident。 | `false` 
+
+
+| `enableForceDetach` | 允许启用强制分离功能。 | `false` 
+
+
+| `excludePodSecurityPolicy` | 从创建过程中排除操作员POD安全策略。 | `false` 
+|===
+
+
+=== 了解控制器Pod和节点Pod
+
+Astra Trident作为一个控制器POD运行、并在集群中的每个工作节点上运行一个节点POD。节点POD必须在任何可能要挂载Astra Trident卷的主机上运行。
+
+Kubernetes link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["节点选择器"^] 和 link:https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/["容忍和损害"^] 用于限制Pod在特定节点或首选节点上运行。使用`ControllerPlugin`和 `NodePlugin`、您可以指定约束和覆盖。
+
+* 控制器插件负责卷配置和管理、例如快照和调整大小。
+* 节点插件负责将存储连接到节点。
+
 
 
 

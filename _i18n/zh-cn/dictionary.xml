@@ -1061,7 +1061,6 @@
   <block id="c585967fa32d82c5e3c24bd63926c6a0" category="list-text">如果您将 Kubernetes 与 Docker Enterprise 结合使用，<block ref="57562caf1c76e1a261b7e2f8c3d113f9" category="inline-link-rx"></block>。</block>
   <block id="2e1b3f44683eee188be985693c4af5e1" category="list-text">Helm 版本 3</block>
   <block id="e366a20246a41520da551be510c1d658" category="paragraph">在安装期间，可以通过两种方式传递配置数据：</block>
-  <block id="24da04b0777d00c6fe43de99895058bd" category="paragraph">Helm 图表中的 `values.yaml` 文件提供了键及其默认值的列表。</block>
   <block id="ea8cda06a0e70ad34c1b9ab1b7135105" category="inline-link-macro">支持的 Kubernetes 集群</block>
   <block id="e420b75ec3bc014e3f69c43b2383768b" category="admonition">使用 OpenShift 时，在以下所有示例中使用 `oc` 而不是 `kubectl` ，并首先以 * 系统： admin* 的身份运行 `oc login -u system ： admin` 或 `oc login -u Kube-admin` 进行登录。</block>
   <block id="337d79852891a37d41285c9101c3fff4" category="paragraph">运行以下命令：</block>
@@ -3590,4 +3589,73 @@
   <block id="d8c74c31c4550aed073521ba0fb8984a" category="inline-link-macro">Microsoft：创建和管理Azure NetApp Files 的Active Directory连接</block>
   <block id="6bb7e9dc5268dcbdde1a91b151d9a94b" category="list-text">已配置Active Directory并连接到Azure NetApp Files。请参见 <block ref="2f3bcda54aaf4e8e45316bb04708293f" category="inline-link-macro-rx"></block>。</block>
   <block id="3742b45a8312c4721cad63322a4932ac" category="list-text">至少一个包含Active Directory凭据的Astra Trident密钥、以便Azure NetApp Files 可以向Active Directory进行身份验证。以生成密钥<block ref="e47a193687dde960f6b6f80d394142a3" prefix=" " category="inline-code"></block>：</block>
+  <block id="d924b4945b9cee37e07a2c601d1081be" category="paragraph">此表和<block ref="ba05023d0f1b5d4b64b6cad4cf9a7ecd" prefix=" " category="inline-code"></block> 文件(属于Helm图表的一部分)提供了键列表及其默认值。</block>
+  <block id="e0e228e32d97e1461cf4492bd5366550" category="cell"><block ref="6370f866cf64618c026027da41bd248e" prefix="" category="inline-code"></block></block>
+  <block id="f54139bbd014c510ee9fa277241d4666" category="cell">用于POD分配的节点标签</block>
+  <block id="b7f663c63859fec6f7d2f1ecd891de73" category="cell"><block ref="6e0bd2b3fba01f3f74634cfc6fcc31d6" prefix="" category="inline-code"></block></block>
+  <block id="6b164b6efa957c912428e089b86ecd45" category="cell">POD标注</block>
+  <block id="4e3c35024b2d124aa9ab33a254e2545c" category="cell"><block ref="7c73e8c8cba054b3164d0b641ef36a41" prefix="" category="inline-code"></block></block>
+  <block id="1a6308fa062d92acbff3b1304615d1db" category="cell">部署标注</block>
+  <block id="716c09bbd59aa99d3932f73b7f517b2c" category="cell"><block ref="d6c26478ca41a23cc9741a4e92576269" prefix="" category="inline-code"></block></block>
+  <block id="1147c70db6b1e5ac87df9b1ef26ea59a" category="cell">POD分配的差值</block>
+  <block id="ed550d998ef1de0c69744fb5f7f7173c" category="cell"><block ref="1474047fb00b2d8d95646f7436837ed0" prefix="" category="inline-code"></block></block>
+  <block id="064fd06fa9edd7a1e29b4da6fd9a1688" category="cell">用于Pod分配的相关性</block>
+  <block id="b81e781314c37667d0eae6eeba5f0468" category="cell"><block ref="d525dcbea000b0429493d47a891b5ad9" prefix="" category="inline-code"></block></block>
+  <block id="85e06bb6e03e71b7708d9d4b6f4967ea" category="cell">Pod的其他节点选择器。请参见 <block ref="662636849823c896b8f86e3f7d6afa9b" category="inline-xref-macro-rx"></block> 了解详细信息。</block>
+  <block id="0ccd4d74122ec81d149bc2bb132524d6" category="cell"><block ref="e8c1183eadfdb38078a7bd66bfa038ac" prefix="" category="inline-code"></block></block>
+  <block id="74f3be1a07b1f65cef69ac77defaff4b" category="cell">覆盖Kubernetes对Pod的容错。请参见 <block ref="662636849823c896b8f86e3f7d6afa9b" category="inline-xref-macro-rx"></block> 了解详细信息。</block>
+  <block id="c5387f0fc94f27d79519bb1299916e0f" category="cell"><block ref="bc0951b6e57a04c942fe6054649bb323" prefix="" category="inline-code"></block></block>
+  <block id="7923027736f9cc9bbc6f6914e020e8a2" category="cell"><block ref="85dec10eb608a93a9febb24b39f5dae5" prefix="" category="inline-code"></block></block>
+  <block id="a5dbdd22874a005ac9265ab4869f4b42" category="cell">标识的注册表<block ref="c39d2745402b5d2987cfdd8df3bda0e1" prefix=" " category="inline-code"></block>，<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block>和其他图像。留空以接受默认值。</block>
+  <block id="7211a1f37ce0f92a2727e11de77a5256" category="cell">设置的映像提取策略<block ref="c39d2745402b5d2987cfdd8df3bda0e1" prefix=" " category="inline-code"></block>。</block>
+  <block id="f19aec010e48d5133114e8de96e071cd" category="cell">设置的映像提取密钥<block ref="c39d2745402b5d2987cfdd8df3bda0e1" prefix=" " category="inline-code"></block>，<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block>和其他图像。</block>
+  <block id="b8ef31ad215c14ea7ac3aa4744f3b42f" category="cell">允许覆盖kubelet内部状态的主机位置。</block>
+  <block id="9f61c56640ad918301f4486f261872db" category="cell">"/var/lib/kubelet"`</block>
+  <block id="5e2907912eaee9094910d428b8f01073" category="cell"><block ref="2d9583aa0b2422324be870c86f92540f" prefix="" category="inline-code"></block></block>
+  <block id="a580f5edb0407fe7fc07e03adb88d2be" category="cell">允许将Trident操作符的日志级别设置为：<block ref="04a75036e9d520bb983c5ed03b8d0182" prefix=" " category="inline-code"></block>，<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>，<block ref="caf9b6b99962bf5c2264824231d7a40c" prefix=" " category="inline-code"></block>，<block ref="1ea4c3ab05ee0c6d4de30740443769cb" prefix=" " category="inline-code"></block>，<block ref="cb5e100e5a9a3e7f6d1fd97512215282" prefix=" " category="inline-code"></block>或<block ref="df6402fd9ecc60f5a2159fdf45711cd4" prefix=" " category="inline-code"></block>。</block>
+  <block id="17b455f4f77262089207347508d91156" category="cell"><block ref="94b4515f09a2cc099780cd762366bc78" prefix="" category="inline-code"></block></block>
+  <block id="0b401c459e3ff134b1e0ef7924967db5" category="cell"><block ref="844aa3cc935c46477e308955f84504e9" prefix="" category="inline-code"></block></block>
+  <block id="0d1fd401e197635acbe814b44cbbe0f0" category="cell">允许将Trident操作符的日志级别设置为DEBUG。</block>
+  <block id="e6e859881d25cceaf35be98ff2b495e5" category="cell"><block ref="225eb420f27fc1614025e3e94f1dbcd4" prefix="" category="inline-code"></block></block>
+  <block id="3e23960e7162cfc391ab62ee009d09b5" category="cell">允许完全覆盖的映像<block ref="c39d2745402b5d2987cfdd8df3bda0e1" prefix=" " category="inline-code"></block>。</block>
+  <block id="586d412183efcbc76c2b206c73911009" category="cell"><block ref="5a50bd404d515b199254e69f83732c55" prefix="" category="inline-code"></block></block>
+  <block id="87a9d5d1548b0e39b7cfe5115c686d2d" category="cell">允许覆盖的标记<block ref="c39d2745402b5d2987cfdd8df3bda0e1" prefix=" " category="inline-code"></block> 图像。</block>
+  <block id="ba6229139ac12ca183160040964cdaae" category="cell"><block ref="c185b55e62d1fe703eb97b2a31b6c2a3" prefix="" category="inline-code"></block></block>
+  <block id="fbb572d608f0afb5d8449144a2f9e8f3" category="cell">允许在IPv6集群中使用Astra Trident。</block>
+  <block id="aacf685d031cae06a5c158144296d071" category="cell"><block ref="b958a6de9ca123713491252f2ab02f59" prefix="" category="inline-code"></block></block>
+  <block id="f8d2c273db74b394820e68a59b18bfff" category="cell">覆盖大多数Kubernetes API操作的默认30秒超时(如果不为零、则以秒为单位)。</block>
+  <block id="2911e600bbad981e24b3e2a2b3a03f82" category="cell"><block ref="cfcd208495d565ef66e7dff9f98764da" prefix="" category="inline-code"></block></block>
+  <block id="fbf0a4141bdac5821d271a6c1de1f483" category="cell"><block ref="70b0324e2a65a29bea1b014606caba39" prefix="" category="inline-code"></block></block>
+  <block id="d74c6fe1792f46d6c929a448fd8b99cd" category="cell">使用覆盖HTTP请求的默认90秒超时<block ref="bb61fa2850d04f4e5e34449de13febe4" prefix=" " category="inline-code"></block> 为超时的无限持续时间。不允许使用负值。</block>
+  <block id="ab7c61393023df91a4271d09e26bda15" category="cell"><block ref="558c8a41e3e5c9a0f109be6e60efce8d" prefix="" category="inline-code"></block></block>
+  <block id="b2ffdfaa5c81870c0fb113956a7244aa" category="cell"><block ref="141d9fad9dd7e4fec852d6e55f414373" prefix="" category="inline-code"></block></block>
+  <block id="595576072ae91fd3ed07cffb0f6bf8dc" category="cell">允许禁用Astra Trident定期AutoSupport 报告。</block>
+  <block id="22ca6470a16bcd1b3a0fd7b7dc456b4c" category="cell"><block ref="9626ee86c83efe1de7c3f5e2669b4a04" prefix="" category="inline-code"></block></block>
+  <block id="afed3cb70fa67ef62195179f6c724664" category="cell">允许覆盖Astra Trident AutoSupport 容器的映像标记。</block>
+  <block id="dfdc01cf8fa557986d9b3e8702b6ff1b" category="cell"><block ref="3d689bd3819ead35ed794427bd12f459" prefix="" category="inline-code"></block></block>
+  <block id="8639f9efa7d4198eba06690d4a1f0d16" category="cell"><block ref="c370bb44f26914bb0c965f35a89a42f7" prefix="" category="inline-code"></block></block>
+  <block id="b830fe1139fea1840be49f78927d6364" category="cell">允许Astra Trident AutoSupport 容器通过HTTP代理进行回拨。</block>
+  <block id="b081a6c6ed5931a2b55e31e706aae502" category="cell"><block ref="5836094432fed0c547c18869122bbf9a" prefix="" category="inline-code"></block></block>
+  <block id="6ea2564bcf36b1d8878738d14312d34e" category="cell">设置Astra Trident日志记录格式 <block ref="1cb251ec0d568de6a929b520c4aed8d1" prefix="(" category="inline-code"></block> 或<block ref="466deec76ecdf5fca6d38571f6324d54" prefix=" " category="inline-code"></block>）。</block>
+  <block id="db8e1facb8efde48ce50388e2dc9cfcc" category="cell"><block ref="20cd815523e5806aec29a57282b0d49f" prefix="" category="inline-code"></block></block>
+  <block id="4d165b964c1ea4708882da42c3ef5194" category="cell"><block ref="0be533d5261bfa202a27dd6f4a2ff4da" prefix="" category="inline-code"></block></block>
+  <block id="67471026c71afd28bcd767ef1006c39a" category="cell">禁用Astra Trident审核日志程序。</block>
+  <block id="c7bc9c0edf4b3f771388feb15b8ad592" category="cell"><block ref="cd4906de65bd0389fcc62105f05b77d6" prefix="" category="inline-code"></block></block>
+  <block id="5f65c3e97612dfc2a1875871e1d5298d" category="cell">允许将Astra Trident的日志级别设置为：<block ref="04a75036e9d520bb983c5ed03b8d0182" prefix=" " category="inline-code"></block>，<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>，<block ref="caf9b6b99962bf5c2264824231d7a40c" prefix=" " category="inline-code"></block>，<block ref="1ea4c3ab05ee0c6d4de30740443769cb" prefix=" " category="inline-code"></block>，<block ref="cb5e100e5a9a3e7f6d1fd97512215282" prefix=" " category="inline-code"></block>或<block ref="df6402fd9ecc60f5a2159fdf45711cd4" prefix=" " category="inline-code"></block>。</block>
+  <block id="c97f5436c3ba56768a7996ac0a152830" category="cell"><block ref="efc1e9e3a120c20b12e892ce2f230ff8" prefix="" category="inline-code"></block></block>
+  <block id="40caa5c31158e12517414bf1429ad350" category="cell">允许将Astra Trident的日志级别设置为<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>。</block>
+  <block id="3e52a0855ea502bd31c48eb02424ee67" category="cell"><block ref="aaeab2a659f3d6ac5063b6d8a4e7c24a" prefix="" category="inline-code"></block></block>
+  <block id="5934b7dd9f1b8b0cd103a9f658e321a2" category="cell">允许为跟踪日志记录或日志禁止启用特定的Astra Trident工作流。</block>
+  <block id="66468bda18a84578afccd8255efa1845" category="cell"><block ref="d5c1386f335f8df3cd920142f8ee23b7" prefix="" category="inline-code"></block></block>
+  <block id="b09ba1c3bffb182e31b3e02e89809aff" category="cell">允许为跟踪日志记录或日志禁止启用特定的Astra Trident层。</block>
+  <block id="1aaea3b64b47a673c851da63225fddfb" category="cell">允许完全覆盖Astra Trident的映像。</block>
+  <block id="a74941f6c96a1995cbfb438419467c32" category="cell"><block ref="fdd0820bbfc488d6a2ccba8ba0f74e73" prefix="" category="inline-code"></block></block>
+  <block id="63742b48f6bddb4de8ebee8c4337f07e" category="cell">允许覆盖Astra Trident的映像标记。</block>
+  <block id="50c1c44df91bb9f35aaa04b0157d6136" category="cell"><block ref="60c65b849dbb837618645b7860aa608e" prefix="" category="inline-code"></block></block>
+  <block id="74b30241e61b88d42e066d77a638a568" category="cell">允许覆盖用于Kubernetes活动/就绪性探测的默认端口。</block>
+  <block id="e07d4a2a2e6f176011493e3326962c52" category="cell">允许在Windows工作节点上安装Astra Trident。</block>
+  <block id="b4f36de9fda080c1fd1d9edb1e60e36b" category="cell"><block ref="badc795d88a7db6cc65d56bc758b3ea4" prefix="" category="inline-code"></block></block>
+  <block id="0a08ed3de9d17e8644d3e57dc374c3ea" category="cell">允许启用强制分离功能。</block>
+  <block id="632a46acdaa26f30f25b11d5c83eaa58" category="cell"><block ref="94ef2a130a825358ab3002442d6e5145" prefix="" category="inline-code"></block></block>
+  <block id="ad77b466842808c8dce5116073a3e52b" category="cell">从创建过程中排除操作员POD安全策略。</block>
 </blocks>
