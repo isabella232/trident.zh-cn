@@ -143,9 +143,6 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `splitOnClone` | 创建克隆时，从其父级拆分该克隆 | false 
 
 
-| `splitOnClone` | 创建克隆时，从其父级拆分该克隆 | false 
-
-
 | `加密` | 在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]。 | false 
 
 
