@@ -539,7 +539,6 @@
   <block id="bccbad684880808562152ac1d82d7b73" category="verse-content-simple">脚注：是脚注： 1[] ：不由 Astra Trident 管理是脚注： 2[] ：支持原始块卷</block>
   <block id="657e0fa57d574227dd7520919f55ff92" category="paragraph">Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 <block ref="d617d79fbb5ee3bc8bd280353eeb1349" category="inline-link-macro-rx"></block> 服务</block>
   <block id="1f65578a7accdff5ca6ff9f8dc42d9c6" category="inline-link-macro">适用于 Azure NetApp Files 的 Astra Trident 后端配置</block>
-  <block id="e4eb3683baaad2a9ce9e264a37fb519e" category="paragraph">有关此驱动程序及其配置方法的详细信息，请参见 <block ref="452e5754c64fc2b52b13e03114bfeff6" category="inline-link-macro-rx"></block>。</block>
   <block id="4da613089cbda3d7c19cb4b3f67c1f5d" category="cell">Azure NetApp Files 驱动程序</block>
   <block id="8098b34f582537833b36b58273c3545b" category="cell">展开</block>
   <block id="e228843381960c06d1035c4219901307" category="cell">`azure-netapp-files`</block>
@@ -3659,4 +3658,5 @@
   <block id="632a46acdaa26f30f25b11d5c83eaa58" category="cell"><block ref="94ef2a130a825358ab3002442d6e5145" prefix="" category="inline-code"></block></block>
   <block id="ad77b466842808c8dce5116073a3e52b" category="cell">从创建过程中排除操作员POD安全策略。</block>
   <block id="31aae55e68bb5034f8f948ec526b9ff3" category="paragraph">您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此、您必须删除现有身份验证方法并添加新的身份验证方法。然后、使用更新后的backend.json文件、该文件包含要执行的所需参数<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block>。</block>
+  <block id="488e366967d09f9808e7b3de7df261ac" category="paragraph">有关此驱动程序及其配置方法的详细信息，请参见 <block ref="7f5bc9035106c3c834aeb8867a5fce2c" category="inline-link-macro-rx"></block>。</block>
 </blocks>

@@ -110,7 +110,7 @@ Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存
 
 Astra Trident 使用 `azure-netapp-files` 驱动程序来管理 link:https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 服务
 
-有关此驱动程序及其配置方法的详细信息，请参见 link:https://azure.microsoft.com/en-us/services/netapp/["适用于 Azure NetApp Files 的 Astra Trident 后端配置"^]。
+有关此驱动程序及其配置方法的详细信息，请参见 link:https://docs.netapp.com/us-en/trident/trident-use/anf.html["适用于 Azure NetApp Files 的 Astra Trident 后端配置"^]。
 
 [cols="20,10,10,10,10,10,10"]
 |===
