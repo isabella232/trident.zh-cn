@@ -3658,4 +3658,5 @@
   <block id="0a08ed3de9d17e8644d3e57dc374c3ea" category="cell">允许启用强制分离功能。</block>
   <block id="632a46acdaa26f30f25b11d5c83eaa58" category="cell"><block ref="94ef2a130a825358ab3002442d6e5145" prefix="" category="inline-code"></block></block>
   <block id="ad77b466842808c8dce5116073a3e52b" category="cell">从创建过程中排除操作员POD安全策略。</block>
+  <block id="31aae55e68bb5034f8f948ec526b9ff3" category="paragraph">您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此、您必须删除现有身份验证方法并添加新的身份验证方法。然后、使用更新后的backend.json文件、该文件包含要执行的所需参数<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block>。</block>
 </blocks>
