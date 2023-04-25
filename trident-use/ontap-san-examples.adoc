@@ -166,7 +166,6 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 version: 1
 storageDriverName: ontap-san
 managementLIF: 10.0.0.1
-dataLIF: 10.0.0.2
 svm: trident_svm
 username: admin
 password: password
@@ -223,7 +222,6 @@ version: 1
 storageDriverName: ontap-san
 backendName: DefaultSANBackend
 managementLIF: 10.0.0.1
-dataLIF: 10.0.0.3
 svm: svm_iscsi
 useCHAP: true
 chapInitiatorSecret: cl9qxIm36DKyawxy
@@ -247,7 +245,6 @@ trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
 version: 1
 storageDriverName: ontap-san
 managementLIF: 10.0.0.1
-dataLIF: 10.0.0.3
 svm: svm_iscsi
 labels:
   k8scluster: test-cluster-1
@@ -297,7 +294,6 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
 version: 1
 storageDriverName: ontap-san
 managementLIF: 10.0.0.1
-dataLIF: 10.0.0.3
 svm: svm_iscsi
 useCHAP: true
 chapInitiatorSecret: cl9qxIm36DKyawxy

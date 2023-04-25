@@ -45,7 +45,7 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
 .YAML
 --
 '''
-版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 dataLIF：10.0.0.2 SVM：SVM_NFS用户名：vsadmin密码：password
+版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 SVM：SVM_NFS用户名：vsadmin密码：password
 
 --
 .JSON
@@ -57,7 +57,6 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
   "backendName": "ExampleBackend",
   "storageDriverName": "ontap-san",
   "managementLIF": "10.0.0.1",
-  "dataLIF": "10.0.0.2",
   "svm": "svm_nfs",
   "username": "vsadmin",
   "password": "password"
@@ -133,7 +132,6 @@ cat cert-backend.json
 "storageDriverName": "ontap-san",
 "backendName": "SanBackend",
 "managementLIF": "1.2.3.4",
-"dataLIF": "1.2.3.8",
 "svm": "vserver_test",
 "clientCertificate": "Faaaakkkkeeee...Vaaalllluuuueeee",
 "clientPrivateKey": "LS0tFaKE...0VaLuES0tLS0K",
@@ -164,7 +162,6 @@ cat cert-backend-updated.json
 "storageDriverName": "ontap-san",
 "backendName": "SanBackend",
 "managementLIF": "1.2.3.4",
-"dataLIF": "1.2.3.8",
 "svm": "vserver_test",
 "username": "vsadmin",
 "password": "password",

@@ -3625,7 +3625,6 @@
   <block id="bd4b2f0d545a83fd434f5ba1f17dd087" category="paragraph">下面是一个后端定义示例：</block>
   <block id="9463f87bbed1fcdacfb8d40e185ca2bc" category="open-title">YAML</block>
   <block id="0ecd11c1d7a287401d148a23bbd7a2f8" category="open-title">JSON</block>
-  <block id="0f327c9851416d260b583dd9a4140a04" category="paragraph">版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 dataLIF：10.0.0.2 SVM：SVM_NFS用户名：vsadmin密码：password</block>
   <block id="1bb09b46ddb492f0798a5793d23a63c9" category="paragraph">Astra Trident可以使用双向CHAP对iSCSI会话进行身份验证<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 驱动程序。这需要启用<block ref="099cb468880f266cba40b49391fa46bc" prefix=" " category="inline-code"></block> 选项。设置为时<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、Astra Trident会将SVM的默认启动程序安全性配置为双向CHAP、并从后端文件设置用户名和密码。NetApp 建议使用双向 CHAP 对连接进行身份验证。请参见以下配置示例：</block>
   <block id="4bf283d1d1c781fbb7e90b237dc80ac4" category="paragraph">以创建<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> 如果绑定到现有后端、则需要获取后端配置。在此示例中，假设已使用以下 JSON 定义创建了后端：</block>
   <block id="2043559d67ba802541907de326b5ecdd" category="paragraph">下面是一个定义了默认值的示例：</block>
@@ -3662,4 +3661,5 @@
   <block id="6cd4bb7e4d59531066c198c531ea267a" category="paragraph">要使用的分层策略、默认为<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block>；<block ref="8805d416ce540c5f2df34af5b18d742b" prefix=" " category="inline-code"></block> 适用于ONTAP 9.5 SVM-DR之前的配置</block>
   <block id="c1fd85851a162222ab0690383666bd47" category="paragraph"><block ref="05b6053c41a2130afd6fc3b158bda4e6" prefix="" category="inline-code"></block></block>
   <block id="bf0a8b77dbb95465376fb2cfec90b422" category="paragraph"><block ref="76bb7251da6a3c88e629c03a402b9d15" prefix="" category="inline-code"></block></block>
+  <block id="fa12f478676fc33d2385cf4e955c7023" category="paragraph">版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 SVM：SVM_NFS用户名：vsadmin密码：password</block>
 </blocks>
