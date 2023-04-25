@@ -1305,7 +1305,6 @@
   <block id="8841675f2e0dbba5719034b41ac52435" category="admonition">为 Astra Trident 的每个唯一实例指定一个 igroup 是一个最佳实践，对 Kubernetes 管理员和存储管理员都很有用。CSI Trident 可自动向 igroup 添加和删除集群节点 IQN ，从而极大地简化了其管理。在 Kubernetes 环境（以及 Astra Trident 安装）中使用相同的 SVM 时，使用专用的 igroup 可确保对一个 Kubernetes 集群所做的更改不会影响与另一个 Kubernetes 集群关联的 igroup 。此外，还必须确保 Kubernetes 集群中的每个节点都具有唯一的 IQN 。如上所述， Astra Trident 会自动处理 IQN 的添加和删除。在多个主机之间重复使用 IQN 可能会导致出现主机相互错误并拒绝访问 LUN 的不希望出现的情况。</block>
   <block id="3882232e20d620974a87db190a124fe7" category="paragraph">如果 Astra Trident 未作为 CSI 配置程序运行，则必须手动更新 igroup ，以包含 Kubernetes 集群中每个工作节点的 iSCSI IQN 。需要将加入 Kubernetes 集群的节点的 IQN 添加到 igroup 中。同样，必须从 igroup 中删除从 Kubernetes 集群中删除的节点的 IQN 。</block>
   <block id="42f93278b0d15c8d0f6613813bf586d5" category="section-title">使用双向 CHAP 对连接进行身份验证</block>
-  <block id="5d34ca21e19aa85f2e3cbc5bc90702fb" category="paragraph">Astra Trident 可以使用双向 CHAP 对 `ontap-san` 和 `ontap-san-economy-sn` 驱动程序的 iSCSI 会话进行身份验证。这需要在后端定义中启用 `useCHAP` 选项。如果设置为 `true` ，则 Astra Trident 会将 SVM 的默认启动程序安全性配置为双向 CHAP ，并从后端文件设置用户名和密码。NetApp 建议使用双向 CHAP 对连接进行身份验证。请参见以下配置示例：</block>
   <block id="12dd7bfa072b5a1eecf975f6a5a6eaa7" category="admonition">`useCHAP` 参数是一个布尔选项，只能配置一次。默认情况下，此参数设置为 false 。将其设置为 true 后，无法将其设置为 false 。</block>
   <block id="bc601528678aeeb582101ed205a054bc" category="paragraph">除了 `useCHAP=true` 之外，后端定义还必须包括 `chapInitiatorSecret` ， `chapTargetInitiatorSecret` ， `chapTargetUsername` 和 `chapUsername` 字段。通过运行 `tridentctl update` 创建后端，可以更改这些密钥。</block>
   <block id="9ffdb95250e26c7a6b468126ac7c75b0" category="section-title">工作原理</block>
@@ -1656,7 +1655,6 @@
   <block id="0637b40285532fa1b6c6a4548e63d2f4" category="list-text">创建 Kubernetes 机密。此密钥包含 Astra Trident 与存储集群 / 服务通信所需的凭据。</block>
   <block id="b863de09ccfaf2861ead350dd78a9933" category="list-text">创建 `TridentBackendConfig` 对象。其中包含有关存储集群 / 服务的详细信息，并引用了上一步中创建的密钥。必须注意指定相同的配置参数（例如 `sPec.backendName` ， `sPec.storagePrefix` ， `sPec.storageDriverName` 等）。`sPec.backendName` 必须设置为现有后端的名称。</block>
   <block id="44411eb1f3a70196b442f0ed4bb62820" category="section-title">第 0 步：确定后端</block>
-  <block id="c400920d4e58cf882999474fbdf967d3" category="paragraph">要创建绑定到现有后端的 `TridentBackendConfig` ，您需要获取后端的配置。在此示例中，假设已使用以下 JSON 定义创建了后端：</block>
   <block id="2181a22b3daf7866094f9f0d79da87d0" category="paragraph">创建一个包含后端凭据的机密，如以下示例所示：</block>
   <block id="276e25c1cf06c603ba2d133ae2e39dde" category="paragraph">下一步是创建一个 `TridentBackendConfig` CR ，该 CR 将自动绑定到已有的 `ontap-nas-backend` （如本示例所示）。确保满足以下要求：</block>
   <block id="0cbfd18f16db9afdef577eeddd6a8bee" category="list-text">在 `sPec.backendName` 中定义了相同的后端名称。</block>
@@ -1731,7 +1729,6 @@
   <block id="f9213d77978aabdafac36d2b0a184e56" category="list-text">集群中的节点应具有可引入拓扑感知的标签（`topology.Kubernetes IO/ 区域` 和 `topology.Kubernetes IO/ 区域` ）。在安装 Astra Trident 之前，集群中的节点上应存在这些标签 * ，以使 Astra Trident 能够识别拓扑。</block>
   <block id="0bd58c9826639ac2db106c3b277a7e0f" category="section-title">第 1 步：创建可感知拓扑的后端</block>
   <block id="c7d3751a47274aaa616d77a14f2e2722" category="paragraph">可以设计 Astra Trident 存储后端，以便根据可用性区域有选择地配置卷。每个后端都可以包含一个可选的 `supportedTopatis` 块，该块表示必须支持的分区和区域的列表。对于使用此后端的 StorageClasses ，只有在受支持区域 / 区域中计划的应用程序请求时，才会创建卷。</block>
-  <block id="168d311a918475a654f296f89a7da983" category="paragraph">下面是后端定义示例：</block>
   <block id="3e778236fe8f94ccc453f52d827e3719" category="admonition">`supportedTopologies` 用于提供每个后端的区域和分区列表。这些区域和分区表示可在 StorageClass 中提供的允许值列表。对于包含后端提供的部分区域和分区的 StorageClasses ， Astra Trident 将在后端创建卷。</block>
   <block id="217d95247b26701da7fd823884d84723" category="paragraph">您也可以为每个存储池定义 `supportedTopologies` 。请参见以下示例：</block>
   <block id="c6c80256ac468b3d88d7b62d8753f192" category="paragraph">在此示例中， `reGion` 和 `zone` 标签表示存储池的位置。`topology.Kubernees.io/zone` 和 `topology.Kubernees.io/zone` 指定存储池的使用位置。</block>
@@ -2064,57 +2061,25 @@
   <block id="51f834b47bcd78a0f4f40fd8ca40446f" category="section-title">全局配置选项</block>
   <block id="b22d82aea9557ba6aa7b915d40309d9b" category="paragraph">这些配置选项适用于所有 Astra Trident 配置，而不考虑所使用的存储平台。</block>
   <block id="63b276a6c28274ed5e553d4ce3fe7eb1" category="paragraph">配置文件版本号</block>
-  <block id="c4ca4238a0b923820dcc509a6f75849b" category="paragraph">1.</block>
   <block id="ac5eb8fcbd1ed9c85a98d91e10e26a38" category="paragraph">存储驱动程序的名称</block>
-  <block id="3f2b20ce3aa5e39b0dbfe20326747a7b" category="paragraph">卷名称的可选前缀。默认值： "netappdvp_ " 。</block>
-  <block id="46fa46eed970046d03e2dedc95cdc83b" category="paragraph">暂存 _</block>
   <block id="fcf783284187f1e80e772eacd9266ee1" category="paragraph">卷大小的可选限制。默认值： " " （未强制实施）</block>
-  <block id="75da9d6de91e782eca4fa00341367135" category="paragraph">10 G</block>
   <block id="3eed2a7dac1f2329f3a9574a68e5e1c4" category="admonition">请勿对元素后端使用 `storagePrefix` （包括默认值）。默认情况下， `solidfire-san` 驱动程序将忽略此设置，而不使用前缀。我们建议使用特定的租户 ID 进行 Docker 卷映射，或者在可能已使用任何名称的情况下使用 Docker 中填充的 Docker 版本，驱动程序信息和原始名称的属性数据。</block>
   <block id="0863f9e97e159e3ea1ce46bdb49b1254" category="paragraph">您可以使用默认选项来避免在创建的每个卷上指定这些选项。`s` 选项适用于所有控制器类型。有关如何设置默认卷大小的示例，请参见 ONTAP 配置一节。</block>
-  <block id="41ad23e0468b5a035cae097ac8b28bb9" category="paragraph">新卷的可选默认大小。默认值： "1G"</block>
-  <block id="08aa1584c9a5791fb64b0f7f1453f9eb" category="paragraph">10 G</block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="section-title">ONTAP 配置</block>
   <block id="cd536bce1bed61366e8d17a85fe6678a" category="paragraph">除了上述全局配置值之外，在使用 ONTAP 时，还可以使用以下顶级选项。</block>
   <block id="464779f3491153dd1e79ddbd8a81e3f0" category="paragraph">ONTAP 管理 LIF 的 IP 地址。您可以指定完全限定域名（ FQDN ）。</block>
-  <block id="190dafab69706a67221c1226360de7dc" category="paragraph">10.0.0.1</block>
-  <block id="98a2cd7efa1ba950d42e42af495c4248" category="paragraph">10.0.0.2</block>
   <block id="11053eb2b6ac6e8802c67c054cf55ad9" category="paragraph">要使用的 Storage Virtual Machine （如果管理 LIF 为集群 LIF ，则为必填项）</block>
-  <block id="b26399fddd6473c150b4e7528fb04fdc" category="paragraph">SVM_NFS</block>
   <block id="723a179bbb9fc3c4f12cf296a8841b27" category="paragraph">用于连接到存储设备的用户名</block>
-  <block id="6173aa5206484b5224450952747c7148" category="paragraph">vsadmin</block>
   <block id="8cf10281cf3b9290d5988c57a7d19693" category="paragraph">用于连接到存储设备的密码</block>
-  <block id="5ebe2294ecd0e0f08eab7690d2a6ee69" category="paragraph">机密</block>
   <block id="7e6d207f2b120c6cc9caa98510aa51c6" category="cell">`聚合`</block>
   <block id="ac53191a99c328660eafa4696375dbfb" category="paragraph">要配置的聚合（可选；如果设置了聚合，则必须将其分配给 SVM ）。对于 `ontap-nas-flexgroup` 驱动程序，此选项将被忽略。分配给 SVM 的所有聚合都用于配置 FlexGroup 卷。</block>
-  <block id="70d2c7701d2837552c0a38c02a326592" category="paragraph">aggr1.</block>
   <block id="925060a0c0a15f99ef1bee43f1660ea4" category="paragraph">可选，如果使用量超过此百分比，则配置失败</block>
-  <block id="f819de81247be4a5428dc0e169de28b8" category="paragraph">75%</block>
   <block id="876885770cf58d20ef5672cc5594e85d" category="inline-link">请参见此处的 NFS 主机配置信息</block>
   <block id="0a19ca3d1db7e5bc24b58f73b91c3f49" category="paragraph">对 NFS 挂载选项进行精细控制；默认为 -o nfsver=3 。* 仅适用于 `ontap-nas` 和 `ontap-nas- 经济` 驱动程序 * 。<block ref="71f7a3f48cfd3876cffba401813b7db0" category="inline-link-rx"></block>。</block>
-  <block id="301c869c551e12d862ab0291837102a0" category="paragraph">-o nfsver=4</block>
-  <block id="00d72747af4eb1f0bab120935efe88fe" category="paragraph">插件使用的 igroup ；默认为 "netappdvp " 。* 仅适用于 `ontap-san`driver* 。</block>
-  <block id="79e762988462f6f8da9becfbfd789755" category="paragraph">myigroup</block>
   <block id="5c5adadf8175fd69d4af9bfdb608c42c" category="paragraph">可请求的最大卷大小和 qtree 父卷大小。* 对于 `ontap-nas-economy` 驱动程序，此选项还会限制其创建的 FlexVol 的大小 * 。</block>
-  <block id="f07e606cfe25ac6fb07d9c4af941d9a2" category="paragraph">300 克</block>
   <block id="981ba910eb0ffc42f42059de056624b4" category="paragraph">每个 FlexVol 的最大 qtree 数必须在 50 ， 300 范围内，默认值为 200 。* 对于 `ontap-nas-economy` 驱动程序，此选项允许自定义每个 qtree* 的最大 FlexVol 数。</block>
-  <block id="94f6d7e04a4d452035300f18b984988c" category="paragraph">300</block>
   <block id="3890063556e337d458019437f027030b" category="paragraph">您可以使用默认选项来避免在创建的每个卷上指定这些选项：</block>
-  <block id="887ba6a0090fff5ace8889efb3b766af" category="paragraph">空间预留模式； " 无 " （精简配置）或 " 卷 " （厚）</block>
-  <block id="334c4a4c42fdb79d7ebc3e73b517e6f8" category="paragraph">无</block>
-  <block id="b614ecafc9c9bbcd0206b519e5481f8d" category="paragraph">要使用的 Snapshot 策略，默认值为 " 无 "</block>
-  <block id="e35ead0e9e7038a6c58695bfa4741686" category="paragraph">Snapshot 预留百分比，默认值为 " " 以接受 ONTAP 的默认值</block>
-  <block id="d3d9446802a44259755d38e6d163e820" category="paragraph">10</block>
-  <block id="eb28cb6308c229ba4561cf02d78b9a07" category="paragraph">创建克隆时将其从父级拆分，默认为 "false"</block>
   <block id="b326b5062b2f0e69046810717534cb09" category="paragraph">true</block>
-  <block id="a3b703e23c8d0caf2b2fb4f46057013b" category="paragraph">已配置 NFS 卷的 NAS 选项，默认为 "777"</block>
-  <block id="f1c1592588411002af340cbaedd6fc33" category="paragraph">777.</block>
-  <block id="525eba0ced0a1c122a9112c4d10fbdc2" category="paragraph">用于访问 ` .snapshot` 目录的 NAS 选项，默认为 "false"</block>
-  <block id="b60dd25e9d373b87424c30a74da2703f" category="paragraph">要使用的 NFS 导出策略的 NAS 选项，默认为 " 默认 "</block>
-  <block id="c21f969b5f03d33d43e04f8f136e7682" category="paragraph">default</block>
-  <block id="79c6531f572824f3178c8b1fb0f35d26" category="paragraph">SAN 选项要选择文件系统类型，默认为 "ext4"</block>
-  <block id="310201b6353c5f38bc039e0e51b079d3" category="paragraph">XFS</block>
-  <block id="3cec6d01b4f10a61939982ecfb47fc7f" category="paragraph">要使用的分层策略，对于 ONTAP 9.5 SVM-DR 之前的配置，默认为 " 无 " ； " 仅快照 "</block>
   <block id="90adf331b7868c7af46ad6e035e93844" category="section-title">扩展选项</block>
   <block id="493a6606c4789fad3c7317b99cb563d0" category="paragraph">`ontap-nas` 和 `ontap-san` 驱动程序会为每个 Docker 卷创建一个 ONTAP FlexVol 。对于每个集群节点， ONTAP 最多支持 1000 个 FlexVol ，而集群最多支持 12 ， 000 个 FlexVol 。如果您的 Docker 卷要求符合此限制，则由于 Flexvol 提供的其他功能（例如 Docker 卷粒度快照和克隆）， `ontap-NAS` 驱动程序是首选的 NAS 解决方案。</block>
   <block id="b8f30e4086b754ccaf7bd5d01d8df137" category="paragraph">如果所需的 Docker 卷数超出 FlexVol 限制所能容纳的范围，请选择 `ontap-nas-economy"` 或 `ontap-san-economy"` 驱动程序。</block>
@@ -2141,12 +2106,10 @@
   <block id="c61f15977fe4efa0866eea87fb740cda" category="paragraph">iSCSI IP 地址和端口</block>
   <block id="6a6b63874c664c103982f6d422c6384e" category="paragraph">10.0.0.7 ： 3260</block>
   <block id="72deb2676231ab8e068ef60dd89edd4c" category="paragraph">要使用的 SolidFireF 租户（如果未找到，则创建）</block>
-  <block id="5eda5112bf8affeb1d2cd8eea6302076" category="paragraph">Docker</block>
   <block id="d2672389886b173aef703433f7e4b89b" category="paragraph">将 iSCSI 流量限制为非默认接口时，请指定接口</block>
   <block id="5935dcd024929bc7086bb230802bf576" category="paragraph">请参见以下示例</block>
   <block id="5e9bf55f849ccc5a31a50d1fa784d28c" category="cell">`LegendPrefix`</block>
   <block id="db7adc3775b0b56c59ce4263fbd79fbf" category="paragraph">升级后的 Trident 安装的前缀。如果您使用的是 1.3.2 之前的 Trident 版本并对现有卷执行升级，则需要设置此值才能访问通过 volume-name 方法映射的旧卷。</block>
-  <block id="8d3aa50a0f9c3c059677927a3fbbfcda" category="paragraph">"netappdvp- "</block>
   <block id="36f9c7b615268efec7f4c56c387a55bb" category="paragraph">`solidfire-san` 驱动程序不支持 Docker Swarm 。</block>
   <block id="1059bb8540c48e6b455e802384bad65d" category="section-title">Element 软件配置文件示例</block>
   <block id="1a269fb3ec0496720ca75e984d8de40e" category="cell">`hostProjectNumber`</block>
@@ -3659,4 +3622,44 @@
   <block id="ad77b466842808c8dce5116073a3e52b" category="cell">从创建过程中排除操作员POD安全策略。</block>
   <block id="31aae55e68bb5034f8f948ec526b9ff3" category="paragraph">您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此、您必须删除现有身份验证方法并添加新的身份验证方法。然后、使用更新后的backend.json文件、该文件包含要执行的所需参数<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block>。</block>
   <block id="488e366967d09f9808e7b3de7df261ac" category="paragraph">有关此驱动程序及其配置方法的详细信息，请参见 <block ref="7f5bc9035106c3c834aeb8867a5fce2c" category="inline-link-macro-rx"></block>。</block>
+  <block id="bd4b2f0d545a83fd434f5ba1f17dd087" category="paragraph">下面是一个后端定义示例：</block>
+  <block id="9463f87bbed1fcdacfb8d40e185ca2bc" category="open-title">YAML</block>
+  <block id="0ecd11c1d7a287401d148a23bbd7a2f8" category="open-title">JSON</block>
+  <block id="0f327c9851416d260b583dd9a4140a04" category="paragraph">版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 dataLIF：10.0.0.2 SVM：SVM_NFS用户名：vsadmin密码：password</block>
+  <block id="1bb09b46ddb492f0798a5793d23a63c9" category="paragraph">Astra Trident可以使用双向CHAP对iSCSI会话进行身份验证<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 驱动程序。这需要启用<block ref="099cb468880f266cba40b49391fa46bc" prefix=" " category="inline-code"></block> 选项。设置为时<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、Astra Trident会将SVM的默认启动程序安全性配置为双向CHAP、并从后端文件设置用户名和密码。NetApp 建议使用双向 CHAP 对连接进行身份验证。请参见以下配置示例：</block>
+  <block id="4bf283d1d1c781fbb7e90b237dc80ac4" category="paragraph">以创建<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> 如果绑定到现有后端、则需要获取后端配置。在此示例中，假设已使用以下 JSON 定义创建了后端：</block>
+  <block id="2043559d67ba802541907de326b5ecdd" category="paragraph">下面是一个定义了默认值的示例：</block>
+  <block id="2fc042d3545f5ad7df1999c9e5486176" category="paragraph"><block ref="c4ca4238a0b923820dcc509a6f75849b" prefix="" category="inline-code"></block></block>
+  <block id="7ff5348ddee6132fe7c166b8b7917cc0" category="paragraph">卷名称的可选前缀。默认值：<block ref="689ee6510c7f9ef9df1c263a08823d96" prefix=" " category="inline-code"></block>。</block>
+  <block id="81998bdb6c3f52ba69dbecf0ec513180" category="paragraph"><block ref="46fa46eed970046d03e2dedc95cdc83b" prefix="" category="inline-code"></block></block>
+  <block id="5d8040f7ca409e3993359a877f675e59" category="paragraph"><block ref="75da9d6de91e782eca4fa00341367135" prefix="" category="inline-code"></block></block>
+  <block id="9548d4d33e26f6bbe564b4eb47a52e4b" category="paragraph">新卷的可选默认大小。默认值：<block ref="7d0f45b4b1cf6603762c74ca39c833dd" prefix=" " category="inline-code"></block></block>
+  <block id="dfda6aac7ee732ec79153da76a0e963a" category="paragraph"><block ref="08aa1584c9a5791fb64b0f7f1453f9eb" prefix="" category="inline-code"></block></block>
+  <block id="b6d628512c1127da9adb6c459c9f7c95" category="paragraph"><block ref="190dafab69706a67221c1226360de7dc" prefix="" category="inline-code"></block></block>
+  <block id="251296d0166ace97771b155156985b38" category="paragraph"><block ref="98a2cd7efa1ba950d42e42af495c4248" prefix="" category="inline-code"></block></block>
+  <block id="9fcbfb18564773bb1604cf400912944c" category="paragraph"><block ref="b26399fddd6473c150b4e7528fb04fdc" prefix="" category="inline-code"></block></block>
+  <block id="8131d179a4284fbb0ed410bbbbcf1eb6" category="paragraph"><block ref="6173aa5206484b5224450952747c7148" prefix="" category="inline-code"></block></block>
+  <block id="c4dc9cb5606cc8c0597a5c8f1f77b005" category="paragraph"><block ref="5ebe2294ecd0e0f08eab7690d2a6ee69" prefix="" category="inline-code"></block></block>
+  <block id="fc3424ba1777889d0d49ea7f5a675c9e" category="paragraph"><block ref="70d2c7701d2837552c0a38c02a326592" prefix="" category="inline-code"></block></block>
+  <block id="e84b7103384d0a3393c0847330716669" category="paragraph"><block ref="f819de81247be4a5428dc0e169de28b8" prefix="" category="inline-code"></block></block>
+  <block id="7dd39afeb1c0b05aac5f4bf6fbd94990" category="paragraph"><block ref="301c869c551e12d862ab0291837102a0" prefix="" category="inline-code"></block></block>
+  <block id="cddf719b813056497a40cf1934f91af3" category="paragraph">插件使用的igrop；默认为<block ref="e77a1bd34ff5793aca292b38d23bc2c9" prefix=" " category="inline-code"></block>。* 仅适用于 `ontap-san`driver* 。</block>
+  <block id="53f20dcb83975ae9823682474c74acd6" category="paragraph"><block ref="79e762988462f6f8da9becfbfd789755" prefix="" category="inline-code"></block></block>
+  <block id="98ce75f2128e52057c9dbf00a9eb2736" category="paragraph"><block ref="f07e606cfe25ac6fb07d9c4af941d9a2" prefix="" category="inline-code"></block></block>
+  <block id="1ae6e291c93a6d5962af8004aecd9c4c" category="paragraph"><block ref="94f6d7e04a4d452035300f18b984988c" prefix="" category="inline-code"></block></block>
+  <block id="af2bffb136dd0c22342ad9cb06187197" category="paragraph">空间预留模式；<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block> (精简配置)或<block ref="210ab9e731c9c36c2c38db15c28a8d1c" prefix=" " category="inline-code"></block> (厚)</block>
+  <block id="7f0d015762fc8e2b44f0ad1cd5429af5" category="paragraph">要使用的Snapshot策略、默认为<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block></block>
+  <block id="0b89124cc899d4e75924c83a9eaf86ce" category="paragraph">Snapshot预留百分比、默认值为""以接受ONTAP 默认值</block>
+  <block id="11663b17d5bcea48dbfb36b13965663b" category="paragraph"><block ref="d3d9446802a44259755d38e6d163e820" prefix="" category="inline-code"></block></block>
+  <block id="871c12a80dbc519da4b71b3ea166cdc4" category="paragraph">创建克隆时将其从父级拆分、默认为<block ref="68934a3e9455fa72420237eb05902327" prefix=" " category="inline-code"></block></block>
+  <block id="290cc6c07ae2ba0a638720a38f1356ed" category="paragraph">对于已配置的NFS卷、NAS选项默认为<block ref="f1c1592588411002af340cbaedd6fc33" prefix=" " category="inline-code"></block></block>
+  <block id="8dfb6d491cffb51a17396f993c195d8b" category="paragraph"><block ref="f1c1592588411002af340cbaedd6fc33" prefix="" category="inline-code"></block></block>
+  <block id="b7655e29a015ee3721339f8462d5d2b6" category="paragraph">用于访问的NAS选项<block ref="a15da8cecb1f1192c4d913b8ba676121" prefix=" " category="inline-code"></block> 目录、默认为<block ref="68934a3e9455fa72420237eb05902327" prefix=" " category="inline-code"></block></block>
+  <block id="1667ea9b715250d5f295353e97cde10e" category="paragraph">要使用的NFS导出策略的NAS选项、默认为<block ref="c21f969b5f03d33d43e04f8f136e7682" prefix=" " category="inline-code"></block></block>
+  <block id="980ef1c1aa7d1456ee087df02119341e" category="paragraph"><block ref="c21f969b5f03d33d43e04f8f136e7682" prefix="" category="inline-code"></block></block>
+  <block id="19d28ffef37322622a55f9d7f1f9fa59" category="paragraph">SAN选项要选择文件系统类型、默认为<block ref="40d1d2ce03569076bd0dc1e0ff90aa4c" prefix=" " category="inline-code"></block></block>
+  <block id="c90caaafbe0da0287b6a84f0894fa40b" category="paragraph"><block ref="310201b6353c5f38bc039e0e51b079d3" prefix="" category="inline-code"></block></block>
+  <block id="6cd4bb7e4d59531066c198c531ea267a" category="paragraph">要使用的分层策略、默认为<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block>；<block ref="8805d416ce540c5f2df34af5b18d742b" prefix=" " category="inline-code"></block> 适用于ONTAP 9.5 SVM-DR之前的配置</block>
+  <block id="c1fd85851a162222ab0690383666bd47" category="paragraph"><block ref="05b6053c41a2130afd6fc3b158bda4e6" prefix="" category="inline-code"></block></block>
+  <block id="bf0a8b77dbb95465376fb2cfec90b422" category="paragraph"><block ref="76bb7251da6a3c88e629c03a402b9d15" prefix="" category="inline-code"></block></block>
 </blocks>

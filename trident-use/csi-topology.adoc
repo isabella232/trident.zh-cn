@@ -53,8 +53,31 @@ kubectl get nodes -o=jsonpath='{range .items[*]}[{.metadata.name}, {.metadata.la
 
 可以设计 Astra Trident 存储后端，以便根据可用性区域有选择地配置卷。每个后端都可以包含一个可选的 `supportedTopatis` 块，该块表示必须支持的分区和区域的列表。对于使用此后端的 StorageClasses ，只有在受支持区域 / 区域中计划的应用程序请求时，才会创建卷。
 
-下面是后端定义示例：
+下面是一个后端定义示例：
 
+[role="tabbed-block"]
+====
+.YAML
+--
+[listing]
+----
+---
+version: 1
+storageDriverName: ontap-san
+backendName: san-backend-us-east1
+managementLIF: 192.168.27.5
+svm: iscsi_svm
+username: admin
+password: password
+supportedTopologies:
+- topology.kubernetes.io/region: us-east1
+  topology.kubernetes.io/zone: us-east1-a
+- topology.kubernetes.io/region: us-east1
+  topology.kubernetes.io/zone: us-east1-b
+----
+--
+.JSON
+--
 [listing]
 ----
 {
@@ -71,6 +94,8 @@ kubectl get nodes -o=jsonpath='{range .items[*]}[{.metadata.name}, {.metadata.la
 ]
 }
 ----
+--
+====
 
 NOTE: `supportedTopologies` 用于提供每个后端的区域和分区列表。这些区域和分区表示可在 StorageClass 中提供的允许值列表。对于包含后端提供的部分区域和分区的 StorageClasses ， Astra Trident 将在后端创建卷。
 
@@ -78,36 +103,34 @@ NOTE: `supportedTopologies` 用于提供每个后端的区域和分区列表。�
 
 [listing]
 ----
-{"version": 1,
-"storageDriverName": "ontap-nas",
-"backendName": "nas-backend-us-central1",
-"managementLIF": "172.16.238.5",
-"svm": "nfs_svm",
-"username": "admin",
-"password": "password",
-"supportedTopologies": [
-      {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-a"},
-      {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-b"}
-    ]
-"storage": [
-   {
-       "labels": {"workload":"production"},
-        "region": "Iowa-DC",
-        "zone": "Iowa-DC-A",
-        "supportedTopologies": [
-            {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-a"}
-        ]
-    },
-    {
-        "labels": {"workload":"dev"},
-         "region": "Iowa-DC",
-         "zone": "Iowa-DC-B",
-         "supportedTopologies": [
-             {"topology.kubernetes.io/region": "us-central1", "topology.kubernetes.io/zone": "us-central1-b"}
-         ]
-     }
-]
-}
+---
+version: 1
+storageDriverName: ontap-nas
+backendName: nas-backend-us-central1
+managementLIF: 172.16.238.5
+svm: nfs_svm
+username: admin
+password: password
+supportedTopologies:
+- topology.kubernetes.io/region: us-central1
+  topology.kubernetes.io/zone: us-central1-a
+- topology.kubernetes.io/region: us-central1
+  topology.kubernetes.io/zone: us-central1-b
+storage:
+- labels:
+    workload: production
+  region: Iowa-DC
+  zone: Iowa-DC-A
+  supportedTopologies:
+  - topology.kubernetes.io/region: us-central1
+    topology.kubernetes.io/zone: us-central1-a
+- labels:
+    workload: dev
+  region: Iowa-DC
+  zone: Iowa-DC-B
+  supportedTopologies:
+  - topology.kubernetes.io/region: us-central1
+    topology.kubernetes.io/zone: us-central1-b
 ----
 在此示例中， `reGion` 和 `zone` 标签表示存储池的位置。`topology.Kubernees.io/zone` 和 `topology.Kubernees.io/zone` 指定存储池的使用位置。
 

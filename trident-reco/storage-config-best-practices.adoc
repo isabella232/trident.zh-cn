@@ -129,32 +129,25 @@ ONTAP 有两种类型的 QoS 策略组：传统和自适应。传统策略组以
 
 [listing]
 ----
-  {
-    "version": 1,
-    "storageDriverName": "ontap-nas",
-    "managementLIF": "0.0.0.0",
-    "dataLIF": "0.0.0.0",
-    "svm": "svm0",
-    "username": "user",
-    "password": "pass",
-    "defaults": {
-      "qosPolicy": "standard-pg"
-    },
-    "storage": [
-      {
-        "labels": {"performance": "extreme"},
-        "defaults": {
-          "adaptiveQosPolicy": "extremely-adaptive-pg"
-        }
-      },
-      {
-        "labels": {"performance": "premium"},
-        "defaults": {
-          "qosPolicy": "premium-pg"
-        }
-      }
-    ]
-  }
+  ---
+version: 1
+storageDriverName: ontap-nas
+managementLIF: 0.0.0.0
+dataLIF: 0.0.0.0
+svm: svm0
+username: user
+password: pass
+defaults:
+  qosPolicy: standard-pg
+storage:
+- labels:
+    performance: extreme
+  defaults:
+    adaptiveQosPolicy: extremely-adaptive-pg
+- labels:
+    performance: premium
+  defaults:
+    qosPolicy: premium-pg
 ----
 * 您应该对每个卷应用策略组，以便每个卷都获得策略组指定的整个吞吐量。不支持共享策略组。
 

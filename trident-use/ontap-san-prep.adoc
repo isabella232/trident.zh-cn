@@ -40,6 +40,16 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
 
 后端定义示例如下所示：
 
+[role="tabbed-block"]
+====
+.YAML
+--
+'''
+版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 dataLIF：10.0.0.2 SVM：SVM_NFS用户名：vsadmin密码：password
+
+--
+.JSON
+--
 [listing]
 ----
 {
@@ -50,9 +60,12 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
   "dataLIF": "10.0.0.2",
   "svm": "svm_nfs",
   "username": "vsadmin",
-  "password": "password",
+  "password": "password"
 }
+
 ----
+--
+====
 请注意，后端定义是凭据以纯文本格式存储的唯一位置。创建后端后，用户名 / 密码将使用 Base64 进行编码并存储为 Kubernetes 密钥。创建或更新后端是唯一需要了解凭据的步骤。因此，这是一项仅由管理员执行的操作，由 Kubernetes 或存储管理员执行。
 
 
@@ -194,25 +207,24 @@ IMPORTANT: 为 Astra Trident 的每个唯一实例指定一个 igroup 是一个�
 
 == 使用双向 CHAP 对连接进行身份验证
 
-Astra Trident 可以使用双向 CHAP 对 `ontap-san` 和 `ontap-san-economy-sn` 驱动程序的 iSCSI 会话进行身份验证。这需要在后端定义中启用 `useCHAP` 选项。如果设置为 `true` ，则 Astra Trident 会将 SVM 的默认启动程序安全性配置为双向 CHAP ，并从后端文件设置用户名和密码。NetApp 建议使用双向 CHAP 对连接进行身份验证。请参见以下配置示例：
+Astra Trident可以使用双向CHAP对iSCSI会话进行身份验证 `ontap-san` 和 `ontap-san-economy` 驱动程序。这需要启用 `useCHAP` 选项。设置为时 `true`、Astra Trident会将SVM的默认启动程序安全性配置为双向CHAP、并从后端文件设置用户名和密码。NetApp 建议使用双向 CHAP 对连接进行身份验证。请参见以下配置示例：
 
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "ontap-san",
-    "backendName": "ontap_san_chap",
-    "managementLIF": "192.168.0.135",
-    "svm": "ontap_iscsi_svm",
-    "useCHAP": true,
-    "username": "vsadmin",
-    "password": "password",
-    "igroupName": "trident",
-    "chapInitiatorSecret": "cl9qxIm36DKyawxy",
-    "chapTargetInitiatorSecret": "rqxigXgkesIpwxyz",
-    "chapTargetUsername": "iJF4heBRT0TCwxyz",
-    "chapUsername": "uh2aNCLSd6cNwxyz",
-}
+---
+version: 1
+storageDriverName: ontap-san
+backendName: ontap_san_chap
+managementLIF: 192.168.0.135
+svm: ontap_iscsi_svm
+useCHAP: true
+username: vsadmin
+password: password
+igroupName: trident
+chapInitiatorSecret: cl9qxIm36DKyawxy
+chapTargetInitiatorSecret: rqxigXgkesIpwxyz
+chapTargetUsername: iJF4heBRT0TCwxyz
+chapUsername: uh2aNCLSd6cNwxyz
 ----
 
 WARNING: `useCHAP` 参数是一个布尔选项，只能配置一次。默认情况下，此参数设置为 false 。将其设置为 true 后，无法将其设置为 false 。

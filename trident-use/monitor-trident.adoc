@@ -148,27 +148,22 @@ Astra Trident 发送的有效负载示例如下：
 
 [listing]
 ----
-{
-  "items": [
-    {
-      "backendUUID": "ff3852e1-18a5-4df4-b2d3-f59f829627ed",
-      "protocol": "file",
-      "config": {
-        "version": 1,
-        "storageDriverName": "ontap-nas",
-        "debug": false,
-        "debugTraceFlags": null,
-        "disableDelete": false,
-        "serialNumbers": [
-          "nwkvzfanek_SN"
-        ],
-        "limitVolumeSize": ""
-      },
-      "state": "online",
-      "online": true
-    }
-  ]
-}
+---
+items:
+- backendUUID: ff3852e1-18a5-4df4-b2d3-f59f829627ed
+  protocol: file
+  config:
+    version: 1
+    storageDriverName: ontap-nas
+    debug: false
+    debugTraceFlags:
+    disableDelete: false
+    serialNumbers:
+    - nwkvzfanek_SN
+    limitVolumeSize: ''
+  state: online
+  online: true
+
 ----
 * AutoSupport 消息将发送到 NetApp 的 AutoSupport 端点。如果使用私有注册表存储容器映像，则可以使用 ` -image-regRegistry` 标志。
 * 您也可以通过生成安装 YAML 文件来配置代理 URL 。为此，可以使用 `tridentctl install -generate-custom-yaml` 创建 YAML 文件，并在 `trident dedeployment.yaml` 中为 `trident autosupport` 容器添加 ` -proxy-url` 参数。

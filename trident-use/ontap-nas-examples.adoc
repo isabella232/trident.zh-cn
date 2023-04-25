@@ -150,32 +150,35 @@ NOTE: 在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本�
 
 ==== 卷配置示例
 
-下面是定义了默认值的示例：
+下面是一个定义了默认值的示例：
 
 [listing]
 ----
-{
-  "version": 1,
-  "storageDriverName": "ontap-nas",
-  "backendName": "customBackendName",
-  "managementLIF": "10.0.0.1",
-  "dataLIF": "10.0.0.2",
-  "labels": {"k8scluster": "dev1", "backend": "dev1-nasbackend"},
-  "svm": "trident_svm",
-  "username": "cluster-admin",
-  "password": "password",
-  "limitAggregateUsage": "80%",
-  "limitVolumeSize": "50Gi",
-  "nfsMountOptions": "nfsvers=4",
-  "debugTraceFlags": {"api":false, "method":true},
-  "defaults": {
-    "spaceReserve": "volume",
-    "qosPolicy": "premium",
-    "exportPolicy": "myk8scluster",
-    "snapshotPolicy": "default",
-    "snapshotReserve": "10"
-  }
-}
+---
+version: 1
+storageDriverName: ontap-nas
+backendName: customBackendName
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+labels:
+  k8scluster: dev1
+  backend: dev1-nasbackend
+svm: trident_svm
+username: cluster-admin
+password: password
+limitAggregateUsage: 80%
+limitVolumeSize: 50Gi
+nfsMountOptions: nfsvers=4
+debugTraceFlags:
+  api: false
+  method: true
+defaults:
+  spaceReserve: volume
+  qosPolicy: premium
+  exportPolicy: myk8scluster
+  snapshotPolicy: default
+  snapshotReserve: '10'
+
 ----
 对于 `ontap-nas` 和 `ontap-nas-flexgroups` ， Astra Trident 现在使用新的计算方法来确保 FlexVol 的大小正确，并使用 snapshotReserve 百分比和 PVC 。当用户请求 PVC 时， Astra Trident 会使用新计算创建具有更多空间的原始 FlexVol 。此计算可确保用户在 PVC 中收到所请求的可写空间，而不是小于所请求的空间。在 v21.07 之前，如果用户请求 PVC （例如， 5GiB ），并且 snapshotReserve 为 50% ，则只会获得 2.5 GiB 的可写空间。这是因为用户请求的是整个卷，而 `snapshotReserve` 是其中的一个百分比。在 Trident 21.07 中，用户请求的是可写空间， Astra Trident 将 `snapshotReserve` number 定义为整个卷的百分比。这不适用于 `ontap-nas-economy"` 。请参见以下示例以了解其工作原理：
 
@@ -209,15 +212,14 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 ====
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "ontap-nas-economy",
-    "managementLIF": "10.0.0.1",
-    "dataLIF": "10.0.0.2",
-    "svm": "svm_nfs",
-    "username": "vsadmin",
-    "password": "password"
-}
+---
+version: 1
+storageDriverName: ontap-nas-economy
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+svm: svm_nfs
+username: vsadmin
+password: password
 ----
 ====
 .基于证书的身份验证
@@ -227,18 +229,17 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 
 [listing]
 ----
-{
-  "version": 1,
-  "backendName": "DefaultNASBackend",
-  "storageDriverName": "ontap-nas",
-  "managementLIF": "10.0.0.1",
-  "dataLIF": "10.0.0.15",
-  "svm": "nfs_svm",
-  "clientCertificate": "ZXR0ZXJwYXB...ICMgJ3BhcGVyc2",
-  "clientPrivateKey": "vciwKIyAgZG...0cnksIGRlc2NyaX",
-  "trustedCACertificate": "zcyBbaG...b3Igb3duIGNsYXNz",
-  "storagePrefix": "myPrefix_"
-}
+---
+version: 1
+backendName: DefaultNASBackend
+storageDriverName: ontap-nas
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.15
+svm: nfs_svm
+clientCertificate: ZXR0ZXJwYXB...ICMgJ3BhcGVyc2
+clientPrivateKey: vciwKIyAgZG...0cnksIGRlc2NyaX
+trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
+storagePrefix: myPrefix_
 ----
 ====
 .自动导出策略
@@ -249,33 +250,36 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 .ontap-NAS 驱动程序
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "ontap-nas",
-    "managementLIF": "10.0.0.1",
-    "dataLIF": "10.0.0.2",
-    "svm": "svm_nfs",
-    "labels": {"k8scluster": "test-cluster-east-1a", "backend": "test1-nasbackend"},
-    "autoExportPolicy": true,
-    "autoExportCIDRs": ["10.0.0.0/24"],
-    "username": "admin",
-    "password": "password",
-    "nfsMountOptions": "nfsvers=4",
-}
+---
+version: 1
+storageDriverName: ontap-nas
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+svm: svm_nfs
+labels:
+  k8scluster: test-cluster-east-1a
+  backend: test1-nasbackend
+autoExportPolicy: true
+autoExportCIDRs:
+- 10.0.0.0/24
+username: admin
+password: password
+nfsMountOptions: nfsvers=4
 ----
 .<code> </code> 驱动程序
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "ontap-nas-flexgroup",
-    "managementLIF": "10.0.0.1",
-    "dataLIF": "10.0.0.2",
-    "labels": {"k8scluster": "test-cluster-east-1b", "backend": "test1-ontap-cluster"},
-    "svm": "svm_nfs",
-    "username": "vsadmin",
-    "password": "password",
-}
+---
+version: 1
+storageDriverName: ontap-nas-flexgroup
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+labels:
+  k8scluster: test-cluster-east-1b
+  backend: test1-ontap-cluster
+svm: svm_nfs
+username: vsadmin
+password: password
 ----
 ====
 .使用IPv6地址
@@ -285,16 +289,18 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 
 [listing]
 ----
-{
- "version": 1,
- "storageDriverName": "ontap-nas",
- "backendName": "nas_ipv6_backend",
- "managementLIF": "[5c5d:5edf:8f:7657:bef8:109b:1b41:d491]",
- "labels": {"k8scluster": "test-cluster-east-1a", "backend": "test1-ontap-ipv6"},
- "svm": "nas_ipv6_svm",
- "username": "vsadmin",
- "password": "password"
-}
+---
+version: 1
+storageDriverName: ontap-nas
+backendName: nas_ipv6_backend
+managementLIF: "[5c5d:5edf:8f:7657:bef8:109b:1b41:d491]"
+labels:
+  k8scluster: test-cluster-east-1a
+  backend: test1-ontap-ipv6
+svm: nas_ipv6_svm
+username: vsadmin
+password: password
+
 ----
 ====
 
@@ -303,15 +309,14 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "ontap-nas-economy",
-    "managementLIF": "10.0.0.1",
-    "dataLIF": "10.0.0.2",
-    "svm": "svm_nfs",
-    "username": "vsadmin",
-    "password": "password"
-}
+---
+version: 1
+storageDriverName: ontap-nas-economy
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+svm: svm_nfs
+username: vsadmin
+password: password
 ----
 
 
@@ -319,19 +324,18 @@ NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为
 
 [listing]
 ----
-{
-  "version": 1,
-  "backendName": "SMBBackend",
-  "storageDriverName": "ontap-nas",
-  "managementLIF": "example.mgmt.fqdn.aws.com",
-  “nasType”: “smb”,
-  "dataLIF": "10.0.0.15",
-  "svm": "nfs_svm",
-  "clientCertificate": "ZXR0ZXJwYXB...ICMgJ3BhcGVyc2",
-  "clientPrivateKey": "vciwKIyAgZG...0cnksIGRlc2NyaX",
-  "trustedCACertificate": "zcyBbaG...b3Igb3duIGNsYXNz",
-  "storagePrefix": "myPrefix_"
-}
+---
+version: 1
+backendName: SMBBackend
+storageDriverName: ontap-nas
+managementLIF: example.mgmt.fqdn.aws.com
+nasType: smb
+dataLIF: 10.0.0.15
+svm: nfs_svm
+clientCertificate: ZXR0ZXJwYXB...ICMgJ3BhcGVyc2
+clientPrivateKey: vciwKIyAgZG...0cnksIGRlc2NyaX
+trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
+storagePrefix: myPrefix_
 ----
 
 
@@ -348,64 +352,57 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
 ====
 [listing]
 ----
-{
-    {
-    "version": 1,
-    "storageDriverName": "ontap-nas",
-    "managementLIF": "10.0.0.1",
-    "dataLIF": "10.0.0.2",
-    "svm": "svm_nfs",
-    "username": "admin",
-    "password": "password",
-    "nfsMountOptions": "nfsvers=4",
-
-    "defaults": {
-          "spaceReserve": "none",
-          "encryption": "false",
-          "qosPolicy": "standard"
-    },
-    "labels":{"store":"nas_store", "k8scluster": "prod-cluster-1"},
-    "region": "us_east_1",
-    "storage": [
-        {
-            "labels":{"app":"msoffice", "cost":"100"},
-            "zone":"us_east_1a",
-            "defaults": {
-                "spaceReserve": "volume",
-                "encryption": "true",
-                "unixPermissions": "0755",
-                "adaptiveQosPolicy": "adaptive-premium"
-            }
-        },
-        {
-            "labels":{"app":"slack", "cost":"75"},
-            "zone":"us_east_1b",
-            "defaults": {
-                "spaceReserve": "none",
-                "encryption": "true",
-                "unixPermissions": "0755"
-            }
-        },
-        {
-            "labels":{"app":"wordpress", "cost":"50"},
-            "zone":"us_east_1c",
-            "defaults": {
-                "spaceReserve": "none",
-                "encryption": "true",
-                "unixPermissions": "0775"
-            }
-        },
-        {
-            "labels":{"app":"mysqldb", "cost":"25"},
-            "zone":"us_east_1d",
-            "defaults": {
-                "spaceReserve": "volume",
-                "encryption": "false",
-                "unixPermissions": "0775"
-            }
-        }
-    ]
-}
+---
+version: 1
+storageDriverName: ontap-nas
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+svm: svm_nfs
+username: admin
+password: password
+nfsMountOptions: nfsvers=4
+defaults:
+  spaceReserve: none
+  encryption: 'false'
+  qosPolicy: standard
+labels:
+  store: nas_store
+  k8scluster: prod-cluster-1
+region: us_east_1
+storage:
+- labels:
+    app: msoffice
+    cost: '100'
+  zone: us_east_1a
+  defaults:
+    spaceReserve: volume
+    encryption: 'true'
+    unixPermissions: '0755'
+    adaptiveQosPolicy: adaptive-premium
+- labels:
+    app: slack
+    cost: '75'
+  zone: us_east_1b
+  defaults:
+    spaceReserve: none
+    encryption: 'true'
+    unixPermissions: '0755'
+- labels:
+    app: wordpress
+    cost: '50'
+  zone: us_east_1c
+  defaults:
+    spaceReserve: none
+    encryption: 'true'
+    unixPermissions: '0775'
+- labels:
+    app: mysqldb
+    cost: '25'
+  zone: us_east_1d
+  defaults:
+    spaceReserve: volume
+    encryption: 'false'
+    unixPermissions: '0775'
 ----
 ====
 .<code> </code> 驱动程序
@@ -413,60 +410,55 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
 ====
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "ontap-nas-flexgroup",
-    "managementLIF": "10.0.0.1",
-    "dataLIF": "10.0.0.2",
-    "svm": "svm_nfs",
-    "username": "vsadmin",
-    "password": "password",
+---
+version: 1
+storageDriverName: ontap-nas-flexgroup
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+svm: svm_nfs
+username: vsadmin
+password: password
+defaults:
+  spaceReserve: none
+  encryption: 'false'
+labels:
+  store: flexgroup_store
+  k8scluster: prod-cluster-1
+region: us_east_1
+storage:
+- labels:
+    protection: gold
+    creditpoints: '50000'
+  zone: us_east_1a
+  defaults:
+    spaceReserve: volume
+    encryption: 'true'
+    unixPermissions: '0755'
+- labels:
+    protection: gold
+    creditpoints: '30000'
+  zone: us_east_1b
+  defaults:
+    spaceReserve: none
+    encryption: 'true'
+    unixPermissions: '0755'
+- labels:
+    protection: silver
+    creditpoints: '20000'
+  zone: us_east_1c
+  defaults:
+    spaceReserve: none
+    encryption: 'true'
+    unixPermissions: '0775'
+- labels:
+    protection: bronze
+    creditpoints: '10000'
+  zone: us_east_1d
+  defaults:
+    spaceReserve: volume
+    encryption: 'false'
+    unixPermissions: '0775'
 
-    "defaults": {
-          "spaceReserve": "none",
-          "encryption": "false"
-    },
-    "labels":{"store":"flexgroup_store", "k8scluster": "prod-cluster-1"},
-    "region": "us_east_1",
-    "storage": [
-        {
-            "labels":{"protection":"gold", "creditpoints":"50000"},
-            "zone":"us_east_1a",
-            "defaults": {
-                "spaceReserve": "volume",
-                "encryption": "true",
-                "unixPermissions": "0755"
-            }
-        },
-        {
-            "labels":{"protection":"gold", "creditpoints":"30000"},
-            "zone":"us_east_1b",
-            "defaults": {
-                "spaceReserve": "none",
-                "encryption": "true",
-                "unixPermissions": "0755"
-            }
-        },
-        {
-            "labels":{"protection":"silver", "creditpoints":"20000"},
-            "zone":"us_east_1c",
-            "defaults": {
-                "spaceReserve": "none",
-                "encryption": "true",
-                "unixPermissions": "0775"
-            }
-        },
-        {
-            "labels":{"protection":"bronze", "creditpoints":"10000"},
-            "zone":"us_east_1d",
-            "defaults": {
-                "spaceReserve": "volume",
-                "encryption": "false",
-                "unixPermissions": "0775"
-            }
-        }
-    ]
-}
 ----
 ====
 .<code> 中的</code> 驱动程序
@@ -474,60 +466,54 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
 ====
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "ontap-nas-economy",
-    "managementLIF": "10.0.0.1",
-    "dataLIF": "10.0.0.2",
-    "svm": "svm_nfs",
-    "username": "vsadmin",
-    "password": "password",
+---
+version: 1
+storageDriverName: ontap-nas-economy
+managementLIF: 10.0.0.1
+dataLIF: 10.0.0.2
+svm: svm_nfs
+username: vsadmin
+password: password
+defaults:
+  spaceReserve: none
+  encryption: 'false'
+labels:
+  store: nas_economy_store
+region: us_east_1
+storage:
+- labels:
+    department: finance
+    creditpoints: '6000'
+  zone: us_east_1a
+  defaults:
+    spaceReserve: volume
+    encryption: 'true'
+    unixPermissions: '0755'
+- labels:
+    department: legal
+    creditpoints: '5000'
+  zone: us_east_1b
+  defaults:
+    spaceReserve: none
+    encryption: 'true'
+    unixPermissions: '0755'
+- labels:
+    department: engineering
+    creditpoints: '3000'
+  zone: us_east_1c
+  defaults:
+    spaceReserve: none
+    encryption: 'true'
+    unixPermissions: '0775'
+- labels:
+    department: humanresource
+    creditpoints: '2000'
+  zone: us_east_1d
+  defaults:
+    spaceReserve: volume
+    encryption: 'false'
+    unixPermissions: '0775'
 
-    "defaults": {
-          "spaceReserve": "none",
-          "encryption": "false"
-    },
-    "labels":{"store":"nas_economy_store"},
-    "region": "us_east_1",
-    "storage": [
-        {
-            "labels":{"department":"finance", "creditpoints":"6000"},
-            "zone":"us_east_1a",
-            "defaults": {
-                "spaceReserve": "volume",
-                "encryption": "true",
-                "unixPermissions": "0755"
-            }
-        },
-        {
-            "labels":{"department":"legal", "creditpoints":"5000"},
-            "zone":"us_east_1b",
-            "defaults": {
-                "spaceReserve": "none",
-                "encryption": "true",
-                "unixPermissions": "0755"
-            }
-        },
-        {
-            "labels":{"department":"engineering", "creditpoints":"3000"},
-            "zone":"us_east_1c",
-            "defaults": {
-                "spaceReserve": "none",
-                "encryption": "true",
-                "unixPermissions": "0775"
-            }
-        },
-        {
-            "labels":{"department":"humanresource", "creditpoints":"2000"},
-            "zone":"us_east_1d",
-            "defaults": {
-                "spaceReserve": "volume",
-                "encryption": "false",
-                "unixPermissions": "0775"
-            }
-        }
-    ]
-}
 ----
 ====
 

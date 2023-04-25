@@ -153,15 +153,14 @@ NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.
 
 [listing]
 ----
-{
-    "version": 1,
-    "storageDriverName": "azure-netapp-files",
-    "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
-    "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
-    "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
-    "clientSecret": "SECRET",
-    "location": "eastus"
-}
+---
+version: 1
+storageDriverName: azure-netapp-files
+subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
+tenantID: 68e4f836-edc1-fake-bff9-b2d865ee56cf
+clientID: dd043f63-bf8e-fake-8076-8de91e5713aa
+clientSecret: SECRET
+location: eastus
 ----
 ====
 .示例 2 ：使用容量池筛选器的特定服务级别配置
@@ -171,20 +170,18 @@ NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.
 
 [listing]
 ----
-    {
-        "version": 1,
-        "storageDriverName": "azure-netapp-files",
-        "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
-        "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
-        "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
-        "clientSecret": "SECRET",
-        "location": "eastus",
-        "serviceLevel": "Ultra",
-        "capacityPools": [
-            "application-group-1/account-1/ultra-1",
-            "application-group-1/account-1/ultra-2"
-],
-    }
+---
+version: 1
+storageDriverName: azure-netapp-files
+subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
+tenantID: 68e4f836-edc1-fake-bff9-b2d865ee56cf
+clientID: dd043f63-bf8e-fake-8076-8de91e5713aa
+clientSecret: SECRET
+location: eastus
+serviceLevel: Ultra
+capacityPools:
+- application-group-1/account-1/ultra-1
+- application-group-1/account-1/ultra-2
 ----
 ====
 .示例 3 ：高级配置
@@ -194,31 +191,29 @@ NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.
 
 [listing]
 ----
-    {
-        "version": 1,
-        "storageDriverName": "azure-netapp-files",
-        "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
-        "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
-        "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
-        "clientSecret": "SECRET",
-        "location": "eastus",
-        "serviceLevel": "Ultra",
-        "capacityPools": [
-            "application-group-1/account-1/ultra-1",
-            "application-group-1/account-1/ultra-2"
-],
-        "virtualNetwork": "my-virtual-network",
-        "subnet": "my-subnet",
-        "networkFeatures": "Standard",
-        "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
-        "limitVolumeSize": "500Gi",
-        "defaults": {
-            "exportRule": "10.0.0.0/24,10.0.1.0/24,10.0.2.100",
-            "snapshotDir": "true",
-            "size": "200Gi",
-            "unixPermissions": "0777"
-        }
-    }
+---
+version: 1
+storageDriverName: azure-netapp-files
+subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
+tenantID: 68e4f836-edc1-fake-bff9-b2d865ee56cf
+clientID: dd043f63-bf8e-fake-8076-8de91e5713aa
+clientSecret: SECRET
+location: eastus
+serviceLevel: Ultra
+capacityPools:
+- application-group-1/account-1/ultra-1
+- application-group-1/account-1/ultra-2
+virtualNetwork: my-virtual-network
+subnet: my-subnet
+networkFeatures: Standard
+nfsMountOptions: vers=3,proto=tcp,timeo=600
+limitVolumeSize: 500Gi
+defaults:
+  exportRule: 10.0.0.0/24,10.0.1.0/24,10.0.2.100
+  snapshotDir: 'true'
+  size: 200Gi
+  unixPermissions: '0777'
+
 ----
 ====
 .示例4：虚拟池配置
@@ -228,47 +223,40 @@ NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.
 
 [listing]
 ----
-    {
-        "version": 1,
-        "storageDriverName": "azure-netapp-files",
-        "subscriptionID": "9f87c765-4774-fake-ae98-a721add45451",
-        "tenantID": "68e4f836-edc1-fake-bff9-b2d865ee56cf",
-        "clientID": "dd043f63-bf8e-fake-8076-8de91e5713aa",
-        "clientSecret": "SECRET",
-        "location": "eastus",
-        "resourceGroups": ["application-group-1"],
-        "networkFeatures": "Basic",
-        "nfsMountOptions": "vers=3,proto=tcp,timeo=600",
-        "labels": {
-            "cloud": "azure"
-        },
-        "location": "eastus",
+---
+version: 1
+storageDriverName: azure-netapp-files
+subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
+tenantID: 68e4f836-edc1-fake-bff9-b2d865ee56cf
+clientID: dd043f63-bf8e-fake-8076-8de91e5713aa
+clientSecret: SECRET
+location: eastus
+resourceGroups:
+- application-group-1
+networkFeatures: Basic
+nfsMountOptions: vers=3,proto=tcp,timeo=600
+labels:
+  cloud: azure
+storage:
+- labels:
+    performance: gold
+  serviceLevel: Ultra
+  capacityPools:
+  - ultra-1
+  - ultra-2
+  networkFeatures: Standard
+- labels:
+    performance: silver
+  serviceLevel: Premium
+  capacityPools:
+  - premium-1
+- labels:
+    performance: bronze
+  serviceLevel: Standard
+  capacityPools:
+  - standard-1
+  - standard-2
 
-        "storage": [
-            {
-                "labels": {
-                    "performance": "gold"
-                },
-                "serviceLevel": "Ultra",
-                "capacityPools": ["ultra-1", "ultra-2"],
-                "networkFeatures": "Standard"
-            },
-            {
-                "labels": {
-                    "performance": "silver"
-                },
-                "serviceLevel": "Premium",
-                "capacityPools": ["premium-1"]
-            },
-            {
-                "labels": {
-                    "performance": "bronze"
-                },
-                "serviceLevel": "Standard",
-                "capacityPools": ["standard-1", "standard-2"]
-            }
-        ]
-    }
 ----
 ====
 

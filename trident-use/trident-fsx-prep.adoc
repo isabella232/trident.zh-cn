@@ -59,6 +59,25 @@ NOTE: 您可以从可以访问文件系统的任何位置使用 SSH 登录到文
 
 . 使用您的证书和管理 LIF 的 DNS 名称创建后端文件，如以下示例所示：
 +
+[role="tabbed-block"]
+====
+.YAML
+--
+[listing]
+----
+---
+version: 1
+storageDriverName: ontap-san
+backendName: customBackendName
+managementLIF: svm-XXXXXXXXXXXXXXXXX.fs-XXXXXXXXXXXXXXXXX.fsx.us-east-2.aws.internal
+svm: svm01
+clientCertificate: ZXR0ZXJwYXB...ICMgJ3BhcGVyc2
+clientPrivateKey: vciwKIyAgZG...0cnksIGRlc2NyaX
+trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
+----
+--
+.JSON
+--
 [listing]
 ----
 {
@@ -69,9 +88,12 @@ NOTE: 您可以从可以访问文件系统的任何位置使用 SSH 登录到文
   "svm": "svm01",
   "clientCertificate": "ZXR0ZXJwYXB...ICMgJ3BhcGVyc2",
   "clientPrivateKey": "vciwKIyAgZG...0cnksIGRlc2NyaX",
-  "trustedCACertificate": "zcyBbaG...b3Igb3duIGNsYXNz",
+  "trustedCACertificate": "zcyBbaG...b3Igb3duIGNsYXNz"
  }
+
 ----
+--
+====
 +
 有关创建后端的信息，请参见以下链接：
 

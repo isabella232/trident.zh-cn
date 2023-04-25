@@ -45,7 +45,7 @@ summary: 了解如何在 Astra Trident 中管理后端。
 
 === 第 0 步：确定后端
 
-要创建绑定到现有后端的 `TridentBackendConfig` ，您需要获取后端的配置。在此示例中，假设已使用以下 JSON 定义创建了后端：
+以创建 `TridentBackendConfig` 如果绑定到现有后端、则需要获取后端配置。在此示例中，假设已使用以下 JSON 定义创建了后端：
 
 [listing]
 ----
