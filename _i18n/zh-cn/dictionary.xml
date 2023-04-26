@@ -797,8 +797,6 @@
   <block id="3386987a97643481040e99019808e020" category="doc">升级 Astra Trident</block>
   <block id="ff115c7087db60c699cccdb21f39ea66" category="list-text">然后从 19.07 升级到 20.07 。</block>
   <block id="558ab0bef1894a7a726109d36632d09d" category="inline-link-macro">已知问题</block>
-  <block id="33966eba1ed0cde6afda5a97ffaffb09" category="inline-link">安全上下文</block>
-  <block id="ceb268093ddd5aa9df1769eda5d1c8cd" category="inline-link">输入示例：</block>
   <block id="756bc985c24584ee6c7338b28f771da8" category="admonition">从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。在升级 Astra Trident 时，在执行升级之前，必须删除所有先前的 alpha snapshot CRS 和 CRD （卷快照类，卷快照和卷快照内容）。请参见<block ref="ddf3864130a7be37c683b2fe21303201" category="inline-link-rx"></block> 了解将 alpha 快照迁移到测试版 /GA 规范所涉及的步骤。</block>
   <block id="3814df1eaf856112f1f0b22f7f0600e5" category="admonition">如果您使用的是基于 `etcd` 的 Trident 版本（ 19.04 或更早版本），请勿使用运算符升级 Trident 。</block>
   <block id="152a676ac450f5b96a35605dde352607" category="section-title">对运算符进行了更改</block>
@@ -974,7 +972,6 @@
   <block id="abbdd4298bb3e525fd172b2bbe5a451c" category="section-title">如何为在 ONTAP NAS 上配置的卷设置 Unix 权限？</block>
   <block id="a535e502931280dfaa539ecd1cbdfc0c" category="paragraph">您可以通过在后端定义文件中设置参数来对 Astra Trident 配置的卷设置 Unix 权限。</block>
   <block id="094ef47e6456d60b656401b0f2bbfcbd" category="section-title">如何在配置卷时配置一组显式 ONTAP NFS 挂载选项？</block>
-  <block id="84ae0d345d4b749efbbc8103b0770e68" category="paragraph">默认情况下， Astra Trident 不会使用 Kubernetes 将挂载选项设置为任何值。要在 Kubernetes 存储类中指定挂载选项，请按照给定示例进行操作<block ref="cd55c45fce745b7032050d3a7a9ec326" category="inline-link-rx"></block>。</block>
   <block id="ae6bc3659bb0be0a7d9f98a63775b7c2" category="section-title">如何将配置的卷设置为特定导出策略？</block>
   <block id="700a2008fea63d02c24b85f2f75d357e" category="paragraph">要允许相应的主机访问卷，请使用后端定义文件中配置的 `exportPolicy` 参数。</block>
   <block id="9d5813dee71bcbf3d3a03c62354c3e55" category="section-title">如何使用 ONTAP 通过 Astra Trident 设置卷加密？</block>
@@ -1168,7 +1165,6 @@
   <block id="f504c27d1ad305a988958b64f34468cb" category="list-text">如果 Trident Pod 无法正常启动（例如，当 Trident Pod 停留在 `ContainerCreating` 阶段且已准备好的容器少于两个时），则运行 `kubectl -n trident describe deployment trident` and `kubectl -n trident describe pod trident -%%.%.%.* -***` 可以提供更多见解。获取 kubelet 日志（例如，通过 `jlogalctl -xeu kubelet` ）也会很有帮助。</block>
   <block id="87248f7afe198418bdbedd919695631e" category="list-text">您还可以通过在后端定义中包含 `debugTraceFlags` 来获取每个后端的调试日志。例如，包括 `debugTraceFlags ： ｛ "api" ： true ， "method " ： true ， ｝` 以获取 Trident 日志中的 API 调用和方法遍历。现有后端可以已配置 `debugTraceFlags` 并配置 `tridentctl 后端更新` 。</block>
   <block id="6cc37a0664d7f97f87d34eadef23dbad" category="list-text">使用 RedHat CoreOS 时，请确保在工作节点上启用了 `iscsid` 并默认启动。可以使用 OpenShift MachineConfigs 或修改点燃模板来完成此操作。</block>
-  <block id="4582245538a41243a95713a7d0c21b64" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="c09112d17e34405b7a5c3d246f91583f" category="inline-link-macro-rx"></block> Configuration</block>
   <block id="7f0ecdfa510b31b01d331c2760643b83" category="list-text">如果在将 PV 挂载到容器时出现问题，请确保 `rpcbind` 已安装并正在运行。对主机操作系统使用所需的软件包管理器，并检查 `rpcbind` 是否正在运行。您可以通过运行 `systemctl status rpcbind` 或其等效项来检查 `rpcbind` 服务的状态。</block>
   <block id="78aeadc89feb4cf244398a7d35a0d656" category="list-text">如果 Trident 后端报告其处于 `Failed` 状态，尽管之前已正常工作，但这可能是由于更改了与后端关联的 SVM/ 管理员凭据所致。使用 `tridentctl update backend` 更新后端信息或放弃 Trident Pod 将修复此问题描述。</block>
   <block id="dd5955dd3991dcacca2b395215df8ecd" category="list-text">如果要升级 Kubernetes 集群和 / 或 Trident 以使用测试版卷快照，请确保已完全删除所有现有的 alpha Snapshot CRS 。然后，您可以使用 `tridentctl obviate alpha-snapshot-crd` 命令删除 alpha snapshot CRD 。请参见<block ref="f3109660248c628e79ddf256944df58b" category="inline-link-rx"></block> 了解迁移 alpha 快照所涉及的步骤。</block>
@@ -2779,7 +2775,6 @@
   <block id="26dbe1fe275b741e7240a373222d3480" category="paragraph">迁移到使用 CRD 的 Astra Trident 版本时，应考虑降级。由于Astra Trident使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有关联的CRD对象、而不是写入到中的数据<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> PV (由早期安装的Astra Trident版本使用)。新创建的 PV ，后端和存储类均作为 CRD 对象进行维护。</block>
   <block id="06b33bc9cc124539c964174ecd43eb43" category="paragraph">请仅尝试对使用CRD运行的Astra Trident版本(19.07及更高版本)进行降级。这样可以确保在降级后可以看到对当前Astra Trident版本执行的操作。</block>
   <block id="c27e444dab3a08bf8ec59794897c1a27" category="inline-link-macro">支持的Kubernetes版本</block>
-  <block id="279d526c0cf636b7292c2cfddc1d9957" category="list-text">运行的Kubernetes集群 <block ref="54886eff1282d00a4f74bc7c51429511" category="inline-link-macro-rx"></block></block>
   <block id="482d7c15b1a7200b3981ee1f99a86fef" category="list-text"><block ref="482d7c15b1a7200b3981ee1f99a86fef" category="inline-link-macro-rx"></block></block>
   <block id="756efcb3a97cdd37e8b34de3913c3d8f" category="paragraph">请参见 <block ref="18d5551396fb2ce2e009cfdb709e4875" category="inline-link-macro-rx"></block>。确保满足前提条件后，即可部署 Astra Trident 。</block>
   <block id="0d41f8565b8b74a59fc029ccf2becd83" category="list-text">使用受管插件系统启动 Astra Trident 。替换<block ref="3d689bd3819ead35ed794427bd12f459" prefix=" " category="inline-code"></block> 您正在使用的插件版本(xxx.xx.x)。</block>
@@ -3124,7 +3119,6 @@
   <block id="3c64b9fcc6316f2fb3e86bb37ec1e046" category="list-text">如果您使用的是早期版本、则应使用相应版本的文档执行多步升级、以获取具体说明。这要求您首先升级到适合您的四个版本窗口的最新版本。例如、如果您运行的是18.07、并且希望升级到20.07版本、请按照下面提供的多步升级过程进行操作：</block>
   <block id="b42882f59822357cae71c7deef14a306" category="list-text">首次从 18.07 升级到 19.07 。</block>
   <block id="3cf66ab24f2bf4b09d48a150a9e60aff" category="list-text">对于19.04及更早版本的所有升级、都需要从Astra Trident元数据自身进行迁移<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block> 到CRD对象。请务必查看此版本的文档、了解升级的工作原理。</block>
-  <block id="c3873e2dee9ada344b692e03e1bf404e" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。这是执行的一项 * 要求 *<block ref="cafe4c6014d8c45aaac70e49318f1a2a" category="inline-link-rx"></block> SAN 卷。。<block ref="25daec0b57549a6ad43dbc62a9e717ca" category="inline-link-rx"></block> 目录包含示例，例如<block ref="3429ee01166c85cb486f96c0c39d0367" category="inline-link-rx"></block><block ref="9abb8c7777ddb413820ee07d5d93aa4a" prefix="[" category="inline-code"></block>^)和<block ref="13fed3b986d34b99295dff6b8b392a8b" category="inline-link-rx"></block><block ref="69ae2d9a6d831af7488e53fec053b77e" prefix="[" category="inline-code"></block>^。有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
   <block id="b25ad87a3048ecb578a165aaa0940af4" category="section-title">选择升级选项</block>
   <block id="74652b96889938fdef1037f82abf39b0" category="inline-link-macro">在安装方法之间切换</block>
   <block id="afa7d449a278b7e589e89144d31fc078" category="paragraph">升级Astra Trident有两种选择。通常、您将使用与初始安装相同的选项、但可以使用 <block ref="e34c010032791417159012a5e31d7540" category="inline-link-macro-rx"></block>。</block>
@@ -3662,4 +3656,8 @@
   <block id="c1fd85851a162222ab0690383666bd47" category="paragraph"><block ref="05b6053c41a2130afd6fc3b158bda4e6" prefix="" category="inline-code"></block></block>
   <block id="bf0a8b77dbb95465376fb2cfec90b422" category="paragraph"><block ref="76bb7251da6a3c88e629c03a402b9d15" prefix="" category="inline-code"></block></block>
   <block id="fa12f478676fc33d2385cf4e955c7023" category="paragraph">版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 SVM：SVM_NFS用户名：vsadmin密码：password</block>
+  <block id="8e6b1878428055edaef42698026bd1b5" category="paragraph">默认情况下， Astra Trident 不会使用 Kubernetes 将挂载选项设置为任何值。要在 Kubernetes 存储类中指定挂载选项，请按照给定示例进行操作 <block ref="29e04d8356a523f6fc836193630ad63e" category="inline-link-macro-rx"></block>。</block>
+  <block id="419c95e5a9e44d427f99debdcf0550c7" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="cd38c25b6345abc8733d2ef72739cd97" category="inline-link-macro-rx"></block> Configuration</block>
+  <block id="39f6252eef9409d5d917e183e971d71d" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。这是对SAN卷强制实施https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[security环境^的**要求。https://github.com/NetApp/trident/tree/master/trident-installer/sample-input[sample输入^]目录包含一些示例、例如https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-basic.yaml.templ<block ref="9abb8c7777ddb413820ee07d5d93aa4a" prefix="[" category="inline-code"></block>^)和链接：https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-bronze-default.yaml<block ref="69ae2d9a6d831af7488e53fec053b77e" prefix="[" category="inline-code"></block>^。有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
+  <block id="1dedbfd605df8b562acc8f759a8e9acc" category="list-text">运行的Kubernetes集群 <block ref="229e1052bb9ecd8cf2680d6f44691174" category="inline-link-macro-rx"></block></block>
 </blocks>

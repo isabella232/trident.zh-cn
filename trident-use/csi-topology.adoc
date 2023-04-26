@@ -28,7 +28,7 @@ NOTE: `WaitForFirstConsumer"` 绑定模式不需要拓扑标签。此功能可�
 .您需要的内容
 要使用 CSI 拓扑，您需要满足以下条件：
 
-* 运行的Kubernetes集群 link:requirements.html["支持的Kubernetes版本"]
+* 运行的Kubernetes集群 link:../trident-get-started/requirements.html["支持的Kubernetes版本"]
 +
 [listing]
 ----
