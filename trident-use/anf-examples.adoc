@@ -11,16 +11,17 @@ summary: 了解ANF的NFS和SMB后端配置选项、并查看配置示例。
 :imagesdir: ../media/
 
 
+[role="lead"]
 了解ANF的NFS和SMB后端配置选项、并查看配置示例。
+
+
+
+== 后端配置选项
 
 Astra Trident会使用后端配置(子网、虚拟网络、服务级别和位置)在请求的位置提供的容量池上创建ANF卷、并与请求的服务级别和子网匹配。
 
 
 NOTE: Astra Trident 不支持手动 QoS 容量池。
-
-
-
-== 后端配置选项
 
 ANF后端提供了这些配置选项。
 

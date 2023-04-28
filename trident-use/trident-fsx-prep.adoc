@@ -145,7 +145,7 @@ NOTE: 请参见 link:https://docs.netapp.com/us-en/ontap/smb-config/create-share
 | 参数 | Description | 示例 
 
 
-| `smbShare` | 使用共享文件夹Microsoft管理控制台创建的SMB共享的名称。例如"smb-share"。*对于SMB卷为必需项。* | `smb-share` 
+| `smbShare` | 您可以指定使用共享文件夹Microsoft管理控制台创建的SMB共享的名称、也可以指定共享名称以允许Astra Trident创建SMB共享。或者、您也可以将参数留空、以防止对卷进行通用共享访问。 | `smb-share` 
 
 
 | `nasType` | *必须设置为 `smb`如果为空、则默认为 `nfs`。 | `smb` 

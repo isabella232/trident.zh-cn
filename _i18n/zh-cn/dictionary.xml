@@ -1087,42 +1087,18 @@
   <block id="13c852fce58f7c6981fa0a952dcd76af" category="summary">使用 Trident 操作符，您可以使用 `TridentOrchestrator` 规范中的属性自定义 Astra Trident 的安装方式。</block>
   <block id="83f499a540b1323009c200d6f8cc9396" category="cell">参数</block>
   <block id="7a1920d61156abc05a60135aefe8bc67" category="cell">Default</block>
-  <block id="f3f30d479f6e3b393d917a3b2f88c770" category="cell">`命名空间`</block>
-  <block id="c9db68ea6cff44f42ac5acbbfccec399" category="cell">用于安装 Astra Trident 的命名空间</block>
-  <block id="9aa82da0cffe247b84587c1cc8e32746" category="cell">default</block>
   <block id="a67cf6b087ff88dbfacec8375928995c" category="cell">`debug`</block>
   <block id="4f72bc786a1a01d5a1a8bc09d33334cc" category="cell">为 Astra Trident 启用调试</block>
   <block id="68934a3e9455fa72420237eb05902327" category="cell">false</block>
-  <block id="3dd791c4864e77ae6cf11572e2d7b374" category="cell">安装基于 IPv6 的 Astra Trident</block>
-  <block id="077e99fe42ced522b462656cffffe09c" category="cell">`k8sTimeout`</block>
-  <block id="4448b73eac083e33b7142f0e5790fac5" category="cell">Kubernetes 操作超时</block>
-  <block id="e4d71bf2abad047425f4463e27bb83b0" category="cell">30 秒</block>
-  <block id="42cf123e93ecc5c0297652edbc547fc0" category="cell">`sileAutoSupport`</block>
-  <block id="4a213b7c3b997ffb0794b25909381d16" category="cell">不要自动向 NetApp 发送 AutoSupport 捆绑包</block>
-  <block id="34d0f4a447cd1d7f59000d3be2c39320" category="cell">`enableNodePrep`</block>
-  <block id="2472256a6487b0917d32f6a044a4e0ac" category="cell">自动管理工作节点依赖关系（ * 测试版 * ）</block>
   <block id="2bccac20e55391730a985f9819e1cc41" category="cell">`autosupport 映像`</block>
   <block id="84448c234dfdfd2a7367341fd4b56a80" category="cell">AutoSupport 遥测的容器映像</block>
   <block id="f4a6821b04b9ce6b90148068341347b6" category="cell">`autosupport 代理`</block>
-  <block id="7f54ca385f028308d19e228ce0534a47" category="cell">用于发送 AutoSupport 遥测的代理的地址 / 端口</block>
   <block id="256acfe307251e7444859851d87d5735" category="cell"><block ref="256acfe307251e7444859851d87d5735" category="inline-link-rx"></block></block>
   <block id="e9f06180af644cfa6e5d20bd67c03bc5" category="cell">`卸载`</block>
-  <block id="076bc379a24183ce77834bac007ca852" category="cell">用于卸载 Astra Trident 的标志</block>
-  <block id="cad060d2f14dbf08315c20014ed31daa" category="cell">`logFormat`</block>
-  <block id="acfc4a8e6d53bad27d4e2d393bfff61e" category="cell">要使用的 Astra Trident 日志记录格式 [text ， json]</block>
-  <block id="20cd815523e5806aec29a57282b0d49f" category="cell">文本</block>
   <block id="7610c5cc7910022402c4fbd450d889ce" category="cell">`TridentImage`</block>
-  <block id="20f408a3276af1f7f1bf02ba374786ca" category="cell">要安装的 Astra Trident 映像</block>
-  <block id="896185b87765c519346253a5f54ecbe4" category="cell">"NetApp/Trident ： 21.04"</block>
   <block id="8088435dc0e1c8b85217d850d3e7a602" category="cell">`imageRegistry`</block>
-  <block id="4f25f4cca5c1939f4a728d2678e719f7" category="cell">内部注册表的路径，格式为 ` &lt; 注册表 FQDN&gt;[ ：端口 ]/subpath]`</block>
   <block id="e6b96cbb467923e86672bb25db5ecebb" category="cell">`kubeletDir`</block>
-  <block id="31aad37dce0c28e12908582a0d63736a" category="cell">主机上的 kubelet 目录的路径</block>
-  <block id="5b9febd4bd647dae5abfddaf99b9c540" category="cell">"/var/lib/kubelet"</block>
-  <block id="b6e0e2c4168573f0ed61c842470342ba" category="cell">`wipeout`</block>
-  <block id="4e33345575b5a443dec89767624a1ee8" category="cell">要删除以执行 Astra Trident 完全删除的资源列表</block>
   <block id="2d30d1348c4d2533a165827a22516caa" category="cell">`imagePullSecs`</block>
-  <block id="f73bb4a0bc9913e7fc6db5f9e5f2afeb" category="cell">从内部注册表中提取映像的机密信息</block>
   <block id="5a2ebfb8baa378cfcfcba58bbb1380c2" category="doc">要求</block>
   <block id="c777be7f669397b0a376fe32ca5cd9c3" category="section-title">支持的前端（编排程序）</block>
   <block id="74aefc05d193afd5c50a0df882997656" category="paragraph">Astra Trident 支持多个容器引擎和流程编排程序，其中包括：</block>
@@ -1266,8 +1242,6 @@
   <block id="a61ed3c1ecae587dbee1f2c0ace81e3b" category="paragraph">如果后端创建失败，则后端配置出现问题。您可以运行以下命令来查看日志以确定发生原因：</block>
   <block id="8427b84145b88f048d5caa532324cd11" category="paragraph">确定并更正配置文件中的问题后，您可以再次运行 create 命令。</block>
   <block id="8f828c7344e7fe65d66237a25193068b" category="summary">了解如何准备使用 ONTAP SAN 驱动程序配置 ONTAP 后端。</block>
-  <block id="9a5f09cf66e692efdae493ce4c9aa64f" category="doc">准备</block>
-  <block id="b5c795328aa98beaf5bdc15b54a533c1" category="paragraph">了解如何准备使用 ONTAP SAN 驱动程序配置 ONTAP 后端。对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。</block>
   <block id="5475028f502d04bc17cdfdf613d28cbf" category="paragraph">请记住，您还可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如，您可以配置使用 `ontap-san` 驱动程序的 `san-dev` 类和使用 `ontap-san-economy-one` 的 `san-default` 类。</block>
   <block id="c75f7811d70d17dbcd88e9d03752cbed" category="section-title">身份验证</block>
   <block id="51e35cec1e001fb8abfbe474a18dd282" category="paragraph">Astra Trident 提供了两种对 ONTAP 后端进行身份验证的模式。</block>
@@ -1293,13 +1267,6 @@
   <block id="2ab8ad0fce083cd02635b9126cf4353c" category="section-title">更新身份验证方法或轮换凭据</block>
   <block id="5e36c3d66bd47ae551071244dc48df17" category="admonition">轮换密码时，存储管理员必须先在 ONTAP 上更新用户的密码。然后进行后端更新。轮换证书时，可以向用户添加多个证书。之后，后端将更新以使用新证书，然后可以从 ONTAP 集群中删除旧证书。</block>
   <block id="6819218365fe3a3d66752f663feecddb" category="paragraph">更新后端不会中断对已创建卷的访问，也不会影响在之后建立的卷连接。成功的后端更新表明， Astra Trident 可以与 ONTAP 后端进行通信并处理未来的卷操作。</block>
-  <block id="93a4f17ec735c794a2d38eb0d9dc736b" category="section-title">指定 igroup</block>
-  <block id="f66329c2f28d3aade033dade4fa02359" category="paragraph">Astra Trident 使用 igroup 来控制对其配置的卷（ LUN ）的访问。在为后端指定 igroup 时，管理员有两种选择：</block>
-  <block id="caf7ba3262c90c77b09b7d53946b7be4" category="list-text">Astra Trident 可以自动为每个后端创建和管理 igroup 。如果后端定义中未包含 `igroupName` ，则 Astra Trident 会在 SVM 上创建一个名为 `trident -&lt;backender-UUUUUID&gt;` 的 igroup 。这将确保每个后端都有一个专用的 igroup ，并处理 Kubernetes 节点 IQN 的自动添加 / 删除。</block>
-  <block id="b325b5680680ba28771d11978100bf3a" category="list-text">或者，也可以在后端定义中提供预先创建的 igroup 。可以使用 `igroupName` config 参数来执行此操作。Astra Trident 会将 Kubernetes 节点 IQN 添加 / 删除到已有的 igroup 中。</block>
-  <block id="ccdb9f53393401f058dcfc9c1de74547" category="paragraph">对于已定义 `igroupName` 的后端，可以使用 `tridentctl 后端更新` 删除 `igroupName` ，以使 Astra Trident 自动处理 igroup 。这样不会中断对已连接到工作负载的卷的访问。未来的连接将使用创建的 igroup Astra Trident 进行处理。</block>
-  <block id="8841675f2e0dbba5719034b41ac52435" category="admonition">为 Astra Trident 的每个唯一实例指定一个 igroup 是一个最佳实践，对 Kubernetes 管理员和存储管理员都很有用。CSI Trident 可自动向 igroup 添加和删除集群节点 IQN ，从而极大地简化了其管理。在 Kubernetes 环境（以及 Astra Trident 安装）中使用相同的 SVM 时，使用专用的 igroup 可确保对一个 Kubernetes 集群所做的更改不会影响与另一个 Kubernetes 集群关联的 igroup 。此外，还必须确保 Kubernetes 集群中的每个节点都具有唯一的 IQN 。如上所述， Astra Trident 会自动处理 IQN 的添加和删除。在多个主机之间重复使用 IQN 可能会导致出现主机相互错误并拒绝访问 LUN 的不希望出现的情况。</block>
-  <block id="3882232e20d620974a87db190a124fe7" category="paragraph">如果 Astra Trident 未作为 CSI 配置程序运行，则必须手动更新 igroup ，以包含 Kubernetes 集群中每个工作节点的 iSCSI IQN 。需要将加入 Kubernetes 集群的节点的 IQN 添加到 igroup 中。同样，必须从 igroup 中删除从 Kubernetes 集群中删除的节点的 IQN 。</block>
   <block id="42f93278b0d15c8d0f6613813bf586d5" category="section-title">使用双向 CHAP 对连接进行身份验证</block>
   <block id="12dd7bfa072b5a1eecf975f6a5a6eaa7" category="admonition">`useCHAP` 参数是一个布尔选项，只能配置一次。默认情况下，此参数设置为 false 。将其设置为 true 后，无法将其设置为 false 。</block>
   <block id="bc601528678aeeb582101ed205a054bc" category="paragraph">除了 `useCHAP=true` 之外，后端定义还必须包括 `chapInitiatorSecret` ， `chapTargetInitiatorSecret` ， `chapTargetUsername` 和 `chapUsername` 字段。通过运行 `tridentctl update` 创建后端，可以更改这些密钥。</block>
@@ -1376,7 +1343,6 @@
   <block id="e395471eab1d4c8fbc8452e98a95d0c5" category="list-text">提供需要导入的 FlexVol 的名称。请记住，此 FlexVol 仅包含一个必须导入的 LUN 。</block>
   <block id="9e6bd670c6fd6b2808fae744834b7675" category="list-text">提供必须与 ` -f` 标志结合使用的 PVC 定义路径。</block>
   <block id="36b577af0f959f68e5e66336695e816c" category="list-text">可以选择对 PVC 进行管理，也可以选择不对其进行管理。默认情况下， Trident 将管理 PVC 并重命名后端的 FlexVol 和 LUN 。要作为非受管卷导入，请传递 ` -no-manage` 标志。</block>
-  <block id="f898748ff73fc5faf70687cbb0051311" category="admonition">导入非受管 `ontap-san` 卷时，应确保 FlexVol 中的 LUN 名为 `lun0` ，并已映射到具有所需启动程序的 igroup 。Astra Trident 会自动为受管导入处理此问题。</block>
   <block id="66f7455d3b73d0f9938704ee67b1f38a" category="paragraph">然后， Astra Trident 将导入 FlexVol 并将其与 PVC 定义关联。Astra Trident 还会将 FlexVol 重命名为 `vc-&lt;uid&gt;` 格式，并将 FlexVol 中的 LUN 重命名为 `lun0` 。</block>
   <block id="2d37ad5bcf7d115e10de14a38db72232" category="admonition">建议导入没有活动连接的卷。如果要导入当前使用的卷，请先克隆该卷，然后再执行导入。</block>
   <block id="72b3664e6e381ccc62031c13f7ad6df9" category="paragraph">要导入 `ontap_san_default` 后端上存在的 `ontap-san-managed` FlexVol ，请运行 `tridentctl import` 命令：</block>
@@ -1387,7 +1353,6 @@
   <block id="e8945ce1398c6d24aa1d518bca08034c" category="paragraph">要在后端导入 `azure-netapp-files` 卷，该卷名为 `azurenetappfiles_40517` ，卷路径为 `importvol1` ，请运行以下命令：</block>
   <block id="c3417eb755bee1658ae5b42ff2115193" category="admonition">ANF 卷的卷路径位于： / 之后的挂载路径中。例如，如果挂载路径为 `10.0.0.2 ： /importvol1` ，则卷路径为 `importvol1` 。</block>
   <block id="e4f61797b38c111b04c612b285a06659" category="summary">了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
-  <block id="9bc537b16cee9c42d1e2aa0048a2c426" category="paragraph">了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。</block>
   <block id="00b8b321c68facfb94b31690cbd23e00" category="paragraph">对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。</block>
   <block id="c6cd2f38be30f5256f7116692ab56edd" category="paragraph">请记住，您还可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如，您可以配置一个使用 `ontap-nas` 驱动程序` 的金牌类和一个使用 `ontap-nas-economy-one 的铜牌类。</block>
   <block id="07b434b23f63ca6490df33b213599320" category="section-title">管理 NFS 导出策略</block>
@@ -1440,7 +1405,6 @@
   <block id="972abf48cbbadbcd573754140d35e19a" category="cell">要使用的 Storage Virtual Machine</block>
   <block id="ef65dd3301d78701f7cfcf8a01834f2f" category="cell">如果指定了 SVM `managementLIF` ，则派生</block>
   <block id="3b890f58db76bb3003ada171cd18c4db" category="cell">`igroupName`</block>
-  <block id="1c59f4b76e4f9bf529f88205cd0a8ac6" category="cell">"trident — &lt; 后端 UUID &gt;"</block>
   <block id="c08068da3c5d19547544c4bd424a6b76" category="cell">`s存储前缀`</block>
   <block id="e3f688f3aa653574b3253640aa98f47c" category="cell">在 SVM 中配置新卷时使用的前缀。设置后无法更新</block>
   <block id="a996d2f8e072c583d6cc26aa1e4aba87" category="cell">Trident</block>
@@ -1450,7 +1414,6 @@
   <block id="79892588cbecd0b88729ea1a55b2a3a4" category="cell">每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内</block>
   <block id="2d782f413944b272c911c548418a18a3" category="cell">100</block>
   <block id="f703d18584e163e18762e4dc13ad96a0" category="cell">`useREST`</block>
-  <block id="73e65f4bf1c67cf81e3531ab80adee7e" category="paragraph">在这两种情况下，仍可访问卷附件。未来的卷附件将使用更新后的 igroup 。此更新不会中断对后端卷的访问。</block>
   <block id="193a49bcfb561fea878daa5efe72cad9" category="section-title">用于配置卷的后端配置选项</block>
   <block id="a0ee23c5b4cbd6a28a4143933891f927" category="cell">`spaceAllocation`</block>
   <block id="26161d08a960162cd8633d0e23058aed" category="cell">LUN 的空间分配</block>
@@ -1492,9 +1455,6 @@
   <block id="f00b69018be0961b32ee24ec54fb56d1" category="section-title">将后端映射到 StorageClasses</block>
   <block id="ef1161058705470bb877fbce688eea9e" category="summary">了解如何使用 ONTAP SAN 驱动程序配置 ONTAP 后端。</block>
   <block id="31e8c05beab321d1465fc4c3f77e991a" category="doc">使用 ONTAP SAN 驱动程序配置后端</block>
-  <block id="6c728e8788471413351ba9fcd26ca76e" category="list-text"><block ref="6c728e8788471413351ba9fcd26ca76e" category="inline-link-macro-rx"></block></block>
-  <block id="e5fc4f2bd89271cfb112e8b768f74dde" category="inline-link-macro">配置和示例</block>
-  <block id="874216718c1d50bbd2aa417449058e46" category="list-text"><block ref="874216718c1d50bbd2aa417449058e46" category="inline-link-macro-rx"></block></block>
   <block id="ce8828fc10a926c196951c9bdd0d534d" category="section-title">用户权限</block>
   <block id="96c17dbe45e7351fb2a4f71956c25e0c" category="paragraph">Astra Trident 应以 ONTAP 或 SVM 管理员身份运行，通常使用 `admin` cluster 用户或 `vsadmin` SVM 用户，或者使用具有相同角色的其他名称的用户。对于适用于 NetApp ONTAP 的 Amazon FSX 部署， Astra Trident 应使用集群 `fsxadmin` user 或 `vsadmin` SVM 用户或具有相同角色的其他名称的用户作为 ONTAP 或 SVM 管理员运行。`fsxadmin` 用户是集群管理员用户的有限替代用户。</block>
   <block id="4937b52eb2cb058f225b69b2caafaf29" category="admonition">如果使用 `limitAggregateUsage` 参数，则需要集群管理员权限。将适用于 NetApp ONTAP 的 Amazon FSx 与 Astra Trident 结合使用时， `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。</block>
@@ -1599,7 +1559,6 @@
   <block id="7b7587593fc7d381339d450faa35dfa9" category="paragraph">您可以运行 `kubectl -n trident describe tbc &lt;tbc-cr-name&gt;` 命令来获取事件日志的详细信息。</block>
   <block id="6dc07da7e54d697726bb349fb693fa8b" category="inline-link-macro">请参见此处</block>
   <block id="c732962a4a01ea5f406ec66e50e98903" category="admonition">您不能使用 `tridentctl` 更新或删除包含关联的 `TridentBackendConfig` 对象的后端。要了解在 `tridentctl` 和 `TridentBackendConfig` 之间切换所涉及的步骤， <block ref="8d6bc70a41f48e3f72c3f5ea8752090b" category="inline-link-macro-rx"></block>。</block>
-  <block id="99c7791f20f0d41bd8f14c11e666a405" category="summary">通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 提供支持的块和文件永久性卷。</block>
   <block id="337de5d45c69b1e4dcf87a8e7ec9ff76" category="doc">将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSX 结合使用</block>
   <block id="7eb620c879218a348ba0e9afaedf6b01" category="paragraph">文件系统是 Amazon FSX 中的主要资源，类似于内部部署的 ONTAP 集群。在每个 SVM 中，您可以创建一个或多个卷，这些卷是将文件和文件夹存储在文件系统中的数据容器。借助适用于 NetApp ONTAP 的 Amazon FSX ， Data ONTAP 将作为云中的托管文件系统提供。新的文件系统类型称为 * NetApp ONTAP * 。</block>
   <block id="ff27e75635c1ff1e88fbc656b16e56ce" category="section-title">了解 Astra Trident</block>
@@ -1637,7 +1596,6 @@
   <block id="c0417f5bbd54c5dc1c3704d6b566fcf3" category="list-text"><block ref="c0417f5bbd54c5dc1c3704d6b566fcf3" category="inline-link-macro-rx"></block></block>
   <block id="8b7b728c6a1e7accd6148646ba730e77" category="summary">了解如何在 Astra Trident 中管理后端。</block>
   <block id="4342473e01edd2e1440b8b76076f4c9e" category="doc">在后端管理选项之间移动</block>
-  <block id="207aacc2f1990ce861bf20cfcd0ca067" category="paragraph">了解如何在 Astra Trident 中管理后端。随着 `TridentBackendConfig` 的推出，管理员现在可以通过两种独特的方式管理后端。这会提出以下问题：</block>
   <block id="a7b407f571446f9f4a30f63e8160784a" category="list-text">使用 `tridentctl` 创建的后端是否可以使用 `TridentBackendConfig` 进行管理？</block>
   <block id="3e1fc11d05c13404995af2b9fda64675" category="list-text">使用 `TridentBackendConfig` 创建的后端是否可以使用 `tridentctl` 进行管理？</block>
   <block id="d6da18e16f248df47ee8e5139ef0156a" category="paragraph">本节介绍通过创建 `TridentBackendConfig` 对象直接通过 Kubernetes 界面管理使用 `tridentctl` 创建的后端所需的步骤。</block>
@@ -1690,7 +1648,6 @@
   <block id="e00013adda7b5901ea3e44ae300fd73d" category="paragraph">这也适用于使用 `TridentBackendConfig` 创建的后端。</block>
   <block id="bc960ce53bb0d62c44b5a3f212c279d3" category="summary">您可以创建存储类，删除存储类以及查看现有存储类。</block>
   <block id="e8b9c3a9859a62e9a58431c3b61f75d5" category="doc">管理存储类</block>
-  <block id="5802c976ee5f858f76699af5294812e6" category="paragraph">查找有关创建存储类，删除存储类以及查看现有存储类的信息。</block>
   <block id="e123173acd76721f31496874fd778eca" category="section-title">设计存储类</block>
   <block id="a9a4b52c93b141ba28676afe58a5900d" category="paragraph">请参见 <block ref="5a81d2db77288939223c6a591fc3991d" category="inline-link-macro-rx"></block> 有关什么是存储类以及如何配置这些类的详细信息，请参见。</block>
   <block id="14f4c7abe09c4481722f1fa6563f2604" category="section-title">创建存储类。</block>
@@ -1760,7 +1717,6 @@
   <block id="5878b59fb3a8430928026b63b5ca336f" category="paragraph">确定并更正配置文件中的问题后，您可以重新运行 update 命令。</block>
   <block id="bee1e2306bc7054ee443dc651eae90de" category="summary">Astra Trident 提供了一组 Prometheus 指标端点，您可以使用这些端点监控 Astra Trident 的性能。</block>
   <block id="44a004cad6eb7ea8839aaa8754ead178" category="doc">监控 Astra Trident</block>
-  <block id="3f8e7343fbab71427901476dc4eb0cf3" category="paragraph">Astra Trident 提供了一组 Prometheus 指标端点，您可以使用这些端点监控 Astra Trident 的性能。</block>
   <block id="c827f266cf12e05adc1fe95215415abf" category="paragraph">通过 Astra Trident 提供的指标，您可以执行以下操作：</block>
   <block id="6111d709595b0a106ff313a249eb9d92" category="list-text">保留有关 Astra Trident 运行状况和配置的选项卡。您可以检查操作的成功程度以及它是否能够按预期与后端进行通信。</block>
   <block id="64dbac0ca36d9b1f6a8cf1e8a0123261" category="list-text">检查后端使用情况信息，并了解在后端配置的卷数量以及占用的空间量等。</block>
@@ -1861,7 +1817,6 @@
   <block id="d7f015aa2f1d488e17e175dac6de3149" category="list-text"><block ref="d7f015aa2f1d488e17e175dac6de3149" category="inline-link-macro-rx"></block></block>
   <block id="24ca391029d6df294c5d5b8f1fe5b4eb" category="summary">了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
   <block id="0f5dc79c8003190ab8f758b1748ba0d8" category="summary">NetApp 不断改进和完善其产品和服务。以下是最新版 Astra Trident 中的一些最新功能，增强功能和错误修复。</block>
-  <block id="5dd03e8d039863e563e049be198c3fd3" category="doc">发行说明</block>
   <block id="2e6ce374ac42de81aea6a3d682b92e33" category="paragraph">发行说明提供了有关最新版本的 Astra Trident 中的新增功能，增强功能和错误修复的信息。</block>
   <block id="e4c4d344a524d21b898e4d04b6539aa7" category="admonition">安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经过测试且受支持的版本。请注意， zip 文件的 ` 或 Extras` 部分中提供的 `macos` 二进制文件未经过测试或不受支持。</block>
   <block id="41cf959adc98386b54829d71a6ed5d37" category="section-title">修复</block>
@@ -1908,22 +1863,6 @@
   <block id="193bfae1ebda99fb7289c66fa69395a0" category="list-text"><block ref="193bfae1ebda99fb7289c66fa69395a0" category="inline-link-rx"></block></block>
   <block id="cba2c660d905f83e39a0d1771286c9e7" category="inline-link">Astra Trident 21.01</block>
   <block id="97f32ab1a5165dc49105dca53b9f4de7" category="list-text"><block ref="97f32ab1a5165dc49105dca53b9f4de7" category="inline-link-rx"></block></block>
-  <block id="727d2d1e15a5c7260e90c50b1c250a4c" category="inline-link">Astra Trident 20.10</block>
-  <block id="8a0315074645cbbab67a7445dcdf42f2" category="list-text"><block ref="8a0315074645cbbab67a7445dcdf42f2" category="inline-link-rx"></block></block>
-  <block id="bad2b8fa41c05085668e48d7c14968dc" category="inline-link">Astra Trident 20.07</block>
-  <block id="449d7e957347de63ee3d9841c40b4e7f" category="list-text"><block ref="449d7e957347de63ee3d9841c40b4e7f" category="inline-link-rx"></block></block>
-  <block id="7c0a09ca9ea4472728e4661755a43c6b" category="inline-link">Astra Trident 20.04</block>
-  <block id="8a72b28486832ed8c725617460afbdcb" category="list-text"><block ref="8a72b28486832ed8c725617460afbdcb" category="inline-link-rx"></block></block>
-  <block id="1dc5429c6c86712d7628beb5652a0e2e" category="inline-link">Astra Trident 20.01</block>
-  <block id="23204facdc38bad335a6afce81db0827" category="list-text"><block ref="23204facdc38bad335a6afce81db0827" category="inline-link-rx"></block></block>
-  <block id="5b2d210bf907d26b59abbaa0e22fbbe6" category="inline-link">Astra Trident 19.10</block>
-  <block id="3377906a52734323c44c8f31b2d29e63" category="list-text"><block ref="3377906a52734323c44c8f31b2d29e63" category="inline-link-rx"></block></block>
-  <block id="f1d7fe87216a18ff3ffcfa98d6065689" category="inline-link">Astra Trident 19.07</block>
-  <block id="12e29d431cea2700aa9d89e0c89e67bc" category="list-text"><block ref="12e29d431cea2700aa9d89e0c89e67bc" category="inline-link-rx"></block></block>
-  <block id="fe4bdabecc64b786523a3d86bb1f9cfd" category="inline-link">Astra Trident 19.04</block>
-  <block id="e43783d5a51a10670edf444f0b58b6af" category="list-text"><block ref="e43783d5a51a10670edf444f0b58b6af" category="inline-link-rx"></block></block>
-  <block id="5e152ff33f3262612abc4b942db27ad1" category="inline-link">Astra Trident 19.01</block>
-  <block id="977636e26059252def0425dca74811ef" category="list-text"><block ref="977636e26059252def0425dca74811ef" category="inline-link-rx"></block></block>
   <block id="d2eb05d1990246a079aeb2f56e3a4237" category="paragraph">Astra Trident 的多个实例可以同时在同一主机上运行。这样可以同时连接到多个存储系统和存储类型，并能够自定义用于 Docker 卷的存储。</block>
   <block id="89bcbd8e4ba49b7310e9fa748e878c4b" category="inline-link-macro">部署的前提条件</block>
   <block id="88f0ab229fa9d759d74fcf6ab7cc17b1" category="section-title">Docker 托管插件方法（ 1.13/17.03 及更高版本）</block>
@@ -2253,7 +2192,6 @@
   <block id="d7c32cb5ff2be4aaff3a8eaea9d18e0d" category="list-text">修复了在未指定 SVM 名称的情况下不再发现 SVM 的问题描述（ GitHub 问题描述 612 ）。</block>
   <block id="a55b7ee69c26277a1088efc103e15297" category="paragraph">可用的命令和全局选项包括：</block>
   <block id="94912f7fb206038e8527957b44dfbf25" category="paragraph">此操作将重新启动所有 Trident Pod ，这可能需要几秒钟的时间。您可以通过观察 `kubectl get pod -n trident` 输出中的 "age" 列来检查此问题。</block>
-  <block id="597a56086e1f9d7ca5e8f55c40a0153a" category="list-text">OpenShift 容器平台支持的 RedHat CoreOS （ RHCOS ）版本</block>
   <block id="73e93ad328287e5ce4c06228cfdba2bf" category="cell">v1.23.0</block>
   <block id="08ee53e1d5cefb7967a295e98036598e" category="cell">控制 .snapshot 目录的可见性</block>
   <block id="016a4b469916e37291cfe2f7fab49aaf" category="cell">`resourceGroups`</block>
@@ -2307,8 +2245,6 @@
   <block id="7213ed07f5b718aa66cfac350f023a77" category="list-text">修复的问题描述 ，尝试导入已导入的卷时，返回的 EOF 将使 PVC 处于待定状态。（<block ref="b9a2290d6389b9a605883cda4e717749" category="inline-link-macro-rx"></block>）</block>
   <block id="c28d8c94f865f3ef7e4b01a157510ef6" category="list-text">修复了在 SolidFire 卷上创建超过 32 个快照时 Astra Trident 性能下降的问题描述 。</block>
   <block id="d0aaca968285d0d47ea0c5a0f7b9bab5" category="list-text">在创建 SSL 证书时将 SHA-1 替换为 SHA-256 。</block>
-  <block id="92e6030d252cfd43e0567e282a0d2c9b" category="paragraph">Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点<block ref="80b9a4f4a1bc9851317207ee3477041a" category="inline-link-rx"></block>。使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于一个区域内的不同可用性区域中，也可以位于不同区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。</block>
-  <block id="d293f031e5664526b25f3a65012401b7" category="cell">`IPv6`</block>
   <block id="997cff957213b9212a22d7cac2b4275d" category="list-text">使用生成的证书测试身份验证。将 &lt;SVM 管理 LIF&gt; 和 &lt;SVM 名称 &gt; 替换为管理 LIF IP 和 ONTAP 名称。您必须确保 LIF 的服务策略设置为 `default-data-management` 。</block>
   <block id="1e6c7220f5d4eb181d67b4d5043336f5" category="paragraph">通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 备份的块和文件永久性卷。</block>
   <block id="10b862795141355be1c179a2f878f507" category="list-text">请勿使用 "* 快速创建 "* 来创建适用于 ONTAP 的 FSX 文件系统。快速创建工作流可启用自动备份，但不提供选择退出选项。</block>
@@ -2373,7 +2309,6 @@
   <block id="5a333b18a215ecfd4457ba0e1732654b" category="section-title">Trident是否可以在配置了负载共享镜像的SVM上配置卷？</block>
   <block id="0e7629426b9d7596800cd5d72f558a7f" category="paragraph">可以为通过NFS提供数据的SVM的根卷创建负载共享镜像。ONTAP 会自动为Trident创建的卷更新负载共享镜像。这可能会导致卷挂载延迟。使用Trident创建多个卷时、配置卷取决于ONTAP 更新负载共享镜像。</block>
   <block id="d5d195efeafde24a6a22effd3dd39339" category="list-text">基于凭据：您可以使用文件系统的 `fsxadmin` 用户或为 SVM 配置的 `vsadmin` 用户。</block>
-  <block id="0b4a92a731cb582bd951a7aa481f0602" category="list-text">Anthos on-Prem (VMware)和Anthos on bare metal 1.9、1.10、1.11</block>
   <block id="7d3f46589c43a64fd040e4f0e0691a86" category="inline-link-macro">Helm图表</block>
   <block id="c9ffe59301b588bbc33bb004cfd312ee" category="section-title">部署Trident操作员并使用Helm安装Astra Trident</block>
   <block id="1ea1b160621872df5909653ebde1bf7f" category="paragraph">您可以更新现有后端、以便在基于凭据的方法和基于证书的方法之间移动。但是、一次仅支持一种身份验证方法。要切换到其他身份验证方法、必须从后端配置中删除现有方法。</block>
@@ -2384,7 +2319,6 @@
   <block id="412427d9207c4cc4b01539aff3c50e7c" category="cell">`网络功能`</block>
   <block id="6dc4cb19f2792a3eadfa64d4b4b6d177" category="paragraph">所有Kubernetes工作节点都必须安装适当的NFS工具。请参见 <block ref="f1f954e59a21e3ffe189e77dd2ee9f86" category="inline-link-macro-rx"></block> 有关详细信息：</block>
   <block id="6adbf3424e5de1b4e2baad3b4d632c4a" category="paragraph">您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此、您必须删除现有身份验证方法并添加新的身份验证方法。然后、使用包含所需参数的更新后端.json文件执行`tridentctl backend update`。</block>
-  <block id="da5e3ce6518bd669264e1e0768c2d9f1" category="paragraph">所有Kubernetes工作节点都必须安装适当的iSCSI工具。请参见 <block ref="f1f954e59a21e3ffe189e77dd2ee9f86" category="inline-link-macro-rx"></block> 有关详细信息：</block>
   <block id="880cacf6429ab3c253b14beac8b73951" category="summary">Kubernetes Pod安全标准(PSS)和Pod安全策略(PSP)定义权限级别并限制Pod的行为。OpenShift安全上下文约束(SCC)同样定义了特定于OpenShift Kubernetes引擎的POD限制。为了提供此自定义设置、Astra Trident会在安装期间启用某些权限。</block>
   <block id="bc3c69459955aa51e6720ee4098db2c2" category="doc">POD安全标准(PSS)和安全上下文限制(SCC)</block>
   <block id="9d482ecca4ba8a41fd8e1180c97a4b97" category="paragraph">Kubernetes Pod安全标准(PSS)和Pod安全策略(PSP)定义权限级别并限制Pod的行为。OpenShift安全上下文约束(SCC)同样定义了特定于OpenShift Kubernetes引擎的POD限制。为了提供此自定义设置、Astra Trident会在安装期间启用某些权限。以下各节详细介绍了Astra Trident设置的权限。</block>
@@ -2503,7 +2437,6 @@
   <block id="dbcf7f603282c175a634104f7dbd55f2" category="paragraph">在极少数情况下、如果在创建`ResourceQuota`对象后安装失败、请先尝试 <block ref="3bd802fb95da78515b3c3d98916ee73c" category="inline-link-macro-rx"></block> 然后重新安装。</block>
   <block id="c4af59b1638f70f51816423f72df4dba" category="paragraph">如果不起作用、请手动删除`ResourceQuota`对象。</block>
   <block id="ba991f2f6d0f733e9b8a2136cedc99b2" category="paragraph">如果您希望控制自己的资源分配、则可以使用以下命令删除Astra Trident `ResourceQuota`对象：</block>
-  <block id="9337cac2cd1105449cd4e78ff2a353a4" category="cell">"K8s.gcr.io/SIG-storage (K8s 1.19+)或quay.io/k8scsi "</block>
   <block id="702fa57eedc6ee8490a7294016f8b14f" category="list-text">`trident资源库ota.yaml`</block>
   <block id="6b51834314ece904405eb0ce1a6e6bd8" category="list-text">NetApp HCI/ Element软件11或更高版本</block>
   <block id="468bc1e7f7712a8dc9b91d063523cdff" category="cell">v1.24.0</block>
@@ -2513,7 +2446,6 @@
   <block id="0ae28ee1c5edfd4bee3e296a8261ed8b" category="inline-link-macro">GitHub问题描述 #736</block>
   <block id="69ce5488c3078e15fc6e51116d1d17ba" category="list-text">修复了问题描述 处理非CHAP路径错误的问题、以便kubelet在失败时重试。 <block ref="a21b5d75e3a2341288a5ed769d7d4ca2" category="inline-link-macro-rx"></block>）</block>
   <block id="701ba87ab75dde70f4604769defc7d00" category="list-text">从K8s.gcr.io过渡到registry.k8s.io作为CSI映像的默认注册表</block>
-  <block id="95b61962ec35cc252a4791e4101c5aaa" category="list-text">现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。如果Trident确定在不影响活动工作负载的情况下安全执行此操作、现有卷将有机会切换到新的igroup方案。</block>
   <block id="90e3cd7cff1c9f6f4b8d2a509b127d44" category="list-text">包含一个包含Trident安装的ResourceQuota、以确保在默认情况下限制使用PriorityClass时计划Trident DemonSet。</block>
   <block id="838a6d7e89b7c366cfc25d3b2115b901" category="inline-link-macro">GitHub问题描述 #717</block>
   <block id="83a65beedcdd811d7b3b4fe9d2c4614f" category="list-text">为ANF驱动程序增加了对网络功能的支持。（<block ref="e0e89f8bd936a5eb3adce74cac88eab0" category="inline-link-macro-rx"></block>）</block>
@@ -2625,10 +2557,8 @@
   <block id="071d9becf308917b53d70c09e7da51b6" category="list-text">访问受支持的NetApp存储系统。</block>
   <block id="19eb712f406fc64109f96d9cf4055cb9" category="list-text">能够从所有Kubernetes工作节点挂载卷。</block>
   <block id="5f35b91e200cda68bf700d65b89c2c73" category="list-text">具有的Linux主机<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block> (或<block ref="fb024832e51eb5f6da9113a745f1eb59" prefix=" " category="inline-code"></block>(如果您使用的是OpenShift)已安装并配置为管理要使用的Kubernetes集群。</block>
-  <block id="c1c8ac442a800bb41f1cc1dc1350132e" category="admonition">要使Astra Trident能够在Windows节点上运行、请添加<block ref="636d7cccc33f77beafb20be9cf83cd53" prefix=" " category="inline-code"></block> 安装命令的标志：<block ref="a240440622dae805c5d62a3c17f5f51e" prefix=" " category="inline-code"></block>。</block>
   <block id="50f33d14f129e4548c1c270fd6725a78" category="section-title">配置选项</block>
   <block id="05f901da7fdacb9ca59e3d7e2d40f98d" category="cell"><block ref="0f4137ed1502b5045d6083aa258b5c42" prefix="" category="inline-code"></block></block>
-  <block id="fbbd7b4b14060c4fdb02f92c4c08e702" category="cell">设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 启用在Windows工作节点上的安装。</block>
   <block id="a3ff66cf5848a34d56915c8e879a5d52" category="section-title">配置示例</block>
   <block id="a6ba054ae6c021e3bc8a173393842c3d" category="paragraph">您可以在定义时使用上述属性<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 自定义安装。</block>
   <block id="3dabf672facbe8c5e2eeff030c2b8520" category="example-title">示例1：基本自定义配置</block>
@@ -2690,7 +2620,6 @@
   <block id="eb89f16d07a93fa10a31ec6309045fe9" category="doc">ONTAP SAN配置选项和示例</block>
   <block id="b8ae61dc50cf8e8b79e68bc4a8d36393" category="cell"><block ref="0f179ba2bc32ab5d8f60692f5b800c86" prefix="" category="inline-code"></block></block>
   <block id="a56dcba8eacdac67fb510e1434d560d8" category="inline-link-macro">使用Linux统一密钥设置(LUKS)</block>
-  <block id="8f145066de3f0e0a9d2e9cc5bf6f09f5" category="doc">配置ONTAP NAS后端</block>
   <block id="fd05c90de484dbc1cb963df796886af4" category="doc">准备使用ONTAP NAS驱动程序配置后端</block>
   <block id="481e993a13f6d4f981acc2da60465e2a" category="summary">了解ANF的NFS和SMB后端配置选项、并查看配置示例。</block>
   <block id="17a48ec106d5505e674ccdf56fce1058" category="doc">Azure NetApp Files 后端配置选项和示例</block>
@@ -2726,11 +2655,9 @@
   <block id="c51cc3b801a879870aea846bdde1c7a3" category="section-title">创建后端</block>
   <block id="7d8058d93ec1d95c673d83bf303326ff" category="doc">ONTAP NAS配置选项和示例</block>
   <block id="618a7676e411bbfbd9dbdb2411019951" category="summary">您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NAS和SMB卷。</block>
-  <block id="9d556ecfb4757173c93a34a5466447d7" category="list-text"><block ref="9d556ecfb4757173c93a34a5466447d7" category="inline-link-macro-rx"></block></block>
   <block id="ea61e2c2ff507048203824add1eb7c21" category="section-title">注意事项</block>
   <block id="8f395c84ad002394e9f070a25937dcc4" category="list-text">Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。</block>
   <block id="1cf44a6bee7fa333861e5d0042926fb5" category="list-text">Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。</block>
-  <block id="279096894abe6299537e865410f3d494" category="list-text">Astra Trident不支持Windows ARM 架构。</block>
   <block id="ef0f938ae67a04ac3370fe516c2a6baf" category="list-text">增加了对Kubernetes 1.25的支持。在升级到Kubernetes 1.25之前、您必须将Astra Trident升级到22.10。</block>
   <block id="d041a310ba7cc2599250e64801594107" category="list-text">增加了对的支持 <block ref="ca184a2eda203b6d98158bdf24e5cf7d" category="inline-link-macro-rx"></block>。</block>
   <block id="adbfe36f6399f2846983b2901604a962" category="list-text">已添加 <block ref="40be42d37bc6014716dcd0a1d368ffb5" category="inline-link-macro-rx"></block> 通过<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 存储驱动程序。</block>
@@ -2775,7 +2702,6 @@
   <block id="26dbe1fe275b741e7240a373222d3480" category="paragraph">迁移到使用 CRD 的 Astra Trident 版本时，应考虑降级。由于Astra Trident使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有关联的CRD对象、而不是写入到中的数据<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> PV (由早期安装的Astra Trident版本使用)。新创建的 PV ，后端和存储类均作为 CRD 对象进行维护。</block>
   <block id="06b33bc9cc124539c964174ecd43eb43" category="paragraph">请仅尝试对使用CRD运行的Astra Trident版本(19.07及更高版本)进行降级。这样可以确保在降级后可以看到对当前Astra Trident版本执行的操作。</block>
   <block id="c27e444dab3a08bf8ec59794897c1a27" category="inline-link-macro">支持的Kubernetes版本</block>
-  <block id="482d7c15b1a7200b3981ee1f99a86fef" category="list-text"><block ref="482d7c15b1a7200b3981ee1f99a86fef" category="inline-link-macro-rx"></block></block>
   <block id="756efcb3a97cdd37e8b34de3913c3d8f" category="paragraph">请参见 <block ref="18d5551396fb2ce2e009cfdb709e4875" category="inline-link-macro-rx"></block>。确保满足前提条件后，即可部署 Astra Trident 。</block>
   <block id="0d41f8565b8b74a59fc029ccf2becd83" category="list-text">使用受管插件系统启动 Astra Trident 。替换<block ref="3d689bd3819ead35ed794427bd12f459" prefix=" " category="inline-code"></block> 您正在使用的插件版本(xxx.xx.x)。</block>
   <block id="4f0e7dc30ffb3e25e75331c9afb2243a" category="cell">卷模式</block>
@@ -2824,7 +2750,6 @@
   <block id="81801ea9aa153d054652d45bc18af0a7" category="section-title"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block> 具有双向CHAP的驱动程序</block>
   <block id="5d49eece8e9afa44ffdead9ff18462be" category="section-title"><block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix="" category="inline-code"></block> 驱动程序</block>
   <block id="19ef07597f79648211dbed100709836b" category="section-title">更新后端以包括<block ref="1f2a94e142bf020b1f7c6297ec12413f" prefix=" " category="inline-code"></block></block>
-  <block id="004d3e2a4856b16f30a875347fa180b1" category="paragraph-title">您需要了解的信息</block>
   <block id="891d26d5e7410db6c0a971245c6025c0" category="section-title">示例1：的后端配置<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 具有三种卷类型的驱动程序</block>
   <block id="4a8519b09a0b2a70d40200e88ec2c5dc" category="section-title"><block ref="caafdf62a2c609bfa5316118231a1007" prefix="" category="inline-code"></block> 驱动程序</block>
   <block id="454631312fab234fc91bb2f85a751fac" category="section-title"><block ref="913a4b06671d1e04e6582a85afe3abbe" prefix="" category="inline-code"></block></block>
@@ -2886,7 +2811,6 @@
   <block id="35aa4a2a819e526c2e930e487df8d423" category="list-text"><block ref="35aa4a2a819e526c2e930e487df8d423" category="inline-link-macro-rx"></block></block>
   <block id="19476662cd814e0aa085eca121de89b8" category="inline-link-macro">VolumeSnapshotClass</block>
   <block id="d63cadc96caf4b05f8fa532b08e889da" category="list-text"><block ref="d63cadc96caf4b05f8fa532b08e889da" category="inline-link-macro-rx"></block></block>
-  <block id="31f8757839909e87266f2b53482c86ef" category="list-text">Windows Server 2019</block>
   <block id="3b64653c97a388d828849314b6a1b383" category="cell">池的标签值必须：</block>
   <block id="6da89265a9a8b0b28eb4946bb2ec0c6d" category="cell">匹配</block>
   <block id="ecf92052d55345fee4602d9eb8c22063" category="cell">不匹配</block>
@@ -2905,8 +2829,6 @@
   <block id="054b5072368dea4f8748909c16c7de98" category="cell">Thick：All ONTAP ；Thin：All ONTAP &amp; solidfire-san</block>
   <block id="dbdc06f8742b98dcacdf7fdb1af111ea" category="paragraph">ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、solidfire-san、GCP-CVS、azure-netapp-files、ontap-san-economy.</block>
   <block id="f888aa18c19e41f8c1263fa99ca8b94c" category="cell">solidfire-san、ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、ontap-san-economy.</block>
-  <block id="a64f78ea5d42780118e8f5c7f6cfdcbb" category="list-text"><block ref="a64f78ea5d42780118e8f5c7f6cfdcbb" category="inline-link-macro-rx"></block></block>
-  <block id="65a38da8aec2b99cf44dbf919fbd6991" category="list-text"><block ref="65a38da8aec2b99cf44dbf919fbd6991" category="inline-link-macro-rx"></block></block>
   <block id="05a2712653dfbf7d695c18242d9848e6" category="paragraph">RHEL 8+</block>
   <block id="bba4e1b8d8614fe9da2d67e2dcef4b52" category="paragraph"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block>，<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block></block>
   <block id="c95cada2a569592345ebc18e5ef4c7aa" category="paragraph">协议 LIF 的 IP 地址。</block>
@@ -2926,7 +2848,6 @@
   <block id="9899a49139c92dc0ebfa6808b9d83291" category="section-title">有关Astra Trident 23.01的关键信息</block>
   <block id="d883ab5f686800bc89cab8e6bd776c10" category="paragraph">*您必须阅读以下有关Astra Trident的重要信息。*</block>
   <block id="92b6d6e1b0bf78702d88ede445c4256f" category="example-title">&lt;strong&gt; 中有关Astra &lt;/strong&gt; 的信息</block>
-  <block id="bdae2123f4237558f3521f7e74c70955" category="list-text">Trident现在支持Kubernetes 1.26。在升级Kubernetes之前升级Trident。</block>
   <block id="7416271d47db3d82227ab2164e43c75c" category="list-text">Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为<block ref="db729c5c8df447087e5a84b961df14f6" prefix=" " category="inline-code"></block> 在multipath.conf文件中。</block>
   <block id="2f5480efe7a0a4b0cffbf110abec11c2" category="paragraph">使用Trident <block ref="cdacb2b0d49176a3c0d8cc9d693de833" category="inline-link-macro-rx"></block> 您可以一步部署Trident操作员并安装Trident。</block>
   <block id="3342f1a2f74c6062a39d3076c35c5a5b" category="inline-link-macro">安装概述</block>
@@ -3003,11 +2924,9 @@
   <block id="aa7d43663995cc5a82e0608e61443ac2" category="list-text">如果您的部署基于操作员、则要删除此部署并改用此部署<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 要部署Astra Trident、您应先编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 并设置<block ref="f41a95848a012f4f1a6550ce79c588aa" prefix=" " category="inline-code"></block> 卸载Astra Trident。然后删除<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 和操作员部署。然后、您可以使用安装<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
   <block id="e77325ac6e155cf5d14c756f1d64333f" category="list-text">如果您使用的是基于操作员的手动部署、并且要使用基于Helm的Trident操作员部署、则应先手动卸载此操作员、然后再执行Helm安装。这样， Helm 就可以使用所需的标签和标注来部署 Trident 操作员。如果不执行此操作，则基于 Helm 的 Trident 操作员部署将失败，并显示标签验证错误和标注验证错误。如果您有<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>基于部署、您可以使用基于Helm的部署、而不会遇到问题。</block>
   <block id="901977c62370814085e1228ede1e5919" category="summary">在安装Astra Trident之前、您应查看这些常规系统要求。特定后端可能有其他要求。</block>
-  <block id="40d52435469b4eba3a63775d6170cf3e" category="list-text">Kubernetes 1.21 - 1.26</block>
   <block id="020762714bd7a4355a1abeca3c382c18" category="list-text">OpenShift 4.9 - 4.12</block>
   <block id="0ffed9ae8c0b8e64c5dc8cba81c4fe34" category="list-text">FAS/AFF/Select 9.5或更高版本</block>
   <block id="6286d1b386e84c92fae11f2bcb9ceecd" category="paragraph">下表总结了此版本的 Astra Trident 及其支持的 Kubernetes 版本提供的功能。</block>
-  <block id="db9435acb142577b87827261ece9f934" category="paragraph">1.21 - 1.26</block>
   <block id="6726c1f070eb0e4315bf3ec874a13f78" category="paragraph">虽然Astra Trident不正式支持特定的操作系统、但已知以下功能有效：</block>
   <block id="f8b1c66e563136ad12055c2d31964acc" category="paragraph">Kubernetes集群中的所有工作节点都必须能够挂载为Pod配置的卷。要准备工作节点、必须根据您选择的驱动程序安装NFS或iSCSI工具。</block>
   <block id="f36d25716a4b2c466ddcb8065bef3ae6" category="paragraph"><block ref="f36d25716a4b2c466ddcb8065bef3ae6" category="inline-link-macro-rx"></block></block>
@@ -3015,9 +2934,6 @@
   <block id="50823ee9226376c44bfb71c334ee2f3f" category="paragraph"><block ref="50823ee9226376c44bfb71c334ee2f3f" category="inline-link-macro-rx"></block></block>
   <block id="29dcef620f05a3eaaf13d29d1f14e860" category="paragraph">Astra Trident需要访问特定端口才能进行通信。</block>
   <block id="b2dabe4b341f1e163a7ba3f3553d6b1b" category="paragraph"><block ref="b2dabe4b341f1e163a7ba3f3553d6b1b" category="inline-link-macro-rx"></block></block>
-  <block id="9f523c82aa6c2773a498c832177d2ae0" category="list-text">netapp/trident autosupport：23.01</block>
-  <block id="3cfdc4b11ed575c2d8bbcea1746d0976" category="list-text">K8s.IO/SIG-storage/CsI-provisioner：v3.4.0</block>
-  <block id="57ad3884258dc4fe04c11750b8222daa" category="list-text">K8s.IO/SIG-storage/CSI-attacher：v4.1.0</block>
   <block id="7f7b6bf613e5a94b472dc4003c3c9d47" category="list-text">K8s.IO/SIG-storage/CSI-resizer：v1.7.0</block>
   <block id="bc5a94d13573ba35693929cfc2df5614" category="list-text">K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1</block>
   <block id="938a05d206d8fc8b1d8a4342f0a74da0" category="list-text">K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0</block>
@@ -3115,7 +3031,6 @@
   <block id="c5fbf8cba91fd09257dab41143773a09" category="paragraph">Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的，可提供新功能和性能增强以及错误修复和改进功能。我们建议您每年至少升级一次、以利用Astra Trident中的新功能。</block>
   <block id="61f660050f0deffc4b168fe9b8118e83" category="section-title">选择一个版本</block>
   <block id="ecab08714a2cb76336fb5fe50c888c56" category="paragraph">Astra Trident版本采用基于日期的版本<block ref="fb6921a005d395f9482cdac0306d4935" prefix=" " category="inline-code"></block> 命名约定、其中"YY"是一年中的最后两位数字、"MM"是月份。DOT版本会遵循A<block ref="d93ec759c4a0e8c1cf9c7653b2939656" prefix=" " category="inline-code"></block> 约定、其中"X"是修补程序级别。您将根据要从中升级的版本选择要升级到的版本。</block>
-  <block id="b6d54dfe9998fc2d718d82ced3bad520" category="list-text">您可以直接升级到已安装版本的四个版本窗口中的任何目标版本。例如、您可以直接从22.01升级到23.01 (包括任何DOT版本、例如22.01.1)。</block>
   <block id="3c64b9fcc6316f2fb3e86bb37ec1e046" category="list-text">如果您使用的是早期版本、则应使用相应版本的文档执行多步升级、以获取具体说明。这要求您首先升级到适合您的四个版本窗口的最新版本。例如、如果您运行的是18.07、并且希望升级到20.07版本、请按照下面提供的多步升级过程进行操作：</block>
   <block id="b42882f59822357cae71c7deef14a306" category="list-text">首次从 18.07 升级到 19.07 。</block>
   <block id="3cf66ab24f2bf4b09d48a150a9e60aff" category="list-text">对于19.04及更早版本的所有升级、都需要从Astra Trident元数据自身进行迁移<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block> 到CRD对象。请务必查看此版本的文档、了解升级的工作原理。</block>
@@ -3137,7 +3052,6 @@
   <block id="50bfc8fc0d5fc544b43965b0746d1411" category="paragraph">按照以下步骤升级集群范围的Trident操作员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。</block>
   <block id="811eaf5a7a011a3e3c605acd9ea6d5fb" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从22.01升级、请运行以下命令：</block>
   <block id="bdae3121e140e5325fd05919c86dd97f" category="list-text">如果您使用自定义了初始安装<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 属性、您可以编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 用于修改安装参数的对象。其中可能包括为脱机模式指定镜像Trident和CSI映像注册表、启用调试日志或指定映像提取密钥所做的更改。</block>
-  <block id="bd4060a8e80dfbd6f1540226cbeae99b" category="list-text">使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubernetes 1.26安装Astra Trident 23.01、请运行以下命令：</block>
   <block id="40b88899eb3616ad98776b847e919324" category="paragraph">Trident提供了一个捆绑包文件、可用于安装操作员并为Kubernetes版本创建关联对象。</block>
   <block id="c80acc2d3549dd5f3d193892334b8fae" category="paragraph">Trident操作员将确定现有的Astra Trident安装并将其升级到与操作员相同的版本。</block>
   <block id="1e09cc3768e537466d645c037041bffc" category="paragraph">按照以下步骤从使用命名空间范围的运算符(版本20.07至20.10)安装的Astra Trident实例进行升级。</block>
@@ -3148,7 +3062,6 @@
   <block id="b0f8c567e856516aabf80f916e995d4f" category="paragraph">如果在初始安装期间设置了任何非默认选项(例如为Trident和CSI映像指定专用的镜像注册表)、请使用<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。</block>
   <block id="3d0107bfa0874592e9dc04f9869b604b" category="list-text">运行<block ref="cd4140d3de30b520500459331d08d2bf" prefix=" " category="inline-code"></block> 验证图表和应用程序版本均已升级。运行<block ref="3e725291d4b17065fdcd321172fcfae3" prefix=" " category="inline-code"></block> 查看任何调试消息。</block>
   <block id="d72f42539c286d006f46f1ddbcfc9ad0" category="paragraph">您可以从升级到最新版本的Trident操作员<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装。</block>
-  <block id="ce56959e2e76e7128bc8744171874942" category="paragraph">如果您运行的不是Astra Trident 23.01、则可以参考先前版本的文档。您可以使用版本选择器在最新版本和以前的四个版本之间导航、也可以使用以下链接。</block>
   <block id="3fe5d266a33f137293c314a2e334b611" category="inline-link">Astra Trident 22.10</block>
   <block id="9fefe9ff51badc61edd8a36c8240aa29" category="list-text"><block ref="9fefe9ff51badc61edd8a36c8240aa29" category="inline-link-rx"></block></block>
   <block id="55559f520040667d3f8931728b37ef07" category="paragraph">21.07之前的版本、重定向到旧版文档站点。</block>
@@ -3314,8 +3227,6 @@
   <block id="e4f84f59067aa8e22119bf499379385a" category="inline-link-macro">适用于ONTAP 的FSX配置选项和示例</block>
   <block id="ca088cbb36bbab4b23e57d63d95a628c" category="list-text">创建后端时、必须配置以下内容以指定SMB卷。有关适用于ONTAP 后端的所有FSX配置选项、请参见 <block ref="dd05fa371cf4b2c8377b8b4b261a8edd" category="inline-link-macro-rx"></block>。</block>
   <block id="7bb910e3cf11d0b34ca215aa399d3f23" category="cell"><block ref="5910159ef86741f119f7574a9064b5b0" prefix="" category="inline-code"></block></block>
-  <block id="7a17b79b33ad0814114d5c433d21f0e8" category="cell">使用共享文件夹Microsoft管理控制台创建的SMB共享的名称。例如"smb-share"。*对于SMB卷为必需项。*</block>
-  <block id="595b9128da266e4c0415d8a11362e974" category="cell">"smb-share"</block>
   <block id="3b84c7b88317953423192c633a83db9f" category="cell">*必须设置为<block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix=" " category="inline-code"></block>如果为空、则默认为<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block>。</block>
   <block id="1928bae58ae496b53ef1a163c3dbeeb4" category="cell">新卷的模式。对于SMB卷、*必须留空。*</block>
   <block id="ded47128219e64b5f24343dab357151b" category="admonition">Astra Trident强制使用空<block ref="7cfbb6f07899c8071ff38e69dca190e2" prefix=" " category="inline-code"></block> 创建的卷。对于iSCSI后端、建议强制实施<block ref="01cd995fd9a843d3ca767e057de28873" prefix=" " category="inline-code"></block> 在StorageClass中。您应删除现有StorageClasses并使用重新创建它们<block ref="01cd995fd9a843d3ca767e057de28873" prefix=" " category="inline-code"></block> 已指定。</block>
@@ -3326,17 +3237,11 @@
   <block id="2da9f60cc5b99a5987580c38e6db0842" category="cell">受信任 CA 证书的 Base64 编码值。可选。用于基于证书的身份验证。</block>
   <block id="394d848f17683e31e21f6cde5fd9e3e4" category="cell">与ONTAP 集群通信所需的用户名。用于基于凭据的身份验证。</block>
   <block id="6f0acf4836d44b03512e1caa0d774777" category="cell">与ONTAP 集群通信所需的密码。用于基于凭据的身份验证。</block>
-  <block id="389db483158927a67353b09e0ce89d85" category="cell">要使用的SAN卷的igroup的名称。请参见 <block ref="6e67b5ef9818d5ee50372d568636cd92" category="inline-xref-macro-rx"></block> 有关详细信息 ...</block>
   <block id="a0de2cc0c77c388210e1f48423eea29c" category="cell">在 SVM 中配置新卷时使用的前缀。无法稍后修改。要更新此参数、您需要创建一个新的后端。</block>
   <block id="e54cbd8ca5da26dc7e4be3bbfd23467e" category="cell">如果使用量超过此百分比，则配置失败。如果您使用适用于NetApp ONTAP 后端的Amazon FSX、请勿指定 <block ref="d57551b1efacf8a7be84b4d10c5a6e99" prefix=" " category="inline-code"></block>。提供的<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block> 和<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 请勿包含检索聚合使用情况所需的权限、并使用Astra Trident对其进行限制。</block>
   <block id="f804cd6668c0728e26448509210268d3" category="cell">如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN管理的卷的最大大小。</block>
   <block id="b3a74fee006256ec5d63fe251b553f1d" category="cell">故障排除时要使用的调试标志。例如、除非您正在进行故障排除并需要详细的日志转储、否则｛"api"：false、"method "：true｝请勿使用。</block>
   <block id="cc30671ec52693851659adb7020e02b1" category="cell">用于使用 ONTAP REST API 的布尔参数。* 技术预览 *<block ref="14d839191d1ecf387a15b5b0c802a8ae" prefix=" " category="inline-code"></block> 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问<block ref="a9ba4dc88fa11d44cc7c0c918d174778" prefix=" " category="inline-code"></block> 应用程序。这一点可通过预定义来满足<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 和<block ref="fdb6ba311fad29ec53069808f10ebef4" prefix=" " category="inline-code"></block> 角色。<block ref="14d839191d1ecf387a15b5b0c802a8ae" prefix=" " category="inline-code"></block> MetroCluster 不支持。</block>
-  <block id="ceff62705abadd1abc0e2d8f1a40ea35" category="section-title">详细信息<block ref="9d8592d88bbb76c68c01d830f091dacc" prefix=" " category="inline-code"></block></block>
-  <block id="7038c8ee6b987228eae45aa3f990a3de" category="paragraph"><block ref="9d8592d88bbb76c68c01d830f091dacc" prefix="" category="inline-code"></block> 可以设置为已在ONTAP 集群上创建的igroup。如果未指定、则Astra Trident会自动创建名为的igroup<block ref="7c79ab6d4da823d54e29bcbb64f38eef" prefix=" " category="inline-code"></block>。</block>
-  <block id="60f33a20147fc20d3d7707e50d1c0a9a" category="paragraph">如果要在环境之间共享SVM、则如果要提供预定义的igroupName、建议为每个Kubernetes集群使用一个igroup。这对于Astra Trident自动维护IQN添加和删除是必需的。</block>
-  <block id="3f4c75b40f8732fcb4f838d7f1b21a76" category="list-text"><block ref="9d8592d88bbb76c68c01d830f091dacc" prefix="" category="inline-code"></block> 可以更新为指向在Astra Trident之外的SVM上创建和管理的新igroup。</block>
-  <block id="1b4b9a9a67369e93e8c38ee61a36dd5d" category="list-text"><block ref="9d8592d88bbb76c68c01d830f091dacc" prefix="" category="inline-code"></block> 可以省略。在这种情况下、Astra Trident将创建并管理名为的igroup<block ref="7c79ab6d4da823d54e29bcbb64f38eef" prefix=" " category="inline-code"></block> 自动。</block>
   <block id="c59183b2f668b355e81e7bb1256f92b3" category="paragraph">您可以在中使用这些选项控制默认配置<block ref="a4a918a45181164207929d52aec36aec" prefix=" " category="inline-code"></block> 配置部分。有关示例，请参见以下配置示例。</block>
   <block id="d4fbfa2dd496728ba6294eb840ce25eb" category="cell">要为创建的卷分配的 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享QoS策略组、并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。</block>
   <block id="b71ccf1062cee8c376a7eb37e3c42603" category="cell">启用LUKS加密。请参见 <block ref="569f9f91cdcc19909b8acbf6f423daf7" category="inline-link-macro-rx"></block>。</block>
@@ -3384,16 +3289,11 @@
   <block id="b8c7e19ba614c29878588409008e29c6" category="cell">用于连接到集群或SVM的用户名。用于基于凭据的身份验证。例如、vsadmin。</block>
   <block id="9a2486a943ad2a4c99f2797d6984f3d0" category="cell">用于连接到集群或SVM的密码。用于基于凭据的身份验证。</block>
   <block id="6018b4c39d938c6589decae81b54c6f0" category="cell">如果指定SVM管理LIF则派生。</block>
-  <block id="6b249375261ddb13a77410698978d6e4" category="cell">要使用的SAN卷的igroup的名称。请参见 <block ref="6e67b5ef9818d5ee50372d568636cd92" category="inline-xref-macro-rx"></block>。</block>
   <block id="4cba35e041b22828be7c835295ee9102" category="cell">在 SVM 中配置新卷时使用的前缀。创建后无法修改。要更新此参数、您需要创建一个新的后端。</block>
   <block id="2b3e2c0490ded1bc79028dd367358b9d" category="cell">*请勿为适用于NetApp ONTAP 的Amazon FSX指定。*提供的<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block> 和<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 请勿包含检索聚合使用情况所需的权限、并使用Astra Trident对其进行限制。</block>
   <block id="86f4c9647fe8f4c500055c772753cc6f" category="cell">请勿使用。</block>
   <block id="bd4c4a75acd87c86694e9aca1e4050e2" category="cell">每个FlexVol 的最大LUN数必须在50、200范围内。仅限SAN。</block>
-  <block id="e70237f69c6dce25fd2312b8d7f00b1e" category="cell">"100"</block>
   <block id="e939be085c2babe4ff0f08e09d0cdfd2" category="cell">配置NFS或SMB卷创建。选项包括<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block>，<block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix=" " category="inline-code"></block>或为空。*必须设置为<block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix=" " category="inline-code"></block> 对于SMB卷。*如果设置为空、则默认为NFS卷。</block>
-  <block id="b993677cdfb69bee31dd375d27acbb2d" category="cell">"NFs"</block>
-  <block id="89ffa293e05655bd6be9d422345be38a" category="cell">"200"</block>
-  <block id="be01424702282a8710bfaa63381e0ef3" category="cell">使用共享文件夹Microsoft管理控制台创建的SMB共享的名称。*对于SMB卷为必需项。*</block>
   <block id="2ab2b81dde76a2ec7ed3798f1538f823" category="cell">用于使用 ONTAP REST API 的布尔参数。* 技术预览 *<block ref="14d839191d1ecf387a15b5b0c802a8ae" prefix=" " category="inline-code"></block> 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问<block ref="a9ba4dc88fa11d44cc7c0c918d174778" prefix=" " category="inline-code"></block> 应用程序。这一点可通过预定义来满足<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 和<block ref="fdb6ba311fad29ec53069808f10ebef4" prefix=" " category="inline-code"></block> 角色。</block>
   <block id="f9d8bcec134b3ae3cb7aaac7048373ee" category="cell">要为创建的卷分配的 QoS 策略组。选择每个存储池或后端的qosPolicy或adaptiveQosPolicy之一。在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享QoS策略组、并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。</block>
   <block id="a8fe789c9febc6b76736fb83c90df2b7" category="cell">要为创建的卷分配的自适应 QoS 策略组。选择每个存储池或后端的qosPolicy或adaptiveQosPolicy之一。不受 ontap-nas-economy.</block>
@@ -3444,9 +3344,6 @@
   <block id="8a6b9ec0e0eb9c6a3e520af66cffd466" category="paragraph">在下面所示的示例后端定义文件中、为所有存储池设置了特定的默认值、这些存储池设置了<block ref="599dcce2998a6b40b1e38e8c6006cb0a" prefix=" " category="inline-code"></block> 在Silver。虚拟池在中进行定义<block ref="ddecebdea58b5f264d27f1f7909bab74" prefix=" " category="inline-code"></block> 部分。在此示例中，某些存储池设置了自己的类型，而某些池将覆盖上述默认值。</block>
   <block id="d17a2942ee77aa1532660a5f0cf0d6e5" category="paragraph">第一个StorageClass <block ref="166028d9a95f5465a6ae917e6e089ce6" prefix="(" category="inline-code"></block>)将映射到第一个虚拟池。这是唯一一个可通过提供金牌性能的池<block ref="89bf6c97f9a3eaea76c86df0086361bc" prefix=" " category="inline-code"></block> 金牌。最后一个StorageClass <block ref="b4457b3eeca98cadb51648f8fcef36cb" prefix="(" category="inline-code"></block>)调用提供银牌性能的任何存储池。Astra Trident将决定选择哪个虚拟池、并确保满足存储要求。</block>
   <block id="7ac6994e44af62a9075fd956e72ee6fb" category="paragraph">请注意，后端定义是凭据以纯文本格式存储的唯一位置。创建后端后，用户名 / 密码将使用 Base64 进行编码并存储为 Kubernetes 密钥。创建或更新后端是唯一需要了解凭据的步骤。因此，这是一项仅由管理员执行的操作，由 Kubernetes 或存储管理员执行。</block>
-  <block id="35bcb7d2979b78f60085f17523608cf1" category="paragraph">如果将 Astra Trident 配置为充当 CSI 配置程序，则 Kubernetes 节点 IQN 会自动添加到 igroup 中或从 igroup 中删除。将节点添加到Kubernetes集群后、<block ref="d9585690fd147c34fbd50c487a3520de" prefix=" " category="inline-code"></block> DemonSet部署POD <block ref="0acec1d7908eca40437167858e728fbb" prefix="(" category="inline-code"></block> 在23.01或之前的版本中<block ref="15c091a8dab608815c71eeaab69b4bef" prefix=" " category="inline-code"></block> 在23.01及更高版本中)在新添加的节点上注册可将卷连接到的新节点。节点 IQN 也会添加到后端的 igroup 中。在对节点进行隔离，清空并从 Kubernetes 中删除时，可以执行一组类似的步骤来删除 IQN 。</block>
-  <block id="f94dd4e5d427f6c27039ff57630f0cac" category="list-text">管理向添加启动程序的操作<block ref="9d8592d88bbb76c68c01d830f091dacc" prefix=" " category="inline-code"></block> 在后端提供。如果未指定、则默认为<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block>。</block>
-  <block id="02ef3639dafcd40b1745b539a10d1cae" category="sidebar">23.01版的关键信息</block>
   <block id="f1fe71442cd08e74d342114df7ee1551" category="sidebar">安装 Astra Trident</block>
   <block id="46921a75e8534ad7d1c379a9e3aec033" category="sidebar">安装概述</block>
   <block id="3183dc3907c0b67930b221a316c94cb2" category="sidebar">使用Trident操作员安装</block>
@@ -3460,7 +3357,6 @@
   <block id="6fc0b7515ecca271c88eae4a685da613" category="sidebar">NetApp HCI 或SolidFire</block>
   <block id="60be48bb4b3314965bf50e88e7ae728c" category="sidebar">集成适用于ONTAP 的Amazon FSX</block>
   <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="sidebar">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
-  <block id="784060ce5e49eff75eaca62337b5ff53" category="list-text">Ubuntu 22.04或更高版本</block>
   <block id="e267c2490c7d73d0ffa909b77267cfaf" category="inline-link-macro">Astra Control复制前提条件</block>
   <block id="9814801b0db6e324ebd72f671418de64" category="paragraph">Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷)<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，和<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。请参见 <block ref="dfc981ac97be73172a3119f3b831eaf8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="783c2760a502e1f1537de458c9dceb7a" category="list-text">您必须使用<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 适用于需要数据保护、灾难恢复和移动性的生产工作负载。</block>
@@ -3490,26 +3386,10 @@
   <block id="d0ebde94f92d8c1bae0c6660a5847bba" category="paragraph">Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。更新<block ref="7b4b81fb05ca7f2a09fe73526ac95482" prefix=" " category="inline-code"></block> 根据注册表配置添加其他位置规格。</block>
   <block id="5295ac8fb520b71deb8a1b57857b2562" category="section-title">第6步：创建<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 并安装Trident</block>
   <block id="4498f168dfd139c5a90c6acd3ab09109" category="summary">您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照)、以维护Astra Trident卷的时间点副本。此外、您还可以从现有卷快照创建一个新卷、也称为_clone_。支持卷快照<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block>，<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block>，<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block>，和<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驱动程序。</block>
-  <block id="92b68d4329b2a9fc7b9ee50887fa9ec6" category="list-text">对于运行Kubernetes 1.24或更低版本的集群、请使用 <block ref="2c09ae1e37416ff80fc94f3f18fdf365" category="inline-link-macro-rx"></block>。</block>
-  <block id="03b6416b48c9b688f320942620efba7e" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用 <block ref="5ca76d6130b1f129b38438a336b9aeba" category="inline-link-macro-rx"></block>。</block>
-  <block id="6ec38de91afa570e5d065616a4c39792" category="admonition">安装集群范围的运算符可启动的迁移<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 对象<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 对象、删除<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 对象和<block ref="297dc4adc64c26ae2fd6a1039d00ccb0" prefix=" " category="inline-code"></block> CRD、并将Astra Trident升级到所使用的集群范围运算符版本。在以下示例中、Trident会升级到23.01.1。</block>
-  <block id="612553699f2d5ae7962eb8012bc5c571" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="66cf366135b1928fa4812c3e0e41d022" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
   <block id="a6074ca03f6e3e76478b45e15e021b31" category="list-text">运行<block ref="9936810e5a43f0fece4628cd1a22fb4d" prefix=" " category="inline-code"></block> 用于将原有Astra Trident卷升级到CSI规范的命令。</block>
   <block id="ea7cc85727ac6a0761c52685cce336be" category="list-text">如果要降级到早期版本的Trident、请先运行<block ref="ac8650577d1b744589a6a11b60ac38c7" prefix=" " category="inline-code"></block> 用于删除Trident的命令。下载所需的<block ref="f3d78353f8dac3e49bbefeb5f6a2383b" category="inline-link-rx"></block> 并使用安装<block ref="430bf77bee6c59d385d4194f84c21b16" prefix=" " category="inline-code"></block> 命令：只有在未创建新 PV 且未对现有 PV/ 后端 / 存储类进行更改的情况下，才考虑降级。由于Trident现在使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有<block ref="816158c49c5f4417bf3b0f9c644e722e" prefix=" " category="inline-code"></block> 而不是写入到早期安装的Trident版本所使用的PV中的数据。* 新创建的 PV 在移回早期版本时不可用。 * 降级后， Trident 将无法看到对后端， PV ，存储类和卷快照（已创建 / 更新 / 删除）等对象所做的更改 * 。先前安装的 Trident 版本所使用的 PV 仍可供 Trident 查看。如果返回到早期版本，则不会中断对已使用旧版本创建的 PV 的访问，除非已对其进行升级。</block>
-  <block id="1ee41f7caab6c354f41f4a101afa7e89" category="summary">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。有关升级到Astra Trident 23.01.1的关键信息、请阅读发行说明</block>
-  <block id="386e03ca533890432e529f451049f72e" category="doc">Astra Trident 23.01.1文档</block>
-  <block id="f312617dd7f60d9446faf3c7633872e1" category="cell">"NetApp/trident自动支持：23.01"</block>
-  <block id="7cbcc2cc19b88ed72e268f9d84bb67af" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为部署和映像注册表位置指定一个名称。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、<block ref="5035e9d03d7081c7c67f5a557f1b864f" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
-  <block id="a6427845d2f49762a708df9e6cda9fea" category="paragraph">例如、要更改的默认值<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>、运行以下命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 命令位置<block ref="5035e9d03d7081c7c67f5a557f1b864f" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本：</block>
   <block id="43e6c0a141c1737a96917c56c7e22a73" category="inline-link-macro">安装&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category='inline-code'/&gt;</block>
   <block id="1a2de31d648d8c09e5c2a9257a5ad67b" category="paragraph">如果您的现有部署必须升级、或者您希望对部署进行高度自定义、则应考虑 <block ref="e214bf159dbaf6573cfe15f1373b92db" category="inline-link-macro-rx"></block>。这是部署 Astra Trident 的传统方法。</block>
-  <block id="71611ffeb9c4b65c1c227f6f6840db4e" category="paragraph">在中<block ref="02f3115b006f7541a477d52ea8c0f861" prefix=" " category="inline-code"></block>、更新<block ref="82a0d8d270200f472862eabbfab72b13" prefix=" " category="inline-code"></block> 以反映映像注册表的位置。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。例如：</block>
-  <block id="938ddddcbba42304d938dc5b673d0202" category="list-text"><block ref="e76c7fdd8a19469fd094094b1b37cd96" prefix="" category="inline-code"></block> 如果您的映像全部位于一个注册表中。</block>
-  <block id="4072e310ea82b48de23cd7a2e5dd7f30" category="list-text"><block ref="73f61ffa3e846a43a284493b64e0b302" prefix="" category="inline-code"></block> 如果Trident映像与CSI映像位于不同的注册表中。</block>
-  <block id="3b8d0cc1623ab5e024e4c6c92a96c0a3" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为您的部署指定一个名称、如以下示例中所示<block ref="5035e9d03d7081c7c67f5a557f1b864f" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
-  <block id="5e3673cc108f69c1b1e37872c6e40a61" category="list-text">NetApp/Trident：23.01.1</block>
-  <block id="f4be622ffc379faa9b3471e5e49fce94" category="list-text">netapp/trident操作符：23.01.1 (可选)</block>
-  <block id="76013b8f9b5c6b4b507fa479343e856f" category="section-title">23.01.1中的新增功能</block>
   <block id="19466ff921af5aa01da62b42cdaaf617" category="list-text">修复了在规范中指定的情况下使用IPv6 localhost进行安装的Trident操作员。</block>
   <block id="5b313836498a7a26e99e4f084ee1baec" category="inline-link-macro">问题描述 #799</block>
   <block id="b2fc842cefdc715af09b8d184e09db56" category="list-text">修复了Trident操作员集群角色权限与捆绑包权限同步的问题 <block ref="25d51e363866fb30c759c73e05114b0d" category="inline-link-macro-rx"></block>。</block>
@@ -3517,7 +3397,6 @@
   <block id="3a35c66b59df0fa02e2490983b964261" category="list-text">采用rwx模式在多个节点上附加原始块卷的固定问题描述。</block>
   <block id="21b2b5bca26be7b23af4468b85c68b34" category="list-text">修复了SMB卷的FlexGroup 克隆支持和卷导入。</block>
   <block id="190a9f9a8311c8a23bff1fd7a5693342" category="section-title">2001年23月的变更</block>
-  <block id="8b418db90259290a719e83f1a2509366" category="admonition">Trident现在支持Kubernetes 1.26。请先升级Astra Trident、然后再升级Kubernetes。</block>
   <block id="1cb76b1c7887cad1e077a4cbdc765b9b" category="list-text">验证Astra Trident版本：</block>
   <block id="705dbdc50888270bf4b0230d75c7ae1d" category="paragraph">使用Trident操作员可以使用中的属性自定义Astra Trident安装<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 规格如果您要对安装进行自定义、使其超出预期范围<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 参数允许、请考虑使用<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 生成自定义YAML清单以根据需要进行修改。</block>
   <block id="a5199cf0d9f113491f9efa18f3bee2e1" category="section-title">了解控制器Pod和节点Pod</block>
@@ -3636,8 +3515,6 @@
   <block id="fc3424ba1777889d0d49ea7f5a675c9e" category="paragraph"><block ref="70d2c7701d2837552c0a38c02a326592" prefix="" category="inline-code"></block></block>
   <block id="e84b7103384d0a3393c0847330716669" category="paragraph"><block ref="f819de81247be4a5428dc0e169de28b8" prefix="" category="inline-code"></block></block>
   <block id="7dd39afeb1c0b05aac5f4bf6fbd94990" category="paragraph"><block ref="301c869c551e12d862ab0291837102a0" prefix="" category="inline-code"></block></block>
-  <block id="cddf719b813056497a40cf1934f91af3" category="paragraph">插件使用的igrop；默认为<block ref="e77a1bd34ff5793aca292b38d23bc2c9" prefix=" " category="inline-code"></block>。* 仅适用于 `ontap-san`driver* 。</block>
-  <block id="53f20dcb83975ae9823682474c74acd6" category="paragraph"><block ref="79e762988462f6f8da9becfbfd789755" prefix="" category="inline-code"></block></block>
   <block id="98ce75f2128e52057c9dbf00a9eb2736" category="paragraph"><block ref="f07e606cfe25ac6fb07d9c4af941d9a2" prefix="" category="inline-code"></block></block>
   <block id="1ae6e291c93a6d5962af8004aecd9c4c" category="paragraph"><block ref="94f6d7e04a4d452035300f18b984988c" prefix="" category="inline-code"></block></block>
   <block id="af2bffb136dd0c22342ad9cb06187197" category="paragraph">空间预留模式；<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block> (精简配置)或<block ref="210ab9e731c9c36c2c38db15c28a8d1c" prefix=" " category="inline-code"></block> (厚)</block>
@@ -3660,4 +3537,121 @@
   <block id="419c95e5a9e44d427f99debdcf0550c7" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="cd38c25b6345abc8733d2ef72739cd97" category="inline-link-macro-rx"></block> Configuration</block>
   <block id="39f6252eef9409d5d917e183e971d71d" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。这是对SAN卷强制实施https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[security环境^的**要求。https://github.com/NetApp/trident/tree/master/trident-installer/sample-input[sample输入^]目录包含一些示例、例如https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-basic.yaml.templ<block ref="9abb8c7777ddb413820ee07d5d93aa4a" prefix="[" category="inline-code"></block>^)和链接：https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-bronze-default.yaml<block ref="69ae2d9a6d831af7488e53fec053b77e" prefix="[" category="inline-code"></block>^。有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
   <block id="1dedbfd605df8b562acc8f759a8e9acc" category="list-text">运行的Kubernetes集群 <block ref="229e1052bb9ecd8cf2680d6f44691174" category="inline-link-macro-rx"></block></block>
+  <block id="17c5eeb01739643b5aef94fe18b6c849" category="paragraph">您可以使用版本选择器在最新版本和以前的四个版本之间导航、也可以使用以下链接。</block>
+  <block id="78038c97749fe61b1148a68a71c14a02" category="inline-link-macro">Astra三项技术发布和支持生命周期</block>
+  <block id="3a1fdf1059d780b17a5dd3ecba99371d" category="paragraph">如果您未运行Asta Trident 23.04、则可通过获取先前版本的文档 <block ref="ec2082dc40596525d1bb212183949428" category="inline-link-macro-rx"></block>。</block>
+  <block id="4693b2393d80830cd4f198db20bf2b72" category="inline-link">Astra三排版23.01</block>
+  <block id="cd494508ccf1cdc45163d6d9d0f401ff" category="list-text"><block ref="cd494508ccf1cdc45163d6d9d0f401ff" category="inline-link-rx"></block></block>
+  <block id="eab0706ece21a2a7fba820bf95d759fe" category="section-title">有关Astra Trdent 23.04的重要信息</block>
+  <block id="2122a8acb599837078e6b76436e892c4" category="list-text">现在、在Trident中支持Kubnetes 1.27。在升级Kubernetes之前升级Trident。</block>
+  <block id="5934d78c1e4b16833d855fae6656a994" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为您的部署指定一个名称、如以下示例中所示<block ref="fc54aba0c9f6c2fff98f4890349f656c" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
+  <block id="177f0526bba4e516b4db5c3a74252bbd" category="paragraph">例如、要更改的默认值<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>、运行以下命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 命令位置<block ref="fc54aba0c9f6c2fff98f4890349f656c" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本：</block>
+  <block id="40991bba76926bfbcf7fb0b9c207187f" category="list-text">Anthos On－Prem (VMware)和Anthos on Bare metal 1.12</block>
+  <block id="10ba3564f65dbf6cec8650972c26ea30" category="list-text">Kubbernetes 1.21 - 1.27.</block>
+  <block id="fe74bcccaeacaddf91b58dec28fef5be" category="paragraph">1.21 - 1.27.</block>
+  <block id="362997bacf08e019288e372d8ae1f070" category="list-text">OpenShift容器平台(AMD64和ARM64)支持的RedHat CorEOS (RHCOS)版本</block>
+  <block id="a3460163c4a2854c79a419dda57ac917" category="list-text">RHEL 8+(AMD64和ARM64)</block>
+  <block id="f51a58a0cffb9f9953edce6411578b53" category="list-text">Ubuntu 22.04或更高版本(AMD64和ARM64)</block>
+  <block id="1285a056fd837828136d15f7e76d09cc" category="list-text">Windows Server 2019 (AMD64)</block>
+  <block id="491d412c8451b30af0235ea14c6884ce" category="list-text">NetApp/trident：23.04.0</block>
+  <block id="e1c8364426dfd7c124c013720fd79184" category="list-text">NetApp/trident-autostsupport：23.04</block>
+  <block id="f74c1ba486136c87105b3ee7c6b4a588" category="list-text">k8s.io/sig-storage/CSI-置 配置程序：v3.4.1</block>
+  <block id="69e020afa682d186164750d700cc7b94" category="list-text">k8s.io/sig-storage/CSI-attacher：v4.2.0</block>
+  <block id="1ee49b3835b8025abda346d6f4263ac9" category="list-text">NetApp/trident操作员：23.04.0 (可选)</block>
+  <block id="b38420e98813aed20daa115db2ac94a9" category="cell">v1.27.0</block>
+  <block id="1ff1fd258a61bd04eee000a1fb6131fa" category="example-title">示例1：启用A作用 于Windows节点的Asta三端到子</block>
+  <block id="f53514cf8829a41463c245b088ae732e" category="paragraph">要在Windows节点上运行A作用 是：</block>
+  <block id="a921baa9e8c81f13d59fed4fce57ec88" category="example-title">示例2：启用force detach</block>
+  <block id="c5b5b00ff1b3a892c8694ab932cbf9ca" category="paragraph">有关强制断开的详细信息、请参见 <block ref="63cac71755fb6ef1f1fea34cf4037121" category="inline-link-macro-rx"></block>。</block>
+  <block id="27855a2d0ff79cc3ecf0f08e67257b0a" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为部署和映像注册表位置指定一个名称。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、<block ref="fc54aba0c9f6c2fff98f4890349f656c" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
+  <block id="59bc75fa0b7e5b671e40873619ac96a7" category="cell">"NetApp/trident-autostsupport：23.04.0"</block>
+  <block id="85be37285c336ae757f07d58eb0d7ea2" category="cell">用于发送 AutoSupport 遥测的代理的地址 / 端口</block>
+  <block id="33fb79e5ddc4ef005332c52292e20c59" category="cell">运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
+  <block id="4a1522be236156dbc873375541a627e1" category="cell">覆盖运行 Trident 控制器 CSI 插件的 Pod 的容错。遵循与相同的格式<block ref="f1fa64fcf5077601cb803e995a51fa4f" prefix=" " category="inline-code"></block>。</block>
+  <block id="30042512b273723cf2eec336b6576d84" category="cell"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 仅限。可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。*这是23.04中的一项实验功能。*请参阅 <block ref="620ff2552a2d798650bb027eb1271b17" category="inline-xref-macro-rx"></block> 了解重要详细信息。</block>
+  <block id="38a0b9f59e6fe23e1617dc0e78498afe" category="section-title">有关强制断开的详细信息</block>
+  <block id="20c0c9efee2da2645ec0eefaf3c75d8c" category="inline-link-macro">Kubnetes：节点非正常关闭</block>
+  <block id="c2b73a5f3aeb6a0120f6d516eaedfceb" category="paragraph">可对使用强制断开<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 仅限。在启用强制断开之前、必须在Kubbernetes集群上启用非正常节点关闭(NGN)。有关详细信息，请参见 <block ref="1da18b4f36c698c06b8a402542c42858" category="inline-link-macro-rx"></block>。</block>
+  <block id="388f611a7cb1d3b4a55895211f24e657" category="admonition">由于Astra三端存储依赖于Kubbernetes NGN、因此请勿删除<block ref="2ea3337d8d7fc43880e82df308aa0f16" prefix=" " category="inline-code"></block> 运行状况不正常的节点会导致出现问题、直到重新计划所有不可支持的工作负载为止。不负责任地应用或删除该问题可能会危及后端数据保护。</block>
+  <block id="0490d92bd49cf4ca0e3d1454b8166318" category="paragraph">当Kubnetes集群管理员应用了时<block ref="7b58fe53e2e4b586e9605f1371e1ebf3" prefix=" " category="inline-code"></block> 此节点和存在污染<block ref="badc795d88a7db6cc65d56bc758b3ea4" prefix=" " category="inline-code"></block> 设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>，Asta Trident将确定节点状态，并：</block>
+  <block id="5a46bcb638ad3abfd754aecfb450a781" category="list-text">停止挂载到该节点的卷的后端I/O访问。</block>
+  <block id="9e359eb51c11b0162faa185a9f2e6132" category="list-text">将Astra三端节点对象标记为<block ref="32478ef751ab0a81974a3aa8569607b9" prefix=" " category="inline-code"></block> (对于新出版物不安全)。</block>
+  <block id="dea3db0d9b1c1d5a2c070829016eb1d9" category="admonition">在节点重新通过资格认定(标记为后)之前、三端技术(Trident)控制器将拒绝新的发布卷请求<block ref="32478ef751ab0a81974a3aa8569607b9" prefix=" " category="inline-code"></block>)。只有在Asta三端存储能够验证使用已挂载PVC的任何工作负载(即使在集群节点运行状况良好且已准备就绪后)、此工作负载才会被接受<block ref="123402c04dcfb6625f688f771a5fc05d" prefix=" " category="inline-code"></block> (可安全发布新出版物)。</block>
+  <block id="2f2c77c0463a5147779a2fe92fffee6d" category="paragraph">在恢复节点运行状况并删除此污染后、Asta Trident将：</block>
+  <block id="8f57f52b7233aecf56728bcd48d3a51c" category="list-text">确定并清除节点上陈旧的已发布路径。</block>
+  <block id="a36983f9842a4a5cf4db7f9d23253de0" category="list-text">如果节点位于中<block ref="4304fb35c4cdfa886970499304f2aaba" prefix=" " category="inline-code"></block> 状态(已删除服务中断的部分、并且节点处于状态<block ref="e7d31fc0602fb2ede144d18cdffd816b" prefix=" " category="inline-code"></block> 状态)、并且所有过时的已发布路径都是干净的、Asta三端技术将将节点重新提交为<block ref="123402c04dcfb6625f688f771a5fc05d" prefix=" " category="inline-code"></block> 并允许向节点发布新的已发布卷。</block>
+  <block id="00be8b5bb428d40a01f22c5dfaced5bc" category="paragraph">在中<block ref="02f3115b006f7541a477d52ea8c0f861" prefix=" " category="inline-code"></block>、更新<block ref="5e146ae3f34d00ee9d9dfd14adb077b2" prefix=" " category="inline-code"></block> 以反映映像注册表的位置。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。例如：</block>
+  <block id="e93860a0ea424a0e69abe92f2da77d80" category="list-text"><block ref="7c512d5013550eab761c07cf420c0618" prefix="" category="inline-code"></block> 如果您的映像全部位于一个注册表中。</block>
+  <block id="a986eb4e954c9ef61b993f620528b25b" category="list-text"><block ref="2e87742ef58dd6e98b2afaaddbe68076" prefix="" category="inline-code"></block> 如果Trident映像与CSI映像位于不同的注册表中。</block>
+  <block id="ff2f82c9a6feb21071dcbdc520c67b89" category="list-text">使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubenetes 1.27安装Asta Trident 23.04、请运行以下命令：</block>
+  <block id="8242b9562bf03173e7ab7ebe91136717" category="list-text">对于运行Kubernetes 1.24或更低版本的集群、请使用 <block ref="fca96f50bbc5cba400ec0352141eeed0" category="inline-link-macro-rx"></block>。</block>
+  <block id="9d09cc8d1806a36c8229ace5be55429d" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用 <block ref="3f9cbdeaab0f584d6abcc4282318bea8" category="inline-link-macro-rx"></block>。</block>
+  <block id="5d52721879cc96347aaf4163e6a19e02" category="admonition">安装集群范围的运算符可启动的迁移<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 对象<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 对象、删除<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 对象和<block ref="297dc4adc64c26ae2fd6a1039d00ccb0" prefix=" " category="inline-code"></block> CRD、并将Astra Trident升级到所使用的集群范围运算符版本。在下面的示例中、三端升级到23.04.0。</block>
+  <block id="ad3ec9af70c3860794540db75d9807c6" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="56c028cf1def4066f6a4728f90b9dbf8" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
+  <block id="17a3cc50f8070f6f8ca4c0aaf627cd51" category="list-text">您可以直接升级到已安装版本的四个版本窗口中的任何目标版本。例如、您可以直接从22.04升级到23.04 (包括任何DOT版本、例如22.04.1)。</block>
+  <block id="beee3e754bb36e7321f32ad13d4ac60a" category="paragraph">所有Kubernetes工作节点都必须安装适当的iSCSI工具。请参见 <block ref="9e8cf70fcb465bf1907b585f74e9e1a6" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="37225474f75e9da42c0f924ba87b113a" category="cell"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block>，<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block></block>
+  <block id="56d1e7863190cbf5e7689e2821d0959e" category="cell"><block ref="47cb44be55a0dffa15dfc900a4c687be" prefix="" category="inline-code"></block></block>
+  <block id="3bc2d9079510db6d0570883494bc5984" category="cell"><block ref="f899139df5e1059396431415e770c6dd" prefix="" category="inline-code"></block></block>
+  <block id="06daeb0fdb584c4694891d290310e1ed" category="cell"><block ref="3644a684f98ea8fe223c713b77189a77" prefix="" category="inline-code"></block></block>
+  <block id="429970b7b8d395eb00181a72bc544fba" category="cell">您可以指定使用共享文件夹Microsoft管理控制台创建的SMB共享的名称、也可以指定共享名称以允许Astra Trident创建SMB共享。或者、您也可以将参数留空、以防止对卷进行通用共享访问。</block>
+  <block id="996a57df5a7c8752e8bc23b6af020be4" category="cell">条件<block ref="0a236e7685e50a59df980d0a30929d6c" prefix=" " category="inline-code"></block> 为<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block>，<block ref="2954e92a9b4d0e998fe4893f8141649a" prefix=" " category="inline-code"></block> "</block>
+  <block id="58c09f2c9581bc7c58c32116266b6d8f" category="cell">要使用的层策略<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block></block>
+  <block id="49ed5b3ecd0e966bec6b74083f06599e" category="cell"><block ref="8805d416ce540c5f2df34af5b18d742b" prefix="" category="inline-code"></block> 适用于ONTAP 9.5 SVM-DR之前的配置</block>
+  <block id="6792aad2d8c086a9d25f5ad8ec090f35" category="paragraph">在创建Element后端之前、您需要满足以下要求。</block>
+  <block id="4e121ce555fa114069539035adefe18e" category="section-title">音量模式</block>
+  <block id="690b3c7311638da5eef87f5e07aa1258" category="section-title">管理卷</block>
+  <block id="24da0fbaaa9930515c555e7019db09d2" category="paragraph">请参见以下内容、了解如何使用Asta Trident管理卷。</block>
+  <block id="00a9bbaf4185978435bd4d6cb7aba6c4" category="summary">通过将Asta三端存储与Amazon FSx for NetApp ONTAP 结合使用、您可以确保在Amazon Elastic Kubelnetes Service (EKS)中运行的Kubelnetes集群可以配置ONTAP 支持的块和文件永久性卷。</block>
+  <block id="5178ad00e596ece0be9aceff179b4303" category="paragraph">Asta Trident提供了一组Prometheus指标端点、可用于监控Asta Trident的性能。</block>
+  <block id="51e6d748c5af856ade589011dc2c7e85" category="cell"><block ref="37a6259cc0c1dae299a7866489dff0bd" prefix="" category="inline-code"></block></block>
+  <block id="ddbd2735bfb88c5da807f77f6fe5f6c8" category="doc">ONTAP NAS驱动程序概述</block>
+  <block id="dd972e44915c7a0884edd58e9d839295" category="section-title">有关ONTAP NAS驱动程序的重要信息</block>
+  <block id="482723983a4f2af954e36ff41e567451" category="section-title">已知限制</block>
+  <block id="1faffcbb00c529812b5526b1b22b2b56" category="paragraph">要创建、您必须在SVM上同时配置NFS和SMB/CCIFS协议<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 适用于内部ONTAP 的SMB卷。如果未能配置其中任一协议、则发生原因 SMB卷创建将失败。</block>
+  <block id="5cc1e28c0d7b6c40ca94aacb554b31ca" category="doc">ONTAP SAN驱动程序概述</block>
+  <block id="7771a46320e96de2bde6598540ad4d52" category="section-title">有关ONTAP SAN驱动程序的重要信息</block>
+  <block id="904628b57a33f3a2f6d71a6d991e15c6" category="paragraph">Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点<block ref="80b9a4f4a1bc9851317207ee3477041a" category="inline-link-rx"></block>。</block>
+  <block id="3eba7c2a6bd35cbac350dcbfb90408f6" category="paragraph">使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于一个区域内的不同可用性区域中，也可以位于不同区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。</block>
+  <block id="4ba6a75e6aacbc3737630ba55916cd27" category="section-title">用于管理后端的选项</block>
+  <block id="798f4548a52b3c91b25609a82ff6a12e" category="paragraph">随附<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block>现在、管理员可以通过两种独特的方式管理后端。这会提出以下问题：</block>
+  <block id="8e523fab738ccb6504fc60551cbaefdf" category="paragraph">Asta三元数据可按节点创建和管理<block ref="58f3779afe9da9ffdc085dc3064306f7" prefix=" " category="inline-code"></block> 作为<block ref="e77a1bd34ff5793aca292b38d23bc2c9" prefix=" " category="inline-code"></block>。</block>
+  <block id="0ee19d4be17e297cfb39c398cb268b5e" category="paragraph">此值不能更改或省略。</block>
+  <block id="07d41595da50d0c332f22902db2f76d8" category="paragraph">*仅适用于<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序*。</block>
+  <block id="684a16b15a51568bcdd546607176bd57" category="paragraph"><block ref="e77a1bd34ff5793aca292b38d23bc2c9" prefix="" category="inline-code"></block></block>
+  <block id="ab946346d7b6ebd4a84d96bb78dcd833" category="section-title">用于导入LUKS卷的后端配置</block>
+  <block id="6159e851594f646ce383a87fc615fbd1" category="paragraph">要导入LUKS卷、必须设置<block ref="0f179ba2bc32ab5d8f60692f5b800c86" prefix=" " category="inline-code"></block> to<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 在后端。。<block ref="0f179ba2bc32ab5d8f60692f5b800c86" prefix=" " category="inline-code"></block> Option可告知A作用 中的三端磁盘是否符合LUKS <block ref="b326b5062b2f0e69046810717534cb09" prefix="(" category="inline-code"></block>)或不符合LUKS <block ref="68934a3e9455fa72420237eb05902327" prefix="(" category="inline-code"></block>)、如以下示例所示。</block>
+  <block id="240fa413bb5a8b96728ba9bb20f953bc" category="summary">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。**阅读发行说明，了解有关升级到Asta Trdent 23.04的重要信息。**</block>
+  <block id="75a6a3af601d4175be90ebfbdcaead5f" category="doc">Astra Trdent 23.04文档</block>
+  <block id="490414e0366b091220802d406e52c076" category="doc">新增功能</block>
+  <block id="0dcdbeca28e29fdc0076d56763410520" category="section-title">23.04中的新增功能</block>
+  <block id="3317f97754f7308b6a0e2a12c0241d39" category="admonition">只有启用了非正常节点关闭功能门的Kubernetes版本才支持对ONP-SANON-*卷强制执行卷断开。必须在安装时使用启用强制断开<block ref="d75e90115a6343745df96039920422fc" prefix=" " category="inline-code"></block> 三元安装程序标志。</block>
+  <block id="8743cc1328bba53ea356fd3e593a3f9c" category="list-text">修复了要与捆绑包权限(<block ref="25d51e363866fb30c759c73e05114b0d" category="inline-link-macro-rx"></block>）。</block>
+  <block id="c16e7ed05955f3a772cc5e37988626a6" category="inline-link-macro">问题描述 #811</block>
+  <block id="c8b742414af3be73bd16e0c1ed978ae5" category="list-text">修复了在问题描述 中、三端存储控制器无法立即关闭的问题(<block ref="6916c682464f601a812aa726b7255568" category="inline-link-macro-rx"></block>）。</block>
+  <block id="e82b00f6dda8d75f6267522d6e8e21b3" category="list-text">添加了一个修复程序，用于列出与使用ONTAP SAN-*驱动程序配置的指定LUN关联的所有igrop名称。</block>
+  <block id="3f32e3199847516d3773942171a3320e" category="inline-link-macro">问题描述 #537</block>
+  <block id="8ac5248178b612abfaaec81ca7b06c94" category="list-text">修复了s390架构的编译错误(<block ref="a2e3737cce03fa6e94f8357a427b1da2" category="inline-link-macro-rx"></block>）。</block>
+  <block id="70d039054d2873e8b0f28587cb19086a" category="inline-link-macro">问题描述 #781.</block>
+  <block id="48b91d8b8b87d6d8c95cbc34bbae12e7" category="list-text">修复了卷挂载操作期间日志记录级别不正确的问题(<block ref="8bb65f034421623db4038f879681c20b" category="inline-link-macro-rx"></block>）。</block>
+  <block id="6c85ef6d99d7dc6999989d8228ad56d9" category="inline-link-macro">问题描述 #802.</block>
+  <block id="6edadfcf2d991f369cdf934677bb161a" category="list-text">修复了潜在类型断言错误(<block ref="e6bc1d779eb6c87e7246c3841e50b482" category="inline-link-macro-rx"></block>）。</block>
+  <block id="afcf8fa41398f15ad38c5874372e9b4c" category="list-text">增加了对Kubnetes 1.27的支持。</block>
+  <block id="67db0e94c8905c93eda71f86cb532e07" category="list-text">增加了对导入LUKS卷的支持。</block>
+  <block id="6de845032edacfacdf7599428fce6ce3" category="list-text">增加了对ReadWriteOncePod PVC访问模式的支持。</block>
+  <block id="9297bb6ec4e523b7875643c53cc9f528" category="list-text">增加了对在非正常节点关闭情况下对ONTAP－SAN－*卷强制断开的支持。</block>
+  <block id="bf75c88234d165d6aa37891adda4465a" category="inline-link-macro">问题描述 #758</block>
+  <block id="8ba74f6fd31160a630f1dc4eeb7d2e20" category="list-text">现在、所有ONTAP SAN-*卷都将使用每个节点的igroup。只有在将LUN主动发布到这些节点时、这些LUN才会映射到igroup、以改善我们的安全防护。当Trigent确定可以安全地切换到新的igrop方案而不会影响活动工作负载时、现有卷将适时切换到新的igrop方案(<block ref="9c63b965233843690f19867523ba780c" category="inline-link-macro-rx"></block>）。</block>
+  <block id="79e79d7d8fe825308bd0e601daaa1131" category="list-text">通过从ONTAP SAN-*后端清除未使用的通过三叉点管理的igroup、提高了三叉点的安全性。</block>
+  <block id="18596399dedf47a387f514e9c9862876" category="list-text">通过Amazon FSx向ONGP-NAS经济型和ONGP-NAS Flexgroup存储驱动程序增加了对SMB卷的支持。</block>
+  <block id="42bbebea36c49138518f54240583f571" category="list-text">通过ONTAP -NAS、ONTAP -NAS经济模式和ONTAP -NAS Flexgroup存储驱动程序增加了对SMB共享的支持。</block>
+  <block id="4332590e7a6bcbdc2a06dc0e18c0731b" category="inline-link-macro">问题描述 #732</block>
+  <block id="5a8fc8277a0f6ed003c225aa1e7c48b6" category="list-text">增加了对ARM64节点的支持(<block ref="c2778c70230759cdeecc0357ca334a05" category="inline-link-macro-rx"></block>）。</block>
+  <block id="69ef45b431e1a60332ee3ce7e1a67645" category="list-text">通过先停用API服务器改进了通过使用操作步骤 的三项功能(<block ref="6916c682464f601a812aa726b7255568" category="inline-link-macro-rx"></block>）。</block>
+  <block id="be70537c794b0fc1d909e1bf6ffbbc59" category="list-text">为Makefile添加了对Windows和ARM64主机的跨平台构建支持；请参见Build .md。</block>
+  <block id="6f03549bdf867b6dbabec83da444ffcf" category="paragraph">** Kubenetes:**配置ONTAP－SAN和ONTAP－SAN－Economy驱动程序时，将不再创建后端范围的igrou(<block ref="9c63b965233843690f19867523ba780c" category="inline-link-macro-rx"></block>）。</block>
+  <block id="7558c614baceb6010756b848dd26325e" category="section-title">23.01.1中的变更</block>
+  <block id="d7393ea674321a4e126b601e3097f2ec" category="admonition">现在、在Trident中支持Kubnetes 1.27。请先升级Astra Trident、然后再升级Kubernetes。</block>
+  <block id="99836a64b28c522e35a15aa0a4b39257" category="list-text">现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。当Asta Trigent确定在不影响活动工作负载的情况下可以安全地切换到新的igrop方案时、现有卷将适时切换到此方案。</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">新增功能</block>
 </blocks>

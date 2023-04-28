@@ -11,7 +11,12 @@ summary: Astra Trident 提供了一组 Prometheus 指标端点，您可以使用
 :imagesdir: ../media/
 
 
-Astra Trident 提供了一组 Prometheus 指标端点，您可以使用这些端点监控 Astra Trident 的性能。
+[role="lead"]
+Asta Trident提供了一组Prometheus指标端点、可用于监控Asta Trident的性能。
+
+
+
+== 概述
 
 通过 Astra Trident 提供的指标，您可以执行以下操作：
 

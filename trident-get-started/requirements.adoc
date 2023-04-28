@@ -23,7 +23,7 @@ summary: 在安装Astra Trident之前、您应查看这些常规系统要求。�
 .<strong> 中有关Astra </strong> 的信息
 [%collapsible%open]
 ====
-* Trident现在支持Kubernetes 1.26。在升级Kubernetes之前升级Trident。
+* 现在、在Trident中支持Kubnetes 1.27。在升级Kubernetes之前升级Trident。
 * Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
 +
 使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
@@ -37,16 +37,16 @@ summary: 在安装Astra Trident之前、您应查看这些常规系统要求。�
 
 Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
-* Anthos on-Prem (VMware)和Anthos on bare metal 1.9、1.10、1.11
-* Kubernetes 1.21 - 1.26
+* Anthos On－Prem (VMware)和Anthos on Bare metal 1.12
+* Kubbernetes 1.21 - 1.27.
 * Mirantis Kubernetes Engine 3.5
 * OpenShift 4.9 - 4.12
 
 
 以下版本支持 Trident 操作符：
 
-* Anthos on-Prem (VMware)和Anthos on bare metal 1.9、1.10、1.11
-* Kubernetes 1.21 - 1.26
+* Anthos On－Prem (VMware)和Anthos on Bare metal 1.12
+* Kubbernetes 1.21 - 1.27.
 * OpenShift 4.9 - 4.12
 
 
@@ -82,56 +82,56 @@ WARNING: 在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或�
 
 
 | CSI Trident  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
 
 
 | 卷快照  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
 
 
 | 卷快照中的 PVC  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
 
 
 | iSCSI PV 调整大小  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
 
 
 | ONTAP 双向 CHAP  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
 
 
 | 动态导出策略  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
 
 
 | Trident 运算符  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
 
 
 | CSI 拓扑  a| 
-1.21 - 1.26
+1.21 - 1.27.
  a| 
 否
 
@@ -142,10 +142,10 @@ WARNING: 在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或�
 
 虽然Astra Trident不正式支持特定的操作系统、但已知以下功能有效：
 
-* OpenShift 容器平台支持的 RedHat CoreOS （ RHCOS ）版本
-* RHEL 8+
-* Ubuntu 22.04或更高版本
-* Windows Server 2019
+* OpenShift容器平台(AMD64和ARM64)支持的RedHat CorEOS (RHCOS)版本
+* RHEL 8+(AMD64和ARM64)
+* Ubuntu 22.04或更高版本(AMD64和ARM64)
+* Windows Server 2019 (AMD64)
 
 
 默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。
@@ -188,79 +188,92 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 
 
 | v1.21.0  a| 
-* NetApp/Trident：23.01.1
-* netapp/trident autosupport：23.01
-* K8s.IO/SIG-storage/CsI-provisioner：v3.4.0
-* K8s.IO/SIG-storage/CSI-attacher：v4.1.0
+* NetApp/trident：23.04.0
+* NetApp/trident-autostsupport：23.04
+* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* k8s.io/sig-storage/CSI-attacher：v4.2.0
 * K8s.IO/SIG-storage/CSI-resizer：v1.7.0
 * K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
 * K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* netapp/trident操作符：23.01.1 (可选)
+* NetApp/trident操作员：23.04.0 (可选)
 
 
 
 
 | v1.22.0  a| 
-* NetApp/Trident：23.01.1
-* netapp/trident autosupport：23.01
-* K8s.IO/SIG-storage/CsI-provisioner：v3.4.0
-* K8s.IO/SIG-storage/CSI-attacher：v4.1.0
+* NetApp/trident：23.04.0
+* NetApp/trident-autostsupport：23.04
+* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* k8s.io/sig-storage/CSI-attacher：v4.2.0
 * K8s.IO/SIG-storage/CSI-resizer：v1.7.0
 * K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
 * K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* netapp/trident操作符：23.01.1 (可选)
+* NetApp/trident操作员：23.04.0 (可选)
 
 
 
 
 | v1.23.0  a| 
-* NetApp/Trident：23.01.1
-* netapp/trident autosupport：23.01
-* K8s.IO/SIG-storage/CsI-provisioner：v3.4.0
-* K8s.IO/SIG-storage/CSI-attacher：v4.1.0
+* NetApp/trident：23.04.0
+* NetApp/trident-autostsupport：23.04
+* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* k8s.io/sig-storage/CSI-attacher：v4.2.0
 * K8s.IO/SIG-storage/CSI-resizer：v1.7.0
 * K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
 * K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* netapp/trident操作符：23.01.1 (可选)
+* NetApp/trident操作员：23.04.0 (可选)
 
 
 
 
 | v1.24.0  a| 
-* NetApp/Trident：23.01.1
-* netapp/trident autosupport：23.01
-* K8s.IO/SIG-storage/CsI-provisioner：v3.4.0
-* K8s.IO/SIG-storage/CSI-attacher：v4.1.0
+* NetApp/trident：23.04.0
+* NetApp/trident-autostsupport：23.04
+* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* k8s.io/sig-storage/CSI-attacher：v4.2.0
 * K8s.IO/SIG-storage/CSI-resizer：v1.7.0
 * K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
 * K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* netapp/trident操作符：23.01.1 (可选)
+* NetApp/trident操作员：23.04.0 (可选)
 
 
 
 
 | v1.25.0  a| 
-* NetApp/Trident：23.01.1
-* netapp/trident autosupport：23.01
-* K8s.IO/SIG-storage/CsI-provisioner：v3.4.0
-* K8s.IO/SIG-storage/CSI-attacher：v4.1.0
+* NetApp/trident：23.04.0
+* NetApp/trident-autostsupport：23.04
+* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* k8s.io/sig-storage/CSI-attacher：v4.2.0
 * K8s.IO/SIG-storage/CSI-resizer：v1.7.0
 * K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
 * K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* netapp/trident操作符：23.01.1 (可选)
+* NetApp/trident操作员：23.04.0 (可选)
 
 
 
 
 | v1.26.0  a| 
-* NetApp/Trident：23.01.1
-* netapp/trident autosupport：23.01
-* K8s.IO/SIG-storage/CsI-provisioner：v3.4.0
-* K8s.IO/SIG-storage/CSI-attacher：v4.1.0
+* NetApp/trident：23.04.0
+* NetApp/trident-autostsupport：23.04
+* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* k8s.io/sig-storage/CSI-attacher：v4.2.0
 * K8s.IO/SIG-storage/CSI-resizer：v1.7.0
 * K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
 * K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* netapp/trident操作符：23.01.1 (可选)
+* NetApp/trident操作员：23.04.0 (可选)
+
+
+
+
+| v1.27.0  a| 
+* NetApp/trident：23.04.0
+* NetApp/trident-autostsupport：23.04
+* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* k8s.io/sig-storage/CSI-attacher：v4.2.0
+* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
+* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
+* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
+* NetApp/trident操作员：23.04.0 (可选)
 
 
 |===

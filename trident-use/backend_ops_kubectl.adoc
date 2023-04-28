@@ -11,6 +11,7 @@ summary: '了解如何使用 `kubectl` 执行后端管理操作。'
 :imagesdir: ../media/
 
 
+[role="lead"]
 了解如何使用 `kubectl` 执行后端管理操作。
 
 

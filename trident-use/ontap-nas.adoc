@@ -4,21 +4,20 @@ permalink: trident-use/ontap-nas.html
 keywords: trident backend, ontap nas, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups, fsx 
 summary: 了解如何使用 ONTAP NAS 驱动程序配置 ONTAP 后端。 
 ---
-= 配置ONTAP NAS后端
+= ONTAP NAS驱动程序概述
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
+[role="lead"]
 了解如何使用 ONTAP 和 Cloud Volumes ONTAP NAS 驱动程序配置 ONTAP 后端。
 
-* link:ontap-nas-prep.html["准备"]
-* link:ontap-nas-examples.html["配置和示例"]
 
 
-[WARNING]
-====
+== 有关ONTAP NAS驱动程序的重要信息
+
 Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
 
 * 您必须使用 `ontap-nas` 适用于需要数据保护、灾难恢复和移动性的生产工作负载。
@@ -27,7 +26,6 @@ Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动�
 * 请勿使用 `ontap-nas-economy` 预测数据保护、灾难恢复或移动性的需求。
 
 
-====
 
 
 == 用户权限
@@ -38,3 +36,9 @@ Astra Trident 应以 ONTAP 或 SVM 管理员身份运行，通常使用 `admin` 
 NOTE: 如果使用 `limitAggregateUsage` 参数，则需要集群管理员权限。将适用于 NetApp ONTAP 的 Amazon FSx 与 Astra Trident 结合使用时， `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。
 
 虽然可以在 ONTAP 中创建 Trident 驱动程序可以使用的限制性更强的角色，但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。
+
+
+
+== 已知限制
+
+要创建、您必须在SVM上同时配置NFS和SMB/CCIFS协议 `ontap-nas-economy` 适用于内部ONTAP 的SMB卷。如果未能配置其中任一协议、则发生原因 SMB卷创建将失败。

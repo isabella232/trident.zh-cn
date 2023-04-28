@@ -11,11 +11,8 @@ summary: '您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。
 :imagesdir: ../media/
 
 
+[role="lead"]
 您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NFS和SMB卷。
-
-* link:anf-prep.html["准备"]
-* link:anf-examples.html["配置选项和示例"]
-
 
 
 
@@ -23,5 +20,4 @@ summary: '您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。
 
 * Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。
 * Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
-* Astra Trident不支持Windows ARM 架构。
 

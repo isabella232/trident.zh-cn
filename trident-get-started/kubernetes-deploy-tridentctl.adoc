@@ -16,14 +16,14 @@ summary: '您可以使用安装Astra Trident `tridentctl`。此过程将处理�
 
 
 
-== 有关Astra Trident 23.01的关键信息
+== 有关Astra Trdent 23.04的重要信息
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
 .<strong> 中有关Astra </strong> 的信息
 [%collapsible%open]
 ====
-* Trident现在支持Kubernetes 1.26。在升级Kubernetes之前升级Trident。
+* 现在、在Trident中支持Kubnetes 1.27。在升级Kubernetes之前升级Trident。
 * Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
 +
 使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
@@ -75,8 +75,8 @@ Astra Trident安装程序包可创建Trident Pod、配置用于保持其状态�
 
 [listing]
 ----
-wget https://github.com/NetApp/trident/releases/download/v23.01.1/trident-installer-23.01.1.tar.gz
-tar -xf trident-installer-23.01.1.tar.gz
+wget https://github.com/NetApp/trident/releases/download/v23.04.0/trident-installer-23.04.0.tar.gz
+tar -xf trident-installer-23.04.0.tar.gz
 cd trident-installer
 ----
 
@@ -84,9 +84,6 @@ cd trident-installer
 == 第2步：安装Astra Trident
 
 通过执行在所需命名空间中安装Astra Trident `tridentctl install` 命令：您可以添加其他参数来指定映像注册表位置。
-
-
-NOTE: 要使Astra Trident能够在Windows节点上运行、请添加 `--windows` 安装命令的标志： `$ ./tridentctl install --windows -n trident`。
 
 [role="tabbed-block"]
 ====
@@ -101,7 +98,7 @@ NOTE: 要使Astra Trident能够在Windows节点上运行、请添加 `--windows`
 --
 [listing]
 ----
-./tridentctl install -n trident --image-registry <your-registry> --autosupport-image <your-registry>/trident-autosupport:23.01 --trident-image <your-registry>/trident:23.01.1
+./tridentctl install -n trident --image-registry <your-registry> --autosupport-image <your-registry>/trident-autosupport:23.04 --trident-image <your-registry>/trident:23.04.0
 ----
 --
 .不同注册表中的映像
@@ -110,7 +107,7 @@ NOTE: 要使Astra Trident能够在Windows节点上运行、请添加 `--windows`
 
 [listing]
 ----
-./tridentctl install -n trident --image-registry <your-registry>/sig-storage --autosupport-image <your-registry>/netapp/trident-autosupport:23.01 --trident-image <your-registry>/netapp/trident:23.01.1
+./tridentctl install -n trident --image-registry <your-registry>/sig-storage --autosupport-image <your-registry>/netapp/trident-autosupport:23.04 --trident-image <your-registry>/netapp/trident:23.04.0
 ----
 --
 ====
@@ -131,7 +128,7 @@ INFO Created Trident daemonset.
 INFO Waiting for Trident pod to start.
 INFO Trident pod started.                          namespace=trident pod=trident-controller-679648bd45-cv2mx
 INFO Waiting for Trident REST interface.
-INFO Trident REST interface is up.                 version=23.01.1
+INFO Trident REST interface is up.                 version=23.04.0
 INFO Trident installation succeeded.
 ....
 ----
@@ -171,9 +168,33 @@ NOTE: 如果安装程序未成功完成或 `trident-controller-<generated id>` (
 +----------------+----------------+
 | SERVER VERSION | CLIENT VERSION |
 +----------------+----------------+
-| 23.01.1        | 23.01.1        |
+| 23.04.0        | 23.04.0        |
 +----------------+----------------+
 ----
+
+
+== 配置示例
+
+.示例1：启用A作用 于Windows节点的Asta三端到子
+[%collapsible%open]
+====
+要在Windows节点上运行A作用 是：
+
+[listing]
+----
+tridentctl install --windows -n trident
+----
+====
+.示例2：启用force detach
+[%collapsible%open]
+====
+有关强制断开的详细信息、请参见 link:..trident-get-started/kubernetes-customize-deploy.html["自定义Trident操作员安装"]。
+
+[listing]
+----
+tridentctl install --enable-force-detach=true -n trident
+----
+====
 
 
 == 下一步行动

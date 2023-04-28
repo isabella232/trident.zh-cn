@@ -141,9 +141,13 @@ ONTAP 管理 LIF 的 IP 地址。您可以指定完全限定域名（ FQDN ）�
 
 
 | `igroupName`  a| 
-插件使用的igrop；默认为 `netappdvp`。* 仅适用于 `ontap-san`driver* 。
+Asta三元数据可按节点创建和管理 `igroups` 作为 `netappdvp`。
+
+此值不能更改或省略。
+
+*仅适用于 `ontap-san` 驱动程序*。
  a| 
-`myigroup`
+`netappdvp`
 
 
 
@@ -348,7 +352,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
     "username": "vsadmin",
     "password": "password",
     "aggregate": "aggr1",
-    "igroupName": "myigroup"
+    "igroupName": "netappdvp"
 }
 ----
 `ontap-san-economy-driver` 的 * NFS 示例
@@ -364,7 +368,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
     "username": "vsadmin",
     "password": "password",
     "aggregate": "aggr1",
-    "igroupName": "myigroup"
+    "igroupName": "netappdvp"
 }
 ----
 

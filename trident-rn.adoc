@@ -4,7 +4,7 @@ permalink: trident-rn.html
 keywords: 'what"s new, new features, enhancements, known issues, resolved issues, troubleshooting' 
 summary: NetApp 不断改进和完善其产品和服务。以下是最新版 Astra Trident 中的一些最新功能，增强功能和错误修复。 
 ---
-= 发行说明
+= 新增功能
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -19,7 +19,57 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 23.01.1中的新增功能
+== 23.04中的新增功能
+
+
+IMPORTANT: 只有启用了非正常节点关闭功能门的Kubernetes版本才支持对ONP-SANON-*卷强制执行卷断开。必须在安装时使用启用强制断开 `--enable-force-detach` 三元安装程序标志。
+
+
+
+=== 修复
+
+* 修复了在规范中指定的情况下使用IPv6 localhost进行安装的Trident操作员。
+* 修复了要与捆绑包权限(link:https://github.com/NetApp/trident/issues/799["问题描述 #799"^]）。
+* 采用rwx模式在多个节点上附加原始块卷的固定问题描述。
+* 修复了SMB卷的FlexGroup 克隆支持和卷导入。
+* 修复了在问题描述 中、三端存储控制器无法立即关闭的问题(link:https://github.com/NetApp/trident/issues/811["问题描述 #811"]）。
+* 添加了一个修复程序，用于列出与使用ONTAP SAN-*驱动程序配置的指定LUN关联的所有igrop名称。
+* 添加了一个修复程序、允许外部进程运行到完成状态。
+* 修复了s390架构的编译错误(link:https://github.com/NetApp/trident/issues/537["问题描述 #537"]）。
+* 修复了卷挂载操作期间日志记录级别不正确的问题(link:https://github.com/NetApp/trident/issues/781["问题描述 #781."]）。
+* 修复了潜在类型断言错误(link:https://github.com/NetApp/trident/issues/802["问题描述 #802."]）。
+
+
+
+
+=== 增强功能
+
+* Kubernetes：
++
+** 增加了对Kubnetes 1.27的支持。
+** 增加了对导入LUKS卷的支持。
+** 增加了对ReadWriteOncePod PVC访问模式的支持。
+** 增加了对在非正常节点关闭情况下对ONTAP－SAN－*卷强制断开的支持。
+** 现在、所有ONTAP SAN-*卷都将使用每个节点的igroup。只有在将LUN主动发布到这些节点时、这些LUN才会映射到igroup、以改善我们的安全防护。当Trigent确定可以安全地切换到新的igrop方案而不会影响活动工作负载时、现有卷将适时切换到新的igrop方案(link:https://github.com/NetApp/trident/issues/758["问题描述 #758"]）。
+** 通过从ONTAP SAN-*后端清除未使用的通过三叉点管理的igroup、提高了三叉点的安全性。
+
+
+* 通过Amazon FSx向ONGP-NAS经济型和ONGP-NAS Flexgroup存储驱动程序增加了对SMB卷的支持。
+* 通过ONTAP -NAS、ONTAP -NAS经济模式和ONTAP -NAS Flexgroup存储驱动程序增加了对SMB共享的支持。
+* 增加了对ARM64节点的支持(link:https://github.com/NetApp/trident/issues/732["问题描述 #732"]）。
+* 通过先停用API服务器改进了通过使用操作步骤 的三项功能(link:https://github.com/NetApp/trident/issues/811["问题描述 #811"]）。
+* 为Makefile添加了对Windows和ARM64主机的跨平台构建支持；请参见Build .md。
+
+
+
+
+=== 已弃用
+
+** Kubenetes:**配置ONTAP－SAN和ONTAP－SAN－Economy驱动程序时，将不再创建后端范围的igrou(link:https://github.com/NetApp/trident/issues/758["问题描述 #758"]）。
+
+
+
+== 23.01.1中的变更
 
 
 
@@ -37,7 +87,7 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 == 2001年23月的变更
 
 
-IMPORTANT: Trident现在支持Kubernetes 1.26。请先升级Astra Trident、然后再升级Kubernetes。
+IMPORTANT: 现在、在Trident中支持Kubnetes 1.27。请先升级Astra Trident、然后再升级Kubernetes。
 
 
 
@@ -152,7 +202,7 @@ IMPORTANT: Trident现在支持Kubernetes 1.26。请先升级Astra Trident、然�
 === 增强功能
 
 * 从K8s.gcr.io过渡到registry.k8s.io作为CSI映像的默认注册表
-* 现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。如果Trident确定在不影响活动工作负载的情况下安全执行此操作、现有卷将有机会切换到新的igroup方案。
+* 现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。当Asta Trigent确定在不影响活动工作负载的情况下可以安全地切换到新的igrop方案时、现有卷将适时切换到此方案。
 * 包含一个包含Trident安装的ResourceQuota、以确保在默认情况下限制使用PriorityClass时计划Trident DemonSet。
 * 为ANF驱动程序增加了对网络功能的支持。（link:https://github.com/NetApp/trident/issues/717["GitHub问题描述 #717"^]）
 * 为ONTAP 驱动程序添加了技术预览自动MetroCluster 切换检测功能。（link:https://github.com/NetApp/trident/issues/228["GitHub问题描述 #228"^]）

@@ -40,52 +40,22 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | 参数 | Description | Default 
 
 
-| `命名空间` | 用于安装 Astra Trident 的命名空间 | default 
-
-
-| `debug` | 为 Astra Trident 启用调试 | false 
-
-
-| `windows` | 设置为 `true` 启用在Windows工作节点上的安装。 | false 
-
-
-| `IPv6` | 安装基于 IPv6 的 Astra Trident | false 
-
-
-| `k8sTimeout` | Kubernetes 操作超时 | 30 秒 
-
-
-| `sileAutoSupport` | 不要自动向 NetApp 发送 AutoSupport 捆绑包 | false 
-
-
-| `enableNodePrep` | 自动管理工作节点依赖关系（ * 测试版 * ） | false 
-
-
-| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trident自动支持：23.01" 
+| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trident-autostsupport：23.04.0" 
 
 
 | `autosupport 代理` | 用于发送 AutoSupport 遥测的代理的地址 / 端口 | "http://proxy.example.com:8888"[] 
 
 
-| `卸载` | 用于卸载 Astra Trident 的标志 | false 
+| `控制器插件节点选择器` | 运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。遵循与相同的格式 `pod.spec.nodeSelector`。 | 无默认值；可选 
 
 
-| `logFormat` | 要使用的 Astra Trident 日志记录格式 [text ， json] | 文本 
+| `控制器插件公差` | 覆盖运行 Trident 控制器 CSI 插件的 Pod 的容错。遵循与相同的格式 `pod.spec.Tolerations`。 | 无默认值；可选 
 
 
-| `TridentImage` | 要安装的 Astra Trident 映像 | "NetApp/Trident ： 21.04" 
+| `debug` | 为 Astra Trident 启用调试 | `false` 
 
 
-| `imageRegistry` | 内部注册表的路径，格式为 ` < 注册表 FQDN>[ ：端口 ]/subpath]` | "K8s.gcr.io/SIG-storage (K8s 1.19+)或quay.io/k8scsi " 
-
-
-| `kubeletDir` | 主机上的 kubelet 目录的路径 | "/var/lib/kubelet" 
-
-
-| `wipeout` | 要删除以执行 Astra Trident 完全删除的资源列表 |  
-
-
-| `imagePullSecs` | 从内部注册表中提取映像的机密信息 |  
+| `enableForceDetach` | `ontap-san` 和 `ontap-san-economy` 仅限。可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。*这是23.04中的一项实验功能。*请参阅 <<有关强制断开的详细信息>> 了解重要详细信息。 | `false` 
 
 
 | `imagePullPolicy` | 设置Trident运算符的映像提取策略。有效值为：
@@ -107,6 +77,31 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 |===
 
 NOTE: 有关格式化 POD 参数的详细信息，请参见 link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["将 Pod 分配给节点"^]。
+
+
+
+=== 有关强制断开的详细信息
+
+可对使用强制断开 `ontap-san` 和 `ontap-san-economy` 仅限。在启用强制断开之前、必须在Kubbernetes集群上启用非正常节点关闭(NGN)。有关详细信息，请参见 link:https://kubernetes.io/docs/concepts/architecture/nodes/#non-graceful-node-shutdown["Kubnetes：节点非正常关闭"^]。
+
+
+WARNING: 由于Astra三端存储依赖于Kubbernetes NGN、因此请勿删除 `out-of-service` 运行状况不正常的节点会导致出现问题、直到重新计划所有不可支持的工作负载为止。不负责任地应用或删除该问题可能会危及后端数据保护。
+
+当Kubnetes集群管理员应用了时 `node.kubernetes.io/out-of-service=nodeshutdown:NoExecute` 此节点和存在污染 `enableForceDetach` 设置为 `true`，Asta Trident将确定节点状态，并：
+
+. 停止挂载到该节点的卷的后端I/O访问。
+. 将Astra三端节点对象标记为 `dirty` (对于新出版物不安全)。
++
+
+NOTE: 在节点重新通过资格认定(标记为后)之前、三端技术(Trident)控制器将拒绝新的发布卷请求 `dirty`)。只有在Asta三端存储能够验证使用已挂载PVC的任何工作负载(即使在集群节点运行状况良好且已准备就绪后)、此工作负载才会被接受 `clean` (可安全发布新出版物)。
+
+
+
+在恢复节点运行状况并删除此污染后、Asta Trident将：
+
+. 确定并清除节点上陈旧的已发布路径。
+. 如果节点位于中 `cleanable` 状态(已删除服务中断的部分、并且节点处于状态 `Ready` 状态)、并且所有过时的已发布路径都是干净的、Asta三端技术将将节点重新提交为 `clean` 并允许向节点发布新的已发布卷。
+
 
 
 

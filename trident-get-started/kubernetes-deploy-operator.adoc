@@ -16,14 +16,14 @@ summary: 您可以手动部署Trident操作员以安装Astra Trident。此过程
 
 
 
-== 有关Astra Trident 23.01的关键信息
+== 有关Astra Trdent 23.04的重要信息
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
 .<strong> 中有关Astra </strong> 的信息
 [%collapsible%open]
 ====
-* Trident现在支持Kubernetes 1.26。在升级Kubernetes之前升级Trident。
+* 现在、在Trident中支持Kubnetes 1.27。在升级Kubernetes之前升级Trident。
 * Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
 +
 使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
@@ -75,8 +75,8 @@ Astra Trident安装程序包包含部署Trident操作员和安装Astra Trident�
 
 [listing]
 ----
-wget https://github.com/NetApp/trident/releases/download/v23.01.1/trident-installer-23.01.1.tar.gz
-tar -xf trident-installer-23.01.1.tar.gz
+wget https://github.com/NetApp/trident/releases/download/v23.04.0/trident-installer-23.04.0.tar.gz
+tar -xf trident-installer-23.04.0.tar.gz
 cd trident-installer
 ----
 
@@ -159,7 +159,7 @@ Status:
   Current Installation Params:
     IPv6:                      false
     Autosupport Hostname:
-    Autosupport Image:         netapp/trident-autosupport:23.01
+    Autosupport Image:         netapp/trident-autosupport:23.04
     Autosupport Proxy:
     Autosupport Serial Number:
     Debug:                     true
@@ -169,10 +169,10 @@ Status:
     Kubelet Dir:          /var/lib/kubelet
     Log Format:           text
     Silence Autosupport:  false
-    Trident Image:        netapp/trident:23.01.1
+    Trident Image:        netapp/trident:23.04.0
   Message:                  Trident installed  Namespace:                trident
   Status:                   Installed
-  Version:                  v23.01.1
+  Version:                  v23.04.0
 Events:
     Type Reason Age From Message ---- ------ ---- ---- -------Normal
     Installing 74s trident-operator.netapp.io Installing Trident Normal
@@ -245,7 +245,7 @@ trident-operator-766f7b8658-ldzsv          1/1     Running   0           3m
 +----------------+----------------+
 | SERVER VERSION | CLIENT VERSION |
 +----------------+----------------+
-| 23.01.1        | 23.01.1        |
+| 23.04.0        | 23.04.0        |
 +----------------+----------------+
 ----
 

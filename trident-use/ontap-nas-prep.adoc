@@ -11,7 +11,12 @@ summary: 了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。
 :imagesdir: ../media/
 
 
-了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。
+[role="lead"]
+了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。
+
+
+
+== 概述
 
 对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。
 

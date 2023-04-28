@@ -4,21 +4,20 @@ permalink: trident-use/ontap-san.html
 keywords: trident backend, ontap san, ontap-san, ontap-san-economy, fsx 
 summary: 了解如何使用 ONTAP SAN 驱动程序配置 ONTAP 后端。 
 ---
-= 使用 ONTAP SAN 驱动程序配置后端
+= ONTAP SAN驱动程序概述
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
+[role="lead"]
 了解如何使用 ONTAP 和 Cloud Volumes ONTAP SAN 驱动程序配置 ONTAP 后端。
 
-* link:ontap-san-prep.html["准备"^]
-* link:ontap-san-examples.html["配置和示例"^]
 
 
-[WARNING]
-====
+== 有关ONTAP SAN驱动程序的重要信息
+
 Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
 
 * 您必须使用 `ontap-nas` 适用于需要数据保护、灾难恢复和移动性的生产工作负载。
@@ -27,7 +26,6 @@ Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动�
 * 请勿使用 `ontap-nas-economy` 预测数据保护、灾难恢复或移动性的需求。
 
 
-====
 
 
 == 用户权限

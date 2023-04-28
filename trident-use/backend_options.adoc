@@ -11,7 +11,14 @@ summary: 了解如何在 Astra Trident 中管理后端。
 :imagesdir: ../media/
 
 
-了解如何在 Astra Trident 中管理后端。随着 `TridentBackendConfig` 的推出，管理员现在可以通过两种独特的方式管理后端。这会提出以下问题：
+[role="lead"]
+了解如何在 Astra Trident 中管理后端。
+
+
+
+== 用于管理后端的选项
+
+随附 `TridentBackendConfig`现在、管理员可以通过两种独特的方式管理后端。这会提出以下问题：
 
 * 使用 `tridentctl` 创建的后端是否可以使用 `TridentBackendConfig` 进行管理？
 * 使用 `TridentBackendConfig` 创建的后端是否可以使用 `tridentctl` 进行管理？

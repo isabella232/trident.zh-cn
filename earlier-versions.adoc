@@ -12,8 +12,15 @@ summary: 如果您未运行最新版本，则可以参考有关先前版本的 A
 
 
 [role="lead"]
-如果您运行的不是Astra Trident 23.01、则可以参考先前版本的文档。您可以使用版本选择器在最新版本和以前的四个版本之间导航、也可以使用以下链接。
+您可以使用版本选择器在最新版本和以前的四个版本之间导航、也可以使用以下链接。
 
+
+
+== 早期版本
+
+如果您未运行Asta Trident 23.04、则可通过获取先前版本的文档 link:https://mysupport.netapp.com/site/info/trident-support["Astra三项技术发布和支持生命周期"^]。
+
+* https://docs.netapp.com/us-en/trident-2301/index.html["Astra三排版23.01"^]
 * https://docs.netapp.com/us-en/trident-2210/index.html["Astra Trident 22.10"^]
 * https://docs.netapp.com/us-en/trident-2207/index.html["Astra Trident 22.07"^]
 * https://docs.netapp.com/us-en/trident-2204/index.html["Astra Trident 22.04"^]
@@ -26,12 +33,4 @@ summary: 如果您未运行最新版本，则可以参考有关先前版本的 A
 
 * https://netapp-trident.readthedocs.io/en/stable-v21.04/["Astra Trident 21.04"^]
 * https://netapp-trident.readthedocs.io/en/stable-v21.01/["Astra Trident 21.01"^]
-* https://netapp-trident.readthedocs.io/en/stable-v20.10/["Astra Trident 20.10"^]
-* https://netapp-trident.readthedocs.io/en/stable-v20.07/["Astra Trident 20.07"^]
-* https://netapp-trident.readthedocs.io/en/stable-v20.04/["Astra Trident 20.04"^]
-* https://netapp-trident.readthedocs.io/en/stable-v20.01/["Astra Trident 20.01"^]
-* https://netapp-trident.readthedocs.io/en/stable-v19.10/["Astra Trident 19.10"^]
-* https://netapp-trident.readthedocs.io/en/stable-v19.07/["Astra Trident 19.07"^]
-* https://netapp-trident.readthedocs.io/en/stable-v19.04/["Astra Trident 19.04"^]
-* https://netapp-trident.readthedocs.io/en/stable-v19.01/["Astra Trident 19.01"^]
 

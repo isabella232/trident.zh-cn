@@ -20,15 +20,17 @@ entries:
   - title: NetApp HCI 或SolidFire
     url: "/trident-use/element.html"
   - title: ONTAP SAN 驱动程序
-    url: "/trident-use/ontap-san.html"
     entries:
+    - title: 概述
+      url: "/trident-use/ontap-san.html"
     - title: 准备配置
       url: "/trident-use/ontap-san-prep.html"
     - title: 配置选项和示例
       url: "/trident-use/ontap-san-examples.html"
   - title: ONTAP NAS 驱动程序
-    url: "/trident-use/ontap-nas.html"
     entries:
+    - title: 概述
+      url: "/trident-use/ontap-nas.html"
     - title: 准备配置
       url: "/trident-use/ontap-nas-prep.html"
     - title: 配置选项和示例

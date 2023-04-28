@@ -56,19 +56,19 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 kubectl delete -f 22.01/trident-installer/deploy/bundle.yaml -n trident
 ----
 . 如果您使用自定义了初始安装 `TridentOrchestrator` 属性、您可以编辑 `TridentOrchestrator` 用于修改安装参数的对象。其中可能包括为脱机模式指定镜像Trident和CSI映像注册表、启用调试日志或指定映像提取密钥所做的更改。
-. 使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubernetes 1.26安装Astra Trident 23.01、请运行以下命令：
+. 使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubenetes 1.27安装Asta Trident 23.04、请运行以下命令：
 +
 [listing]
 ----
-kubectl create -f 23.01.1/trident-installer/deploy/bundle_post_1_25.yaml -n trident
+kubectl create -f 23.04.0/trident-installer/deploy/bundle_post_1_25.yaml -n trident
 ----
 +
 [NOTE]
 ====
 Trident提供了一个捆绑包文件、可用于安装操作员并为Kubernetes版本创建关联对象。
 
-** 对于运行Kubernetes 1.24或更低版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.01/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
-** 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.01/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
+** 对于运行Kubernetes 1.24或更低版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.04/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
+** 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.04/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
 
 
 ====
@@ -101,11 +101,11 @@ NOTE: 如果状态显示 `Updating` ，请确保先解决此问题，然后再�
 +
 [listing]
 ----
-# Download the release required [23.01.1]
-mkdir 23.01.1
-cd 23.01.1
-wget https://github.com/NetApp/trident/releases/download/v23.01.1/trident-installer-23.01.1.tar.gz
-tar -xf trident-installer-23.01.1.tar.gz
+# Download the release required [23.04.0]
+mkdir 23.04.0
+cd 23.04.0
+wget https://github.com/NetApp/trident/releases/download/v23.04.0/trident-installer-23.04.0.tar.gz
+tar -xf trident-installer-23.04.0.tar.gz
 cd trident-installer
 kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
 ----
@@ -161,7 +161,7 @@ kubectl patch tprov <trident-provisioner-name> -n <trident-namespace> --type=mer
 . 安装Trident操作符。
 +
 
-NOTE: 安装集群范围的运算符可启动的迁移 `TridentProvisioner` 对象 `TridentOrchestrator` 对象、删除 `TridentProvisioner` 对象和 `tridentprovisioner` CRD、并将Astra Trident升级到所使用的集群范围运算符版本。在以下示例中、Trident会升级到23.01.1。
+NOTE: 安装集群范围的运算符可启动的迁移 `TridentProvisioner` 对象 `TridentOrchestrator` 对象、删除 `TridentProvisioner` 对象和 `tridentprovisioner` CRD、并将Astra Trident升级到所使用的集群范围运算符版本。在下面的示例中、三端升级到23.04.0。
 
 +
 
@@ -172,7 +172,7 @@ IMPORTANT: 使用Trident操作员升级Astra Trident会导致迁移 `tridentProv
 ----
 #Ensure you are in the correct directory
 pwd
-/root/23.01.1/trident-installer
+/root/23.04.0/trident-installer
 
 #Install the cluster-scoped operator in the **same namespace**
 kubectl create -f deploy/<BUNDLE.YAML>
@@ -203,7 +203,7 @@ kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
-Version:                v23.01.1
+Version:                v23.04.0
 ----
 +
 
@@ -222,11 +222,11 @@ WARNING: 将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更�
 
 .步骤
 . 下载最新的 Astra Trident 版本。
-. 使用 `helm upgrade` 命令位置 `trident-operator-23.01.1.tgz` 反映了要升级到的版本。
+. 使用 `helm upgrade` 命令位置 `trident-operator-23.04.0.tgz` 反映了要升级到的版本。
 +
 [listing]
 ----
-helm upgrade <name> trident-operator-23.01.1.tgz
+helm upgrade <name> trident-operator-23.04.0.tgz
 ----
 +
 [NOTE]
@@ -237,7 +237,7 @@ helm upgrade <name> trident-operator-23.01.1.tgz
 
 [listing]
 ----
-helm upgrade <name> trident-operator-23.01.1-custom.tgz --set tridentDebug=true
+helm upgrade <name> trident-operator-23.04.0-custom.tgz --set tridentDebug=true
 ----
 ====
 . 运行 `helm list` 验证图表和应用程序版本均已升级。运行 `tridentctl logs` 查看任何调试消息。
@@ -257,11 +257,11 @@ Trident操作员将确定现有的Astra Trident安装并将其升级到与操作
 +
 [listing]
 ----
-# Download the release required [23.01.1]
-mkdir 23.01.1
-cd 23.01.1
-wget https://github.com/NetApp/trident/releases/download/v22.01.1/trident-installer-23.01.1.tar.gz
-tar -xf trident-installer-23.01.1.tar.gz
+# Download the release required [23.04.0]
+mkdir 23.04.0
+cd 23.04.0
+wget https://github.com/NetApp/trident/releases/download/v22.01.1/trident-installer-23.04.0.tar.gz
+tar -xf trident-installer-23.04.0.tar.gz
 cd trident-installer
 ----
 . 从清单中创建 `tridentorchator` CRD 。
@@ -315,7 +315,7 @@ kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
-Version:                v23.01.1
+Version:                v23.04.0
 ----
 
 

@@ -11,6 +11,7 @@ summary: 通过 Astra Trident ， Kubernetes 用户可以在创建卷后对其�
 :imagesdir: ../media/
 
 
+[role="lead"]
 通过 Astra Trident ， Kubernetes 用户可以在创建卷后对其进行扩展。查找有关扩展 iSCSI 和 NFS 卷所需配置的信息。
 
 

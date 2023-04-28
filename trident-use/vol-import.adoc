@@ -11,6 +11,7 @@ summary: '您可以使用 `tridentctl import` 将现有存储卷作为 Kubernete
 :imagesdir: ../media/
 
 
+[role="lead"]
 您可以使用 `tridentctl import` 将现有存储卷作为 Kubernetes PV 导入。
 
 
@@ -151,9 +152,6 @@ Astra Trident 还可以导入包含单个 LUN 的 ONTAP SAN FlexVol 。这与 `o
 * 提供必须与 ` -f` 标志结合使用的 PVC 定义路径。
 * 可以选择对 PVC 进行管理，也可以选择不对其进行管理。默认情况下， Trident 将管理 PVC 并重命名后端的 FlexVol 和 LUN 。要作为非受管卷导入，请传递 ` -no-manage` 标志。
 
-
-
-TIP: 导入非受管 `ontap-san` 卷时，应确保 FlexVol 中的 LUN 名为 `lun0` ，并已映射到具有所需启动程序的 igroup 。Astra Trident 会自动为受管导入处理此问题。
 
 然后， Astra Trident 将导入 FlexVol 并将其与 PVC 定义关联。Astra Trident 还会将 FlexVol 重命名为 `vc-<uid>` 格式，并将 FlexVol 中的 LUN 重命名为 `lun0` 。
 
