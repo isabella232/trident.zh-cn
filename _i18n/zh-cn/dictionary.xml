@@ -1354,7 +1354,6 @@
   <block id="c3417eb755bee1658ae5b42ff2115193" category="admonition">ANF 卷的卷路径位于： / 之后的挂载路径中。例如，如果挂载路径为 `10.0.0.2 ： /importvol1` ，则卷路径为 `importvol1` 。</block>
   <block id="e4f61797b38c111b04c612b285a06659" category="summary">了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
   <block id="00b8b321c68facfb94b31690cbd23e00" category="paragraph">对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。</block>
-  <block id="c6cd2f38be30f5256f7116692ab56edd" category="paragraph">请记住，您还可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如，您可以配置一个使用 `ontap-nas` 驱动程序` 的金牌类和一个使用 `ontap-nas-economy-one 的铜牌类。</block>
   <block id="07b434b23f63ca6490df33b213599320" category="section-title">管理 NFS 导出策略</block>
   <block id="9d66483f8378ffe30cde84e1b6dbf484" category="paragraph">Astra Trident 使用 NFS 导出策略来控制对其配置的卷的访问。</block>
   <block id="a297d9b7dbc393d5e8a5b3f98bcc9337" category="paragraph">使用导出策略时， Astra Trident 提供了两个选项：</block>
@@ -3654,4 +3653,5 @@
   <block id="d7393ea674321a4e126b601e3097f2ec" category="admonition">现在、在Trident中支持Kubnetes 1.27。请先升级Astra Trident、然后再升级Kubernetes。</block>
   <block id="99836a64b28c522e35a15aa0a4b39257" category="list-text">现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。当Asta Trigent确定在不影响活动工作负载的情况下可以安全地切换到新的igrop方案时、现有卷将适时切换到此方案。</block>
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">新增功能</block>
+  <block id="ffd4000c9e43a23d97e231d47f99dcd4" category="list-text">您可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如、您可以配置一个使用的黄金类<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序和使用的铜牌类<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 一个。</block>
 </blocks>

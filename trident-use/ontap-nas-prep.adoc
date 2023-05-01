@@ -16,13 +16,13 @@ summary: 了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。
 
 
 
-== 概述
+== 注意事项
 
-对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。
+* 对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。
+* 您可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如、您可以配置一个使用的黄金类 `ontap-nas` 驱动程序和使用的铜牌类 `ontap-nas-economy` 一个。
+* 所有Kubernetes工作节点都必须安装适当的NFS工具。请参见 link:worker-node-prep.html["此处"] 有关详细信息：
+* Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
 
-请记住，您还可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如，您可以配置一个使用 `ontap-nas` 驱动程序` 的金牌类和一个使用 `ontap-nas-economy-one 的铜牌类。
-
-所有Kubernetes工作节点都必须安装适当的NFS工具。请参见 link:worker-node-prep.html["此处"] 有关详细信息：
 
 
 
