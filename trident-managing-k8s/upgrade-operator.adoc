@@ -26,12 +26,12 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 * 如果您已卸载 CSI Trident ，并且安装中的元数据仍然存在，则可以使用操作员进行升级。
 * 在给定 Kubernetes 集群中的所有命名空间中，只应安装一个 Astra Trident 。
 * 您应使用正在运行的Kubernetes集群 link:../trident-get-started/requirements.html["支持的Kubernetes版本"]。
-* 如果存在字母快照 CRD ，则应使用 `tridentctl obliviate alpha-snapshot-crd` 将其删除。此操作将删除 alpha snapshot 规范的 CRD 。有关应删除 / 迁移的现有快照，请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^]。
+* 如果存在字母快照 CRD ，则应使用 `tridentctl obliviate alpha-snapshot-crd` 将其删除。此操作将删除 alpha snapshot 规范的 CRD 。有关应删除 / 迁移的现有快照，请参见 https://["本博客"^]。
 
 
 [WARNING]
 ====
-* 在OpenShift容器平台上使用操作符升级Trident时、应升级到Trident 21.01.1或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息，请参见 https://github.com/NetApp/trident/issues/517["GitHub 上的问题描述详细信息"^]。
+* 在OpenShift容器平台上使用操作符升级Trident时、应升级到Trident 21.01.1或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息，请参见 https://["GitHub 上的问题描述详细信息"^]。
 * 如果您使用的是基于 `etcd` 的 Trident 版本（ 19.04 或更早版本），请勿使用运算符升级 Trident 。
 
 
@@ -95,7 +95,7 @@ Version:  v20.10.1
 ----
 +
 
-NOTE: 如果状态显示 `Updating` ，请确保先解决此问题，然后再继续。有关可能的状态值列表，请参见 https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-operator.html["此处"^]。
+NOTE: 如果状态显示 `Updating` ，请确保先解决此问题，然后再继续。有关可能的状态值列表，请参见 https://["此处"^]。
 
 . 使用 Trident 安装程序随附的清单创建 `TridentOrchestrator` CRD 。
 +

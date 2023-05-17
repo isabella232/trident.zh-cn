@@ -17,7 +17,7 @@ summary:
 
 == 版权
 
-http://www.netapp.com/us/legal/copyright.aspx[]
+http://[]
 
 
 
@@ -25,7 +25,7 @@ http://www.netapp.com/us/legal/copyright.aspx[]
 
 NetApp 、 NetApp 徽标和 NetApp 商标页面上列出的标记是 NetApp 、 Inc. 的商标。其他公司和产品名称可能是其各自所有者的商标。
 
-http://www.netapp.com/us/legal/netapptmlist.aspx[]
+http://[]
 
 
 
@@ -33,16 +33,16 @@ http://www.netapp.com/us/legal/netapptmlist.aspx[]
 
 有关 NetApp 拥有的专利的最新列表，请访问：
 
-https://www.netapp.com/us/media/patents-page.pdf[]
+https://[]
 
 
 
 == 隐私政策
 
-https://www.netapp.com/us/legal/privacypolicy/index.aspx[]
+https://[]
 
 
 
 == 开放源代码
 
-您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证 https://github.com/NetApp/trident/[]。
+您可以在每个版本的通知文件中查看用于 Astra Trident 的 NetApp 软件中使用的第三方版权和许可证 https://[]。

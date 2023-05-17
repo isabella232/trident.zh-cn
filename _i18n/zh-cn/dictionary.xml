@@ -2303,7 +2303,6 @@
   <block id="43e92857220d1a7ea1da88250ea5e2e3" category="section-title">21.10.0 中的更改</block>
   <block id="9c87569b835a8f66b7490390d350d9a4" category="paragraph">如果您的Kubernetes分发版不包含快照控制器和CRD、则可以按如下所示进行部署。</block>
   <block id="469f7ca16938508b5dcb777767828b70" category="list-text">创建卷快照CRD。</block>
-  <block id="65b146df7d5c27b212f54a7c9980960b" category="list-text">在所需命名空间中创建Snapshot控制器。编辑以下 YAML 清单以修改命名空间。</block>
   <block id="086e6c16e3fe8e13c336612ef636aa02" category="sidebar">Astra Trident</block>
   <block id="5a333b18a215ecfd4457ba0e1732654b" category="section-title">Trident是否可以在配置了负载共享镜像的SVM上配置卷？</block>
   <block id="0e7629426b9d7596800cd5d72f558a7f" category="paragraph">可以为通过NFS提供数据的SVM的根卷创建负载共享镜像。ONTAP 会自动为Trident创建的卷更新负载共享镜像。这可能会导致卷挂载延迟。使用Trident创建多个卷时、配置卷取决于ONTAP 更新负载共享镜像。</block>
@@ -3654,4 +3653,6 @@
   <block id="99836a64b28c522e35a15aa0a4b39257" category="list-text">现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。当Asta Trigent确定在不影响活动工作负载的情况下可以安全地切换到新的igrop方案时、现有卷将适时切换到此方案。</block>
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">新增功能</block>
   <block id="ffd4000c9e43a23d97e231d47f99dcd4" category="list-text">您可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如、您可以配置一个使用的黄金类<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序和使用的铜牌类<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 一个。</block>
+  <block id="a571dbb3887a364b4b4dcb82a5fa6ec9" category="list-text">创建快照控制器。</block>
+  <block id="ae3ba2e438847d5fb2abc16b3c73ccab" category="admonition">如有必要、打开<block ref="31a2c725707ce238c3eb4dd82c7e3af9" prefix=" " category="inline-code"></block> 并更新<block ref="89801e9e98979062e84647433a8ed3e9" prefix=" " category="inline-code"></block> 命名空间。</block>
 </blocks>

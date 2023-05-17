@@ -20,8 +20,8 @@ summary: '您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安�
 
 升级到最新版本的 Astra Trident 时，请考虑以下事项：
 
-* 从 Trident 20.01 开始，仅限测试版 https://kubernetes.io/docs/concepts/storage/volume-snapshots/["卷快照"^] 受支持。Kubernetes 管理员应注意安全地备份或将 alpha Snapshot 对象转换为测试版，以保留原有的 alpha Snapshot 。
-* 测试版的卷快照引入了一组经过修改的 CRD 和一个快照控制器，这两个控制器都应在安装 Astra Trident 之前进行设置。 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^] 讨论将 alpha 卷快照迁移到测试版格式所涉及的步骤。
+* 从 Trident 20.01 开始，仅限测试版 https://["卷快照"^] 受支持。Kubernetes 管理员应注意安全地备份或将 alpha Snapshot 对象转换为测试版，以保留原有的 alpha Snapshot 。
+* 测试版的卷快照引入了一组经过修改的 CRD 和一个快照控制器，这两个控制器都应在安装 Astra Trident 之前进行设置。 https://["本博客"^] 讨论将 alpha 卷快照迁移到测试版格式所涉及的步骤。
 * 卸载并重新安装 Astra Trident 可作为升级。卸载 Trident 时，不会删除 Astra Trident 部署所使用的永久性卷声明（ PVC ）和永久性卷（ PV ）。在 Astra Trident 脱机期间，已配置的 PV 仍可用，而 Astra Trident 将在恢复联机后为在此期间创建的任何 PVC 配置卷。
 
 

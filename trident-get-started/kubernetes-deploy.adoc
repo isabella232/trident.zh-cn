@@ -42,7 +42,7 @@ summary: '您可以使用Trident操作符(手动或使用Helm)或安装Astra Tri
 * 能够从所有Kubernetes工作节点挂载卷。
 * 具有的Linux主机 `kubectl` (或 `oc`(如果您使用的是OpenShift)已安装并配置为管理要使用的Kubernetes集群。
 * 。 `KUBECONFIG` 环境变量设置为指向您的Kubernetes集群配置。
-* 如果您将 Kubernetes 与 Docker Enterprise 结合使用， https://docs.docker.com/ee/ucp/user-access/cli/["按照其步骤启用 CLI 访问"^]。
+* 如果您将 Kubernetes 与 Docker Enterprise 结合使用， https://["按照其步骤启用 CLI 访问"^]。
 
 
 

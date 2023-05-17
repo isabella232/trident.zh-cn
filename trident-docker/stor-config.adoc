@@ -134,7 +134,7 @@ ONTAP 管理 LIF 的 IP 地址。您可以指定完全限定域名（ FQDN ）�
 
 
 | `nfsMountOptions`  a| 
-对 NFS 挂载选项进行精细控制；默认为 -o nfsver=3 。* 仅适用于 `ontap-nas` 和 `ontap-nas- 经济` 驱动程序 * 。 https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["请参见此处的 NFS 主机配置信息"^]。
+对 NFS 挂载选项进行精细控制；默认为 -o nfsver=3 。* 仅适用于 `ontap-nas` 和 `ontap-nas- 经济` 驱动程序 * 。 https://["请参见此处的 NFS 主机配置信息"^]。
  a| 
 `-o nfsvers=4`
 
@@ -277,7 +277,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
 * FlexGroup 卷不支持克隆。
 
 
-有关适用于 FlexGroup 的 FlexGroup 和工作负载的信息，请参见 https://www.netapp.com/pdf.html?item=/media/12385-tr4571pdf.pdf["《 NetApp FlexGroup 卷最佳实践和实施指南》"^]。
+有关适用于 FlexGroup 的 FlexGroup 和工作负载的信息，请参见 https://["《 NetApp FlexGroup 卷最佳实践和实施指南》"^]。
 
 要在同一环境中获得高级功能并实现大规模扩展，您可以运行多个 Docker 卷插件实例，其中一个使用 `ontap-NAS` ，另一` 个使用 `ontap-nas-economy.
 
