@@ -12,7 +12,7 @@ summary: 了解有关 tridentctl 的更多信息， tridentctl 是一个命令�
 
 
 [role="lead"]
-。 https://["Trident 安装程序包"^] 包括一个命令行实用程序 `tridentctl` ，可用于轻松访问 Astra Trident 。具有足够权限的 Kubernetes 用户可以使用它来安装 Astra Trident ，并直接与其交互以管理包含 Astra Trident Pod 的命名空间。
+。 https://github.com/NetApp/trident/releases["Trident 安装程序包"^] 包括一个命令行实用程序 `tridentctl` ，可用于轻松访问 Astra Trident 。具有足够权限的 Kubernetes 用户可以使用它来安装 Astra Trident ，并直接与其交互以管理包含 Astra Trident Pod 的命名空间。
 
 
 

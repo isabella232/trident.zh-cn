@@ -22,7 +22,7 @@ summary: '您可以将适用于NetApp ONTAP 的Amazon FSX文件系统与Astra Tr
 * 为准备工作的工作节点 link:worker-node-prep.html["NFS或iSCSI"]。
 +
 
-NOTE: 确保按照Amazon Linux和Ubuntu所需的节点准备步骤进行操作 https://["Amazon Machine 映像"^] （ AMIS ），具体取决于您的 EKS AMI 类型。
+NOTE: 确保按照Amazon Linux和Ubuntu所需的节点准备步骤进行操作 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html["Amazon Machine 映像"^] （ AMIS ），具体取决于您的 EKS AMI 类型。
 
 
 

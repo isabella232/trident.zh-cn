@@ -43,7 +43,7 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trident-autostsupport：23.04.0" 
 
 
-| `autosupport 代理` | 用于发送 AutoSupport 遥测的代理的地址 / 端口 | "http://[] 
+| `autosupport 代理` | 用于发送 AutoSupport 遥测的代理的地址 / 端口 | "http://proxy.example.com:8888"[] 
 
 
 | `控制器插件节点选择器` | 运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。遵循与相同的格式 `pod.spec.nodeSelector`。 | 无默认值；可选 

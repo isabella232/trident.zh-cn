@@ -73,13 +73,13 @@ cluster1::*> volume snapshot restore -vserver vs0 -volume vol3 -snapshot vol3_sn
 复制数据在防止存储阵列故障导致的数据丢失方面发挥着重要作用。
 
 
-NOTE: 要了解有关 ONTAP 复制技术的详细信息，请参见 https://["ONTAP 文档"^]。
+NOTE: 要了解有关 ONTAP 复制技术的详细信息，请参见 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/GUID-A9A2F347-3E05-4F80-9E9C-CEF8F0A2F8E1.html["ONTAP 文档"^]。
 
 
 
 === SnapMirror Storage Virtual Machine （ SVM ）复制
 
-您可以使用 https://["SnapMirror"^] 复制完整的 SVM ，其中包括其配置设置及其卷。发生灾难时，您可以激活 SnapMirror 目标 SVM 以开始提供数据。系统还原后，您可以切换回主系统。
+您可以使用 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/GUID-8B187484-883D-4BB4-A1BC-35AC278BF4DC.html["SnapMirror"^] 复制完整的 SVM ，其中包括其配置设置及其卷。发生灾难时，您可以激活 SnapMirror 目标 SVM 以开始提供数据。系统还原后，您可以切换回主系统。
 
 Astra Trident 无法自行配置复制关系，因此存储管理员可以使用 ONTAP 的 SnapMirror SVM 复制功能将卷自动复制到灾难恢复（ Disaster Recovery ， DR ）目标。
 
@@ -131,7 +131,7 @@ ONTAP SnapMirror 卷复制是一项灾难恢复功能，可用于在卷级别从
 
 * 在卷所在的集群与从卷提供数据的 SVM 之间设置对等关系。
 * 创建一个 SnapMirror 策略，用于控制关系的行为并指定该关系的配置属性。
-* 使用在目标卷和源卷之间创建 SnapMirror 关系 https://["d9934e78a9254dde4a227181c30fa2d2"^] 并分配相应的 SnapMirror 策略。
+* 使用在目标卷和源卷之间创建 SnapMirror 关系 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr-970/snapmirror__create.html["d9934e78a9254dde4a227181c30fa2d2"^] 并分配相应的 SnapMirror 策略。
 * 创建 SnapMirror 关系后，初始化此关系，以便完成从源卷到目标卷的基线传输。
 
 

@@ -44,7 +44,7 @@ docker plugin install netapp/trident-plugin:20.10 --alias netapp --grant-all-per
 == 卷名称的长度必须至少为 2 个字符。
 
 
-NOTE: 这是 Docker 客户端的限制。客户端会将单个字符名称解释为 Windows 路径。 https://["请参见错误 25773"^]。
+NOTE: 这是 Docker 客户端的限制。客户端会将单个字符名称解释为 Windows 路径。 https://github.com/moby/moby/issues/25773["请参见错误 25773"^]。
 
 
 

@@ -18,7 +18,7 @@ summary: 在部署 Astra Trident 时，请使用此处列出的建议。
 
 == 部署到专用命名空间
 
-https://["命名空间"^] 在不同应用程序之间实现管理隔离，是资源共享的障碍。例如，一个命名空间中的 PVC 不能从另一个命名空间中使用。Astra Trident 为 Kubernetes 集群中的所有命名空间提供 PV 资源，从而利用具有提升权限的服务帐户。
+https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/["命名空间"^] 在不同应用程序之间实现管理隔离，是资源共享的障碍。例如，一个命名空间中的 PVC 不能从另一个命名空间中使用。Astra Trident 为 Kubernetes 集群中的所有命名空间提供 PV 资源，从而利用具有提升权限的服务帐户。
 
 此外，访问 Trident POD 可能会使用户能够访问存储系统凭据和其他敏感信息。请务必确保应用程序用户和管理应用程序无法访问 Trident 对象定义或 Pod 本身。
 
@@ -26,6 +26,6 @@ https://["命名空间"^] 在不同应用程序之间实现管理隔离，是资
 
 == 使用配额和范围限制来控制存储消耗
 
-Kubernetes 具有两项功能，这些功能结合使用后，可提供一种功能强大的机制来限制应用程序的资源消耗。。 https://["存储配额机制"^] 使管理员能够在每个命名空间基础上实施全局容量和对象计数消耗限制以及特定于存储类的限制。此外，使用 https://["范围限制"^] 确保在将 PVC 请求转发给配置程序之前，该请求同时处于最小值和最大值范围内。
+Kubernetes 具有两项功能，这些功能结合使用后，可提供一种功能强大的机制来限制应用程序的资源消耗。。 https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota["存储配额机制"^] 使管理员能够在每个命名空间基础上实施全局容量和对象计数消耗限制以及特定于存储类的限制。此外，使用 https://kubernetes.io/docs/tasks/administer-cluster/limit-storage-consumption/#limitrange-to-limit-requests-for-storage["范围限制"^] 确保在将 PVC 请求转发给配置程序之前，该请求同时处于最小值和最大值范围内。
 
-这些值是按命名空间定义的，这意味着每个命名空间都应定义符合其资源要求的值。有关信息，请参见此处 https://["如何利用配额"^]。
+这些值是按命名空间定义的，这意味着每个命名空间都应定义符合其资源要求的值。有关信息，请参见此处 https://netapp.io/2017/06/09/self-provisioning-storage-kubernetes-without-worry["如何利用配额"^]。

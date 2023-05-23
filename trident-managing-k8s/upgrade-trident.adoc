@@ -47,7 +47,7 @@ Astra Trident版本采用基于日期的版本 `YY.MM` 命名约定、其中"YY"
 
 
 
-WARNING: 从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。在升级 Astra Trident 时，在执行升级之前，必须删除所有先前的 alpha snapshot CRS 和 CRD （卷快照类，卷快照和卷快照内容）。请参见 https://["本博客"^] 了解将 alpha 快照迁移到测试版 /GA 规范所涉及的步骤。
+WARNING: 从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。在升级 Astra Trident 时，在执行升级之前，必须删除所有先前的 alpha snapshot CRS 和 CRD （卷快照类，卷快照和卷快照内容）。请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^] 了解将 alpha 快照迁移到测试版 /GA 规范所涉及的步骤。
 
 
 
@@ -61,5 +61,5 @@ Astra Trident 21.01 版为操作员引入了一些关键的架构变更，即：
 ** 卸载期间清理：要完全删除 Astra Trident ，需要删除所有关联的资源。命名空间范围的运算符可能会在删除集群范围的资源（例如 clusterRole ， ClusterRoleBinding-and PodSecurityPolicy ）时遇到问题，并导致清理不完整。集群范围的运算符可消除此问题描述。用户可以完全卸载 Astra Trident 并在需要时重新安装。
 
 
-* `TridentProvider` 现已替换为 `TridentOrchestrator` 作为用于安装和管理 Astra Trident 的自定义资源。此外，还为 `TridentOrchestrator` 规范引入了一个新字段。用户可以使用 `spec.namespace` 字段指定必须安装 / 升级命名空间 Trident 。您可以查看一个示例 https://["此处"^]。
+* `TridentProvider` 现已替换为 `TridentOrchestrator` 作为用于安装和管理 Astra Trident 的自定义资源。此外，还为 `TridentOrchestrator` 规范引入了一个新字段。用户可以使用 `spec.namespace` 字段指定必须安装 / 升级命名空间 Trident 。您可以查看一个示例 https://github.com/NetApp/trident/blob/stable/v21.01/deploy/crds/tridentorchestrator_cr.yaml["此处"^]。
 

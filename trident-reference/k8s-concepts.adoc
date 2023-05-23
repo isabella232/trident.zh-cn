@@ -12,4 +12,4 @@ summary: 详细了解 Kubernetes 系统的各个部分。
 
 
 [role="lead"]
-详细了解的各个部分 https://["Kubernetes 系统"^]。
+详细了解的各个部分 https://kubernetes.io/docs/concepts/["Kubernetes 系统"^]。

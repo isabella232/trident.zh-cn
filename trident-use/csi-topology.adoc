@@ -12,7 +12,7 @@ summary: 通过使用 CSI 拓扑功能， Astra Trident 可以有选择地创建
 
 
 [role="lead"]
-Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点 https://["CSI 拓扑功能"^]。
+Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点 https://kubernetes-csi.github.io/docs/topology.html["CSI 拓扑功能"^]。
 
 
 
@@ -21,7 +21,7 @@ Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernet
 使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于一个区域内的不同可用性区域中，也可以位于不同区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。
 
 
-TIP: 了解有关 CSI 拓扑功能的更多信息 https://["此处"^]。
+TIP: 了解有关 CSI 拓扑功能的更多信息 https://kubernetes.io/blog/2018/10/11/topology-aware-volume-provisioning-in-kubernetes/["此处"^]。
 
 Kubernetes 提供了两种唯一的卷绑定模式：
 
@@ -289,8 +289,8 @@ pvc-san   Bound    pvc-ecb1e1a0-840c-463b-8b65-b3d033e2e62b   300Mi      RWO    
 
 == 了解更多信息
 
-* https://["管理容器的资源"^]
-* https://["节点选择器"^]
-* https://["关联性和反关联性"^]
-* https://["损害和公差"^]
+* https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/["管理容器的资源"^]
+* https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector["节点选择器"^]
+* https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity["关联性和反关联性"^]
+* https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/["损害和公差"^]
 

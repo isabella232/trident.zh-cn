@@ -47,7 +47,7 @@ systemctl restart docker
 docker --version
 ----
 +
-如果您的版本已过期， https://["安装或更新安装"^]。
+如果您的版本已过期， https://docs.docker.com/engine/install/["安装或更新安装"^]。
 
 
 
@@ -135,7 +135,7 @@ docker --version
 curl -fsSL https://get.docker.com/ | sh
 ----
 +
-或 https://["按照适用于您的分发版本的说明进行操作"^]。
+或 https://docs.docker.com/engine/install/["按照适用于您的分发版本的说明进行操作"^]。
 
 . 确保已为您的系统配置 NFS 和 / 或 iSCSI 。
 

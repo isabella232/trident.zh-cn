@@ -36,7 +36,7 @@ Astra Trident可以在两个卷中创建Cloud Volumes Service 卷之一 link:htt
 
 
 .您需要的内容
-以配置和使用 https://["适用于 Google Cloud 的 Cloud Volumes Service"^] 后端，您需要满足以下要求：
+以配置和使用 https://cloud.netapp.com/cloud-volumes-service-for-gcp?utm_source=NetAppTrident_ReadTheDocs&utm_campaign=Trident["适用于 Google Cloud 的 Cloud Volumes Service"^] 后端，您需要满足以下要求：
 
 * 配置了NetApp Cloud Volumes Service 的Google Cloud帐户
 * Google Cloud 帐户的项目编号

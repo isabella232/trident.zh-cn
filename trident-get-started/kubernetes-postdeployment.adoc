@@ -48,7 +48,7 @@ vi backend.json
 
 == 第 2 步：创建存储类
 
-Kubernetes 用户使用指定的永久性卷声明（ Persistent Volume Claim ， PVC ）配置卷 https://["存储类"^] 按名称。详细信息对用户隐藏，但存储类可标识用于该类的配置程序（在本例中为 Trident ）以及该类对配置程序的含义。
+Kubernetes 用户使用指定的永久性卷声明（ Persistent Volume Claim ， PVC ）配置卷 https://kubernetes.io/docs/concepts/storage/storage-classes/["存储类"^] 按名称。详细信息对用户隐藏，但存储类可标识用于该类的配置程序（在本例中为 Trident ）以及该类对配置程序的含义。
 
 创建存储类 Kubernetes 用户将指定何时需要卷。该类的配置需要为上一步创建的后端建模，以便 Astra Trident 可以使用它来配置新卷。
 
@@ -111,7 +111,7 @@ basic-csi    csi.trident.netapp.io   15h
 
 == 第 3 步：配置第一个卷
 
-现在，您已准备好动态配置第一个卷。可通过创建 Kubernetes 来完成此操作 https://["永久性卷声明"^] （ PVC ）对象。
+现在，您已准备好动态配置第一个卷。可通过创建 Kubernetes 来完成此操作 https://kubernetes.io/docs/concepts/storage/persistent-volumes["永久性卷声明"^] （ PVC ）对象。
 
 为使用刚刚创建的存储类的卷创建 PVC 。
 
