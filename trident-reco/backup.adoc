@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: trident-reco/backup.html 
-keywords: security, chap, trident, namespace 
-summary: 了解 NetApp 存储平台提供的数据保护和可恢复性选项。Astra Trident 可以配置可利用其中某些功能的卷。对于具有持久性要求的每个应用程序，您都应制定完整的数据保护和恢复策略。 
+keywords: data protection, replication, dr, disaster recovery, snapmirror, back up, snapshot, element, volume replication 
+summary: 了解Asta三元数据以及使用Asta三元数据创建的卷的保护和恢复选项。对于具有持久性要求的每个应用程序，您都应制定一个数据保护和恢复策略。 
 ---
-= 数据保护
+= 数据保护和灾难恢复
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,162 +12,125 @@ summary: 了解 NetApp 存储平台提供的数据保护和可恢复性选项。
 
 
 [role="lead"]
-了解NetApp存储平台提供的数据保护和可恢复性选项。Astra Trident 可以配置可利用其中某些功能的卷。对于具有持久性要求的每个应用程序，您都应制定一个数据保护和恢复策略。
+了解Asta三元数据以及使用Asta三元数据创建的卷的保护和恢复选项。对于具有持久性要求的每个应用程序，您都应制定一个数据保护和恢复策略。
 
 
 
-== 备份 `etcd` 集群数据
+== Astra三元数据复制和恢复
 
-Astra Trident 会将其元数据存储在 Kubernetes 集群的 `etcd` 数据库中。定期备份 `etcd` 集群数据对于在发生灾难时恢复 Kubernetes 集群非常重要。
+您可以创建备份、以便在发生灾难时还原Asta三端存储。
+
+
+
+=== Astra三项技术复制
+
+Astra Tandent使用Kubnetes CRD存储和管理自己的状态、并使用Kubnetes集群etcd存储其元数据。
 
 .步骤
-. 使用 `etcdctl snapshot save` 命令可以为 `etcd` 集群创建时间点快照：
+. 使用备份Kubenetes集群etcd  link:https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster["Kubenetes：备份etcd集群"^]。
+. 将备份项目放在FlexVol上。
++
+
+NOTE: 建议您保护FlexVol所在的SVM、并将其与另一个SVM建立SnapMirror关系。
+
+
+
+
+
+=== Asta三元组恢复
+
+您可以使用Kubenetes CRD和Kubenetes集群etcd快照来恢复Astra Trident。
+
+.步骤
+. 从目标SVM中、将包含Kubnetes etcd数据文件和证书的卷挂载到将设置为主节点的主机上。
+. 在下复制与Kubirnetes集群相关的所有必需证书 `/etc/kubernetes/pki` 和下的etcd成员文件 `/var/lib/etcd`。
+. 使用从etcd备份还原Kubenetes集群 link:https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#restoring-an-etcd-cluster["Kubornetes：还原etcd集群"^]。
+. 运行 `kubectl get crd` 验证所有的三端测试自定义资源是否已启动、并检索三端测试对象以验证所有数据是否可用。
+
+
+
+
+== SVM复制和恢复
+
+Asta三端存储无法配置复制关系、但存储管理员可以使用 https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-svm-replication-concept.html["ONTAP SnapMirror"^] 复制SVM。
+
+发生灾难时，您可以激活 SnapMirror 目标 SVM 以开始提供数据。系统还原后、您可以切换回主系统。
+
+.关于此任务
+使用SnapMirror SVM复制功能时、请考虑以下事项：
+
+* 您应为启用了SVM-DR的每个SVM创建一个不同的后端。
+* 将存储类配置为仅在需要时选择复制的后端、以避免将不需要复制的卷配置到支持SVM-DR的后端。
+* 应用程序管理员应了解与复制相关的额外成本和复杂性、并在开始此过程之前仔细考虑其恢复计划。
+
+
+
+
+=== SVM复制
+
+您可以使用 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-svm-replication-workflow-concept.html["ONTAP：SnapMirror SVM复制"^] 以创建SVM复制关系。
+
+使用SnapMirror、您可以设置选项来控制要复制的内容。您需要知道在预成形时选择了哪些选项 <<使用Asta Trdent恢复SVM>>。
+
+* link:https://docs.netapp.com/us-en/ontap/data-protection/replicate-entire-svm-config-task.html["-Identity保留true"^] 复制整个SVM配置。
+* link:https://docs.netapp.com/us-en/ontap/data-protection/exclude-lifs-svm-replication-task.html["-discard-configs network"^] 不包括LIP和相关网络设置。
+* link:https://docs.netapp.com/us-en/ontap/data-protection/exclude-network-name-service-svm-replication-task.html["-Identity保留false"^] 仅复制卷和安全配置。
+
+
+
+
+=== 使用Asta Trdent恢复SVM
+
+Astra Trident 不会自动检测 SVM 故障。如果发生灾难、管理员可以手动启动通过三项功能故障转移到新SVM的操作。
+
+.步骤
+. 取消计划的和正在进行的SnapMirror传输、中断复制关系、停止源SVM、然后激活SnapMirror目标SVM。
+. 如果指定了 `-identity-preserve false` 或 `-discard-config network` 配置SVM复制时、请更新 `managementLIF` 和 `dataLIF` 在三端定义文件中。
+. 确认 `storagePrefix` 位于三端定义文件中。无法更改此参数。正在放弃 `storagePrefix` 发生原因后端更新是否会失败。
+. 使用以下命令更新所有必需的后端、以反映新的目标SVM名称：
 +
 [listing]
 ----
-sudo docker run --rm -v /backup:/backup \
-  --network host \
-  -v /etc/kubernetes/pki/etcd:/etc/kubernetes/pki/etcd \
-  --env ETCDCTL_API=3 \
-  registry.k8s.io/etcd-amd64:3.2.18 \
-  etcdctl --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
-  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
-  snapshot save /backup/etcd-snapshot.db
+./tridentctl update backend <backend-name> -f <backend-json-file> -n <namespace>
 ----
+. 如果指定了 `-identity-preserve false` 或 `discard-config network`，则必须退回所有应用程序Pod。
 +
-此命令通过旋转 etcd 容器来创建 etcd 快照，并将其保存在 ` /backup` 目录中。
 
-. 发生灾难时，您可以使用 etcd 快照启动 Kubernetes 集群。使用 `etcdctl snapshot restore` 命令还原为 ` /var/lib/etcd` 文件夹创建的特定快照。还原后，确认 ` /var/lib/etcd` 文件夹是否已填充 `mMember` 文件夹。以下是 `etcdctl snapshot restore` 命令的示例：
+NOTE: 如果指定了 `-identity-preserve true`、则A作用 是在激活目标SVM后、A作用 是通过Asta Trident配置的所有卷都会开始提供数据。
+
+
+
+
+
+== 卷复制和恢复
+
+Asta三端存储无法配置SnapMirror复制关系、但存储管理员可以使用 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-disaster-recovery-concept.html["ONTAP SnapMirror复制和恢复"^] 以复制Asta Trdent创建的卷。
+
+然后、您可以使用将恢复的卷导入到Astra Trident中 link:trident-use/vol-import.adoc["tridentctrd卷导入"]。
+
+
+NOTE: 不支持导入 `ontap-nas-economy`，  `ontap-san-economy`或 `ontap-flexgroup-economy` 驱动程序。
+
+
+
+== Snapshot数据保护
+
+您可以使用以下方式保护和还原数据：
+
+* 外部快照控制器和CRD、用于为永久性卷(PVs)创建Kubbernetes卷快照。
 +
-[listing]
-----
-etcdctl snapshot restore '/backup/etcd-snapshot-latest.db' ; mv /default.etcd/member/ /var/lib/etcd/
-----
-. 在初始化 Kubernetes 集群之前，请复制所有必要的证书。
-. 使用 `` -ignore-prefly-errors=DirAvailable-var-lib-etcd`` 标志创建集群。
-. 集群启动后，请确保 Kube-system Pod 已启动。
-. 使用 `kubectl get crd` 命令验证 Trident 创建的自定义资源是否存在，并检索 Trident 对象以确保所有数据均可用。
+link:trident-use/vol-snapshots.adoc["卷快照"]
+
+* ONTAP快照、用于还原卷的全部内容或恢复单个文件或LUN。
++
+link:https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["ONTAP快照"^]
 
 
 
 
-== 使用 ONTAP 快照恢复日期
 
-快照通过为应用程序数据提供时间点恢复选项发挥着重要作用。但是，快照本身并不是备份，它们无法防止存储系统故障或其他灾难。但是，在大多数情况下，它们是一种方便，快速和轻松的数据恢复方式。了解如何使用 ONTAP 快照技术为卷创建备份以及如何还原这些备份。
+== Astra Control Center应用程序复制
 
-* 如果未在后端定义 Snapshot 策略，则默认使用 `none` 策略。这会导致 ONTAP 不会自动创建快照。但是，存储管理员可以通过 ONTAP 管理界面手动创建快照或更改快照策略。这不会影响 Trident 操作。
-* 默认情况下， Snapshot 目录处于隐藏状态。这有助于最大程度地兼容使用 `ontap-NAS` 和 `ontap-nas-经济` 驱动程序配置的卷。使用 `ontap-nas` 和 `ontap-nas-economy` 驱动程序时，请启用 ` .snapshot` 目录，以使应用程序能够直接从快照恢复数据。
-* 使用 `volume snapshot restore` ONTAP 命令行界面命令将卷还原到先前快照中记录的状态。还原快照副本时，还原操作会覆盖现有卷配置。创建 Snapshot 副本后对卷中数据所做的任何更改都将丢失。
+使用Astra Control、您可以使用SnapMirror的异步复制功能将数据和应用程序更改从一个集群复制到另一个集群。
 
-
-[listing]
-----
-cluster1::*> volume snapshot restore -vserver vs0 -volume vol3 -snapshot vol3_snap_archive
-----
-
-
-== 使用 ONTAP 复制数据
-
-复制数据在防止存储阵列故障导致的数据丢失方面发挥着重要作用。
-
-
-NOTE: 要了解有关 ONTAP 复制技术的详细信息，请参见 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/GUID-A9A2F347-3E05-4F80-9E9C-CEF8F0A2F8E1.html["ONTAP 文档"^]。
-
-
-
-=== SnapMirror Storage Virtual Machine （ SVM ）复制
-
-您可以使用 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/GUID-8B187484-883D-4BB4-A1BC-35AC278BF4DC.html["SnapMirror"^] 复制完整的 SVM ，其中包括其配置设置及其卷。发生灾难时，您可以激活 SnapMirror 目标 SVM 以开始提供数据。系统还原后，您可以切换回主系统。
-
-Astra Trident 无法自行配置复制关系，因此存储管理员可以使用 ONTAP 的 SnapMirror SVM 复制功能将卷自动复制到灾难恢复（ Disaster Recovery ， DR ）目标。
-
-如果您计划使用 SnapMirror SVM 复制功能或当前正在使用此功能，请考虑以下事项：
-
-* 您应为每个 SVM 创建一个单独的后端，此后端已启用 SVM-DR 。
-* 您应配置存储类，以便在需要时不选择复制的后端。这一点对于避免将不需要复制关系保护的卷配置到支持 SVM-DR 的后端非常重要。
-* 应用程序管理员应了解与复制数据相关的额外成本和复杂性，在利用数据复制之前，应确定恢复计划。
-* 在激活 SnapMirror 目标 SVM 之前，请停止所有计划的 SnapMirror 传输，中止所有正在进行的 SnapMirror 传输，中断复制关系，停止源 SVM ，然后启动 SnapMirror 目标 SVM 。
-* Astra Trident 不会自动检测 SVM 故障。因此，发生故障时，管理员应运行 `tridentctl backend update` 命令以触发 Trident 向新后端的故障转移。
-
-
-下面简要介绍了 SVM 设置步骤：
-
-* 在源和目标集群以及 SVM 之间设置对等关系。
-* 使用 ` 子类型 dp-destination` 选项创建目标 SVM 。
-* 创建复制作业计划以确保按所需时间间隔进行复制。
-* 使用 ` -identity-preserve true` 选项创建从目标 SVM 到源 SVM 的 SnapMirror 复制，以确保将源 SVM 配置和源 SVM 接口复制到目标。从目标 SVM 初始化 SnapMirror SVM 复制关系。
-
-
-image::SVMDR1.PNG[显示了设置 SVM 所涉及的步骤。]
-
-
-
-==== Trident 的灾难恢复工作流
-
-Astra Trident 19.07 及更高版本使用 Kubernetes CRD 存储和管理其自身状态。它使用 Kubernetes 集群的 `etcd` 存储其元数据。此处我们假定 Kubernetes `etcd` 数据文件和证书存储在 NetApp FlexVolume 上。此 FlexVolume 驻留在 SVM 中， SVM 与二级站点的目标 SVM 具有 SnapMirror SVM-DR 关系。
-
-以下步骤介绍如何在发生灾难时使用 Astra Trident 恢复单个主 Kubernetes 集群：
-
-. 如果源 SVM 发生故障，请激活 SnapMirror 目标 SVM 。为此，您应停止计划的 SnapMirror 传输，中止正在进行的 SnapMirror 传输，中断复制关系，停止源 SVM 并启动目标 SVM 。
-. 从目标 SVM 中，将包含 Kubernetes `etcd` 数据文件和证书的卷挂载到要设置为主节点的主机上。
-. 将与 Kubernetes 集群相关的所有必需证书复制到 ` /etc/Kubernetes /PKI` 下，并将 etcd `mMember` files 复制到 ` /var/lib/etcd` 下。
-. 使用 `kubeadm init` 命令和 ` -ignore-prefly-errors=DirAvailable-var-lib/etcd` 标志创建 Kubernetes 集群。Kubernetes 节点使用的主机名应与源 Kubernetes 集群相同。
-. 运行 `kubectl get crd` 命令验证所有 Trident 自定义资源是否均已启动并检索 Trident 对象以验证所有数据是否可用。
-. 运行 ` ./tridentctl update backend <backend-name> -f <backend-json-file> -n <namespace>` 命令，更新所有必需的后端以反映新的目标 SVM 名称。
-
-
-
-NOTE: 对于应用程序永久性卷，激活目标 SVM 后，由 Trident 配置的所有卷将开始提供数据。按照上述步骤在目标端设置 Kubernetes 集群后，所有部署和 Pod 均会启动，容器化应用程序应正常运行。
-
-
-
-=== SnapMirror 卷复制
-
-ONTAP SnapMirror 卷复制是一项灾难恢复功能，可用于在卷级别从主存储故障转移到目标存储。SnapMirror 通过同步快照在二级存储上创建主存储的卷副本或镜像。
-
-下面简要介绍了 ONTAP SnapMirror 卷复制设置步骤：
-
-* 在卷所在的集群与从卷提供数据的 SVM 之间设置对等关系。
-* 创建一个 SnapMirror 策略，用于控制关系的行为并指定该关系的配置属性。
-* 使用在目标卷和源卷之间创建 SnapMirror 关系 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr-970/snapmirror__create.html["d9934e78a9254dde4a227181c30fa2d2"^] 并分配相应的 SnapMirror 策略。
-* 创建 SnapMirror 关系后，初始化此关系，以便完成从源卷到目标卷的基线传输。
-
-
-image::SM1.PNG[显示了 SnapMirror 卷复制设置。]
-
-
-
-==== Trident 的 SnapMirror 卷灾难恢复工作流
-
-以下步骤介绍如何使用 Astra Trident 恢复单个主 Kubernetes 集群。
-
-. 发生灾难时，停止所有计划的 SnapMirror 传输并中止所有正在进行的 SnapMirror 传输。中断目标卷和源卷之间的复制关系，使目标卷变为读 / 写卷。
-. 从目标 SVM 中，将包含 Kubernetes `etcd` 数据文件和证书的卷挂载到将设置为主节点的主机上。
-. 将与 Kubernetes 集群相关的所有必需证书复制到 ` /etc/Kubernetes /PKI` 下，并将 etcd `mMember` files 复制到 ` /var/lib/etcd` 下。
-. 通过运行 `kubeadm init` 命令和 ` -ignore-prefly-errors=DirAvailable-var-lib/etcd` 标志来创建 Kubernetes 集群。主机名应与源 Kubernetes 集群相同。
-. 运行 `kubectl get crd` 命令以验证所有 Trident 自定义资源是否均已启动并检索 Trident 对象，以确保所有数据均可用。
-. 清理先前的后端并在 Trident 上创建新的后端。指定目标SVM的新管理LIF、新SVM名称和密码。
-
-
-
-
-==== 应用程序永久性卷的灾难恢复工作流
-
-以下步骤介绍了在发生灾难时如何为容器化工作负载提供 SnapMirror 目标卷：
-
-. 停止所有计划的 SnapMirror 传输并中止所有正在进行的 SnapMirror 传输。中断目标卷和源卷之间的复制关系，使目标卷变为读 / 写卷。清理使用与源 SVM 上的卷绑定的 PVC 的部署。
-. 按照上述步骤在目标端设置 Kubernetes 集群后，请从 Kubernetes 集群中清理部署， PVC 和 PV 。
-. 通过指定目标 SVM 的新管理和数据 LIF ，新 SVM 名称和密码，在 Trident 上创建新的后端。
-. 使用 Trident 导入功能将所需卷作为 PV 导入，并绑定到新 PVC 。
-. 使用新创建的 PVC 重新部署应用程序部署。
-
-
-
-
-== 使用 Element 快照恢复数据
-
-通过为 Element 卷设置快照计划并确保按所需间隔创建快照来备份此卷上的数据。您应使用 Element UI 或 API 设置快照计划。目前，无法通过 `solidfire-san` 驱动程序为卷设置快照计划。
-
-如果发生数据损坏，您可以使用 Element UI 或 API 选择特定快照并手动将卷回滚到快照。此操作将还原自创建快照以来对卷所做的任何更改。
+link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html["Astra Control：使用SnapMirror技术将应用程序复制到远程系统"^]

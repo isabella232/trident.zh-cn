@@ -162,6 +162,21 @@ NOTE: 如有必要、打开 `deploy/kubernetes/snapshot-controller/rbac-snapshot
 
 
 
+== 使用快照恢复卷数据
+
+默认情况下、快照目录处于隐藏状态、以便最大程度地提高使用配置的卷的兼容性 `ontap-nas` 和 `ontap-nas-economy` 驱动程序。启用 `.snapshot` 目录以直接从快照恢复数据。
+
+使用volume Snapshot restore ONTAP命令行界面将卷还原到先前快照中记录的状态。
+
+[listing]
+----
+cluster1::*> volume snapshot restore -vserver vs0 -volume vol3 -snapshot vol3_snap_archive
+----
+
+NOTE: 还原Snapshot副本时、现有卷配置将被覆盖。创建Snapshot副本后对卷数据所做的更改将丢失。
+
+
+
 == 相关链接
 
 * link:../trident-concepts/snapshots.html["卷快照"]

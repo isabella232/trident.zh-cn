@@ -8,7 +8,7 @@ entries:
   url: "/trident-reco/storage-config-best-practices.html"
 - title: Astra Trident 集成
   url: "/trident-reco/integrate-trident.html"
-- title: 数据保护
+- title: 数据保护和灾难恢复
   url: "/trident-reco/backup.html"
 - title: 安全性
   entries:

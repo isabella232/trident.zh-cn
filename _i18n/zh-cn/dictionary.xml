@@ -653,76 +653,7 @@
   <block id="3e75d51468f5a99fdb50b75dafea32e8" category="paragraph">使用在主机 / 清单文件中定义的适当 Ansible 变量，使用 Ansible 部署服务。如果您在 OpenShift 安装时进行部署，则系统将自动创建和使用 PV 。如果您使用组件攻略手册进行部署，则在 OpenShift 安装之后， Ansible 将创建所需的任何 PVC ，并在 Astra Trident 为其配置存储后部署该服务。</block>
   <block id="bf1cadd7aa4e541e255df26af5451d85" category="inline-link-macro">RedHat 的 OpenShift 部署指南</block>
   <block id="eb502d6483a644e9b6f61ca4719276d8" category="paragraph">上述变量以及部署过程可能会随 OpenShift 的每个版本而发生变化。确保您查看并遵循 <block ref="5ad72ffc1eda2c257c8947a0ad66dddb" category="inline-link-macro-rx"></block> 为您的版本配置，以便为您的环境进行配置。</block>
-  <block id="d03f8f06d8317baa619ceba8c71e0be3" category="summary">了解 NetApp 存储平台提供的数据保护和可恢复性选项。Astra Trident 可以配置可利用其中某些功能的卷。对于具有持久性要求的每个应用程序，您都应制定完整的数据保护和恢复策略。</block>
-  <block id="7e7397a7b79323762c61941fc0e6b5f9" category="doc">数据保护</block>
-  <block id="26beed33bbef26c53a76c2b450d8092c" category="paragraph">Astra Trident 会将其元数据存储在 Kubernetes 集群的 `etcd` 数据库中。定期备份 `etcd` 集群数据对于在发生灾难时恢复 Kubernetes 集群非常重要。</block>
   <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">步骤</block>
-  <block id="6b8252dd799aef1e72351975d4d39231" category="list-text">使用 `etcdctl snapshot save` 命令可以为 `etcd` 集群创建时间点快照：</block>
-  <block id="54466a78f910aa9c206047e0a2afdae1" category="paragraph">此命令通过旋转 etcd 容器来创建 etcd 快照，并将其保存在 ` /backup` 目录中。</block>
-  <block id="1475db623f0eaa95e737c3463bae738f" category="list-text">发生灾难时，您可以使用 etcd 快照启动 Kubernetes 集群。使用 `etcdctl snapshot restore` 命令还原为 ` /var/lib/etcd` 文件夹创建的特定快照。还原后，确认 ` /var/lib/etcd` 文件夹是否已填充 `mMember` 文件夹。以下是 `etcdctl snapshot restore` 命令的示例：</block>
-  <block id="79ddedac8d398dd5b0c07d4319dcc009" category="list-text">在初始化 Kubernetes 集群之前，请复制所有必要的证书。</block>
-  <block id="bdad273c35514cf4ff054dc686b32002" category="list-text">使用 `` -ignore-prefly-errors=DirAvailable-var-lib-etcd`` 标志创建集群。</block>
-  <block id="6305ecb03aa7de9ef25f8415e859ea4b" category="list-text">集群启动后，请确保 Kube-system Pod 已启动。</block>
-  <block id="8c416419987890cfcc65ea9e92da3cfa" category="list-text">使用 `kubectl get crd` 命令验证 Trident 创建的自定义资源是否存在，并检索 Trident 对象以确保所有数据均可用。</block>
-  <block id="e5356885fecc2a90a54498a26b14b810" category="section-title">使用 ONTAP 快照恢复日期</block>
-  <block id="c311aef86a7cd24a1d8755988091889b" category="paragraph">快照通过为应用程序数据提供时间点恢复选项发挥着重要作用。但是，快照本身并不是备份，它们无法防止存储系统故障或其他灾难。但是，在大多数情况下，它们是一种方便，快速和轻松的数据恢复方式。了解如何使用 ONTAP 快照技术为卷创建备份以及如何还原这些备份。</block>
-  <block id="f0587fe4869074d7cfefe4e8bf02eaeb" category="list-text">如果未在后端定义 Snapshot 策略，则默认使用 `none` 策略。这会导致 ONTAP 不会自动创建快照。但是，存储管理员可以通过 ONTAP 管理界面手动创建快照或更改快照策略。这不会影响 Trident 操作。</block>
-  <block id="a5198a3ff669782d450e222946ec0482" category="list-text">默认情况下， Snapshot 目录处于隐藏状态。这有助于最大程度地兼容使用 `ontap-NAS` 和 `ontap-nas-经济` 驱动程序配置的卷。使用 `ontap-nas` 和 `ontap-nas-economy` 驱动程序时，请启用 ` .snapshot` 目录，以使应用程序能够直接从快照恢复数据。</block>
-  <block id="d34d16e8f00776a7cc63851ebd4e9395" category="list-text">使用 `volume snapshot restore` ONTAP 命令行界面命令将卷还原到先前快照中记录的状态。还原快照副本时，还原操作会覆盖现有卷配置。创建 Snapshot 副本后对卷中数据所做的任何更改都将丢失。</block>
-  <block id="3225a41cc13787a78ef89153b870bffe" category="section-title">使用 ONTAP 复制数据</block>
-  <block id="5bec6ef5bd67015d1da2f04dc2a24b80" category="paragraph">复制数据在防止存储阵列故障导致的数据丢失方面发挥着重要作用。</block>
-  <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link">ONTAP 文档</block>
-  <block id="40491088e02d790071b9ddbc3f95f983" category="admonition">要了解有关 ONTAP 复制技术的详细信息，请参见<block ref="dd7cb2553dd5eb568b9a23ce332fc9a4" category="inline-link-rx"></block>。</block>
-  <block id="541959f741a3180066a37aee2adf7d01" category="section-title">SnapMirror Storage Virtual Machine （ SVM ）复制</block>
-  <block id="794cb725c5631ad99b5b7c000307f0df" category="inline-link">SnapMirror</block>
-  <block id="15bf9c06ed0c503c4ee904bf4b3a85a9" category="paragraph">您可以使用<block ref="a2a4907c93db22784422a1bc7047ac73" category="inline-link-rx"></block> 复制完整的 SVM ，其中包括其配置设置及其卷。发生灾难时，您可以激活 SnapMirror 目标 SVM 以开始提供数据。系统还原后，您可以切换回主系统。</block>
-  <block id="8657190fa7a98fbc200c5c90a08cac65" category="paragraph">Astra Trident 无法自行配置复制关系，因此存储管理员可以使用 ONTAP 的 SnapMirror SVM 复制功能将卷自动复制到灾难恢复（ Disaster Recovery ， DR ）目标。</block>
-  <block id="bdb161b363522f5fc614f70c10792020" category="paragraph">如果您计划使用 SnapMirror SVM 复制功能或当前正在使用此功能，请考虑以下事项：</block>
-  <block id="34fb9af35ab36a2cead16ad98b140441" category="list-text">您应为每个 SVM 创建一个单独的后端，此后端已启用 SVM-DR 。</block>
-  <block id="1c0b44a5294fd1ebbc8e78476cf29358" category="list-text">您应配置存储类，以便在需要时不选择复制的后端。这一点对于避免将不需要复制关系保护的卷配置到支持 SVM-DR 的后端非常重要。</block>
-  <block id="21f180602301e7ac5b6cce6b6b7399e9" category="list-text">应用程序管理员应了解与复制数据相关的额外成本和复杂性，在利用数据复制之前，应确定恢复计划。</block>
-  <block id="59b50d3d22a40bf39d0e648e2d49092c" category="list-text">在激活 SnapMirror 目标 SVM 之前，请停止所有计划的 SnapMirror 传输，中止所有正在进行的 SnapMirror 传输，中断复制关系，停止源 SVM ，然后启动 SnapMirror 目标 SVM 。</block>
-  <block id="7cf7bfd0b57a375894c362efd521d4a6" category="list-text">Astra Trident 不会自动检测 SVM 故障。因此，发生故障时，管理员应运行 `tridentctl backend update` 命令以触发 Trident 向新后端的故障转移。</block>
-  <block id="1904adbabdda29d7a5ab43352f36c6ed" category="paragraph">下面简要介绍了 SVM 设置步骤：</block>
-  <block id="3c2f5fc4909af1c1359e564eb6db48b0" category="list-text">在源和目标集群以及 SVM 之间设置对等关系。</block>
-  <block id="3b1329fc73441b5a106271d6f3497f1e" category="list-text">使用 ` 子类型 dp-destination` 选项创建目标 SVM 。</block>
-  <block id="2ce677015d60734da686668ee7962dd0" category="list-text">创建复制作业计划以确保按所需时间间隔进行复制。</block>
-  <block id="e9eeea68d62192550b641463a212f6f7" category="list-text">使用 ` -identity-preserve true` 选项创建从目标 SVM 到源 SVM 的 SnapMirror 复制，以确保将源 SVM 配置和源 SVM 接口复制到目标。从目标 SVM 初始化 SnapMirror SVM 复制关系。</block>
-  <block id="fb45980442af5aaba98c4d47ae4d3bfd" category="image-alt">显示了设置 SVM 所涉及的步骤。</block>
-  <block id="1e4e7c145198bb50a238b75b451a761f" category="section-title">Trident 的灾难恢复工作流</block>
-  <block id="b955e2b8063ba57e27a4ab2b5317f40c" category="paragraph">Astra Trident 19.07 及更高版本使用 Kubernetes CRD 存储和管理其自身状态。它使用 Kubernetes 集群的 `etcd` 存储其元数据。此处我们假定 Kubernetes `etcd` 数据文件和证书存储在 NetApp FlexVolume 上。此 FlexVolume 驻留在 SVM 中， SVM 与二级站点的目标 SVM 具有 SnapMirror SVM-DR 关系。</block>
-  <block id="cc457da166ae89d5689724340cb13732" category="paragraph">以下步骤介绍如何在发生灾难时使用 Astra Trident 恢复单个主 Kubernetes 集群：</block>
-  <block id="53ac5e7226086e14e63a8c160480dc72" category="list-text">如果源 SVM 发生故障，请激活 SnapMirror 目标 SVM 。为此，您应停止计划的 SnapMirror 传输，中止正在进行的 SnapMirror 传输，中断复制关系，停止源 SVM 并启动目标 SVM 。</block>
-  <block id="2e22b90c5468159621965197ed565e28" category="list-text">从目标 SVM 中，将包含 Kubernetes `etcd` 数据文件和证书的卷挂载到要设置为主节点的主机上。</block>
-  <block id="40d502a83976e38daa5473f7aa22abae" category="list-text">将与 Kubernetes 集群相关的所有必需证书复制到 ` /etc/Kubernetes /PKI` 下，并将 etcd `mMember` files 复制到 ` /var/lib/etcd` 下。</block>
-  <block id="ca8fc386b365ae9b5a3b4bbadae7d7f3" category="list-text">使用 `kubeadm init` 命令和 ` -ignore-prefly-errors=DirAvailable-var-lib/etcd` 标志创建 Kubernetes 集群。Kubernetes 节点使用的主机名应与源 Kubernetes 集群相同。</block>
-  <block id="e0e99766128c0aba0f0aa6c04f32348c" category="list-text">运行 `kubectl get crd` 命令验证所有 Trident 自定义资源是否均已启动并检索 Trident 对象以验证所有数据是否可用。</block>
-  <block id="5a869093fda46649157b8eb12219a2f2" category="list-text">运行 ` ./tridentctl update backend &lt;backend-name&gt; -f &lt;backend-json-file&gt; -n &lt;namespace&gt;` 命令，更新所有必需的后端以反映新的目标 SVM 名称。</block>
-  <block id="dbd1e2ae426afc58b4818d42ea354b74" category="admonition">对于应用程序永久性卷，激活目标 SVM 后，由 Trident 配置的所有卷将开始提供数据。按照上述步骤在目标端设置 Kubernetes 集群后，所有部署和 Pod 均会启动，容器化应用程序应正常运行。</block>
-  <block id="d384359ca03c8d46191c719c57744679" category="section-title">SnapMirror 卷复制</block>
-  <block id="118fa9a7e0f8d0db1e27394b81880427" category="paragraph">ONTAP SnapMirror 卷复制是一项灾难恢复功能，可用于在卷级别从主存储故障转移到目标存储。SnapMirror 通过同步快照在二级存储上创建主存储的卷副本或镜像。</block>
-  <block id="19f60a36276037e5b82b5096d2ba7a5c" category="paragraph">下面简要介绍了 ONTAP SnapMirror 卷复制设置步骤：</block>
-  <block id="c4e9d0a10c58301ad78e9e9bf74f9229" category="list-text">在卷所在的集群与从卷提供数据的 SVM 之间设置对等关系。</block>
-  <block id="b1c132fa6284fd6d42f93781032cd962" category="list-text">创建一个 SnapMirror 策略，用于控制关系的行为并指定该关系的配置属性。</block>
-  <block id="0a30bcd5b223c18be449821765a8ec07" category="list-text">使用在目标卷和源卷之间创建 SnapMirror 关系<block ref="bfbfdbcdb00ddafcc3e3ca740d1d316b" category="inline-link-rx"></block> 并分配相应的 SnapMirror 策略。</block>
-  <block id="20872623d19783e0dbe00afcdcb9ba46" category="list-text">创建 SnapMirror 关系后，初始化此关系，以便完成从源卷到目标卷的基线传输。</block>
-  <block id="af1fe101ed84f2b2bc465f0a9e92a35f" category="image-alt">显示了 SnapMirror 卷复制设置。</block>
-  <block id="1d3ec4cce0f34c07e814ebbd88f5edd8" category="section-title">Trident 的 SnapMirror 卷灾难恢复工作流</block>
-  <block id="83e05258883cd6b92e2fe5b113f1ebc6" category="paragraph">以下步骤介绍如何使用 Astra Trident 恢复单个主 Kubernetes 集群。</block>
-  <block id="b950aff3484c4c998d3b7a36ff1d6553" category="list-text">发生灾难时，停止所有计划的 SnapMirror 传输并中止所有正在进行的 SnapMirror 传输。中断目标卷和源卷之间的复制关系，使目标卷变为读 / 写卷。</block>
-  <block id="521637d2f234b6223688c168d29f6b72" category="list-text">从目标 SVM 中，将包含 Kubernetes `etcd` 数据文件和证书的卷挂载到将设置为主节点的主机上。</block>
-  <block id="d911c905c09c9615d35c97f404dd2884" category="list-text">通过运行 `kubeadm init` 命令和 ` -ignore-prefly-errors=DirAvailable-var-lib/etcd` 标志来创建 Kubernetes 集群。主机名应与源 Kubernetes 集群相同。</block>
-  <block id="4b4d4e6a1634d2560e81a9a1821e2818" category="list-text">运行 `kubectl get crd` 命令以验证所有 Trident 自定义资源是否均已启动并检索 Trident 对象，以确保所有数据均可用。</block>
-  <block id="f4a5d35c2f46c3a6ee69fd6aa2d1ed16" category="section-title">应用程序永久性卷的灾难恢复工作流</block>
-  <block id="77983829e737f00a29b43edacbba355e" category="paragraph">以下步骤介绍了在发生灾难时如何为容器化工作负载提供 SnapMirror 目标卷：</block>
-  <block id="aefd7239e178b3ae439ae7004435bd18" category="list-text">停止所有计划的 SnapMirror 传输并中止所有正在进行的 SnapMirror 传输。中断目标卷和源卷之间的复制关系，使目标卷变为读 / 写卷。清理使用与源 SVM 上的卷绑定的 PVC 的部署。</block>
-  <block id="c64f364f814f31948e0882b74d5ddfe1" category="list-text">按照上述步骤在目标端设置 Kubernetes 集群后，请从 Kubernetes 集群中清理部署， PVC 和 PV 。</block>
-  <block id="6973ba748ea89f06ab3640118969d780" category="list-text">通过指定目标 SVM 的新管理和数据 LIF ，新 SVM 名称和密码，在 Trident 上创建新的后端。</block>
-  <block id="1fd415590fff525d8e3562951ed79081" category="list-text">使用 Trident 导入功能将所需卷作为 PV 导入，并绑定到新 PVC 。</block>
-  <block id="99a01026c124f91b08d854efa31d450b" category="list-text">使用新创建的 PVC 重新部署应用程序部署。</block>
-  <block id="7a183359334a99fc80b796244313284c" category="section-title">使用 Element 快照恢复数据</block>
-  <block id="2d51cea50aa816e6be9c663c2ad2686a" category="paragraph">通过为 Element 卷设置快照计划并确保按所需间隔创建快照来备份此卷上的数据。您应使用 Element UI 或 API 设置快照计划。目前，无法通过 `solidfire-san` 驱动程序为卷设置快照计划。</block>
-  <block id="c42cc84c1560600f6f5986a958de0735" category="paragraph">如果发生数据损坏，您可以使用 Element UI 或 API 选择特定快照并手动将卷回滚到快照。此操作将还原自创建快照以来对卷所做的任何更改。</block>
   <block id="db5eb84117d06047c97c9a0191b5fffe" category="doc">支持</block>
   <block id="14340f3a4eb25a54f8446036d807d7c8" category="paragraph">Astra Trident 是一个官方支持的 NetApp 项目。您可以使用任何标准机制联系 NetApp ，并获得所需的企业级支持。</block>
   <block id="dec54888538ac86f51d29a3d043e6bf6" category="summary">您可以使用操作员轻松升级现有的 Astra Trident 安装。</block>
@@ -2668,7 +2599,6 @@
   <block id="66f2c42a4ca561f5472459301bc7d096" category="list-text">ONTAP 驱动程序的自动MetroCluster 切换检测现已全面推出。</block>
   <block id="e87ded5ef8bc8adbc3c135528636f4f2" category="list-text"><block ref="e87ded5ef8bc8adbc3c135528636f4f2" category="inline-link-macro-rx"></block></block>
   <block id="fce586d9f649fb529d0a1846495ba259" category="list-text"><block ref="fce586d9f649fb529d0a1846495ba259" category="inline-link-macro-rx"></block></block>
-  <block id="d85acedd7a50ec026ef39bce58a2c4fc" category="paragraph">了解NetApp存储平台提供的数据保护和可恢复性选项。Astra Trident 可以配置可利用其中某些功能的卷。对于具有持久性要求的每个应用程序，您都应制定一个数据保护和恢复策略。</block>
   <block id="ecd7650a65b79124ad23fb7eed8faa7e" category="paragraph">NetApp产品组合中的每个存储平台都具有独特的功能、无论应用程序是容器化还是非容器化、都能从中受益。</block>
   <block id="e6dc22cf3c59dda6e09524b2b133f336" category="section-title">平台概述</block>
   <block id="050fb8b0306d7532dbf8c15b8cba9745" category="paragraph">Trident 可与 ONTAP 和 Element 结合使用。没有一个平台比另一个平台更适合所有应用程序和场景，但是，在选择平台时，应考虑应用程序和设备管理团队的需求。</block>
@@ -2753,7 +2683,6 @@
   <block id="454631312fab234fc91bb2f85a751fac" category="section-title"><block ref="913a4b06671d1e04e6582a85afe3abbe" prefix="" category="inline-code"></block></block>
   <block id="e892fda55ead7e15eed753e850d35f12" category="section-title">第2步：创建<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR</block>
   <block id="a0d777cf1acc36406564409adef85b17" category="section-title">支持的版本是什么<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block>？</block>
-  <block id="96bcb2f9805dd9a55f15f122db8c9e7b" category="section-title">备份<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block> 集群数据</block>
   <block id="74257eabdceb63f8522f7c68b103da3a" category="section-title">禁用<block ref="d51321f13693d09d4a9cbb2758b42d12" prefix=" " category="inline-code"></block> 用于应用程序SVM</block>
   <block id="e49cf31f5ed35f0eb694c7714e8c3234" category="section-title"><block ref="76ea0bebb3c22822b4f0dd9c9fd021c5" prefix="" category="inline-code"></block></block>
   <block id="3649b15e31d22a1e2210f014d843b9fa" category="section-title"><block ref="099af53f601532dbd31e0ea99ffdeb64" prefix="" category="inline-code"></block></block>
@@ -3117,7 +3046,6 @@
   <block id="1282398415278cc77bc47970640d4188" category="list-text">启用<block ref="b0e105de2a2f0820528649fee8d2e331" prefix=" " category="inline-code"></block> 功能门(测试版1.25以上)。请参见 <block ref="35e3bd84b2522e04fd4ead86130c9227" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="e4de718025be845e2dec22064bb4eece" category="list-text">添加<block ref="91985ce21cd787a6ab2a13cc97f58968" prefix=" " category="inline-code"></block> 和<block ref="641c8d6753dd78e60ebb61a20e6a2742" prefix=" " category="inline-code"></block> StorageClass参数。例如：</block>
   <block id="e718558948d1441cf3873df6fb7b10c3" category="paragraph">启动联机存储扩展时、kubelet会将相应的凭据传递给驱动程序。</block>
-  <block id="a0070e4b4fc7fef456d0f1d1f6cec158" category="list-text">清理先前的后端并在 Trident 上创建新的后端。指定目标SVM的新管理LIF、新SVM名称和密码。</block>
   <block id="8a6112da5167fe6f44136715f1d86c36" category="paragraph">对于具有专用基础架构节点(例如OpenShift)或其他无法计划用户应用程序的节点的部署、应使用单独的导出策略进一步限制对存储资源的访问。其中包括为部署到这些基础架构节点的服务（例如 OpenShift 指标和日志记录服务）以及部署到非基础架构节点的标准应用程序创建导出策略。</block>
   <block id="a330e835c41b0ff1dfc7e483e7e7f70e" category="summary">虚拟池在Astra Trident的存储后端和Kubernetes的StorageClasses之间提供了一个抽象层。管理员可以通过这些协议以一种通用的，与后端无关的方式定义各个方面，例如每个后端的位置，性能和保护，而不会使 StorageClass 指定要用于满足所需条件的物理后端，后端池或后端类型。</block>
   <block id="9f77ac8822dd45ff19910e0170669eb7" category="paragraph">虚拟池在Astra Trident存储后端和Kubernetes之间提供了一个抽象层<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block>。管理员可以通过这些协议以一种通用的、与后端无关的方式定义各个方面、例如每个后端的位置、性能和保护、而无需创建<block ref="e1e2a331ab1d8dccfea06fc8e04e2f5d" prefix=" " category="inline-code"></block> 指定要用于满足所需条件的物理后端、后端池或后端类型。</block>
@@ -3655,4 +3583,68 @@
   <block id="ffd4000c9e43a23d97e231d47f99dcd4" category="list-text">您可以运行多个驱动程序，并创建指向其中一个驱动程序的存储类。例如、您可以配置一个使用的黄金类<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序和使用的铜牌类<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 一个。</block>
   <block id="a571dbb3887a364b4b4dcb82a5fa6ec9" category="list-text">创建快照控制器。</block>
   <block id="ae3ba2e438847d5fb2abc16b3c73ccab" category="admonition">如有必要、打开<block ref="31a2c725707ce238c3eb4dd82c7e3af9" prefix=" " category="inline-code"></block> 并更新<block ref="89801e9e98979062e84647433a8ed3e9" prefix=" " category="inline-code"></block> 命名空间。</block>
+  <block id="c48edc45b9266a1f0d1869ac35615605" category="section-title">使用快照恢复卷数据</block>
+  <block id="4714f3cf4c41291cc2dae88a7150cbe5" category="paragraph">默认情况下、快照目录处于隐藏状态、以便最大程度地提高使用配置的卷的兼容性<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 和<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 驱动程序。启用<block ref="a15da8cecb1f1192c4d913b8ba676121" prefix=" " category="inline-code"></block> 目录以直接从快照恢复数据。</block>
+  <block id="8f580d002ee0bbc67930846839d50dbe" category="paragraph">使用volume Snapshot restore ONTAP命令行界面将卷还原到先前快照中记录的状态。</block>
+  <block id="f84dc17e0595ca9097097e70b9b927e1" category="admonition">还原Snapshot副本时、现有卷配置将被覆盖。创建Snapshot副本后对卷数据所做的更改将丢失。</block>
+  <block id="389fca3b29dd7808b825fbd953242ed9" category="summary">了解Asta三元数据以及使用Asta三元数据创建的卷的保护和恢复选项。对于具有持久性要求的每个应用程序，您都应制定一个数据保护和恢复策略。</block>
+  <block id="03c39d763ca15978d9ef16c2ba5fe98a" category="doc">数据保护和灾难恢复</block>
+  <block id="e3d45c3e9eb2d2949067a0aa7b61e476" category="section-title">Astra三元数据复制和恢复</block>
+  <block id="44f293896af5541a26ccc287fc71266b" category="paragraph">您可以创建备份、以便在发生灾难时还原Asta三端存储。</block>
+  <block id="9b35fe66a1b68aa00dbffd236d3fe856" category="section-title">Astra三项技术复制</block>
+  <block id="65808079dd14440eb9053549bdf96b26" category="paragraph">Astra Tandent使用Kubnetes CRD存储和管理自己的状态、并使用Kubnetes集群etcd存储其元数据。</block>
+  <block id="082510018437a15b6d42065dfe5a5384" category="inline-link-macro">Kubenetes：备份etcd集群</block>
+  <block id="ec3558916e2679d1a4b592e0ade35471" category="list-text">使用备份Kubenetes集群etcd  <block ref="901b02918d705c0966dae4033c132965" category="inline-link-macro-rx"></block>。</block>
+  <block id="47eab96eced19efdca77f2407d8e44aa" category="list-text">将备份项目放在FlexVol上。</block>
+  <block id="798d6cc5f40dde831172bf108a793297" category="admonition">建议您保护FlexVol所在的SVM、并将其与另一个SVM建立SnapMirror关系。</block>
+  <block id="49319f2bf766b5cf558ec82dd35f5a46" category="section-title">Asta三元组恢复</block>
+  <block id="6275e3378f7bc1d5792a600e82c7aa6c" category="paragraph">您可以使用Kubenetes CRD和Kubenetes集群etcd快照来恢复Astra Trident。</block>
+  <block id="b30057689f3e745e5feeb142585ff30b" category="list-text">从目标SVM中、将包含Kubnetes etcd数据文件和证书的卷挂载到将设置为主节点的主机上。</block>
+  <block id="5fefcae3a4602913a273a904829295ce" category="list-text">在下复制与Kubirnetes集群相关的所有必需证书<block ref="890b0e4d98741eac800c616b757217cb" prefix=" " category="inline-code"></block> 和下的etcd成员文件<block ref="3fa01691da932f6c45bf424027ffabb8" prefix=" " category="inline-code"></block>。</block>
+  <block id="51fa31507539ecf10c55d8cc513269d0" category="inline-link-macro">Kubornetes：还原etcd集群</block>
+  <block id="3167e8459c0d46545dc7978a60ef4978" category="list-text">使用从etcd备份还原Kubenetes集群 <block ref="c87a91d2cf6358248ae560cfa802edf4" category="inline-link-macro-rx"></block>。</block>
+  <block id="54d0429fea223af0d32d9f061ed733c9" category="list-text">运行<block ref="1ec8e1992e296a9bdb691f1931d391fe" prefix=" " category="inline-code"></block> 验证所有的三端测试自定义资源是否已启动、并检索三端测试对象以验证所有数据是否可用。</block>
+  <block id="c87c1a25aa5e2ef1af216bc50d1fd391" category="section-title">SVM复制和恢复</block>
+  <block id="0d3b37ff5855bf299f3c4a154373c1e2" category="inline-link">ONTAP SnapMirror</block>
+  <block id="968aa074079a26dbcd09cc3312c6e0d8" category="paragraph">Asta三端存储无法配置复制关系、但存储管理员可以使用<block ref="eae3571c3bcc896c3c2934b9eeb2171a" category="inline-link-rx"></block> 复制SVM。</block>
+  <block id="9299ebdcbaefed4a9ea27b355bb0f75e" category="paragraph">发生灾难时，您可以激活 SnapMirror 目标 SVM 以开始提供数据。系统还原后、您可以切换回主系统。</block>
+  <block id="1de93d4bf941bc79aec631023559b9e7" category="paragraph">使用SnapMirror SVM复制功能时、请考虑以下事项：</block>
+  <block id="1868906f3a3fbcf756260737545805d6" category="list-text">您应为启用了SVM-DR的每个SVM创建一个不同的后端。</block>
+  <block id="f9f808f1692cabf1bf803e07da9adbe7" category="list-text">将存储类配置为仅在需要时选择复制的后端、以避免将不需要复制的卷配置到支持SVM-DR的后端。</block>
+  <block id="6fa2f5991a9e2ee7d4668899f94e78e4" category="list-text">应用程序管理员应了解与复制相关的额外成本和复杂性、并在开始此过程之前仔细考虑其恢复计划。</block>
+  <block id="2b5ffe73affd6d09b3b5e160e117e5c9" category="section-title">SVM复制</block>
+  <block id="9f4b9999b69320b559438c600d724ff9" category="inline-link-macro">ONTAP：SnapMirror SVM复制</block>
+  <block id="d628a099db3505c9d0435e12076d8a61" category="paragraph">您可以使用 <block ref="89150b9d328c8330200fceb39b37760e" category="inline-link-macro-rx"></block> 以创建SVM复制关系。</block>
+  <block id="b9f28001ddc636f8628bd929334b258e" category="paragraph">使用SnapMirror、您可以设置选项来控制要复制的内容。您需要知道在预成形时选择了哪些选项 <block ref="885698069be8fdb81e43cb59c9632744" category="inline-xref-macro-rx"></block>。</block>
+  <block id="524218dc9ff1ef52c9a0404971525b21" category="inline-link-macro">-Identity保留true</block>
+  <block id="8dc4e22513bbb97acc41295bfe46d5fe" category="list-text"><block ref="c758ffe020dc40d00c9a9c46ecbdd824" category="inline-link-macro-rx"></block> 复制整个SVM配置。</block>
+  <block id="d18f05a5c35a5a7d999263600f0356bf" category="inline-link-macro">-discard-configs network</block>
+  <block id="97c20c3eb8c7569982dc9f84e7f31ba3" category="list-text"><block ref="afa9da8af32f091c8328b13559d456b1" category="inline-link-macro-rx"></block> 不包括LIP和相关网络设置。</block>
+  <block id="224ea277d21a44b59b0fa43747b4f6a6" category="inline-link-macro">-Identity保留false</block>
+  <block id="471621652d0597dca59f266effb8f90f" category="list-text"><block ref="1faf7e0b3f51b53ae01a4f860a9ed344" category="inline-link-macro-rx"></block> 仅复制卷和安全配置。</block>
+  <block id="e3dcf348731966425abf967f0c0c575d" category="section-title">使用Asta Trdent恢复SVM</block>
+  <block id="58c8a712ac4d3255cd28c6024ad43f71" category="paragraph">Astra Trident 不会自动检测 SVM 故障。如果发生灾难、管理员可以手动启动通过三项功能故障转移到新SVM的操作。</block>
+  <block id="da29de46c3a7d3e66fc701b2781fcbce" category="list-text">取消计划的和正在进行的SnapMirror传输、中断复制关系、停止源SVM、然后激活SnapMirror目标SVM。</block>
+  <block id="98bdea55e26fba2494cc5f163b6f8076" category="list-text">如果指定了<block ref="224ea277d21a44b59b0fa43747b4f6a6" prefix=" " category="inline-code"></block> 或<block ref="e932330dd004e680ebd1a75db84b73ce" prefix=" " category="inline-code"></block> 配置SVM复制时、请更新<block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix=" " category="inline-code"></block> 和<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block> 在三端定义文件中。</block>
+  <block id="6141984e8f91176bd3a76175b02c1a09" category="list-text">确认<block ref="ed66bef2b107983b6e4066fddf8c45c3" prefix=" " category="inline-code"></block> 位于三端定义文件中。无法更改此参数。正在放弃<block ref="ed66bef2b107983b6e4066fddf8c45c3" prefix=" " category="inline-code"></block> 发生原因后端更新是否会失败。</block>
+  <block id="51589b18e320f20306c944a08241dac1" category="list-text">使用以下命令更新所有必需的后端、以反映新的目标SVM名称：</block>
+  <block id="d980e1fdfa951088567e6d057ba7dc9c" category="list-text">如果指定了<block ref="224ea277d21a44b59b0fa43747b4f6a6" prefix=" " category="inline-code"></block> 或<block ref="89680afd09991bc3d4db985c40c861c1" prefix=" " category="inline-code"></block>，则必须退回所有应用程序Pod。</block>
+  <block id="debd7fcd99a55e4ad2700a29cadc6aa3" category="admonition">如果指定了<block ref="524218dc9ff1ef52c9a0404971525b21" prefix=" " category="inline-code"></block>、则A作用 是在激活目标SVM后、A作用 是通过Asta Trident配置的所有卷都会开始提供数据。</block>
+  <block id="cceb49886fed38f241928d51abab95a2" category="section-title">卷复制和恢复</block>
+  <block id="815f28e53ebfb423dfe835a845095bf6" category="inline-link-macro">ONTAP SnapMirror复制和恢复</block>
+  <block id="a5217e87e9aef874c28773b5774ecf37" category="paragraph">Asta三端存储无法配置SnapMirror复制关系、但存储管理员可以使用 <block ref="c3487d6df2463efc752acd6f5cc45a1f" category="inline-link-macro-rx"></block> 以复制Asta Trdent创建的卷。</block>
+  <block id="c3c343b5a84229bd5095fd09f2afc5f5" category="inline-link-macro">tridentctrd卷导入</block>
+  <block id="5b570015a3a6711227cf6a2802ccd0d7" category="paragraph">然后、您可以使用将恢复的卷导入到Astra Trident中 <block ref="d8ad77887a2224df2faf4f1df578e333" category="inline-link-macro-rx"></block>。</block>
+  <block id="d8d9dfeae772da34290b750d0f848a26" category="admonition">不支持导入<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>， <block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block>或<block ref="70d5dbddc55e3700ddbc8d21f0de22a3" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="b489b293d6cbe8b86835d3cac8c315fb" category="section-title">Snapshot数据保护</block>
+  <block id="f332d72a4b78e34e31131f3a98c98053" category="paragraph">您可以使用以下方式保护和还原数据：</block>
+  <block id="97fb495fd3b6672c40bb0092ca102eca" category="list-text">外部快照控制器和CRD、用于为永久性卷(PVs)创建Kubbernetes卷快照。</block>
+  <block id="cb55f92ada2ab9103f2202b5e32b90c2" category="paragraph"><block ref="cb55f92ada2ab9103f2202b5e32b90c2" category="inline-link-macro-rx"></block></block>
+  <block id="83cd672b9742ba621e93a8b69c4ab2d4" category="list-text">ONTAP快照、用于还原卷的全部内容或恢复单个文件或LUN。</block>
+  <block id="ad336d1fccea3e918d07055edac855a3" category="inline-link-macro">ONTAP快照</block>
+  <block id="0cb949d1baa06577db93328185a8f24d" category="paragraph"><block ref="0cb949d1baa06577db93328185a8f24d" category="inline-link-macro-rx"></block></block>
+  <block id="044d1500d5e33461ef3341121d2aebda" category="section-title">Astra Control Center应用程序复制</block>
+  <block id="3ee9187f7387265ff6f477d26adad0f2" category="paragraph">使用Astra Control、您可以使用SnapMirror的异步复制功能将数据和应用程序更改从一个集群复制到另一个集群。</block>
+  <block id="4910c9e59da080576c2dedc885e19ed7" category="inline-link-macro">Astra Control：使用SnapMirror技术将应用程序复制到远程系统</block>
+  <block id="0868eb323c2e097c6c408f7c59642c94" category="paragraph"><block ref="0868eb323c2e097c6c408f7c59642c94" category="inline-link-macro-rx"></block></block>
 </blocks>
