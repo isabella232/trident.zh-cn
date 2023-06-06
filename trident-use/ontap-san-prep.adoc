@@ -51,9 +51,17 @@ Astra Trident 需要 SVM 范围 / 集群范围的管理员的凭据才能与 ONT
 ====
 .YAML
 --
-'''
-版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 SVM：SVM_NFS用户名：vsadmin密码：password
-
+[listing]
+----
+---
+version: 1
+backendName: ExampleBackend
+storageDriverName: ontap-san
+managementLIF: 10.0.0.1
+svm: svm_nfs
+username: vsadmin
+password: password
+----
 --
 .JSON
 --
