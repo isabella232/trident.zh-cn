@@ -1244,45 +1244,8 @@
   <block id="c70f05fed7c73e0be4a0b24c8532a87c" category="paragraph">您可以通过检查 PVC ， PV 和 Astra Trident 卷的大小来验证调整大小是否正常工作：</block>
   <block id="cf13ba16f33b5f6772614929649be6c2" category="summary">您可以使用 `tridentctl import` 将现有存储卷作为 Kubernetes PV 导入。</block>
   <block id="5f48c343984786005c9830d96c6fca87" category="doc">导入卷</block>
-  <block id="3cf3b5626cbcac07ab0c5304e90870e8" category="section-title">支持卷导入的驱动程序</block>
-  <block id="be8c8810fd80d5e84acf47d57d4e0dbc" category="paragraph">下表介绍了支持导入卷的驱动程序及其引入的版本。</block>
-  <block id="b8e7b465df7c5979dc731d06e84ce2cf" category="cell">版本。</block>
-  <block id="b7a56ff81a861dd454ce0ee6725a66c2" category="paragraph">19.04</block>
-  <block id="cb4e2f5c0cf3e43444774c2af2ada914" category="section-title">为什么应导入卷？</block>
-  <block id="b347f0936a6b1f232605f50447a930de" category="paragraph">将卷导入到 Trident 的使用情形有多种：</block>
-  <block id="cbccddedba4ba9a336f83d60dd1454f0" category="list-text">对应用程序进行容器化并重复使用其现有数据集</block>
-  <block id="f0dd3bee13b8c14005d98bfbb9a48bf3" category="list-text">为临时应用程序使用数据集的克隆</block>
-  <block id="97161389816216aabbaffd954ef4a1f4" category="list-text">重建发生故障的 Kubernetes 集群</block>
-  <block id="fd045b8743b2b7018e0480bc9a2dd4c5" category="list-text">在灾难恢复期间迁移应用程序数据</block>
-  <block id="92f0642c89b416c59d914adfb1e33828" category="section-title">导入的工作原理是什么？</block>
-  <block id="902881a0ede032887467576928b25fe0" category="paragraph">卷导入过程使用永久性卷声明（ PVC ）文件创建 PVC 。PVC 文件应至少包含 name ， namespace ， accessModes 和 storageClassName 字段，如以下示例所示。</block>
-  <block id="be25b6ff84fa0d015f05f46bbbb6abd1" category="paragraph">使用 `tridentctl` 客户端导入现有存储卷。Trident 通过保留卷元数据并创建 PVC 和 PV 来导入卷。</block>
-  <block id="bcf64a12adc519c7d409f80e5cccbe24" category="paragraph">要导入存储卷，请指定包含该卷的 Astra Trident 后端的名称以及用于唯一标识存储上的卷的名称（例如： ONTAP FlexVol ， Element Volume ， CVS 卷路径）。存储卷必须允许读 / 写访问，并可由指定的 Astra Trident 后端访问。需要 ` -f` 字符串参数，并指定 YAML 或 JSON PVC 文件的路径。</block>
-  <block id="021814b63472d2b6dab37ce7d62c3ea2" category="paragraph">当 Astra Trident 收到导入卷请求时，系统会在 PVC 中确定并设置现有卷大小。存储驱动程序导入卷后，系统将创建 PV ，并为其创建一个 Claims Ref 。在 PV 中，回收策略最初设置为 `retain` 。Kubernetes 成功绑定 PVC 和 PV 后，将更新回收策略以匹配存储类的回收策略。如果存储类的回收策略为 `delete` ，则在删除 PV 时，存储卷将被删除。</block>
-  <block id="9d0bcc94449080a9fef1873acd638fb3" category="paragraph">使用 ` -no-manage` 参数导入卷时， Trident 不会在对象的生命周期内对 PVC 或 PV 执行任何其他操作。由于 Trident 会忽略 ` -no-manage` 对象的 PV 和 PVC 事件，因此删除 PV 时不会删除存储卷。卷克隆和卷大小调整等其他操作也会被忽略。如果要对容器化工作负载使用 Kubernetes ，但希望在 Kubernetes 外部管理存储卷的生命周期，则此选项非常有用。</block>
   <block id="76057e180d7b3edcebaa935c7ccab687" category="paragraph">PVC 和 PV 中会添加一个标注，用于指示卷已导入以及 PVC 和 PV 是否已管理。不应修改或删除此标注。</block>
-  <block id="b20cebeefba038b396f3fe0494dad01b" category="paragraph">Trident 19.07 及更高版本可处理 PV 的连接，并在导入卷时挂载该卷。对于使用早期版本的 Astra Trident 进行的导入，数据路径中不会执行任何操作，卷导入将不会验证是否可以挂载卷。如果卷导入出错（例如 StorageClass 不正确），您可以通过将 PV 上的回收策略更改为 `retain` ，删除 PVC 和 PV 并重试 volume import 命令来恢复。</block>
   <block id="1b539ba5a07e124e582b2e4bfc489200" category="paragraph">使用 `ontap-nas` 驱动程序创建的每个卷都是 ONTAP 集群上的一个 FlexVol 。使用 `ontap-NAS` 驱动程序导入 FlexVol 的工作原理相同。ONTAP 集群上已存在的 FlexVol 可以导入为 `ONONTAP -NAS` PVC 。同样，可以将 FlexGroup vols 导入为 `ontap-nas-flexgroup` PVC 。</block>
-  <block id="62a991a68d1e323e147c11deeaecdad2" category="admonition">要由 Trident 导入 ONTAP 卷，必须为 rw 类型。如果卷的类型为 DP ，则为 SnapMirror 目标卷；应先中断镜像关系，然后再将卷导入到 Trident 中。</block>
-  <block id="b368a23170f18969c0c51a21bc3e2754" category="admonition">`ontap-NAS` 驱动程序无法导入和管理 qtree 。`ontap-nas` 和 `ontap-nas-flexgroup` 驱动程序不允许使用重复的卷名称。</block>
-  <block id="20a208be23a9e8a96ac28258acb9daa4" category="paragraph">例如，要在名为 `ontap_NAS` 的后端导入名为 `manage_volume` 的卷，请使用以下命令：</block>
-  <block id="deba327c80a83b34abd4ba640b21e454" category="paragraph">要导入名为 `unmanageed_volume` 的卷（位于 `ontap_NAS 后端` 上），而 Trident 不会管理该卷，请使用以下命令：</block>
-  <block id="9be12be7e9d5bb9faa5c9a952feafe07" category="paragraph">使用 ` -no-manage` 参数时， Trident 不会重命名卷或验证卷是否已挂载。如果卷未手动挂载，则卷导入操作将失败。</block>
-  <block id="4004cfbd69335a9d1ba9357ea0dfb079" category="admonition">先前存在的使用自定义 UnixPermissions 导入卷的错误已得到修复。您可以在 PVC 定义或后端配置中指定 unixPermissions ，并指示 Astra Trident 相应地导入卷。</block>
-  <block id="d995f4307341e76349912869caa5e2fb" category="paragraph">Astra Trident 还可以导入包含单个 LUN 的 ONTAP SAN FlexVol 。这与 `ontap-san` 驱动程序一致，该驱动程序会为 FlexVol 中的每个 PVC 和 LUN 创建一个 FlexVol 。您可以像在其他情况下一样使用 `tridentctl import` 命令：</block>
-  <block id="1dd2cc952267be6c2cc8e5cff2b5aab1" category="list-text">请输入 `ontap-san` 后端的名称。</block>
-  <block id="e395471eab1d4c8fbc8452e98a95d0c5" category="list-text">提供需要导入的 FlexVol 的名称。请记住，此 FlexVol 仅包含一个必须导入的 LUN 。</block>
-  <block id="9e6bd670c6fd6b2808fae744834b7675" category="list-text">提供必须与 ` -f` 标志结合使用的 PVC 定义路径。</block>
-  <block id="36b577af0f959f68e5e66336695e816c" category="list-text">可以选择对 PVC 进行管理，也可以选择不对其进行管理。默认情况下， Trident 将管理 PVC 并重命名后端的 FlexVol 和 LUN 。要作为非受管卷导入，请传递 ` -no-manage` 标志。</block>
-  <block id="66f7455d3b73d0f9938704ee67b1f38a" category="paragraph">然后， Astra Trident 将导入 FlexVol 并将其与 PVC 定义关联。Astra Trident 还会将 FlexVol 重命名为 `vc-&lt;uid&gt;` 格式，并将 FlexVol 中的 LUN 重命名为 `lun0` 。</block>
-  <block id="2d37ad5bcf7d115e10de14a38db72232" category="admonition">建议导入没有活动连接的卷。如果要导入当前使用的卷，请先克隆该卷，然后再执行导入。</block>
-  <block id="72b3664e6e381ccc62031c13f7ad6df9" category="paragraph">要导入 `ontap_san_default` 后端上存在的 `ontap-san-managed` FlexVol ，请运行 `tridentctl import` 命令：</block>
-  <block id="26d61ca2331eea0b3aca6c534f2dfcc7" category="admonition">ONTAP 卷的类型必须为 RW ，才能由 Astra Trident 导入。如果卷的类型为 DP ，则为 SnapMirror 目标卷；在将卷导入到 Astra Trident 之前，应中断镜像关系。</block>
-  <block id="b00215e0583bb02c2474fa62f51462fa" category="paragraph">您可以使用 Trident 将 NetApp Element 软件 /NetApp HCI 卷导入到 Kubernetes 集群中。您需要提供 Astra Trident 后端的名称以及卷和 PVC 文件的唯一名称作为 `tridentctl import` 命令的参数。</block>
-  <block id="c517a1b34541565def824e8e9aeb0524" category="admonition">Element 驱动程序支持重复的卷名称。如果卷名称重复，则 Trident 的卷导入过程将返回错误。作为临时解决策，克隆卷并提供唯一的卷名称。然后导入克隆的卷。</block>
-  <block id="87e30ad820e5b10036bd18284c1f25ad" category="admonition">卷路径是卷导出路径中： / 之后的部分。例如，如果导出路径为 `10.0.0.1 ： /adrot-joly-swift` ，则卷路径为 `adrot-joly-swift` 。</block>
-  <block id="e8945ce1398c6d24aa1d518bca08034c" category="paragraph">要在后端导入 `azure-netapp-files` 卷，该卷名为 `azurenetappfiles_40517` ，卷路径为 `importvol1` ，请运行以下命令：</block>
-  <block id="c3417eb755bee1658ae5b42ff2115193" category="admonition">ANF 卷的卷路径位于： / 之后的挂载路径中。例如，如果挂载路径为 `10.0.0.2 ： /importvol1` ，则卷路径为 `importvol1` 。</block>
   <block id="e4f61797b38c111b04c612b285a06659" category="summary">了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
   <block id="00b8b321c68facfb94b31690cbd23e00" category="paragraph">对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。</block>
   <block id="07b434b23f63ca6490df33b213599320" category="section-title">管理 NFS 导出策略</block>
@@ -2207,8 +2170,6 @@
   <block id="82720d84ad009f069fd0b2cfaf6c3dac" category="summary">适用于 Docker 的 Astra Trident 可直接与适用于 NetApp 存储平台的 Docker 生态系统集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。</block>
   <block id="6798a0701cedf1202e1d70210a3a9a83" category="paragraph">使用 `ontap-nas` ， `ontap-san` ， `solidfire-san` 和 `GCP-CVS 存储驱动程序` 时， Astra Trident 可以克隆卷。使用 `ontap-nas-flexgroup` 或 `ontap-nas-economy-经济` 驱动程序时，不支持克隆。从现有卷创建新卷将创建新快照。</block>
   <block id="a264f15eaddf1d50155847119366be6b" category="list-text">对于 `ontap-nas` ， `ontap-san` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexVol 。因此，卷快照会创建为 NetApp 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
-  <block id="2c7e2299fa3c14b5e6f60015eb016a87" category="admonition">要在 GCP 中导入由 NetApp Cloud Volumes Service 支持的卷，请按卷路径而非名称来标识该卷。</block>
-  <block id="37202a3ee6673127b64f84af27fdf523" category="paragraph">要在后端导入名为 `gcpcvs_yEppr` 的 `GCP-CVS` 卷，并将卷路径设置为 `adrot-joly-swift` ，请使用以下命令：</block>
   <block id="ec2577b4770848fd294d6ca069c34a43" category="paragraph">Astra Trident 支持对在 `ontap-nas` ， `ontap-nas-economy` ， `ontap-nas-flexgroup` ， `GCP-CVS` 和 `azure-netapp-files` 后端配置的 NFS PV 进行卷扩展。</block>
   <block id="986d46700a93c1b67573285912b2a857" category="paragraph">Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存储功能，包括文件共享和为 NAS 和 SAN 协议（ NFS ， SMB/CIFS 和 iSCSI ）提供服务的块级存储。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-san` 和 `ontap-san-economy.`它们适用于适用于 Azure 的 Cloud Volume ONTAP ，适用于 GCP 的 Cloud Volume ONTAP 。</block>
   <block id="62e0abd2d56d565a2b31e85b446fa800" category="paragraph">通过卷导入，可以将现有存储卷导入到 Kubernetes 环境中。目前， `ontap-nas` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` 和 `GCP-CVS` 驱动程序均支持此功能。在将现有应用程序移植到 Kubernetes 或在灾难恢复场景中，此功能非常有用。</block>
@@ -2652,11 +2613,6 @@
   <block id="d59db7846bd10b6d60d21543df9faa9e" category="paragraph-title">您需要的内容</block>
   <block id="04c73907481b6acb2b019a0a76516a25" category="section-title">使用卸载<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
   <block id="4eb50f197bd48a10bc9ee0dab2f65bcf" category="section-title">使用安装Astra Trident时的降级过程<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
-  <block id="f9ed548281d3b3a21b1334ae3f6a1ce3" category="section-title"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 导入</block>
-  <block id="fe55f3445ba74156978bcd34c5a1af5c" category="section-title"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block> 导入</block>
-  <block id="22a6337b056e3b93b46c9304d3248391" category="section-title"><block ref="8e2dcfd7e7e24b1ca76c1193f645902b" prefix="" category="inline-code"></block> 导入</block>
-  <block id="9883195da65e8e652cb10271a5250822" category="section-title"><block ref="5935ea92cdd7d975b4e764b429f21c01" prefix="" category="inline-code"></block> 导入</block>
-  <block id="809e945dc23c25ac16aba1fa16892444" category="section-title"><block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix="" category="inline-code"></block> 导入</block>
   <block id="6c6e605e09d47da14693d106977b6eb0" category="section-title">管理<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 后端使用<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block></block>
   <block id="78fb4311dea625690d7fb6274025625a" category="section-title">第2步：创建<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR</block>
   <block id="d6f4b4bedc693acd49ad08c1cf0cdad5" category="section-title">第3步：验证的状态<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR</block>
@@ -3458,7 +3414,6 @@
   <block id="6cd4bb7e4d59531066c198c531ea267a" category="paragraph">要使用的分层策略、默认为<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block>；<block ref="8805d416ce540c5f2df34af5b18d742b" prefix=" " category="inline-code"></block> 适用于ONTAP 9.5 SVM-DR之前的配置</block>
   <block id="c1fd85851a162222ab0690383666bd47" category="paragraph"><block ref="05b6053c41a2130afd6fc3b158bda4e6" prefix="" category="inline-code"></block></block>
   <block id="bf0a8b77dbb95465376fb2cfec90b422" category="paragraph"><block ref="76bb7251da6a3c88e629c03a402b9d15" prefix="" category="inline-code"></block></block>
-  <block id="fa12f478676fc33d2385cf4e955c7023" category="paragraph">版本：1 backendName：ExampleBackend storageDriverName：ONTAP SAN管理LIF：10.0.0.1 SVM：SVM_NFS用户名：vsadmin密码：password</block>
   <block id="8e6b1878428055edaef42698026bd1b5" category="paragraph">默认情况下， Astra Trident 不会使用 Kubernetes 将挂载选项设置为任何值。要在 Kubernetes 存储类中指定挂载选项，请按照给定示例进行操作 <block ref="29e04d8356a523f6fc836193630ad63e" category="inline-link-macro-rx"></block>。</block>
   <block id="419c95e5a9e44d427f99debdcf0550c7" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="cd38c25b6345abc8733d2ef72739cd97" category="inline-link-macro-rx"></block> Configuration</block>
   <block id="39f6252eef9409d5d917e183e971d71d" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。这是对SAN卷强制实施https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[security环境^的**要求。https://github.com/NetApp/trident/tree/master/trident-installer/sample-input[sample输入^]目录包含一些示例、例如https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-basic.yaml.templ<block ref="9abb8c7777ddb413820ee07d5d93aa4a" prefix="[" category="inline-code"></block>^)和链接：https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-bronze-default.yaml<block ref="69ae2d9a6d831af7488e53fec053b77e" prefix="[" category="inline-code"></block>^。有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
@@ -3647,4 +3602,61 @@
   <block id="3ee9187f7387265ff6f477d26adad0f2" category="paragraph">使用Astra Control、您可以使用SnapMirror的异步复制功能将数据和应用程序更改从一个集群复制到另一个集群。</block>
   <block id="4910c9e59da080576c2dedc885e19ed7" category="inline-link-macro">Astra Control：使用SnapMirror技术将应用程序复制到远程系统</block>
   <block id="0868eb323c2e097c6c408f7c59642c94" category="paragraph"><block ref="0868eb323c2e097c6c408f7c59642c94" category="inline-link-macro-rx"></block></block>
+  <block id="2e77d5277311f3a9232a73cdbbcd754b" category="section-title">概述和注意事项</block>
+  <block id="df6f3bebb689d436041be7a75ee22542" category="paragraph">您可以将卷导入到Astra三端到以下位置：</block>
+  <block id="88541191ec5fe50ba0d21b4300401b85" category="list-text">将应用程序容器化并重复使用其现有数据集</block>
+  <block id="77d782125cafbbf0fe1c5c95755d143f" category="list-text">对一个应用程序使用数据集的克隆</block>
+  <block id="d265b515faaf05e2c32727d8b9742a78" category="list-text">重建发生故障的Kubrenetes集群</block>
+  <block id="6766ef9d5b11abf03ee72b55c5745f4b" category="list-text">在灾难恢复期间迁移应用程序数据</block>
+  <block id="4c321a56c9c030449cd3315863de525b" category="paragraph">导入卷之前、请查看以下注意事项。</block>
+  <block id="3c65d97abe967081cd896f071baa434f" category="list-text">Asta三端磁盘只能导入RW (读写)类型的ONTAP卷。DP (数据保护)类型的卷是SnapMirror目标卷。在将卷导入Astra三端存储之前、您应先中断镜像关系。</block>
+  <block id="e47be4dcc849b534107f57afd92f801f" category="list-text">我们建议导入没有活动连接的卷。要导入当前使用的卷、请克隆此卷、然后执行导入。</block>
+  <block id="e4618ea9b1ae23e5ed30f6f19e6a77e8" category="admonition">这对于块卷尤其重要、因为Kubnetes不会意识到先前的连接、并且可以轻松地将活动卷连接到Pod。这可能会导致数据损坏。</block>
+  <block id="8cbc7a45d1e8d9d63beba7825c76f6ff" category="list-text">不过<block ref="e1e2a331ab1d8dccfea06fc8e04e2f5d" prefix=" " category="inline-code"></block> 必须在PVC上指定、A作用 是在导入期间不使用此参数。创建卷期间会使用存储类根据存储特征从可用池中进行选择。由于卷已存在、因此导入期间不需要选择池。因此、即使卷位于与PVC中指定的存储类不匹配的后端或池中、导入也不会失败。</block>
+  <block id="a31db9efd829f01dd21fdc97db2d29e4" category="list-text">现有卷大小在PVC中确定和设置。存储驱动程序导入卷后，系统将创建 PV ，并为其创建一个 Claims Ref 。</block>
+  <block id="604eea1f3df98285b6887ff059258827" category="list-text">回收策略最初设置为<block ref="16d79ff80feadcf2f52096f073f2b94a" prefix=" " category="inline-code"></block> 在PV中。Kubernetes 成功绑定 PVC 和 PV 后，将更新回收策略以匹配存储类的回收策略。</block>
+  <block id="5d24684cf5054f53b1e945be75b37f69" category="list-text">存储类的回收策略为时<block ref="099af53f601532dbd31e0ea99ffdeb64" prefix=" " category="inline-code"></block>、删除PV时、存储卷将被删除。</block>
+  <block id="746af08b5a2da065387679e35fb75f55" category="list-text">默认情况下、Asta三端存储管理PVC、并在后端重命名FlexVol和LUN。您可以通过<block ref="e2b9359adf7cdd62fc784b5090c3c452" prefix=" " category="inline-code"></block> 用于导入非受管卷的标志。如果您使用<block ref="e2b9359adf7cdd62fc784b5090c3c452" prefix=" " category="inline-code"></block>中，A作用 是在对象的生命周期内不对PVC或PV执行任何其他操作。删除PV后、不会删除存储卷、并且卷克隆和卷大小调整等其他操作也会被忽略。</block>
+  <block id="be303acf01bc566d5d211f228131bee4" category="admonition">如果要对容器化工作负载使用 Kubernetes ，但希望在 Kubernetes 外部管理存储卷的生命周期，则此选项非常有用。</block>
+  <block id="db31dcd83fd57b294fb0340ea975015f" category="section-title">导入卷</block>
+  <block id="61a1adebea5e6a017b4bd4b405ae4f52" category="paragraph">您可以使用<block ref="a768f5449e3a83ac56f2fb8ab4562339" prefix=" " category="inline-code"></block> 以导入卷。</block>
+  <block id="8feb5f647cb423db7fa8a957ae4ef075" category="list-text">创建永久性卷请求(PVC)文件(例如、<block ref="88bf8ee4d993e535425148da6a64c1c2" prefix=" " category="inline-code"></block>)。PVC文件应包括<block ref="b068931cc450442b63f5b3d276ea4297" prefix=" " category="inline-code"></block>，<block ref="89801e9e98979062e84647433a8ed3e9" prefix=" " category="inline-code"></block>，<block ref="1963d17f24888bdf1f22d7ea7f72f607" prefix=" " category="inline-code"></block>，和<block ref="ee822781a3bd0ae0f8f6331dc4865d9c" prefix=" " category="inline-code"></block>。您也可以指定<block ref="c005e78d4bd808038335c32dd84cf7da" prefix=" " category="inline-code"></block> 在PVC定义中。</block>
+  <block id="7f745c89a2e8fd59353bab523e12eb77" category="paragraph">以下是最低规格示例：</block>
+  <block id="a9e31569460a0b133fdd97c5f482c04e" category="admonition">请勿包含PV名称或卷大小等其他参数。这可能发生原因会使导入命令失败。</block>
+  <block id="62baed444b3b0cdadb9d1c1ed6d56876" category="list-text">使用<block ref="a768f5449e3a83ac56f2fb8ab4562339" prefix=" " category="inline-code"></block> 命令以指定包含卷的Asta三元数据后端的名称以及在存储上唯一标识卷的名称(例如：ONTAP FlexVol、Element卷、Cloud Volumes Service路径)。。<block ref="5338b151154663bac9980b0f044518f2" prefix=" " category="inline-code"></block> 指定PVC文件的路径需要参数。</block>
+  <block id="37c0e0081d2fa3ebdf688df7e37ecd7a" category="paragraph">查看以下卷导入示例、了解受支持的驱动程序。</block>
+  <block id="b8cd11aae04b2508e6cf401f43cdb4f9" category="section-title">ONTAP NAS和ONTAP NAS FlexGroup</block>
+  <block id="7a4c35874a7b87427d89cd3aecdcb443" category="paragraph">Astra三项功能支持使用导入卷<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="6551d29114ca8e4ced094b1f68242124" category="list-text">。<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 驱动程序无法导入和管理qtree。</block>
+  <block id="15f21f5d1f84f4b986a4db037c57333d" category="list-text">。<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序不允许使用重复的卷名称。</block>
+  <block id="3fa3bc64b029b88f42b842bb7dc4e52d" category="paragraph-title">ONTAP NAS示例</block>
+  <block id="77fe25c67ee05760d58e91a98e3ff055" category="paragraph">以下是受管卷和非受管卷导入的示例。</block>
+  <block id="865c1a701e3847de9fbff4a375ac7177" category="open-title">受管卷</block>
+  <block id="9baac1fff2f93c6aa6f2205921fe6b32" category="paragraph">以下示例将导入名为的卷<block ref="b61fdc0d7fc5d08e674f3891a91d3116" prefix=" " category="inline-code"></block> 位于名为的后端<block ref="b0253ee501e433d48faea12f8e40ef28" prefix=" " category="inline-code"></block>：</block>
+  <block id="ed12f17a6dc2e65dfdf289eb64d258ae" category="open-title">非受管卷</block>
+  <block id="412d430c2de2722ad4f878fba9145e3f" category="paragraph">使用时<block ref="e2b9359adf7cdd62fc784b5090c3c452" prefix=" " category="inline-code"></block> 参数、A作用 是不对卷进行重命名。</block>
+  <block id="30690ec57cb4844d007f7d2e2c9393a2" category="paragraph">以下示例导入<block ref="60d9e6d88af815fe67aed90572f53184" prefix=" " category="inline-code"></block> 在上<block ref="b0253ee501e433d48faea12f8e40ef28" prefix=" " category="inline-code"></block> 后端：</block>
+  <block id="548fedaf4074fe2826e3c53dfd92a19e" category="section-title">ONTAP SAN</block>
+  <block id="d18d16cddcd0f06bf7df2391e6b26e69" category="paragraph">Astra三项功能支持使用导入卷<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="30bb262b9fe2f6c714c560a0608899dc" category="paragraph">Astra三端存储可以导入包含单个LUN的ONTAP SAN FlexVol。这与一致<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序、用于为FlexVol 中的每个PVC和LUN创建FlexVol。Asta三进位导入FlexVol并将其与PVC定义关联起来。</block>
+  <block id="854d516b7e1eddbead5cbea0b17dac88" category="paragraph-title">ONTAP SAN示例</block>
+  <block id="eb87428bc7ec6d211f503b31240aec94" category="paragraph">对于受管卷、Asta三端存储将FlexVol重命名为<block ref="b1a57c8f543d163276a264ab84f98485" prefix=" " category="inline-code"></block> 将FlexVol 中的LUN格式化为<block ref="1793051c27c3288cfb3a1c86e4e41b41" prefix=" " category="inline-code"></block>。</block>
+  <block id="c59e9e1ae2ff6860f6aa6f2d3dc9f872" category="paragraph">以下示例将导入<block ref="9c263b72b293041bdc16e8711bb55a99" prefix=" " category="inline-code"></block> 上存在的FlexVol<block ref="5461c7e570fd7b4318a37f0dceb291c1" prefix=" " category="inline-code"></block> 后端：</block>
+  <block id="d172829ee06c1c52828b60f0544b2f06" category="paragraph">以下示例导入<block ref="a5c0fa75ec8cf92d22eadab558660dda" prefix=" " category="inline-code"></block> 在上<block ref="2dec4fe0d108047546d031f48f4073f7" prefix=" " category="inline-code"></block> 后端：</block>
+  <block id="58f7692a8b6ce5b3fa31b6daec3259fe" category="paragraph">如果您将LUN映射到与Kubornetes节点IQN共享IQN的igroux、如以下示例所示、您将收到错误：<block ref="4524d417d10c9cf90c4a674da76c4964" prefix=" " category="inline-code"></block>。您需要删除启动程序或取消映射LUN才能导入卷。</block>
+  <block id="5ccef908ed30c9dac1afd0a7f3dc5e7f" category="inline-image-macro">映射到iqn和集群iqn的LUN的图像。</block>
+  <block id="81238a539b4fc11fb20c6d27db1e5d33" category="paragraph"><block ref="81238a539b4fc11fb20c6d27db1e5d33" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="67cb0d15ee759f80dd6bde1ab60c32e1" category="paragraph">Astra三端存储支持使用NetApp Element软件和NetApp HCI卷导入<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="00b0b4c3f91cc8ead8c7a1fac316cd43" category="admonition">Element 驱动程序支持重复的卷名称。但是、如果存在重复的卷名称、Asta Dent将返回错误。作为临时解决策、克隆卷、提供唯一的卷名称并导入克隆的卷。</block>
+  <block id="d12ef9e4a047861afd11513bde147f35" category="paragraph-title">元素示例</block>
+  <block id="e91134286ebcca5f894ca859ce6e6527" category="paragraph">以下示例将导入<block ref="ce9d6be888db333d9f15ad3ca22aab5c" prefix=" " category="inline-code"></block> 后端上的卷<block ref="54034d50b7e92e0dd9d45b9be754d7bd" prefix=" " category="inline-code"></block>。</block>
+  <block id="5c9ef0d871938dccceb29ee63fad8ddb" category="section-title">Google 云平台</block>
+  <block id="cf31c490360937ec8a3ce1c25928d464" category="paragraph">Astra三项功能支持使用导入卷<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="b83141d187ef372685e66e6dfe4cabd9" category="admonition">要在Google云平台中导入NetApp Cloud Volumes Service支持的卷、请按卷路径确定该卷。卷路径是卷的导出路径的一部分、位于之后<block ref="fb256b96ee496724e4579987e5a6e4da" prefix=" " category="inline-code"></block>。例如、如果导出路径为<block ref="3bbe8dafc880d124219c1e4f73d41cf9" prefix=" " category="inline-code"></block>、卷路径为<block ref="8886a1ac9f5b94f2fb54d752c304777f" prefix=" " category="inline-code"></block>。</block>
+  <block id="9dfa04a9ad04eba811811f2fbd0f5f0e" category="paragraph-title">Google Cloud Platform示例</block>
+  <block id="dd8d0b5581c0eb32a23d802032124024" category="paragraph">以下示例将导入<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block> 后端上的卷<block ref="b242744397b7d8bc9391b3e836628c5e" prefix=" " category="inline-code"></block> 卷路径<block ref="8886a1ac9f5b94f2fb54d752c304777f" prefix=" " category="inline-code"></block>。</block>
+  <block id="831e4b284f7105b1bbd4f891a4e7144a" category="paragraph">Astra三项功能支持使用导入卷<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 和<block ref="43f09bc16eaf24131ea82903259878ac" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="7501988e9549daa8c2fcd13e55b9fc78" category="admonition">要导入Azure NetApp Files卷、请按卷路径确定该卷。卷路径是卷的导出路径的一部分、位于之后<block ref="fb256b96ee496724e4579987e5a6e4da" prefix=" " category="inline-code"></block>。例如、如果挂载路径为<block ref="a88065dde27cea3a008a18172c5a9c9e" prefix=" " category="inline-code"></block>、卷路径为<block ref="062b749476713f7b5bbc675159e90bad" prefix=" " category="inline-code"></block>。</block>
+  <block id="1cfd9b4e20d41cdca62f758d3b0cb58b" category="paragraph-title">Azure NetApp Files示例</block>
+  <block id="bd46b0a8c2c4c89a60ee85052ad2dd0e" category="paragraph">以下示例将导入<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 后端上的卷<block ref="d8dd89ab9d39f5487714722f9becb468" prefix=" " category="inline-code"></block> 卷路径<block ref="062b749476713f7b5bbc675159e90bad" prefix=" " category="inline-code"></block>。</block>
 </blocks>
