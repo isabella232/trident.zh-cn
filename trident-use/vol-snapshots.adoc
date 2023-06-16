@@ -20,7 +20,7 @@ summary: '您可以创建永久性卷(PV)的Kubernetes VolumeSnapshot (卷快照
 如果您的Kubernetes分发版不包含快照控制器和CRD、请参见 <<部署卷快照控制器>>。
 
 
-NOTE: 如果在GKE-环境中创建按需卷快照、请勿创建快照控制器。GKE-使用内置的隐藏快照控制器。
+NOTE: 如果在GKE环境中创建按需卷快照、请勿创建快照控制器。GKE-使用内置的隐藏快照控制器。
 
 
 
@@ -38,7 +38,7 @@ metadata:
 driver: csi.trident.netapp.io
 deletionPolicy: Delete
 ----
-`d河` 指向 Astra Trident 的 CSI 驱动程序。`deeltionPolicy` 可以是 `Delete` 或 `Retain` 。如果设置为 `Retain` ，则即使删除了 `VolumeSnapshot` 对象，存储集群上的底层物理快照也会保留。
+。 `driver` 指向A作用 力三端CSI驱动程序。 `deletionPolicy` 可以是 `Delete` 或 `Retain`。设置为时 `Retain`、存储集群上的底层物理快照会保留、即使在使用时也是如此 `VolumeSnapshot` 对象已删除。
 
 有关详细信息、请参见链接：./trident引用/objects.html#Kubernetes -volumesnapshotclass-objects[`VolumeSnapshotClass`]。
 

@@ -188,92 +188,92 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 
 
 | v1.21.0  a| 
-* NetApp/trident：23.04.0
-* NetApp/trident-autostsupport：23.04
-* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* k8s.io/sig-storage/CSI-attacher：v4.2.0
-* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
-* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
-* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* NetApp/trident操作员：23.04.0 (可选)
+* dDocker。io/NetApp/trident：23.04.0
+* docer.io/NetApp/trident-autostsupport：23.04
+* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
+* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
+* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
 
 
 
 
 | v1.22.0  a| 
-* NetApp/trident：23.04.0
-* NetApp/trident-autostsupport：23.04
-* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* k8s.io/sig-storage/CSI-attacher：v4.2.0
-* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
-* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
-* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* NetApp/trident操作员：23.04.0 (可选)
+* dDocker。io/NetApp/trident：23.04.0
+* docer.io/NetApp/trident-autostsupport：23.04
+* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
+* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
+* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
 
 
 
 
 | v1.23.0  a| 
-* NetApp/trident：23.04.0
-* NetApp/trident-autostsupport：23.04
-* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* k8s.io/sig-storage/CSI-attacher：v4.2.0
-* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
-* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
-* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* NetApp/trident操作员：23.04.0 (可选)
+* dDocker。io/NetApp/trident：23.04.0
+* docer.io/NetApp/trident-autostsupport：23.04
+* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
+* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
+* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
 
 
 
 
 | v1.24.0  a| 
-* NetApp/trident：23.04.0
-* NetApp/trident-autostsupport：23.04
-* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* k8s.io/sig-storage/CSI-attacher：v4.2.0
-* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
-* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
-* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* NetApp/trident操作员：23.04.0 (可选)
+* dDocker。io/NetApp/trident：23.04.0
+* docer.io/NetApp/trident-autostsupport：23.04
+* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
+* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
+* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
 
 
 
 
 | v1.25.0  a| 
-* NetApp/trident：23.04.0
-* NetApp/trident-autostsupport：23.04
-* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* k8s.io/sig-storage/CSI-attacher：v4.2.0
-* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
-* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
-* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* NetApp/trident操作员：23.04.0 (可选)
+* dDocker。io/NetApp/trident：23.04.0
+* docer.io/NetApp/trident-autostsupport：23.04
+* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
+* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
+* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
 
 
 
 
 | v1.26.0  a| 
-* NetApp/trident：23.04.0
-* NetApp/trident-autostsupport：23.04
-* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* k8s.io/sig-storage/CSI-attacher：v4.2.0
-* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
-* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
-* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* NetApp/trident操作员：23.04.0 (可选)
+* dDocker。io/NetApp/trident：23.04.0
+* docer.io/NetApp/trident-autostsupport：23.04
+* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
+* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
+* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
 
 
 
 
 | v1.27.0  a| 
-* NetApp/trident：23.04.0
-* NetApp/trident-autostsupport：23.04
-* k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* k8s.io/sig-storage/CSI-attacher：v4.2.0
-* K8s.IO/SIG-storage/CSI-resizer：v1.7.0
-* K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1
-* K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0
-* NetApp/trident操作员：23.04.0 (可选)
+* dDocker。io/NetApp/trident：23.04.0
+* docer.io/NetApp/trident-autostsupport：23.04
+* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
+* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
+* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
+* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
 
 
 |===

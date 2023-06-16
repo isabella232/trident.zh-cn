@@ -1694,7 +1694,6 @@
   <block id="28ad7be76b350116bde3ae04e5f94a60" category="paragraph">对于 snapshotReserve = 50% ， PVC 请求 = 5GiB ，卷总大小为 2/.5 = 10GiB ，可用大小为 5GiB ，这是用户在 PVC 请求中请求的大小。`volume show` 命令应显示与以下示例类似的结果：</block>
   <block id="daabb7db82ac9f3f074671a1185c462e" category="paragraph">在升级 Astra Trident 时，先前安装的现有后端将按照上述说明配置卷。对于在升级之前创建的卷，您应调整其卷的大小，以便观察到所做的更改。例如，一个 2 GiB PVC ，其 `snapshotReserve=50` earlier 会导致一个卷提供 1 GiB 的可写空间。例如，将卷大小调整为 3GiB 可为应用程序在一个 6 GiB 卷上提供 3GiB 的可写空间。</block>
   <block id="f35c0fe4b6581c16866c964cef229bfa" category="admonition">如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为 LIF 指定 DNS 名称，而不是 IP 地址。</block>
-  <block id="4744d2c82c1c470ab40280b2ebba0c08" category="paragraph">`d河` 指向 Astra Trident 的 CSI 驱动程序。`deeltionPolicy` 可以是 `Delete` 或 `Retain` 。如果设置为 `Retain` ，则即使删除了 `VolumeSnapshot` 对象，存储集群上的底层物理快照也会保留。</block>
   <block id="0ab6380edce0d0e7b8538ebf3215ebbd" category="section-title">第 2 步：创建现有 PVC 的快照</block>
   <block id="501470eb266ff6637de993e3f193ba40" category="paragraph">这样就创建了一个 `VolumeSnapshot` 对象。VolumeSnapshot 类似于 PVC ，并与代表实际快照的 `VolumeSnapshotContent` 对象关联。</block>
   <block id="320e7c242b569ab5bbdaa490b3df817e" category="paragraph">可以通过描述来标识 `PVC1-Snap` VolumeSnapshot 的 `VolumeSnapshotContent` 对象。</block>
@@ -2683,7 +2682,6 @@
   <block id="628fd4af2a4e2fce014efbf03b84bb71" category="section-title">分配特定的方面</block>
   <block id="1ee74a3407fb0558688a68f8a4011d8b" category="paragraph">您必须具有外部快照控制器和自定义资源定义(CRD)。这是Kubernetes流程编排程序(例如：Kubeadm、GKE、OpenShift)的职责。</block>
   <block id="4e9d71562a7ee4d135b94aa7e33203d4" category="paragraph">如果您的Kubernetes分发版不包含快照控制器和CRD、请参见 <block ref="66b3d1bc7c4350b2c78856aa6724afe9" category="inline-xref-macro-rx"></block>。</block>
-  <block id="af79c649a1b22da7699446c292250fcc" category="admonition">如果在GKE-环境中创建按需卷快照、请勿创建快照控制器。GKE-使用内置的隐藏快照控制器。</block>
   <block id="a19c6b176bcf5d5df56d61bfda053c09" category="section-title">第1步：创建<block ref="19476662cd814e0aa085eca121de89b8" prefix=" " category="inline-code"></block></block>
   <block id="5113d8074a0a5072af49f1e1fa6901bd" category="paragraph">此示例将创建一个卷快照类。</block>
   <block id="ce43eda1a51d5de70f422e14ca195db3" category="paragraph">有关详细信息、请参见链接：./trident引用/objects.html#Kubernetes -volumesnapshotclass-objects<block ref="19476662cd814e0aa085eca121de89b8" prefix="[" category="inline-code"></block>]。</block>
@@ -2817,9 +2815,6 @@
   <block id="50823ee9226376c44bfb71c334ee2f3f" category="paragraph"><block ref="50823ee9226376c44bfb71c334ee2f3f" category="inline-link-macro-rx"></block></block>
   <block id="29dcef620f05a3eaaf13d29d1f14e860" category="paragraph">Astra Trident需要访问特定端口才能进行通信。</block>
   <block id="b2dabe4b341f1e163a7ba3f3553d6b1b" category="paragraph"><block ref="b2dabe4b341f1e163a7ba3f3553d6b1b" category="inline-link-macro-rx"></block></block>
-  <block id="7f7b6bf613e5a94b472dc4003c3c9d47" category="list-text">K8s.IO/SIG-storage/CSI-resizer：v1.7.0</block>
-  <block id="bc5a94d13573ba35693929cfc2df5614" category="list-text">K8s.IO/SIG-storage/CSI-snapshotter：v6.2.1</block>
-  <block id="938a05d206d8fc8b1d8a4342f0a74da0" category="list-text">K8s.IO/SIG-storage/CsI-node-driver-registry:v2.7.0</block>
   <block id="725cbb3a0d4bcdf2e5483f06a14ffc8a" category="cell">v1.26.0</block>
   <block id="a54af9f6f0bee26551da0258c438d6b9" category="admonition">在Kubernetes 1.21及更高版本上、使用经验证的<block ref="40f3a80e171b33f08017cecd592672f1" prefix=" " category="inline-code"></block> 仅当出现时才创建映像<block ref="6654c734ccab8f440ff0825eb443dc7f" prefix=" " category="inline-code"></block> 版本正在提供<block ref="ab003b1d43edbe8a5b9d3e8baef8790c" prefix=" " category="inline-code"></block> CRD。如果<block ref="ee21100dace47d83bcefcb7dea09cdd3" prefix=" " category="inline-code"></block> 版本正在为CRD提供支持/不提供<block ref="6654c734ccab8f440ff0825eb443dc7f" prefix=" " category="inline-code"></block> 版本、请使用已验证的<block ref="fdb913c5472aa018b449f65e38beb9e0" prefix=" " category="inline-code"></block> 图像。</block>
   <block id="4bdf9319fbd791503ac6c31b80a89220" category="summary">您可以手动部署Trident操作员以安装Astra Trident。此过程将处理适用场景 安装、其中、Astra Trident所需的容器映像存储在专用注册表中。</block>
@@ -3434,11 +3429,6 @@
   <block id="a3460163c4a2854c79a419dda57ac917" category="list-text">RHEL 8+(AMD64和ARM64)</block>
   <block id="f51a58a0cffb9f9953edce6411578b53" category="list-text">Ubuntu 22.04或更高版本(AMD64和ARM64)</block>
   <block id="1285a056fd837828136d15f7e76d09cc" category="list-text">Windows Server 2019 (AMD64)</block>
-  <block id="491d412c8451b30af0235ea14c6884ce" category="list-text">NetApp/trident：23.04.0</block>
-  <block id="e1c8364426dfd7c124c013720fd79184" category="list-text">NetApp/trident-autostsupport：23.04</block>
-  <block id="f74c1ba486136c87105b3ee7c6b4a588" category="list-text">k8s.io/sig-storage/CSI-置 配置程序：v3.4.1</block>
-  <block id="69e020afa682d186164750d700cc7b94" category="list-text">k8s.io/sig-storage/CSI-attacher：v4.2.0</block>
-  <block id="1ee49b3835b8025abda346d6f4263ac9" category="list-text">NetApp/trident操作员：23.04.0 (可选)</block>
   <block id="b38420e98813aed20daa115db2ac94a9" category="cell">v1.27.0</block>
   <block id="1ff1fd258a61bd04eee000a1fb6131fa" category="example-title">示例1：启用A作用 于Windows节点的Asta三端到子</block>
   <block id="f53514cf8829a41463c245b088ae732e" category="paragraph">要在Windows节点上运行A作用 是：</block>
@@ -3659,4 +3649,14 @@
   <block id="7501988e9549daa8c2fcd13e55b9fc78" category="admonition">要导入Azure NetApp Files卷、请按卷路径确定该卷。卷路径是卷的导出路径的一部分、位于之后<block ref="fb256b96ee496724e4579987e5a6e4da" prefix=" " category="inline-code"></block>。例如、如果挂载路径为<block ref="a88065dde27cea3a008a18172c5a9c9e" prefix=" " category="inline-code"></block>、卷路径为<block ref="062b749476713f7b5bbc675159e90bad" prefix=" " category="inline-code"></block>。</block>
   <block id="1cfd9b4e20d41cdca62f758d3b0cb58b" category="paragraph-title">Azure NetApp Files示例</block>
   <block id="bd46b0a8c2c4c89a60ee85052ad2dd0e" category="paragraph">以下示例将导入<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 后端上的卷<block ref="d8dd89ab9d39f5487714722f9becb468" prefix=" " category="inline-code"></block> 卷路径<block ref="062b749476713f7b5bbc675159e90bad" prefix=" " category="inline-code"></block>。</block>
+  <block id="48c807e08099dd321790a397d4e17e28" category="list-text">dDocker。io/NetApp/trident：23.04.0</block>
+  <block id="417605e9cc8da2514c99aaf846144b96" category="list-text">docer.io/NetApp/trident-autostsupport：23.04</block>
+  <block id="e25b6bdb94c83d79f50a7d33929b965a" category="list-text">注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1</block>
+  <block id="cbad6fc461000c6d8790221b622aceb0" category="list-text">注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0</block>
+  <block id="42b4a2f67addae58772b1c250a251f7e" category="list-text">注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0</block>
+  <block id="6171b5857bec22984fe260652936c7b1" category="list-text">注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2</block>
+  <block id="87cd48d9616779fe4d3afb72f325eb12" category="list-text">注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0</block>
+  <block id="8eb8a41b260e1d77c7ffe733b87d87a1" category="list-text">dDocker .io/NetApp/trident-operator：23.04.0 (可选)</block>
+  <block id="0b8ca2be5f4fe564fb8e843cbc53703d" category="admonition">如果在GKE环境中创建按需卷快照、请勿创建快照控制器。GKE-使用内置的隐藏快照控制器。</block>
+  <block id="dfbfe722a0ce7e388b78027f9cfed8dd" category="paragraph">。<block ref="e2d45d57c7e2941b65c6ccd64af4223e" prefix=" " category="inline-code"></block> 指向A作用 力三端CSI驱动程序。<block ref="98e7d6463271d7848db255ae6467817a" prefix=" " category="inline-code"></block> 可以是<block ref="f2a6c498fb90ee345d997f888fce3b18" prefix=" " category="inline-code"></block> 或<block ref="afece4245269582cb2f1009d4fb52047" prefix=" " category="inline-code"></block>。设置为时<block ref="afece4245269582cb2f1009d4fb52047" prefix=" " category="inline-code"></block>、存储集群上的底层物理快照会保留、即使在使用时也是如此<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> 对象已删除。</block>
 </blocks>
