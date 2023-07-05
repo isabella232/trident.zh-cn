@@ -190,7 +190,7 @@ tridentbackendconfig.trident.netapp.io/tbc-ontap-nas-backend created
 
 [listing]
 ----
-kubectl -n trident get tbc tbc-ontap-nas-backend -n trident
+kubectl get tbc tbc-ontap-nas-backend -n trident
 NAME                   BACKEND NAME          BACKEND UUID                           PHASE   STATUS
 tbc-ontap-nas-backend  ontap-nas-backend     52f2eb10-e4c6-4160-99fc-96b3be5ab5d7   Bound   Success
 
