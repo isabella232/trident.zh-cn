@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: trident-concepts/ontap-drivers.html 
-keywords: trident backend, AFF, FAS, ONTAP Select, Cloud, Amazon FSx for NetApp ONTAP, drivers, ONTAP drivers 
-summary: 了解如何在 Trident 安装中创建和使用 Element 后端。 
+keywords: trident backend, AFF, FAS, ONTAP Select, Cloud, Amazon FSx for NetApp ONTAP, drivers, ONTAP drivers, access modes, rwo, rwx, rwp, rwop 
+summary: Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTAP 集群进行通信。 
 ---
 = ONTAP 驱动程序
 :hardbreaks:
@@ -12,16 +12,16 @@ summary: 了解如何在 Trident 安装中创建和使用 Element 后端。
 
 
 [role="lead"]
-Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTAP 集群进行通信。详细了解每个驱动程序如何处理卷的创建，访问控制及其功能。
+Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTAP 集群进行通信。
 
 
 
-== 了解ONTAP 存储驱动程序
+== Asta Control支持的驱动程序
+
+Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
 
 [WARNING]
 ====
-Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
-
 * 您必须使用 `ontap-nas` 适用于需要数据保护、灾难恢复和移动性的生产工作负载。
 * 使用 ... `ontap-san-economy` 预期的卷使用量应远远高于ONTAP 支持的容量。
 * 使用 ... `ontap-nas-economy` 仅当预期的卷使用量应远高于ONTAP 支持的容量时、以及 `ontap-san-economy` 无法使用驱动程序。
@@ -29,7 +29,13 @@ Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动�
 
 
 ====
-[cols="5"]
+
+
+== 适用于ONTAP的Astra三端存储驱动程序
+
+Asta三端存储提供了以下存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。
+
+[cols="2, 1, 1, 2, 2"]
 |===
 | 驱动程序 | 协议 | 卷模式 | 支持的访问模式 | 支持的文件系统 
 
@@ -39,7 +45,7 @@ NFS
  a| 
 文件系统
  a| 
-rwo ， rox ， rwx
+Rwo、ROX、rwx、RWOP
  a| 
 "" ， NFS
 
@@ -61,7 +67,7 @@ NFS
  a| 
 文件系统
  a| 
-rwo ， rox ， rwx
+Rwo、ROX、rwx、RWOP
  a| 
 "" ， NFS
 
@@ -72,7 +78,7 @@ iSCSI
  a| 
 块
  a| 
-rwo ， rox ， rwx
+Rwo、ROX、rwx、RWOP
  a| 
 无文件系统；原始块设备
 
@@ -83,7 +89,7 @@ iSCSI
  a| 
 文件系统
  a| 
-工单， ROX
+Rwo、ROX、RWOP
 
 rwx在文件系统卷模式下不可用。
  a| 
@@ -96,7 +102,7 @@ iSCSI
  a| 
 块
  a| 
-rwo ， rox ， rwx
+Rwo、ROX、rwx、RWOP
  a| 
 无文件系统；原始块设备
 
@@ -107,7 +113,7 @@ iSCSI
  a| 
 文件系统
  a| 
-工单， ROX
+Rwo、ROX、RWOP
 
 rwx在文件系统卷模式下不可用。
  a| 
@@ -115,4 +121,4 @@ rwx在文件系统卷模式下不可用。
 
 |===
 
-NOTE: 可以使用安全角色的登录凭据(用户名/密码)或使用ONTAP 集群上安装的私钥和证书对ONTAP 后端进行身份验证。您可以使用更新现有后端以从一种身份验证模式移至另一种身份验证模式 `tridentctl update backend`。
+NOTE: 可以使用安全角色的登录凭据(用户名/密码)或专用密钥以及ONTAP集群上安装的证书对ONTAP后端进行身份验证。您可以使用更新现有后端以从一种身份验证模式移至另一种身份验证模式 `tridentctl update backend`。

@@ -760,9 +760,7 @@
   <block id="a20b570eccfacf0ac4684823643f91a1" category="paragraph">PV 是使用 `netapp.io/trident` 配置程序创建的，其类型为 NFS 。要支持 Astra Trident 提供的所有新功能，应将此 PV 升级到 CSI 类型。</block>
   <block id="c18e246999f594d4fb39c857bcdd1e09" category="list-text">运行 `kubectl describe PV` 以验证此卷是否为 CSI 卷。</block>
   <block id="fb741f44b40455e466443f8f96ace85e" category="paragraph">通过这种方式，您可以将由 Astra Trident 创建的 NFS/iSCSI 类型的卷逐个升级到 CSI 类型。</block>
-  <block id="48dec026afe488df8faca35c5c3a39ea" category="summary">了解如何在 Trident 安装中创建和使用 Element 后端。</block>
   <block id="f58e95baa778c9a2bd1a4597fb49d9b7" category="doc">ONTAP 驱动程序</block>
-  <block id="0e842f431ce1b4dfb57598e5682e3adc" category="paragraph">Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTAP 集群进行通信。详细了解每个驱动程序如何处理卷的创建，访问控制及其功能。</block>
   <block id="48cf24486d9a8e65a142b25682f19949" category="cell">驱动程序</block>
   <block id="888a77f5ac0748b6c8001822417df8b6" category="cell">协议</block>
   <block id="1b5e109e8afd1f9b7f5bbf951eea3442" category="cell">卷模式</block>
@@ -2572,7 +2570,6 @@
   <block id="38b6e376f2701385062dee4bb00e03d2" category="summary">您可以使用Astra Trident安装程序自定义部署。</block>
   <block id="0dabff490bbf6c7e308950959cc5a024" category="section-title">了解安装程序</block>
   <block id="1637137b97f70f3de86dbf02ba8c262b" category="paragraph">使用Astra Trident安装程序可以自定义属性。例如、如果已将Trident映像复制到专用存储库、则可以使用指定映像名称<block ref="00e6ff45e8bcc6b9e35e9c68d8d5135c" prefix=" " category="inline-code"></block>。如果已将Trident映像以及所需的CSI sidecar映像复制到专用存储库、则最好使用指定该存储库的位置<block ref="53b228c1c8295f49b0c35325e14fcd6a" prefix=" " category="inline-code"></block> 交换机、其形式为<block ref="c4c34dc2c7d5cb25c084ca11127ba1c6" prefix=" " category="inline-code"></block>。</block>
-  <block id="5e3a3cabc9ba472e33de86a5a8f32dcd" category="section-title">了解ONTAP 存储驱动程序</block>
   <block id="99c850b82f45e568828f2a8c5ab8f94d" category="section-title">了解卷访问组</block>
   <block id="7c14ddfe8f627e4786f4da7cd4cea9ba" category="section-title">存储类关联</block>
   <block id="ab4589eca69db942d79a0dbbd9ec8399" category="section-title">卷创建</block>
@@ -2595,7 +2592,6 @@
   <block id="4f0e7dc30ffb3e25e75331c9afb2243a" category="cell">卷模式</block>
   <block id="28c142639a9bbdd526b8eb986c13907d" category="paragraph">无文件系统；原始块设备</block>
   <block id="0453a3e06be842b09a9479fe06f0dd13" category="paragraph">rwx在文件系统卷模式下不可用。</block>
-  <block id="04de2f1b0cab8344abeded774f82f9d5" category="admonition">可以使用安全角色的登录凭据(用户名/密码)或使用ONTAP 集群上安装的私钥和证书对ONTAP 后端进行身份验证。您可以使用更新现有后端以从一种身份验证模式移至另一种身份验证模式<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block>。</block>
   <block id="964ea71824e902693c3ef56b57cf78be" category="summary">使用Astra Trident、您可以在主命名空间中创建卷、并在一个或多个二级命名空间中共享该卷。</block>
   <block id="98f770b0af18ca763421bac22b4b6805" category="section-title">功能</block>
   <block id="8ff961668c6784e84b25c265cbb629d7" category="paragraph">要了解有关跨命名空间卷访问的详细信息、请执行以下操作：</block>
@@ -3659,4 +3655,11 @@
   <block id="8eb8a41b260e1d77c7ffe733b87d87a1" category="list-text">dDocker .io/NetApp/trident-operator：23.04.0 (可选)</block>
   <block id="0b8ca2be5f4fe564fb8e843cbc53703d" category="admonition">如果在GKE环境中创建按需卷快照、请勿创建快照控制器。GKE-使用内置的隐藏快照控制器。</block>
   <block id="dfbfe722a0ce7e388b78027f9cfed8dd" category="paragraph">。<block ref="e2d45d57c7e2941b65c6ccd64af4223e" prefix=" " category="inline-code"></block> 指向A作用 力三端CSI驱动程序。<block ref="98e7d6463271d7848db255ae6467817a" prefix=" " category="inline-code"></block> 可以是<block ref="f2a6c498fb90ee345d997f888fce3b18" prefix=" " category="inline-code"></block> 或<block ref="afece4245269582cb2f1009d4fb52047" prefix=" " category="inline-code"></block>。设置为时<block ref="afece4245269582cb2f1009d4fb52047" prefix=" " category="inline-code"></block>、存储集群上的底层物理快照会保留、即使在使用时也是如此<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> 对象已删除。</block>
+  <block id="1f0c7a14cb87fb29a7346e9b4c770751" category="summary">Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTAP 集群进行通信。</block>
+  <block id="99379de626bf97f4e3e66d3a8cdb8802" category="section-title">Asta Control支持的驱动程序</block>
+  <block id="9e5914532c650440b8c559c303ae8e04" category="section-title">适用于ONTAP的Astra三端存储驱动程序</block>
+  <block id="bff3ebc4ae5702fb7f811ba9acabc13a" category="paragraph">Asta三端存储提供了以下存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
+  <block id="ad90b7d29d0d8a9c746868fe1f38ca90" category="paragraph">Rwo、ROX、rwx、RWOP</block>
+  <block id="96b38cb92e67a8f09c2d13169b8bb555" category="paragraph">Rwo、ROX、RWOP</block>
+  <block id="a38f7647d54be4cddc3f0b8e4c746caa" category="admonition">可以使用安全角色的登录凭据(用户名/密码)或专用密钥以及ONTAP集群上安装的证书对ONTAP后端进行身份验证。您可以使用更新现有后端以从一种身份验证模式移至另一种身份验证模式<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block>。</block>
 </blocks>
