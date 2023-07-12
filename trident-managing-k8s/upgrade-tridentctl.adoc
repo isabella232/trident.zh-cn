@@ -16,27 +16,36 @@ summary: '您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安�
 
 
 
-== 升级前的注意事项
+== 使用升级Astra三端到功能 `tridentctl`
 
-升级到最新版本的 Astra Trident 时，请考虑以下事项：
+卸载并重新安装 Astra Trident 可作为升级。卸载 Trident 时，不会删除 Astra Trident 部署所使用的永久性卷声明（ PVC ）和永久性卷（ PV ）。在 Astra Trident 脱机期间，已配置的 PV 仍可用，而 Astra Trident 将在恢复联机后为在此期间创建的任何 PVC 配置卷。
 
-* 从 Trident 20.01 开始，仅限测试版 https://kubernetes.io/docs/concepts/storage/volume-snapshots/["卷快照"^] 受支持。Kubernetes 管理员应注意安全地备份或将 alpha Snapshot 对象转换为测试版，以保留原有的 alpha Snapshot 。
-* 测试版的卷快照引入了一组经过修改的 CRD 和一个快照控制器，这两个控制器都应在安装 Astra Trident 之前进行设置。 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^] 讨论将 alpha 卷快照迁移到测试版格式所涉及的步骤。
-* 卸载并重新安装 Astra Trident 可作为升级。卸载 Trident 时，不会删除 Astra Trident 部署所使用的永久性卷声明（ PVC ）和永久性卷（ PV ）。在 Astra Trident 脱机期间，已配置的 PV 仍可用，而 Astra Trident 将在恢复联机后为在此期间创建的任何 PVC 配置卷。
+.开始之前
+请查看 link:upgrade-trident.html#select-an-upgrade-method["选择升级方法"] 升级之前 `tridentctl`。
+
+.步骤
+. 在中运行卸载命令 `tridentctl` 删除与Asta Trandent关联的所有资源(CRD和相关对象除外)。
++
+[listing]
+----
+./tridentctl uninstall -n <namespace>
+----
+. 重新安装Asta Trdent。请参见 link:..trident-get-started/kubernetes-deploy-tridentctl.html["使用 tridentctl 安装 Astra Trident"]。
 
 
 
-IMPORTANT: 升级 Astra Trident 时，请勿中断升级过程。确保安装程序运行完毕。
+IMPORTANT: 请勿中断升级过程。确保安装程序运行完毕。
 
 
 
-== 升级后的后续步骤
+== 使用升级卷 `tridentctl`
 
-要使用新 Trident 版本中提供的丰富功能（例如按需卷快照），您可以使用 `tridentctl upgrade` 命令升级卷。
+升级后、您可以利用较新的三元数据版本中提供的一组丰富功能(例如按需卷快照)、也可以使用升级卷 `tridentctl upgrade` 命令：
 
-如果存在旧卷，则应将其从 NFS/iSCSI 类型升级到 CSI 类型，以便能够使用 Astra Trident 中的一整套新功能。Trident 配置的原有 PV 支持传统功能集。
+如果存在原有卷、则应将其从NFS或iSCSI类型升级到CSI类型、以使用Asta三元数据中的一整套新功能。Trident 配置的原有 PV 支持传统功能集。
 
-决定将卷升级到 CSI 类型时，请考虑以下事项：
+.开始之前
+在决定将卷升级到CSI类型之前、请考虑以下事项：
 
 * 您可能不需要升级所有卷。以前创建的卷将继续可访问并正常运行。
 * 升级时， PV 可以作为部署 / 状态集的一部分挂载。不需要关闭部署 / 状态集。
@@ -44,12 +53,7 @@ IMPORTANT: 升级 Astra Trident 时，请勿中断升级过程。确保安装程
 * 您只能升级绑定到 PVC 的卷。升级前，应删除和导入未绑定到 PVC 的卷。
 
 
-
-
-=== 卷升级示例
-
-以下示例显示了如何执行卷升级。
-
+.步骤
 . 运行 `kubectl get pv` 以列出 PV 。
 +
 [listing]
@@ -145,7 +149,4 @@ Source:
                            protocol=file
 Events:                <none>
 ----
-+
-通过这种方式，您可以将由 Astra Trident 创建的 NFS/iSCSI 类型的卷逐个升级到 CSI 类型。
-
 

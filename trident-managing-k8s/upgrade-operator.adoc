@@ -12,27 +12,22 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 
 
 [role="lead"]
-您可以使用操作员轻松升级现有的 Astra Trident 安装。
-
-.开始之前
-要使用运算符进行升级、应满足以下条件：
-
-* 您必须安装基于CSI的Astra Trident。自2007年19月7日起的所有版本均基于CSI。您可以检查Trident命名空间中的Pod进行验证。
-+
-** 23.01之前的版本中的Pod命名遵循a `trident-csi-*` 约定。
-** 23.01及更高版本中的Pod命名使用： `trident-controller-<generated id>` 控制器POD； `trident-node-<operating system>-<generated id>` 对于节点Pod； `trident-operator-<generated id>` 用于操作员POD。
+您可以使用操作员手动或Helm轻松升级现有的Asta三端安装。
 
 
-* 如果您已卸载 CSI Trident ，并且安装中的元数据仍然存在，则可以使用操作员进行升级。
-* 在给定 Kubernetes 集群中的所有命名空间中，只应安装一个 Astra Trident 。
-* 您应使用正在运行的Kubernetes集群 link:../trident-get-started/requirements.html["支持的Kubernetes版本"]。
-* 如果存在字母快照 CRD ，则应使用 `tridentctl obliviate alpha-snapshot-crd` 将其删除。此操作将删除 alpha snapshot 规范的 CRD 。有关应删除 / 迁移的现有快照，请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^]。
 
+== 使用Trident操作符进行升级
 
-[WARNING]
+通常、您应使用最初安装Asta三端存储时所用的方法来升级Asta三端存储。请查看 link:upgrade-trident.html#select-an-upgrade-method["选择升级方法"] 在尝试使用三端修复操作符进行升级之前。
+
+[IMPORTANT]
 ====
-* 在OpenShift容器平台上使用操作符升级Trident时、应升级到Trident 21.01.1或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息，请参见 https://github.com/NetApp/trident/issues/517["GitHub 上的问题描述详细信息"^]。
-* 如果您使用的是基于 `etcd` 的 Trident 版本（ 19.04 或更早版本），请勿使用运算符升级 Trident 。
+从使用命名空间范围的运算符(版本20.07到20.10)安装的A作用 于Trident实例升级时、该运算符会自动：
+
+* 迁移 `tridentProvisioner` 到A `tridentOrchestrator` 具有相同名称的对象、
+* 删除 `TridentProvisioner` 对象和 `tridentprovisioner` CRD
+* 将A作用 域操作符升级到所使用的集群范围操作符版本
+* 将A作用 于最初安装的命名空间安装在相同的命名空间中
 
 
 ====
@@ -40,7 +35,10 @@ summary: 您可以使用操作员轻松升级现有的 Astra Trident 安装。
 
 == 升级集群范围的Trident操作员安装
 
-按照以下步骤升级集群范围的Trident操作员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。
+您可以升级集群范围的三端操作员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。
+
+.开始之前
+确保您使用的是正在运行的Kubbernetes集群 link:../trident-get-started/requirements.html["支持的Kubernetes版本"]。
 
 .步骤
 . 验证Astra Trident版本：
@@ -67,7 +65,7 @@ kubectl create -f 23.04.0/trident-installer/deploy/bundle_post_1_25.yaml -n trid
 ====
 Trident提供了一个捆绑包文件、可用于安装操作员并为Kubernetes版本创建关联对象。
 
-** 对于运行Kubernetes 1.24或更低版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.04/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
+** 对于运行Kubornetes 1.24或更早版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.04/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
 ** 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.04/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
 
 
@@ -81,14 +79,18 @@ Trident操作员将确定现有的Astra Trident安装并将其升级到与操作
 
 == 升级命名空间范围的操作员安装
 
-按照以下步骤从使用命名空间范围的运算符(版本20.07至20.10)安装的Astra Trident实例进行升级。
+您可以从使用命名空间范围的操作符(版本20.07到20.10)安装的Astra Dent实例升级到集群范围的操作符安装。
+
+.开始之前
+您需要使用捆绑包YAML文件从中部署命名空间范围的运算符 `\https://github.com/NetApp/trident/tree/stable/_vXX.XX_/deploy/_BUNDLE.YAML_` 其中： `_vXX.XX_` 是版本号和 `_BUNDLE.YAML_` 是捆绑包YAML文件名。
 
 .步骤
-. 验证现有 Trident 安装的状态。要执行此操作，请检查 `TridentProvider` 的 * 状态 * 。状态应为 `installed` 。
+. 验证 `TridentProvisioner` 现有的｛\f270通过｝｛\f151。｝ `Installed`。
 +
 [listing]
 ----
 kubectl describe tprov trident -n trident | grep Message: -A 3
+
 Message:  Trident installed
 Status:   Installed
 Version:  v20.10.1
@@ -109,28 +111,33 @@ tar -xf trident-installer-23.04.0.tar.gz
 cd trident-installer
 kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
 ----
-. 使用其清单删除命名空间范围的运算符。要完成此步骤、您需要使用捆绑包YAML文件从部署命名空间范围的运算符 `\https://github.com/NetApp/trident/tree/stable/_vXX.XX_/deploy/_BUNDLE.YAML_` 其中： `_vXX.XX_` 是版本号和 `_BUNDLE.YAML_` 是捆绑包YAML文件名。
+. 使用其清单删除命名空间范围的运算符。
 +
-
-NOTE: 您应对Trident安装参数进行必要的更改(例如、更改的值 `tridentImage`， `autosupportImage`、私有映像存储库和提供 `imagePullSecrets`)。有关可更新的完整参数列表、请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy.html#configuration-options["配置选项"]。
-
+.. 确保您位于正确的目录中。
 +
 [listing]
 ----
-#Ensure you are in the right directory
 pwd
 /root/20.10.1/trident-installer
-
-#Delete the namespace-scoped operator
+----
+.. 删除命名空间范围的运算符。
++
+[listing]
+----
 kubectl delete -f deploy/<BUNDLE.YAML> -n trident
+
 serviceaccount "trident-operator" deleted
 clusterrole.rbac.authorization.k8s.io "trident-operator" deleted
 clusterrolebinding.rbac.authorization.k8s.io "trident-operator" deleted
 deployment.apps "trident-operator" deleted
 podsecuritypolicy.policy "tridentoperatorpods" deleted
-
-#Confirm the Trident operator was removed
+----
+.. 确认已删除三端修复操作符。
++
+[listing]
+----
 kubectl get all -n trident
+
 NAME                               READY   STATUS    RESTARTS   AGE
 pod/trident-csi-68d979fb85-dsrmn   6/6     Running   12         99d
 pod/trident-csi-8jfhf              2/2     Running   6          105d
@@ -149,33 +156,39 @@ deployment.apps/trident-csi   1/1     1            1           105d
 NAME                                     DESIRED   CURRENT   READY   AGE
 replicaset.apps/trident-csi-68d979fb85   1         1         1       105d
 ----
-+
-此时，将删除 `trident 操作符 -xxxxxx-xxxxx` Pod 。
 
-. （可选）如果需要修改安装参数，请更新 `TridentProvider` 规范。这些更改可能包括修改私有映像注册表以从中提取容器映像，启用调试日志或指定映像提取密钥等。
+
+. (可选)如果需要修改安装参数、请更新 `TridentProvisioner` 规格这可能包括更改、例如更改：的值 `tridentImage`， `autosupportImage`、私有映像存储库和提供 `imagePullSecrets`)。有关可更新的完整参数列表、请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy.html#configuration-options["配置选项"]。
 +
 [listing]
 ----
 kubectl patch tprov <trident-provisioner-name> -n <trident-namespace> --type=merge -p '{"spec":{"debug":true}}'
 ----
-. 安装Trident操作符。
+. 安装在集群范围内的TRIdent操作符。
 +
-
-NOTE: 安装集群范围的运算符可启动的迁移 `TridentProvisioner` 对象 `TridentOrchestrator` 对象、删除 `TridentProvisioner` 对象和 `tridentprovisioner` CRD、并将Astra Trident升级到所使用的集群范围运算符版本。在下面的示例中、三端升级到23.04.0。
-
-+
-
-IMPORTANT: 使用Trident操作员升级Astra Trident会导致迁移 `tridentProvisioner` 到A `tridentOrchestrator` 同名对象。此操作由操作员自动处理。在升级过程中， Astra Trident 也会安装在与之前相同的命名空间中。
-
+.. 确保您位于正确的目录中。
 +
 [listing]
 ----
-#Ensure you are in the correct directory
 pwd
 /root/23.04.0/trident-installer
+----
+.. 在同一命名空间中安装集群范围的运算符。
++
+[NOTE]
+====
+Trident提供了一个捆绑包文件、可用于安装操作员并为Kubernetes版本创建关联对象。
 
-#Install the cluster-scoped operator in the **same namespace**
+*** 对于运行Kubornetes 1.24或更早版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.04/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
+*** 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.04/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
+
+
+====
++
+[listing]
+----
 kubectl create -f deploy/<BUNDLE.YAML>
+
 serviceaccount/trident-operator created
 clusterrole.rbac.authorization.k8s.io/trident-operator created
 clusterrolebinding.rbac.authorization.k8s.io/trident-operator created
@@ -190,24 +203,29 @@ Error from server (NotFound): Unable to list "trident.netapp.io/v1, Resource=tri
 kubectl get torc
 NAME      AGE
 trident   13s
-
-#Examine Trident pods in the namespace
+----
+.. 检查命名空间中的三端Pod。。 `trident-controller` 和POD名称反映了23.01中引入的命名约定。
++
+[listing]
+----
 kubectl get pods -n trident
+
 NAME                                     READY   STATUS    RESTARTS   AGE
 trident-controller-79df798bdc-m79dc      6/6     Running   0          1m41s
 trident-node-linux-xrst8                 2/2     Running   0          1m41s
 trident-operator-5574dbbc68-nthjv        1/1     Running   0          1m52s
-
-#Confirm Trident has been updated to the desired version
+----
+.. 确认已将三端到端更新到预期版本。
++
+[listing]
+----
 kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
 Version:                v23.04.0
 ----
-+
 
-NOTE: 。 `trident-controller` 和POD名称反映了23.01中引入的命名约定。
 
 
 
@@ -270,12 +288,12 @@ cd trident-installer
 ----
 kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
 ----
-. 部署操作员。
+. 将集群范围的运算符部署在同一命名空间中。
 +
 [listing]
 ----
-#Install the cluster-scoped operator in the **same namespace**
 kubectl create -f deploy/<BUNDLE.YAML>
+
 serviceaccount/trident-operator created
 clusterrole.rbac.authorization.k8s.io/trident-operator created
 clusterrolebinding.rbac.authorization.k8s.io/trident-operator created
@@ -292,7 +310,6 @@ trident-operator-5574dbbc68-nthjv     1/1     Running   0          1m30s
 +
 [listing]
 ----
-#Create a tridentOrchestrator to initiate a Trident install
 cat deploy/crds/tridentorchestrator_cr.yaml
 apiVersion: trident.netapp.io/v1
 kind: TridentOrchestrator
@@ -309,9 +326,13 @@ NAME                                READY   STATUS    RESTARTS   AGE
 trident-csi-79df798bdc-m79dc        6/6     Running   0          1m
 trident-csi-xrst8                   2/2     Running   0          1m
 trident-operator-5574dbbc68-nthjv   1/1     Running   0          5m41s
-
-#Confirm Trident was upgraded to the desired version
+----
+. 确认已将三项功能升级到预期版本。
++
+[listing]
+----
 kubectl describe torc trident | grep Message -A 3
+
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed

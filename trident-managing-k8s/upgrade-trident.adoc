@@ -16,7 +16,30 @@ Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本
 
 
 
-== 选择一个版本
+== 升级前的注意事项
+
+升级到最新版本的 Astra Trident 时，请考虑以下事项：
+
+* 在给定Kubbernetes集群中的所有名空间中只应安装一个A作用 力三端实例。
+* 从 Trident 20.01 开始，仅限测试版 https://kubernetes.io/docs/concepts/storage/volume-snapshots/["卷快照"^] 受支持。Kubernetes 管理员应注意安全地备份或将 alpha Snapshot 对象转换为测试版，以保留原有的 alpha Snapshot 。
++
+** 从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。升级之前、您应使用删除Alpha Snapshot CRD `tridentctl obliviate alpha-snapshot-crd` 删除字母快照规范的CRD。
+** 测试版的卷快照引入了一组经过修改的CRD和一个快照控制器、这两个组件都应在升级Astra三端存储之前进行设置。
+** 有关详细信息，请参见 link:https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["升级Kubbernetes集群前需要了解的事项"^]。
+
+
+* 从19.04及更早版本升级的所有版本都需要自行迁移Asta三元数据 `etcd` 到CRD对象。确保选中 link:https://docs.netapp.com/us-en/trident/earlier-versions.html["您的Astra Trdent版本的专用文档"] 以了解升级的工作原理。
+* 升级时、请务必提供 `parameter.fsType` 在中 `StorageClasses` 由Astra Trident使用。您可以删除并重新创建 `StorageClasses` 而不会中断已有卷。
++
+** 这是执行的一项 * 要求 * https://kubernetes.io/docs/tasks/configure-pod-container/security-context/["安全上下文"^] SAN 卷。
+** https://github.com/NetApp/trident/tree/master/trident-installer/sample-input[sample输入^]目录包含https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-basic.yaml.templ等示例[`storage-class-basic.yaml.templ`^)和链接：https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-bronze-default.yaml[`storage-class-bronze-default.yaml`^。有关详细信息，请参见 link:../trident-rn.html["已知问题"]。
+
+
+
+
+
+
+== 第1步：选择版本
 
 Astra Trident版本采用基于日期的版本 `YY.MM` 命名约定、其中"YY"是一年中的最后两位数字、"MM"是月份。DOT版本会遵循A `YY.MM.X` 约定、其中"X"是修补程序级别。您将根据要从中升级的版本选择要升级到的版本。
 
@@ -29,31 +52,75 @@ Astra Trident版本采用基于日期的版本 `YY.MM` 命名约定、其中"YY"
 
 
 
-[WARNING]
-====
-* 对于19.04及更早版本的所有升级、都需要从Astra Trident元数据自身进行迁移 `etcd` 到CRD对象。请务必查看此版本的文档、了解升级的工作原理。
-* 升级时、请务必提供 `parameter.fsType` 在中 `StorageClasses` 由Astra Trident使用。您可以删除并重新创建 `StorageClasses` 而不会中断已有卷。这是对SAN卷强制实施https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[security环境^的**要求。https://github.com/NetApp/trident/tree/master/trident-installer/sample-input[sample输入^]目录包含一些示例、例如https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-basic.yaml.templ[`storage-class-basic.yaml.templ`^)和链接：https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-bronze-default.yaml[`storage-class-bronze-default.yaml`^。有关详细信息，请参见 link:../trident-rn.html["已知问题"]。
 
-
-====
-
-
-== 选择升级选项
-
-升级Astra Trident有两种选择。通常、您将使用与初始安装相同的选项、但可以使用 link:../trident-get-started/kubernetes-deploy.html#moving-between-installation-methods["在安装方法之间切换"]。
-
-* link:upgrade-operator.html["使用Trident操作符进行升级"]
-* 
+NOTE: 在OpenShift容器平台上使用TRIDent操作程序进行升级时、应升级到TRIDent 21.01.1或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息，请参见 https://github.com/NetApp/trident/issues/517["GitHub 上的问题描述详细信息"^]。
 
 
 
-WARNING: 从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。在升级 Astra Trident 时，在执行升级之前，必须删除所有先前的 alpha snapshot CRS 和 CRD （卷快照类，卷快照和卷快照内容）。请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"^] 了解将 alpha 快照迁移到测试版 /GA 规范所涉及的步骤。
+== 第2步：确定原始安装方法
+
+通常、您应使用与初始安装相同的方法进行升级、但您可以这样做 link:../trident-get-started/kubernetes-deploy.html#moving-between-installation-methods["在安装方法之间切换"]。
+
+若要确定最初安装Astra Trdent时使用的版本、请执行以下操作：
+
+. 使用 ... `kubectl get pods - trident` 检查Pod。
++
+** 如果没有操作员POD、则使用安装了Asta三端盘 `tridentctl`。
+** 如果有操作员模块、则使用三端操作员手动或使用Helm安装了A作用 曲三端。
+
+
+. 如果有操作员控制盒、请使用 `kubectl describe tproc trident` 确定是否使用Helm安装了Astra Trdent。
++
+** 如果有Helm标签、则表示Asta Trdent是使用Helm安装的。
+** 如果没有Helm标签、则使用Trident操作人员手动安装A作用 于Trident。
+
+
+
+
+
+
+== 第3步：选择升级方法
+
+有两种方法可升级Asta三端到端。
+
+
+
+=== 何时使用操作员进行升级
+
+您可以 link:upgrade-operator.html["使用三端修复操作符升级"] 条件：
+
+* 您最初使用操作员或安装了Astra Trdent `tridentctl`。
+* 您卸载了CSI三元数据、但安装中的元数据仍然存在。
+* 您已安装基于CSI的Astra三端技术。自2007年19月7日起的所有版本均基于CSI。您可以检查三端存储命名空间中的Pod以验证您的版本。
++
+** 23.01之前版本中的POD命名使用： `trident-csi-*`
+** 23.01及更高版本中的Pod命名使用：
++
+*** `trident-controller-<generated id>` 控制器Pod
+*** `trident-node-<operating system>-<generated id>` 节点Pod
+*** `trident-operator-<generated id>` 对于操作舱
+
+
+
+
+
+
+
+WARNING: 如果您使用的是基于 `etcd` 的 Trident 版本（ 19.04 或更早版本），请勿使用运算符升级 Trident 。
+
+
+
+=== 何时使用升级 `tridentctl`
+
+您可以  如果您最初是使用`tridenctl’安装Astra三端安装的。
+
+`tridentctl` 是安装Asta Trident的传统方法、为需要复杂自定义的用户提供了大多数选项。有关详细信息，请参见 link:..trident-get-started/kubernetes-deploy.html#choose-your-installation-method["选择安装方法"]。
 
 
 
 == 对运算符进行了更改
 
-Astra Trident 21.01 版为操作员引入了一些关键的架构变更，即：
+21.01版的Asta三端设计引入了对运营商的架构进行的更改：
 
 * 操作符现在为 * 集群范围 * 。以前的 Trident 运算符实例（版本 20.04 到 20.10 ）为 * 命名空间范围 * 。集群范围内的运算符具有优势，原因如下：
 +

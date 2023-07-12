@@ -95,7 +95,7 @@ kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.1
 
 Astra Trident安装程序提供了一个包文件、可用于安装操作员和创建关联对象。使用此捆绑包文件可以轻松地部署操作员并使用默认配置安装Astra Trident。
 
-* 对于运行Kubernetes 1.24或更低版本的集群、请使用 `bundle_pre_1_25.yaml`。
+* 对于运行Kubornetes 1.24或更早版本的集群、请使用 `bundle_pre_1_25.yaml`。
 * 对于运行Kubernetes 1.25或更高版本的集群、请使用 `bundle_post_1_25.yaml`。
 
 

@@ -658,23 +658,16 @@
   <block id="14340f3a4eb25a54f8446036d807d7c8" category="paragraph">Astra Trident 是一个官方支持的 NetApp 项目。您可以使用任何标准机制联系 NetApp ，并获得所需的企业级支持。</block>
   <block id="dec54888538ac86f51d29a3d043e6bf6" category="summary">您可以使用操作员轻松升级现有的 Astra Trident 安装。</block>
   <block id="5ff3faebb0ff710340bdbee89a4667ad" category="doc">使用操作员升级</block>
-  <block id="ba45a58fb6371fc5a91fb8a5d399becd" category="list-text">如果您已卸载 CSI Trident ，并且安装中的元数据仍然存在，则可以使用操作员进行升级。</block>
-  <block id="33deedceb6eaeb2f124b7ce830e212a8" category="list-text">在给定 Kubernetes 集群中的所有命名空间中，只应安装一个 Astra Trident 。</block>
   <block id="f5d517b06fc0b1af5d599776e2f6f1d6" category="inline-link">本博客</block>
-  <block id="093e1971a4b17fce7e3e4d94854a46ba" category="list-text">如果存在字母快照 CRD ，则应使用 `tridentctl obliviate alpha-snapshot-crd` 将其删除。此操作将删除 alpha snapshot 规范的 CRD 。有关应删除 / 迁移的现有快照，请参见<block ref="ddf3864130a7be37c683b2fe21303201" category="inline-link-rx"></block>。</block>
   <block id="199ed8c975e8bb544d18428ba17adbc3" category="inline-link">GitHub 上的问题描述详细信息</block>
   <block id="d06b5297af318d2581021098f6b0d44d" category="section-title">升级命名空间范围的操作员安装</block>
-  <block id="edf5c542759186ded2c7eeaae6b340a5" category="list-text">验证现有 Trident 安装的状态。要执行此操作，请检查 `TridentProvider` 的 * 状态 * 。状态应为 `installed` 。</block>
   <block id="683d018a2f7c70469fd74ba0eeae2a79" category="list-text">使用 Trident 安装程序随附的清单创建 `TridentOrchestrator` CRD 。</block>
-  <block id="5fbede7820945c99130183fd2fd0f4b3" category="paragraph">此时，将删除 `trident 操作符 -xxxxxx-xxxxx` Pod 。</block>
-  <block id="86463d362af5835ff8c3fd6587fbd24f" category="list-text">（可选）如果需要修改安装参数，请更新 `TridentProvider` 规范。这些更改可能包括修改私有映像注册表以从中提取容器映像，启用调试日志或指定映像提取密钥等。</block>
   <block id="61d74cfa0c3f53abef0b4694fba0522f" category="section-title">升级基于 Helm 的操作员安装</block>
   <block id="7734dd866cc8c135256bad90520fa719" category="paragraph">要升级基于 Helm 的操作员安装，请执行以下步骤。</block>
   <block id="3002cfcea36b7fb4d87da4d413730851" category="list-text">下载最新的 Astra Trident 版本。</block>
   <block id="4a6b869a481b52472aa62cfa4d9d255e" category="paragraph">例如，要更改默认值 `tridentDebug` ，请运行以下命令：</block>
   <block id="5c83dd886f5edc620e809e7800bc225f" category="section-title">从非操作员安装升级</block>
   <block id="4ab464bddccdcbc36fab4cea802025f9" category="list-text">从清单中创建 `tridentorchator` CRD 。</block>
-  <block id="835fd860290737b70acf870a253c3549" category="list-text">部署操作员。</block>
   <block id="06da281bf5e01c3c59892dc886cd0067" category="list-text">创建 `TridentOrchestrator` CR 以安装 Astra Trident 。</block>
   <block id="f420eb91a420c03f1792a6504b30277b" category="paragraph">现有后端和 PVC 会自动可用。</block>
   <block id="1e209c07680392db2505687941188c9f" category="summary">了解降级到早期版本的 Astra Trident 所涉及的步骤。</block>
@@ -728,10 +721,8 @@
   <block id="3386987a97643481040e99019808e020" category="doc">升级 Astra Trident</block>
   <block id="ff115c7087db60c699cccdb21f39ea66" category="list-text">然后从 19.07 升级到 20.07 。</block>
   <block id="558ab0bef1894a7a726109d36632d09d" category="inline-link-macro">已知问题</block>
-  <block id="756bc985c24584ee6c7338b28f771da8" category="admonition">从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。在升级 Astra Trident 时，在执行升级之前，必须删除所有先前的 alpha snapshot CRS 和 CRD （卷快照类，卷快照和卷快照内容）。请参见<block ref="ddf3864130a7be37c683b2fe21303201" category="inline-link-rx"></block> 了解将 alpha 快照迁移到测试版 /GA 规范所涉及的步骤。</block>
   <block id="3814df1eaf856112f1f0b22f7f0600e5" category="admonition">如果您使用的是基于 `etcd` 的 Trident 版本（ 19.04 或更早版本），请勿使用运算符升级 Trident 。</block>
   <block id="152a676ac450f5b96a35605dde352607" category="section-title">对运算符进行了更改</block>
-  <block id="fc7e892a21e797d0592360430a5deedd" category="paragraph">Astra Trident 21.01 版为操作员引入了一些关键的架构变更，即：</block>
   <block id="4d1b9ac70f0037098e345cb389ea45d9" category="list-text">操作符现在为 * 集群范围 * 。以前的 Trident 运算符实例（版本 20.04 到 20.10 ）为 * 命名空间范围 * 。集群范围内的运算符具有优势，原因如下：</block>
   <block id="d898743d222c4e0e5e333941bee1ed57" category="list-text">资源责任：操作员现在可以在集群级别管理与 Astra Trident 安装相关的资源。在安装 Astra Trident 过程中，操作员使用 `ownerReferences` 创建和维护多个资源。在集群范围的资源上维护 `所有权参考` 可能会在某些 Kubernetes 分销商（例如 OpenShift ）上引发错误。使用集群范围的运算符可缓解此问题。对于 Trident 资源的自动修复和修补，这是一项基本要求。</block>
   <block id="375aa3155c54339a366f23cdb01301e5" category="list-text">卸载期间清理：要完全删除 Astra Trident ，需要删除所有关联的资源。命名空间范围的运算符可能会在删除集群范围的资源（例如 clusterRole ， ClusterRoleBinding-and PodSecurityPolicy ）时遇到问题，并导致清理不完整。集群范围的运算符可消除此问题描述。用户可以完全卸载 Astra Trident 并在需要时重新安装。</block>
@@ -741,25 +732,16 @@
   <block id="6224e22d5a77816dd8b659c25a3f88a5" category="paragraph">升级到最新版本的 Astra Trident 时，请考虑以下事项：</block>
   <block id="98c7e2ecbd5f5a638272ee366b25b6a1" category="inline-link">卷快照</block>
   <block id="8f9f7d64f0943a9bec25cdd7b786022a" category="list-text">从 Trident 20.01 开始，仅限测试版<block ref="0b290b7ed02de23dc49888d0fa4fc114" category="inline-link-rx"></block> 受支持。Kubernetes 管理员应注意安全地备份或将 alpha Snapshot 对象转换为测试版，以保留原有的 alpha Snapshot 。</block>
-  <block id="a4155944ba4eeb0c41401ab7bb85d3d9" category="inline-link">本博客</block>
   <block id="4ff0a9f6065b24ce3d325bad3223f4e2" category="paragraph">卸载并重新安装 Astra Trident 可作为升级。卸载 Trident 时，不会删除 Astra Trident 部署所使用的永久性卷声明（ PVC ）和永久性卷（ PV ）。在 Astra Trident 脱机期间，已配置的 PV 仍可用，而 Astra Trident 将在恢复联机后为在此期间创建的任何 PVC 配置卷。</block>
-  <block id="398a8bf92020ed0b4edb1445d1380971" category="admonition">升级 Astra Trident 时，请勿中断升级过程。确保安装程序运行完毕。</block>
-  <block id="068051b0ea15e91fd236b514c8b35ffe" category="section-title">升级后的后续步骤</block>
-  <block id="ba79ef627bc5ee010211ca922024f9e4" category="paragraph">要使用新 Trident 版本中提供的丰富功能（例如按需卷快照），您可以使用 `tridentctl upgrade` 命令升级卷。</block>
-  <block id="1f97048c5a9c81e85e588044b15b51c8" category="paragraph">如果存在旧卷，则应将其从 NFS/iSCSI 类型升级到 CSI 类型，以便能够使用 Astra Trident 中的一整套新功能。Trident 配置的原有 PV 支持传统功能集。</block>
-  <block id="aae0cab55b3d14012cfc61ef5ad46105" category="paragraph">决定将卷升级到 CSI 类型时，请考虑以下事项：</block>
   <block id="9407b572db9501134ce92167448428fb" category="list-text">您可能不需要升级所有卷。以前创建的卷将继续可访问并正常运行。</block>
   <block id="35127b2fd7c387c56305575dfafe2a97" category="list-text">升级时， PV 可以作为部署 / 状态集的一部分挂载。不需要关闭部署 / 状态集。</block>
   <block id="260eeb1b0c4ec05a9788dc485ed03d36" category="list-text">升级时，您 * 无法 * 将 PV 连接到独立 POD 。在升级卷之前，您应关闭 POD 。</block>
   <block id="2d59c3aee4c9fe757980153c65e922d0" category="list-text">您只能升级绑定到 PVC 的卷。升级前，应删除和导入未绑定到 PVC 的卷。</block>
-  <block id="f2e9d80774fbee2a6152ad9c7db8e0ee" category="section-title">卷升级示例</block>
-  <block id="eff342caa8bb47fc3653d7b149aa91d4" category="paragraph">以下示例显示了如何执行卷升级。</block>
   <block id="fbc477673a43a428e429fe6902c6e36a" category="list-text">运行 `kubectl get pv` 以列出 PV 。</block>
   <block id="09d5f690bff68f8b4ffeeed3dac1f534" category="paragraph">目前， Trident 20.07 使用 `netapp.io/trident` 配置程序创建了四个 PV 。</block>
   <block id="581ee670123fe76ff75275867ef06bcc" category="list-text">运行 `kubectl describe PV` 以获取 PV 的详细信息。</block>
   <block id="a20b570eccfacf0ac4684823643f91a1" category="paragraph">PV 是使用 `netapp.io/trident` 配置程序创建的，其类型为 NFS 。要支持 Astra Trident 提供的所有新功能，应将此 PV 升级到 CSI 类型。</block>
   <block id="c18e246999f594d4fb39c857bcdd1e09" category="list-text">运行 `kubectl describe PV` 以验证此卷是否为 CSI 卷。</block>
-  <block id="fb741f44b40455e466443f8f96ace85e" category="paragraph">通过这种方式，您可以将由 Astra Trident 创建的 NFS/iSCSI 类型的卷逐个升级到 CSI 类型。</block>
   <block id="f58e95baa778c9a2bd1a4597fb49d9b7" category="doc">ONTAP 驱动程序</block>
   <block id="48cf24486d9a8e65a142b25682f19949" category="cell">驱动程序</block>
   <block id="888a77f5ac0748b6c8001822417df8b6" category="cell">协议</block>
@@ -2156,7 +2138,6 @@
   <block id="d7f1fbcf9ce4e42f705add574d262b2c" category="paragraph"><block ref="d7f1fbcf9ce4e42f705add574d262b2c" category="inline-link-rx"></block></block>
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隐私政策</block>
   <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
-  <block id="056b6e39cb1ae24d946674f95697989a" category="paragraph">您可以使用操作员轻松升级现有的 Astra Trident 安装。</block>
   <block id="25c11af81bf0b01ce7b0f24ddc9f7136" category="section-title">其他已知配置选项</block>
   <block id="ffedfe711d36cdc8c41927063ae77027" category="paragraph">在 VMware Tanzu Portfolio 产品上安装 Astra Trident 时：</block>
   <block id="8ded34c5caad3971bb6d0a2b202d7b32" category="list-text">集群必须支持有权限的工作负载。</block>
@@ -2552,7 +2533,6 @@
   <block id="a76a1e164520105317267dc41b95e8ce" category="paragraph">使用 <block ref="f8c16e8c21124ccc028d2db7fd32a98f" category="inline-link-macro-rx"></block>、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。BlueXP支持使用Trident操作员手动或使用Helm部署Astra Trident。</block>
   <block id="6ce33e8f1e198bf1c3583bc5ef789b75" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="3260a21902518174ce8d9bfef42be276" category="inline-link-macro-rx"></block></block>
   <block id="cae73b6a00921ef48cee176b0d4336fe" category="inline-link-macro">配置选项</block>
-  <block id="094d2b2ef4b98bdb0943b10cc4e305f4" category="admonition">您应对Trident安装参数进行必要的更改(例如、更改的值<block ref="d771848c80f96e5954a8658655cf79d7" prefix=" " category="inline-code"></block>，<block ref="7ecc687ea7566f05fd13fde7be607bfc" prefix=" " category="inline-code"></block>、私有映像存储库和提供<block ref="0d9b54b29da54379cca6b8782b9faae5" prefix=" " category="inline-code"></block>)。有关可更新的完整参数列表、请参见 <block ref="d752d8869a42e1b0fd341b92b54677e0" category="inline-link-macro-rx"></block>。</block>
   <block id="66f2c42a4ca561f5472459301bc7d096" category="list-text">ONTAP 驱动程序的自动MetroCluster 切换检测现已全面推出。</block>
   <block id="e87ded5ef8bc8adbc3c135528636f4f2" category="list-text"><block ref="e87ded5ef8bc8adbc3c135528636f4f2" category="inline-link-macro-rx"></block></block>
   <block id="fce586d9f649fb529d0a1846495ba259" category="list-text"><block ref="fce586d9f649fb529d0a1846495ba259" category="inline-link-macro-rx"></block></block>
@@ -2581,7 +2561,6 @@
   <block id="14dc7970933630896b0232f2a8b52039" category="paragraph">为了提高安全性、我们使用了Astra Trident<block ref="aba3d4b49c454e1974970e7b5514b001" prefix=" " category="inline-code"></block> 默认情况下、在Pod内部运行时、仅限于localhost。要更改此行为、您需要设置Astra Trident<block ref="38df54fe961fa2bf2a7f82a5854fabad" prefix=" " category="inline-code"></block> 参数。</block>
   <block id="eee97547fb40d9c4df018377ac6478bb" category="section-title">使用REST API</block>
   <block id="ee656aff7dc78e280efdea39a682afbb" category="section-title">升级前的注意事项</block>
-  <block id="c88fd7d0135b7fc6ed1fdefdef8d4914" category="list-text">测试版的卷快照引入了一组经过修改的 CRD 和一个快照控制器，这两个控制器都应在安装 Astra Trident 之前进行设置。<block ref="e4a27565231679ceaa893efb487dac52" category="inline-link-rx"></block> 讨论将 alpha 卷快照迁移到测试版格式所涉及的步骤。</block>
   <block id="4e9ac50b8f51023570ef0b0a0a827912" category="inline-link-macro">支持的Kubernetes版本</block>
   <block id="26dbe1fe275b741e7240a373222d3480" category="paragraph">迁移到使用 CRD 的 Astra Trident 版本时，应考虑降级。由于Astra Trident使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有关联的CRD对象、而不是写入到中的数据<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> PV (由早期安装的Astra Trident版本使用)。新创建的 PV ，后端和存储类均作为 CRD 对象进行维护。</block>
   <block id="06b33bc9cc124539c964174ecd43eb43" category="paragraph">请仅尝试对使用CRD运行的Astra Trident版本(19.07及更高版本)进行降级。这样可以确保在降级后可以看到对当前Astra Trident版本执行的操作。</block>
@@ -2830,8 +2809,6 @@
   <block id="81ba9d708af383a3ede5475fabdd91bf" category="paragraph">在非命名空间中部署操作员<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> 命名空间、更新<block ref="8610cac3beb01fb0b43bc94c587a807d" prefix=" " category="inline-code"></block>，<block ref="a3df76a4fb69b2a5e9ec42d242e90ea3" prefix=" " category="inline-code"></block> 和<block ref="9fa80de5781893b057ff1d535201893b" prefix=" " category="inline-code"></block> 部署操作员之前。</block>
   <block id="05cb480f9344b60f5eeaed25c5e230d1" category="list-text">创建资源并部署操作员：</block>
   <block id="4488449936bc789dc4dfb6a7887b3533" category="paragraph">Astra Trident安装程序提供了一个包文件、可用于安装操作员和创建关联对象。使用此捆绑包文件可以轻松地部署操作员并使用默认配置安装Astra Trident。</block>
-  <block id="e8972e07c1fa789317997dff35db7e78" category="list-text">对于运行Kubernetes 1.24或更低版本的集群、请使用<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block>。</block>
-  <block id="a615299877ce0660ab19510814b9dedd" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block>。</block>
   <block id="64458d8f3e4ba02b2bf50e5a1ad00c81" category="list-text">验证是否已部署此操作员。</block>
   <block id="69301f05825d437597b636d8b7e9d918" category="paragraph">您必须附加<block ref="4134d52569bb4a6545ebff1e4c83f2bc" prefix=" " category="inline-code"></block> 到<block ref="990dc1a09e10c7b5378e6bc8a1956cb8" prefix=" " category="inline-code"></block> 使用不同的注册表位置。</block>
   <block id="78f538d1739cfd8c70698ec72269da17" category="inline-link-macro">自定义Trident安装</block>
@@ -2901,36 +2878,17 @@
   <block id="816cf1fb2aa5f808ab09b4740f8ec199" category="list-text">已添加 <block ref="d387032e9d71b36f3d6219f60f33a659" category="inline-link-macro-rx"></block> 适用于<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 存储驱动程序。</block>
   <block id="001bb59b1bc94ca13afb90cc0e7a4ed5" category="admonition">您无法指定<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block> 在ONTAP SAN后端。Astra Trident会发现所有可用的iSCSI LIF并使用它们建立多路径会话。</block>
   <block id="c5fbf8cba91fd09257dab41143773a09" category="paragraph">Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的，可提供新功能和性能增强以及错误修复和改进功能。我们建议您每年至少升级一次、以利用Astra Trident中的新功能。</block>
-  <block id="61f660050f0deffc4b168fe9b8118e83" category="section-title">选择一个版本</block>
   <block id="ecab08714a2cb76336fb5fe50c888c56" category="paragraph">Astra Trident版本采用基于日期的版本<block ref="fb6921a005d395f9482cdac0306d4935" prefix=" " category="inline-code"></block> 命名约定、其中"YY"是一年中的最后两位数字、"MM"是月份。DOT版本会遵循A<block ref="d93ec759c4a0e8c1cf9c7653b2939656" prefix=" " category="inline-code"></block> 约定、其中"X"是修补程序级别。您将根据要从中升级的版本选择要升级到的版本。</block>
   <block id="3c64b9fcc6316f2fb3e86bb37ec1e046" category="list-text">如果您使用的是早期版本、则应使用相应版本的文档执行多步升级、以获取具体说明。这要求您首先升级到适合您的四个版本窗口的最新版本。例如、如果您运行的是18.07、并且希望升级到20.07版本、请按照下面提供的多步升级过程进行操作：</block>
   <block id="b42882f59822357cae71c7deef14a306" category="list-text">首次从 18.07 升级到 19.07 。</block>
-  <block id="3cf66ab24f2bf4b09d48a150a9e60aff" category="list-text">对于19.04及更早版本的所有升级、都需要从Astra Trident元数据自身进行迁移<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block> 到CRD对象。请务必查看此版本的文档、了解升级的工作原理。</block>
-  <block id="b25ad87a3048ecb578a165aaa0940af4" category="section-title">选择升级选项</block>
   <block id="74652b96889938fdef1037f82abf39b0" category="inline-link-macro">在安装方法之间切换</block>
-  <block id="afa7d449a278b7e589e89144d31fc078" category="paragraph">升级Astra Trident有两种选择。通常、您将使用与初始安装相同的选项、但可以使用 <block ref="e34c010032791417159012a5e31d7540" category="inline-link-macro-rx"></block>。</block>
   <block id="441b9a0ce7113f17c0021f9922b1c865" category="inline-link-macro">使用Trident操作符进行升级</block>
-  <block id="672218727121432fb7209f42c6a00514" category="list-text"><block ref="672218727121432fb7209f42c6a00514" category="inline-link-macro-rx"></block></block>
-  <block id="a18aa1b83c1605570c9c2911c5180a7b" category="inline-link-macro">升级&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category='inline-code'/&gt;</block>
-  <block id="3b2fa532fe7cebc94d245316f8af8ab4" category="list-text"><block ref="fd3f4a100d968c915adb11c8797ef5d2" category="inline-link-macro-rx"></block></block>
   <block id="589143858f045594979d5d3cf5289bf6" category="paragraph">您可以使用轻松升级现有的Astra Trident安装<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
-  <block id="bca2eb4bec5bace37cdb69b0fd31ca43" category="paragraph">要使用运算符进行升级、应满足以下条件：</block>
-  <block id="73ffdc13d91aaa406d444e626bd45834" category="list-text">您必须安装基于CSI的Astra Trident。自2007年19月7日起的所有版本均基于CSI。您可以检查Trident命名空间中的Pod进行验证。</block>
-  <block id="5480fb0d97fbe0edb891d7cbcf84f11c" category="list-text">23.01之前的版本中的Pod命名遵循a<block ref="2a7e27932de693ec351736e1dc1a1e7f" prefix=" " category="inline-code"></block> 约定。</block>
-  <block id="25539301bffff1d4cf6a627ea13251c4" category="list-text">23.01及更高版本中的Pod命名使用：<block ref="ce3abad3e11d6a43c5178e20a0c7d64b" prefix=" " category="inline-code"></block> 控制器POD；<block ref="6d08e3ec5faec812864d5435fcc88eeb" prefix=" " category="inline-code"></block> 对于节点Pod；<block ref="3dbf42aee8b5d0bf538865dedf2cc4dc" prefix=" " category="inline-code"></block> 用于操作员POD。</block>
-  <block id="e80f51ef458c129a7b9bfdf322bf210a" category="list-text">您应使用正在运行的Kubernetes集群 <block ref="d502dc64864e79085bee32826e6fe213" category="inline-link-macro-rx"></block>。</block>
-  <block id="859a2a5da9db99d70a5e6ec2213b1f17" category="list-text">在OpenShift容器平台上使用操作符升级Trident时、应升级到Trident 21.01.1或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息，请参见<block ref="bcebcdd21adcbb3d7c640d63a711c6fb" category="inline-link-rx"></block>。</block>
   <block id="f13957ecd6365c8afd32f7cf0a6127ce" category="section-title">升级集群范围的Trident操作员安装</block>
-  <block id="50bfc8fc0d5fc544b43965b0746d1411" category="paragraph">按照以下步骤升级集群范围的Trident操作员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。</block>
   <block id="811eaf5a7a011a3e3c605acd9ea6d5fb" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从22.01升级、请运行以下命令：</block>
   <block id="bdae3121e140e5325fd05919c86dd97f" category="list-text">如果您使用自定义了初始安装<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 属性、您可以编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 用于修改安装参数的对象。其中可能包括为脱机模式指定镜像Trident和CSI映像注册表、启用调试日志或指定映像提取密钥所做的更改。</block>
   <block id="40b88899eb3616ad98776b847e919324" category="paragraph">Trident提供了一个捆绑包文件、可用于安装操作员并为Kubernetes版本创建关联对象。</block>
   <block id="c80acc2d3549dd5f3d193892334b8fae" category="paragraph">Trident操作员将确定现有的Astra Trident安装并将其升级到与操作员相同的版本。</block>
-  <block id="1e09cc3768e537466d645c037041bffc" category="paragraph">按照以下步骤从使用命名空间范围的运算符(版本20.07至20.10)安装的Astra Trident实例进行升级。</block>
-  <block id="3495ebcecdbf5bcb8ffcf1bbffd70d23" category="list-text">使用其清单删除命名空间范围的运算符。要完成此步骤、您需要使用捆绑包YAML文件从部署命名空间范围的运算符<block ref="79243f20ce3e723d13bf0774e8348ca2" prefix=" " category="inline-code"></block> 其中：<block ref="7d2e512472107955c1b3fb2ce2e19bc4" prefix=" " category="inline-code"></block> 是版本号和<block ref="32f68f45f3f6badcd1aa2343bbbce67c" prefix=" " category="inline-code"></block> 是捆绑包YAML文件名。</block>
-  <block id="6f1180c77ee2686760a77b1025459802" category="list-text">安装Trident操作符。</block>
-  <block id="a5cb00e4346504487c7421a4880366cb" category="admonition">使用Trident操作员升级Astra Trident会导致迁移<block ref="ecd4f8050193d4ec7e3added385b49a6" prefix=" " category="inline-code"></block> 到A<block ref="04058ba3436aa631a94f8271262cde75" prefix=" " category="inline-code"></block> 同名对象。此操作由操作员自动处理。在升级过程中， Astra Trident 也会安装在与之前相同的命名空间中。</block>
-  <block id="ecf33c5dc36c692f3a828a7e7755b03a" category="admonition">。<block ref="1043da3d0f6135a3085a7e59f7e2c6cd" prefix=" " category="inline-code"></block> 和POD名称反映了23.01中引入的命名约定。</block>
   <block id="b0f8c567e856516aabf80f916e995d4f" category="paragraph">如果在初始安装期间设置了任何非默认选项(例如为Trident和CSI映像指定专用的镜像注册表)、请使用<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。</block>
   <block id="3d0107bfa0874592e9dc04f9869b604b" category="list-text">运行<block ref="cd4140d3de30b520500459331d08d2bf" prefix=" " category="inline-code"></block> 验证图表和应用程序版本均已升级。运行<block ref="3e725291d4b17065fdcd321172fcfae3" prefix=" " category="inline-code"></block> 查看任何调试消息。</block>
   <block id="d72f42539c286d006f46f1ddbcfc9ad0" category="paragraph">您可以从升级到最新版本的Trident操作员<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装。</block>
@@ -3405,7 +3363,6 @@
   <block id="bf0a8b77dbb95465376fb2cfec90b422" category="paragraph"><block ref="76bb7251da6a3c88e629c03a402b9d15" prefix="" category="inline-code"></block></block>
   <block id="8e6b1878428055edaef42698026bd1b5" category="paragraph">默认情况下， Astra Trident 不会使用 Kubernetes 将挂载选项设置为任何值。要在 Kubernetes 存储类中指定挂载选项，请按照给定示例进行操作 <block ref="29e04d8356a523f6fc836193630ad63e" category="inline-link-macro-rx"></block>。</block>
   <block id="419c95e5a9e44d427f99debdcf0550c7" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="cd38c25b6345abc8733d2ef72739cd97" category="inline-link-macro-rx"></block> Configuration</block>
-  <block id="39f6252eef9409d5d917e183e971d71d" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。这是对SAN卷强制实施https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[security环境^的**要求。https://github.com/NetApp/trident/tree/master/trident-installer/sample-input[sample输入^]目录包含一些示例、例如https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-basic.yaml.templ<block ref="9abb8c7777ddb413820ee07d5d93aa4a" prefix="[" category="inline-code"></block>^)和链接：https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-bronze-default.yaml<block ref="69ae2d9a6d831af7488e53fec053b77e" prefix="[" category="inline-code"></block>^。有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
   <block id="1dedbfd605df8b562acc8f759a8e9acc" category="list-text">运行的Kubernetes集群 <block ref="229e1052bb9ecd8cf2680d6f44691174" category="inline-link-macro-rx"></block></block>
   <block id="17c5eeb01739643b5aef94fe18b6c849" category="paragraph">您可以使用版本选择器在最新版本和以前的四个版本之间导航、也可以使用以下链接。</block>
   <block id="78038c97749fe61b1148a68a71c14a02" category="inline-link-macro">Astra三项技术发布和支持生命周期</block>
@@ -3449,9 +3406,6 @@
   <block id="e93860a0ea424a0e69abe92f2da77d80" category="list-text"><block ref="7c512d5013550eab761c07cf420c0618" prefix="" category="inline-code"></block> 如果您的映像全部位于一个注册表中。</block>
   <block id="a986eb4e954c9ef61b993f620528b25b" category="list-text"><block ref="2e87742ef58dd6e98b2afaaddbe68076" prefix="" category="inline-code"></block> 如果Trident映像与CSI映像位于不同的注册表中。</block>
   <block id="ff2f82c9a6feb21071dcbdc520c67b89" category="list-text">使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubenetes 1.27安装Asta Trident 23.04、请运行以下命令：</block>
-  <block id="8242b9562bf03173e7ab7ebe91136717" category="list-text">对于运行Kubernetes 1.24或更低版本的集群、请使用 <block ref="fca96f50bbc5cba400ec0352141eeed0" category="inline-link-macro-rx"></block>。</block>
-  <block id="9d09cc8d1806a36c8229ace5be55429d" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用 <block ref="3f9cbdeaab0f584d6abcc4282318bea8" category="inline-link-macro-rx"></block>。</block>
-  <block id="5d52721879cc96347aaf4163e6a19e02" category="admonition">安装集群范围的运算符可启动的迁移<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 对象<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 对象、删除<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 对象和<block ref="297dc4adc64c26ae2fd6a1039d00ccb0" prefix=" " category="inline-code"></block> CRD、并将Astra Trident升级到所使用的集群范围运算符版本。在下面的示例中、三端升级到23.04.0。</block>
   <block id="ad3ec9af70c3860794540db75d9807c6" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="56c028cf1def4066f6a4728f90b9dbf8" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
   <block id="17a3cc50f8070f6f8ca4c0aaf627cd51" category="list-text">您可以直接升级到已安装版本的四个版本窗口中的任何目标版本。例如、您可以直接从22.04升级到23.04 (包括任何DOT版本、例如22.04.1)。</block>
   <block id="beee3e754bb36e7321f32ad13d4ac60a" category="paragraph">所有Kubernetes工作节点都必须安装适当的iSCSI工具。请参见 <block ref="9e8cf70fcb465bf1907b585f74e9e1a6" category="inline-link-macro-rx"></block> 了解详细信息。</block>
@@ -3664,4 +3618,83 @@
   <block id="5e4708ea6e1c08a91834bc9405f43f5d" category="admonition">必须在与其相同的命名空间中创建PVC<block ref="d9d448f70687a1aa1f12b2f5ddaa4977" prefix=" " category="inline-code"></block>。</block>
   <block id="32945bec28dab31706e6de80b1c28cc4" category="section-title">删除包含快照的PV</block>
   <block id="f28228f84cb57be6c4037bf94a6afbd2" category="paragraph">删除具有关联快照的永久性卷时，相应的 Trident 卷将更新为 " 正在删除 " 状态。删除卷快照以删除Asta Trdent卷。</block>
+  <block id="f736607140d617c85245dd139003582e" category="list-text">在给定Kubbernetes集群中的所有名空间中只应安装一个A作用 力三端实例。</block>
+  <block id="0f337c39a1c8a6ea3821003e227cd210" category="list-text">从 Kubernetes 1.20 开始， CSI 卷快照现在是 GA 功能。升级之前、您应使用删除Alpha Snapshot CRD<block ref="2d1fd131799d2b6c6f328b755e849cb8" prefix=" " category="inline-code"></block> 删除字母快照规范的CRD。</block>
+  <block id="2f4fabc00423f61fdf535a848d85d7fa" category="list-text">测试版的卷快照引入了一组经过修改的CRD和一个快照控制器、这两个组件都应在升级Astra三端存储之前进行设置。</block>
+  <block id="9194981d08d6c7a0d8ef4eef2c20107c" category="inline-link-macro">升级Kubbernetes集群前需要了解的事项</block>
+  <block id="60c27159a73a43a99df5bfe57abacffe" category="list-text">有关详细信息，请参见 <block ref="cde5e5f4707de394099c4da781fe494f" category="inline-link-macro-rx"></block>。</block>
+  <block id="9e796bab826a26d861f56ae29de25252" category="inline-link-macro">您的Astra Trdent版本的专用文档</block>
+  <block id="054075b3243ec1866caef856949913c5" category="list-text">从19.04及更早版本升级的所有版本都需要自行迁移Asta三元数据<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block> 到CRD对象。确保选中 <block ref="2bf4b24d73acaf5ff4093c862b2b9191" category="inline-link-macro-rx"></block> 以了解升级的工作原理。</block>
+  <block id="69bdd71a77ecd87974ee464a579ebc8f" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。</block>
+  <block id="33966eba1ed0cde6afda5a97ffaffb09" category="inline-link">安全上下文</block>
+  <block id="326aae224b3bbcf4b9eb8fc0a262fc24" category="list-text">这是执行的一项 * 要求 *<block ref="cafe4c6014d8c45aaac70e49318f1a2a" category="inline-link-rx"></block> SAN 卷。</block>
+  <block id="41ad159dac20e18fa42c466c805ffde0" category="list-text">https://github.com/NetApp/trident/tree/master/trident-installer/sample-input[sample输入^]目录包含https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-basic.yaml.templ等示例<block ref="9abb8c7777ddb413820ee07d5d93aa4a" prefix="[" category="inline-code"></block>^)和链接：https://github.com/NetApp/trident/blob/master/trident-installer/sample-input/storage-class-samples/storage-class-bronze-default.yaml<block ref="69ae2d9a6d831af7488e53fec053b77e" prefix="[" category="inline-code"></block>^。有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
+  <block id="87459c33b1692755deb4b22c7eaa864c" category="section-title">第1步：选择版本</block>
+  <block id="04ac7e8dacc8e0cf0377df2ca192d643" category="admonition">在OpenShift容器平台上使用TRIDent操作程序进行升级时、应升级到TRIDent 21.01.1或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息，请参见<block ref="bcebcdd21adcbb3d7c640d63a711c6fb" category="inline-link-rx"></block>。</block>
+  <block id="6d2d3a9fb621ba23b0f8ec56dc8b0a24" category="section-title">第2步：确定原始安装方法</block>
+  <block id="48f619f441fae01bc82773080a595c84" category="paragraph">通常、您应使用与初始安装相同的方法进行升级、但您可以这样做 <block ref="e34c010032791417159012a5e31d7540" category="inline-link-macro-rx"></block>。</block>
+  <block id="ce42d65061b497ce09f8f7253a47d3ec" category="paragraph">若要确定最初安装Astra Trdent时使用的版本、请执行以下操作：</block>
+  <block id="a47f083c8e161e834fb47431c0ceb22c" category="list-text">使用 ...<block ref="5b1c8b4b8eabedb94cfa4d6d00d8d97f" prefix=" " category="inline-code"></block> 检查Pod。</block>
+  <block id="57e2fc21500db064f15f9f0dd71fac43" category="list-text">如果没有操作员POD、则使用安装了Asta三端盘<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
+  <block id="32f6915fd282657ead56cf3557648c00" category="list-text">如果有操作员模块、则使用三端操作员手动或使用Helm安装了A作用 曲三端。</block>
+  <block id="4b9dbf746fd46d6f3df5db09d61acc78" category="list-text">如果有操作员控制盒、请使用<block ref="2bbaa285a4b0035313ee3178abf33313" prefix=" " category="inline-code"></block> 确定是否使用Helm安装了Astra Trdent。</block>
+  <block id="2653c4eb88f71c9c09dd63163c3279a3" category="list-text">如果有Helm标签、则表示Asta Trdent是使用Helm安装的。</block>
+  <block id="62813503b38101db99e720ca48a2e384" category="list-text">如果没有Helm标签、则使用Trident操作人员手动安装A作用 于Trident。</block>
+  <block id="dccfb2ce978b2c73d6a7308a124d0043" category="section-title">第3步：选择升级方法</block>
+  <block id="5c6e76b1344abcffbc3bc025b2869962" category="paragraph">有两种方法可升级Asta三端到端。</block>
+  <block id="f7c26f012afd9578895516f6ae3e2bc9" category="section-title">何时使用操作员进行升级</block>
+  <block id="7e2f8075f13a5d7e97d8218709f17e71" category="inline-link-macro">使用三端修复操作符升级</block>
+  <block id="5e1df074a8bdfd79d5d68c8a755e4e43" category="paragraph">您可以 <block ref="8f2495f9fad4f38f1c62c1d215673586" category="inline-link-macro-rx"></block> 条件：</block>
+  <block id="72d18256d7d64cc61153ea95e9a4afa5" category="list-text">您最初使用操作员或安装了Astra Trdent<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
+  <block id="e5d54794163ca6f474bfef7e4b5d4f5f" category="list-text">您卸载了CSI三元数据、但安装中的元数据仍然存在。</block>
+  <block id="e69b05e203cd286586a27b27e264c1e5" category="list-text">您已安装基于CSI的Astra三端技术。自2007年19月7日起的所有版本均基于CSI。您可以检查三端存储命名空间中的Pod以验证您的版本。</block>
+  <block id="207a97e7d43a65ece1e0f7fa8302506b" category="list-text">23.01之前版本中的POD命名使用：<block ref="2a7e27932de693ec351736e1dc1a1e7f" prefix=" " category="inline-code"></block></block>
+  <block id="4260ef6204f118b9f55201a0e5297f62" category="list-text">23.01及更高版本中的Pod命名使用：</block>
+  <block id="c15c24d5e644ea3fe4872e53eec79839" category="list-text"><block ref="ce3abad3e11d6a43c5178e20a0c7d64b" prefix="" category="inline-code"></block> 控制器Pod</block>
+  <block id="4958e807d905a59e3236bd70f391a14a" category="list-text"><block ref="6d08e3ec5faec812864d5435fcc88eeb" prefix="" category="inline-code"></block> 节点Pod</block>
+  <block id="81dedc3d17f1db8149046b6ae4bcc5db" category="list-text"><block ref="3dbf42aee8b5d0bf538865dedf2cc4dc" prefix="" category="inline-code"></block> 对于操作舱</block>
+  <block id="621a18da07981d88f6c4e476af0884d3" category="section-title">何时使用升级<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
+  <block id="d39be5a593ef4fc69e44c6efdca9f2b9" category="inline-link-macro">升级&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category='inline-code'/&gt;</block>
+  <block id="72f944c5dc6b9f1f99a87504f7a0b101" category="paragraph">您可以 <block ref="9af1b055a24adf4a3ab17b699c20b76d" category="inline-link-macro-rx"></block> 如果您最初是使用`tridenctl’安装Astra三端安装的。</block>
+  <block id="587c30eba71de0157d01c12e17ff0ab9" category="paragraph"><block ref="c67fd1b99934afa248dfeb285a9a4191" prefix="" category="inline-code"></block> 是安装Asta Trident的传统方法、为需要复杂自定义的用户提供了大多数选项。有关详细信息，请参见 <block ref="741b0022093ab2616396c33090f075f4" category="inline-link-macro-rx"></block>。</block>
+  <block id="2027c35d34c22c0bd4bfe22c6c02832a" category="paragraph">21.01版的Asta三端设计引入了对运营商的架构进行的更改：</block>
+  <block id="8863b876c027954f205dc88c5580fb51" category="section-title">使用升级Astra三端到功能<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
+  <block id="d6b7a42c6c41b071d2c80b3e4c2a7edf" category="inline-link-macro">选择升级方法</block>
+  <block id="ab639a35db468f671d4a76735e801015" category="paragraph">请查看 <block ref="5cffa5fbe758cc3901f0e33c78b29d1b" category="inline-link-macro-rx"></block> 升级之前<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
+  <block id="a38e5a20ac16df242bdde92e028a100e" category="list-text">在中运行卸载命令<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 删除与Asta Trandent关联的所有资源(CRD和相关对象除外)。</block>
+  <block id="e7447899210826e544345ba93e133255" category="inline-link-macro">使用 tridentctl 安装 Astra Trident</block>
+  <block id="0c147de2192f3060367ba5761742d227" category="list-text">重新安装Asta Trdent。请参见 <block ref="d55139d84e0ac19d8211d27772e17544" category="inline-link-macro-rx"></block>。</block>
+  <block id="1d2d1200e759d67b259f843be2270f71" category="admonition">请勿中断升级过程。确保安装程序运行完毕。</block>
+  <block id="82da15c71df4abcf26887a7505c771b7" category="section-title">使用升级卷<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
+  <block id="14a3c3a4f195df957fb16f026bdddcf0" category="paragraph">升级后、您可以利用较新的三元数据版本中提供的一组丰富功能(例如按需卷快照)、也可以使用升级卷<block ref="07498068c7d2dad8746d2cd3315d231a" prefix=" " category="inline-code"></block> 命令：</block>
+  <block id="8c58132c743fc4269cdd2a94cfa15379" category="paragraph">如果存在原有卷、则应将其从NFS或iSCSI类型升级到CSI类型、以使用Asta三元数据中的一整套新功能。Trident 配置的原有 PV 支持传统功能集。</block>
+  <block id="327dc3ea451fbe58b021388d1ab2b78a" category="paragraph">在决定将卷升级到CSI类型之前、请考虑以下事项：</block>
+  <block id="c5e4214ace446476446bc7f985b69ec7" category="paragraph">您可以使用操作员手动或Helm轻松升级现有的Asta三端安装。</block>
+  <block id="8613847437ef211a620ecd02f2f6771a" category="paragraph">通常、您应使用最初安装Asta三端存储时所用的方法来升级Asta三端存储。请查看 <block ref="5cffa5fbe758cc3901f0e33c78b29d1b" category="inline-link-macro-rx"></block> 在尝试使用三端修复操作符进行升级之前。</block>
+  <block id="87e47949812c103309ba30bd12b61cb6" category="paragraph">从使用命名空间范围的运算符(版本20.07到20.10)安装的A作用 于Trident实例升级时、该运算符会自动：</block>
+  <block id="28ff96c045b97f0d4bcc7338c5d97ed4" category="list-text">迁移<block ref="ecd4f8050193d4ec7e3added385b49a6" prefix=" " category="inline-code"></block> 到A<block ref="04058ba3436aa631a94f8271262cde75" prefix=" " category="inline-code"></block> 具有相同名称的对象、</block>
+  <block id="0f49953545c3d0c47b339adb67df1921" category="list-text">删除<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 对象和<block ref="297dc4adc64c26ae2fd6a1039d00ccb0" prefix=" " category="inline-code"></block> CRD</block>
+  <block id="572be19dc94f917452b59bf990add189" category="list-text">将A作用 域操作符升级到所使用的集群范围操作符版本</block>
+  <block id="d447bc5cdca7ff2cac3659e7743e27ce" category="list-text">将A作用 于最初安装的命名空间安装在相同的命名空间中</block>
+  <block id="bc59419ef5dfad73007183284d269599" category="paragraph">您可以升级集群范围的三端操作员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。</block>
+  <block id="053bfc722ec4b4805e32c307458f8ea5" category="paragraph">确保您使用的是正在运行的Kubbernetes集群 <block ref="d502dc64864e79085bee32826e6fe213" category="inline-link-macro-rx"></block>。</block>
+  <block id="c0b0c7efeabd2170918464e6fb304b90" category="list-text">对于运行Kubornetes 1.24或更早版本的集群、请使用 <block ref="fca96f50bbc5cba400ec0352141eeed0" category="inline-link-macro-rx"></block>。</block>
+  <block id="f3b43481c48d747762adfc52a9d63f33" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用 <block ref="3f9cbdeaab0f584d6abcc4282318bea8" category="inline-link-macro-rx"></block>。</block>
+  <block id="61b591b7a171a46211e97cfbb6f4f245" category="paragraph">您可以从使用命名空间范围的操作符(版本20.07到20.10)安装的Astra Dent实例升级到集群范围的操作符安装。</block>
+  <block id="049d9519b9143d1b03035ab556b6bfd6" category="paragraph">您需要使用捆绑包YAML文件从中部署命名空间范围的运算符<block ref="79243f20ce3e723d13bf0774e8348ca2" prefix=" " category="inline-code"></block> 其中：<block ref="7d2e512472107955c1b3fb2ce2e19bc4" prefix=" " category="inline-code"></block> 是版本号和<block ref="32f68f45f3f6badcd1aa2343bbbce67c" prefix=" " category="inline-code"></block> 是捆绑包YAML文件名。</block>
+  <block id="cc7d63c2df065f7ffd0737333a5fbdd7" category="list-text">验证<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 现有的｛\f270通过｝｛\f151。｝<block ref="98dd43dfae05b11befe1f140e0ec787a" prefix=" " category="inline-code"></block>。</block>
+  <block id="3cb9e4719d19a9424eaf2357c9a17204" category="list-text">使用其清单删除命名空间范围的运算符。</block>
+  <block id="4828a9c126c7bb1e007a192a611456eb" category="list-text">确保您位于正确的目录中。</block>
+  <block id="5ce0463e67c0117541fc58f1b415e168" category="list-text">删除命名空间范围的运算符。</block>
+  <block id="7d619684494b00b59a0b46381f71e67a" category="list-text">确认已删除三端修复操作符。</block>
+  <block id="8539a9341bd4c0e0352c5ff52c361888" category="list-text">(可选)如果需要修改安装参数、请更新<block ref="4cb15aa30ce0ec4747b372d6d2a5e637" prefix=" " category="inline-code"></block> 规格这可能包括更改、例如更改：的值<block ref="d771848c80f96e5954a8658655cf79d7" prefix=" " category="inline-code"></block>，<block ref="7ecc687ea7566f05fd13fde7be607bfc" prefix=" " category="inline-code"></block>、私有映像存储库和提供<block ref="0d9b54b29da54379cca6b8782b9faae5" prefix=" " category="inline-code"></block>)。有关可更新的完整参数列表、请参见 <block ref="d752d8869a42e1b0fd341b92b54677e0" category="inline-link-macro-rx"></block>。</block>
+  <block id="98b62c9a5de0454a7540b5a6ae10f553" category="list-text">安装在集群范围内的TRIdent操作符。</block>
+  <block id="81082668b211ff4036090769fede7bb0" category="list-text">确保您位于正确的目录中。</block>
+  <block id="1833409b195c94157eaab1b3af599079" category="list-text">在同一命名空间中安装集群范围的运算符。</block>
+  <block id="f92a3b7796e4050069555146e1a02dc1" category="list-text">检查命名空间中的三端Pod。。<block ref="1043da3d0f6135a3085a7e59f7e2c6cd" prefix=" " category="inline-code"></block> 和POD名称反映了23.01中引入的命名约定。</block>
+  <block id="088459179723a5ae41374a409a0129fe" category="list-text">确认已将三端到端更新到预期版本。</block>
+  <block id="71530aef1814290453dc7add3bdae349" category="list-text">将集群范围的运算符部署在同一命名空间中。</block>
+  <block id="8d23be098d49e797284393a4c1479c53" category="list-text">确认已将三项功能升级到预期版本。</block>
+  <block id="210f1e5eca9c602b1282553f342448ae" category="list-text">对于运行Kubornetes 1.24或更早版本的集群、请使用<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block>。</block>
+  <block id="e4941fda44f66f353885d1a37ca63e2b" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block>。</block>
 </blocks>
