@@ -1312,7 +1312,6 @@
   <block id="592a5879ac095ef6ca504cc43a9d7939" category="cell">使用 " 无 " 的分层策略</block>
   <block id="ee6508d5290be6edafccc6e0f471f120" category="cell">适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 "</block>
   <block id="99c2306b30b8939278f0f817230f3573" category="admonition">在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享 QoS 策略组，并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。</block>
-  <block id="05c4365fe7e90a545f8b24060094a36a" category="paragraph">下面是定义了默认值的示例：</block>
   <block id="fab51d2bc90465982b0994bc86e69db9" category="admonition">对于使用 `ontap-san` 驱动程序创建的所有卷， Astra Trident 会向 FlexVol 额外添加 10% 的容量，以容纳 LUN 元数据。LUN 将使用用户在 PVC 中请求的确切大小进行配置。Astra Trident 将 FlexVol 增加 10% （在 ONTAP 中显示为可用大小）。用户现在将获得所请求的可用容量。此更改还可防止 LUN 变为只读状态，除非已充分利用可用空间。这不适用于 ontap-san-economy.</block>
   <block id="824d88f50ab9e39778b0ef5bc2516b2f" category="paragraph">对于定义 `snapshotReserve` 的后端， Astra Trident 将按如下方式计算卷的大小：</block>
   <block id="4e762198289d9294de9c1cbb3f0b26b6" category="paragraph">1.1 是 Astra Trident 向 FlexVol 额外添加 10% 以容纳 LUN 元数据。对于 `snapshotReserve` = 5% ， PVC 请求 = 5GiB ，卷总大小为 5.79GiB ，可用大小为 5.5GiB 。`volume show` 命令应显示与以下示例类似的结果：</block>
@@ -1320,11 +1319,6 @@
   <block id="e6e049b4753c744e95db32b0eeed8d5c" category="paragraph">目前，调整大小是对现有卷使用新计算的唯一方法。</block>
   <block id="2aae2b6accd04335b3eeceb2193b34d6" category="section-title">最低配置示例</block>
   <block id="bca36ce39f61ce2d375cbdb66eab5162" category="paragraph">以下示例显示了将大多数参数保留为默认值的基本配置。这是定义后端的最简单方法。</block>
-  <block id="19fd94d2657fdd90c44f1fcd72890482" category="admonition">如果您正在将 NetApp ONTAP 上的 Amazon FSx 与 Astra Trident 结合使用，建议为 LIF 指定 DNS 名称，而不是 IP 地址。</block>
-  <block id="78e5b29e139db71ceb7ca6bc99b5e228" category="paragraph">这是一个最低后端配置示例。`clientCertificate` ， `clientPrivateKey` 和 `trustedCACertifate` （如果使用可信 CA ，则可选）分别填充在 `backend.json` 中，并采用客户端证书，私钥和可信 CA 证书的 base64 编码值。</block>
-  <block id="b0a5c44c844418c2a5474a0d4c19182c" category="paragraph">这是一个最低后端配置示例。此基本配置将创建一个 `ontap-san` 后端，并将 `useCHAP` 设置为 `true` 。</block>
-  <block id="6a24af0a579ec0e851db9d35e047d58e" category="paragraph">在此示例中，某些存储池会设置自己的 `spaceReserve` ， `spaceAllocation` 和 `encryption` 值，而某些池会覆盖上述设置的默认值。</block>
-  <block id="22aec9ab9f9270747cb10c5bd593c1ab" category="paragraph">以下是 `ontap-san-economy-经济` 驱动程序的 iSCSI 示例：</block>
   <block id="f00b69018be0961b32ee24ec54fb56d1" category="section-title">将后端映射到 StorageClasses</block>
   <block id="ef1161058705470bb877fbce688eea9e" category="summary">了解如何使用 ONTAP SAN 驱动程序配置 ONTAP 后端。</block>
   <block id="31e8c05beab321d1465fc4c3f77e991a" category="doc">使用 ONTAP SAN 驱动程序配置后端</block>
@@ -2603,12 +2597,8 @@
   <block id="fd69c5cf902969e6fb71d043085ddee6" category="paragraph-title">结果</block>
   <block id="3f8e335666124e3b7f5db07f03fef0b1" category="section-title">使用 ...<block ref="fed7609223e8cae53e079facb24f3426" prefix=" " category="inline-code"></block> 查询从属卷</block>
   <block id="260817022a7340fc89eae3e7dbed8f6a" category="section-title">使用的示例定义<block ref="4d859186a09b1da3597e5901157d9400" prefix=" " category="inline-code"></block> 字段</block>
-  <block id="72b06f7d7f6d50adf7364ca262469512" category="section-title"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block> 具有基于证书的身份验证的驱动程序</block>
-  <block id="81801ea9aa153d054652d45bc18af0a7" category="section-title"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block> 具有双向CHAP的驱动程序</block>
-  <block id="5d49eece8e9afa44ffdead9ff18462be" category="section-title"><block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix="" category="inline-code"></block> 驱动程序</block>
   <block id="19ef07597f79648211dbed100709836b" category="section-title">更新后端以包括<block ref="1f2a94e142bf020b1f7c6297ec12413f" prefix=" " category="inline-code"></block></block>
   <block id="891d26d5e7410db6c0a971245c6025c0" category="section-title">示例1：的后端配置<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 具有三种卷类型的驱动程序</block>
-  <block id="4a8519b09a0b2a70d40200e88ec2c5dc" category="section-title"><block ref="caafdf62a2c609bfa5316118231a1007" prefix="" category="inline-code"></block> 驱动程序</block>
   <block id="454631312fab234fc91bb2f85a751fac" category="section-title"><block ref="913a4b06671d1e04e6582a85afe3abbe" prefix="" category="inline-code"></block></block>
   <block id="e892fda55ead7e15eed753e850d35f12" category="section-title">第2步：创建<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR</block>
   <block id="a0d777cf1acc36406564409adef85b17" category="section-title">支持的版本是什么<block ref="a226e9fbdfc1c8dd7e7fef4d333f86ed" prefix=" " category="inline-code"></block>？</block>
@@ -3076,14 +3066,8 @@
   <block id="b71ccf1062cee8c376a7eb37e3c42603" category="cell">启用LUKS加密。请参见 <block ref="569f9f91cdcc19909b8acbf6f423daf7" category="inline-link-macro-rx"></block>。</block>
   <block id="e62f5d0a5a95571e25197caafe78cd98" category="section-title">卷配置示例</block>
   <block id="1b9ef354b22d8a8b125247fd538da4b2" category="section-title">虚拟池后端示例</block>
-  <block id="15b57a79ac72161839107ffc66c3cd5b" category="paragraph">在下面所示的示例后端定义文件中、会为所有存储池设置特定的默认值、例如<block ref="cae77b049bf504af7afc43b99b6c5213" prefix=" " category="inline-code"></block> 无、<block ref="45922ba6ba8428764f22ed06f814c762" prefix=" " category="inline-code"></block> 为false、和<block ref="5bdf74912a51c34815f11e9a3d20b609" prefix=" " category="inline-code"></block> 为false。虚拟池在存储部分中进行定义。</block>
   <block id="dbd1f003df542a684d9c10246dc8a88f" category="paragraph">Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上设置。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
   <block id="615c9f89b360c50cfba2b2de02584387" category="paragraph">以下StorageClass定义引用了上述虚拟池。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
-  <block id="6967d2f650cb483604470074babc7e49" category="list-text">第一个StorageClass <block ref="63f9100803e1f67a5e33cbd5da9dbb33" prefix="(" category="inline-code"></block>)将映射到中的第一个、第二个虚拟池<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 中的后端和第一个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 后端。这是唯一一个提供黄金级保护的池。</block>
-  <block id="fbec52fab850807a16609bbdc348a22c" category="list-text">第二个StorageClass <block ref="afbfe298fa275e5fff1aca9b2f213d9a" prefix="(" category="inline-code"></block>)将映射到中的第三个、第四个虚拟池<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 中的后端和第二个、第三个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 后端。这些池是唯一提供黄金级以外保护级别的池。</block>
-  <block id="1e5b2ff70009afbcceab93e3227617bd" category="list-text">第三个StorageClass <block ref="65846755494383158592c748f74421ec" prefix="(" category="inline-code"></block>)将映射到中的第四个虚拟池<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 中的后端和第三个虚拟池<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 后端。这些池是唯一为 mysqldb 类型的应用程序提供存储池配置的池。</block>
-  <block id="52b4b6b0859604e480b790040aafe0d3" category="list-text">第四个StorageClass <block ref="2e63b2ff91d4aeb88b54db5c90b71443" prefix="(" category="inline-code"></block>)将映射到中的第三个虚拟池<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 中的后端和第二个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 后端。这些池是唯一以 20000 个信用点提供黄金级保护的池。</block>
-  <block id="67ce738597c25b9a15f0eafcd519fcfc" category="list-text">第五个StorageClass <block ref="a96bee9dd30f3ea0af93b4c64ca1e4a4" prefix="(" category="inline-code"></block>)将映射到中的第二个虚拟池<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 中的后端和第三个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 后端。这些是唯一一款具有 5000 个信用点的池产品。</block>
   <block id="065b7cc24b33be7af1e15f59024402d2" category="paragraph">Astra Trident将决定选择哪个虚拟池、并确保满足存储要求。</block>
   <block id="c632eed28bf53466df8b8a33aedab3af" category="list-text">虚拟池(如果存在)必须与原始后端的顺序相同。</block>
   <block id="87a522ecb9df14bf978f6f1da8a654a8" category="list-text">您不能通过删除来撤消对源PVC的访问<block ref="287f26e3328f9ac0f3f4da2cdaddd3e2" prefix=" " category="inline-code"></block> 或<block ref="11650d25d20af47978d85fd6e19c89aa" prefix=" " category="inline-code"></block> 标注或删除<block ref="d6995f631b22fb3f8e94aad1b40d1280" prefix=" " category="inline-code"></block> CR.要撤消访问、必须删除从属PVC。</block>
@@ -3097,17 +3081,8 @@
   <block id="5c8b39f8ec19acb1fddb0b5c021f090d" category="cell">故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用<block ref="effa2d809c72dcb6cce15a1e0b040e63" prefix=" " category="inline-code"></block> 除非您正在进行故障排除并需要详细的日志转储。</block>
   <block id="b660669829d401dc613c20939ed01e6e" category="cell">NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。</block>
   <block id="a2b63939d1ced2a10bc8dec4d3ef2604" category="cell">对于NFS卷为"777"；对于SMB卷为空(不适用)</block>
-  <block id="97ff13c76d92207c0bae60ad6c586e7e" category="example-title">&lt;code&gt; 中的默认选项tap &lt;/code&gt; 中的默认选项</block>
-  <block id="e7a2472a002479764cade728d64dcd9e" category="example-title">基于证书的身份验证</block>
-  <block id="30cc3e263c594cde4b2a573283348bb1" category="example-title">自动导出策略</block>
-  <block id="41dfe08f09251bf83a4f15ec1a47eebe" category="paragraph">以下示例显示了如何指示Astra Trident使用动态导出策略自动创建和管理导出策略。此操作对于也是如此<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
-  <block id="0491780b1bb26f4feb8296034f975c9e" category="listing-title">&lt;code&gt; &lt;/code&gt; 驱动程序</block>
-  <block id="85435c5aae5ecdb04ef9ad8f7d48e88a" category="example-title">使用IPv6地址</block>
   <block id="0275de02c3bba722f4540469d23cc535" category="paragraph">此示例显示了<block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix=" " category="inline-code"></block> 使用IPv6地址。</block>
-  <block id="258c5f2b91a253fe5e571b9c11f63b78" category="section-title"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block> 适用于使用SMB卷的Amazon FSX for ONTAP 的驱动程序</block>
   <block id="bc0c77920482bbcdc79d8f24445101e0" category="paragraph">Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上为设置<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 或FlexGroup<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
-  <block id="433d360055061e28891915649702a7dc" category="example-title">&lt;code&gt; tap p p p—&lt;/code&gt; 驱动程序</block>
-  <block id="5564b8ae7f180399e8901d4ea051ce57" category="example-title">&lt;code&gt; 中的&lt;/code&gt; 驱动程序</block>
   <block id="0bd54df5242a2a2e9eca045fc695b41f" category="section-title">更新<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block> 初始配置后</block>
   <block id="d0b121ba3c5e39bba858ccfcf5a75957" category="paragraph">您可以在初始配置后更改数据LIF、方法是运行以下命令、为新的后端JSON文件提供更新的数据LIF。</block>
   <block id="3fa13ec46a3746ee36c97d65fa53f096" category="admonition">如果PVC连接到一个或多个Pod、则必须关闭所有对应Pod、然后将其恢复到、新数据LIF才能生效。</block>
@@ -3170,7 +3145,6 @@
   <block id="bfd7bf04b3d28a42267e8d1b30a05f01" category="section-title">示例2：的后端和存储类配置<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 具有虚拟池的驱动程序</block>
   <block id="418ff75ccabac38370cc8570721746a3" category="paragraph">此示例显示了使用虚拟池配置的后端定义文件以及引用这些池的StorageClasses。</block>
   <block id="d0f8c7d1b12ede190acf9656da99c079" category="paragraph">在配置时、Astra Trident会将存储池上的标签复制到后端存储LUN。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
-  <block id="8a6b9ec0e0eb9c6a3e520af66cffd466" category="paragraph">在下面所示的示例后端定义文件中、为所有存储池设置了特定的默认值、这些存储池设置了<block ref="599dcce2998a6b40b1e38e8c6006cb0a" prefix=" " category="inline-code"></block> 在Silver。虚拟池在中进行定义<block ref="ddecebdea58b5f264d27f1f7909bab74" prefix=" " category="inline-code"></block> 部分。在此示例中，某些存储池设置了自己的类型，而某些池将覆盖上述默认值。</block>
   <block id="d17a2942ee77aa1532660a5f0cf0d6e5" category="paragraph">第一个StorageClass <block ref="166028d9a95f5465a6ae917e6e089ce6" prefix="(" category="inline-code"></block>)将映射到第一个虚拟池。这是唯一一个可通过提供金牌性能的池<block ref="89bf6c97f9a3eaea76c86df0086361bc" prefix=" " category="inline-code"></block> 金牌。最后一个StorageClass <block ref="b4457b3eeca98cadb51648f8fcef36cb" prefix="(" category="inline-code"></block>)调用提供银牌性能的任何存储池。Astra Trident将决定选择哪个虚拟池、并确保满足存储要求。</block>
   <block id="7ac6994e44af62a9075fd956e72ee6fb" category="paragraph">请注意，后端定义是凭据以纯文本格式存储的唯一位置。创建后端后，用户名 / 密码将使用 Base64 进行编码并存储为 Kubernetes 密钥。创建或更新后端是唯一需要了解凭据的步骤。因此，这是一项仅由管理员执行的操作，由 Kubernetes 或存储管理员执行。</block>
   <block id="f1fe71442cd08e74d342114df7ee1551" category="sidebar">安装 Astra Trident</block>
@@ -3204,7 +3178,6 @@
   <block id="15bee4120a83692e1e575f756f0259e2" category="admonition"><block ref="ed48900d86ac476d7fed80ae1701877f" prefix="" category="inline-code"></block> 支持SMB卷的池的筛选器。<block ref="7b2498fa5e66ef102dc531d0bf5c27a4" prefix=" " category="inline-code"></block> 或<block ref="45e1f49760c85197cd1d0fb6ee50f180" prefix=" " category="inline-code"></block> NFS池的筛选器。</block>
   <block id="36b8e64fc53799e09b318940d0d01c3b" category="admonition">在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本之前、请参见 <block ref="b78a528fa331707807c1d5b493daab09" category="inline-link-macro-rx"></block>。</block>
   <block id="e69dee79b2104ff7c08b095e6212f492" category="list-text">将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本时、必须将values.yaml更新为set<block ref="94ef2a130a825358ab3002442d6e5145" prefix=" " category="inline-code"></block> to<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 或添加<block ref="96d5d0b9a6e3e01b2ae2ed889f75d22e" prefix=" " category="inline-code"></block> 到<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令。</block>
-  <block id="412b252fa44d1a73e3e7bf22113f99a2" category="listing-title">ontap-NAS 驱动程序</block>
   <block id="b3735f022036728c24121c449da97183" category="inline-link-macro">Trident和CSI映像</block>
   <block id="c4ffea098f78924a9b9331b8f5e9c8b4" category="open-title">一个注册表中的映像</block>
   <block id="4847c552b2ff9251806e41c8fa907e19" category="open-title">不同注册表中的映像</block>
@@ -3697,4 +3670,44 @@
   <block id="8d23be098d49e797284393a4c1479c53" category="list-text">确认已将三项功能升级到预期版本。</block>
   <block id="210f1e5eca9c602b1282553f342448ae" category="list-text">对于运行Kubornetes 1.24或更早版本的集群、请使用<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block>。</block>
   <block id="e4941fda44f66f353885d1a37ca63e2b" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block>。</block>
+  <block id="3e040e84a22403c3248ead0be2dc0526" category="example-title">ONTAP NAS经济型最低配置示例</block>
+  <block id="e3e188b2454bb98544f5a561eb702093" category="paragraph">这是使用的基本配置<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="547c5a9ffcb66d79e8281ae67244522e" category="example-title">ONTAP NAS FlexGroup最低配置示例</block>
+  <block id="a5536d1d72396572e5c419b1a5bc2130" category="paragraph">这是使用的基本配置<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="dacbfb309aa16cb942510c02c224fdbc" category="example-title">基于证书的身份验证示例</block>
+  <block id="60eac39d4383fedcc1df436a2d0e856d" category="paragraph">在本基本配置示例中<block ref="79fffaff4013c1e8c508e76646eca77b" prefix=" " category="inline-code"></block>，<block ref="19dce7ac7f5290fc8fa218ad0c858df5" prefix=" " category="inline-code"></block>，和<block ref="8468461bca00a47ab5ddba2afc45f52c" prefix=" " category="inline-code"></block> (如果使用可信CA、则可选)将填充<block ref="9c15d32711e9ef8c6f76deda35452e13" prefix=" " category="inline-code"></block> 和分别采用客户端证书、专用密钥和可信CA证书的base64编码值。</block>
+  <block id="1ce00ab507a065e4febc57b244e25d18" category="example-title">自动导出策略示例</block>
+  <block id="ff5bc16abc09d38f1f879df4cd475d3b" category="paragraph">此示例指示Astra Dandent使用动态导出策略自动创建和管理导出策略。此操作对于也是如此<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="dd3bd0fc6b509b65dab3730c8d094c7b" category="example-title">使用IPv6地址示例</block>
+  <block id="ee8af8063e9ea3725931d232730b8a8e" category="example-title">Amazon FSx for ONTAP使用SMB卷示例</block>
+  <block id="2fd88f3466754282c283514ecc0a70a1" category="paragraph">此示例将使用SMB卷创建Amazon FSx for ONTAP后端。</block>
+  <block id="71b79981e733eabd769324fa40c8fa6d" category="paragraph">在下面显示的示例后端定义文件中、为所有存储池设置了特定默认值、例如<block ref="cae77b049bf504af7afc43b99b6c5213" prefix=" " category="inline-code"></block> 无、<block ref="45922ba6ba8428764f22ed06f814c762" prefix=" " category="inline-code"></block> 为false、和<block ref="5bdf74912a51c34815f11e9a3d20b609" prefix=" " category="inline-code"></block> 为false。虚拟池在存储部分中进行定义。</block>
+  <block id="71fcdf20b31ca43f6ef64c06530f313d" category="paragraph">在这些示例中、某些存储池会自行设置<block ref="cae77b049bf504af7afc43b99b6c5213" prefix=" " category="inline-code"></block>，<block ref="45922ba6ba8428764f22ed06f814c762" prefix=" " category="inline-code"></block>，和<block ref="5bdf74912a51c34815f11e9a3d20b609" prefix=" " category="inline-code"></block> 值、而某些池会覆盖默认值。</block>
+  <block id="574e53d92fdeaac37ba2d879a9b88f12" category="example-title">ONTAP NAS示例</block>
+  <block id="bdb252122df8a6e68a54782628d1944f" category="example-title">ONTAP NAS FlexGroup示例</block>
+  <block id="9561077d9ef091b88a253b8593eb8bfb" category="example-title">ONTAP NAS经济性示例</block>
+  <block id="eb2e955f1a984e2be0e3fa8cdbe6667c" category="paragraph">以下StorageClass定义请参见 <block ref="d690aebda44a37b8ae9c2c6f1918cb30" category="inline-xref-macro-rx"></block>。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会指出可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
+  <block id="01eacb47d802acac83a7e60311768055" category="list-text">。<block ref="63f9100803e1f67a5e33cbd5da9dbb33" prefix=" " category="inline-code"></block> StorageClass将映射到中的第一个和第二个虚拟池<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 后端。这些池是唯一提供金牌保护的池。</block>
+  <block id="6b35cdd98b7f7e55e698a6d0628e18e0" category="list-text">。<block ref="afbfe298fa275e5fff1aca9b2f213d9a" prefix=" " category="inline-code"></block> StorageClass将映射到中的第三个和第四个虚拟池<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 后端。这些池是唯一提供黄金级以外保护级别的池。</block>
+  <block id="535efa214445261dfda5d5edc613e56b" category="list-text">。<block ref="65846755494383158592c748f74421ec" prefix=" " category="inline-code"></block> StorageClass将映射到中的第四个虚拟池<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 后端。这是为mysqldb类型的应用程序提供存储池配置的唯一池。</block>
+  <block id="d0c5a28c77fc4e37f7271d37f7372724" category="list-text">。<block ref="2e63b2ff91d4aeb88b54db5c90b71443" prefix=" " category="inline-code"></block> StorageClass将映射到中的第三个虚拟池<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 后端。这是唯一提供银牌保护和20000个信用点的池。</block>
+  <block id="0191eea3640b05213a7522d6581a2fd5" category="list-text">。<block ref="a96bee9dd30f3ea0af93b4c64ca1e4a4" prefix=" " category="inline-code"></block> StorageClass将映射到中的第三个虚拟池<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 中的后端和第二个虚拟池<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 后端。这是唯一一款信用点数为5000的池产品。</block>
+  <block id="c9410b4405958bba6c2f782b5da4c684" category="admonition">如果您将Amazon FSx on NetApp ONTAP与Asta Dent结合使用、则建议您为指定DNS名称、而不是IP地址。</block>
+  <block id="69a7d5311f7a48959dd5b1cdbc093cec" category="example-title">ONTAP SAN最低配置示例</block>
+  <block id="cd5dd52b9f0bba70b1336e13afe05818" category="paragraph">这是使用的基本配置<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="2964cdc4ba96fd3e792322682498d593" category="example-title">ONTAP SAN经济性最低配置示例</block>
+  <block id="31089bb4131b18ca65c3d384cdd49644" category="example-title">双向CHAP示例</block>
+  <block id="17baa03e9287aee400bc2e606d247156" category="paragraph">这些示例使用创建后端<block ref="099cb468880f266cba40b49391fa46bc" prefix=" " category="inline-code"></block> 设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>。</block>
+  <block id="7a4c6868ec70d1fbee3cb3a7483e21d0" category="listing-title">ONTAP SAN CHAP示例</block>
+  <block id="a0c1c7f21916f2a4fb0f0d56732adc90" category="listing-title">ONTAP SAN经济性CHAP示例</block>
+  <block id="6b743d9085f7f94d7a334c4386fbe239" category="paragraph">在这些示例后端定义文件中、为所有存储池设置了特定默认值、例如<block ref="cae77b049bf504af7afc43b99b6c5213" prefix=" " category="inline-code"></block> 无、<block ref="45922ba6ba8428764f22ed06f814c762" prefix=" " category="inline-code"></block> 为false、和<block ref="5bdf74912a51c34815f11e9a3d20b609" prefix=" " category="inline-code"></block> 为false。虚拟池在存储部分中进行定义。</block>
+  <block id="4930386ddaad825d64732ee9ec5e65b8" category="example-title">ONTAP SAN示例</block>
+  <block id="8a10ba8eb41944c10648f18ba7e16239" category="example-title">ONTAP SAN经济性示例</block>
+  <block id="50543d5d423c4c1a0b4fdd41383189e5" category="paragraph">以下StorageClass定义涉及 <block ref="d690aebda44a37b8ae9c2c6f1918cb30" category="inline-xref-macro-rx"></block>。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会指出可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
+  <block id="514e71168790374132badc1258ee5136" category="list-text">。<block ref="63f9100803e1f67a5e33cbd5da9dbb33" prefix=" " category="inline-code"></block> StorageClass将映射到中的第一个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 后端。这是唯一提供金牌保护的池。</block>
+  <block id="a9c41ef671a6da4ed0f439f86683b714" category="list-text">。<block ref="afbfe298fa275e5fff1aca9b2f213d9a" prefix=" " category="inline-code"></block> StorageClass将映射到中的第二个和第三个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 后端。只有这些池提供的保护级别不是gold。</block>
+  <block id="910ed65246d7ee240ec166f94b1fd5c9" category="list-text">。<block ref="65846755494383158592c748f74421ec" prefix=" " category="inline-code"></block> StorageClass将映射到中的第三个虚拟池<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 后端。这是为mysqldb类型的应用程序提供存储池配置的唯一池。</block>
+  <block id="fa03c7de8b1b7b7061bb536c211f3aaf" category="list-text">。<block ref="2e63b2ff91d4aeb88b54db5c90b71443" prefix=" " category="inline-code"></block> StorageClass将映射到中的第二个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 后端。这是唯一提供银牌保护和20000个信用点的池。</block>
+  <block id="ac996ac8e4442d8a2791ba8b1e301a02" category="list-text">。<block ref="a96bee9dd30f3ea0af93b4c64ca1e4a4" prefix=" " category="inline-code"></block> StorageClass将映射到中的第三个虚拟池<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 中的后端和第四个虚拟池<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 后端。这是唯一一款信用点数为5000的池产品。</block>
+  <block id="b003731e1d339366ed065ffe5a0f50ca" category="paragraph">在下面所示的示例后端定义文件中、为所有存储池设置了特定的默认值、这些存储池设置了<block ref="599dcce2998a6b40b1e38e8c6006cb0a" prefix=" " category="inline-code"></block> 在Silver。虚拟池在中进行定义<block ref="ddecebdea58b5f264d27f1f7909bab74" prefix=" " category="inline-code"></block> 部分。在此示例中、某些存储池会设置自己的类型、而某些存储池会覆盖上面设置的默认值。</block>
 </blocks>
