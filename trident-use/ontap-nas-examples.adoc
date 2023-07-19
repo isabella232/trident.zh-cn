@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-use/ontap-nas-examples.html 
 keywords: map backends, storage classes, trident backend, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups, options, storageclasses, fsx 
-summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。 
+summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。 
 ---
 = ONTAP NAS配置选项和示例
 :hardbreaks:
@@ -12,7 +12,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 
 
 [role="lead"]
-了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。
+了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。
 
 
 
@@ -94,7 +94,11 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 
 | `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | 200 
 
 
-| `smbShare` | 您可以指定使用共享文件夹Microsoft管理控制台创建的SMB共享的名称、也可以指定共享名称以允许Astra Trident创建SMB共享。或者、您也可以将参数留空、以防止对卷进行通用共享访问。 | `smb-share` 
+| `smbShare` | 您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称；允许Asta三端到功能创建SMB共享的名称；或者、您可以将参数留空以防止对卷进行通用共享访问。
+
+对于内部ONTAP、此参数是可选的。
+
+此参数对于Amazon FSx for ONTAP后端为必填项、不能为空。 | `smb-share` 
 
 
 | `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
@@ -210,11 +214,9 @@ image::../media/volume-show-nas.png[显示了 volume show 命令的输出。]
 
 NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为 LIF 指定 DNS 名称，而不是 IP 地址。
 
-.ONTAP NAS经济型最低配置示例
+.的最低配置 <code>ontap-nas-economy</code>
 [%collapsible%open]
 ====
-这是使用的基本配置 `ontap-nas-economy` 驱动程序。
-
 [listing]
 ----
 ---
@@ -224,14 +226,12 @@ managementLIF: 10.0.0.1
 dataLIF: 10.0.0.2
 svm: svm_nfs
 username: vsadmin
-password: <password>
+password: password
 ----
 ====
-.ONTAP NAS FlexGroup最低配置示例
+.的最低配置 <code>ontap-nas-flexgroup</code>
 [%collapsible%open]
 ====
-这是使用的基本配置 `ontap-nas-flexgroup` 驱动程序。
-
 [listing]
 ----
 ---
@@ -241,13 +241,33 @@ managementLIF: 10.0.0.1
 dataLIF: 10.0.0.2
 svm: svm_nfs
 username: vsadmin
-password: <password>
+password: password
 ----
 ====
-.基于证书的身份验证示例
+.SMB卷的最低配置
 [%collapsible%open]
 ====
-在本基本配置示例中 `clientCertificate`， `clientPrivateKey`，和 `trustedCACertificate` (如果使用可信CA、则可选)将填充 `backend.json` 和分别采用客户端证书、专用密钥和可信CA证书的base64编码值。
+[listing]
+----
+
+---
+version: 1
+backendName: ExampleBackend
+storageDriverName: ontap-nas
+managementLIF: 10.0.0.1
+nasType: smb
+securityStyle: ntfs
+unixPermissions: ""
+dataLIF: 10.0.0.2
+svm: svm_nfs
+username: vsadmin
+password: password
+----
+====
+.基于证书的身份验证
+[%collapsible%open]
+====
+这是一个最低后端配置示例。 `clientCertificate`， `clientPrivateKey`，和 `trustedCACertificate` (如果使用可信CA、则可选)将填充 `backend.json` 和分别采用客户端证书、专用密钥和可信CA证书的base64编码值。
 
 [listing]
 ----
@@ -264,10 +284,10 @@ trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
 storagePrefix: myPrefix_
 ----
 ====
-.自动导出策略示例
+.自动导出策略
 [%collapsible%open]
 ====
-此示例指示Astra Dandent使用动态导出策略自动创建和管理导出策略。此操作对于也是如此 `ontap-nas-economy` 和 `ontap-nas-flexgroup` 驱动程序。
+此示例显示了如何指示 Astra Trident 使用动态导出策略自动创建和管理导出策略。此操作对于也是如此 `ontap-nas-economy` 和 `ontap-nas-flexgroup` 驱动程序。
 
 [listing]
 ----
@@ -284,11 +304,11 @@ autoExportPolicy: true
 autoExportCIDRs:
 - 10.0.0.0/24
 username: admin
-password: <password>
+password: password
 nfsMountOptions: nfsvers=4
 ----
 ====
-.使用IPv6地址示例
+.使用IPv6地址
 [%collapsible%open]
 ====
 此示例显示了 `managementLIF` 使用IPv6地址。
@@ -305,14 +325,13 @@ labels:
   backend: test1-ontap-ipv6
 svm: nas_ipv6_svm
 username: vsadmin
-password: <password>
-
+password: password
 ----
 ====
-.Amazon FSx for ONTAP使用SMB卷示例
+.使用SMB卷的Amazon FSx for ONTAP
 [%collapsible%open]
 ====
-此示例将使用SMB卷创建Amazon FSx for ONTAP后端。
+。 `smbShare` 使用SMB卷的FSx for ONTAP需要参数。
 
 [listing]
 ----
@@ -324,6 +343,7 @@ managementLIF: example.mgmt.fqdn.aws.com
 nasType: smb
 dataLIF: 10.0.0.15
 svm: nfs_svm
+smbShare: smb-share
 clientCertificate: ZXR0ZXJwYXB...ICMgJ3BhcGVyc2
 clientPrivateKey: vciwKIyAgZG...0cnksIGRlc2NyaX
 trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz

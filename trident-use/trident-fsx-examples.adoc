@@ -91,7 +91,9 @@ summary: 了解适用于ONTAP 的Amazon FSX的后端配置选项。本节提供�
 | `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | `200` 
 
 
-| `smbShare` | 您可以指定使用共享文件夹Microsoft管理控制台创建的SMB共享的名称、也可以指定共享名称以允许Astra Trident创建SMB共享。或者、您也可以将参数留空、以防止对卷进行通用共享访问。 | `smb-share` 
+| `smbShare` | 您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称、或者允许Asta三端到功能创建SMB共享的名称。
+
+对于Amazon FSx for ONTAP后端、此参数是必需的。 | `smb-share` 
 
 
 | `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *

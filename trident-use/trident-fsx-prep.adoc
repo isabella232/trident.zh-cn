@@ -14,27 +14,20 @@ summary: '您可以将适用于NetApp ONTAP 的Amazon FSX文件系统与Astra Tr
 [role="lead"]
 您可以将适用于NetApp ONTAP 的Amazon FSX文件系统与Astra Trident集成、以确保在Amazon Elastic Kubernetes Service (EKS)中运行的Kubernetes集群可以配置由ONTAP 提供支持的块和文件永久性卷。
 
-.开始之前
+
+
+== 要求
+
 此外 link:../trident-get-started/requirements.html["Astra Trident 要求"]要将适用于ONTAP 的FSx与Astra Trident集成、您需要：
 
 * 已安装 `kubectl` 的现有 Amazon EKS 集群或自管理 Kubernetes 集群。
-* 可从集群的工作节点访问的适用于 NetApp ONTAP 文件系统和 Storage Virtual Machine （ SVM ）的现有 Amazon FSX 。
+* 可从集群的工作节点访问的现有Amazon FSx for NetApp ONTAP文件系统和Storage Virtual Machine (SVM)。
 * 为准备工作的工作节点 link:worker-node-prep.html["NFS或iSCSI"]。
 +
 
 NOTE: 确保按照Amazon Linux和Ubuntu所需的节点准备步骤进行操作 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html["Amazon Machine 映像"^] （ AMIS ），具体取决于您的 EKS AMI 类型。
 
-
-
-.SMB卷的其他要求
-* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
-* 至少一个包含Active Directory凭据的Astra Trident密钥。以生成密钥 `smbcreds`：
-+
-[listing]
-----
-kubectl create secret generic smbcreds --from-literal username=user --from-literal password='password'
-----
-* 配置为Windows服务的CSI代理。配置 `csi-proxy`、请参见 link:https://github.com/kubernetes-csi/csi-proxy["GitHub：CSI代理"^] 或 link:https://github.com/Azure/aks-engine/blob/master/docs/topics/csi-proxy-windows.md["GitHub：适用于Windows的CSI代理"^] 适用于在Windows上运行的Kubernetes节点。
+* Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。请参见 <<准备配置SMB卷>> 了解详细信息。
 
 
 
@@ -113,6 +106,19 @@ trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
 
 您可以使用配置SMB卷 `ontap-nas` 驱动程序。完成前 <<ONTAP SAN和NAS驱动程序集成>> 完成以下步骤。
 
+.开始之前
+才能使用配置SMB卷 `ontap-nas` 驱动程序、则必须满足以下条件。
+
+* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+* 至少一个包含Active Directory凭据的Astra Trident密钥。以生成密钥 `smbcreds`：
++
+[listing]
+----
+kubectl create secret generic smbcreds --from-literal username=user --from-literal password='password'
+----
+* 配置为Windows服务的CSI代理。配置 `csi-proxy`、请参见 link:https://github.com/kubernetes-csi/csi-proxy["GitHub：CSI代理"^] 或 link:https://github.com/Azure/aks-engine/blob/master/docs/topics/csi-proxy-windows.md["GitHub：适用于Windows的CSI代理"^] 适用于在Windows上运行的Kubernetes节点。
+
+
 .步骤
 . 创建SMB共享。您可以使用以下两种方式之一创建SMB管理共享 link:https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/what-is-microsoft-management-console["Microsoft管理控制台"^] 共享文件夹管理单元或使用ONTAP 命令行界面。要使用ONTAP 命令行界面创建SMB共享、请执行以下操作：
 +
@@ -145,7 +151,9 @@ NOTE: 请参见 link:https://docs.netapp.com/us-en/ontap/smb-config/create-share
 | 参数 | Description | 示例 
 
 
-| `smbShare` | 您可以指定使用共享文件夹Microsoft管理控制台创建的SMB共享的名称、也可以指定共享名称以允许Astra Trident创建SMB共享。或者、您也可以将参数留空、以防止对卷进行通用共享访问。 | `smb-share` 
+| `smbShare` | 您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称、或者允许Asta三端到功能创建SMB共享的名称。
+
+对于Amazon FSx for ONTAP后端、此参数是必需的。 | `smb-share` 
 
 
 | `nasType` | *必须设置为 `smb`如果为空、则默认为 `nfs`。 | `smb` 

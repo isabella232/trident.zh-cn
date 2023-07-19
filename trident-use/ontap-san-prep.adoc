@@ -12,11 +12,11 @@ summary: 了解如何准备使用 ONTAP SAN 驱动程序配置 ONTAP 后端。
 
 
 [role="lead"]
-了解如何准备使用 ONTAP SAN 驱动程序配置 ONTAP 后端。
+了解使用ONTAP SAN驱动程序配置ONTAP后端的要求和身份验证选项。
 
 
 
-== 概述
+== 要求
 
 对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。
 
@@ -26,7 +26,7 @@ summary: 了解如何准备使用 ONTAP SAN 驱动程序配置 ONTAP 后端。
 
 
 
-== 身份验证
+== 对ONTAP后端进行身份验证
 
 Astra Trident 提供了两种对 ONTAP 后端进行身份验证的模式。
 

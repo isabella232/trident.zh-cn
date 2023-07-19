@@ -1226,7 +1226,6 @@
   <block id="5f48c343984786005c9830d96c6fca87" category="doc">导入卷</block>
   <block id="76057e180d7b3edcebaa935c7ccab687" category="paragraph">PVC 和 PV 中会添加一个标注，用于指示卷已导入以及 PVC 和 PV 是否已管理。不应修改或删除此标注。</block>
   <block id="1b539ba5a07e124e582b2e4bfc489200" category="paragraph">使用 `ontap-nas` 驱动程序创建的每个卷都是 ONTAP 集群上的一个 FlexVol 。使用 `ontap-NAS` 驱动程序导入 FlexVol 的工作原理相同。ONTAP 集群上已存在的 FlexVol 可以导入为 `ONONTAP -NAS` PVC 。同样，可以将 FlexGroup vols 导入为 `ontap-nas-flexgroup` PVC 。</block>
-  <block id="e4f61797b38c111b04c612b285a06659" category="summary">了解如何准备使用 ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
   <block id="00b8b321c68facfb94b31690cbd23e00" category="paragraph">对于所有 ONTAP 后端， Astra Trident 需要至少为 SVM 分配一个聚合。</block>
   <block id="07b434b23f63ca6490df33b213599320" category="section-title">管理 NFS 导出策略</block>
   <block id="9d66483f8378ffe30cde84e1b6dbf484" category="paragraph">Astra Trident 使用 NFS 导出策略来控制对其配置的卷的访问。</block>
@@ -1441,7 +1440,6 @@
   <block id="e42b07a9f050ef51ea1211004a50f223" category="list-text">`ontap-nas-flexgroup` ：配置的每个 PV 都是适用于 NetApp ONTAP FlexGroup 卷的完整 Amazon FSX 。</block>
   <block id="ed2536bee60113131cf25b2de3ec8734" category="list-text">基于证书： Astra Trident 将使用 SVM 上安装的证书与 FSX 文件系统上的 SVM 进行通信。</block>
   <block id="80d13d3dbe137e8fb646193f275eceeb" category="list-text">已安装 `kubectl` 的现有 Amazon EKS 集群或自管理 Kubernetes 集群。</block>
-  <block id="52d48fdd62aa109d7f163f0ef8a31b83" category="list-text">可从集群的工作节点访问的适用于 NetApp ONTAP 文件系统和 Storage Virtual Machine （ SVM ）的现有 Amazon FSX 。</block>
   <block id="fe914214000491758957f04647f8da36" category="inline-link">Amazon Machine 映像</block>
   <block id="3e25473814d436a2ebac91120e147b0b" category="admonition">您可以从可以访问文件系统的任何位置使用 SSH 登录到文件系统（例如，安装证书）。使用 `fsxadmin` 用户，创建文件系统时配置的密码以及 `AWS FSx describe 文件系统` 中的管理 DNS 名称。</block>
   <block id="860958fe641e0edbd80fe522c36d0560" category="list-text">使用您的证书和管理 LIF 的 DNS 名称创建后端文件，如以下示例所示：</block>
@@ -1653,7 +1651,6 @@
   <block id="e43b3577dd4b74a4cfa994a56e8138b8" category="paragraph">当您刚开始使用 ANF 并尝试执行相关操作时，此配置是理想的选择，但实际上，您希望为所配置的卷提供更多范围界定。</block>
   <block id="725ae241ec74eed978f0b099030236b8" category="section-title">示例 3 ：高级配置</block>
   <block id="a83f4a534ccef7ac1d209fb0015cd907" category="paragraph">此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。</block>
-  <block id="0cc7642bbaf969ea355ea12764841c91" category="summary">了解如何在您的 Astra Trident 安装中创建和使用 ONTAP NAS 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。</block>
   <block id="a0f3a965c12688befda99da850903dcb" category="cell">`autosExportPolicy`</block>
   <block id="b4ad0dff08149092bc3e4b16572af575" category="cell">`autosExportCIDR`</block>
   <block id="e537a193eb90bd46a645ce750bb5f3fc" category="cell">[ "0.0.0.0/0 " ， " ：： /0 "]`</block>
@@ -3382,7 +3379,6 @@
   <block id="56d1e7863190cbf5e7689e2821d0959e" category="cell"><block ref="47cb44be55a0dffa15dfc900a4c687be" prefix="" category="inline-code"></block></block>
   <block id="3bc2d9079510db6d0570883494bc5984" category="cell"><block ref="f899139df5e1059396431415e770c6dd" prefix="" category="inline-code"></block></block>
   <block id="06daeb0fdb584c4694891d290310e1ed" category="cell"><block ref="3644a684f98ea8fe223c713b77189a77" prefix="" category="inline-code"></block></block>
-  <block id="429970b7b8d395eb00181a72bc544fba" category="cell">您可以指定使用共享文件夹Microsoft管理控制台创建的SMB共享的名称、也可以指定共享名称以允许Astra Trident创建SMB共享。或者、您也可以将参数留空、以防止对卷进行通用共享访问。</block>
   <block id="996a57df5a7c8752e8bc23b6af020be4" category="cell">条件<block ref="0a236e7685e50a59df980d0a30929d6c" prefix=" " category="inline-code"></block> 为<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block>，<block ref="2954e92a9b4d0e998fe4893f8141649a" prefix=" " category="inline-code"></block> "</block>
   <block id="58c09f2c9581bc7c58c32116266b6d8f" category="cell">要使用的层策略<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block></block>
   <block id="49ed5b3ecd0e966bec6b74083f06599e" category="cell"><block ref="8805d416ce540c5f2df34af5b18d742b" prefix="" category="inline-code"></block> 适用于ONTAP 9.5 SVM-DR之前的配置</block>
@@ -3395,7 +3391,6 @@
   <block id="51e6d748c5af856ade589011dc2c7e85" category="cell"><block ref="37a6259cc0c1dae299a7866489dff0bd" prefix="" category="inline-code"></block></block>
   <block id="ddbd2735bfb88c5da807f77f6fe5f6c8" category="doc">ONTAP NAS驱动程序概述</block>
   <block id="dd972e44915c7a0884edd58e9d839295" category="section-title">有关ONTAP NAS驱动程序的重要信息</block>
-  <block id="482723983a4f2af954e36ff41e567451" category="section-title">已知限制</block>
   <block id="1faffcbb00c529812b5526b1b22b2b56" category="paragraph">要创建、您必须在SVM上同时配置NFS和SMB/CCIFS协议<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 适用于内部ONTAP 的SMB卷。如果未能配置其中任一协议、则发生原因 SMB卷创建将失败。</block>
   <block id="5cc1e28c0d7b6c40ca94aacb554b31ca" category="doc">ONTAP SAN驱动程序概述</block>
   <block id="7771a46320e96de2bde6598540ad4d52" category="section-title">有关ONTAP SAN驱动程序的重要信息</block>
@@ -3666,17 +3661,8 @@
   <block id="8d23be098d49e797284393a4c1479c53" category="list-text">确认已将三项功能升级到预期版本。</block>
   <block id="210f1e5eca9c602b1282553f342448ae" category="list-text">对于运行Kubornetes 1.24或更早版本的集群、请使用<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block>。</block>
   <block id="e4941fda44f66f353885d1a37ca63e2b" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block>。</block>
-  <block id="3e040e84a22403c3248ead0be2dc0526" category="example-title">ONTAP NAS经济型最低配置示例</block>
-  <block id="e3e188b2454bb98544f5a561eb702093" category="paragraph">这是使用的基本配置<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 驱动程序。</block>
-  <block id="547c5a9ffcb66d79e8281ae67244522e" category="example-title">ONTAP NAS FlexGroup最低配置示例</block>
-  <block id="a5536d1d72396572e5c419b1a5bc2130" category="paragraph">这是使用的基本配置<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
   <block id="dacbfb309aa16cb942510c02c224fdbc" category="example-title">基于证书的身份验证示例</block>
   <block id="60eac39d4383fedcc1df436a2d0e856d" category="paragraph">在本基本配置示例中<block ref="79fffaff4013c1e8c508e76646eca77b" prefix=" " category="inline-code"></block>，<block ref="19dce7ac7f5290fc8fa218ad0c858df5" prefix=" " category="inline-code"></block>，和<block ref="8468461bca00a47ab5ddba2afc45f52c" prefix=" " category="inline-code"></block> (如果使用可信CA、则可选)将填充<block ref="9c15d32711e9ef8c6f76deda35452e13" prefix=" " category="inline-code"></block> 和分别采用客户端证书、专用密钥和可信CA证书的base64编码值。</block>
-  <block id="1ce00ab507a065e4febc57b244e25d18" category="example-title">自动导出策略示例</block>
-  <block id="ff5bc16abc09d38f1f879df4cd475d3b" category="paragraph">此示例指示Astra Dandent使用动态导出策略自动创建和管理导出策略。此操作对于也是如此<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
-  <block id="dd3bd0fc6b509b65dab3730c8d094c7b" category="example-title">使用IPv6地址示例</block>
-  <block id="ee8af8063e9ea3725931d232730b8a8e" category="example-title">Amazon FSx for ONTAP使用SMB卷示例</block>
-  <block id="2fd88f3466754282c283514ecc0a70a1" category="paragraph">此示例将使用SMB卷创建Amazon FSx for ONTAP后端。</block>
   <block id="71b79981e733eabd769324fa40c8fa6d" category="paragraph">在下面显示的示例后端定义文件中、为所有存储池设置了特定默认值、例如<block ref="cae77b049bf504af7afc43b99b6c5213" prefix=" " category="inline-code"></block> 无、<block ref="45922ba6ba8428764f22ed06f814c762" prefix=" " category="inline-code"></block> 为false、和<block ref="5bdf74912a51c34815f11e9a3d20b609" prefix=" " category="inline-code"></block> 为false。虚拟池在存储部分中进行定义。</block>
   <block id="71fcdf20b31ca43f6ef64c06530f313d" category="paragraph">在这些示例中、某些存储池会自行设置<block ref="cae77b049bf504af7afc43b99b6c5213" prefix=" " category="inline-code"></block>，<block ref="45922ba6ba8428764f22ed06f814c762" prefix=" " category="inline-code"></block>，和<block ref="5bdf74912a51c34815f11e9a3d20b609" prefix=" " category="inline-code"></block> 值、而某些池会覆盖默认值。</block>
   <block id="574e53d92fdeaac37ba2d879a9b88f12" category="example-title">ONTAP NAS示例</block>
@@ -3711,4 +3697,44 @@
   <block id="c6c7f5dc0544ce8f73992592be4fa6f0" category="list-text">创建<block ref="67b2cc1cd5b1570014463995fb2ada61" prefix=" " category="inline-code"></block> 使用以下命令、其中_&lt;bundle&gt;_为<block ref="b30cd2dae2689e160b36283c2657caa5" prefix=" " category="inline-code"></block> 或<block ref="e4384751f7a5be47c7eaafbdfc116ab5" prefix=" " category="inline-code"></block> 根据您的Kubbernetes版本。</block>
   <block id="34e1bffd3ed9e5b9d2d9cec17fd7eadf" category="list-text">使用以下命令编译分发包、其中_Data &lt;bundle&gt;是<block ref="b30cd2dae2689e160b36283c2657caa5" prefix=" " category="inline-code"></block> 或<block ref="e4384751f7a5be47c7eaafbdfc116ab5" prefix=" " category="inline-code"></block> 根据您的Kubbernetes版本。</block>
   <block id="806742cccf8380250ffb871d582a0a03" category="list-text">验证是否已创建操作员、部署和副本集。</block>
+  <block id="9b800ce65251b771d0eb86610e11f6b0" category="list-text">可从集群的工作节点访问的现有Amazon FSx for NetApp ONTAP文件系统和Storage Virtual Machine (SVM)。</block>
+  <block id="888a040cbb1dfe496b305a27374a73a5" category="list-text">Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。请参见 <block ref="688177e6b45c5d27a545463079c58d82" category="inline-xref-macro-rx"></block> 了解详细信息。</block>
+  <block id="f55c34459cf261d1102750bcbde548d8" category="paragraph">才能使用配置SMB卷<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序、则必须满足以下条件。</block>
+  <block id="0533fb8f0faef28ecb6da05caf5fd644" category="cell">您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称、或者允许Asta三端到功能创建SMB共享的名称。
+
+对于Amazon FSx for ONTAP后端、此参数是必需的。</block>
+  <block id="433d29840a179b402df37de14e4679f3" category="summary">了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。</block>
+  <block id="9b59e3a675bc9ca359f3369591ee7df3" category="cell">您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称；允许Asta三端到功能创建SMB共享的名称；或者、您可以将参数留空以防止对卷进行通用共享访问。
+
+对于内部ONTAP、此参数是可选的。
+
+此参数对于Amazon FSx for ONTAP后端为必填项、不能为空。</block>
+  <block id="8bf31f01da88d12bf642a85ce9b3d644" category="example-title">的最低配置 &lt;code&gt;ontap-nas-economy&lt;/code&gt;</block>
+  <block id="a48054bf8652cee4ee1d7dd8f08ffa1f" category="example-title">的最低配置 &lt;code&gt;ontap-nas-flexgroup&lt;/code&gt;</block>
+  <block id="7cf30ff82fa389224936afba832f444f" category="example-title">SMB卷的最低配置</block>
+  <block id="e7a2472a002479764cade728d64dcd9e" category="example-title">基于证书的身份验证</block>
+  <block id="78e5b29e139db71ceb7ca6bc99b5e228" category="paragraph">这是一个最低后端配置示例。<block ref="79fffaff4013c1e8c508e76646eca77b" prefix=" " category="inline-code"></block>，<block ref="19dce7ac7f5290fc8fa218ad0c858df5" prefix=" " category="inline-code"></block>，和<block ref="8468461bca00a47ab5ddba2afc45f52c" prefix=" " category="inline-code"></block> (如果使用可信CA、则可选)将填充<block ref="9c15d32711e9ef8c6f76deda35452e13" prefix=" " category="inline-code"></block> 和分别采用客户端证书、专用密钥和可信CA证书的base64编码值。</block>
+  <block id="30cc3e263c594cde4b2a573283348bb1" category="example-title">自动导出策略</block>
+  <block id="8c35a9f7d631f51e05811b36617db641" category="paragraph">此示例显示了如何指示 Astra Trident 使用动态导出策略自动创建和管理导出策略。此操作对于也是如此<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 和<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="85435c5aae5ecdb04ef9ad8f7d48e88a" category="example-title">使用IPv6地址</block>
+  <block id="4627b40a8eea6e0ef04368d12d76d239" category="example-title">使用SMB卷的Amazon FSx for ONTAP</block>
+  <block id="33ef55e82416e2c1c4beb9cba9560b02" category="paragraph">。<block ref="5910159ef86741f119f7574a9064b5b0" prefix=" " category="inline-code"></block> 使用SMB卷的FSx for ONTAP需要参数。</block>
+  <block id="ef0e40b987d8b9ad523bdde2bba5157a" category="summary">了解使用ONTAP NAS驱动程序配置ONTAP后端的要求、身份验证选项和导出策略。</block>
+  <block id="c63609aba869239be30364b58d99b1a3" category="section-title">对ONTAP后端进行身份验证</block>
+  <block id="e5fdb627c170dc14e3873b3da32f3aa5" category="paragraph">只需稍作准备、您就可以使用配置SMB卷<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="8de0a7910b914d44521684fe2a3a28c6" category="paragraph">在配置SMB卷之前、您必须满足以下条件。</block>
+  <block id="ff8c6e3b6971ed699a5dc2e00455aa82" category="list-text">对于内部ONTAP、您可以选择创建SMB共享、也可以选择Astra三端存储为您创建一个共享。</block>
+  <block id="6a402202521e2168a911181e81c72faf" category="admonition">Amazon FSx for ONTAP需要SMB共享。</block>
+  <block id="7f7041fc0ca0e00f3d3e39e4ce4a5149" category="paragraph">您可以使用以下两种方式之一创建SMB管理共享 <block ref="364bc251e9c8cfbf6ce258767d17d682" category="inline-link-macro-rx"></block> 共享文件夹管理单元或使用ONTAP 命令行界面。要使用ONTAP 命令行界面创建SMB共享、请执行以下操作：</block>
+  <block id="00aa30f1783ef69183794c0da05e43b5" category="cell"><block ref="5910159ef86741f119f7574a9064b5b0" prefix="" category="inline-code"></block>
+您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称；允许Asta三端到功能创建SMB共享的名称；或者、您可以将参数留空以防止对卷进行通用共享访问。
+
+对于内部ONTAP、此参数是可选的。
+
+此参数对于Amazon FSx for ONTAP后端为必填项、不能为空。</block>
+  <block id="a513707a481ff6afe9846fefc6411bca" category="paragraph">Astra Trident应以ONTAP 或SVM管理员身份运行、通常使用<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> 集群用户或<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> SVM用户或具有相同角色的其他名称的用户。</block>
+  <block id="624061180b7b402618e3add29c08bd51" category="paragraph">对于适用于NetApp ONTAP 的Amazon FSX部署、Astra Trident应使用集群以ONTAP 或SVM管理员身份运行<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block> 用户或<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> SVM用户或具有相同角色的其他名称的用户。。<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block> 用户是集群管理员用户的有限替代用户。</block>
+  <block id="7d159230ccaa721872f31bf9be31afeb" category="paragraph">虽然可以在ONTAP中创建一个可以由三端驱动程序使用的限制性更强的角色、但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。</block>
+  <block id="37a679c38162162811d93d22ba8f5b4a" category="paragraph">了解使用ONTAP SAN驱动程序配置ONTAP后端的要求和身份验证选项。</block>
+  <block id="7fbe6e40125b7d1b2f5c5c05044e7526" category="section-title">启用基于证书的身份验证</block>
 </blocks>
