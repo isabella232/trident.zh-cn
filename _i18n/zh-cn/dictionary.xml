@@ -749,7 +749,6 @@
   <block id="d5e2d9f8d8f10044e38b71b49e675d2e" category="cell">支持的访问模式</block>
   <block id="15971126972a002fcddb2c507534e371" category="cell">支持的文件系统</block>
   <block id="ac52cf637478f3656a1fdee5c02324fd" category="paragraph">文件系统</block>
-  <block id="9f47e55b538b64923f2ee8c19bc6887a" category="paragraph">"" ， NFS</block>
   <block id="e1e4c8c9ccd9fc39c391da4bcd093fb2" category="paragraph">块</block>
   <block id="aa91b58ced7ef060eb0e27ac4e1d18a8" category="paragraph">rwo ， rox ， rwx</block>
   <block id="0b86d82002caac6130185da4ef1be67e" category="paragraph">工单， ROX</block>
@@ -3737,4 +3736,7 @@
   <block id="7d159230ccaa721872f31bf9be31afeb" category="paragraph">虽然可以在ONTAP中创建一个可以由三端驱动程序使用的限制性更强的角色、但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。</block>
   <block id="37a679c38162162811d93d22ba8f5b4a" category="paragraph">了解使用ONTAP SAN驱动程序配置ONTAP后端的要求和身份验证选项。</block>
   <block id="7fbe6e40125b7d1b2f5c5c05044e7526" category="section-title">启用基于证书的身份验证</block>
+  <block id="3262251091b863054cfabf046c0e3493" category="paragraph">NFS
+SMB</block>
+  <block id="7f4a1ee6a22ce0658ba6215c997ba8d8" category="paragraph">""、NFS、SMB</block>
 </blocks>

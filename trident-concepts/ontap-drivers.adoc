@@ -42,34 +42,37 @@ Asta三端存储提供了以下存储驱动程序、用于与ONTAP集群进行�
 
 | `ontap-NAS`  a| 
 NFS
+SMB
  a| 
 文件系统
  a| 
 Rwo、ROX、rwx、RWOP
  a| 
-"" ， NFS
+""、NFS、SMB
 
 
 
 | `ontap-nas-economy.`  a| 
 NFS
+SMB
  a| 
 文件系统
  a| 
 Rwo、ROX、rwx、RWOP
  a| 
-"" ， NFS
+""、NFS、SMB
 
 
 
 | `ontap-nas-flexgroup`  a| 
 NFS
+SMB
  a| 
 文件系统
  a| 
 Rwo、ROX、rwx、RWOP
  a| 
-"" ， NFS
+""、NFS、SMB
 
 
 
