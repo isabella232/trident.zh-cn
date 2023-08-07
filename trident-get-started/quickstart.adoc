@@ -4,7 +4,7 @@ permalink: trident-get-started/quickstart.html
 keywords: kubernetes cluster, simple installation, Kubernetes installation 
 summary: 如果您刚刚开始使用 Kubernetes ，请按照说明安装 Kubernetes 以进行尝试。这些说明提供了一个裸机单节点集群， Trident 可以与此集群集成以供演示。 
 ---
-= 试用
+= Astra三端快速入门
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
@@ -12,17 +12,51 @@ summary: 如果您刚刚开始使用 Kubernetes ，请按照说明安装 Kuberne
 
 
 [role="lead"]
-NetApp 提供了一个可随时使用的实验室映像，您可以通过该映像进行请求 link:https://www.netapp.com/us/try-and-buy/test-drive/index.aspx["NetApp 试用"^]。
+您可以通过几个步骤安装Asta Trandent并开始管理存储资源。开始之前、请查看 link:requirements.html["Astra Trident 要求"]。
+
+
+NOTE: 对于Docker、请参见 link:../trident-docker/deploy-docker.html["适用于 Docker 的 Astra Trident"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 安装 Astra Trident
+[role="quick-margin-para"]
+Asta三端设计提供了多种针对各种环境和组织进行了优化的安装方法和模式。
+
+[role="quick-margin-para"]
+link:../trident-get-started/kubernetes-deploy.html["安装 Astra Trident"]
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] 准备工作节点
+[role="quick-margin-para"]
+Kubernetes集群中的所有工作节点都必须能够挂载为Pod配置的卷。
+
+[role="quick-margin-para"]
+link:../trident-use/worker-node-prep.html["准备工作节点"]
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"] 创建后端
+[role="quick-margin-para"]
+后端定义了 Astra Trident 与存储系统之间的关系。它告诉 Astra Trident 如何与该存储系统进行通信，以及 Astra Trident 如何从该存储系统配置卷。
+
+[role="quick-margin-para"]
+link:../trident-use/backends.html["配置后端"] 存储系统
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"] 创建Kubbernetes存储类
+[role="quick-margin-para"]
+Kubbernetes StorageClass对象指定Astra tandent作为配置程序、并允许您创建存储类以配置具有可自定义属性的卷。Asta Trdent会为指定Asta Trdent配置程序的Kubbernetes对象创建匹配的存储类。
+
+[role="quick-margin-para"]
+link:../trident-use/create-stor-class.html["创建存储类。"]
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"] 配置卷
+[role="quick-margin-para"]
+永久性卷(PV)是由集群管理员在Kubernetes集群上配置的物理存储资源。_PersentVolumeClaim_(PVC)是对集群上的PersentVolume的访问请求。
+
+[role="quick-margin-para"]
+创建一个使用已配置的Kubernetes StorageClass来请求对PV的访问的永久性卷(PV)和永久性卷克莱姆(PVC)。然后、您可以将PV挂载到POD。
+
+[role="quick-margin-para"]
+link:../trident-use/vol-provision.html["配置卷"]
 
 
 
-== 了解测试活动
+== 下一步是什么？
 
-此测试驱动器为您提供了一个沙盒环境，该环境附带安装和配置了三节点 Kubernetes 集群和 Astra Trident 。这是熟悉 Astra Trident 并了解其功能的好方法。
-
-另一个选项是查看 link:https://kubernetes.io/docs/setup/independent/install-kubeadm/["《 kubeadm 安装指南》"] 由 Kubernetes 提供。
-
-
-NOTE: 您不应在生产环境中使用使用这些说明构建的 Kubernetes 集群。使用您的分发版提供的生产部署指南创建可随时投入生产的集群。
-
-如果这是您第一次使用 Kubernetes ，请熟悉相关概念和工具 link:https://kubernetes.io/docs/home/["此处"^]。
+现在、您可以添加其他后端、管理存储类、管理后端以及执行卷操作。

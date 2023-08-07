@@ -82,7 +82,7 @@ vserver modify -vserver <svm_name> -max-volumes <num_of_volumes>
 
 === 配置 Trident 以使用双向 CHAP
 
-您可以在后端定义中指定 CHAP 启动程序以及目标用户名和密码，并在 SVM 上启用 Trident CHAP 。在后端配置中使用 `useCHAP` 参数， Trident 使用 CHAP 对 ONTAP 后端的 iSCSI 连接进行身份验证。Trident 20.04 及更高版本支持双向 CHAP 。
+您可以在后端定义中指定 CHAP 启动程序以及目标用户名和密码，并在 SVM 上启用 Trident CHAP 。使用 `useCHAP` 参数在后端配置中、Trident使用CHAP对ONTAP 后端的iSCSI连接进行身份验证。
 
 
 
@@ -174,7 +174,7 @@ storage:
 
 === 使用专用导出策略
 
-您应确保每个后端都有一个导出策略，该策略仅允许访问 Kubernetes 集群中的节点。从 20.04 版开始， Trident 可以自动创建和管理导出策略。通过这种方式， Trident 会限制对其配置给 Kubernetes 集群中节点的卷的访问，并简化节点的添加 / 删除。
+您应确保每个后端都有一个导出策略，该策略仅允许访问 Kubernetes 集群中的节点。｛\f270可以自动创建和管理导出策略｝｛\f151。｝通过这种方式， Trident 会限制对其配置给 Kubernetes 集群中节点的卷的访问，并简化节点的添加 / 删除。
 
 或者，您也可以手动创建导出策略，并使用一个或多个导出规则来填充此策略，这些导出规则用于处理每个节点访问请求：
 

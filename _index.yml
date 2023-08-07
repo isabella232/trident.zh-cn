@@ -11,13 +11,11 @@ indexpage:
   - title: 入门
     links:
     - title: 了解 Astra Trident
-      url: "/trident-concepts/intro.html"
+      url: "/trident-get-started/intro.html"
     - title: 要求
       url: "/trident-get-started/requirements.html"
-    - title: 试用
+    - title: 快速入门
       url: "/trident-get-started/quickstart.html"
-    - title: 常见问题解答
-      url: "/faq.html"
   - title: 部署 Astra Trident
     links:
     - title: 使用 Trident 操作员进行部署
@@ -42,8 +40,6 @@ indexpage:
       url: "/trident-use/manage-stor-class.html"
     - title: 执行卷操作
       url: "/trident-use/vol-operations.html"
-    - title: 监控 Astra Trident
-      url: "/trident-use/monitor-trident.html"
   - title: 演示教程
     links:
     - title: Astra Trident 视频

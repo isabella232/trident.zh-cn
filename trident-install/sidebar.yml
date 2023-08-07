@@ -1,0 +1,24 @@
+---
+section: trident-install
+title: 安装 Astra Trident
+entries:
+- title: 安装概述
+  url: "/trident-get-started/kubernetes-deploy.html"
+- title: 使用Trident操作员安装
+  entries:
+  - title: 手动部署Trident操作员(标准)
+    url: "/trident-get-started/kubernetes-deploy-operator.html"
+  - title: 手动部署Trident操作员(脱机)
+    url: "/trident-get-started/kubernetes-deploy-operator-mirror.html"
+  - title: 使用Trident Helm图表(标准)
+    url: "/trident-get-started/kubernetes-deploy-helm.html"
+  - title: 使用Trident Helm图表(脱机)
+    url: "/trident-get-started/kubernetes-deploy-helm-mirror.html"
+  - title: 自定义Trident操作员安装
+    url: "/trident-get-started/kubernetes-customize-deploy.html"
+- title: 使用tridentctl进行安装
+  entries:
+  - title: 使用tridentctl进行安装
+    url: "/trident-get-started/kubernetes-deploy-tridentctl.html"
+  - title: 自定义tridentctl安装
+    url: "/trident-get-started/kubernetes-customize-deploy-tridentctl.html"

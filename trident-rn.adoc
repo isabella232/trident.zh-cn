@@ -19,7 +19,82 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 23.04中的新增功能
+== 23.07中的新增功能
+
+
+
+=== 修复
+
+
+
+==== Kubernetes
+
+* 修复了通过升级三项功能忽略处于终止状态的旧Pod的问题(link:https://github.com/NetApp/trident/issues/740["问题描述740"^]）。
+* 为"瞬 时-三端版本-POD "定义添加了容差(link:https://github.com/NetApp/trident/issues/795["问题描述#C了"^]）。
+
+
+
+
+==== Astra Trident
+
+* 修复了ONTAP ZAPI请求、以确保在节点暂存操作期间获取LUN属性以识别和修复虚影iSCSI设备时查询LUN序列号。
+* 修复了存储驱动程序代码(link:https://github.com/NetApp/trident/issues/816["问题描述#816"^]）。
+* 固定了使用ONTAP驱动程序和use-rest=true时的配额大小调整。
+* 修复了在ONTAP SAN经济模式下创建LUN克隆的问题。
+* 从还原发布信息字段 `rawDevicePath` to `devicePath`；添加了用于填充和恢复的逻辑(在某些情况下) `devicePath` 字段。
+
+
+
+
+=== 增强功能
+
+
+
+==== Kubernetes
+
+* 增加了对导入预配置快照的支持。
+* 最小化部署和守护进程Linux权限(link:https://github.com/NetApp/trident/issues/817["问题描述#十十一号"^]）。
+
+
+
+
+==== Astra Trident
+
+* 不再报告"联机"卷和快照的状态字段。
+* 如果ONTAP后端处于脱机状态(link:https://github.com/NetApp/trident/issues/801["问题801"^]， link:https://github.com/NetApp/trident/issues/543["#543."^]）。
+* LUN序列号始终在ControllerVolumePubl出版 工作流期间进行检索和发布。
+* 添加了其他逻辑来验证iSCSI多路径设备序列号和大小。
+* 对iSCSI卷进行额外验证、以确保取消暂存正确的多路径设备。
+
+
+
+
+==== 试验性增强
+
+为ONTAP SAN驱动程序添加了基于TCP的NVMe技术预览支持。
+
+
+
+==== 文档。
+
+在组织和格式方面进行了许多改进。
+
+
+
+=== 已弃用
+
+
+
+==== Kubernetes
+
+* 不再支持v1beta1快照。
+* 不再支持CSI之前的卷和存储类。
+* 已将支持的最小Kubbernetes更新为1.22。
+
+
+
+
+== 23.04年度的变动
 
 
 IMPORTANT: 只有启用了非正常节点关闭功能门的Kubernetes版本才支持对ONP-SANON-*卷强制执行卷断开。必须在安装时使用启用强制断开 `--enable-force-detach` 三元安装程序标志。

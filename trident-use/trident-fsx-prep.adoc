@@ -97,9 +97,6 @@ trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
 
 
 
-.结果
-部署完成后、您可以创建 link:../trident-get-started/kubernetes-postdeployment.html["存储类，配置卷以及将卷挂载到 Pod 中"]。
-
 
 
 == 准备配置SMB卷

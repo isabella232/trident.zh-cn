@@ -67,7 +67,12 @@ Astra Trident 为 ONTAP 提供了 2 个 SAN 驱动程序，其功能如下所示
 | `ontap-san-economy.` | 是的。 | 是的。 | 是脚注： 4[] | 是的。 | 是脚注： 3[] | 是的。 | 是脚注： 3[] 
 |===
 [verse]
-上述表的脚注：是脚注： 1[] ：不受 Astra Trident 管理是脚注： 2[] ：由 Astra Trident 管理，但不是 PV 粒度 Yesfootnote ： 3[] ：不受 Astra Trident 管理，也不是 PV 粒度 Yesnote ： 4[] ：支持原始块卷是脚注： 5[] ： CSI Trident 支持
+上述表格的脚注：
+是脚注：1[]：不由Astra Trident管理
+是脚注：2[]：由Astra Trident管理，但不是PV粒度
+是脚注：3[]：不由Astra Trident管理，也不是PV粒度
+是脚注：4[]：支持原始块卷
+是脚注：5[]：由Astra三端提供支持
 
 非 PV 粒度功能将应用于整个 FlexVolume ，而所有 PV （即共享 FlexVol 中的 qtree 或 LUN ）将共享一个通用计划。
 

@@ -15,12 +15,6 @@ summary: 使用此处提供的指针排除安装和使用 Astra Trident 时可�
 使用此处提供的指针排除安装和使用 Astra Trident 时可能遇到的问题。
 
 
-NOTE: 要获得有关 Astra Trident 的帮助，请使用 `tridentctl logs -a -n trident` 创建支持包，并将其发送到 `NetApp 支持 < 获取帮助 >` 。
-
-
-TIP: 有关故障排除文章的完整列表，请参见 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Trident_Kubernetes["NetApp 知识库（需要登录）"^]。您还可以找到有关排除与 Astra 相关的问题的信息 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra["此处"^]。
-
-
 
 == 常规故障排除
 
@@ -66,7 +60,6 @@ helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true`
 * 使用 Trident 时可能会遇到的一个常见问题 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"] 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 link:../trident-use/anf.html["Azure NetApp Files"] Configuration
 * 如果在将 PV 挂载到容器时出现问题，请确保 `rpcbind` 已安装并正在运行。对主机操作系统使用所需的软件包管理器，并检查 `rpcbind` 是否正在运行。您可以通过运行 `systemctl status rpcbind` 或其等效项来检查 `rpcbind` 服务的状态。
 * 如果 Trident 后端报告其处于 `Failed` 状态，尽管之前已正常工作，但这可能是由于更改了与后端关联的 SVM/ 管理员凭据所致。使用 `tridentctl update backend` 更新后端信息或放弃 Trident Pod 将修复此问题描述。
-* 如果要升级 Kubernetes 集群和 / 或 Trident 以使用测试版卷快照，请确保已完全删除所有现有的 alpha Snapshot CRS 。然后，您可以使用 `tridentctl obviate alpha-snapshot-crd` 命令删除 alpha snapshot CRD 。请参见 https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["本博客"] 了解迁移 alpha 快照所涉及的步骤。
 * 如果在容器运行时安装 Trident 时遇到权限问题，请使用 ` -in cluster=false` 标志尝试安装 Trident 。这不会使用安装程序 POD ，并可避免因 `trident 安装程序` 用户而出现权限问题。
 * 使用 `uninstall 参数 <Uninstalling Trident >` 在运行失败后进行清理。默认情况下，该脚本不会删除 Trident 创建的 CRD ，因此即使在正在运行的部署中，也可以安全地卸载并重新安装。
 * 如果要降级到早期版本的Trident、请先运行 `tridentctl uninstall` 用于删除Trident的命令。下载所需的 https://github.com/NetApp/trident/releases["Trident 版本"] 并使用安装 `tridentctl install` 命令：只有在未创建新 PV 且未对现有 PV/ 后端 / 存储类进行更改的情况下，才考虑降级。由于Trident现在使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有 `associated CRD objects <Kubernetes CustomResourceDefinition Objects>` 而不是写入到早期安装的Trident版本所使用的PV中的数据。* 新创建的 PV 在移回早期版本时不可用。 * 降级后， Trident 将无法看到对后端， PV ，存储类和卷快照（已创建 / 更新 / 删除）等对象所做的更改 * 。先前安装的 Trident 版本所使用的 PV 仍可供 Trident 查看。如果返回到早期版本，则不会中断对已使用旧版本创建的 PV 的访问，除非已对其进行升级。

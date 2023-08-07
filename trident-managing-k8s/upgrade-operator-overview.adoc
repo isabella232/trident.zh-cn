@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: trident-managing-k8s/upgrade-operator-overview.html 
+keywords: upgrade, trident, operator, helm, controller, daemonset, node pods 
+summary: 在使用三端修复操作符升级Asta三端修复程序之前、您应了解升级期间发生的后台进程。其中包括对三项控制器、控制器Pod和节点Pod以及节点DemonSet进行的更改。 
+---
+= 了解操作员升级工作流
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在使用三端修复操作符升级Asta三端修复程序之前、您应了解升级期间发生的后台进程。其中包括对三项控制器、控制器Pod和节点Pod以及节点DemonSet进行的更改。
+
+
+
+== TRIdent操作员升级处理
+
+众多选择之一 link:../trident-get-started/kubernetes-deploy.html["使用啮合式操作员的优势"] 安装和升级Asta Trident是指在不中断现有已挂载卷的情况下自动处理Asta Trident和Kubbernetes对象。尤其是、通过与Kubenetes集群进行通信、可以：
+
+* 删除并重新创建三级控制器部署和节点DemonSet。
+* 使用新版本更换TRIDent控制器Pod和TRIDent节点Pod。
++
+** 如果节点未更新、则不会阻止更新其余节点。
+** 只有运行了三项节点Pod的节点才能挂载卷。
+
+
+
+
+
+TIP: 有关Kubbernetes集群上Asta三端架构的详细信息、请参阅 link:trident-concepts/intro.html#astra-trident-architecture["Astra Trident架构"]。
+
+
+
+== 操作员升级工作流
+
+使用三端修复操作符启动升级时：
+
+. 三端运算符*：
++
+.. 检测当前安装的Asta Trendent版本(版本_n_)。
+.. 更新所有Kubnetes对象、包括CRD、RBAC和三项服务。
+.. 删除版本为_n_的TRIdent控制器部署。
+.. 创建版本为_n+1_的三项控制器部署。
+
+
+. *Kubernetes*为_n+1_创建了三项控制器Pod。
+. 三端运算符*：
++
+.. 删除_n_的三项目标节点演示集。操作员不会等待节点Pod终止。
+.. 为_n+1_创建三项目标节点演示。
+
+
+. *Kubernetes*会在未运行三端节点Pod _n_的节点上创建三端节点Pod。这样可以确保一个节点上的任何版本的三端存储节点Pod不会超过一个。
+

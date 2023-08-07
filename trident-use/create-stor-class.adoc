@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: trident-use/create-stor-class.html 
+keywords: storage class, manage storage class, storage classes, kubernetes storage classes 
+summary: 您可以设计一个Kubnetes StorageClass文件并创建StorageClass、以指示Astra Trident如何配置卷。 
+---
+= 创建存储类。
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+配置Kubnetes StorageClass对象并创建存储类、以指示Astra Trident如何配置卷。
+
+
+
+== 配置Kubnetes StorageClass对象
+
+。 https://kubernetes.io/docs/concepts/storage/storage-classes/["Kubnetes StorageClass对象"^] 将Asta Trident标识为该类所使用的配置程序、用于指示Asta Trident如何配置卷。例如：
+
+[listing]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: <Name>
+provisioner: csi.trident.netapp.io
+mountOptions: <Mount Options>
+parameters:
+  <Trident Parameters>
+allowVolumeExpansion: true
+volumeBindingMode: Immediate
+----
+请参见 link:../trident-reference/objects.html["Kubernetes 和 Trident 对象"] 有关存储类如何与交互的详细信息 `PersistentVolumeClaim` 和用于控制Asta Trident配置卷的方式的参数。
+
+
+
+== 创建存储类。
+
+创建StorageClass对象后、您可以创建存储类。 <<存储类示例>> 提供了一些可供您使用或修改的基本示例。
+
+.步骤
+. 这是一个Kubbernetes对象、因此请使用 `kubectl` 以在Kubernetes中创建。
++
+[listing]
+----
+kubectl create -f sample-input/storage-class-basic-csi.yaml
+----
+. 现在， Kubernetes 和 Astra Trident 都应显示 * 基本 -CSI * 存储类， Astra Trident 应已发现后端的池。
++
+[listing]
+----
+kubectl get sc basic-csi
+NAME         PROVISIONER             AGE
+basic-csi    csi.trident.netapp.io   15h
+
+./tridentctl -n trident get storageclass basic-csi -o json
+{
+  "items": [
+    {
+      "Config": {
+        "version": "1",
+        "name": "basic-csi",
+        "attributes": {
+          "backendType": "ontap-nas"
+        },
+        "storagePools": null,
+        "additionalStoragePools": null
+      },
+      "storage": {
+        "ontapnas_10.0.0.1": [
+          "aggr1",
+          "aggr2",
+          "aggr3",
+          "aggr4"
+        ]
+      }
+    }
+  ]
+}
+----
+
+
+
+
+=== 存储类示例
+
+Asta三项功能 https://github.com/NetApp/trident/tree/master/trident-installer/sample-input/pvc-samples["适用于特定后端的简单存储类定义"^]。
+
+或者、您也可以进行编辑 `sample-input/storage-class-csi.yaml.templ` 安装程序随附的文件、然后进行替换 `__BACKEND_TYPE__` 和存储驱动程序名称。
+
+[listing]
+----
+./tridentctl -n trident get backend
++-------------+----------------+--------------------------------------+--------+---------+
+|    NAME     | STORAGE DRIVER |                 UUID                 | STATE  | VOLUMES |
++-------------+----------------+--------------------------------------+--------+---------+
+| nas-backend | ontap-nas      | 98e19b74-aec7-4a3d-8dcf-128e5033b214 | online |       0 |
++-------------+----------------+--------------------------------------+--------+---------+
+
+cp sample-input/storage-class-csi.yaml.templ sample-input/storage-class-basic-csi.yaml
+
+# Modify __BACKEND_TYPE__ with the storage driver field above (e.g., ontap-nas)
+vi sample-input/storage-class-basic-csi.yaml
+----

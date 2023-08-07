@@ -10,6 +10,9 @@ settings:
   versions:
   - name: Astra Trident
     url: "/trident"
+    version-number: '23.07'
+  - name: Astra Trident
+    url: "/trident-2304"
     version-number: '23.04'
   - name: Astra Trident
     url: "/trident-2301"
@@ -20,9 +23,6 @@ settings:
   - name: Astra Trident
     url: "/trident-2207"
     version-number: '22.07'
-  - name: Astra Trident
-    url: "/trident-2204"
-    version-number: '22.04'
   langs: zh-cn,us-en,ja-jp,ko-kr,zh-tw,de-de,es-es,fr-fr,it-it
 sidebar:
   entries:
@@ -34,18 +34,20 @@ sidebar:
       url: "/trident-rn.html"
     - title: 早期版本
       url: "/earlier-versions.html"
-  - section: trident-concepts
   - section: trident-get-started
-  - section: trident-managing-k8s
+  - section: trident-install
   - section: trident-use
+  - section: trident-managing-k8s
   - section: trident-docker
-  - title: 常见问题解答
-    url: "/faq.html"
-  - title: 支持
-    url: "/get-help.html"
-  - title: 故障排除
-    url: "/troubleshooting.html"
   - section: trident-reco
+  - title: 知识和支持
+    entries:
+    - title: 常见问题解答
+      url: "/faq.html"
+    - title: 故障排除
+      url: "/troubleshooting.html"
+    - title: 获取帮助
+      url: "/get-help.html"
   - section: trident-reference
   - title: 法律声明
     url: "/legal-notices.html"

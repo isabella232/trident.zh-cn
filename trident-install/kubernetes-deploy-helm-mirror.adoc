@@ -16,7 +16,7 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 
 
 
-== 有关Astra Trdent 23.04的重要信息
+== 有关Asta Trdent 23.07的重要信息
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
@@ -49,7 +49,7 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 ----
 helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 ----
-. 使用 ... `helm install` 并为部署和映像注册表位置指定一个名称。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、 `23.04.0` 是您要安装的Astra Trident版本。
+. 使用 ... `helm install` 并为部署和映像注册表位置指定一个名称。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、 `23.07.0` 是您要安装的Astra Trident版本。
 +
 [role="tabbed-block"]
 ====
@@ -57,7 +57,7 @@ helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 --
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.04.0 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 23.07.0 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
 ----
 --
 .不同注册表中的映像
@@ -66,7 +66,7 @@ helm install <name> netapp-trident/trident-operator --version 23.04.0 --set imag
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.04.0 --set imageRegistry=<your-registry>/sig-storage --set operatorImage=<your-registry>/netapp/trident-operator:23.04.0 --set tridentAutosupportImage=<your-registry>/netapp/trident-autosupport:23.04 --set tridentImage=<your-registry>/netapp/trident:23.04.0 --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 23.07.0 --set imageRegistry=<your-registry>/sig-storage --set operatorImage=<your-registry>/netapp/trident-operator:23.07.0 --set tridentAutosupportImage=<your-registry>/netapp/trident-autosupport:23.07 --set tridentImage=<your-registry>/netapp/trident:23.07.0 --create-namespace --namespace <trident-namespace>
 ----
 --
 ====
@@ -98,11 +98,11 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 在命令行上指定覆盖。
 
 |===
-例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `23.04.0` 是您要安装的Astra Trident版本：
+例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `23.07.0` 是您要安装的Astra Trident版本：
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.04.0  --create-namespace --namespace --set tridentDebug=true
+helm install <name> netapp-trident/trident-operator --version 23.07.0  --create-namespace --namespace --set tridentDebug=true
 ----
 
 
@@ -221,18 +221,4 @@ helm install <name> netapp-trident/trident-operator --version 23.04.0  --create-
 |===
 
 
-=== 了解控制器Pod和节点Pod
-
-Astra Trident作为一个控制器POD运行、并在集群中的每个工作节点上运行一个节点POD。节点POD必须在任何可能要挂载Astra Trident卷的主机上运行。
-
-Kubernetes link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["节点选择器"^] 和 link:https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/["容忍和损害"^] 用于限制Pod在特定节点或首选节点上运行。使用`ControllerPlugin`和 `NodePlugin`、您可以指定约束和覆盖。
-
-* 控制器插件负责卷配置和管理、例如快照和调整大小。
-* 节点插件负责将存储连接到节点。
-
-
-
-
 == 下一步行动
-
-现在可以了 link:kubernetes-postdeployment.html["创建创建后端和存储类、配置卷并将卷挂载到Pod中"]。

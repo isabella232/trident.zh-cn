@@ -16,7 +16,7 @@ summary: 在安装Astra Trident之前、您应查看这些常规系统要求。�
 
 
 
-== 有关Astra Trident 23.01的关键信息
+== 有关Asta Trdent的重要信息
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
@@ -38,22 +38,22 @@ summary: 在安装Astra Trident之前、您应查看这些常规系统要求。�
 Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
 * Anthos On－Prem (VMware)和Anthos on Bare metal 1.12
-* Kubbernetes 1.21 - 1.27.
+* Kubbernetes 1.22 - 1.27.
 * Mirantis Kubernetes Engine 3.5
-* OpenShift 4.9 - 4.12
+* OpenShift 4.10 - 4.10.
 
 
 以下版本支持 Trident 操作符：
 
 * Anthos On－Prem (VMware)和Anthos on Bare metal 1.12
-* Kubbernetes 1.21 - 1.27.
-* OpenShift 4.9 - 4.12
+* Kubbernetes 1.22 - 1.27.
+* OpenShift 4.10 - 4.10.
 
 
 Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。
 
 
-WARNING: 在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本之前、请参见 link:../trident-managing-k8s/upgrade-operator.html#upgrade-a-helm-based-operator-installation["升级基于 Helm 的操作员安装"]。
+WARNING: 在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本之前、请参见 link:../trident-managing-k8s/upgrade-operator.html#upgrade-a-helm-installation["升级Helm安装"]。
 
 
 
@@ -81,7 +81,7 @@ WARNING: 在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或�
 | 功能 | Kubernetes 版本 | 是否需要功能安全门？ 
 
 
-| CSI Trident  a| 
+| Astra Trident  a| 
 1.21 - 1.27.
  a| 
 否
@@ -187,95 +187,80 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 | Kubernetes 版本 | 容器映像 
 
 
-| v1.21.0  a| 
-* dDocker。io/NetApp/trident：23.04.0
-* docer.io/NetApp/trident-autostsupport：23.04
-* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
-* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
-* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
-
-
-
-
 | v1.22.0  a| 
-* dDocker。io/NetApp/trident：23.04.0
-* docer.io/NetApp/trident-autostsupport：23.04
-* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
-* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* dDocker。io/NetApp/trdent：23.07.0
+* docer.io/NetApp/trdent-autostsupport：23.07
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.5.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.3.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.0.0
 * 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
-* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.0.0
+* dDocker .io/NetApp/trdent操作员：23.07.0 (可选)
 
 
 
 
 | v1.23.0  a| 
-* dDocker。io/NetApp/trident：23.04.0
-* docer.io/NetApp/trident-autostsupport：23.04
-* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
-* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* dDocker。io/NetApp/trdent：23.07.0
+* docer.io/NetApp/trdent-autostsupport：23.07
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.5.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.3.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.0.0
 * 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
-* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.0.0
+* dDocker .io/NetApp/trdent操作员：23.07.0 (可选)
 
 
 
 
 | v1.24.0  a| 
-* dDocker。io/NetApp/trident：23.04.0
-* docer.io/NetApp/trident-autostsupport：23.04
-* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
-* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* dDocker。io/NetApp/trdent：23.07.0
+* docer.io/NetApp/trdent-autostsupport：23.07
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.5.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.3.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.0.0
 * 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
-* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.0.0
+* dDocker .io/NetApp/trdent操作员：23.07.0 (可选)
 
 
 
 
 | v1.25.0  a| 
-* dDocker。io/NetApp/trident：23.04.0
-* docer.io/NetApp/trident-autostsupport：23.04
-* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
-* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* dDocker。io/NetApp/trdent：23.07.0
+* docer.io/NetApp/trdent-autostsupport：23.07
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.5.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.3.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.0.0
 * 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
-* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.0.0
+* dDocker .io/NetApp/trdent操作员：23.07.0 (可选)
 
 
 
 
 | v1.26.0  a| 
-* dDocker。io/NetApp/trident：23.04.0
-* docer.io/NetApp/trident-autostsupport：23.04
-* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
-* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* dDocker。io/NetApp/trdent：23.07.0
+* docer.io/NetApp/trdent-autostsupport：23.07
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.5.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.3.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.0.0
 * 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
-* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.0.0
+* dDocker .io/NetApp/trdent操作员：23.07.0 (可选)
 
 
 
 
 | v1.27.0  a| 
-* dDocker。io/NetApp/trident：23.04.0
-* docer.io/NetApp/trident-autostsupport：23.04
-* 注册表.k8s.io/sig-storage/CSI-置 配置程序：v3.4.1
-* 注册表.k8s.io/sig-storage/CsI-attacher：v4.2.0
-* 注册表.k8s.io/sig-storage/CsI-6泽 程序：v1.7.0
+* dDocker。io/NetApp/trdent：23.07.0
+* docer.io/NetApp/trdent-autostsupport：23.07
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.5.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.3.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.0.0
 * 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.7.0
-* dDocker .io/NetApp/trident-operator：23.04.0 (可选)
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.0.0
+* dDocker .io/NetApp/trdent操作员：23.07.0 (可选)
 
 
 |===
-
-NOTE: 在Kubernetes 1.21及更高版本上、使用经验证的 `registry.k8s.gcr.io/sig-storage/csi-snapshotter:v6.x` 仅当出现时才创建映像 `v1` 版本正在提供 `volumesnapshots.snapshot.storage.k8s.gcr.io` CRD。如果 `v1beta1` 版本正在为CRD提供支持/不提供 `v1` 版本、请使用已验证的 `registry.k8s.gcr.io/sig-storage/csi-snapshotter:v3.x` 图像。

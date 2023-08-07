@@ -159,13 +159,12 @@ Usage:
 ----
 flags
 
-* `` -autosupport-image string` ： AutoSupport 遥测的容器映像（默认为 "netapp/trident autosupport ： 20.07.0" ）。
+* ``--autosupport-image string`：AutoSupport遥测的容器映像(默认为"NetApp/TRIMT autostsupport：<current-version>")。
 * `` -autosupport-proxy string` ：用于发送 AutoSupport 遥测的代理的地址 / 端口。
-* `` -CSI` ：安装 CSI Trident （仅对 Kubernetes 1.13 进行覆盖，需要功能安全门）。
 * `` -enable-node-prep` ：尝试在节点上安装所需的软件包。
 * `` -generate-custom-yaml` ：在不安装任何内容的情况下生成 YAML 文件。
 * `` -h ， -help` ：安装帮助。
-* `` -http-request-timeout` ：覆盖 Trident 控制器的 REST API 的 HTTP 请求超时（默认值为 1m30s ）。
+* ``--http-request-timeout`：覆盖三端控制器的REST API的HTTP请求超时(默认值为1 m30)。
 * `` -image-regRegistry string` ：内部映像注册表的地址 / 端口。
 * `` -K8s-timeout duration` ：所有 Kubernetes 操作的超时（默认值为 3 毫秒）。
 * `` -kubelet-dir string` ： kubelet 内部状态的主机位置（默认为 "/var/lib/kubelet" ）。
@@ -238,19 +237,6 @@ Usage:
   tridentctl update [option]
 ----
 可用选项： `backend` ：在 Astra Trident 中更新后端。
-
-
-
-== `upgrade`
-
-您可以运行 `upgrade` 命令来升级 Astra Trident 中的资源。
-
-[listing]
-----
-Usage:
-tridentctl upgrade [option]
-----
-可用选项： `volume` ：将一个或多个永久性卷从 NFS/iSCSI 升级到 CSI 。
 
 
 

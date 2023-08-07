@@ -80,10 +80,7 @@ Kubernetes `PersistentVolumeClaim` 对象是 Kubernetes 集群用户发出的存
 
 Trident 支持使用 CSI 规范创建卷快照：您可以创建卷快照并将其用作数据源来克隆现有 PVC 。这样， PV 的时间点副本就可以以快照的形式公开给 Kubernetes 。然后，可以使用快照创建新的 PV 。请查看 ` + 按需卷快照 +` 了解其工作原理。
 
-Trident 还提供了用于创建克隆的 `cloneFromPVC` 和 `splitOnClone` 标注。您可以使用这些标注克隆 PVC ，而无需使用 CSI 实施（在 Kubernetes 1.13 及更早版本上），或者您的 Kubernetes 版本不支持测试版卷快照（ Kubernetes 1.16 及更早版本）。请注意， Trident 19.10 支持从 PVC 克隆的 CSI 工作流。
-
-
-NOTE: 您可以将 `cloneFromPVC` 和 `splitOnClone` 标注与 CSI Trident 以及传统的非 CSI 前端结合使用。
+Trident还提供 `cloneFromPVC` 和 `splitOnClone` 用于创建克隆的标注。您可以使用这些标注克隆PVC、而无需使用CSI实施。
 
 例如：如果用户已经有一个名为 `mysql` 的 PVC ，则用户可以使用标注创建一个名为 `mysqlclone` 的新 PVC ，例如 `trident.netapp.io/cloneFromPVC: mysql` 。设置了此标注后， Trident 将克隆与 mysql PVC 对应的卷，而不是从头开始配置卷。
 
@@ -94,7 +91,7 @@ NOTE: 您可以将 `cloneFromPVC` 和 `splitOnClone` 标注与 CSI Trident 以�
 * 使用 `ontap-nas` 和 `ontap-san` 驱动程序时，可能需要将 PVC 标注 `trident.netapp.io/splitOnClone` 与 `trident.netapp.io/cloneFromPVC` 结合使用。当 `trident.netapp.io/splitOnClone` 设置为 `true` 时， Trident 会将克隆的卷与父卷拆分，从而将克隆的卷与其父卷的生命周期完全分离，从而降低存储效率。如果不设置 `trident.netapp.io/splitOnClone` 或将其设置为 `false` ，则会减少后端的空间占用，而会在父卷和克隆卷之间创建依赖关系，因此除非先删除克隆，否则无法删除父卷。拆分克隆是有意义的一种情形，即克隆空数据库卷时，该卷及其克隆会发生很大的差异，无法从 ONTAP 提供的存储效率中受益。
 
 
-`sample-input` 目录包含用于 Trident 的 PVC 定义示例。有关与 Trident 卷关联的参数和设置的完整问题描述，请参见 Trident 卷对象。
+。 `sample-input` 目录包含用于Trident的PVC定义示例。请参见  有关与三项技术的卷关联的参数和设置的完整问题描述。
 
 
 
@@ -291,20 +288,19 @@ Kubernetes 自定义资源是 Kubernetes API 中的端点，由管理员定义�
 
 自定义资源定义（ CRD ）及其关联的对象元数据由 Kubernetes 存储在其元数据存储中。这样就无需为 Trident 创建单独的存储。
 
-从 19.07 版开始， Trident 会使用许多 `CustomResourceDefinition` 对象来保留 Trident 对象的身份，例如 Trident 后端， Trident 存储类和 Trident 卷。这些对象由 Trident 管理。此外， CSI 卷快照框架还引入了一些定义卷快照所需的 CRD 。
+Astra Trident使用 `CustomResourceDefinition` 用于保留Trident对象身份的对象、例如Trident后端、Trident存储类和Trident卷。这些对象由 Trident 管理。此外， CSI 卷快照框架还引入了一些定义卷快照所需的 CRD 。
 
 CRD 是一种 Kubernetes 构造。上述资源的对象由 Trident 创建。例如，使用 `tridentctl` 创建后端时，会创建一个对应的 `tridentbackend` CRD 对象，供 Kubernetes 使用。
 
 有关 Trident 的 CRD ，请注意以下几点：
 
 * 安装 Trident 时，系统会创建一组 CRD ，并可像使用任何其他资源类型一样使用。
-* 从先前版本的 Trident （使用 `etcd` 保持状态的版本）升级时， Trident 安装程序会从 `etcd` key-value 数据存储库迁移数据并创建相应的 CRD 对象。
 * 使用 `tridentctl uninstall` 命令卸载 Trident 时， Trident Pod 会被删除，但不会清理创建的 CRD 。请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Trident"] 了解如何从头开始完全删除和重新配置 Trident 。
 
 
 
 
-== Trident `StorageClass` 对象
+== Astra Trident `StorageClass` 对象
 
 Trident 会为 Kubernetes `StorageClass` 在其配置程序字段中指定 `csi.trident.netapp.io`/`netapp.io/trident` 的对象创建匹配的存储类。存储类名称与 Kubernetes `StorageClass` 其所代表的对象的名称匹配。
 
@@ -317,7 +313,7 @@ NOTE: 使用 Kubernetes 时，如果注册了使用 Trident 作为配置程序�
 
 
 
-== Trident 后端对象
+== Asta三端对象
 
 后端表示存储提供程序，其中 Trident 配置卷；单个 Trident 实例可以管理任意数量的后端。
 
@@ -328,7 +324,7 @@ NOTE: 这是您自己创建和管理的两种对象类型之一。另一个是 K
 
 
 
-== Trident `StoragePool` 对象
+== Astra Trident `StoragePool` 对象
 
 存储池表示可在每个后端配置的不同位置。对于 ONTAP ，这些聚合对应于 SVM 中的聚合。对于 NetApp HCI/SolidFire ，这些 QoS 分段对应于管理员指定的 QoS 分段。对于 Cloud Volumes Service ，这些区域对应于云提供商区域。每个存储池都有一组不同的存储属性，用于定义其性能特征和数据保护特征。
 
@@ -336,16 +332,17 @@ NOTE: 这是您自己创建和管理的两种对象类型之一。另一个是 K
 
 
 
-== Trident `Volume` 对象
+== Astra Trident `Volume` 对象
 
 卷是基本配置单元，由后端端点组成，例如 NFS 共享和 iSCSI LUN 。在 Kubernetes 中，这些卷直接对应于 `PersistentVolumes` 。创建卷时，请确保其具有存储类，此类可确定可配置该卷的位置以及大小。
 
+[NOTE]
+====
+* 在 Kubernetes 中，这些对象会自动进行管理。您可以查看它们以查看 Trident 配置的内容。
+* 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * 正在删除 * 状态。要删除 Trident 卷，您应删除该卷的快照。
 
-NOTE: 在 Kubernetes 中，这些对象会自动进行管理。您可以查看它们以查看 Trident 配置的内容。
 
-
-TIP: 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * 正在删除 * 状态。要删除 Trident 卷，您应删除该卷的快照。
-
+====
 卷配置定义了配置的卷应具有的属性。
 
 [cols=",,,"]
@@ -403,7 +400,7 @@ TIP: 删除具有关联快照的 PV 时，相应的 Trident 卷将更新为 * �
 
 
 
-== Trident `Snapshot` 对象
+== Astra Trident `Snapshot` 对象
 
 快照是卷的时间点副本，可用于配置新卷或还原状态。在 Kubernetes 中，这些对象直接对应于 `VolumeSnapshotContent` 对象。每个快照都与一个卷相关联，该卷是快照的数据源。
 

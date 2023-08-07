@@ -70,11 +70,10 @@ docker volume ls
 DRIVER              VOLUME NAME
 netapp:latest       my_volume
 ----
-+
+
+
 
 IMPORTANT: 如果要从旧版本的 Astra Trident （ 20.10 之前的版本）升级到 Astra Trident 20.10 或更高版本，则可能会遇到错误。有关详细信息，请参见 link:known-issues-docker.html["已知问题"^]。如果遇到此错误，应先禁用此插件，然后删除此插件，然后通过传递一个额外的配置参数来安装所需的 Astra Trident 版本： `docker plugin install netapp/trident plugin ： 20.10 —— alias netapp — -grant-all-permissions config.json`
-
-
 
 
 

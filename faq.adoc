@@ -46,7 +46,7 @@ Astra Trident 与其他 NetApp 软件产品没有任何依赖关系，它可以�
 
 === 我能否获取有关 Astra Trident 如何配置存储的指标？
 
-是的。Trident 20.01 引入了 Prometheus 端点，可用于收集有关 Astra Trident 操作的信息，例如托管的后端数量，配置的卷数量，占用的字节数等。您还可以使用 Cloud Insights 进行监控和分析。
+是的。Prometheus端点、可用于收集有关Asta Trident操作的信息、例如托管的后端数、配置的卷数、已用字节数等。您也可以使用 link:https://docs.netapp.com/us-en/cloudinsights/["Cloud Insights"^] 用于监控和分析。
 
 
 
@@ -57,12 +57,6 @@ Astra Trident 与其他 NetApp 软件产品没有任何依赖关系，它可以�
 
 
 == 在 Kubernetes 集群上安装和使用 Astra Trident
-
-
-
-=== 支持的版本是什么 `etcd`？
-
-Astra Trident 不再需要 `etcd` 。它使用 CRD 来保持状态。
 
 
 
@@ -220,19 +214,13 @@ NetApp 支持将 Astra Trident 从一个主要版本升级到下一个直接主�
 
 === Astra Trident 是否可以为 ONTAP 后端配置 CHAP ？
 
-是的。从 20.04 开始， Astra Trident 支持 ONTAP 后端的双向 CHAP 。这需要在后端配置中设置 `useCHAP=true` 。
+是的。Astra三叉型支持ONTAP后端的双向CHAP。这需要设置 `useCHAP=true` 在后端配置中。
 
 
 
 === 如何使用 Astra Trident 管理导出策略？
 
-Astra Trident 可以从 20.04 版开始动态创建和管理导出策略。这样，存储管理员便可在其后端配置中提供一个或多个 CIDR 块，并使 Trident 将属于这些范围的节点 IP 添加到其创建的导出策略中。通过这种方式， Astra Trident 会自动管理为给定 CIDR 中具有 IP 的节点添加和删除规则的操作。此功能需要 CSI Trident 。
-
-
-
-=== 是否可以在 DataLIF 中指定端口？
-
-Astra Trident 19.01 及更高版本支持在 DataLIF 中指定端口。在 `backend.json` 文件中将其配置为 `` "managementLIF" ： <IP address> ： <port> "`` 。例如，如果管理 LIF 的 IP 地址为 192.0.2.1 ，端口为 1000 ，请配置 `` "managementLIF" ： "192.0.2.1 ： 1000"`` 。
+Astra Trident 可以从 20.04 版开始动态创建和管理导出策略。这样，存储管理员便可在其后端配置中提供一个或多个 CIDR 块，并使 Trident 将属于这些范围的节点 IP 添加到其创建的导出策略中。通过这种方式， Astra Trident 会自动管理为给定 CIDR 中具有 IP 的节点添加和删除规则的操作。
 
 
 
@@ -354,12 +342,6 @@ ONTAP 驱动程序支持精简或厚配置。ONTAP 驱动程序默认为精简�
 
 
 
-=== 如果我的卷是在 Astra Trident 外部创建的，是否可以将其导入到 Astra Trident ？
-
-从 19.04 开始，您可以使用卷导入功能将卷引入 Kubernetes 。
-
-
-
 === 是否可以在卷处于 SnapMirror 数据保护（ DP ）或脱机模式时导入它？
 
 如果外部卷处于 DP 模式或脱机，则卷导入将失败。您会收到以下错误消息：
@@ -369,12 +351,6 @@ ONTAP 驱动程序支持精简或厚配置。ONTAP 驱动程序默认为精简�
 Error: could not import volume: volume import failed to get size of volume: volume <name> was not found (400 Bad Request) command terminated with exit code 1.
 Make sure to remove the DP mode or put the volume online before importing the volume.
 ----
-
-
-=== 是否可以扩展由 Astra Trident 创建的 iSCSI PVC ？
-
-Trident 19.10 支持使用 CSI 配置程序扩展 iSCSI PV 。
-
 
 
 === 如何将资源配额转换为 NetApp 集群？

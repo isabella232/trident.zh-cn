@@ -23,24 +23,11 @@ summary: 通过 Astra Trident ， Kubernetes 用户可以在创建卷后对其�
 
 NOTE: iSCSI 卷扩展受 `ontap-san` ， `ontap-san-economy` ， `solidfire-san` 驱动程序支持，需要 Kubernetes 1.16 及更高版本。
 
-.概述
-扩展 iSCSI PV 包括以下步骤：
-
-* 编辑 StorageClass 定义以将 `allowVolumeExpansion` 字段设置为 `true` 。
-* 编辑 PVC 定义并更新 `sPec.resources.requests.storage` 以反映新需要的大小，该大小必须大于原始大小。
-* 要调整 PV 大小，必须将 PV 连接到 Pod 。调整 iSCSI PV 大小时，有两种情况：
-+
-** 如果 PV 连接到 Pod ，则 Astra Trident 会扩展存储后端的卷，重新扫描设备并调整文件系统大小。
-** 尝试调整未连接 PV 的大小时， Astra Trident 会扩展存储后端的卷。将 PVC 绑定到 Pod 后， Trident 会重新扫描设备并调整文件系统大小。然后， Kubernetes 会在扩展操作成功完成后更新 PVC 大小。
-
-
-
-
-以下示例显示了扩展 iSCSI PV 的工作原理。
-
 
 
 === 第 1 步：配置 StorageClass 以支持卷扩展
+
+编辑StorageClass定义以设置 `allowVolumeExpansion` 字段设置为 `true`。
 
 [listing]
 ----
@@ -60,6 +47,8 @@ allowVolumeExpansion: True
 
 
 === 第 2 步：使用您创建的 StorageClass 创建 PVC
+
+编辑PVC定义并更新 `spec.resources.requests.storage` 以反映新需要的大小、该大小必须大于原始大小。
 
 [listing]
 ----
@@ -91,6 +80,12 @@ pvc-8a814d62-bd58-4253-b0d1-82f2885db671   1Gi        RWO            Delete     
 
 
 === 第 3 步：定义连接 PVC 的 POD
+
+将PV连接到POD以调整大小。调整 iSCSI PV 大小时，有两种情况：
+
+* 如果 PV 连接到 Pod ，则 Astra Trident 会扩展存储后端的卷，重新扫描设备并调整文件系统大小。
+* 尝试调整未连接 PV 的大小时， Astra Trident 会扩展存储后端的卷。将 PVC 绑定到 Pod 后， Trident 会重新扫描设备并调整文件系统大小。然后， Kubernetes 会在扩展操作成功完成后更新 PVC 大小。
+
 
 在此示例中，创建了一个使用 `san-PVC` 的 Pod 。
 

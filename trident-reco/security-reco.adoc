@@ -31,18 +31,13 @@ Astra Trident 支持对 ONTAP SAN 工作负载进行基于 CHAP 的身份验证�
 对于使用 SAN 存储驱动程序的 ONTAP 后端， Astra Trident 可以通过 `tridentctl` 设置双向 CHAP 并管理 CHAP 用户名和密码。请参见 link:../trident-use/ontap-san-prep.html["此处"] 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。
 
 
-NOTE: Trident 20.04 及更高版本支持 ONTAP 后端的 CHAP 。
-
-
 
 == 对 NetApp HCI 和 SolidFire 后端使用 CHAP 身份验证
 
-NetApp 建议部署双向 CHAP ，以确保主机与 NetApp HCI 和 SolidFire 后端之间的身份验证。Astra Trident 使用一个机密对象，每个租户包含两个 CHAP 密码。当 Trident 作为 CSI 配置程序安装时，它会管理 CHAP 密码并将其存储在相应 PV 的 `tridentvolume` CR 对象中。创建 PV 时， CSI Astra Trident 会使用 CHAP 密码启动 iSCSI 会话并通过 CHAP 与 NetApp HCI 和 SolidFire 系统进行通信。
+NetApp 建议部署双向 CHAP ，以确保主机与 NetApp HCI 和 SolidFire 后端之间的身份验证。Astra Trident 使用一个机密对象，每个租户包含两个 CHAP 密码。安装Astra三端存储时、它会管理CHAP密码并将其存储在中 `tridentvolume` 相应PV的CR对象。创建PV时、Asta三端技术人员会使用CHAP密码启动iSCSI会话、并通过CHAP与NetApp HCI和SolidFire系统进行通信。
 
 
-NOTE: CSI Trident 创建的卷不与任何卷访问组关联。
-
-在非 CSI 前端中，作为辅助节点上的设备连接卷的操作由 Kubernetes 处理。创建卷后，如果该租户的密钥尚不存在，则 Astra Trident 会对 NetApp HCI/SolidFire 系统进行 API 调用，以检索这些密钥。然后， Astra Trident 将这些机密传递给 Kubernetes 。位于每个节点上的 kubelet 通过 Kubernetes API 访问这些机密，并使用它们在访问卷的每个节点与卷所在的 NetApp HCI/SolidFire 系统之间运行 / 启用 CHAP 。
+NOTE: Asta三端存储创建的卷不与任何卷访问组关联。
 
 
 

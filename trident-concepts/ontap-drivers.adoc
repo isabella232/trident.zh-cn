@@ -16,24 +16,12 @@ Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTA
 
 
 
-== Asta Control支持的驱动程序
-
-Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
-
-[WARNING]
-====
-* 您必须使用 `ontap-nas` 适用于需要数据保护、灾难恢复和移动性的生产工作负载。
-* 使用 ... `ontap-san-economy` 预期的卷使用量应远远高于ONTAP 支持的容量。
-* 使用 ... `ontap-nas-economy` 仅当预期的卷使用量应远高于ONTAP 支持的容量时、以及 `ontap-san-economy` 无法使用驱动程序。
-* 请勿使用 `ontap-nas-economy` 预测数据保护、灾难恢复或移动性的需求。
-
-
-====
-
-
 == 适用于ONTAP的Astra三端存储驱动程序
 
 Asta三端存储提供了以下存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。
+
+
+IMPORTANT: 如果您使用Astra Control进行保护、恢复和移动、请阅读 <<Astra Control驱动程序兼容性>>。
 
 [cols="2, 1, 1, 2, 2"]
 |===
@@ -125,3 +113,19 @@ rwx在文件系统卷模式下不可用。
 |===
 
 NOTE: 可以使用安全角色的登录凭据(用户名/密码)或专用密钥以及ONTAP集群上安装的证书对ONTAP后端进行身份验证。您可以使用更新现有后端以从一种身份验证模式移至另一种身份验证模式 `tridentctl update backend`。
+
+
+
+== Astra Control驱动程序兼容性
+
+Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
+
+[WARNING]
+====
+* 您必须使用 `ontap-nas` 适用于需要数据保护、灾难恢复和移动性的生产工作负载。
+* 使用 ... `ontap-san-economy` 预期的卷使用量应远远高于ONTAP 支持的容量。
+* 使用 ... `ontap-nas-economy` 仅当预期的卷使用量应远高于ONTAP 支持的容量时、以及 `ontap-san-economy` 无法使用驱动程序。
+* 请勿使用 `ontap-nas-economy` 预测数据保护、灾难恢复或移动性的需求。
+
+
+====

@@ -147,8 +147,8 @@ curl -fsSL https://get.docker.com/ | sh
 +
 [listing]
 ----
-wget https://github.com/NetApp/trident/releases/download/v23.04.0/trident-installer-23.04.0.tar.gz
-tar zxf trident-installer-23.04.0.tar.gz
+wget https://github.com/NetApp/trident/releases/download/v23.07.0/trident-installer-23.07.0.tar.gz
+tar zxf trident-installer-23.07.0.tar.gz
 ----
 .. 移动到托箱路径中的某个位置：
 +
@@ -183,7 +183,7 @@ EOF
 ----
 
 
-. 放置二进制文件并创建配置文件后，使用所需的配置文件启动 Trident 守护进程。
+. 放置二进制文件并创建配置文件后、使用所需的配置文件启动三叉进制守护进程。
 +
 [listing]
 ----

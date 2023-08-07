@@ -4,7 +4,7 @@ title: 使用 Astra Trident
 entries:
 - title: 准备工作节点
   url: "/trident-use/worker-node-prep.html"
-- title: 配置后端
+- title: 配置和管理后端
   entries:
   - title: 概述
     url: "/trident-use/backends.html"
@@ -44,27 +44,33 @@ entries:
       url: "/trident-use/trident-fsx-prep.html"
     - title: 配置选项和示例
       url: "/trident-use/trident-fsx-examples.html"
-- title: 使用 kubectl 创建后端
-  url: "/trident-use/backend-kubectl.html"
-- title: 使用 kubectl 执行后端管理
-  url: "/trident-use/backend_ops_kubectl.html"
-- title: 使用 tridentctl 执行后端管理
-  url: "/trident-use/backend_ops_tridentctl.html"
-- title: 在后端管理选项之间移动
-  url: "/trident-use/backend_options.html"
-- title: 管理存储类
-  url: "/trident-use/manage-stor-class.html"
-- title: 执行卷操作
+  - title: 使用 kubectl 创建后端
+    url: "/trident-use/backend-kubectl.html"
+  - title: 管理后端
+    entries:
+    - title: 使用kubec联系 管理后端
+      url: "/trident-use/backend_ops_kubectl.html"
+    - title: 使用trdentctrd管理后端
+      url: "/trident-use/backend_ops_tridentctl.html"
+    - title: 在后端管理选项之间移动
+      url: "/trident-use/backend_options.html"
+- title: 创建和管理存储类
   entries:
-  - title: 使用 CSI 拓扑
-    url: "/trident-use/csi-topology.html"
-  - title: 使用快照
-    url: "/trident-use/vol-snapshots.html"
+  - title: 创建存储类。
+    url: "/trident-use/create-stor-class.html"
+  - title: 管理存储类
+    url: "/trident-use/manage-stor-class.html"
+- title: 配置和管理卷
+  entries:
+  - title: 配置卷
+    url: "/trident-use/vol-provision.html"
   - title: 展开卷
     url: "/trident-use/vol-expansion.html"
   - title: 导入卷
     url: "/trident-use/vol-import.html"
-- title: 在命名空间之间共享NFS卷
-  url: "/trident-use/volume-share.html"
-- title: 监控 Astra Trident
-  url: "/trident-use/monitor-trident.html"
+  - title: 在命名空间之间共享NFS卷
+    url: "/trident-use/volume-share.html"
+  - title: 使用 CSI 拓扑
+    url: "/trident-use/csi-topology.html"
+  - title: 使用快照
+    url: "/trident-use/vol-snapshots.html"

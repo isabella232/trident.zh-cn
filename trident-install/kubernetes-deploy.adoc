@@ -16,7 +16,7 @@ summary: '您可以使用Trident操作符(手动或使用Helm)或安装Astra Tri
 
 
 
-== 有关Astra Trdent 23.04的重要信息
+== 有关Asta Trdent 23.07的重要信息
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
@@ -74,6 +74,12 @@ Trident操作符会自动为您的Kubernetes版本创建以下对象。
 
 
 ====
+.<strong>帐户</strong>
+[%collapsible]
+====
+集群范围的三端修复操作符可在集群级别管理与Astra三端修复安装关联的资源。这可减少使用命名空间范围的操作符维护集群范围的资源时可能导致的错误。这对于自我修复和修补至关重要。
+
+====
 .<strong> —修复功能—</strong>
 [%collapsible]
 ====
@@ -91,7 +97,13 @@ Trident操作符会自动为您的Kubernetes版本创建以下对象。
 ----
 kubectl patch torc <trident-orchestrator-name> -n trident --type=merge -p '{"spec":{"debug":true}}'
 ----
-更新 `TridentOrchestrator` 后，操作员将处理更新并修补现有安装。这可能会触发创建新 Pod 以相应地修改安装。
+之后 `TridentOrchestrator` 更新后、操作员将处理更新并修补现有安装。这可能会触发创建新Pod以相应地修改安装。
+
+====
+.<strong> Clean重新安装</strong>
+[%collapsible]
+====
+通过集群范围的三端技术参数操作符、可以完全删除集群范围的资源。用户可以完全卸载Astra tandent并轻松重新安装。
 
 ====
 .<strong> Kubernetes升级</strong>

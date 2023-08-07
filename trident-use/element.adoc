@@ -80,18 +80,6 @@ iSCSI
 
 |===
 
-NOTE: Astra Trident 在用作增强型 CSI 配置程序时使用 CHAP 。如果您使用的是 CHAP （这是 CSI 的默认设置），则无需进行进一步准备。建议明确设置 `UseCHAP` 选项，以便对非 CSI Trident 使用 CHAP 。否则，请参见 link:../trident-concepts/vol-access-groups.html["此处"^]。
-
-
-WARNING: 只有适用于 Astra Trident 的传统非 CSI 框架才支持卷访问组。如果配置为在 CSI 模式下运行，则 Astra Trident 将使用 CHAP 。
-
-如果未设置 `AccessGroups` 或 `UseCHAP` ，则适用以下规则之一：
-
-* 如果检测到默认的 `trident` 访问组，则会使用访问组。
-* 如果未检测到访问组，并且 Kubernetes 版本为 1.7 或更高版本，则会使用 CHAP 。
-
-
-
 
 == 后端配置选项
 
@@ -126,7 +114,7 @@ WARNING: 只有适用于 Astra Trident 的传统非 CSI 框架才支持卷访问
 | `InitiatorIFace` | 将 iSCSI 流量限制为特定主机接口 | default 
 
 
-| `UseCHAP` | 使用 CHAP 对 iSCSI 进行身份验证 | true 
+| `UseCHAP` | 使用CHAP对iSCSI进行身份验证。Asta三端到子使用CHAP。 | true 
 
 
 | `访问组` | 要使用的访问组 ID 列表 | 查找名为 "trident " 的访问组的 ID 
