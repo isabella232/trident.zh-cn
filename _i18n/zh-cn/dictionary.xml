@@ -1958,7 +1958,6 @@
   <block id="dbe38f4f0d856b41827e6e4531720a5e" category="list-text">` -kubelet-dir` 标志应设置为 kubelet 目录的位置。默认情况下，此值为 ` /var/vcap/data/kubelet` 。</block>
   <block id="4dc3529fbf05312075f0aa52f9c0908e" category="paragraph">已知使用 ` -kubelet-dir` 指定 kubelet 位置适用于 Trident Operator ， Helm 和 `tridentctl` 部署。</block>
   <block id="8fad5c21cf613e120f249eadc62cda2f" category="paragraph">Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。</block>
-  <block id="82720d84ad009f069fd0b2cfaf6c3dac" category="summary">适用于 Docker 的 Astra Trident 可直接与适用于 NetApp 存储平台的 Docker 生态系统集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。</block>
   <block id="6798a0701cedf1202e1d70210a3a9a83" category="paragraph">使用 `ontap-nas` ， `ontap-san` ， `solidfire-san` 和 `GCP-CVS 存储驱动程序` 时， Astra Trident 可以克隆卷。使用 `ontap-nas-flexgroup` 或 `ontap-nas-economy-经济` 驱动程序时，不支持克隆。从现有卷创建新卷将创建新快照。</block>
   <block id="a264f15eaddf1d50155847119366be6b" category="list-text">对于 `ontap-nas` ， `ontap-san` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexVol 。因此，卷快照会创建为 NetApp 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
   <block id="ec2577b4770848fd294d6ca069c34a43" category="paragraph">Astra Trident 支持对在 `ontap-nas` ， `ontap-nas-economy` ， `ontap-nas-flexgroup` ， `GCP-CVS` 和 `azure-netapp-files` 后端配置的 NFS PV 进行卷扩展。</block>
@@ -3803,4 +3802,5 @@ SMB</block>
   <block id="62486fa65fc31c383ace8989549632ad" category="sidebar">使用快照</block>
   <block id="143c9ea21ac76ba425aa94411fbba07b" category="sidebar">Astra Trident概述</block>
   <block id="ab09b43d2faaea1b49257d5a973eae0e" category="sidebar">管理和监控Asta Trandent</block>
+  <block id="ee4c63201b5c5c6c9da139c0a39bcb7b" category="summary">适用于Docker的A作用 是直接与适用于NetApp存储平台的Docker生态系统集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。</block>
 </blocks>
