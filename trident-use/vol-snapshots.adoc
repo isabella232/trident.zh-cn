@@ -113,6 +113,9 @@ Status:
 
 您可以使用 `dataSource` 使用名为的卷快照创建PVC `<pvc-name>` 作为数据源。创建 PVC 后，可以将其附加到 Pod 上，并像使用任何其他 PVC 一样使用。
 
+
+WARNING: 必须在与其相同的命名空间中创建PVC `dataSource`。
+
 以下示例将使用创建PVC `pvc1-snap` 作为数据源。
 
 [listing]
@@ -134,9 +137,6 @@ spec:
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io
 ----
-
-WARNING: 必须在与其相同的命名空间中创建PVC `dataSource`。
-
 
 
 == 导入卷快照
