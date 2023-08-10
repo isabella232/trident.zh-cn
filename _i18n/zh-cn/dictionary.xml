@@ -3324,7 +3324,6 @@
   <block id="bff3ebc4ae5702fb7f811ba9acabc13a" category="paragraph">Asta三端存储提供了以下存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
   <block id="ad90b7d29d0d8a9c746868fe1f38ca90" category="paragraph">Rwo、ROX、rwx、RWOP</block>
   <block id="96b38cb92e67a8f09c2d13169b8bb555" category="paragraph">Rwo、ROX、RWOP</block>
-  <block id="5e4708ea6e1c08a91834bc9405f43f5d" category="admonition">必须在与其相同的命名空间中创建PVC<block ref="d9d448f70687a1aa1f12b2f5ddaa4977" prefix=" " category="inline-code"></block>。</block>
   <block id="f28228f84cb57be6c4037bf94a6afbd2" category="paragraph">删除具有关联快照的永久性卷时，相应的 Trident 卷将更新为 " 正在删除 " 状态。删除卷快照以删除Asta Trdent卷。</block>
   <block id="f736607140d617c85245dd139003582e" category="list-text">在给定Kubbernetes集群中的所有名空间中只应安装一个A作用 力三端实例。</block>
   <block id="69bdd71a77ecd87974ee464a579ebc8f" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。</block>
@@ -3803,4 +3802,6 @@ SMB</block>
   <block id="ee4c63201b5c5c6c9da139c0a39bcb7b" category="summary">适用于Docker的A作用 是直接与适用于NetApp存储平台的Docker生态系统集成。它支持从存储平台到 Docker 主机的存储资源配置和管理，并提供一个框架，用于在未来添加其他平台。</block>
   <block id="5d22e3d2d8e7ef4a3b8d79728779c6d8" category="paragraph">1.22 - 1.27.</block>
   <block id="3e0f4d44c9c86926852e66ee127c5d3d" category="paragraph">Astra三项功能支持使用导入卷<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。不支持使用导入卷<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="475fb21c20bb54ea8ac6cb1756aba565" category="inline-link-macro">知识库文章：无法在备用后端创建从三端PVC Snapshot创建PVC</block>
+  <block id="18051638f30f342b517379b11f0442f9" category="admonition">PVC将与源卷在同一后端创建。请参见 <block ref="0d4d7e7a69b413699039bc9b916a37d5" category="inline-link-macro-rx"></block>。</block>
 </blocks>
