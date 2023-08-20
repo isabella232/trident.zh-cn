@@ -15,14 +15,11 @@
   <block id="a1582c89f8e85f372306a05848eafb68" category="summary">NetApp 存储产品组合可与 Kubernetes 集群的许多不同方面相集成，从而提供高级数据管理功能，从而增强 Kubernetes 部署的功能，功能，性能和可用性。</block>
   <block id="9944b094c4079f770fabc4ae629feb0f" category="doc">与 Kubernetes 集成的 NetApp 产品</block>
   <block id="3cce5f3eaf76e098ba8e28f7bbba3f92" category="section-title">Astra</block>
-  <block id="293b14f82e58fc3efc27bf18185a38c8" category="paragraph"><block ref="35a6b548833df39b8bbc748563b1938b" category="inline-link-rx"></block> 使企业能够更轻松地管理，保护和移动在公有云内部和内部环境中以及之间的 Kubernetes 上运行的数据丰富的容器化工作负载。Astra 使用 NetApp 在公有云和内部环境中成熟而广泛的存储产品组合中的 Trident 配置和提供永久性容器存储。此外，它还提供了一组丰富的高级应用程序感知型数据管理功能，例如快照，备份和还原，活动日志和主动克隆，用于数据保护，灾难 / 数据恢复，数据审核以及 Kubernetes 工作负载的迁移用例。</block>
   <block id="253b40ae359ba25b56231803430c4873" category="section-title">ONTAP</block>
-  <block id="51fd2fc669e51c6870f1148623240f69" category="paragraph">ONTAP 是 NetApp 的多协议统一存储操作系统，可为任何应用程序提供高级数据管理功能。ONTAP 系统采用全闪存，混合或全 HDD 配置，并提供多种不同的部署模式，包括专门设计的硬件（ FAS 和 AFF ），白盒（ ONTAP Select ）和纯云（ Cloud Volumes ONTAP ）。</block>
   <block id="cbb7697b4f6f189240d043ff70ca133c" category="admonition">Trident 支持上述所有 ONTAP 部署模式。</block>
   <block id="117bdbda976fe8b3212bc3b6327a0a1b" category="section-title">Cloud Volumes ONTAP</block>
   <block id="5c04ffbd0c110bf7b37d6b95eb756b75" category="paragraph"><block ref="700b45b9fca207b66f675c8d5dfb073b" category="inline-link-rx"></block> 是一款纯软件存储设备，可在云中运行 ONTAP 数据管理软件。您可以将 Cloud Volumes ONTAP 用于生产工作负载、灾难恢复、 DevOps 、文件共享和数据库管理。它通过提供存储效率，高可用性，数据复制，数据分层和应用程序一致性，将企业级存储扩展到云。</block>
   <block id="4d82a1ec1af02725042c8c785564ee7a" category="section-title">适用于 NetApp ONTAP 的 Amazon FSX</block>
-  <block id="04452ff4732608f62e53d20e4b8f4c92" category="paragraph"><block ref="6a2736fcbb5755dd03d114a5153506eb" category="inline-link-rx"></block> 是一种完全托管的 AWS 服务，可使客户启动和运行由 NetApp ONTAP 存储操作系统提供支持的文件系统。借助适用于 ONTAP 的 FSX ，客户可以利用他们熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX for ONTAP 支持 ONTAP 的许多文件系统功能和管理 API 。</block>
   <block id="27bb76bfb1e4f9966c31f5042348cd1e" category="section-title">Element 软件</block>
   <block id="231afe47f3f37d3808096b36c28b4ded" category="inline-link">Element</block>
   <block id="1fdf61a8f946268990d8e15dd9069a6d" category="paragraph"><block ref="eca39b018af81e7b5c8e71b5b4aa3790" category="inline-link-rx"></block> 通过保证性能并简化存储占用空间，使存储管理员能够整合工作负载。Element 与 API 相结合，可实现存储管理各个方面的自动化，可帮助存储管理员事半功倍。</block>
@@ -513,7 +510,6 @@
   <block id="74b4b41be17ac9897921032dfd4e94a8" category="paragraph">非 PV 粒度功能将应用于整个 FlexVolume ，而所有 PV （即共享 FlexVol 中的 qtree 或 LUN ）将共享一个通用计划。</block>
   <block id="b483d59c54aea739f0806cf2f30c057e" category="paragraph">如上表所示， `ontap-nas` 与 `ontap-nas-economy` 之间的大部分功能是相同的。但是，由于 `ontap-nas-economy` 驱动程序限制了按 PV 粒度控制计划的能力，因此这可能会特别影响灾难恢复和备份规划。对于希望在 ONTAP 存储上利用 PVC 克隆功能的开发团队，只有在使用 `ontap-NAS` ， `ontap-san` 或 `ontap-san-economy-经济` 驱动程序时，才可能实现这一点。</block>
   <block id="45f7f2e55c0930a28d1a9e481e602a09" category="admonition">`solidfire-san` 驱动程序还能够克隆 PVC 。</block>
-  <block id="168b96624733268bb4b4ebfbebea0449" category="paragraph">借助适用于 ONTAP 的 Amazon FSX ，客户可以利用他们熟悉的 NetApp 功能，性能和管理功能，同时利用在 AWS 上存储数据的简便性，灵活性，安全性和可扩展性。FSX for ONTAP 支持 ONTAP 的许多文件系统功能和管理 API 。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-nas-flexgroup` ， `ontap-san` 和 `ontap-san-economy.`</block>
   <block id="e040ac9827d856d3ad8ae9ac0da92295" category="paragraph">与 NetApp HCI/SolidFire 平台结合使用的 `solidfire-san` 驱动程序可帮助管理员根据 QoS 限制为 Trident 配置 Element 后端。如果您希望设计后端，以便为 Trident 配置的卷设置特定的 QoS 限制，请在后端文件中使用 `type` 参数。管理员还可以使用 `limitVolumeSize` 参数限制可在存储上创建的卷大小。目前， `solidfire-san` 驱动程序不支持卷大小调整和卷复制等 Element 存储功能。这些操作应通过 Element Software Web UI 手动完成。</block>
   <block id="77e9d6f249e4626d5b5c3aec863459d3" category="cell">SolidFire 驱动程序</block>
   <block id="9ef2bbb12ff72558472202561a25058d" category="cell">CHAP</block>
@@ -548,7 +544,6 @@
   <block id="823f2153adc2211a0777560eafdcbad6" category="paragraph">如果在未配置 NFS 后端的情况下向 Trident 部署提交了 ReadWriteMany PVC 请求，则不会配置任何卷。因此，请求者应使用适合其应用程序的访问模式。</block>
   <block id="5a51acb2538e54805c54d37ebb49c75d" category="section-title">卷操作</block>
   <block id="26fad327e23b6b08dcc94300bfe1ed04" category="section-title">修改永久性卷</block>
-  <block id="3b69d471bb98837ae6e267593bb38882" category="paragraph">除了两个例外，永久性卷是 Kubernetes 中不可变的对象。创建后，可以修改回收策略和大小。但是，这并不会阻止在 Kubernetes 外部修改卷的某些方面。为了针对特定应用程序自定义卷，确保容量不会意外占用，或者出于任何原因将卷移动到其他存储控制器，这一点可能是理想的。</block>
   <block id="f82b5505d8def4abda0bec52275bd411" category="admonition">目前， Kubernetes 树中配置程序不支持对 NFS 或 iSCSI PV 执行卷大小调整操作。Astra Trident 支持扩展 NFS 和 iSCSI 卷。</block>
   <block id="b1d1874782626fe3f391628ea493e6ef" category="paragraph">创建 PV 后，无法修改其连接详细信息。</block>
   <block id="e68591655c8031177206e1e75728853f" category="section-title">创建按需卷快照</block>
@@ -562,7 +557,6 @@
   <block id="2243e252be826d6ec5e767668d9f961d" category="section-title">展开卷</block>
   <block id="40a28a40c11a193f8911cf4143a6ae6a" category="section-title">将现有卷导入到 Kubernetes 中</block>
   <block id="5d9f64103cac7a58da69304bc3320e98" category="paragraph">使用 ONTAP 和 `solidfire-san` 驱动程序时，请使用命令 `tridentctl import volume &lt;backend-name&gt; &lt;volume-name&gt; -f /path/PVC.YAML` 将现有卷导入到要由 Astra Trident 管理的 Kubernetes 中。导入卷命令中使用的 PVC YAML 或 JSON 文件指向将 Astra Trident 标识为配置程序的存储类。使用 NetApp HCI/SolidFire 后端时，请确保卷名称是唯一的。如果卷名称重复，请将卷克隆为唯一名称，以便卷导入功能可以区分它们。</block>
-  <block id="cb619cd0109686b5f82562b63e44a107" category="paragraph">执行上述命令后， Astra Trident 将在后端找到卷并读取其大小。它将自动添加（并在必要时覆盖）已配置的 PVC 卷大小。然后， Astra Trident 会创建新的 PV ， Kubernetes 会将 PVC 绑定到 PV 。</block>
   <block id="3a8b25f50e2dcc298175abc8f6a71f82" category="paragraph">如果部署的容器需要特定的导入 PVC ，则容器将保持待定状态，直到通过卷导入过程绑定 PVC/PV 对为止。在绑定 PVC/PV 对后，如果没有其他问题，应启动容器。</block>
   <block id="41603705958b86c3ec4ff21cfce13a5b" category="section-title">部署 OpenShift 服务</block>
   <block id="7e3c623b48b608f4c6380c2994ae5aa9" category="paragraph">OpenShift 增值集群服务为集群管理员和要托管的应用程序提供了重要功能。这些服务使用的存储可以使用节点本地资源进行配置，但这通常会限制服务的容量，性能，可恢复性和可持续性。利用企业级存储阵列为这些服务提供容量可以显著改善服务，但是，与所有应用程序一样， OpenShift 和存储管理员应密切合作，为每个服务确定最佳选项。应大量利用 Red Hat 文档来确定要求并确保满足规模估算和性能需求。</block>
@@ -572,13 +566,10 @@
   <block id="34d357a7f8cc47e860d5fb0a317cf22d" category="paragraph">有关为注册表部署和管理存储的文档，请参见 <block ref="d5e1883ebd095c0eda96c44469e8197d" category="inline-link-macro-rx"></block> 在中 <block ref="ceb73d0582d40281d79011a1e5343e89" category="inline-link-macro-rx"></block>。</block>
   <block id="62ac236856a5a6aefd15133e967514c6" category="section-title">日志记录服务</block>
   <block id="2f3052b6a2858bec8355ec56150f6a38" category="paragraph">与其他 OpenShift 服务一样，日志记录服务也是使用清单文件（也称为）提供的配置参数 Ansible 部署的主机，提供给攻略手册。其中包括两种安装方法：在初始 OpenShift 安装期间部署日志记录以及在安装 OpenShift 之后部署日志记录。</block>
-  <block id="541c717d8d2998609c0970b5e43c7401" category="admonition">自 Red Hat OpenShift 3.9 版开始，官方文档出于对数据损坏的担忧，建议不要对日志记录服务使用 NFS 。这是基于 Red Hat 对其产品的测试得出的。ONTAP 的 NFS 服务器不存在这些问题，可以轻松地备份日志记录部署。最终，您可以选择日志记录服务的协议，只需了解这两种协议在使用 NetApp 平台时都能很好地发挥作用，如果您愿意，也没有理由避免使用 NFS 。</block>
   <block id="57cad4852c9c2e439f61728e0391fe7b" category="paragraph">如果您选择将 NFS 与日志记录服务结合使用，则需要将 Ansible 变量 `OpenShift_enable_unsupported _configurations` 设置为 `true` ，以防止安装程序失败。</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="section-title">入门</block>
   <block id="16e90b2336fdfec64b19194247422194" category="paragraph">可以选择为这两个应用程序以及 OpenShift 集群本身的核心操作部署日志记录服务。如果选择部署操作日志记录，则通过将变量 `OpenShift_logging_use_ops` 指定为 `true` ，将创建两个服务实例。控制操作日志记录实例的变量包含 "ops" ，而应用程序实例则不包含 "ops" 。</block>
-  <block id="a9ccaa810b97a00e75bb1ea4100d0a9f" category="paragraph">要确保底层服务使用正确的存储，必须根据部署方法配置 Ansible 变量。让我们来了解一下每种部署方法的选项。</block>
   <block id="c5c09113a6a6ae4b75868a9e96ea3cc3" category="inline-link-macro">RedHat OpenShift 日志记录文档</block>
-  <block id="bc468c28ba57dbcb58de37265cd02436" category="admonition">下表仅包含与存储配置相关的变量，因为这些变量与日志记录服务相关。您可以在中找到其他选项 <block ref="e81826ec3b15492352776daada114990" category="inline-link-macro-rx"></block> 应根据您的部署情况查看，配置和使用。</block>
   <block id="02098b11f876fe10c40b6106bd9864da" category="paragraph">下表中的变量将导致 Ansible 攻略手册使用提供的详细信息为日志记录服务创建 PV 和 PVC 。与在 OpenShift 安装后使用组件安装攻略手册相比，此方法的灵活性明显降低，但是，如果您有可用的现有卷，则可以选择此方法。</block>
   <block id="47c14840d8e15331fa420b9b2f757cd9" category="cell">变量</block>
   <block id="3ec365dd533ddb7ef3d1c111186ce872" category="cell">详细信息</block>
@@ -614,7 +605,6 @@
   <block id="210ecadaccb6088b0dfbd2e6a0b5d0a0" category="inline-link-macro">RedHat OpenShift Container Platform 3.11 文档</block>
   <block id="67f3e99678cc7c568f4ed29074cdc41c" category="paragraph">但是，如果在初始安装后进行部署，则 Ansible 需要使用组件攻略手册。此过程可能会因 OpenShift 的不同版本而略有变化，因此请务必阅读并遵循 <block ref="a2226808e95b8487c66dd3b8cbea118e" category="inline-link-macro-rx"></block> 适用于您的版本。</block>
   <block id="3dbf527ac3caf41ab150ec99a1737217" category="section-title">指标服务</block>
-  <block id="d0ed828e153e9bad2da040ddf6ad8f45" category="paragraph">与日志记录服务和 OpenShift 作为一个整体一样， Ansible 用于部署指标服务。此外，与日志记录服务一样，可以在集群初始设置期间或使用组件安装方法运行之后部署指标服务。下表包含在为指标服务配置永久性存储时非常重要的变量。</block>
   <block id="69aa4440020e49c654aeb910f38c6bb9" category="admonition">下表仅包含与存储配置相关的变量，因为这些变量与指标服务相关。文档中还有许多其他选项，应根据您的部署情况进行查看，配置和使用。</block>
   <block id="4f692d78f978a73b157571022c1d1ba7" category="cell">`OpenShift_metrics_storage_kind`</block>
   <block id="30da7e263c0cffc34933d24a07fb097a" category="cell">`OpenShift_metrics_storage_host`</block>
@@ -633,7 +623,6 @@
   <block id="460aaf3805271ec2e5dc35755fe317b1" category="cell">`OpenShift_metrics_cassanda_vc_storage_class_name`</block>
   <block id="0c55ca33e89539cd67eb0be3796547c5" category="cell">要使用的存储类的名称。</block>
   <block id="6c13e62eb53f29e7794d3807369299d2" category="section-title">部署指标服务</block>
-  <block id="3e75d51468f5a99fdb50b75dafea32e8" category="paragraph">使用在主机 / 清单文件中定义的适当 Ansible 变量，使用 Ansible 部署服务。如果您在 OpenShift 安装时进行部署，则系统将自动创建和使用 PV 。如果您使用组件攻略手册进行部署，则在 OpenShift 安装之后， Ansible 将创建所需的任何 PVC ，并在 Astra Trident 为其配置存储后部署该服务。</block>
   <block id="bf1cadd7aa4e541e255df26af5451d85" category="inline-link-macro">RedHat 的 OpenShift 部署指南</block>
   <block id="eb502d6483a644e9b6f61ca4719276d8" category="paragraph">上述变量以及部署过程可能会随 OpenShift 的每个版本而发生变化。确保您查看并遵循 <block ref="5ad72ffc1eda2c257c8947a0ad66dddb" category="inline-link-macro-rx"></block> 为您的版本配置，以便为您的环境进行配置。</block>
   <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">步骤</block>
@@ -668,7 +657,6 @@
   <block id="aa91b58ced7ef060eb0e27ac4e1d18a8" category="paragraph">rwo ， rox ， rwx</block>
   <block id="0b86d82002caac6130185da4ef1be67e" category="paragraph">工单， ROX</block>
   <block id="a029cca698cbf05f07897f86c43cf9e8" category="paragraph">`xfs` ， `ext3` ， `ext4`</block>
-  <block id="d00888bc1409d1c598b90af117bd3551" category="summary">在 Astra Trident 中配置有两个主要阶段。第一阶段会将存储类与一组合适的后端存储池相关联，并在配置之前进行必要的准备。第二阶段包括卷创建本身，需要从与待定卷的存储类关联的存储池中选择一个存储池。</block>
   <block id="4bd05efa612e48dd723de2bdd29f88e2" category="section-title">支持的 Kubernetes 集群架构</block>
   <block id="85b179f2c10f76f0171b4d9d3f2d5171" category="paragraph">以下 Kubernetes 架构支持 Astra Trident ：</block>
   <block id="c91cda04d3ac5ae2da327d347d4bbefe" category="cell">Kubernetes 集群架构</block>
@@ -699,10 +687,8 @@
   <block id="dff8ca466bae899e4dbc68c3a552033f" category="paragraph">对于节点数超过 64 个的 Kubernetes 集群，您应使用多个访问组。每个访问组最多可以包含 64 个 IQN ，每个卷可以属于四个访问组。在最多配置四个访问组的情况下，集群中大小最多为 256 个节点的任何节点都可以访问任何卷。有关卷访问组的最新限制，请参见<block ref="ac4000c3a85e5909daa6593f9f0617fd" category="inline-link-rx"></block>。</block>
   <block id="4d5445eb6c70cdab8d3ad5e71367f42a" category="summary">详细了解 Astra Trident 如何为其驱动程序创建卷快照。</block>
   <block id="e9c3828cd06711f9036bb4ce862a32c5" category="doc">卷快照</block>
-  <block id="98c670ffe759cc20cd8a31d49bd0b4fc" category="list-text">对于 `ontap-san-economy-经济` 驱动程序， PV 会映射到在共享 FlexVol 上创建的 LUN 。可以通过对关联 LUN 执行 FlexClones 来实现 PV 的卷快照。借助 ONTAP 的 FlexClone 技术，即使是最大的数据集，也可以几乎即时创建副本。副本与其父级共享数据块，除了元数据所需的存储之外，不会占用任何存储。</block>
   <block id="9dbabbadda024bb7b1d0db43ab31b45f" category="list-text">对于 `solidfire-san` 驱动程序，每个 PV 都会映射到在 NetApp Element 软件 /NetApp HCI 集群上创建的 LUN 。VolumeSnapshot 由底层 LUN 的 Element Snapshot 表示。这些快照是时间点副本，只占用少量系统资源和空间。</block>
   <block id="34f731018ae783f70901b14b4950c3a7" category="list-text">使用 `ontap-nas` 和 `ontap-san` 驱动程序时， ONTAP 快照是 FlexVol 的时间点副本，并占用 FlexVol 本身的空间。这样，在创建 / 计划快照时，卷中的可写空间量会随着时间的推移而减少。解决此问题的一个简单方法是，通过 Kubernetes 调整大小来增大卷的大小。另一个选项是删除不再需要的快照。删除通过 Kubernetes 创建的卷快照后， Astra Trident 将删除关联的 ONTAP 快照。也可以删除未通过 Kubernetes 创建的 ONTAP 快照。</block>
-  <block id="1eb824f8d9b30b3f4e089938e719fefe" category="paragraph">借助 Astra Trident ，您可以使用 VolumeSnapshots 创建新的 PV 。通过对支持的 ONTAP 和 CVS 后端使用 FlexClone 技术，可以从这些快照创建 PV 。从快照创建 PV 时，后备卷是快照父卷的 FlexClone 。`solidfire-san` 驱动程序使用 Element 软件卷克隆从快照创建 PV 。此时，它将从 Element 快照创建一个克隆。</block>
   <block id="89c3bcf0ecc1114f8d19734d9156cb40" category="doc">配置</block>
   <block id="2bd42f922a8c0b54b90557eba2071a76" category="paragraph">将后端存储池与存储类关联取决于存储类请求的属性及其 `storagePools` ， `addtionalStoragePools` 和 `excludeStoragePools` 列表。创建存储类时， Trident 会将其每个后端提供的属性和池与存储类请求的属性和池进行比较。如果存储池的属性和名称与请求的所有属性和池名称匹配，则 Astra Trident 会将该存储池添加到该存储类的一组合适存储池中。此外， Astra Trident 会将 `addtionalStoragePools` 列表中列出的所有存储池添加到该集中，即使其属性不满足存储类请求的所有或任何属性也是如此。您应使用 `excludeStoragePools` 列表覆盖存储池并将其从存储类中删除。每次添加新后端时， Astra Trident 都会执行类似的过程，检查其存储池是否满足现有存储类的要求，并删除任何已标记为已排除的。</block>
   <block id="668ccb4dd1c284f07a3062637c57d21a" category="paragraph">然后， Astra Trident 会使用存储类和存储池之间的关联来确定在何处配置卷。创建卷时， Astra Trident 会首先获取该卷的存储类的一组存储池， 此外，如果为卷指定协议，则 Astra Trident 会删除无法提供所请求协议的存储池（例如， NetApp HCI/SolidFire 后端无法提供基于文件的卷，而 ONTAP NAS 后端无法提供基于块的卷）。Astra Trident 会随机分配此结果集的顺序，以便均匀分布卷，然后迭代并依次尝试在每个存储池上配置卷。如果在一个上成功，则它会成功返回，并记录在此过程中遇到的任何故障。只有在 * 无法在 * 所有 * 可用于请求的存储类和协议的存储池上配置时， Astra Trident 才会返回故障。</block>
@@ -752,12 +738,9 @@
   <block id="4c1d312c39e7048d2c634824e243fdba" category="inline-link">Astra Trident Github</block>
   <block id="a814c59a6fef2fb64a2a32dedcf6f82e" category="paragraph">在上创建问题描述<block ref="e71a8230f1c77ee7d957187295b859e4" category="inline-link-rx"></block>。请务必包含与问题描述相关的所有必要信息和日志。</block>
   <block id="fd0759571f12527967b660b5b327c65b" category="section-title">如果我有有关 Astra Trident 的快速问题需要澄清，会发生什么情况？是否有社区或论坛？</block>
-  <block id="264c3819b5a8fdae87f1dc9af1988a90" category="section-title">我的存储系统密码已更改， Astra Trident 不再工作，如何恢复？</block>
-  <block id="061ec2ab4d383b8f20e15eda656db8f7" category="paragraph">使用 `tridentctl update backend myBackend -f &lt;/path/to_new_backend.json&gt; -n trident` 更新后端的密码。将示例中的 `myBackend` 替换为后端名称，将 `` /path/to_new_backend.json` 替换为正确的 `backend.json` 文件的路径。</block>
   <block id="6100f37d544e87e462129f21e52bae7f" category="section-title">Astra Trident 找不到我的 Kubernetes 节点。如何修复此问题？</block>
   <block id="d5cf5c734786394c838bacc6597594c6" category="paragraph">Astra Trident 无法找到 Kubernetes 节点的原因可能有两种。这可能是因为 Kubernetes 中的网络问题描述或 DNS 问题描述。在每个 Kubernetes 节点上运行的 Trident 节点取消设置必须能够与 Trident 控制器进行通信，以便向 Trident 注册该节点。如果在安装 Astra Trident 后发生网络更改，则只有在添加到集群中的新 Kubernetes 节点上才会遇到此问题。</block>
   <block id="bcd549c9f0199c5b8d0b55f782bff9e8" category="section-title">如果 Trident POD 被销毁，是否会丢失数据？</block>
-  <block id="136fed1edd42bf8ca22358da037d17fa" category="paragraph">如果 Trident POD 被销毁，数据不会丢失。Trident 的元数据存储在 CRD 对象中。已由 Trident 配置的所有 PV 都将正常运行。</block>
   <block id="3de05f78e401869f4630ec8cabf339df" category="section-title">是否可以直接从旧版本升级到新版本（跳过几个版本）？</block>
   <block id="ce44cbbc54839f39b351c091b0e3caa5" category="paragraph">NetApp 支持将 Astra Trident 从一个主要版本升级到下一个直接主要版本。您可以从 18.xx 升级到 19.xx ，从 19.xx 升级到 20.xx 等。在生产部署之前，您应在实验室中测试升级。</block>
   <block id="0399b9e6348e554937a4d65efc97a1b8" category="section-title">是否可以将 Trident 降级到先前版本？</block>
@@ -1042,8 +1025,6 @@
   <block id="9ffdb95250e26c7a6b468126ac7c75b0" category="section-title">工作原理</block>
   <block id="adbaa30840aebfe537058f72e0989326" category="paragraph">通过将 `useCHAP` 设置为 true ，存储管理员指示 Astra Trident 在存储后端配置 CHAP 。其中包括：</block>
   <block id="29b4db879e4cc96a6b71bc763367624b" category="list-text">在 SVM 上设置 CHAP ：</block>
-  <block id="951e8b45bc49a5475337a1b55e3e3dc4" category="list-text">如果 SVM 的默认启动程序安全类型为 none （默认设置） * 和 * 卷中没有已存在的 LUN ，则 Astra Trident 会将默认安全类型设置为 `CHAP` ，然后继续配置 CHAP 启动程序以及目标用户名和密码。</block>
-  <block id="313818ab0cd3579429d5bd6e5faab8ff" category="list-text">如果 SVM 包含 LUN ，则 Astra Trident 不会在 SVM 上启用 CHAP 。这样可以确保对 SVM 上已存在的 LUN 的访问不受限制。</block>
   <block id="13e0c564d5e1fbd33279fb276166653d" category="list-text">配置 CHAP 启动程序以及目标用户名和密码；必须在后端配置中指定这些选项（如上所示）。</block>
   <block id="2c7856e86a0cd46cb4fb48fa0886745e" category="paragraph">创建后端后， Astra Trident 会创建相应的 `tridentbackend` CRD ，并将 CHAP 密码和用户名存储为 Kubernetes 密码。此后端由 Astra Trident 创建的所有 PV 都将通过 CHAP 进行挂载和连接。</block>
   <block id="81f2df0265026a1a04bda5484798a10d" category="section-title">轮换凭据并更新后端</block>
@@ -1094,7 +1075,6 @@
   <block id="18deff64a140a603bdb6070abed4eed4" category="paragraph">在 Astra Trident 创建或更新后端后，您可以使用 `tridentctl` 或相应的 `tridentbackend` CRD 检查后端：</block>
   <block id="83af513d9b9d50c1dc648bfea29797cb" category="paragraph">当节点添加到 Kubernetes 集群并向 Astra Trident 控制器注册后，现有后端的导出策略将会更新（前提是它们位于后端的 `autosExportCIDR` 中指定的地址范围内）。</block>
   <block id="fd85ad7b0ce4e83937cbc1012086b9b3" category="paragraph">删除节点后， Astra Trident 会检查所有联机后端，以删除该节点的访问规则。通过从受管后端的导出策略中删除此节点 IP ， Astra Trident 可防止恶意挂载，除非此 IP 可由集群中的新节点重复使用。</block>
-  <block id="cda5977f42a72ef440d3b6233b9970bf" category="paragraph">对于以前存在的后端，使用 `tridentctl update backend` 更新后端可确保 Astra Trident 自动管理导出策略。这将创建一个以后端 UUID 命名的新导出策略，后端上存在的卷将在重新挂载时使用新创建的导出策略。</block>
   <block id="de1d1f6b64a5c5b6890c313888b290b7" category="admonition">删除具有自动管理导出策略的后端将删除动态创建的导出策略。如果重新创建后端，则会将其视为新的后端，并会创建新的导出策略。</block>
   <block id="920708f6d71767dcff22f9e43b4ec0c0" category="paragraph">如果更新了活动节点的 IP 地址，则必须在此节点上重新启动 Astra Trident Pod 。然后， Astra Trident 将更新其管理的后端的导出策略，以反映此 IP 更改。</block>
   <block id="5f3124ab7224f89a36fbb64fd2ebda15" category="summary">了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。</block>
@@ -1184,7 +1164,6 @@
   <block id="1054b270f1635a3dd940e995cbc7ed78" category="paragraph">`sudo apt-get install -y nfs-common`</block>
   <block id="29ba980a9e9adedc9414ea868c74ebd5" category="section-title">iSCSI 卷</block>
   <block id="12fe03bf2457cc4e4e90af10a2f7092f" category="list-text">Kubernetes 集群中的每个节点都必须具有唯一的 IQN 。* 这是必要的前提条件 * 。</block>
-  <block id="0bad70dcf33f40dcc0d528d58b9eac76" category="inline-link">RedHat 的文档</block>
   <block id="8cd5b262d8d9950185128d052d55f7c8" category="list-text">安装以下系统软件包：</block>
   <block id="6bbf3284462dc8b9b90cb1adcd1c0ff4" category="paragraph">`sudo yum install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath`</block>
   <block id="1a5157a00ea5806f553766d5b3b114fd" category="list-text">检查 iscsi-initiator-utils 版本是否为 6.2.0.877-2.el7 或更高版本：</block>
@@ -1228,7 +1207,6 @@
   <block id="c39d193a9cc4084cc6c7964e1bb5efd8" category="list-text">创建 `TridentBackendConfig` 对象。其中包含有关存储集群 / 服务的详细信息，并引用了上一步中创建的密钥。</block>
   <block id="286b0035cf59742ffe54696b798f2368" category="paragraph">创建后端后，您可以使用 `kubectl get tbc &lt;tbc-name&gt; -n &lt;trident 命名空间 &gt;` 来观察其状态，并收集其他详细信息。</block>
   <block id="494cb787cd1c1f78123323c1006f2081" category="section-title">第 1 步：创建 Kubernetes 机密</block>
-  <block id="a8c4d0cb53af2c6e334f5c58890021d6" category="paragraph">创建一个机密，其中包含后端的访问凭据。这是每个存储服务 / 平台所特有的。以下是一个示例：</block>
   <block id="04402bf69acac56c72a55c0e4ac2165c" category="paragraph">下表汇总了每个存储平台的机密中必须包含的字段：</block>
   <block id="94cec86c6eef229009007e6d00d54ef1" category="cell">存储平台机密字段问题描述</block>
   <block id="1e6947ac7fb3a9529a9726eb692c8cc5" category="cell">机密</block>
@@ -1260,13 +1238,10 @@
   <block id="967688089cfc07a6c8e893bce5186445" category="paragraph">现在，您已创建 `TridentBackendConfig` CR ，可以验证状态。请参见以下示例：</block>
   <block id="edc9d2e179d9bd8effd5277699967aff" category="paragraph">已成功创建后端并将其绑定到 `TridentBackendConfig` CR 。</block>
   <block id="ecb5320e6f020f2c2dcad7a6268111ed" category="paragraph">阶段可以采用以下值之一：</block>
-  <block id="35ef366711dba4820492cd153e2bc30d" category="list-text">`bound` ： `TridentBackendConfig` CR 与后端关联，后端包含 `configRef` 设置为 `TridentBackendConfig` CR 的 UID 。</block>
   <block id="f2edf590deb30828e48e7290aa78e788" category="list-text">`Unbound` ：使用 ` ""` 表示。`TridentBackendConfig` 对象未绑定到后端。默认情况下，所有新创建的 `TridentBackendConfig` CRS 均处于此阶段。此阶段发生更改后，它将无法再次还原为 "Unbound （已取消绑定） " 。</block>
-  <block id="895ba30a6f39f0691ad851fe26560431" category="list-text">`deleting` ： The `TridentBackendConfig` CR 's `deletionPolicy` was set to delete.删除 `TridentBackendConfig` CR 后，它将过渡到 Deleting 状态。</block>
   <block id="0550ab6955adf5805cf2d00b7c592718" category="list-text">如果后端不存在永久性卷请求（ PVC ），则删除 `TridentBackendConfig` 将导致 Astra Trident 删除后端以及 `TridentBackendConfig` CR 。</block>
   <block id="ffd02eb489e62222a00391567d0bad81" category="list-text">如果后端存在一个或多个 PVC ，则会进入删除状态。`TridentBackendConfig` CR 随后也会进入删除阶段。只有在删除所有 PVC 后，才会删除后端和 `TridentBackendConfig` 。</block>
   <block id="39d978e14d4d8c9f19589af0d4e72661" category="list-text">`Lost` ：与 `TridentBackendConfig` CR 关联的后端被意外或故意删除， `TridentBackendConfig` CR 仍引用已删除的后端。无论 `detionPolicy` 值如何，仍可删除 `TridentBackendConfig` CR 。</block>
-  <block id="8375bdbfbc291bcedc60e7555e3dc43a" category="list-text">`未知` ： Astra Trident 无法确定与 `TridentBackendConfig` CR 关联的后端的状态或存在。例如，如果 API 服务器未响应或缺少 `tridentbackends.trident.netapp.io` CRD 。这可能需要用户干预。</block>
   <block id="fdf3d4560a801cb64c255cc2790fe9cc" category="inline-link-macro">后端更新和后端删除</block>
   <block id="57867491a75119ccf33f6ed8a434ff8e" category="paragraph">在此阶段，已成功创建后端！此外，还可以处理多个操作，例如 <block ref="9f5a7b55f1a44b55d5336cefd3bf688e" category="inline-link-macro-rx"></block>。</block>
   <block id="4dca0b80562cc590644c1acfada17219" category="section-title">（可选）第 4 步：获取更多详细信息</block>
@@ -1315,7 +1290,6 @@
   <block id="3e1fc11d05c13404995af2b9fda64675" category="list-text">使用 `TridentBackendConfig` 创建的后端是否可以使用 `tridentctl` 进行管理？</block>
   <block id="d6da18e16f248df47ee8e5139ef0156a" category="paragraph">本节介绍通过创建 `TridentBackendConfig` 对象直接通过 Kubernetes 界面管理使用 `tridentctl` 创建的后端所需的步骤。</block>
   <block id="bee2ae6068ad50344ddb325737434004" category="paragraph">这适用于以下情形：</block>
-  <block id="e9c4de6d076377511c2b6a8463898ef2" category="list-text">预先存在的后端，没有 `TridentBackendConfig` ，因为它们是使用 `tridentctl` 创建的。</block>
   <block id="8eed1f3ae09f008e2dbfb4280a0c137c" category="list-text">使用 `tridentctl` 创建的新后端，而存在其他 `TridentBackendConfig` 对象。</block>
   <block id="0507a4f0ac746171a414097e7f033dca" category="paragraph">在这两种情况下，后端仍会存在，其中 Astra Trident 会计划卷并对其进行操作。管理员可以选择以下两种方式之一：</block>
   <block id="95328f21e7a6deb7bb94acb3866753a6" category="list-text">继续使用 `tridentctl` 管理使用它创建的后端。</block>
@@ -1334,7 +1308,6 @@
   <block id="d1a75f7c76623350486029378ab164c3" category="paragraph">现在，可以使用 `tbc-ontap-nas-backend` `TridentBackendConfig` 对象对后端进行全面管理。</block>
   <block id="fcea92f3e948217919ca8b4051c2c61e" category="paragraph">`tridentctl` 可用于列出使用 `TridentBackendConfig` 创建的后端。此外，管理员还可以选择通过 `tridentctl` 来完全管理此类后端，方法是删除 `TridentBackendConfig` 并确保将 `spec.deletionPolicy` 设置为 `retain` 。</block>
   <block id="ab0c73d8e0377b2df5b783d3a76f2249" category="paragraph">例如，假设使用 `TridentBackendConfig` 创建了以下后端：</block>
-  <block id="9874d325a018b14fb52adf25f612579e" category="paragraph">从输出中可以看到 `TridentBackendConfig` 已成功创建并绑定到后端【观察后端的 UUUID] 。</block>
   <block id="ea64db0654e81907c68ffc52d023c3c7" category="paragraph">让我们来看看 `deletionPolicy` 的价值。需要将此值设置为 `retain` 。这样可以确保删除 `TridentBackendConfig` CR 时，后端定义仍存在，并可使用 `tridentctl` 进行管理。</block>
   <block id="1ad97e0f65ef91102831baaa31630c76" category="admonition">请勿继续执行下一步，除非将 `deletionPolicy` 设置为 `retain` 。</block>
   <block id="8313f77478cb0df464604ae4435acce2" category="paragraph">最后一步是删除 `TridentBackendConfig` CR 。确认 `deeltionPolicy` 设置为 `retain` 后，您可以继续执行删除：</block>
@@ -1384,7 +1357,6 @@
   <block id="4abea6bac3b0b48d11dd8dcd02a11bf9" category="inline-link">CSI 拓扑功能</block>
   <block id="592af423a2f6a51f57c639ec7f7b245e" category="admonition">了解有关 CSI 拓扑功能的更多信息<block ref="ff042e7f24bd2adcec09d78466034177" category="inline-link-rx"></block>。</block>
   <block id="bbdcaf9b704dc7a7cf73e6000101b65a" category="paragraph">Kubernetes 提供了两种唯一的卷绑定模式：</block>
-  <block id="93590d63acbb4fa6864a4665157fbcea" category="list-text">如果将 `VolumeBindingMode` 设置为 `immediate` ，则 Astra Trident 将创建卷，而不会感知任何拓扑。创建 PVC 时会处理卷绑定和动态配置。这是默认值 `VolumeBindingMode` ，适用于不强制实施拓扑约束的集群。创建永久性卷时，不会依赖于请求的 Pod 的计划要求。</block>
   <block id="5fca24470d51aa51b0fb2d0f27c25c68" category="list-text">如果将 `VolumeBindingMode` 设置为 `WaitForFirstConsuming` ，则为 PVC 创建和绑定永久性卷的操作将延迟，直到计划并创建使用 PVC 的 Pod 为止。这样，卷就会根据拓扑要求强制实施的计划限制来创建。</block>
   <block id="3bbc2da928dcf77a048cdd745fe7d208" category="admonition">`WaitForFirstConsumer"` 绑定模式不需要拓扑标签。此功能可独立于 CSI 拓扑功能使用。</block>
   <block id="edff21c44983aaa85506a3dfe467c494" category="paragraph">要使用 CSI 拓扑，您需要满足以下条件：</block>
@@ -1437,7 +1409,6 @@
   <block id="42ae2e91a939ffa9bbda53c10bf5f89f" category="inline-link">原生应用程序</block>
   <block id="050899631250104f17d24b27cc8a12e5" category="list-text">一个 Prometheus 实例。可以是<block ref="bd5b9e4bd7b88b90afb221fb760a777c" category="inline-link-rx"></block> 或者，您也可以选择将 Prometheus 作为运行<block ref="3f1d5beaea78c0fd8cb397fbeb1c88bd" category="inline-link-rx"></block>。</block>
   <block id="68276ca40dfbfd36de911402152fa452" category="section-title">第 1 步：定义 Prometheus 目标</block>
-  <block id="84c49e3c77b51ea186020145ae78103f" category="paragraph">您应定义一个 Prometheus 目标以收集指标并获取有关后端 Astra Trident 管理的信息，它创建的卷等。这<block ref="dc7964965bf1b3af43b28caf6231e550" category="inline-link-rx"></block> 介绍如何将 Prometheus 和 Grafana 与 Astra Trident 结合使用来检索指标。博客介绍了如何在 Kubernetes 集群中以操作员身份运行 Prometheus ，以及如何创建 ServiceMonitor 来获取 Astra Trident 的指标。</block>
   <block id="c33638e0de87536b08eeb94264671d0f" category="section-title">第 2 步：创建 Prometheus ServiceMonitor</block>
   <block id="81a21a88b42cd5c83d149a080a627bad" category="paragraph">要使用 Trident 指标，您应创建一个 Prometheus ServiceMonitor ，该监控器可监控 `trident CSI` 服务并侦听 `mtrigics` 端口。示例 ServiceMonitor 如下所示：</block>
   <block id="bfc1ad0fa725ea87ea056b2f2e8b6fe8" category="paragraph">此 ServiceMonitor 定义会检索 `trident CSI` 服务返回的指标，并专门查找服务的 `mtrics` 端点。因此， Prometheus 现在已配置为了解 Astra Trident 的指标。</block>
@@ -1622,19 +1593,16 @@
   <block id="69e8c7b4f73d39cea9948875813f7ddd" category="paragraph">精简或厚配置卷，默认为精简。有效值为 `none` （精简配置）和 `volume` （厚配置）。</block>
   <block id="91853d7e2338a1395280185fc93d4650" category="paragraph">此操作会将 Snapshot 策略设置为所需的值。默认值为 `none` ，表示不会自动为卷创建快照。除非存储管理员修改，否则所有 ONTAP 系统上都存在一个名为 "defaultion" 的策略，该策略会创建并保留六个每小时快照，两个每日快照和两个每周快照。通过浏览到卷中任意目录中的 ` .snapshot` 目录，可以恢复快照中保留的数据。</block>
   <block id="b8a0fde33bd7662b7b9cb4158f04ef52" category="paragraph">此操作会将快照预留设置为所需百分比。默认值为 no 值，这意味着如果您选择了 snapshotPolicy ， ONTAP 将选择 snapshotReserve （通常为 5% ）；如果 snapshotPolicy 为 none ，则选择 0% 。您可以在配置文件中为所有 ONTAP 后端设置默认 snapshotReserve 值，并可将其用作除 ontap-nas-economy. 以外的所有 ONTAP 后端的卷创建选项。</block>
-  <block id="0625856b9dc58db03a6e2c49b1f029e3" category="paragraph">克隆卷时，此操作将使发生原因 ONTAP 立即从其父卷拆分克隆。默认值为 `false` 。在克隆卷的某些使用情形中，最好在创建后立即将克隆从其父卷中拆分，因为不太可能有任何提高存储效率的机会。例如，克隆空数据库可以节省大量时间，但节省的存储很少，因此最好立即拆分克隆。</block>
   <block id="cdaf246fba737b75127faa65456baa30" category="paragraph">设置要用于卷的分层策略。这将决定数据在变为非活动状态（冷）时是否移至云层。</block>
   <block id="1c46d85ab16f6b373409ad15260b1b0a" category="paragraph">以下附加选项适用于 NFS * 仅 * ：</block>
   <block id="ce46e8f3fc6eaddbe03115e0d62090ac" category="cell">`unixPermissions`</block>
   <block id="b145a4acc7a577d843f538580013776b" category="paragraph">此选项用于控制为卷本身设置的权限。默认情况下，权限将设置为 `` -rwrxr-xr-x` ，或以数字表示法 0755 表示，并且 `root` 将为所有者。文本或数字格式均可使用。</block>
-  <block id="76a4004d727b54162f2e0542094a89a3" category="paragraph">将此值设置为 `true` 将使访问卷的客户端能够看到 ` 。 snapshot` 目录。默认值为 `false` ，这意味着默认情况下禁用 ` .snapshot` 目录的可见性。当 ` .snapshot` 目录可见时，某些映像（例如官方 MySQL 映像）无法按预期运行。</block>
   <block id="e59001176f4360988f5d774a8405b4b9" category="cell">`exportPolicy`</block>
   <block id="700d608597316c75fc869190f51cff49" category="paragraph">设置要用于卷的导出策略。默认值为 `default` 。</block>
   <block id="6b068a846d408b1d9ccd2c7220326b9d" category="paragraph">设置用于访问卷的安全模式。默认值为 `UNIX` 。有效值为 `UNIX` 和 `mi 已加传真` 。</block>
   <block id="842aac52866a44b40a5733ce352cf6df" category="paragraph">以下附加选项适用于 iSCSI * 仅 * ：</block>
   <block id="3184b1a9846944fabb00496c4b6b613a" category="cell">`fileSystemType`</block>
   <block id="56efcdcb9168adcb146b4d86bf55e99d" category="cell">设置用于格式化 iSCSI 卷的文件系统。默认值为 `ext4` 。有效值为 `ext3` ， `ext4` 和 `xfs` 。</block>
-  <block id="79686ba706c992e7385f0c5b28be8294" category="cell">如果将此值设置为 `false` ，则会关闭 LUN 的空间分配功能。默认值为 `true` ，表示当卷空间用尽且卷中的 LUN 无法接受写入时， ONTAP 会通知主机。此选项还允许 ONTAP 在主机删除数据时自动回收空间。</block>
   <block id="ff7c0fcd6a31e735a61c001f75426961" category="section-title">示例</block>
   <block id="9e6d454a094b92b0132e48d2369debf5" category="paragraph">请参见以下示例：</block>
   <block id="be1e1c94a5fc3bb66c2ae9425eeefbdb" category="list-text">创建 10 GiB 卷：</block>
@@ -1680,10 +1648,8 @@
   <block id="4cfa22b281cbd36e1a275d61ec23a9b4" category="summary">您可以收集日志以帮助进行故障排除。收集日志的方法因运行 Docker 插件的方式而异。</block>
   <block id="fe1786b49549e8e06a89b9c57d7fc514" category="doc">收集日志</block>
   <block id="83f4d02d2dd31f09291e098bf4ae502b" category="list-text">如果您使用建议的受管插件方法（例如，使用 `docker plugin` 命令）运行 Astra Trident ，请按如下所示查看它们：</block>
-  <block id="17c40798131b12188d43b1a90dabfc69" category="paragraph">标准日志记录级别应允许您诊断大多数问题。如果您发现这还不够，则可以启用调试日志记录。</block>
   <block id="c28722abec5c1daefa02916119bbff91" category="list-text">要启用调试日志记录，请安装启用了调试日志记录的插件：</block>
   <block id="b142025dd533fb27bf7df1a93c55e311" category="paragraph">或者，在已安装插件的情况下启用调试日志记录：</block>
-  <block id="98e6888e14bd8bcd734870a8331ca6ea" category="list-text">如果在主机上运行二进制文件本身，则日志可从主机的 ` /var/log/netappdvp` 目录中获取。要启用调试日志记录，请在运行插件时指定 ` -debug` 。</block>
   <block id="2aa0797ce5da04d1c6f027c9b3276483" category="section-title">一般故障排除提示</block>
   <block id="94d799ff06bdb0aedb7b64151dac73d7" category="list-text">新用户遇到的最常见问题是配置不当，导致插件无法初始化。如果发生这种情况，在尝试安装或启用插件时，您可能会看到如下消息：</block>
   <block id="fe6b4529e706ebc0f7e3668d3230d029" category="paragraph">`守护进程的错误响应：拨打 unix /run/docker/plugins/&lt;id&gt;/netapp.sock ： connect ： no such file or directory`</block>
@@ -1742,7 +1708,6 @@
   <block id="d2672389886b173aef703433f7e4b89b" category="paragraph">将 iSCSI 流量限制为非默认接口时，请指定接口</block>
   <block id="5935dcd024929bc7086bb230802bf576" category="paragraph">请参见以下示例</block>
   <block id="5e9bf55f849ccc5a31a50d1fa784d28c" category="cell">`LegendPrefix`</block>
-  <block id="db7adc3775b0b56c59ce4263fbd79fbf" category="paragraph">升级后的 Trident 安装的前缀。如果您使用的是 1.3.2 之前的 Trident 版本并对现有卷执行升级，则需要设置此值才能访问通过 volume-name 方法映射的旧卷。</block>
   <block id="36f9c7b615268efec7f4c56c387a55bb" category="paragraph">`solidfire-san` 驱动程序不支持 Docker Swarm 。</block>
   <block id="1059bb8540c48e6b455e802384bad65d" category="section-title">Element 软件配置文件示例</block>
   <block id="1a269fb3ec0496720ca75e984d8de40e" category="cell">`hostProjectNumber`</block>
@@ -1830,7 +1795,6 @@
   <block id="79b91d0489c081de6794796638793787" category="list-text">随 Helm 一起安装</block>
   <block id="d356d628089d439d75e3f85564372658" category="list-text">使用 tridentctl 安装</block>
   <block id="433f174b6e54b889696b2efd4ef40dc6" category="admonition">可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。</block>
-  <block id="cf282b9c05ab0f84b1690e644cd3f68e" category="list-text">对于 `ontap-nas-flexgroup` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexGroup 。因此，卷快照会创建为 NetApp FlexGroup 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
   <block id="b89df534de66f446ec6482f9d7898bb2" category="cell">`控制器插件节点选择器`</block>
   <block id="8d414af35aeb82413205fa45551a5545" category="cell">无默认值；可选</block>
   <block id="df1f367efe879ec0030f43610e29c5af" category="cell">`控制器插件公差`</block>
@@ -1909,7 +1873,6 @@
   <block id="cce172403b73af5c2a4e93081affcc7f" category="inline-link">Astra Trident 21.10</block>
   <block id="606b9e83fb467a43b3065d4fd5037094" category="list-text"><block ref="606b9e83fb467a43b3065d4fd5037094" category="inline-link-rx"></block></block>
   <block id="ee50d481128d1543f9945b4a4f3fbe9d" category="paragraph">对于带气的安装，下面列出了安装 Astra Trident 所需的容器映像。使用 `tridentctl images` 命令验证所需容器映像的列表。</block>
-  <block id="ec3f9af8f611100a0182ffb9ab2e5ef8" category="paragraph">虽然可以在 ONTAP 中创建 Trident 驱动程序可以使用的限制性更强的角色，但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。</block>
   <block id="ee50ce7340da5b018abe62c8e613cae0" category="summary">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项，并可通过特定端口进行通信。</block>
   <block id="94efe0c9471991c69d2a3b0970a56744" category="paragraph">Astra Trident 为 Trident 流程编排程序提供了多个命令行选项。您可以使用这些选项修改部署。</block>
   <block id="6add71a247c8f4513060920be14857bc" category="cell">允许卷扩展</block>
@@ -1942,7 +1905,6 @@
   <block id="4ef50c481a6113a6276514f572c414d2" category="inline-image-macro">AWS 控制台禁用自动备份的屏幕截图。</block>
   <block id="cce5aa9218d4019d57adcf814d7189c1" category="paragraph"><block ref="cce5aa9218d4019d57adcf814d7189c1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="45b09f7cb3dcbe0274eef2b3fce46bea" category="paragraph">可以， Astra Trident 可以脱机安装。请参见 <block ref="4a2b27d6d4bc3dd7ae85bfd131d50753" category="inline-link-macro-rx"></block>。</block>
-  <block id="6efc6545e459b8bb96815706b41a84cd" category="paragraph">Trident 安装程序会创建一个 Kubernetes ClusterRole ，该 ClusterRole 可对集群的 PersistentVolume ， PersistentVolumeClaim ， StorageClass 和 Kubernetes 集群的 Secret 资源进行特定访问。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
   <block id="0f43ba8a9cfc14b033c2c652f53bfcb9" category="paragraph">如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
   <block id="72fec731c958562fd09df08eef5fbb89" category="paragraph">如果要降级，需要评估许多因素。请参见 <block ref="ea621a0de3f004c488ea799d0fd7e41d" category="inline-link-macro-rx"></block>。</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">法律声明提供对版权声明、商标、专利等的访问。</block>
@@ -1959,7 +1921,6 @@
   <block id="4dc3529fbf05312075f0aa52f9c0908e" category="paragraph">已知使用 ` -kubelet-dir` 指定 kubelet 位置适用于 Trident Operator ， Helm 和 `tridentctl` 部署。</block>
   <block id="8fad5c21cf613e120f249eadc62cda2f" category="paragraph">Astra Trident 还可与许多其他完全托管和自我管理的 Kubernetes 产品结合使用，包括 Google Kubernetes Engine （ GKEE ）， Amazon Elastic Kubernetes Services （ EKS ）， Azure Kubernetes Service （ AKS ）， Rancher 和 VMware Tanzu Portfolio 。</block>
   <block id="6798a0701cedf1202e1d70210a3a9a83" category="paragraph">使用 `ontap-nas` ， `ontap-san` ， `solidfire-san` 和 `GCP-CVS 存储驱动程序` 时， Astra Trident 可以克隆卷。使用 `ontap-nas-flexgroup` 或 `ontap-nas-economy-经济` 驱动程序时，不支持克隆。从现有卷创建新卷将创建新快照。</block>
-  <block id="a264f15eaddf1d50155847119366be6b" category="list-text">对于 `ontap-nas` ， `ontap-san` ， `GCP-CVS` 和 `azure-netapp-files` 驱动程序，每个永久性卷（ PV ）都会映射到一个 FlexVol 。因此，卷快照会创建为 NetApp 快照。与竞争对手的 Snapshot 技术相比， NetApp 的 Snapshot 技术可提供更高的稳定性，可扩展性，可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
   <block id="ec2577b4770848fd294d6ca069c34a43" category="paragraph">Astra Trident 支持对在 `ontap-nas` ， `ontap-nas-economy` ， `ontap-nas-flexgroup` ， `GCP-CVS` 和 `azure-netapp-files` 后端配置的 NFS PV 进行卷扩展。</block>
   <block id="986d46700a93c1b67573285912b2a857" category="paragraph">Cloud Volumes ONTAP 可为各种使用情形提供数据控制以及企业级存储功能，包括文件共享和为 NAS 和 SAN 协议（ NFS ， SMB/CIFS 和 iSCSI ）提供服务的块级存储。Cloud Volume ONTAP 的兼容驱动程序包括 `ontap-nas` ， `ontap-nas-economy.` `ontap-san` 和 `ontap-san-economy.`它们适用于适用于 Azure 的 Cloud Volume ONTAP ，适用于 GCP 的 Cloud Volume ONTAP 。</block>
   <block id="62e0abd2d56d565a2b31e85b446fa800" category="paragraph">通过卷导入，可以将现有存储卷导入到 Kubernetes 环境中。目前， `ontap-nas` ， `ontap-nas-flexgroup` ， `solidfire-san` ， `azure-netapp-files` 和 `GCP-CVS` 驱动程序均支持此功能。在将现有应用程序移植到 Kubernetes 或在灾难恢复场景中，此功能非常有用。</block>
@@ -2312,7 +2273,6 @@
   <block id="8cacf42dcc11f9e7779267100d4fd305" category="inline-link-macro">配置Azure NetApp Files 卷的网络功能</block>
   <block id="4ace77649689419cf09eed38ddf4e74c" category="admonition">有关网络功能的详细信息、请参见 <block ref="d4c16e3034c39d54544a2d5f2b2953d9" category="inline-link-macro-rx"></block>。</block>
   <block id="d37198994935307f0e4a95505678642e" category="section-title">所需权限和资源</block>
-  <block id="dff55a3160f253fb2aab1c949fa24db0" category="paragraph">如果在创建PVC时收到"未找到容量池"错误、则您的应用程序注册可能没有关联的所需权限和资源(子网、虚拟网络、容量池)。如果启用了调试、则Astra Trident将记录创建后端时发现的Azure资源。验证是否正在使用适当的角色。</block>
   <block id="1860dce26ad531b08f4b17950bbda6a7" category="paragraph">的值<block ref="6a3560738716ddd805d769d4460ca7aa" prefix=" " category="inline-code"></block>，<block ref="87d26f327b9deeb6141721bda7f8ca65" prefix=" " category="inline-code"></block>，<block ref="338b00a62e6d8d3234c056bf48b711d0" prefix=" " category="inline-code"></block>，<block ref="a88edbe6cce8d8f180d87bef83408312" prefix=" " category="inline-code"></block>，和<block ref="4f556606ab1f7cb51dd23811407facbd" prefix=" " category="inline-code"></block> 可以使用短名称或完全限定名称来指定。在大多数情况下、建议使用完全限定名称、因为短名称可以与多个同名资源匹配。</block>
   <block id="8771cfaef1f991e1642d0a1ece8dcfa3" category="paragraph">。<block ref="6a3560738716ddd805d769d4460ca7aa" prefix=" " category="inline-code"></block>，<block ref="87d26f327b9deeb6141721bda7f8ca65" prefix=" " category="inline-code"></block>，和<block ref="338b00a62e6d8d3234c056bf48b711d0" prefix=" " category="inline-code"></block> 值是指筛选器、用于将发现的一组资源限制为此存储后端可用的资源、并且可以以任意组合方式指定。完全限定名称采用以下格式：</block>
   <block id="be1b9ef68f31ecee991e2282c1f24f0f" category="section-title">卷配置</block>
@@ -2850,7 +2810,6 @@
   <block id="41a45a3b55b7354dab0d81bb0ad06493" category="cell">协议 LIF 的 IP 地址。建议指定<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block>。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 <block ref="b2c939cb81e81d99a25f4be74f517f2f" category="inline-xref-macro-rx"></block>。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
   <block id="ae8df8316f5c485b7db4e7141e899701" category="cell">指定的地址或派生自SVM (如果未指定)(不建议)</block>
   <block id="ad898a5f5863162f9c13e958485877d5" category="cell">启用自动创建和更新导出策略[布尔值]。使用<block ref="323e871cfe2e70ead9c713e8f3164f8f" prefix=" " category="inline-code"></block> 和<block ref="b9c40fbe9daa81e40e06509d5bbd5a6c" prefix=" " category="inline-code"></block> 选项、Astra Trident可以自动管理导出策略。</block>
-  <block id="61d28c885ea44666257b77069a1c5c61" category="cell">用于筛选Kubernetes节点IP的CIDR列表<block ref="323e871cfe2e70ead9c713e8f3164f8f" prefix=" " category="inline-code"></block> 已启用。使用<block ref="323e871cfe2e70ead9c713e8f3164f8f" prefix=" " category="inline-code"></block> 和<block ref="b9c40fbe9daa81e40e06509d5bbd5a6c" prefix=" " category="inline-code"></block> 选项、Astra Trident可以自动管理导出策略。</block>
   <block id="82530dd92610570d634788e7fac29c1b" category="cell">如果使用量超过此百分比，则配置失败。* 不适用于适用于 ONTAP 的 Amazon FSx *</block>
   <block id="9f0e1cc91ea4107261588e8f1bd02d07" category="cell">如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小<block ref="8b08152c170e621ffcc8bfac7c4d6785" prefix=" " category="inline-code"></block> 选项用于自定义每个FlexVol 的最大qtree数。</block>
   <block id="5c8b39f8ec19acb1fddb0b5c021f090d" category="cell">故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用<block ref="effa2d809c72dcb6cce15a1e0b040e63" prefix=" " category="inline-code"></block> 除非您正在进行故障排除并需要详细的日志转储。</block>
@@ -2910,7 +2869,6 @@
   <block id="3f7bf0ef305a15c68efdc95a50750bd0" category="list-text">缺少LUN</block>
   <block id="15ffa30c3d1ab6322e5ff52935a86a50" category="section-title">安装iSCSI工具</block>
   <block id="10ff9e1b33974d06317ff739498154ce" category="paragraph">使用适用于您的操作系统的命令安装iSCSI工具。</block>
-  <block id="10cb395bb5e153418168602ad95831fb" category="list-text">使用运行RHEL/RedHat CoreOS和iSCSI PV的工作节点时、请指定<block ref="70f68bb2f748b85de6526bfe236ea1e9" prefix=" " category="inline-code"></block> StorageClass中的mountOption、用于执行实时空间回收。请参见<block ref="166e862efdc516354d90f75a38532ddd" category="inline-link-rx"></block>。</block>
   <block id="0dfbc86ddb50cb439c7039bbf012a2b6" category="admonition">安装iSCSI工具后重新启动工作节点、以防止在将卷连接到容器时失败。</block>
   <block id="3aa4918283a3160586bdbe1e76a338f3" category="example-title">示例4：虚拟池配置</block>
   <block id="baca3a42ff523348689308c7bd411b38" category="paragraph">此后端配置可在一个文件中定义多个存储池。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。虚拟池标签用于根据区分池<block ref="c05f6c233521207f6fe311afef550c3c" prefix=" " category="inline-code"></block>。</block>
@@ -3069,7 +3027,6 @@
   <block id="bd4b2f0d545a83fd434f5ba1f17dd087" category="paragraph">下面是一个后端定义示例：</block>
   <block id="9463f87bbed1fcdacfb8d40e185ca2bc" category="open-title">YAML</block>
   <block id="0ecd11c1d7a287401d148a23bbd7a2f8" category="open-title">JSON</block>
-  <block id="1bb09b46ddb492f0798a5793d23a63c9" category="paragraph">Astra Trident可以使用双向CHAP对iSCSI会话进行身份验证<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 驱动程序。这需要启用<block ref="099cb468880f266cba40b49391fa46bc" prefix=" " category="inline-code"></block> 选项。设置为时<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、Astra Trident会将SVM的默认启动程序安全性配置为双向CHAP、并从后端文件设置用户名和密码。NetApp 建议使用双向 CHAP 对连接进行身份验证。请参见以下配置示例：</block>
   <block id="4bf283d1d1c781fbb7e90b237dc80ac4" category="paragraph">以创建<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> 如果绑定到现有后端、则需要获取后端配置。在此示例中，假设已使用以下 JSON 定义创建了后端：</block>
   <block id="2043559d67ba802541907de326b5ecdd" category="paragraph">下面是一个定义了默认值的示例：</block>
   <block id="2fc042d3545f5ad7df1999c9e5486176" category="paragraph"><block ref="c4ca4238a0b923820dcc509a6f75849b" prefix="" category="inline-code"></block></block>
@@ -3804,4 +3761,48 @@ SMB</block>
   <block id="3e0f4d44c9c86926852e66ee127c5d3d" category="paragraph">Astra三项功能支持使用导入卷<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。不支持使用导入卷<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 驱动程序。</block>
   <block id="475fb21c20bb54ea8ac6cb1756aba565" category="inline-link-macro">知识库文章：无法在备用后端创建从三端PVC Snapshot创建PVC</block>
   <block id="18051638f30f342b517379b11f0442f9" category="admonition">PVC将与源卷在同一后端创建。请参见 <block ref="0d4d7e7a69b413699039bc9b916a37d5" category="inline-link-macro-rx"></block>。</block>
+  <block id="70d565ceadd7e1d5d1d6a3f98c198443" category="cell">用于筛选Kubbernetes节点IP的CIDR列表<block ref="323e871cfe2e70ead9c713e8f3164f8f" prefix=" " category="inline-code"></block> 已启用。
+
+使用<block ref="323e871cfe2e70ead9c713e8f3164f8f" prefix=" " category="inline-code"></block> 和<block ref="b9c40fbe9daa81e40e06509d5bbd5a6c" prefix=" " category="inline-code"></block> 选项、Astra Trident可以自动管理导出策略。</block>
+  <block id="fb1aab16c373fd5690bac00425c48d1c" category="list-text">使用<block ref="7d1aaf47144f9eb2fc66e328ddd3bad7" prefix=" " category="inline-code"></block> 设置为<block ref="43f6615bbb2c40a5306ff804094420b1" prefix=" " category="inline-code"></block>、Astra Trident将创建卷、而不会感知任何拓扑。创建 PVC 时会处理卷绑定和动态配置。这是默认值<block ref="7d1aaf47144f9eb2fc66e328ddd3bad7" prefix=" " category="inline-code"></block> 和适用于不强制实施拓扑限制的集群。创建永久性卷时、不会依赖于发出请求的POD的计划要求。</block>
+  <block id="cd9179614936afe6f50612f0cf8c5615" category="inline-link">Red Hat 文档</block>
+  <block id="288360859a486281aca1cda278bc5bb5" category="list-text">使用运行RHEL/RedHat CoreOS和iSCSI PV的工作节点时、请指定<block ref="70f68bb2f748b85de6526bfe236ea1e9" prefix=" " category="inline-code"></block> StorageClass中的mountOption、用于执行实时空间回收。请参见<block ref="cef8948c7b8e90d5be591e67d93555a7" category="inline-link-rx"></block>。</block>
+  <block id="f0c578e8a253ac755fdd55b5aa06eba6" category="paragraph">您应定义一个 Prometheus 目标以收集指标并获取有关后端 Astra Trident 管理的信息，它创建的卷等。这<block ref="dc7964965bf1b3af43b28caf6231e550" category="inline-link-rx"></block> 介绍如何将 Prometheus 和 Grafana 与 Astra Trident 结合使用来检索指标。本博客介绍了如何以操作员身份在Kubelnetes集群中运行Prometheus、以及如何创建ServiceMonitor来获取Astra Tandent指标。</block>
+  <block id="624ca91b001f11479001750d7a084dd0" category="paragraph">如果在创建PVC时收到"No Capacity Pools"(未找到容量池)错误、则您的应用程序注册可能没有关联的所需权限和资源(子网、虚拟网络、容量池)。如果启用了调试、则Astra Trident将记录创建后端时发现的Azure资源。验证是否正在使用适当的角色。</block>
+  <block id="7ba8d326bd3ffe1308f04d8ab5bf3d1a" category="paragraph">创建一个机密，其中包含后端的访问凭据。这是每个存储服务 / 平台所特有的。以下是一个示例：</block>
+  <block id="afad9414d1bc420e58e3a72442b8f495" category="list-text"><block ref="685d1f2146dd079015e81918414e8971" prefix="" category="inline-code"></block>：<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR与后端关联、后端包含<block ref="217026e5af08bfde5815657113dbfc82" prefix=" " category="inline-code"></block> 设置为<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR的uid。</block>
+  <block id="5008913e7135c645ebbfbd67112d3184" category="list-text"><block ref="ffbb410a55bb31f801dea6387e2745ac" prefix="" category="inline-code"></block>：<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR<block ref="98e7d6463271d7848db255ae6467817a" prefix=" " category="inline-code"></block> 已设置为delete。当<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR将被删除、它将过渡到Deleting状态。</block>
+  <block id="9f104f262a04570e0cca4e57cdff0f85" category="list-text"><block ref="88183b946cc5f0e8c96b2e66e1c74a7e" prefix="" category="inline-code"></block>：Astra Trident无法确定与关联的后端的状态或是否存在<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> CR.例如、如果API服务器未响应或<block ref="5f829d3562952527064a5c553cd09189" prefix=" " category="inline-code"></block> 缺少CRD。这可能需要干预。</block>
+  <block id="a12734327c1f79f44d176f7c6f6f7841" category="paragraph">对于以前存在的后端、请使用更新后端<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block> 将确保Astra Trident自动管理导出策略。这将创建一个以后端UUID命名的新导出策略、后端上的卷在重新挂载时将使用新创建的导出策略。</block>
+  <block id="88512325ffcc13fbee60f3ca0669f67e" category="list-text">已有后端、但没有<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> 因为它们是使用创建的<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
+  <block id="4cfeb5a9099082a66a720c90a50036af" category="paragraph">从输出中可以看出这一点<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> 已成功创建并绑定到后端[观察后端的UUID]。</block>
+  <block id="83167df2bbc65626ea3925b7abea9e48" category="paragraph">Astra Trident可以使用双向CHAP对iSCSI会话进行身份验证<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 驱动程序。这需要启用<block ref="099cb468880f266cba40b49391fa46bc" prefix=" " category="inline-code"></block> 选项。设置为时<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>中，A作用 是将SVM的默认启动程序安全性配置为双向CHAP，并设置后端文件中的用户名和密钥。NetApp 建议使用双向 CHAP 对连接进行身份验证。请参见以下配置示例：</block>
+  <block id="7b4fb3a852b49d46b743b188c7bc25a1" category="list-text">如果SVM的默认启动程序安全类型为none (默认设置)*和*卷中已没有已有的LUN、Asta TIDent会将默认安全类型设置为<block ref="9ef2bbb12ff72558472202561a25058d" prefix=" " category="inline-code"></block> 然后继续配置CHAP启动程序以及目标用户名和密码。</block>
+  <block id="8f5fd7cb8eae048fe5b83025fe95feff" category="list-text">如果 SVM 包含 LUN ，则 Astra Trident 不会在 SVM 上启用 CHAP 。这样可确保对SVM上已存在的LUN的访问不受限制。</block>
+  <block id="cb462a22682d8f02b65abeb6ce8bda89" category="paragraph"><block ref="35a6b548833df39b8bbc748563b1938b" category="inline-link-rx"></block> 使企业能够更轻松地管理，保护和移动在公有云内部和内部环境中以及之间的 Kubernetes 上运行的数据丰富的容器化工作负载。Asta使用来自公共云和内部环境中经验证的广泛NetApp存储产品组合中的三项技术配置和提供持久容器存储。此外，它还提供了一组丰富的高级应用程序感知型数据管理功能，例如快照，备份和还原，活动日志和主动克隆，用于数据保护，灾难 / 数据恢复，数据审核以及 Kubernetes 工作负载的迁移用例。</block>
+  <block id="54ad97548183fc7d802b6db88573701f" category="paragraph">ONTAP是NetApp多协议统一存储操作系统、可为任何应用程序提供高级数据管理功能。ONTAP 系统采用全闪存，混合或全 HDD 配置，并提供多种不同的部署模式，包括专门设计的硬件（ FAS 和 AFF ），白盒（ ONTAP Select ）和纯云（ Cloud Volumes ONTAP ）。</block>
+  <block id="f8869dc9dbb397ea76e820ae99f70217" category="paragraph"><block ref="6a2736fcbb5755dd03d114a5153506eb" category="inline-link-rx"></block> 是一项完全托管的AWS服务、可用于启动和运行由NetApp ONTAP存储操作系统提供支持的文件系统。FSx for ONTAP支持您利用熟悉的NetApp功能、性能和管理功能、同时利用在AWS上存储数据的精简性、灵活性、安全性和可扩展性。FSx for ONTAP支持许多ONTAP文件系统功能和管理API。</block>
+  <block id="7458188f037f23dc14a7396825f28eca" category="summary">在 Astra Trident 中配置有两个主要阶段。第一阶段会将存储类与一组合适的后端存储池相关联，并在配置之前进行必要的准备。第二阶段包括卷创建本身、需要从与待定卷的存储类关联的存储池中选择一个存储池。</block>
+  <block id="fdd92355bcecae670f43576c4c4951c5" category="list-text">。<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block>，和<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驱动程序、每个永久性卷(PV)都会映射到一个FlexVol。因此，卷快照会创建为 NetApp 快照。与竞争对手的快照技术相比、NetApp快照技术可提供更高的稳定性、可扩展性、可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
+  <block id="5d4b9bc562ebe88c39d0e521b90fc54b" category="list-text">。<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> 驱动程序、每个永久性卷(PV)都会映射到一个FlexGroup。因此，卷快照会创建为 NetApp FlexGroup 快照。与竞争对手的快照技术相比、NetApp快照技术可提供更高的稳定性、可扩展性、可恢复性和性能。无论是在创建 Snapshot 副本所需的时间还是在存储空间中，这些 Snapshot 副本都极为高效。</block>
+  <block id="f85752654c0e718ddc1911dc26c4bf0a" category="list-text">。<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 驱动程序、PV映射到在共享FlexVol上创建的LUN。可以通过对关联 LUN 执行 FlexClones 来实现 PV 的卷快照。借助ONTAP FlexClone技术、即使是最大的数据集、也可以近乎瞬时地创建副本。副本与其父级共享数据块，除了元数据所需的存储之外，不会占用任何存储。</block>
+  <block id="4d6bd66a7857ea48a856f389fbea7d9d" category="paragraph">借助 Astra Trident ，您可以使用 VolumeSnapshots 创建新的 PV 。通过对支持的 ONTAP 和 CVS 后端使用 FlexClone 技术，可以从这些快照创建 PV 。从快照创建PV时、备份卷是快照父卷的FlexClone。。<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 驱动程序使用Element软件卷克隆从快照创建PV。此时，它将从 Element 快照创建一个克隆。</block>
+  <block id="14b63ea5b97502ca2d75e85bee96b8b4" category="paragraph">克隆卷时，此操作将使发生原因 ONTAP 立即从其父卷拆分克隆。默认值为<block ref="68934a3e9455fa72420237eb05902327" prefix=" " category="inline-code"></block>。在克隆卷的某些使用情形中，最好在创建后立即将克隆从其父卷中拆分，因为不太可能有任何提高存储效率的机会。例如、克隆空数据库可以节省大量时间、但只能节省很少的存储空间、因此最好立即拆分克隆。</block>
+  <block id="6d70e81198809f9c160f10b05a430ab1" category="paragraph">将其设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 将创建<block ref="a15da8cecb1f1192c4d913b8ba676121" prefix=" " category="inline-code"></block> 访问卷的客户端可以看到的目录。默认值为<block ref="68934a3e9455fa72420237eb05902327" prefix=" " category="inline-code"></block>、表示的可见性<block ref="a15da8cecb1f1192c4d913b8ba676121" prefix=" " category="inline-code"></block> 默认情况下、目录处于禁用状态。某些映像(例如官方MySQL映像)在出现时无法按预期运行<block ref="a15da8cecb1f1192c4d913b8ba676121" prefix=" " category="inline-code"></block> 目录可见。</block>
+  <block id="284899fef89b0b2e358229a40cbaa53e" category="cell">将其设置为<block ref="68934a3e9455fa72420237eb05902327" prefix=" " category="inline-code"></block> 将关闭LUN的空间分配功能。默认值为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、表示当卷空间用尽且卷中的LUN无法接受写入时、ONTAP 会向主机发出通知。此选项还允许 ONTAP 在主机删除数据时自动回收空间。</block>
+  <block id="40c7465c2468fd6e890691f6cb612731" category="paragraph">升级后的 Trident 安装的前缀。如果您使用的是1.3.2之前的版本的Trident并对现有卷执行升级、则需要设置此值才能访问通过volume-name方法映射的旧卷。</block>
+  <block id="7f86daacf34c67c042470fa9d926ba49" category="paragraph">标准日志记录级别应允许您诊断大多数问题。如果您发现这还不够、则可以启用调试日志记录。</block>
+  <block id="6bdfdbfc466bb6d93222dbf7b3a374fe" category="list-text">如果您在主机上运行二进制文件本身、则主机的中会显示日志<block ref="849fc2421f236e9c9b49a9d3fed2c404" prefix=" " category="inline-code"></block> 目录。要启用调试日志记录、请指定<block ref="9b945915b0cddbee22047fd529d642f6" prefix=" " category="inline-code"></block> 运行插件时。</block>
+  <block id="856df87d418b99d5e88b1e337987cad3" category="paragraph">通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
+  <block id="1a4c36220ae60b6a6a4c2285be05a43a" category="section-title">我的存储系统密码已更改、Astra Trident不再工作、如何恢复？</block>
+  <block id="a988578d4c176cf950a2211099db7d92" category="paragraph">使用更新后端的密码<block ref="00a81aa9b1d406861879017de885e0fb" prefix=" " category="inline-code"></block>。替换<block ref="3d9fd17a5232cc24eeeaec2b07af5417" prefix=" " category="inline-code"></block> 在示例中、使用后端名称、和<block ref="27ab7e8dbd45daf638f3144d4891ef3b" prefix=" " category="inline-code"></block> 路径正确<block ref="9c15d32711e9ef8c6f76deda35452e13" prefix=" " category="inline-code"></block> 文件</block>
+  <block id="8cb93d7a514e5569b46cba45dedc7daf" category="paragraph">如果 Trident POD 被销毁，数据不会丢失。三元数据存储在CRD对象中。已由 Trident 配置的所有 PV 都将正常运行。</block>
+  <block id="7844c41fb05be5427418dbab3d0bdc49" category="paragraph">借助Amazon FSx for NetApp ONTAP、您可以利用您熟悉的NetApp功能、性能和管理功能、同时还可以利用在AWS上存储数据的精简性、灵活性、安全性和可扩展性。FSx for ONTAP支持许多ONTAP文件系统功能和管理API。Cloud Volume ONTAP 的兼容驱动程序包括<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block>。</block>
+  <block id="7439c9a99660382e94c16c5272b9bfb0" category="paragraph">除了两个例外，永久性卷是 Kubernetes 中不可变的对象。创建后，可以修改回收策略和大小。但是、这并不会阻止在Kubnetes之外修改卷的某些方面。为了针对特定应用程序自定义卷，确保容量不会意外占用，或者出于任何原因将卷移动到其他存储控制器，这一点可能是理想的。</block>
+  <block id="fe253a0cf40d6b5d49846202cdeaff7b" category="paragraph">执行上述命令后， Astra Trident 将在后端找到卷并读取其大小。它会自动添加(并在必要时覆盖)已配置的PVC卷大小。然后， Astra Trident 会创建新的 PV ， Kubernetes 会将 PVC 绑定到 PV 。</block>
+  <block id="3e01fdf7f18117c92347492814d988ee" category="admonition">自 Red Hat OpenShift 3.9 版开始，官方文档出于对数据损坏的担忧，建议不要对日志记录服务使用 NFS 。这是基于 Red Hat 对其产品的测试得出的。ONTAP NFS服务器不存在这些问题、可以轻松地备份日志记录部署。最终，您可以选择日志记录服务的协议，只需了解这两种协议在使用 NetApp 平台时都能很好地发挥作用，如果您愿意，也没有理由避免使用 NFS 。</block>
+  <block id="643f15e2581a728cb2a6d66953a357d7" category="paragraph">要确保底层服务使用正确的存储、请务必根据部署方法配置Ansensant变量。让我们来看看每种部署方法的选项。</block>
+  <block id="00b454d2ba2e8d34f65f8a714304a598" category="admonition">下表仅包含与日志记录服务相关的存储配置相关的变量。您可以在中找到其他选项 <block ref="e81826ec3b15492352776daada114990" category="inline-link-macro-rx"></block> 应根据您的部署情况查看，配置和使用。</block>
+  <block id="b8e4ea2ed30f2f3a9f05ef8e1cc243db" category="paragraph">与日志记录服务和 OpenShift 作为一个整体一样， Ansible 用于部署指标服务。此外、与日志记录服务一样、指标服务也可以在集群初始设置期间或集群运行后使用组件安装方法进行部署。下表包含在为指标服务配置永久性存储时非常重要的变量。</block>
+  <block id="db7ae7f1cfb23bf788607032d443c26c" category="paragraph">使用在主机 / 清单文件中定义的适当 Ansible 变量，使用 Ansible 部署服务。如果您在 OpenShift 安装时进行部署，则系统将自动创建和使用 PV 。如果您要使用组件操作手册进行部署、则在安装OpenShift后、Ansable将创建所需的任何PVC、并在Asta Trivent为其配置存储后部署该服务。</block>
 </blocks>

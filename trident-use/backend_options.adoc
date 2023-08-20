@@ -32,7 +32,7 @@ summary: 了解如何在 Astra Trident 中管理后端。
 
 这适用于以下情形：
 
-* 预先存在的后端，没有 `TridentBackendConfig` ，因为它们是使用 `tridentctl` 创建的。
+* 已有后端、但没有 `TridentBackendConfig` 因为它们是使用创建的 `tridentctl`。
 * 使用 `tridentctl` 创建的新后端，而存在其他 `TridentBackendConfig` 对象。
 
 
@@ -229,7 +229,7 @@ tridentctl get backend ontap-san-backend -n trident
 | ontap-san-backend | ontap-san      | 81abcb27-ea63-49bb-b606-0a5315ac5f82 | online |      33 |
 +-------------------+----------------+--------------------------------------+--------+---------+
 ----
-从输出中可以看到 `TridentBackendConfig` 已成功创建并绑定到后端【观察后端的 UUUID] 。
+从输出中可以看出这一点 `TridentBackendConfig` 已成功创建并绑定到后端[观察后端的UUID]。
 
 
 

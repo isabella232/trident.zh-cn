@@ -43,7 +43,9 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 | `autosExportPolicy` | 启用自动创建和更新导出策略[布尔值]。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | false 
 
 
-| `autosExportCIDR` | 用于筛选Kubernetes节点IP的CIDR列表 `autoExportPolicy` 已启用。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | [ "0.0.0.0/0 " ， " ：： /0 "]` 
+| `autosExportCIDR` | 用于筛选Kubbernetes节点IP的CIDR列表 `autoExportPolicy` 已启用。
+
+使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | [ "0.0.0.0/0 " ， " ：： /0 "]` 
 
 
 | `标签` | 要应用于卷的一组任意 JSON 格式的标签 | " 

@@ -38,7 +38,7 @@ NOTE: 默认情况下， Trident 的指标会显示在 `/metrics` 端点的目�
 
 == 第 1 步：定义 Prometheus 目标
 
-您应定义一个 Prometheus 目标以收集指标并获取有关后端 Astra Trident 管理的信息，它创建的卷等。这 https://netapp.io/2020/02/20/prometheus-and-trident/["博客"^] 介绍如何将 Prometheus 和 Grafana 与 Astra Trident 结合使用来检索指标。博客介绍了如何在 Kubernetes 集群中以操作员身份运行 Prometheus ，以及如何创建 ServiceMonitor 来获取 Astra Trident 的指标。
+您应定义一个 Prometheus 目标以收集指标并获取有关后端 Astra Trident 管理的信息，它创建的卷等。这 https://netapp.io/2020/02/20/prometheus-and-trident/["博客"^] 介绍如何将 Prometheus 和 Grafana 与 Astra Trident 结合使用来检索指标。本博客介绍了如何以操作员身份在Kubelnetes集群中运行Prometheus、以及如何创建ServiceMonitor来获取Astra Tandent指标。
 
 
 

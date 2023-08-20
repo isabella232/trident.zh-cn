@@ -25,7 +25,7 @@ TIP: 了解有关 CSI 拓扑功能的更多信息 https://kubernetes.io/blog/201
 
 Kubernetes 提供了两种唯一的卷绑定模式：
 
-* 如果将 `VolumeBindingMode` 设置为 `immediate` ，则 Astra Trident 将创建卷，而不会感知任何拓扑。创建 PVC 时会处理卷绑定和动态配置。这是默认值 `VolumeBindingMode` ，适用于不强制实施拓扑约束的集群。创建永久性卷时，不会依赖于请求的 Pod 的计划要求。
+* 使用 `VolumeBindingMode` 设置为 `Immediate`、Astra Trident将创建卷、而不会感知任何拓扑。创建 PVC 时会处理卷绑定和动态配置。这是默认值 `VolumeBindingMode` 和适用于不强制实施拓扑限制的集群。创建永久性卷时、不会依赖于发出请求的POD的计划要求。
 * 如果将 `VolumeBindingMode` 设置为 `WaitForFirstConsuming` ，则为 PVC 创建和绑定永久性卷的操作将延迟，直到计划并创建使用 PVC 的 Pod 为止。这样，卷就会根据拓扑要求强制实施的计划限制来创建。
 
 

@@ -86,7 +86,7 @@ Astra Trident 从 Kubernetes API 服务器读取数据，以确定应用程序�
 
 === Astra Trident 使用哪些角色和特权？
 
-Trident 安装程序会创建一个 Kubernetes ClusterRole ，该 ClusterRole 可对集群的 PersistentVolume ， PersistentVolumeClaim ， StorageClass 和 Kubernetes 集群的 Secret 资源进行特定访问。请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
+通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
 
 
 
@@ -164,9 +164,9 @@ Astra Trident 只是 Kubernetes Pod ，可安装在 Kubernetes 运行的任何�
 
 
 
-=== 我的存储系统密码已更改， Astra Trident 不再工作，如何恢复？
+=== 我的存储系统密码已更改、Astra Trident不再工作、如何恢复？
 
-使用 `tridentctl update backend myBackend -f </path/to_new_backend.json> -n trident` 更新后端的密码。将示例中的 `myBackend` 替换为后端名称，将 `` /path/to_new_backend.json` 替换为正确的 `backend.json` 文件的路径。
+使用更新后端的密码 `tridentctl update backend myBackend -f </path/to_new_backend.json> -n trident`。替换 `myBackend` 在示例中、使用后端名称、和 ``/path/to_new_backend.json` 路径正确 `backend.json` 文件
 
 
 
@@ -178,7 +178,7 @@ Astra Trident 无法找到 Kubernetes 节点的原因可能有两种。这可能
 
 === 如果 Trident POD 被销毁，是否会丢失数据？
 
-如果 Trident POD 被销毁，数据不会丢失。Trident 的元数据存储在 CRD 对象中。已由 Trident 配置的所有 PV 都将正常运行。
+如果 Trident POD 被销毁，数据不会丢失。三元数据存储在CRD对象中。已由 Trident 配置的所有 PV 都将正常运行。
 
 
 

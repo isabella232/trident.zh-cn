@@ -227,16 +227,16 @@ backend-tbc-ontap-san   ontap-san-backend     8d24fce7-6f60-4d4a-8ef6-bab2699e6a
 
 阶段可以采用以下值之一：
 
-* `bound` ： `TridentBackendConfig` CR 与后端关联，后端包含 `configRef` 设置为 `TridentBackendConfig` CR 的 UID 。
+* `Bound`： `TridentBackendConfig` CR与后端关联、后端包含 `configRef` 设置为 `TridentBackendConfig` CR的uid。
 * `Unbound` ：使用 ` ""` 表示。`TridentBackendConfig` 对象未绑定到后端。默认情况下，所有新创建的 `TridentBackendConfig` CRS 均处于此阶段。此阶段发生更改后，它将无法再次还原为 "Unbound （已取消绑定） " 。
-* `deleting` ： The `TridentBackendConfig` CR 's `deletionPolicy` was set to delete.删除 `TridentBackendConfig` CR 后，它将过渡到 Deleting 状态。
+* `Deleting`： `TridentBackendConfig` CR `deletionPolicy` 已设置为delete。当 `TridentBackendConfig` CR将被删除、它将过渡到Deleting状态。
 +
 ** 如果后端不存在永久性卷请求（ PVC ），则删除 `TridentBackendConfig` 将导致 Astra Trident 删除后端以及 `TridentBackendConfig` CR 。
 ** 如果后端存在一个或多个 PVC ，则会进入删除状态。`TridentBackendConfig` CR 随后也会进入删除阶段。只有在删除所有 PVC 后，才会删除后端和 `TridentBackendConfig` 。
 
 
 * `Lost` ：与 `TridentBackendConfig` CR 关联的后端被意外或故意删除， `TridentBackendConfig` CR 仍引用已删除的后端。无论 `detionPolicy` 值如何，仍可删除 `TridentBackendConfig` CR 。
-* `未知` ： Astra Trident 无法确定与 `TridentBackendConfig` CR 关联的后端的状态或存在。例如，如果 API 服务器未响应或缺少 `tridentbackends.trident.netapp.io` CRD 。这可能需要用户干预。
+* `Unknown`：Astra Trident无法确定与关联的后端的状态或是否存在 `TridentBackendConfig` CR.例如、如果API服务器未响应或 `tridentbackends.trident.netapp.io` 缺少CRD。这可能需要干预。
 
 
 在此阶段，已成功创建后端！此外，还可以处理多个操作，例如 link:backend_ops_kubectl.html["后端更新和后端删除"^]。
