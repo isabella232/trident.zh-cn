@@ -654,8 +654,6 @@
   <block id="15971126972a002fcddb2c507534e371" category="cell">支持的文件系统</block>
   <block id="ac52cf637478f3656a1fdee5c02324fd" category="paragraph">文件系统</block>
   <block id="e1e4c8c9ccd9fc39c391da4bcd093fb2" category="paragraph">块</block>
-  <block id="aa91b58ced7ef060eb0e27ac4e1d18a8" category="paragraph">rwo ， rox ， rwx</block>
-  <block id="0b86d82002caac6130185da4ef1be67e" category="paragraph">工单， ROX</block>
   <block id="a029cca698cbf05f07897f86c43cf9e8" category="paragraph">`xfs` ， `ext3` ， `ext4`</block>
   <block id="4bd05efa612e48dd723de2bdd29f88e2" category="section-title">支持的 Kubernetes 集群架构</block>
   <block id="85b179f2c10f76f0171b4d9d3f2d5171" category="paragraph">以下 Kubernetes 架构支持 Astra Trident ：</block>
@@ -924,7 +922,6 @@
   <block id="d1d184cecc23825cff20fabf3cdfb862" category="list-text">运行 Element 软件的受支持存储系统。</block>
   <block id="4055116469942da7f6ed83abcf57d0a4" category="list-text">NetApp HCI/SolidFire 集群管理员或租户用户的凭据，可用于管理卷。</block>
   <block id="d5fa5f22855b065d96647dfb0c06d685" category="inline-link-macro">工作节点准备信息</block>
-  <block id="c443982ebc2d61b1fdf8348209939f8b" category="paragraph">`solidfire-san` 存储驱动程序支持两种卷模式： file 和 block 。对于 `filesystem` volumemode ， Astra Trident 将创建一个卷并创建一个文件系统。文件系统类型由 StorageClass 指定。</block>
   <block id="02017e70674a0c740b2b95fbb0cc2aa1" category="paragraph">无文件系统。原始块设备。</block>
   <block id="15b7c7ffe264d7b8c61915ff2a6ef96c" category="section-title">后端配置选项</block>
   <block id="9d370350f8d0178b5dfbec9def10d13a" category="paragraph">有关后端配置选项，请参见下表：</block>
@@ -1463,7 +1460,6 @@
   <block id="ec045173f4df65e5e8951c3ca9579945" category="cell">`ssubnet`</block>
   <block id="0b8deda0ecc5080e8c0ed0b475e983ba" category="cell">委派给 `Microsoft.Netapp/volumes` 的子网的名称</block>
   <block id="e5ac299cc3b14e1fac29518569ca9bb1" category="cell">新卷的默认大小</block>
-  <block id="e43b3577dd4b74a4cfa994a56e8138b8" category="paragraph">当您刚开始使用 ANF 并尝试执行相关操作时，此配置是理想的选择，但实际上，您希望为所配置的卷提供更多范围界定。</block>
   <block id="725ae241ec74eed978f0b099030236b8" category="section-title">示例 3 ：高级配置</block>
   <block id="a83f4a534ccef7ac1d209fb0015cd907" category="paragraph">此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。</block>
   <block id="a0f3a965c12688befda99da850903dcb" category="cell">`autosExportPolicy`</block>
@@ -1562,7 +1558,6 @@
   <block id="03fe5b0d58270efa87041677cac72ad7" category="list-text">安装和配置 NetApp Docker 卷插件：</block>
   <block id="f45f5a64dae951d3e37c9bd382201b06" category="list-text">下载并解压缩应用程序：</block>
   <block id="b255d9e06a4ca8e9f5bc31c9198426ad" category="list-text">移动到托箱路径中的某个位置：</block>
-  <block id="d3fa61f14ead6cf1cf1d584cf0b6c4e1" category="admonition">除非指定，否则卷驱动程序的默认名称为 "netapp" 。</block>
   <block id="9ad37c975c341297c49c69353516a727" category="paragraph">启动守护进程后，您可以使用 Docker 命令行界面创建和管理卷</block>
   <block id="e3dec3f86b9a3b1be209ab63855ce432" category="list-text">创建卷</block>
   <block id="5ff2e3e853922fdb84ef21b85ffdac2e" category="list-text">启动容器时配置 Docker 卷：</block>
@@ -1661,7 +1656,6 @@
   <block id="b22d82aea9557ba6aa7b915d40309d9b" category="paragraph">这些配置选项适用于所有 Astra Trident 配置，而不考虑所使用的存储平台。</block>
   <block id="63b276a6c28274ed5e553d4ce3fe7eb1" category="paragraph">配置文件版本号</block>
   <block id="ac5eb8fcbd1ed9c85a98d91e10e26a38" category="paragraph">存储驱动程序的名称</block>
-  <block id="fcf783284187f1e80e772eacd9266ee1" category="paragraph">卷大小的可选限制。默认值： " " （未强制实施）</block>
   <block id="3eed2a7dac1f2329f3a9574a68e5e1c4" category="admonition">请勿对元素后端使用 `storagePrefix` （包括默认值）。默认情况下， `solidfire-san` 驱动程序将忽略此设置，而不使用前缀。我们建议使用特定的租户 ID 进行 Docker 卷映射，或者在可能已使用任何名称的情况下使用 Docker 中填充的 Docker 版本，驱动程序信息和原始名称的属性数据。</block>
   <block id="0863f9e97e159e3ea1ce46bdb49b1254" category="paragraph">您可以使用默认选项来避免在创建的每个卷上指定这些选项。`s` 选项适用于所有控制器类型。有关如何设置默认卷大小的示例，请参见 ONTAP 配置一节。</block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="section-title">ONTAP 配置</block>
@@ -1829,7 +1823,6 @@
   <block id="4d80e2460d711b841338dfbeea2ca8c1" category="paragraph">了解如何使用 ONTAP 和 Cloud Volumes ONTAP NAS 驱动程序配置 ONTAP 后端。</block>
   <block id="9d4568c009d203ab10e33ea9953a0264" category="cell">""</block>
   <block id="7072ec708b0ea7e3243747d8b79c0d20" category="admonition">如果要从先前的任何 Trident 版本升级并使用 Azure NetApp Files ，则 ``location`` config 参数现在是一个必填字段。</block>
-  <block id="b956e1f58f802db57dd9f871ac59ed6c" category="paragraph">固定的 ANF 驱动程序，允许重复的资源名称并将操作限制在一个位置。</block>
   <block id="851679bec9b3e6c8e6284128fb750b1e" category="list-text">Kubernetes 增强功能：</block>
   <block id="2767b461b2b49786f390c9e0509d2d12" category="list-text">增加了对 Kubernetes 1.23 的支持。</block>
   <block id="7f10502f6f15537f180f07f0c89d2642" category="inline-link-macro">GitHub 问题描述 #651</block>
@@ -1837,7 +1830,6 @@
   <block id="90fdd892e78b26eb18a250c9c1bc19ff" category="inline-link-macro">GitHub 问题描述 #633</block>
   <block id="3ff8e54aa1f3735deb64771c4c65c420" category="list-text">在 GCP 驱动程序中允许跨区域卷。（<block ref="efd445659801b6abfdba2997e23e5f4f" category="inline-link-macro-rx"></block>）</block>
   <block id="fef8c75d6cd00955b0f1c84d40af01aa" category="inline-link-macro">GitHub 问题描述 #666</block>
-  <block id="9f81aabbbba9f61bfecaf1340c407ed1" category="list-text">为 ANF 卷增加了对 "unixPermissions" 选项的支持。（<block ref="b2ee1a79cce917ad1d60b3bec442914a" category="inline-link-macro-rx"></block>）</block>
   <block id="a4233200da50a08b295311036bb03ac1" category="section-title">已弃用</block>
   <block id="de6284c149d2e011da3909f1ef2af627" category="paragraph">Trident REST 接口只能在 127.0.0.1 或 [ ：：： 1 ）地址处侦听和提供服务</block>
   <block id="cdb544a92bee555749f43046d53ef34e" category="admonition">v21.10.0 版本具有一个问题描述，在删除节点并将其重新添加回 Kubernetes 集群时， Trident 控制器可以将其置于 CrashLoopBackOff 状态。此问题描述在 v21.10.1 中得到了修复（ GitHub 问题描述 669 ）。</block>
@@ -1935,7 +1927,6 @@
   <block id="804a6c22698fe4782c44f1e8d446964e" category="paragraph">从目前开始，我们为 `ontap-nas` ， `ontap-nas-flexgroup` ， `ontap-san` ， `ontap-san-economics` ， `solidfire-san` ， `GCP-CVS` 和 `azure-netapp-files` 后端驱动程序。</block>
   <block id="4af8991c21dff2f779496b8350d1124b" category="inline-link">Astra Trident 22.01</block>
   <block id="7669b0b69333e81c7c208aea3d1a3c6f" category="list-text"><block ref="7669b0b69333e81c7c208aea3d1a3c6f" category="inline-link-rx"></block></block>
-  <block id="682c6ce09c9faae3a3e22c55c8db592e" category="list-text">修复了问题描述 ，其中 ANF 驱动程序无法使用多个导出规则克隆卷。</block>
   <block id="723b30bcece2d0d47914a6eaf0c550cc" category="list-text">现在， Trident 会将 HSTS 标头添加到其安全端点的响应中。</block>
   <block id="621b9733ee07089711b96dd6b0b7861a" category="list-text">Trident 现在会尝试自动启用 Azure NetApp Files UNIX 权限功能。</block>
   <block id="3f39a3207529d5f8129199a33e60ef87" category="section-title">删除</block>
@@ -2089,7 +2080,6 @@
   <block id="701ba87ab75dde70f4604769defc7d00" category="list-text">从K8s.gcr.io过渡到registry.k8s.io作为CSI映像的默认注册表</block>
   <block id="90e3cd7cff1c9f6f4b8d2a509b127d44" category="list-text">包含一个包含Trident安装的ResourceQuota、以确保在默认情况下限制使用PriorityClass时计划Trident DemonSet。</block>
   <block id="838a6d7e89b7c366cfc25d3b2115b901" category="inline-link-macro">GitHub问题描述 #717</block>
-  <block id="83a65beedcdd811d7b3b4fe9d2c4614f" category="list-text">为ANF驱动程序增加了对网络功能的支持。（<block ref="e0e89f8bd936a5eb3adce74cac88eab0" category="inline-link-macro-rx"></block>）</block>
   <block id="cab6f6f91105d87aa3f65650df43c553" category="inline-link-macro">GitHub问题描述 #228</block>
   <block id="00ea108f36897d9ed3523b970b09e6ea" category="list-text">为ONTAP 驱动程序添加了技术预览自动MetroCluster 切换检测功能。（<block ref="0c9c84232975bfb33d3481050e5ef924" category="inline-link-macro-rx"></block>）</block>
   <block id="0b4fe975279063a2d1790cd061a8b8d1" category="list-text">*。*。*。*。</block>
@@ -2241,7 +2231,6 @@
   <block id="92c22bb3853554f94f513a2d2f36e8ef" category="list-text"><block ref="aed2a4a749284f757648f1057abf44cd" prefix="" category="inline-code"></block>：将查询限制为卷的下属。</block>
   <block id="3ad6cc2d4a6ad6fbd07574653275a161" category="list-text">Astra Trident无法阻止目标命名空间写入共享卷。您应使用文件锁定或其他进程来防止覆盖共享卷数据。</block>
   <block id="3908892c437778f8b161a2ca006782cd" category="list-text">无法在从属卷上执行快照、克隆和镜像。</block>
-  <block id="e6fe09cae66ba22c6abbd2511f660545" category="summary">在配置ANF后端之前、您需要确保满足以下要求。</block>
   <block id="aec47cf6a0cb83824b504b756eb4b71c" category="doc">准备配置Azure NetApp Files 后端</block>
   <block id="97d64245613ba751b698ce77fd51779a" category="inline-link">Azure：设置Azure NetApp Files 并创建NFS卷</block>
   <block id="caa7dc98c21b44b17c214508b9b0fa3c" category="list-text"><block ref="bc54592d6183695b841c6d1880ec0bf8" prefix="" category="inline-code"></block>，<block ref="93c5bebdea9c94a0740fe6fd9bb250f0" prefix=" " category="inline-code"></block>，和<block ref="2b53761249254ce6b502f521e5cc0683" prefix=" " category="inline-code"></block> 从 <block ref="63405c89f422580946169fa59c41e7ae" category="inline-link-macro-rx"></block> 在 Azure Active Directory 中，具有足够的 Azure NetApp Files 服务权限。应用程序注册应使用以下任一项：</block>
@@ -2260,11 +2249,8 @@
   <block id="b8ae61dc50cf8e8b79e68bc4a8d36393" category="cell"><block ref="0f179ba2bc32ab5d8f60692f5b800c86" prefix="" category="inline-code"></block></block>
   <block id="a56dcba8eacdac67fb510e1434d560d8" category="inline-link-macro">使用Linux统一密钥设置(LUKS)</block>
   <block id="fd05c90de484dbc1cb963df796886af4" category="doc">准备使用ONTAP NAS驱动程序配置后端</block>
-  <block id="481e993a13f6d4f981acc2da60465e2a" category="summary">了解ANF的NFS和SMB后端配置选项、并查看配置示例。</block>
   <block id="17a48ec106d5505e674ccdf56fce1058" category="doc">Azure NetApp Files 后端配置选项和示例</block>
-  <block id="4bb587d1662752a66d32e629a36d70c0" category="paragraph">Astra Trident会使用后端配置(子网、虚拟网络、服务级别和位置)在请求的位置提供的容量池上创建ANF卷、并与请求的服务级别和子网匹配。</block>
   <block id="5fe26149fa172056aee5f841415c55fa" category="admonition">Astra Trident 不支持手动 QoS 容量池。</block>
-  <block id="1a5743e0279e48054d3f9bb1ebc7e266" category="paragraph">ANF后端提供了这些配置选项。</block>
   <block id="55eaeeb515ba1b8a42eb736b0e58f41f" category="cell">一个卷的一组vNet功能可能是<block ref="972e73b7a882d0802a4e3a16946a2f94" prefix=" " category="inline-code"></block> 或<block ref="eb6d8ae6f20283755b339c0dc273988b" prefix=" " category="inline-code"></block>。网络功能并非在所有地区都可用、可能需要在订阅中启用。指定 <block ref="b0fdc9c7b96e4249152c61b506703142" prefix=" " category="inline-code"></block> 如果未启用此功能、则会导致卷配置失败。</block>
   <block id="cc3d42de123c784e8d8e3c8404b943be" category="cell">精细控制 NFS 挂载选项。SMB卷已忽略。要使用NFS 4.1挂载卷、请包括 <block ref="c72da907ddca73ee114d92e5e098ce0e" prefix=" " category="inline-code"></block> 在逗号分隔的挂载选项列表中选择NFS v4.1。存储类定义中设置的挂载选项会覆盖后端配置中设置的挂载选项。</block>
   <block id="f0873081464f48da27a1068215270c60" category="cell"><block ref="296026821ada2ab8aebcf13547a63df5" prefix="" category="inline-code"></block></block>
@@ -2280,8 +2266,6 @@
   <block id="ea221277b2f168f5e17d112765f4a1c0" category="cell">新卷的导出规则。<block ref="c72971f17465d2a32345bc872af62a34" prefix=" " category="inline-code"></block> 必须是以CIDR表示法表示的任意IPv4地址或IPv4子网组合的逗号分隔列表。SMB卷已忽略。</block>
   <block id="21590b83460bd480131384ef53bdccc4" category="cell">新卷的UNIX权限(4个八进制数字)。SMB卷已忽略。</block>
   <block id="10c0eb6973453da95b4ef937f19ddb6c" category="section-title">示例配置</block>
-  <block id="36867df20f9068f37b26d3120d5e7ba4" category="paragraph">这是绝对的最低后端配置。使用此配置， Astra Trident 会发现在已配置位置委派给 ANF 的所有 NetApp 帐户，容量池和子网，并随机将新卷放置在其中一个池和子网上。因为<block ref="296026821ada2ab8aebcf13547a63df5" prefix=" " category="inline-code"></block> 省略<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> 默认情况下适用、后端将为NFS卷配置。</block>
-  <block id="9c1aa30bfee58070482e646ad5d8bb4b" category="paragraph">此后端配置会将卷放置在Azure中<block ref="6356111305f5daab178fa6051b7a8ae7" prefix=" " category="inline-code"></block> 位置<block ref="7057376a419b3334cc7b8b7a9f064abb" prefix=" " category="inline-code"></block> 容量池。Astra Trident 会自动发现该位置委派给 ANF 的所有子网，并随机在其中一个子网上放置一个新卷。</block>
   <block id="c0b04213f295bd61098649d5dec24291" category="section-title">存储类定义</block>
   <block id="cad675ae3fb846705512fe460e615ac3" category="paragraph">以下内容<block ref="e1e2a331ab1d8dccfea06fc8e04e2f5d" prefix=" " category="inline-code"></block> 定义是指上述存储池。</block>
   <block id="1abbfd87ab307af55b755fd27ce60191" category="paragraph">使用<block ref="4d859186a09b1da3597e5901157d9400" prefix=" " category="inline-code"></block> 您可以为每个指定<block ref="e1e2a331ab1d8dccfea06fc8e04e2f5d" prefix=" " category="inline-code"></block> 用于托管卷的虚拟池。卷将在选定池中定义各个方面。</block>
@@ -2292,7 +2276,6 @@
   <block id="06bb6ebc4dada525717294b660ba2b3b" category="example-title">示例3：每个卷使用不同的密钥</block>
   <block id="c51cc3b801a879870aea846bdde1c7a3" category="section-title">创建后端</block>
   <block id="7d8058d93ec1d95c673d83bf303326ff" category="doc">ONTAP NAS配置选项和示例</block>
-  <block id="618a7676e411bbfbd9dbdb2411019951" category="summary">您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NAS和SMB卷。</block>
   <block id="ea61e2c2ff507048203824add1eb7c21" category="section-title">注意事项</block>
   <block id="8f395c84ad002394e9f070a25937dcc4" category="list-text">Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。</block>
   <block id="1cf44a6bee7fa333861e5d0042926fb5" category="list-text">Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。</block>
@@ -2640,7 +2623,6 @@
   <block id="46eefe0a9f18e4edef4d602d3868ad26" category="section-title">虚拟池设计</block>
   <block id="b8c8132a188c589a80147f1e0b22bf92" category="paragraph">创建后端时，通常可以指定一组参数。管理员无法使用相同的存储凭据和一组不同的参数创建另一个后端。随着虚拟池的推出、此问题描述 得以缓解。虚拟池是在后端和Kubernetes存储类之间引入的级别抽象、因此管理员可以定义参数以及标签、这些参数和标签可以通过Kubernetes存储类作为选择器进行引用、并且与后端无关。可以使用Astra Trident为所有受支持的NetApp后端定义虚拟池。该列表包括 SolidFire/NetApp HCI ， ONTAP ， GCP 上的 Cloud Volumes Service 以及 Azure NetApp Files 。</block>
   <block id="e531eef4bc68547759b647c917ac2567" category="admonition">定义虚拟池时、建议不要尝试在后端定义中重新排列现有虚拟池的顺序。此外，建议不要编辑 / 修改现有虚拟池的属性，而是定义新的虚拟池。</block>
-  <block id="12a04174d46f1d73ff741b222e009596" category="paragraph">可以为模拟服务类设计虚拟池。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。为 ANF 后端配置多个标签，以表示不同的性能级别。设置<block ref="28277e44c5db61612accdf326d137e96" prefix=" " category="inline-code"></block> 添加适当的性能级别、并在每个标签下添加其他所需的方面。现在、创建可映射到不同虚拟池的不同Kubernetes存储类。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。</block>
   <block id="f274bdd304a8c3825a2766a1f8ff8fa7" category="paragraph">可以从一个存储后端设计具有一组特定方面的多个虚拟池。为此，请为后端配置多个标签，并在每个标签下设置所需的方面。现在、使用创建不同的Kubernetes存储类<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 要映射到不同虚拟池的字段。在后端配置的卷将在选定虚拟池中定义相关方面。</block>
   <block id="77392d80c7d8caad401b2619f5dd4581" category="paragraph">在创建PVC时、请求的存储类以外的某些参数可能会影响Astra Trident配置决策过程。</block>
   <block id="5425c134e042a4473f453cbfaaf776df" category="summary">您可以启用Linux统一密钥设置(LUKS)来对Astra Trident上的ONTAP SAN和ONTAP SAN经济卷进行加密。Astra Trident支持对已加密的LUKS卷进行卷大小调整和密钥(密码短语)轮换。</block>
@@ -2690,7 +2672,6 @@
   <block id="cf201a9e802aa6e35997590206919b1a" category="list-text">SMB卷支持使用<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 仅限驱动程序。</block>
   <block id="b184cfad0a2d14c9220db3d72006958c" category="list-text">Trident无法删除在启用了自动备份的Amazon FSX文件系统上创建的卷。要删除 PVC ，您需要手动删除 PV 和 ONTAP 的 FSX 卷。要防止此问题描述 ，请执行以下操作：</block>
   <block id="867730e819742e7e493081f160c42c61" category="paragraph">您可以使用以下驱动程序将Astra Trident与适用于NetApp ONTAP 的Amazon FSx集成：</block>
-  <block id="90e87fa57067732a25774f917230f72b" category="paragraph">有关驱动程序详细信息、请参见 <block ref="5222b6b9484ba2027cf88dd24062e5fc" category="inline-link-macro-rx"></block>。</block>
   <block id="676f29c1b0b3626bc959bdc6ebc8953b" category="paragraph">Astra Trident提供两种身份验证模式。</block>
   <block id="2dc4717be6b9cdf676df17aa86465f02" category="admonition">Astra Trident应作为运行<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> SVM用户或具有相同角色的其他名称的用户。适用于NetApp ONTAP 的Amazon FSX具有<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block> 有限更换ONTAP 的用户<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> 集群用户。我们强烈建议使用<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 使用Astra Trident。</block>
   <block id="43c502a16d6b21dc6eb26a2067154e11" category="paragraph">您可以更新后端以在基于凭据的方法和基于证书的方法之间移动。但是、如果您尝试提供*凭据和证书*、则后端创建将失败。要切换到其他身份验证方法、必须从后端配置中删除现有方法。</block>
@@ -2806,7 +2787,6 @@
   <block id="065b7cc24b33be7af1e15f59024402d2" category="paragraph">Astra Trident将决定选择哪个虚拟池、并确保满足存储要求。</block>
   <block id="c632eed28bf53466df8b8a33aedab3af" category="list-text">虚拟池(如果存在)必须与原始后端的顺序相同。</block>
   <block id="87a522ecb9df14bf978f6f1da8a654a8" category="list-text">您不能通过删除来撤消对源PVC的访问<block ref="287f26e3328f9ac0f3f4da2cdaddd3e2" prefix=" " category="inline-code"></block> 或<block ref="11650d25d20af47978d85fd6e19c89aa" prefix=" " category="inline-code"></block> 标注或删除<block ref="d6995f631b22fb3f8e94aad1b40d1280" prefix=" " category="inline-code"></block> CR.要撤消访问、必须删除从属PVC。</block>
-  <block id="1b9b62ce5b41c05a88e439d4ddbaf2c3" category="paragraph">您可以将Azure NetApp Files (ANF)配置为Astra Trident的后端。您可以使用ANF后端连接NFS和SMB卷。</block>
   <block id="41a45a3b55b7354dab0d81bb0ad06493" category="cell">协议 LIF 的 IP 地址。建议指定<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block>。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 <block ref="b2c939cb81e81d99a25f4be74f517f2f" category="inline-xref-macro-rx"></block>。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
   <block id="ae8df8316f5c485b7db4e7141e899701" category="cell">指定的地址或派生自SVM (如果未指定)(不建议)</block>
   <block id="ad898a5f5863162f9c13e958485877d5" category="cell">启用自动创建和更新导出策略[布尔值]。使用<block ref="323e871cfe2e70ead9c713e8f3164f8f" prefix=" " category="inline-code"></block> 和<block ref="b9c40fbe9daa81e40e06509d5bbd5a6c" prefix=" " category="inline-code"></block> 选项、Astra Trident可以自动管理导出策略。</block>
@@ -3101,17 +3081,14 @@
   <block id="58c09f2c9581bc7c58c32116266b6d8f" category="cell">要使用的层策略<block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix=" " category="inline-code"></block></block>
   <block id="49ed5b3ecd0e966bec6b74083f06599e" category="cell"><block ref="8805d416ce540c5f2df34af5b18d742b" prefix="" category="inline-code"></block> 适用于ONTAP 9.5 SVM-DR之前的配置</block>
   <block id="6792aad2d8c086a9d25f5ad8ec090f35" category="paragraph">在创建Element后端之前、您需要满足以下要求。</block>
-  <block id="4e121ce555fa114069539035adefe18e" category="section-title">音量模式</block>
   <block id="690b3c7311638da5eef87f5e07aa1258" category="section-title">管理卷</block>
   <block id="24da0fbaaa9930515c555e7019db09d2" category="paragraph">请参见以下内容、了解如何使用Asta Trident管理卷。</block>
   <block id="00a9bbaf4185978435bd4d6cb7aba6c4" category="summary">通过将Asta三端存储与Amazon FSx for NetApp ONTAP 结合使用、您可以确保在Amazon Elastic Kubelnetes Service (EKS)中运行的Kubelnetes集群可以配置ONTAP 支持的块和文件永久性卷。</block>
   <block id="5178ad00e596ece0be9aceff179b4303" category="paragraph">Asta Trident提供了一组Prometheus指标端点、可用于监控Asta Trident的性能。</block>
   <block id="51e6d748c5af856ade589011dc2c7e85" category="cell"><block ref="37a6259cc0c1dae299a7866489dff0bd" prefix="" category="inline-code"></block></block>
   <block id="ddbd2735bfb88c5da807f77f6fe5f6c8" category="doc">ONTAP NAS驱动程序概述</block>
-  <block id="dd972e44915c7a0884edd58e9d839295" category="section-title">有关ONTAP NAS驱动程序的重要信息</block>
   <block id="1faffcbb00c529812b5526b1b22b2b56" category="paragraph">要创建、您必须在SVM上同时配置NFS和SMB/CCIFS协议<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 适用于内部ONTAP 的SMB卷。如果未能配置其中任一协议、则发生原因 SMB卷创建将失败。</block>
   <block id="5cc1e28c0d7b6c40ca94aacb554b31ca" category="doc">ONTAP SAN驱动程序概述</block>
-  <block id="7771a46320e96de2bde6598540ad4d52" category="section-title">有关ONTAP SAN驱动程序的重要信息</block>
   <block id="904628b57a33f3a2f6d71a6d991e15c6" category="paragraph">Astra Trident 可以通过使用有选择地创建卷并将其附加到 Kubernetes 集群中的节点<block ref="80b9a4f4a1bc9851317207ee3477041a" category="inline-link-rx"></block>。</block>
   <block id="3eba7c2a6bd35cbac350dcbfb90408f6" category="paragraph">使用 CSI 拓扑功能，可以根据区域和可用性区域将对卷的访问限制为一小部分节点。如今，借助云提供商， Kubernetes 管理员可以生成基于分区的节点。节点可以位于一个区域内的不同可用性区域中，也可以位于不同区域之间。为了便于在多区域架构中为工作负载配置卷， Astra Trident 使用了 CSI 拓扑。</block>
   <block id="4ba6a75e6aacbc3737630ba55916cd27" category="section-title">用于管理后端的选项</block>
@@ -3805,4 +3782,41 @@ SMB</block>
   <block id="00b454d2ba2e8d34f65f8a714304a598" category="admonition">下表仅包含与日志记录服务相关的存储配置相关的变量。您可以在中找到其他选项 <block ref="e81826ec3b15492352776daada114990" category="inline-link-macro-rx"></block> 应根据您的部署情况查看，配置和使用。</block>
   <block id="b8e4ea2ed30f2f3a9f05ef8e1cc243db" category="paragraph">与日志记录服务和 OpenShift 作为一个整体一样， Ansible 用于部署指标服务。此外、与日志记录服务一样、指标服务也可以在集群初始设置期间或集群运行后使用组件安装方法进行部署。下表包含在为指标服务配置永久性存储时非常重要的变量。</block>
   <block id="db7ae7f1cfb23bf788607032d443c26c" category="paragraph">使用在主机 / 清单文件中定义的适当 Ansible 变量，使用 Ansible 部署服务。如果您在 OpenShift 安装时进行部署，则系统将自动创建和使用 PV 。如果您要使用组件操作手册进行部署、则在安装OpenShift后、Ansable将创建所需的任何PVC、并在Asta Trivent为其配置存储后部署该服务。</block>
+  <block id="8198f2a0f41303e214bcb5ab7d9e9ef4" category="section-title">ONTAP NAS驱动程序详细信息</block>
+  <block id="147be9e86dbd052c1f2b490f1e9b9897" category="paragraph">Asta三端存储提供了以下NAS存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
+  <block id="2b5fc47d5a68b6070472f3a239fc77f3" category="paragraph">""、<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block>，<block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix=" " category="inline-code"></block></block>
+  <block id="f353c2f2ba62c120d68a9fde333ef59f" category="summary">了解适用于Azure NetApp Files的NFS和SMB后端配置选项并查看配置示例。</block>
+  <block id="19b571f96ec7d28e6329f9c52fab7424" category="paragraph">Asta三端存储使用您的后端配置(子网、虚拟网络、服务级别和位置)在请求位置可用的容量池上创建Azure NetApp Files卷、并与请求的服务级别和子网匹配。</block>
+  <block id="b9acebca540d60eef74f6ffc3e4aa2e7" category="paragraph">Azure NetApp Files后端提供了这些配置选项。</block>
+  <block id="5cda3f51d6458740b40a6f4c0aab02f0" category="paragraph">这是绝对的最低后端配置。使用此配置、Asta三端存储可以发现已配置位置委派给Azure NetApp Files的所有NetApp帐户、容量池和子网、并随机将新卷放置在其中一个池和子网上。因为<block ref="296026821ada2ab8aebcf13547a63df5" prefix=" " category="inline-code"></block> 省略<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> 默认情况下适用、后端将为NFS卷配置。</block>
+  <block id="639aa44ce5a6709a5719b427993c9657" category="paragraph">当您刚刚开始使用Azure NetApp Files并尝试某些操作时、此配置是理想的选择、但实际上、您需要为所配置的卷提供额外的范围界定。</block>
+  <block id="62679c3777af7cf9f6af4e6aa0e7cfc4" category="paragraph">此后端配置会将卷放置在Azure中<block ref="6356111305f5daab178fa6051b7a8ae7" prefix=" " category="inline-code"></block> 位置<block ref="7057376a419b3334cc7b8b7a9f064abb" prefix=" " category="inline-code"></block> 容量池。Asta三端存储自动发现该位置委派给Azure NetApp Files的所有子网、并随机在其中一个子网上放置一个新卷。</block>
+  <block id="a493eb50acc1b5a276034b914c4ce10d" category="section-title">ONTAP SAN驱动程序详细信息</block>
+  <block id="7fd570aee3c81c5db028704e5fdf5b52" category="paragraph">Asta三端存储提供了以下SAN存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
+  <block id="fcd147679464b9eda6367f4e90e16ff8" category="paragraph">Rwo、RWO1.</block>
+  <block id="94188b3f68e7baf5ef4a1f721857e77c" category="paragraph">Rox和rwx在文件系统卷模式下不可用。</block>
+  <block id="2acadf30bbdf69b0408eadef287eb346" category="summary">您可以将Azure NetApp Files配置为Astra三端。您可以使用Azure NetApp Files后端连接NAS和SMB卷。</block>
+  <block id="8094785ba6188e7e62aca54731d06963" category="paragraph">您可以将Azure NetApp Files配置为Astra三端。您可以使用Azure NetApp Files后端连接NFS和SMB卷。</block>
+  <block id="2f73efb41160e66d2e4f5b500c984de8" category="section-title">Azure NetApp Files驱动程序详细信息</block>
+  <block id="4ba3000579192de0298587f58861a12e" category="paragraph">Asta三端磁盘提供了以下Azure NetApp Files存储驱动程序、用于与集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
+  <block id="7e7d2470a40e817070cd42bd81713c7b" category="paragraph"><block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix="" category="inline-code"></block>，<block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix=" " category="inline-code"></block></block>
+  <block id="a26f7ba5e57155f8df4df121d4527158" category="cell"><block ref="43f09bc16eaf24131ea82903259878ac" prefix="" category="inline-code"></block></block>
+  <block id="52dcf826fbc73c7b9f555d6b50423f98" category="paragraph"><block ref="310201b6353c5f38bc039e0e51b079d3" prefix="" category="inline-code"></block><block ref="66f137c5dc684da2a6a65917c86edd67" prefix="," category="inline-code"></block>，<block ref="40d1d2ce03569076bd0dc1e0ff90aa4c" prefix=" " category="inline-code"></block></block>
+  <block id="62233a6f2ba54c1dcede120348a6f595" category="paragraph">了解如何在Asta Trident安装中创建和使用Element后端。</block>
+  <block id="4e7d6286f837d54a4e4154d4b21b0659" category="section-title">Element驱动程序详细信息</block>
+  <block id="9fc6992cc8e273b3f7d317fc2a54e18c" category="paragraph">Asta三项功能提供<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 用于与集群通信的存储驱动程序。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
+  <block id="2d5e7b30bb6eb1bd6091005422150b91" category="paragraph">。<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 存储驱动程序支持_file_和_block_卷模式。。<block ref="ac52cf637478f3656a1fdee5c02324fd" prefix=" " category="inline-code"></block> volumemode、Astra Trident会创建卷并创建文件系统。文件系统类型由 StorageClass 指定。</block>
+  <block id="f5aa1832e32f2b8d7a7f22d8e36a4617" category="inline-link-macro">NAS驱动程序</block>
+  <block id="de9e7e8f2c463ef15bebdbf8d2d1aa6d" category="inline-link-macro">SAN驱动程序</block>
+  <block id="b49ccad583187aa8103775031d346d4a" category="paragraph">有关驱动程序详细信息、请参见 <block ref="94749ac9904f861b1290f2feae976582" category="inline-link-macro-rx"></block> 和 <block ref="5475edaa4f9b7b7cc2309add6d5e3cd5" category="inline-link-macro-rx"></block>。</block>
+  <block id="8126e96f64b1a5de24d4cf6e4b09b986" category="section-title">Google Cloud驱动程序详细信息</block>
+  <block id="9393948ed1be0af0cfb3d99e3248301a" category="paragraph">Asta三项功能提供<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block> 与集群通信的驱动程序。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
+  <block id="9aa82da0cffe247b84587c1cc8e32746" category="cell">default</block>
+  <block id="dfb6135042da6e8fbf367d9cf13431ef" category="paragraph">卷大小的可选限制。默认值：""(未强制实施)</block>
+  <block id="4846d107d8ddb5051591d14dcbddba8c" category="admonition">除非指定、否则卷驱动程序的默认名称为NetApp。</block>
+  <block id="5ab207578468b7bbc201024492654253" category="list-text">在Azure NetApp Files驱动程序中增加了对网络功能的支持。（<block ref="e0e89f8bd936a5eb3adce74cac88eab0" category="inline-link-macro-rx"></block>）</block>
+  <block id="302e5f91d375f03821f8fd6340563539" category="list-text">修复了Azure NetApp Files驱动程序无法克隆具有多个导出规则的卷的问题描述问题。</block>
+  <block id="1d61f4e1411b6940bc918fb56346f64d" category="list-text">修复了Azure NetApp Files驱动程序、允许重复的资源名称并将操作限制在一个位置。</block>
+  <block id="409ee85d2342bf416b29a45a7b9c4e59" category="list-text">增加了对Azure NetApp Files卷"unixPermissions (unixPermissions)"选项的支持。（<block ref="b2ee1a79cce917ad1d60b3bec442914a" category="inline-link-macro-rx"></block>）</block>
+  <block id="9f65455ce006fe56e7588e4e14f1edb8" category="paragraph">可以为模拟服务类设计虚拟池。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。使用多个标签配置Azure NetApp Files后端、以表示不同的性能级别。设置<block ref="28277e44c5db61612accdf326d137e96" prefix=" " category="inline-code"></block> 添加适当的性能级别、并在每个标签下添加其他所需的方面。现在、创建可映射到不同虚拟池的不同Kubernetes存储类。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。</block>
 </blocks>

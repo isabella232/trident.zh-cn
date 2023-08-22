@@ -191,7 +191,7 @@ sudo trident --config=/etc/netappdvp/ontap-nas.json
 ----
 +
 
-NOTE: 除非指定，否则卷驱动程序的默认名称为 "netapp" 。
+NOTE: 除非指定、否则卷驱动程序的默认名称为NetApp。
 
 +
 启动守护进程后，您可以使用 Docker 命令行界面创建和管理卷

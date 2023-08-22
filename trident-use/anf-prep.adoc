@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-use/anf-prep.html 
 keywords: trident backend, azure netapp files, smb volumes, smb, windows, active directory, csi proxy 
-summary: 在配置ANF后端之前、您需要确保满足以下要求。 
+summary: 在配置Azure NetApp Files 后端之前、您需要确保满足以下要求。 
 ---
 = 准备配置Azure NetApp Files 后端
 :hardbreaks:

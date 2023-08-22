@@ -10,8 +10,6 @@ entries:
     url: "/trident-get-started/architecture.html"
   - title: 概念
     entries:
-    - title: ONTAP 驱动程序
-      url: "/trident-concepts/ontap-drivers.html"
     - title: 配置
       url: "/trident-concepts/provisioning.html"
     - title: 卷快照

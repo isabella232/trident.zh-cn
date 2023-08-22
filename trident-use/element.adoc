@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/element.html 
-keywords: trident backend, solidfire, netapp hci 
+keywords: trident backend, solidfire, netapp hci, drivers, access modes, rwo, rwx, rwp, rwop, file system 
 summary: 了解如何在 Astra Trident 安装中创建和使用 Element 后端。 
 ---
 = 配置 NetApp HCI 或 SolidFire 后端
@@ -12,24 +12,15 @@ summary: 了解如何在 Astra Trident 安装中创建和使用 Element 后端�
 
 
 [role="lead"]
-了解如何在 Astra Trident 安装中创建和使用 Element 后端。
+了解如何在Asta Trident安装中创建和使用Element后端。
 
 
 
-== 开始之前
+== Element驱动程序详细信息
 
-在创建Element后端之前、您需要满足以下要求。
+Asta三项功能提供 `solidfire-san` 用于与集群通信的存储驱动程序。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。
 
-* 运行 Element 软件的受支持存储系统。
-* NetApp HCI/SolidFire 集群管理员或租户用户的凭据，可用于管理卷。
-* 所有 Kubernetes 工作节点都应安装适当的 iSCSI 工具。请参见 link:../trident-use/worker-node-prep.html["工作节点准备信息"]。
-
-
-
-
-== 音量模式
-
-`solidfire-san` 存储驱动程序支持两种卷模式： file 和 block 。对于 `filesystem` volumemode ， Astra Trident 将创建一个卷并创建一个文件系统。文件系统类型由 StorageClass 指定。
+。 `solidfire-san` 存储驱动程序支持_file_和_block_卷模式。。 `Filesystem` volumemode、Astra Trident会创建卷并创建文件系统。文件系统类型由 StorageClass 指定。
 
 [cols="5"]
 |===
@@ -41,18 +32,7 @@ iSCSI
  a| 
 块
  a| 
-rwo ， rox ， rwx
- a| 
-无文件系统。原始块设备。
-
-
-
-| `solidfire-san`  a| 
-iSCSI
- a| 
-块
- a| 
-rwo ， rox ， rwx
+Rwo、ROX、rwx、RWOP
  a| 
 无文件系统。原始块设备。
 
@@ -63,22 +43,22 @@ iSCSI
  a| 
 文件系统
  a| 
-工单， ROX
- a| 
-`xfs` ， `ext3` ， `ext4`
-
-
-
-| `solidfire-san`  a| 
-iSCSI
- a| 
-文件系统
- a| 
-工单， ROX
+Rwo、RWO1.
  a| 
 `xfs` ， `ext3` ， `ext4`
 
 |===
+
+
+== 开始之前
+
+在创建Element后端之前、您需要满足以下要求。
+
+* 运行 Element 软件的受支持存储系统。
+* NetApp HCI/SolidFire 集群管理员或租户用户的凭据，可用于管理卷。
+* 所有 Kubernetes 工作节点都应安装适当的 iSCSI 工具。请参见 link:../trident-use/worker-node-prep.html["工作节点准备信息"]。
+
+
 
 
 == 后端配置选项

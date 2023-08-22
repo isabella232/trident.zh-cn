@@ -279,7 +279,7 @@ IMPORTANT: 现在、在Trident中支持Kubnetes 1.27。请先升级Astra Trident
 * 从K8s.gcr.io过渡到registry.k8s.io作为CSI映像的默认注册表
 * 现在、ONTAP SAN卷将使用每个节点的igroup、并且仅将LUN映射到igroup、而将其主动发布到这些节点、以改善我们的安全状况。当Asta Trigent确定在不影响活动工作负载的情况下可以安全地切换到新的igrop方案时、现有卷将适时切换到此方案。
 * 包含一个包含Trident安装的ResourceQuota、以确保在默认情况下限制使用PriorityClass时计划Trident DemonSet。
-* 为ANF驱动程序增加了对网络功能的支持。（link:https://github.com/NetApp/trident/issues/717["GitHub问题描述 #717"^]）
+* 在Azure NetApp Files驱动程序中增加了对网络功能的支持。（link:https://github.com/NetApp/trident/issues/717["GitHub问题描述 #717"^]）
 * 为ONTAP 驱动程序添加了技术预览自动MetroCluster 切换检测功能。（link:https://github.com/NetApp/trident/issues/228["GitHub问题描述 #228"^]）
 
 
@@ -330,7 +330,7 @@ IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetAp
 * 修复了已删除节点上的卷已取消发布的问题描述 。（link:https://github.com/NetApp/trident/issues/691["GitHub 问题描述 第 691 号"^]）
 * 增加了对块设备上文件系统不一致问题的处理。（link:https://github.com/NetApp/trident/issues/656["GitHub问题描述 #656"^]）
 * 修复了在安装期间设置 `imageRegistry` 标志时问题描述 提取自动支持映像的问题。（link:https://github.com/NetApp/trident/issues/715["GitHub问题描述 #715"^]）
-* 修复了问题描述 ，其中 ANF 驱动程序无法使用多个导出规则克隆卷。
+* 修复了Azure NetApp Files驱动程序无法克隆具有多个导出规则的卷的问题描述问题。
 
 
 
@@ -375,8 +375,8 @@ IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetAp
 * 修复的问题描述 ，尝试导入已导入的卷时，返回的 EOF 将使 PVC 处于待定状态。（link:https://github.com/NetApp/trident/issues/489["GitHub 问题描述 489"]）
 * 修复了在 SolidFire 卷上创建超过 32 个快照时 Astra Trident 性能下降的问题描述 。
 * 在创建 SSL 证书时将 SHA-1 替换为 SHA-256 。
-* 固定的 ANF 驱动程序，允许重复的资源名称并将操作限制在一个位置。
-* 固定的 ANF 驱动程序，允许重复的资源名称并将操作限制在一个位置。
+* 修复了Azure NetApp Files驱动程序、允许重复的资源名称并将操作限制在一个位置。
+* 修复了Azure NetApp Files驱动程序、允许重复的资源名称并将操作限制在一个位置。
 
 
 
@@ -390,7 +390,7 @@ IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetAp
 
 
 * 在 GCP 驱动程序中允许跨区域卷。（link:https://github.com/NetApp/trident/issues/633["GitHub 问题描述 #633"^]）
-* 为 ANF 卷增加了对 "unixPermissions" 选项的支持。（link:https://github.com/NetApp/trident/issues/666["GitHub 问题描述 #666"^]）
+* 增加了对Azure NetApp Files卷"unixPermissions (unixPermissions)"选项的支持。（link:https://github.com/NetApp/trident/issues/666["GitHub 问题描述 #666"^]）
 
 
 

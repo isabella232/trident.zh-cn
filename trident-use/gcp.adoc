@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/gcp.html 
-keywords: trident backend, cloud volumes service for google cloud platform, google cloud platform, gcp, storage pool labels, storage pool, cvs, cvs-performance, service type, service level, cloud volumes service, cloud volumes 
+keywords: trident backend, cloud volumes service for google cloud platform, google cloud platform, gcp, storage pool labels, storage pool, cvs, cvs-performance, service type, service level, cloud volumes service, cloud volumes, drivers, access modes, rwo, rwx, rwp, rwop, file system 
 summary: 了解如何使用提供的示例配置将适用于Google Cloud的Cloud Volumes Service 配置为Astra Trident安装的后端。 
 ---
 = 为Google Cloud后端配置Cloud Volumes Service
@@ -14,6 +14,27 @@ summary: 了解如何使用提供的示例配置将适用于Google Cloud的Cloud
 [role="lead"]
 了解如何使用提供的示例配置将适用于Google Cloud的NetApp Cloud Volumes Service 配置为Astra Trident安装的后端。
 
+
+
+== Google Cloud驱动程序详细信息
+
+Asta三项功能提供 `gcp-cvs` 与集群通信的驱动程序。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。
+
+[cols="1, 1, 1, 2, 2"]
+|===
+| 驱动程序 | 协议 | 卷模式 | 支持的访问模式 | 支持的文件系统 
+
+
+| `GCP-CVS`  a| 
+NFS
+ a| 
+文件系统
+ a| 
+Rwo、ROX、rwx、RWOP
+ a| 
+`nfs`
+
+|===
 
 
 == 了解适用于Google Cloud的Cloud Volumes Service 的Astra Trident支持
@@ -50,7 +71,7 @@ Astra Trident可以在两个卷中创建Cloud Volumes Service 卷之一 link:htt
 
 每个后端都会在一个 Google Cloud 区域中配置卷。要在其他区域创建卷，您可以定义其他后端。
 
-[cols="3"]
+[cols="1, 2, 1"]
 |===
 | 参数 | Description | Default 
 

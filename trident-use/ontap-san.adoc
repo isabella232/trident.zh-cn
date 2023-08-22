@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/ontap-san.html 
-keywords: trident backend, ontap san, ontap-san, ontap-san-economy, fsx 
+keywords: trident backend, ontap san, ontap-san, ontap-san-economy, fsx, drivers, access modes, rwo, rwx, rwp, rwop, file system 
 summary: 了解如何使用 ONTAP SAN 驱动程序配置 ONTAP 后端。 
 ---
 = ONTAP SAN驱动程序概述
@@ -16,7 +16,68 @@ summary: 了解如何使用 ONTAP SAN 驱动程序配置 ONTAP 后端。
 
 
 
-== 有关ONTAP SAN驱动程序的重要信息
+== ONTAP SAN驱动程序详细信息
+
+Asta三端存储提供了以下SAN存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。
+
+
+IMPORTANT: 如果您使用Astra Control进行保护、恢复和移动、请阅读 <<Astra Control驱动程序兼容性>>。
+
+[cols="2, 1, 1, 2, 2"]
+|===
+| 驱动程序 | 协议 | 卷模式 | 支持的访问模式 | 支持的文件系统 
+
+
+| `ontap-san`  a| 
+iSCSI
+ a| 
+块
+ a| 
+Rwo、ROX、rwx、RWOP
+ a| 
+无文件系统；原始块设备
+
+
+
+| `ontap-san`  a| 
+iSCSI
+ a| 
+文件系统
+ a| 
+Rwo、RWO1.
+
+Rox和rwx在文件系统卷模式下不可用。
+ a| 
+`xfs` ， `ext3` ， `ext4`
+
+
+
+| `ontap-san-economy.`  a| 
+iSCSI
+ a| 
+块
+ a| 
+Rwo、ROX、rwx、RWOP
+ a| 
+无文件系统；原始块设备
+
+
+
+| `ontap-san-economy.`  a| 
+iSCSI
+ a| 
+文件系统
+ a| 
+Rwo、RWO1.
+
+Rox和rwx在文件系统卷模式下不可用。
+ a| 
+`xfs` ， `ext3` ， `ext4`
+
+|===
+
+
+=== Astra Control驱动程序兼容性
 
 Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
 
