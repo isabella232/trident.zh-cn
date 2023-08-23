@@ -47,7 +47,7 @@ image:screenshot-fsx-backup-disable.png["AWS 控制台禁用自动备份的屏�
 
 
 
-== 驱动程序
+== FSx for ONTAP驱动程序详细信息
 
 您可以使用以下驱动程序将Astra Trident与适用于NetApp ONTAP 的Amazon FSx集成：
 
@@ -58,7 +58,7 @@ image:screenshot-fsx-backup-disable.png["AWS 控制台禁用自动备份的屏�
 * `ontap-nas-flexgroup` ：配置的每个 PV 都是适用于 NetApp ONTAP FlexGroup 卷的完整 Amazon FSX 。
 
 
-有关驱动程序详细信息、请参见 link:../trident-use/ontap-nas.html.html["NAS驱动程序"] 和 link:../trident-use/ontap-san.html.html["SAN驱动程序"]。
+有关驱动程序详细信息、请参见 link:../trident-use/ontap-nas.html["NAS驱动程序"] 和 link:../trident-use/ontap-san.html["SAN驱动程序"]。
 
 
 

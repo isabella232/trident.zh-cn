@@ -1255,7 +1255,6 @@
   <block id="486632f7d2196e772b742db4a4a0ad7c" category="inline-link-macro">部署 Astra Trident</block>
   <block id="55449fd175613962d882ab450cfc5f3c" category="inline-link">FabricPool</block>
   <block id="d07e2d99267e4fc3c508f6701be977b4" category="paragraph">适用于 NetApp ONTAP 的 Amazon FSX 使用<block ref="d1584952da6bdedb0a24d5dbd43ce0bf" category="inline-link-rx"></block> 以管理存储层。通过它，您可以根据数据是否经常访问来将数据存储在层中。</block>
-  <block id="8e64a609e66214066595e6300aaab281" category="section-title">驱动程序</block>
   <block id="79a4618bb191cb293c330f8189531a13" category="list-text">`ontap-san` ：配置的每个 PV 都是其自己的 Amazon FSX for NetApp ONTAP 卷中的一个 LUN 。</block>
   <block id="b8f98ceeb9b158e8af3527fce91e9e57" category="list-text">`ontap-san-economi` ：为 NetApp ONTAP 卷配置的每个 PV 都是一个 LUN ，每个 Amazon FSX 具有可配置的 LUN 数量。</block>
   <block id="a5bc2c9e7628ac6c73838f9fea0e6ed6" category="list-text">`ONONTAP NAS` ：配置的每个 PV 都是适用于 NetApp ONTAP 的完整 Amazon FSX 卷。</block>
@@ -3808,7 +3807,6 @@ SMB</block>
   <block id="2d5e7b30bb6eb1bd6091005422150b91" category="paragraph">。<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 存储驱动程序支持_file_和_block_卷模式。。<block ref="ac52cf637478f3656a1fdee5c02324fd" prefix=" " category="inline-code"></block> volumemode、Astra Trident会创建卷并创建文件系统。文件系统类型由 StorageClass 指定。</block>
   <block id="f5aa1832e32f2b8d7a7f22d8e36a4617" category="inline-link-macro">NAS驱动程序</block>
   <block id="de9e7e8f2c463ef15bebdbf8d2d1aa6d" category="inline-link-macro">SAN驱动程序</block>
-  <block id="b49ccad583187aa8103775031d346d4a" category="paragraph">有关驱动程序详细信息、请参见 <block ref="94749ac9904f861b1290f2feae976582" category="inline-link-macro-rx"></block> 和 <block ref="5475edaa4f9b7b7cc2309add6d5e3cd5" category="inline-link-macro-rx"></block>。</block>
   <block id="8126e96f64b1a5de24d4cf6e4b09b986" category="section-title">Google Cloud驱动程序详细信息</block>
   <block id="9393948ed1be0af0cfb3d99e3248301a" category="paragraph">Asta三项功能提供<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block> 与集群通信的驱动程序。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
   <block id="9aa82da0cffe247b84587c1cc8e32746" category="cell">default</block>
@@ -3819,4 +3817,6 @@ SMB</block>
   <block id="1d61f4e1411b6940bc918fb56346f64d" category="list-text">修复了Azure NetApp Files驱动程序、允许重复的资源名称并将操作限制在一个位置。</block>
   <block id="409ee85d2342bf416b29a45a7b9c4e59" category="list-text">增加了对Azure NetApp Files卷"unixPermissions (unixPermissions)"选项的支持。（<block ref="b2ee1a79cce917ad1d60b3bec442914a" category="inline-link-macro-rx"></block>）</block>
   <block id="9f65455ce006fe56e7588e4e14f1edb8" category="paragraph">可以为模拟服务类设计虚拟池。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。使用多个标签配置Azure NetApp Files后端、以表示不同的性能级别。设置<block ref="28277e44c5db61612accdf326d137e96" prefix=" " category="inline-code"></block> 添加适当的性能级别、并在每个标签下添加其他所需的方面。现在、创建可映射到不同虚拟池的不同Kubernetes存储类。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。</block>
+  <block id="42f3b65b98b18c792b7b5534e40d2646" category="section-title">FSx for ONTAP驱动程序详细信息</block>
+  <block id="9b82ca4e89dcaf4cecf50467b6126909" category="paragraph">有关驱动程序详细信息、请参见 <block ref="4093b6d0ce8cf414637a02002d2b0376" category="inline-link-macro-rx"></block> 和 <block ref="276422a40a581e9842304216329765d5" category="inline-link-macro-rx"></block>。</block>
 </blocks>
