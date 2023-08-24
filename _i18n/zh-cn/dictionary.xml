@@ -3819,4 +3819,9 @@ SMB</block>
   <block id="9f65455ce006fe56e7588e4e14f1edb8" category="paragraph">可以为模拟服务类设计虚拟池。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。使用多个标签配置Azure NetApp Files后端、以表示不同的性能级别。设置<block ref="28277e44c5db61612accdf326d137e96" prefix=" " category="inline-code"></block> 添加适当的性能级别、并在每个标签下添加其他所需的方面。现在、创建可映射到不同虚拟池的不同Kubernetes存储类。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。</block>
   <block id="42f3b65b98b18c792b7b5534e40d2646" category="section-title">FSx for ONTAP驱动程序详细信息</block>
   <block id="9b82ca4e89dcaf4cecf50467b6126909" category="paragraph">有关驱动程序详细信息、请参见 <block ref="4093b6d0ce8cf414637a02002d2b0376" category="inline-link-macro-rx"></block> 和 <block ref="276422a40a581e9842304216329765d5" category="inline-link-macro-rx"></block>。</block>
+  <block id="02882f6e58d1a3adffd9c9e4d0b2cc15" category="cell">集群或 SVM 管理 LIF 的 IP 地址
+
+可以指定完全限定域名(FQDN)。
+
+如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
 </blocks>
