@@ -14,8 +14,10 @@ summary: 您应使用与安装Asta三端安装相同的方法卸载Asta三端安
 [role="lead"]
 您应使用与安装Asta三端安装相同的方法卸载Asta三端安装。
 
+.关于此任务
+* 如果您需要修复在升级、依赖关系问题或升级失败或不完整后发现的错误、则应卸载Asta Trendent、然后按照相应的特定说明重新安装早期版本 link:../earlier-versions.html["version"]。这是将_降 级_降级到早期版本的唯一建议方法。
+* 为了便于升级和重新安装、卸载Asta Dent不会删除CRD或Asta Dent创建的相关对象。如果您需要完全删除Asta Trandent及其所有数据、请参见 link:../troubleshooting.html#completely-remove-astra-trident-and-crds["完全删除Asta Trandent和CRD"]。
 
-NOTE: 如果您需要修复在升级、依赖关系问题或升级失败或不完整后发现的错误、则应卸载Asta Trendent、然后按照相应的特定说明重新安装早期版本 link:../earlier-versions.html["version"]。这是将_降 级_降级到早期版本的唯一建议方法。
 
 .开始之前
 如果要停用Kubnetes集群、则必须在卸载之前删除使用ASRA三端存储创建的卷的所有应用程序。这样可以确保在删除之前、在Kubbernetes节点上未取消对这些PVC的审核。
@@ -63,21 +65,7 @@ kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"uninst
 ** 当 `uninstall` 标志设置为 `true` 时， Trident 操作员将卸载 Trident ，但不会删除 Trident Orchestrator 本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。
 
 
-* *删除 `TridentOrchestrator`：通过删除 `TridentOrchestrator` cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。
-+
-** 操作员将处理的删除操作 `TridentOrchestrator` 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。
-** 要卸载Asta Dent并完全删除Asta Dent (包括它创建的CRD)、请编辑 `TridentOrchestrator` 以传递 `wipeout` 选项后续安装将被视为新安装。
-+
-[listing]
-----
-kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"wipeout":["crds"],"uninstall":true}}'
-----
-+
-
-WARNING: 此操作无法撤消。除非您需要全新安装Astra三端安装、否则请勿擦除CRD。例如、如果要迁移到上一版本以外的版本。
-
-
-
+* *删除 `TridentOrchestrator`：通过删除 `TridentOrchestrator` cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。操作员将处理的删除操作 `TridentOrchestrator` 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。
 
 
 
@@ -101,10 +89,9 @@ release "trident" uninstalled
 
 == 卸载 `tridentctl` 安装
 
-使用 `uninstall` 命令输入 `tridentctl` 删除与Asta Trandent关联的所有资源(CRD和相关对象除外)。这样、再次运行安装程序以更新到更高版本就很容易。
+使用 `uninstall` 命令输入 `tridentctl` 删除与Asta Trandent关联的所有资源(CRD和相关对象除外)。
 
 [listing]
 ----
 ./tridentctl uninstall -n <namespace>
 ----
-要完全删除 Astra Trident ，您应删除由 Astra Trident 创建的 CRD 的最终结果并删除这些 CRD 。

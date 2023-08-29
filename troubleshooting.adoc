@@ -62,12 +62,7 @@ helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true`
 * 如果 Trident 后端报告其处于 `Failed` 状态，尽管之前已正常工作，但这可能是由于更改了与后端关联的 SVM/ 管理员凭据所致。使用 `tridentctl update backend` 更新后端信息或放弃 Trident Pod 将修复此问题描述。
 * 如果在容器运行时安装 Trident 时遇到权限问题，请使用 ` -in cluster=false` 标志尝试安装 Trident 。这不会使用安装程序 POD ，并可避免因 `trident 安装程序` 用户而出现权限问题。
 * 使用 `uninstall 参数 <Uninstalling Trident >` 在运行失败后进行清理。默认情况下，该脚本不会删除 Trident 创建的 CRD ，因此即使在正在运行的部署中，也可以安全地卸载并重新安装。
-* 如果要降级到早期版本的Trident、请先运行 `tridentctl uninstall` 用于删除Trident的命令。下载所需的 https://github.com/NetApp/trident/releases["Trident 版本"] 并使用安装 `tridentctl install` 命令：只有在未创建新 PV 且未对现有 PV/ 后端 / 存储类进行更改的情况下，才考虑降级。由于Trident现在使用CRD来保持状态、因此创建的所有存储实体(后端、存储类、PV和卷快照)都具有 `associated CRD objects <Kubernetes CustomResourceDefinition Objects>` 而不是写入到早期安装的Trident版本所使用的PV中的数据。* 新创建的 PV 在移回早期版本时不可用。 * 降级后， Trident 将无法看到对后端， PV ，存储类和卷快照（已创建 / 更新 / 删除）等对象所做的更改 * 。先前安装的 Trident 版本所使用的 PV 仍可供 Trident 查看。如果返回到早期版本，则不会中断对已使用旧版本创建的 PV 的访问，除非已对其进行升级。
-* 要完全删除 Trident ，请运行 `tridentctl obviate crd` 命令。此操作将删除所有 CRD 对象并取消定义 CRD 。Trident 将不再管理其已配置的任何 PV 。
-+
-
-NOTE: 之后，需要从头开始重新配置 Trident 。
-
+* 如果要降级到早期版本的三端到功能、请先运行 `tridentctl uninstall` 用于删除Trident的命令。下载所需的 https://github.com/NetApp/trident/releases["Trident 版本"] 并使用安装 `tridentctl install` 命令：
 * 成功安装后，如果 PVC 停留在 `Pending` 阶段，则运行 `kubectl describe PVC` 可以提供追加信息，说明 Trident 为何无法为此 PVC 配置 PV 。
 
 
@@ -160,3 +155,42 @@ INFO Deleted service account.
 INFO Removed Trident user from security context constraint.
 INFO Trident uninstallation succeeded.
 ----
+
+
+== 完全删除Asta Trandent和CRD
+
+您可以完全删除Asta Dent以及所有创建的CRD和关联的自定义资源。
+
+
+WARNING: 此操作无法撤消。除非您需要全新安装Asta三端安装、否则请勿执行此操作。要在不删除CRD的情况下卸载Astra Dent、请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Astra Trident"]。
+
+[role="tabbed-block"]
+====
+.Trident 运算符
+--
+要卸载Asta Dandent并使用Dandent操作符完全删除CRD：
+
+[listing]
+----
+kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"wipeout":["crds"],"uninstall":true}}'
+----
+--
+.掌舵
+--
+要使用Helm卸载Asta Dent并完全删除CRD、请执行以下操作：
+
+[listing]
+----
+kubectl patch torc trident --type=merge -p '{"spec":{"wipeout":["crds"],"uninstall":true}}'
+----
+--
+.<code>tridentctl</code>
+--
+在使用卸载Asta Dent后完全删除CRD `tridentctl`
+
+[listing]
+----
+tridentctl obliviate crd
+----
+--
+====
