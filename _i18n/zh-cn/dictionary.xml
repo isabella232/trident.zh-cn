@@ -3435,14 +3435,12 @@ SMB</block>
   <block id="aa919adfeb24335f206c7d14733b5a18" category="list-text">OpenShift 4.10 - 4.10.</block>
   <block id="a5fd2691a6a5df653970895b1c5045ed" category="inline-link-macro">升级Helm安装</block>
   <block id="e94d606eb30ec23b1c90bde5c842bbd7" category="admonition">在将已安装Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本之前、请参见 <block ref="1b428bb9b9fe27db6cd8932526864634" category="inline-link-macro-rx"></block>。</block>
-  <block id="1d4f06912da8045a9e27bb431e271b06" category="list-text">dDocker。io/NetApp/trdent：23.07.0</block>
   <block id="bdecef051e32495c339265b13937fdd2" category="list-text">docer.io/NetApp/trdent-autostsupport：23.07</block>
   <block id="9b99c0d216202fb5b3542f33737fc7cd" category="list-text">注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.5.0</block>
   <block id="51c642e645718f28d506b2bf03ecad77" category="list-text">注册表.k8s.io/sig-storage/CsI-Attacher：v4.3.0</block>
   <block id="2b137b6d62621064ff952b61fea42b29" category="list-text">注册表.k8s.io/sig-storage/CsI-s不同：v1.0.0</block>
   <block id="18a8e4619e4059aeaf215a48da7867f9" category="list-text">注册表.k8s.io/sig-storage/CsI-snapshotter：v6.2.2</block>
   <block id="20388ac1d79215adf3bb812d9291e0be" category="list-text">注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.0.0</block>
-  <block id="38001668e093faa1f515c9af2b7b9df3" category="list-text">dDocker .io/NetApp/trdent操作员：23.07.0 (可选)</block>
   <block id="a97fcb333111f781986275ea628fc4da" category="summary">Asta三端存储作为一个控制器Pod和一个节点Pod运行在集群中的每个工作节点上。节点POD必须在任何可能要挂载Astra Trident卷的主机上运行。</block>
   <block id="26ad893be275d6f4dd0e2992250c147f" category="inline-link-macro">Kubernetes CSI Sidecar Containers</block>
   <block id="db4723304a1add25b171bb663d394c84" category="paragraph">Asta三端到功能可作为一个整体部署 <block ref="7f05a5daccc48435b05c14a7b739fa36" category="inline-xref-macro-rx"></block> 以及一个或多个 <block ref="8642ddce0d2b15cad48dfefb369d4c89" category="inline-xref-macro-rx"></block> 在Kubernetes集群上、并使用标准Kubernetes _CSI Sidecar Containers_来简化CSI插件的部署。 <block ref="c1b69fa7e0376b667b144d553d4653a8" category="inline-link-macro-rx"></block> 由Kubbernetes存储社区维护。</block>
@@ -3511,7 +3509,6 @@ SMB</block>
   <block id="46792977f68671d8fa16e6cf46018cf1" category="paragraph">是的。Prometheus端点、可用于收集有关Asta Trident操作的信息、例如托管的后端数、配置的卷数、已用字节数等。您也可以使用 <block ref="7a2477b8055ecdaa4bd473b0556bcb2a" category="inline-link-macro-rx"></block> 用于监控和分析。</block>
   <block id="8bcc65cd81ef7ffed875ca40674efa09" category="paragraph">是的。Astra三叉型支持ONTAP后端的双向CHAP。这需要设置<block ref="68978ccf4ed83900c8dd27558ca5ec18" prefix=" " category="inline-code"></block> 在后端配置中。</block>
   <block id="10318a43fca1fe376b7af5445f41fec8" category="paragraph">Astra Trident 可以从 20.04 版开始动态创建和管理导出策略。这样，存储管理员便可在其后端配置中提供一个或多个 CIDR 块，并使 Trident 将属于这些范围的节点 IP 添加到其创建的导出策略中。通过这种方式， Astra Trident 会自动管理为给定 CIDR 中具有 IP 的节点添加和删除规则的操作。</block>
-  <block id="6f6ab4c1fa489654339d3d3534ef7ac1" category="section-title">23.07中的新增功能</block>
   <block id="63bfc0691d397470e5b0b05f2a9bcbe4" category="inline-link-macro">问题描述740</block>
   <block id="c8af8b49eb3be9ce411280db66de8a12" category="list-text">修复了通过升级三项功能忽略处于终止状态的旧Pod的问题(<block ref="6f993c83118cc4a1dd5351c8501e26c9" category="inline-link-macro-rx"></block>）。</block>
   <block id="cf182305f6f941fa317842399de1ca4a" category="inline-link-macro">问题描述#C了</block>
@@ -3569,13 +3566,6 @@ SMB</block>
   <block id="33ab2c3f94452baf7f17dab03982edfb" category="paragraph">之后<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 更新后、操作员将处理更新并修补现有安装。这可能会触发创建新Pod以相应地修改安装。</block>
   <block id="ac0482b416d6b2d907db760f79e018a7" category="example-title">&lt;strong&gt; Clean重新安装&lt;/strong&gt;</block>
   <block id="ae2cbb250a37c9e09570ff02857e4cbe" category="paragraph">通过集群范围的三端技术参数操作符、可以完全删除集群范围的资源。用户可以完全卸载Astra tandent并轻松重新安装。</block>
-  <block id="58adb7cccefd9a346c2be3710e91b747" category="paragraph">在中<block ref="02f3115b006f7541a477d52ea8c0f861" prefix=" " category="inline-code"></block>、更新<block ref="cf80b2245b8ccbb73b34094f00cbcc21" prefix=" " category="inline-code"></block> 以反映映像注册表的位置。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。例如：</block>
-  <block id="2d008e1d915d9b251a5e120ad5c776c9" category="list-text"><block ref="bada3baa231c033f7966b583361af3fe" prefix="" category="inline-code"></block> 如果您的映像全部位于一个注册表中。</block>
-  <block id="27e8b9a0239d8ed6a54bf0dcacfa3b6a" category="list-text"><block ref="421883c4d8ce52c54b8b38f8629dbea4" prefix="" category="inline-code"></block> 如果Trident映像与CSI映像位于不同的注册表中。</block>
-  <block id="3adf178faa369e6adca8ba4f90a4da5a" category="cell">"NetApp/trdent AutoSupport：23.07.0"</block>
-  <block id="8dee7812f6df7ba4bf257ed7c44a1c24" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为部署和映像注册表位置指定一个名称。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、<block ref="e43c70c154432522a389a51dc9db6b94" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
-  <block id="9c4627bfa8fc4ce825f994a7fa076a21" category="paragraph">例如、要更改的默认值<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>、运行以下命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 命令位置<block ref="e43c70c154432522a389a51dc9db6b94" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本：</block>
-  <block id="88ba3642863c5a71202aa4c6374d8bc1" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为您的部署指定一个名称、如以下示例中所示<block ref="e43c70c154432522a389a51dc9db6b94" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
   <block id="8e2504f56599a577cd2bbee322a41d4e" category="paragraph">Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的、并提供了新功能、性能增强功能、错误修复和改进。我们建议您每年至少升级一次、以利用Astra Trident中的新功能。</block>
   <block id="4aa39142850a8999e9a4e9350f8bfbe9" category="list-text">Asta Trident 23.07及更高版本需要v1卷快照、不再支持Alpha或Beta快照。</block>
   <block id="34c1edfb4ac8581528c3791be680aeb3" category="inline-link-macro">CVS 服务类型</block>
@@ -3595,10 +3585,8 @@ SMB</block>
   <block id="14d76a1fc05dcace5308e48b3d9bad49" category="admonition">我们建议您查看 <block ref="4185c20447fb5f0bb4f33698bfd20d27" category="inline-link-macro-rx"></block> 在使用操作员进行升级之前。</block>
   <block id="a18aa1b83c1605570c9c2911c5180a7b" category="inline-link-macro">升级&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category='inline-code'/&gt;</block>
   <block id="3b2fa532fe7cebc94d245316f8af8ab4" category="list-text"><block ref="fd3f4a100d968c915adb11c8797ef5d2" category="inline-link-macro-rx"></block></block>
-  <block id="6aad08817d6b182ee6b1acc7aafa477d" category="summary">在使用三端修复操作符升级Asta三端修复程序之前、您应了解升级期间发生的后台进程。其中包括对三项控制器、控制器Pod和节点Pod以及节点DemonSet进行的更改。</block>
   <block id="3d40f2a5a694e68fd88105fc4f5ee0d4" category="section-title">TRIdent操作员升级处理</block>
   <block id="74e51c48d68796e06830c062f5c955c1" category="inline-link-macro">使用啮合式操作员的优势</block>
-  <block id="6aa98fad75f40fc5fb71337ec9a87097" category="paragraph">众多选择之一 <block ref="1294f86abdf2591159d9dd04918b1092" category="inline-link-macro-rx"></block> 安装和升级Asta Trident是指在不中断现有已挂载卷的情况下自动处理Asta Trident和Kubbernetes对象。尤其是、通过与Kubenetes集群进行通信、可以：</block>
   <block id="1a1508da73374db3dd227799f48fdf63" category="list-text">删除并重新创建三级控制器部署和节点DemonSet。</block>
   <block id="88b9e59609789e4bf00d72c8be9dd376" category="list-text">使用新版本更换TRIDent控制器Pod和TRIDent节点Pod。</block>
   <block id="6d3156de6583a452ead75c70c186fcb8" category="list-text">如果节点未更新、则不会阻止更新其余节点。</block>
@@ -3640,7 +3628,6 @@ SMB</block>
   <block id="0af6b3e2ec6d581f66df3a49e97c5c55" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从23.04升级、请运行以下命令：</block>
   <block id="300b059e0bac5cb2864932371a494a8a" category="list-text">使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubenetes 1.27安装Asta Trident 23.07、请运行以下命令：</block>
   <block id="3ae662c67d403e6230b019a96e787b63" category="paragraph">您可以升级Asta三端Helm安装。</block>
-  <block id="e28e33b86151b7658043f95e918ff9f9" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="c6c90f744176bcd7236a56b72a9688e3" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
   <block id="613909529798c8a2543da8e954e5d742" category="section-title">从升级<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装到TRIdent操作员</block>
   <block id="9142b40107d9c5a0b86ef0ce8c25a88b" category="paragraph">您可以从升级到最新版本的Trident操作员<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装。现有后端和PVC将自动可用。</block>
   <block id="89b46b05bfce8415b6a6373a93a0b04e" category="admonition">在切换安装方法之前、请查看 <block ref="d7d87809bc6e1001ccd94c7433d28fd5" category="inline-link-macro-rx"></block></block>
@@ -3858,4 +3845,21 @@ SMB</block>
   <block id="1ce00ab507a065e4febc57b244e25d18" category="example-title">自动导出策略示例</block>
   <block id="5ef13a507a243e20eb0469a9d7670527" category="example-title">IPv6地址示例</block>
   <block id="ee8af8063e9ea3725931d232730b8a8e" category="example-title">Amazon FSx for ONTAP使用SMB卷示例</block>
+  <block id="4c7a5aa32bd20cc1e93c16706345fc24" category="list-text">dDocker。io/NetApp/trdent：23.07.1</block>
+  <block id="8f4c6bec9339a74c71de885862e0c35a" category="list-text">dDocker .io/NetApp/trdent操作程序：23.07.1 (可选)</block>
+  <block id="af35b81563dca040d2036ccc5fdf5cbf" category="summary">在使用三端修复操作符升级Asta三端修复程序之前、您应了解升级期间发生的后台进程。其中包括对支持滚动更新的三项技术控制器、控制器Pod和节点Pod以及节点DemonSet进行的更改。</block>
+  <block id="99c73e527698ab76b32674b7e9dd4708" category="inline-link-macro">_滚动更新_</block>
+  <block id="bec1352836ad67ce44ee000c83d4dae1" category="paragraph">众多选择之一 <block ref="1294f86abdf2591159d9dd04918b1092" category="inline-link-macro-rx"></block> 安装和升级Asta Trident是指在不中断现有已挂载卷的情况下自动处理Asta Trident和Kubbernetes对象。通过这种方式、Astra三端技术可以支持零停机升级、或 <block ref="c0fb6b6f12bb8ae805a97690328ec023" category="inline-link-macro-rx"></block>。尤其是、通过与Kubenetes集群进行通信、可以：</block>
+  <block id="cf2f4ee3dd2f4847e4871244b9ac51df" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="d6a197586cce49153cfbfb94bb2e9941" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
+  <block id="c8f1fdceb105d8331cbfc9721c6bc44f" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为部署和映像注册表位置指定一个名称。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、<block ref="87b2b8072e7d5f7e6e968a7c49bdc4a2" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
+  <block id="d466de3460bd819fa8eb16bf42b1db7e" category="paragraph">例如、要更改的默认值<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>、运行以下命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 命令位置<block ref="87b2b8072e7d5f7e6e968a7c49bdc4a2" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本：</block>
+  <block id="780123b705b81f6d4b816faff5e82117" category="section-title">有关Astra Trdent 23.07.1的重要信息</block>
+  <block id="b2527de2557e527d4be043e1c86bc69c" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为您的部署指定一个名称、如以下示例中所示<block ref="87b2b8072e7d5f7e6e968a7c49bdc4a2" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
+  <block id="6e0b20191589c60f116864ba4a9f6450" category="paragraph">在中<block ref="02f3115b006f7541a477d52ea8c0f861" prefix=" " category="inline-code"></block>、更新<block ref="948b8261d6bd10eba9190981601c0915" prefix=" " category="inline-code"></block> 以反映映像注册表的位置。Your <block ref="57de9a35aeedde82408b1e047030d221" category="inline-link-macro-rx"></block> 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。例如：</block>
+  <block id="d265ac83a999c5664002082de4a65e05" category="list-text"><block ref="40ecbfec412666aee449608e50f67b87" prefix="" category="inline-code"></block> 如果您的映像全部位于一个注册表中。</block>
+  <block id="183ccfb0be6f36dfc545d9bf582a1180" category="list-text"><block ref="d3a400126b30a5fb9f887818fc7e1f04" prefix="" category="inline-code"></block> 如果Trident映像与CSI映像位于不同的注册表中。</block>
+  <block id="d06187756592965157c9f1bc4fc51a9c" category="cell">"NetApp/trdent AutoSupport：23.07"</block>
+  <block id="b686eadf7765eed3e9de8f9cbded0fe8" category="section-title">23.07.1中的新增功能</block>
+  <block id="06918a8f55f386d79e64a70ca217b501" category="paragraph">*Kubernetes:*修复了删除守护程序集的问题，以支持零停机升级(<block ref="6f993c83118cc4a1dd5351c8501e26c9" category="inline-link-macro-rx"></block>）。</block>
+  <block id="ca6a658f1db1af30f178530c90cbe8fc" category="section-title">23.07中的变更</block>
 </blocks>

@@ -52,7 +52,7 @@ kubectl delete -f 23.04/trident-installer/deploy/bundle.yaml -n trident
 +
 [listing]
 ----
-kubectl create -f 23.07.0/trident-installer/deploy/bundle_post_1_25.yaml -n trident
+kubectl create -f 23.07.1/trident-installer/deploy/bundle_post_1_25.yaml -n trident
 ----
 
 
@@ -67,11 +67,11 @@ WARNING: 将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更�
 
 .步骤
 . 下载最新的 Astra Trident 版本。
-. 使用 `helm upgrade` 命令位置 `trident-operator-23.07.0.tgz` 反映了要升级到的版本。
+. 使用 `helm upgrade` 命令位置 `trident-operator-23.07.1.tgz` 反映了要升级到的版本。
 +
 [listing]
 ----
-helm upgrade <name> trident-operator-23.07.0.tgz
+helm upgrade <name> trident-operator-23.07.1.tgz
 ----
 +
 [NOTE]
@@ -82,7 +82,7 @@ helm upgrade <name> trident-operator-23.07.0.tgz
 
 [listing]
 ----
-helm upgrade <name> trident-operator-23.07.0-custom.tgz --set tridentDebug=true
+helm upgrade <name> trident-operator-23.07.1-custom.tgz --set tridentDebug=true
 ----
 ====
 . 运行 `helm list` 验证图表和应用程序版本均已升级。运行 `tridentctl logs` 查看任何调试消息。
@@ -102,11 +102,11 @@ NOTE: 在切换安装方法之前、请查看 link:../trident-get-started/kubern
 +
 [listing]
 ----
-# Download the release required [23.07.0]
-mkdir 23.07.0
-cd 23.07.0
-wget https://github.com/NetApp/trident/releases/download/v22.01.1/trident-installer-23.07.0.tar.gz
-tar -xf trident-installer-23.07.0.tar.gz
+# Download the release required [23.07.1]
+mkdir 23.07.1
+cd 23.07.1
+wget https://github.com/NetApp/trident/releases/download/v22.01.1/trident-installer-23.07.1.tar.gz
+tar -xf trident-installer-23.07.1.tar.gz
 cd trident-installer
 ----
 . 从清单中创建 `tridentorchator` CRD 。
@@ -163,6 +163,6 @@ kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
-Version:                v23.07.0
+Version:                v23.07.1
 ----
 

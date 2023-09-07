@@ -40,7 +40,7 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | 参数 | Description | Default 
 
 
-| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trdent AutoSupport：23.07.0" 
+| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trdent AutoSupport：23.07" 
 
 
 | `autosupport 代理` | 用于发送 AutoSupport 遥测的代理的地址 / 端口 | "http://proxy.example.com:8888"[] 
