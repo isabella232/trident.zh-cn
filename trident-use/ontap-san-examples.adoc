@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/ontap-san-examples.html 
-keywords: map backends, storage classes, trident backend, ontap san, ontap san economy, options, storageclasses, fsx 
+keywords: map backends, storage classes, trident backend, ontap san, ontap san economy, options, storageclasses, fsx, metrocluster 
 summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。 
 ---
 = ONTAP SAN配置选项和示例
@@ -12,7 +12,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 
 
 [role="lead"]
-了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。
+了解如何在Astra三端安装中创建和使用ONTAP SAN驱动程序。本节提供了将后端映射到StorageClasses的后端配置示例和详细信息。
 
 
 
@@ -20,7 +20,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 
 有关后端配置选项，请参见下表：
 
-[cols="3"]
+[cols="1,3,2"]
 |===
 | 参数 | Description | Default 
 
@@ -34,10 +34,25 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
 
 
-| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。可以指定完全限定域名(FQDN)。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
+| `m年` 月 日 | 集群或SVM管理LIF的IP地址。
+
+可以指定完全限定域名(FQDN)。
+
+如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须使用方括号进行定义、例如 `[28e8:d9fb:a825:b7bf:69a8:d02f:9e7b:3555]`。
+
+有关无缝MetroCluster切换、请参见 <<mcc-best>>。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
 
 
-| `dataLIF` | 协议 LIF 的 IP 地址。*请勿为iSCSI指定。* Astra Trident使用 link:https://docs.netapp.com/us-en/ontap/san-admin/selective-lun-map-concept.html["ONTAP 选择性LUN映射"^] 发现建立多路径会话所需的iSCI LIF。如果出现、则会生成警告 `dataLIF` 已明确定义。 | 由SVM派生 
+| `dataLIF` | 协议 LIF 的 IP 地址。
+
+*请勿为iSCSI指定。* Astra Trident使用 link:https://docs.netapp.com/us-en/ontap/san-admin/selective-lun-map-concept.html["ONTAP 选择性LUN映射"^] 发现建立多路径会话所需的iSCI LIF。如果出现、则会生成警告 `dataLIF` 已明确定义。
+
+*对于MetroCluster省略。*请参见 <<mcc-best>>。 | 由SVM派生 
+
+
+| `sVM` | 要使用的 Storage Virtual Machine
+
+*对于MetroCluster省略。*请参见 <<mcc-best>>。 | 如果指定了 SVM `managementLIF` ，则派生 
 
 
 | `使用 CHAP` | 使用CHAP对iSCSI的ONTAP SAN驱动程序进行身份验证[布尔值]。设置为 `true` 让Astra Trident为后端给定的SVM配置并使用双向CHAP作为默认身份验证。请参见 link:ontap-san-prep.html["准备使用ONTAP SAN驱动程序配置后端"] 了解详细信息。 | `false` 
@@ -71,9 +86,6 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 
 
 | `密码` | 与ONTAP 集群通信所需的密码。用于基于凭据的身份验证。 | " 
-
-
-| `sVM` | 要使用的 Storage Virtual Machine | 如果指定了 SVM `managementLIF` ，则派生 
 
 
 | `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。无法稍后修改。要更新此参数、您需要创建一个新的后端。 | `trident` 
@@ -192,8 +204,8 @@ image::../media/vol-show-san.png[显示了 volume show 命令的输出。]
 
 NOTE: 如果您将Amazon FSx on NetApp ONTAP与Asta Dent结合使用、则建议您为指定DNS名称、而不是IP地址。
 
-.ONTAP SAN最低配置示例
-[%collapsible%open]
+.ONTAP SAN示例
+[%collapsible]
 ====
 这是使用的基本配置 `ontap-san` 驱动程序。
 
@@ -211,8 +223,8 @@ username: vsadmin
 password: <password>
 ----
 ====
-.ONTAP SAN经济性最低配置示例
-[%collapsible%open]
+.ONTAP SAN经济性示例
+[%collapsible]
 ====
 [listing]
 ----
@@ -225,8 +237,25 @@ username: vsadmin
 password: <password>
 ----
 ====
+.MetroCluster示例
+[#mcc-best%collapsible]
+====
+您可以对后端进行配置、以避免在切换和切回后手动更新后端定义 link:../trident-reco/backup.html#svm-replication-and-recovery["SVM复制和恢复"]。
+
+要进行无缝切换和切回、请使用指定SVM `managementLIF` 并省略 `dataLIF` 和 `svm` parameters例如：
+
+[listing]
+----
+---
+version: 1
+storageDriverName: ontap-san
+managementLIF: 192.168.1.66
+username: vsadmin
+password: password
+----
+====
 .基于证书的身份验证示例
-[%collapsible%open]
+[%collapsible]
 ====
 在本基本配置示例中 `clientCertificate`， `clientPrivateKey`，和 `trustedCACertificate` (如果使用可信CA、则可选)将填充 `backend.json` 和分别采用客户端证书、专用密钥和可信CA证书的base64编码值。
 
@@ -249,7 +278,7 @@ trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
 ----
 ====
 .双向CHAP示例
-[%collapsible%open]
+[%collapsible]
 ====
 这些示例使用创建后端 `useCHAP` 设置为 `true`。
 
@@ -300,7 +329,7 @@ Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上�
 在这些示例中、某些存储池会自行设置 `spaceReserve`， `spaceAllocation`，和 `encryption` 值、而某些池会覆盖默认值。
 
 .ONTAP SAN示例
-[%collapsible%open]
+[%collapsible]
 ====
 [listing]
 ----
@@ -351,7 +380,7 @@ storage:
 ----
 ====
 .ONTAP SAN经济性示例
-[%collapsible%open]
+[%collapsible]
 ====
 [listing]
 ----

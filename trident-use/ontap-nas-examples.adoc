@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/ontap-nas-examples.html 
-keywords: map backends, storage classes, trident backend, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups, options, storageclasses, fsx 
+keywords: map backends, storage classes, trident backend, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups, options, storageclasses, fsx, metrocluster 
 summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。 
 ---
 = ONTAP NAS配置选项和示例
@@ -12,7 +12,7 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 
 
 [role="lead"]
-了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。
+了解如何创建ONTAP NAS驱动程序并将其用于Astra三端安装。本节提供了将后端映射到StorageClasses的后端配置示例和详细信息。
 
 
 
@@ -20,7 +20,7 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 
 有关后端配置选项，请参见下表：
 
-[cols="3"]
+[cols="1,3,2"]
 |===
 | 参数 | Description | Default 
 
@@ -34,10 +34,29 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 | `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
 
 
-| `m年` 月 日 | 集群或SVM管理LIF的IP地址要进行无缝MetroCluster 切换、必须指定SVM管理LIF。可以指定完全限定域名(FQDN)。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
+| `m年` 月 日 | 集群或 SVM 管理 LIF 的 IP 地址
+
+可以指定完全限定域名(FQDN)。
+
+如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须使用方括号进行定义、例如 `[28e8:d9fb:a825:b7bf:69a8:d02f:9e7b:3555]`。
+
+有关无缝MetroCluster切换、请参见 <<mcc-best>>。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
 
 
-| `dataLIF` | 协议 LIF 的 IP 地址。建议指定 `dataLIF`。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 | 指定的地址或派生自SVM (如果未指定)(不建议) 
+| `dataLIF` | 协议 LIF 的 IP 地址。
+
+建议指定 `dataLIF`。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。
+
+可以在初始设置后更改。请参见 。
+
+如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须使用方括号进行定义、例如 `[28e8:d9fb:a825:b7bf:69a8:d02f:9e7b:3555]`。
+
+*对于MetroCluster省略。*请参见 <<mcc-best>>。 | 指定的地址或派生自SVM (如果未指定)(不建议) 
+
+
+| `sVM` | 要使用的 Storage Virtual Machine
+
+*对于MetroCluster省略。*请参见 <<mcc-best>>。 | 如果指定了 SVM `managementLIF` ，则派生 
 
 
 | `autosExportPolicy` | 启用自动创建和更新导出策略[布尔值]。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | false 
@@ -64,9 +83,6 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 
 
 | `密码` | 连接到集群 /SVM 的密码。用于基于凭据的身份验证 |  
-
-
-| `sVM` | 要使用的 Storage Virtual Machine | 如果指定了 SVM `managementLIF` ，则派生 
 
 
 | `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。设置后无法更新 | Trident 
@@ -109,11 +125,11 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 |===
 
 
-=== 用于配置卷的后端配置选项
+== 用于配置卷的后端配置选项
 
 您可以在中使用这些选项控制默认配置 `defaults` 配置部分。有关示例，请参见以下配置示例。
 
-[cols="3"]
+[cols="1,3,2"]
 |===
 | 参数 | Description | Default 
 
@@ -161,7 +177,7 @@ NOTE: 在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本�
 
 
 
-==== 卷配置示例
+=== 卷配置示例
 
 下面是一个定义了默认值的示例：
 
@@ -216,8 +232,8 @@ image::../media/volume-show-nas.png[显示了 volume show 命令的输出。]
 
 NOTE: 如果在采用 Trident 的 NetApp ONTAP 上使用 Amazon FSx ，建议为 LIF 指定 DNS 名称，而不是 IP 地址。
 
-.的最低配置 <code>ontap-nas-economy</code>
-[%collapsible%open]
+.ONTAP NAS经济性示例
+[%collapsible]
 ====
 [listing]
 ----
@@ -231,8 +247,8 @@ username: vsadmin
 password: password
 ----
 ====
-.的最低配置 <code>ontap-nas-flexgroup</code>
-[%collapsible%open]
+.ONTAP NAS FlexGroup示例
+[%collapsible]
 ====
 [listing]
 ----
@@ -246,8 +262,25 @@ username: vsadmin
 password: password
 ----
 ====
-.SMB卷的最低配置
-[%collapsible%open]
+.MetroCluster示例
+[#mcc-best%collapsible]
+====
+您可以对后端进行配置、以避免在切换和切回后手动更新后端定义 link:../trident-reco/backup.html#svm-replication-and-recovery["SVM复制和恢复"]。
+
+要进行无缝切换和切回、请使用指定SVM `managementLIF` 并省略 `dataLIF` 和 `svm` parameters例如：
+
+[listing]
+----
+---
+version: 1
+storageDriverName: ontap-nas
+managementLIF: 192.168.1.66
+username: vsadmin
+password: password
+----
+====
+.SMB卷示例
+[%collapsible]
 ====
 [listing]
 ----
@@ -266,8 +299,8 @@ username: vsadmin
 password: password
 ----
 ====
-.基于证书的身份验证
-[%collapsible%open]
+.基于证书的身份验证示例
+[%collapsible]
 ====
 这是一个最低后端配置示例。 `clientCertificate`， `clientPrivateKey`，和 `trustedCACertificate` (如果使用可信CA、则可选)将填充 `backend.json` 和分别采用客户端证书、专用密钥和可信CA证书的base64编码值。
 
@@ -286,8 +319,8 @@ trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
 storagePrefix: myPrefix_
 ----
 ====
-.自动导出策略
-[%collapsible%open]
+.自动导出策略示例
+[%collapsible]
 ====
 此示例显示了如何指示 Astra Trident 使用动态导出策略自动创建和管理导出策略。此操作对于也是如此 `ontap-nas-economy` 和 `ontap-nas-flexgroup` 驱动程序。
 
@@ -310,8 +343,8 @@ password: password
 nfsMountOptions: nfsvers=4
 ----
 ====
-.使用IPv6地址
-[%collapsible%open]
+.IPv6地址示例
+[%collapsible]
 ====
 此示例显示了 `managementLIF` 使用IPv6地址。
 
@@ -330,8 +363,8 @@ username: vsadmin
 password: password
 ----
 ====
-.使用SMB卷的Amazon FSx for ONTAP
-[%collapsible%open]
+.Amazon FSx for ONTAP使用SMB卷示例
+[%collapsible]
 ====
 。 `smbShare` 使用SMB卷的FSx for ONTAP需要参数。
 
