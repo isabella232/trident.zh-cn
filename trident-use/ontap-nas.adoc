@@ -69,12 +69,14 @@ Rwo、ROX、rwx、RWOP
 
 Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷) `ontap-nas`， `ontap-nas-flexgroup`，和 `ontap-san` 驱动程序。请参见 link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Astra Control复制前提条件"^] 了解详细信息。
 
-* 您必须使用 `ontap-nas` 适用于需要数据保护、灾难恢复和移动性的生产工作负载。
-* 使用 ... `ontap-san-economy` 预期的卷使用量应远远高于ONTAP 支持的容量。
-* 使用 ... `ontap-nas-economy` 仅当预期的卷使用量应远高于ONTAP 支持的容量时、以及 `ontap-san-economy` 无法使用驱动程序。
+[WARNING]
+====
+* 使用 ... `ontap-san-economy` 只有当永久性卷使用量计数预期高于时、才会显示此值 link:https://docs.netapp.com/us-en/ontap/volumes/storage-limits-reference.html["支持的ONTAP卷限制"^]。
+* 使用 ... `ontap-nas-economy` 只有当永久性卷使用量计数预期高于时、才会显示此值 link:https://docs.netapp.com/us-en/ontap/volumes/storage-limits-reference.html["支持的ONTAP卷限制"^] 和 `ontap-san-economy` 无法使用驱动程序。
 * 请勿使用 `ontap-nas-economy` 预测数据保护、灾难恢复或移动性的需求。
 
 
+====
 
 
 == 用户权限
