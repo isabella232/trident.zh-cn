@@ -3864,5 +3864,5 @@ SMB</block>
   <block id="ca6a658f1db1af30f178530c90cbe8fc" category="section-title">23.07中的变更</block>
   <block id="57154d2dcf591aaa3d4dcbfbba196075" category="inline-link-macro">支持的ONTAP卷限制</block>
   <block id="7fe76f1189ac93d41118f7ba3e36e3ab" category="list-text">使用 ...<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 只有当永久性卷使用量计数预期高于时、才会显示此值 <block ref="e5997a58d747f862af8a862cd1b54e31" category="inline-link-macro-rx"></block>。</block>
-  <block id="dd19a3f7646938a74ee3f35605e9c306" category="list-text">使用 ...<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 只有当永久性卷使用量计数预期高于时、才会显示此值 <block ref="e5997a58d747f862af8a862cd1b54e31" category="inline-link-macro-rx"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 无法使用驱动程序。</block>
+  <block id="a6b18abf4de4d534121b0cca3b164d74" category="list-text">使用 ...<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 只有当永久性卷使用量计数预期高于时、才会显示此值 <block ref="e5997a58d747f862af8a862cd1b54e31" category="inline-link-macro-rx"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 无法使用驱动程序。</block>
 </blocks>
