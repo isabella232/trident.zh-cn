@@ -28,10 +28,10 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 | `ve版本` |  | 始终为 1 
 
 
-| `storageDriverName` | 存储驱动程序的名称 | "ontap-nas" ， "ontap-nas-economy-" ， "ontap-nas-flexgroup" ， "ontap-san " ， "ontap-san-economy-" 
+| `storageDriverName` | 存储驱动程序的名称 | "ONTAP NAS "、"ONTAP NAS经济"、"ONTAP NAS灵活组"、"ONTAP SAN "、"ONTAP SAN经济" 
 
 
-| `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
+| `backendName` | 自定义名称或存储后端 | 驱动程序名称+"_"+ dataLIF 
 
 
 | `m年` 月 日 | 集群或 SVM 管理 LIF 的 IP 地址
@@ -64,19 +64,19 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 
 | `autosExportCIDR` | 用于筛选Kubbernetes节点IP的CIDR列表 `autoExportPolicy` 已启用。
 
-使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | [ "0.0.0.0/0 " ， " ：： /0 "]` 
+使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | ["0.0.0.0/0、"：：：/0"]` 
 
 
-| `标签` | 要应用于卷的一组任意 JSON 格式的标签 | " 
+| `标签` | 要应用于卷的一组任意 JSON 格式的标签 | "" 
 
 
-| `客户端证书` | 客户端证书的 Base64 编码值。用于基于证书的身份验证 | " 
+| `客户端证书` | 客户端证书的 Base64 编码值。用于基于证书的身份验证 | "" 
 
 
-| `clientPrivateKey` | 客户端专用密钥的 Base64 编码值。用于基于证书的身份验证 | " 
+| `clientPrivateKey` | 客户端专用密钥的 Base64 编码值。用于基于证书的身份验证 | "" 
 
 
-| `trustedCACertifate` | 受信任 CA 证书的 Base64 编码值。可选。用于基于证书的身份验证 | " 
+| `trustedCACertifate` | 受信任 CA 证书的 Base64 编码值。可选。用于基于证书的身份验证 | "" 
 
 
 | `用户名` | 用于连接到集群 /SVM 的用户名。用于基于凭据的身份验证 |  
@@ -85,31 +85,33 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 | `密码` | 连接到集群 /SVM 的密码。用于基于凭据的身份验证 |  
 
 
-| `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。设置后无法更新 | Trident 
+| `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。设置后无法更新 | "三级联" 
 
 
-| `limitAggregateUsage` | 如果使用量超过此百分比，则配置失败。* 不适用于适用于 ONTAP 的 Amazon FSx * | " （默认情况下不强制实施） 
+| `limitAggregateUsage` | 如果使用量超过此百分比，则配置失败。* 不适用于适用于 ONTAP 的 Amazon FSx * | "" （默认情况下不强制实施） 
 
 
-| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。 | " （默认情况下不强制实施） 
+| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。 | ""(默认情况下不强制实施) 
 
 
-| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 | " （默认情况下不强制实施） 
+| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 | ""(默认情况下不强制实施) 
 
 
-| `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 | 100 
+| `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 | "100" 
 
 
-| `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用 `debugTraceFlags` 除非您正在进行故障排除并需要详细的日志转储。 | 空 
+| `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"METHO"：true｝
+
+请勿使用 `debugTraceFlags` 除非您正在进行故障排除并需要详细的日志转储。 | 空 
 
 
 | `nasType` | 配置NFS或SMB卷创建。选项包括 `nfs`， `smb` 或为空。默认情况下、将设置为空会将NFS卷设置为空。 | `nfs` 
 
 
-| `nfsMountOptions` | NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。 | " 
+| `nfsMountOptions` | NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。 | "" 
 
 
-| `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | 200 
+| `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | "200" 
 
 
 | `smbShare` | 您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称；允许Asta三端到功能创建SMB共享的名称；或者、您可以将参数留空以防止对卷进行通用共享访问。
@@ -134,22 +136,22 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 | 参数 | Description | Default 
 
 
-| `spaceAllocation` | LUN 的空间分配 | true 
+| `spaceAllocation` | LUN 的空间分配 | "正确" 
 
 
-| `s页面预留` | 空间预留模式； " 无 " （精简）或 " 卷 " （厚） | 无 
+| `s页面预留` | 空间预留模式；"无"(精简)或"卷"(厚) | "无" 
 
 
-| `sSnapshot 策略` | 要使用的 Snapshot 策略 | 无 
+| `sSnapshot 策略` | 要使用的 Snapshot 策略 | "无" 
 
 
-| `qosPolicy` | 要为创建的卷分配的 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一 | " 
+| `qosPolicy` | 要为创建的卷分配的 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一 | "" 
 
 
-| `adaptiveQosPolicy` | 要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。不受 ontap-nas-economy. | " 
+| `adaptiveQosPolicy` | 要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。不受 ontap-nas-economy. | "" 
 
 
-| `sSnapshot 预留` | 为快照预留的卷百分比为 "0" | 如果 `snapshotPolicy` 为 " 无 " ，则为 " 无 " ，否则为 " " 
+| `sSnapshot 预留` | 为快照预留的卷百分比 | 如果为"0"、则为"0" `snapshotPolicy` 为"none"、否则为"" 
 
 
 | `splitOnClone` | 创建克隆时，从其父级拆分该克隆 | false 
@@ -158,13 +160,13 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 | `加密` | 在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]。 | false 
 
 
-| `分层策略` | 使用 " 无 " 的分层策略 | 适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 " 
+| `分层策略` | 使用"无"的层策略 | 对于ONTAP 9.5 SVM-DR之前的配置、为"仅快照" 
 
 
-| `unixPermissions` | 新卷的模式 | 对于NFS卷为"777"；对于SMB卷为空(不适用) 
+| `unixPermissions` | 新卷的模式 | "777"表示NFS卷；空(不适用)表示SMB卷 
 
 
-| `snapshotDir` | 控制 ` .snapshot` 目录的可见性 | false 
+| `snapshotDir` | 控制对的访问 `.snapshot` 目录 | false 
 
 
 | `exportPolicy` | 要使用的导出策略 | default 
@@ -391,7 +393,7 @@ storagePrefix: myPrefix_
 
 在下面显示的示例后端定义文件中、为所有存储池设置了特定默认值、例如 `spaceReserve` 无、 `spaceAllocation` 为false、和 `encryption` 为false。虚拟池在存储部分中进行定义。
 
-Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上为设置 `ontap-nas` 或FlexGroup `ontap-nas-flexgroup`。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。
+A作用 是在"Comments"字段中设置配置标签。在FlexVol上为设置了注释 `ontap-nas` 或FlexGroup `ontap-nas-flexgroup`。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。
 
 在这些示例中、某些存储池会自行设置 `spaceReserve`， `spaceAllocation`，和 `encryption` 值、而某些池会覆盖默认值。
 

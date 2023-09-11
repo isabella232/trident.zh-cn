@@ -273,12 +273,12 @@ NOTE: VolumeSnapshot 的生命周期与源 PVC 无关：即使删除了源 PVC �
 
 Kubernetes `VolumeSnapshotContent` 对象表示从已配置的卷创建的快照。它类似于 `PersistentVolume` ，表示存储集群上配置的快照。与 `PersistentVolumeClaim` 和 `PersistentVolume` 对象类似，创建快照时， `VolumeSnapshotContent` 对象会与请求创建快照的 `VolumeSnapshot` 对象保持一对一映射。
 
-
-NOTE: Trident 会创建 `VolumeSnapshotContent` 对象，并根据其配置的卷自动将其注册到 Kubernetes 集群中。您不应自行管理它们。
-
 `VolumeSnapshotContent` 对象包含用于唯一标识快照的详细信息，例如 `snapshotHandle` 。此 `snapshotHandle` 是 PV 名称和 `VolumeSnapshotContent` 对象名称的唯一组合。
 
 收到快照请求后， Trident 会在后端创建快照。创建快照后， Trident 会配置一个 `VolumeSnapshotContent` 对象，从而将快照公开到 Kubernetes API 。
+
+
+NOTE: 通常、您不需要管理 `VolumeSnapshotContent` 对象。但如果需要、则例外 link:../trident-use/vol-snapshots.html#import-a-volume-snapshot["导入卷快照"] 在Asta Trdent外部创建。
 
 
 

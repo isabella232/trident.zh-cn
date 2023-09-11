@@ -31,7 +31,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `storageDriverName` | 存储驱动程序的名称 | `ontap-nas`， `ontap-nas-economy`， `ontap-nas-flexgroup`， `ontap-san`， `ontap-san-economy` 
 
 
-| `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
+| `backendName` | 自定义名称或存储后端 | 驱动程序名称+"_"+ dataLIF 
 
 
 | `m年` 月 日 | 集群或SVM管理LIF的IP地址。
@@ -58,49 +58,54 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `使用 CHAP` | 使用CHAP对iSCSI的ONTAP SAN驱动程序进行身份验证[布尔值]。设置为 `true` 让Astra Trident为后端给定的SVM配置并使用双向CHAP作为默认身份验证。请参见 link:ontap-san-prep.html["准备使用ONTAP SAN驱动程序配置后端"] 了解详细信息。 | `false` 
 
 
-| `chapInitiatorSecret` | CHAP 启动程序密钥。如果为 `useCHAP=true` ，则为必需项 | " 
+| `chapInitiatorSecret` | CHAP 启动程序密钥。如果为 `useCHAP=true` ，则为必需项 | "" 
 
 
-| `标签` | 要应用于卷的一组任意 JSON 格式的标签 | " 
+| `标签` | 要应用于卷的一组任意 JSON 格式的标签 | "" 
 
 
-| `chapTargetInitiatorSecret` | CHAP 目标启动程序密钥。如果为 `useCHAP=true` ，则为必需项 | " 
+| `chapTargetInitiatorSecret` | CHAP 目标启动程序密钥。如果为 `useCHAP=true` ，则为必需项 | "" 
 
 
-| `chapUsername` | 入站用户名。如果为 `useCHAP=true` ，则为必需项 | " 
+| `chapUsername` | 入站用户名。如果为 `useCHAP=true` ，则为必需项 | "" 
 
 
-| `chapTargetUsername` | 目标用户名。如果为 `useCHAP=true` ，则为必需项 | " 
+| `chapTargetUsername` | 目标用户名。如果为 `useCHAP=true` ，则为必需项 | "" 
 
 
-| `客户端证书` | 客户端证书的 Base64 编码值。用于基于证书的身份验证 | " 
+| `客户端证书` | 客户端证书的 Base64 编码值。用于基于证书的身份验证 | "" 
 
 
-| `clientPrivateKey` | 客户端专用密钥的 Base64 编码值。用于基于证书的身份验证 | " 
+| `clientPrivateKey` | 客户端专用密钥的 Base64 编码值。用于基于证书的身份验证 | "" 
 
 
-| `trustedCACertifate` | 受信任 CA 证书的 Base64 编码值。可选。用于基于证书的身份验证。 | " 
+| `trustedCACertifate` | 受信任 CA 证书的 Base64 编码值。可选。用于基于证书的身份验证。 | "" 
 
 
-| `用户名` | 与ONTAP 集群通信所需的用户名。用于基于凭据的身份验证。 | " 
+| `用户名` | 与ONTAP 集群通信所需的用户名。用于基于凭据的身份验证。 | "" 
 
 
-| `密码` | 与ONTAP 集群通信所需的密码。用于基于凭据的身份验证。 | " 
+| `密码` | 与ONTAP 集群通信所需的密码。用于基于凭据的身份验证。 | "" 
+
+
+| `sVM` | 要使用的 Storage Virtual Machine | 如果指定了 SVM `managementLIF` ，则派生 
 
 
 | `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。无法稍后修改。要更新此参数、您需要创建一个新的后端。 | `trident` 
 
 
-| `limitAggregateUsage` | 如果使用量超过此百分比，则配置失败。如果您使用适用于NetApp ONTAP 后端的Amazon FSX、请勿指定  `limitAggregateUsage`。提供的 `fsxadmin` 和 `vsadmin` 请勿包含检索聚合使用情况所需的权限、并使用Astra Trident对其进行限制。 | " （默认情况下不强制实施） 
+| `limitAggregateUsage` | 如果使用量超过此百分比，则配置失败。如果您使用适用于NetApp ONTAP 后端的Amazon FSX、请勿指定  `limitAggregateUsage`。提供的 `fsxadmin` 和 `vsadmin` 请勿包含检索聚合使用情况所需的权限、并使用Astra Trident对其进行限制。 | "" （默认情况下不强制实施） 
 
 
-| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN管理的卷的最大大小。 | " （默认情况下不强制实施） 
+| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN管理的卷的最大大小。 | ""(默认情况下不强制实施) 
 
 
 | `lunsPerFlexvol` | 每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内 | `100` 
 
 
-| `debugTraceFlags` | 故障排除时要使用的调试标志。例如、除非您正在进行故障排除并需要详细的日志转储、否则｛"api"：false、"method "：true｝请勿使用。 | `null` 
+| `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"METHO"：true｝
+
+除非正在进行故障排除并需要详细的日志转储、否则请勿使用。 | `null` 
 
 
 | `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
@@ -118,22 +123,22 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | 参数 | Description | Default 
 
 
-| `spaceAllocation` | LUN 的空间分配 | true 
+| `spaceAllocation` | LUN 的空间分配 | "正确" 
 
 
-| `s页面预留` | 空间预留模式； " 无 " （精简）或 " 卷 " （厚） | 无 
+| `s页面预留` | 空间预留模式；"无"(精简)或"卷"(厚) | "无" 
 
 
-| `sSnapshot 策略` | 要使用的 Snapshot 策略 | 无 
+| `sSnapshot 策略` | 要使用的 Snapshot 策略 | "无" 
 
 
-| `qosPolicy` | 要为创建的卷分配的 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享QoS策略组、并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。 | " 
+| `qosPolicy` | 要为创建的卷分配的 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享QoS策略组、并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。 | "" 
 
 
-| `adaptiveQosPolicy` | 要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一 | " 
+| `adaptiveQosPolicy` | 要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一 | "" 
 
 
-| `sSnapshot 预留` | 为快照预留的卷百分比为 "0" | 如果 `snapshotPolicy` 为 " 无 " ，则为 " 无 " ，否则为 " " 
+| `sSnapshot 预留` | 为快照预留的卷百分比 | 如果为"0"、则为"0" `snapshotPolicy` 为"none"、否则为"" 
 
 
 | `splitOnClone` | 创建克隆时，从其父级拆分该克隆 | false 
@@ -148,7 +153,7 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 | `securityStyle` | 新卷的安全模式 | `unix` 
 
 
-| `分层策略` | 使用 " 无 " 的分层策略 | 适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 " 
+| `分层策略` | 使用"无"的层策略 | 对于ONTAP 9.5 SVM-DR之前的配置、为"仅快照" 
 |===
 
 
@@ -324,7 +329,7 @@ password: <password>
 
 在这些示例后端定义文件中、为所有存储池设置了特定默认值、例如 `spaceReserve` 无、 `spaceAllocation` 为false、和 `encryption` 为false。虚拟池在存储部分中进行定义。
 
-Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上设置。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。
+A作用 是在"Comments"字段中设置配置标签。注释在FlexVol 上设置。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。
 
 在这些示例中、某些存储池会自行设置 `spaceReserve`， `spaceAllocation`，和 `encryption` 值、而某些池会覆盖默认值。
 

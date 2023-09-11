@@ -267,7 +267,6 @@
   <block id="f67af493d1fd83b472d5f27307b2f3d9" category="paragraph">收到卷快照请求后， Trident 会自动管理在后端为卷创建快照的操作，并通过创建唯一的 `VolumeSnapshotContent` 对象公开快照。您可以从现有 PVC 创建快照，并在创建新 PVC 时将这些快照用作 DataSource 。</block>
   <block id="53847015682974d066a919b1b45a44a5" category="admonition">VolumeSnapshot 的生命周期与源 PVC 无关：即使删除了源 PVC ，快照也会持续存在。删除具有关联快照的 PVC 时， Trident 会将此 PVC 的后备卷标记为 " 正在删除 " 状态，但不会将其完全删除。删除所有关联快照后，卷将被删除。</block>
   <block id="e562bdcf97dce6973a736651f45eb054" category="paragraph">Kubernetes `VolumeSnapshotContent` 对象表示从已配置的卷创建的快照。它类似于 `PersistentVolume` ，表示存储集群上配置的快照。与 `PersistentVolumeClaim` 和 `PersistentVolume` 对象类似，创建快照时， `VolumeSnapshotContent` 对象会与请求创建快照的 `VolumeSnapshot` 对象保持一对一映射。</block>
-  <block id="ca8035550d447392debfcaeb62855bd3" category="admonition">Trident 会创建 `VolumeSnapshotContent` 对象，并根据其配置的卷自动将其注册到 Kubernetes 集群中。您不应自行管理它们。</block>
   <block id="af741aec1c66e51c00d35a38f92471de" category="paragraph">`VolumeSnapshotContent` 对象包含用于唯一标识快照的详细信息，例如 `snapshotHandle` 。此 `snapshotHandle` 是 PV 名称和 `VolumeSnapshotContent` 对象名称的唯一组合。</block>
   <block id="b22c73e808eef321ee9941ec2e58b64f" category="paragraph">收到快照请求后， Trident 会在后端创建快照。创建快照后， Trident 会配置一个 `VolumeSnapshotContent` 对象，从而将快照公开到 Kubernetes API 。</block>
   <block id="7c43d52062b795d2d8e7f33b9dbbf671" category="paragraph">Kubernetes 自定义资源是 Kubernetes API 中的端点，由管理员定义并用于对类似对象进行分组。Kubernetes 支持创建自定义资源以存储对象集合。您可以通过运行 `kubectl get crds` 来获取这些资源定义。</block>
@@ -645,7 +644,6 @@
   <block id="f71fd95d4de4797557e6830c1448c945" category="summary">您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安装。</block>
   <block id="6224e22d5a77816dd8b659c25a3f88a5" category="paragraph">升级到最新版本的 Astra Trident 时，请考虑以下事项：</block>
   <block id="4ff0a9f6065b24ce3d325bad3223f4e2" category="paragraph">卸载并重新安装 Astra Trident 可作为升级。卸载 Trident 时，不会删除 Astra Trident 部署所使用的永久性卷声明（ PVC ）和永久性卷（ PV ）。在 Astra Trident 脱机期间，已配置的 PV 仍可用，而 Astra Trident 将在恢复联机后为在此期间创建的任何 PVC 配置卷。</block>
-  <block id="f58e95baa778c9a2bd1a4597fb49d9b7" category="doc">ONTAP 驱动程序</block>
   <block id="48cf24486d9a8e65a142b25682f19949" category="cell">驱动程序</block>
   <block id="888a77f5ac0748b6c8001822417df8b6" category="cell">协议</block>
   <block id="1b5e109e8afd1f9b7f5bbf951eea3442" category="cell">卷模式</block>
@@ -1073,7 +1071,6 @@
   <block id="920708f6d71767dcff22f9e43b4ec0c0" category="paragraph">如果更新了活动节点的 IP 地址，则必须在此节点上重新启动 Astra Trident Pod 。然后， Astra Trident 将更新其管理的后端的导出策略，以反映此 IP 更改。</block>
   <block id="5f3124ab7224f89a36fbb64fd2ebda15" category="summary">了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 驱动程序。本节提供了后端配置示例以及有关如何将后端映射到 StorageClasses 的详细信息。</block>
   <block id="19ce3b2e7823907e5153f00fe04f64f7" category="doc">配置选项和示例</block>
-  <block id="a85f55a18073767a4945eac810e72cb2" category="cell">"ontap-nas" ， "ontap-nas-economy-" ， "ontap-nas-flexgroup" ， "ontap-san " ， "ontap-san-economy-"</block>
   <block id="237d7a1666794b0937adde704bb4795c" category="cell">驱动程序名称 + "_" + dataLIF</block>
   <block id="07c54fe26be1e43601e99cd9d4fbe262" category="cell">`m年` 月 日</block>
   <block id="c560b8d02093547d93a87c72d8b16eaf" category="cell">"10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] "</block>
@@ -1104,20 +1101,15 @@
   <block id="3b890f58db76bb3003ada171cd18c4db" category="cell">`igroupName`</block>
   <block id="c08068da3c5d19547544c4bd424a6b76" category="cell">`s存储前缀`</block>
   <block id="e3f688f3aa653574b3253640aa98f47c" category="cell">在 SVM 中配置新卷时使用的前缀。设置后无法更新</block>
-  <block id="a996d2f8e072c583d6cc26aa1e4aba87" category="cell">Trident</block>
   <block id="12d2394af47293b12d6b5f411f99a6d1" category="cell">`limitAggregateUsage`</block>
-  <block id="9d96dfa28e7454a1119de523123a1e05" category="cell">" （默认情况下不强制实施）</block>
   <block id="c9a303edbc714d051896c3a678e59a8a" category="cell">`lunsPerFlexvol`</block>
   <block id="79892588cbecd0b88729ea1a55b2a3a4" category="cell">每个 FlexVol 的最大 LUN 数，必须在 50 ， 200 范围内</block>
-  <block id="2d782f413944b272c911c548418a18a3" category="cell">100</block>
   <block id="f703d18584e163e18762e4dc13ad96a0" category="cell">`useREST`</block>
   <block id="193a49bcfb561fea878daa5efe72cad9" category="section-title">用于配置卷的后端配置选项</block>
   <block id="a0ee23c5b4cbd6a28a4143933891f927" category="cell">`spaceAllocation`</block>
   <block id="26161d08a960162cd8633d0e23058aed" category="cell">LUN 的空间分配</block>
-  <block id="3be488c6a2bc52ceb7e8685ca24927d7" category="cell">true</block>
   <block id="a6bddf19eed00dbe2199864dee8454ce" category="cell">`s页面预留`</block>
   <block id="3bce5b103341500856287f5347e19f28" category="cell">空间预留模式； " 无 " （精简）或 " 卷 " （厚）</block>
-  <block id="e84c56670c389b09fcad5da7309a165b" category="cell">无</block>
   <block id="0ec3875cf79264e4689a646be2f704b6" category="cell">`sSnapshot 策略`</block>
   <block id="77f69e470b8766d2dc5df4b7f469ed72" category="cell">要使用的 Snapshot 策略</block>
   <block id="84d2c2c768bd1900489bad5fb46b4aac" category="cell">`qosPolicy`</block>
@@ -1125,16 +1117,12 @@
   <block id="952e3a12d35e717bf86a6000b0c08976" category="cell">`adaptiveQosPolicy`</block>
   <block id="036c0eabd455d8a92d350429f2f5747e" category="cell">要为创建的卷分配的自适应 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一</block>
   <block id="11f9fcd55c1d81cf352f86fe4cdfd444" category="cell">为快照预留的卷百分比为 "0"</block>
-  <block id="af6626456fa359992271ea88de34094f" category="cell">如果 `snapshotPolicy` 为 " 无 " ，则为 " 无 " ，否则为 " "</block>
   <block id="4be01095ce6e500084fc427e5dec61ac" category="cell">`splitOnClone`</block>
   <block id="6f5c0c94b1a17baffd2c33facaa10db6" category="cell">创建克隆时，从其父级拆分该克隆</block>
-  <block id="19b4c847405d74614976bd1228f59c9f" category="cell">false</block>
   <block id="b091cbafedf94db98f17823d044434bd" category="cell">`加密`</block>
   <block id="a463baaf6666da7178b6fc6a3c8a3fee" category="cell">`securityStyle`</block>
   <block id="41da49bdd3fd88b2ddc6be7d6df1b335" category="cell">新卷的安全模式</block>
   <block id="31aa018945eb62580d68d360cba8ba54" category="cell">`分层策略`</block>
-  <block id="592a5879ac095ef6ca504cc43a9d7939" category="cell">使用 " 无 " 的分层策略</block>
-  <block id="ee6508d5290be6edafccc6e0f471f120" category="cell">适用于 ONTAP 9.5 SVM-DR 之前的配置的 " 仅快照 "</block>
   <block id="99c2306b30b8939278f0f817230f3573" category="admonition">在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享 QoS 策略组，并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。</block>
   <block id="fab51d2bc90465982b0994bc86e69db9" category="admonition">对于使用 `ontap-san` 驱动程序创建的所有卷， Astra Trident 会向 FlexVol 额外添加 10% 的容量，以容纳 LUN 元数据。LUN 将使用用户在 PVC 中请求的确切大小进行配置。Astra Trident 将 FlexVol 增加 10% （在 ONTAP 中显示为可用大小）。用户现在将获得所请求的可用容量。此更改还可防止 LUN 变为只读状态，除非已充分利用可用空间。这不适用于 ontap-san-economy.</block>
   <block id="824d88f50ab9e39778b0ef5bc2516b2f" category="paragraph">对于定义 `snapshotReserve` 的后端， Astra Trident 将按如下方式计算卷的大小：</block>
@@ -1458,12 +1446,9 @@
   <block id="a83f4a534ccef7ac1d209fb0015cd907" category="paragraph">此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。</block>
   <block id="a0f3a965c12688befda99da850903dcb" category="cell">`autosExportPolicy`</block>
   <block id="b4ad0dff08149092bc3e4b16572af575" category="cell">`autosExportCIDR`</block>
-  <block id="e537a193eb90bd46a645ce750bb5f3fc" category="cell">[ "0.0.0.0/0 " ， " ：： /0 "]`</block>
   <block id="07f6b23cad3d6da54012935ff972affe" category="cell">`qtreesPerFlexvol`</block>
   <block id="a13306f726fdf72d2d992a7ebdc63b1b" category="cell">每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内</block>
-  <block id="28326357ec2f8c06e01271c4ee2201f1" category="cell">200</block>
   <block id="3e9a232d025270ed6767c385b8291871" category="cell">新卷的模式</block>
-  <block id="2907de5eba980e910513008165ea2c2b" category="cell">控制 ` .snapshot` 目录的可见性</block>
   <block id="c1a0e97f953c948568aed6c134fc9711" category="cell">要使用的导出策略</block>
   <block id="06602e99c8d46d601029e6dd0b37e3f8" category="paragraph">对于 `ontap-nas` 和 `ontap-nas-flexgroups` ， Astra Trident 现在使用新的计算方法来确保 FlexVol 的大小正确，并使用 snapshotReserve 百分比和 PVC 。当用户请求 PVC 时， Astra Trident 会使用新计算创建具有更多空间的原始 FlexVol 。此计算可确保用户在 PVC 中收到所请求的可写空间，而不是小于所请求的空间。在 v21.07 之前，如果用户请求 PVC （例如， 5GiB ），并且 snapshotReserve 为 50% ，则只会获得 2.5 GiB 的可写空间。这是因为用户请求的是整个卷，而 `snapshotReserve` 是其中的一个百分比。在 Trident 21.07 中，用户请求的是可写空间， Astra Trident 将 `snapshotReserve` number 定义为整个卷的百分比。这不适用于 `ontap-nas-economy"` 。请参见以下示例以了解其工作原理：</block>
   <block id="86ec808b80973d24eadfc617926f534e" category="paragraph">计算方法如下：</block>
@@ -2311,7 +2296,6 @@
   <block id="0d41f8565b8b74a59fc029ccf2becd83" category="list-text">使用受管插件系统启动 Astra Trident 。替换<block ref="3d689bd3819ead35ed794427bd12f459" prefix=" " category="inline-code"></block> 您正在使用的插件版本(xxx.xx.x)。</block>
   <block id="4f0e7dc30ffb3e25e75331c9afb2243a" category="cell">卷模式</block>
   <block id="28c142639a9bbdd526b8eb986c13907d" category="paragraph">无文件系统；原始块设备</block>
-  <block id="0453a3e06be842b09a9479fe06f0dd13" category="paragraph">rwx在文件系统卷模式下不可用。</block>
   <block id="964ea71824e902693c3ef56b57cf78be" category="summary">使用Astra Trident、您可以在主命名空间中创建卷、并在一个或多个二级命名空间中共享该卷。</block>
   <block id="98f770b0af18ca763421bac22b4b6805" category="section-title">功能</block>
   <block id="8ff961668c6784e84b25c265cbb629d7" category="paragraph">要了解有关跨命名空间卷访问的详细信息、请执行以下操作：</block>
@@ -2767,14 +2751,12 @@
   <block id="a0de2cc0c77c388210e1f48423eea29c" category="cell">在 SVM 中配置新卷时使用的前缀。无法稍后修改。要更新此参数、您需要创建一个新的后端。</block>
   <block id="e54cbd8ca5da26dc7e4be3bbfd23467e" category="cell">如果使用量超过此百分比，则配置失败。如果您使用适用于NetApp ONTAP 后端的Amazon FSX、请勿指定 <block ref="d57551b1efacf8a7be84b4d10c5a6e99" prefix=" " category="inline-code"></block>。提供的<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block> 和<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 请勿包含检索聚合使用情况所需的权限、并使用Astra Trident对其进行限制。</block>
   <block id="f804cd6668c0728e26448509210268d3" category="cell">如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN管理的卷的最大大小。</block>
-  <block id="b3a74fee006256ec5d63fe251b553f1d" category="cell">故障排除时要使用的调试标志。例如、除非您正在进行故障排除并需要详细的日志转储、否则｛"api"：false、"method "：true｝请勿使用。</block>
   <block id="cc30671ec52693851659adb7020e02b1" category="cell">用于使用 ONTAP REST API 的布尔参数。* 技术预览 *<block ref="14d839191d1ecf387a15b5b0c802a8ae" prefix=" " category="inline-code"></block> 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问<block ref="a9ba4dc88fa11d44cc7c0c918d174778" prefix=" " category="inline-code"></block> 应用程序。这一点可通过预定义来满足<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 和<block ref="fdb6ba311fad29ec53069808f10ebef4" prefix=" " category="inline-code"></block> 角色。<block ref="14d839191d1ecf387a15b5b0c802a8ae" prefix=" " category="inline-code"></block> MetroCluster 不支持。</block>
   <block id="c59183b2f668b355e81e7bb1256f92b3" category="paragraph">您可以在中使用这些选项控制默认配置<block ref="a4a918a45181164207929d52aec36aec" prefix=" " category="inline-code"></block> 配置部分。有关示例，请参见以下配置示例。</block>
   <block id="d4fbfa2dd496728ba6294eb840ce25eb" category="cell">要为创建的卷分配的 QoS 策略组。选择每个存储池 / 后端的 qosPolicy 或 adaptiveQosPolicy 之一。在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享QoS策略组、并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。</block>
   <block id="b71ccf1062cee8c376a7eb37e3c42603" category="cell">启用LUKS加密。请参见 <block ref="569f9f91cdcc19909b8acbf6f423daf7" category="inline-link-macro-rx"></block>。</block>
   <block id="e62f5d0a5a95571e25197caafe78cd98" category="section-title">卷配置示例</block>
   <block id="1b9ef354b22d8a8b125247fd538da4b2" category="section-title">虚拟池后端示例</block>
-  <block id="dbd1f003df542a684d9c10246dc8a88f" category="paragraph">Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上设置。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
   <block id="615c9f89b360c50cfba2b2de02584387" category="paragraph">以下StorageClass定义引用了上述虚拟池。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。卷将在选定虚拟池中定义各个方面。</block>
   <block id="065b7cc24b33be7af1e15f59024402d2" category="paragraph">Astra Trident将决定选择哪个虚拟池、并确保满足存储要求。</block>
   <block id="c632eed28bf53466df8b8a33aedab3af" category="list-text">虚拟池(如果存在)必须与原始后端的顺序相同。</block>
@@ -2785,9 +2767,7 @@
   <block id="9f0e1cc91ea4107261588e8f1bd02d07" category="cell">如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小<block ref="8b08152c170e621ffcc8bfac7c4d6785" prefix=" " category="inline-code"></block> 选项用于自定义每个FlexVol 的最大qtree数。</block>
   <block id="5c8b39f8ec19acb1fddb0b5c021f090d" category="cell">故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用<block ref="effa2d809c72dcb6cce15a1e0b040e63" prefix=" " category="inline-code"></block> 除非您正在进行故障排除并需要详细的日志转储。</block>
   <block id="b660669829d401dc613c20939ed01e6e" category="cell">NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。</block>
-  <block id="a2b63939d1ced2a10bc8dec4d3ef2604" category="cell">对于NFS卷为"777"；对于SMB卷为空(不适用)</block>
   <block id="0275de02c3bba722f4540469d23cc535" category="paragraph">此示例显示了<block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix=" " category="inline-code"></block> 使用IPv6地址。</block>
-  <block id="bc0c77920482bbcdc79d8f24445101e0" category="paragraph">Astra Trident会在"Comments"字段中设置配置标签。注释在FlexVol 上为设置<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 或FlexGroup<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
   <block id="0bd54df5242a2a2e9eca045fc695b41f" category="section-title">更新<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block> 初始配置后</block>
   <block id="d0b121ba3c5e39bba858ccfcf5a75957" category="paragraph">您可以在初始配置后更改数据LIF、方法是运行以下命令、为新的后端JSON文件提供更新的数据LIF。</block>
   <block id="3fa13ec46a3746ee36c97d65fa53f096" category="admonition">如果PVC连接到一个或多个Pod、则必须关闭所有对应Pod、然后将其恢复到、新数据LIF才能生效。</block>
@@ -2864,9 +2844,6 @@
   <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="sidebar">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
   <block id="e267c2490c7d73d0ffa909b77267cfaf" category="inline-link-macro">Astra Control复制前提条件</block>
   <block id="9814801b0db6e324ebd72f671418de64" category="paragraph">Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷)<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，和<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。请参见 <block ref="dfc981ac97be73172a3119f3b831eaf8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
-  <block id="783c2760a502e1f1537de458c9dceb7a" category="list-text">您必须使用<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 适用于需要数据保护、灾难恢复和移动性的生产工作负载。</block>
-  <block id="a743248a7032cdf1d468935cf180bdee" category="list-text">使用 ...<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 预期的卷使用量应远远高于ONTAP 支持的容量。</block>
-  <block id="0655cc918eb576b740cfd35bbff9c8ac" category="list-text">使用 ...<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 仅当预期的卷使用量应远高于ONTAP 支持的容量时、以及<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 无法使用驱动程序。</block>
   <block id="df7dec428425115b59101028bbebe58c" category="list-text">请勿使用<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 预测数据保护、灾难恢复或移动性的需求。</block>
   <block id="f5d176b3de4662ca3603a69ab08bc166" category="paragraph">用于访问已配置NFS卷的NAS选项。</block>
   <block id="053b422d907cb55ac105c173adde1080" category="paragraph">NFS支持<block ref="1d770934d44de09b0d24f04fd01708ba" prefix=" " category="inline-code"></block> 和<block ref="4913a9178621eadcdf191db17915fbcb" prefix=" " category="inline-code"></block> 安全模式。默认值为<block ref="4913a9178621eadcdf191db17915fbcb" prefix=" " category="inline-code"></block>。</block>
@@ -3243,11 +3220,7 @@
   <block id="1cfd9b4e20d41cdca62f758d3b0cb58b" category="paragraph-title">Azure NetApp Files示例</block>
   <block id="bd46b0a8c2c4c89a60ee85052ad2dd0e" category="paragraph">以下示例将导入<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 后端上的卷<block ref="d8dd89ab9d39f5487714722f9becb468" prefix=" " category="inline-code"></block> 卷路径<block ref="062b749476713f7b5bbc675159e90bad" prefix=" " category="inline-code"></block>。</block>
   <block id="0b8ca2be5f4fe564fb8e843cbc53703d" category="admonition">如果在GKE环境中创建按需卷快照、请勿创建快照控制器。GKE-使用内置的隐藏快照控制器。</block>
-  <block id="1f0c7a14cb87fb29a7346e9b4c770751" category="summary">Astra Trident 提供了五个唯一的 ONTAP 存储驱动程序，用于与 ONTAP 集群进行通信。</block>
-  <block id="9e5914532c650440b8c559c303ae8e04" category="section-title">适用于ONTAP的Astra三端存储驱动程序</block>
-  <block id="bff3ebc4ae5702fb7f811ba9acabc13a" category="paragraph">Asta三端存储提供了以下存储驱动程序、用于与ONTAP集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
   <block id="ad90b7d29d0d8a9c746868fe1f38ca90" category="paragraph">Rwo、ROX、rwx、RWOP</block>
-  <block id="96b38cb92e67a8f09c2d13169b8bb555" category="paragraph">Rwo、ROX、RWOP</block>
   <block id="f28228f84cb57be6c4037bf94a6afbd2" category="paragraph">删除具有关联快照的永久性卷时，相应的 Trident 卷将更新为 " 正在删除 " 状态。删除卷快照以删除Asta Trdent卷。</block>
   <block id="f736607140d617c85245dd139003582e" category="list-text">在给定Kubbernetes集群中的所有名空间中只应安装一个A作用 力三端实例。</block>
   <block id="69bdd71a77ecd87974ee464a579ebc8f" category="list-text">升级时、请务必提供<block ref="f6e7f85d8aee15940665bf722f7afac2" prefix=" " category="inline-code"></block> 在中<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 由Astra Trident使用。您可以删除并重新创建<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block> 而不会中断已有卷。</block>
@@ -3343,7 +3316,6 @@
   <block id="7fbe6e40125b7d1b2f5c5c05044e7526" category="section-title">启用基于证书的身份验证</block>
   <block id="3262251091b863054cfabf046c0e3493" category="paragraph">NFS
 SMB</block>
-  <block id="7f4a1ee6a22ce0658ba6215c997ba8d8" category="paragraph">""、NFS、SMB</block>
   <block id="e8a058c8c47f6e4976a9fc5b5c00ec92" category="summary">创建一个使用已配置的Kubernetes StorageClass来请求对PV的访问的永久性卷(PV)和永久性卷克莱姆(PVC)。然后、您可以将PV挂载到POD。</block>
   <block id="a3b7bd8edd528214a68ac3ceb5c9935c" category="doc">配置卷</block>
   <block id="5ba2aa62f23a406454c266617a909b2c" category="inline-link-macro">_PersigentVolume_</block>
@@ -3399,21 +3371,8 @@ SMB</block>
   <block id="8d9f716dc04d23bb9af0a64fef3bbbd9" category="paragraph">以下示例将使用创建PVC<block ref="2599ab7993e15386327b6345bc1cc4e1" prefix=" " category="inline-code"></block> 作为数据源。</block>
   <block id="c2d480d58505386b1609d69c842aaf44" category="section-title">导入卷快照</block>
   <block id="868f2cc6f424bbd531c3ac4f053a8125" category="inline-link-macro">Kubbernetes预配置快照过程</block>
-  <block id="4310796b4ecbee0387355c47d26e79f6" category="paragraph">Asta三项功能支持 <block ref="a3174ff04e144786ca73f65ec9b76f58" category="inline-link-macro-rx"></block> 以使集群管理员能够创建<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 并提供在Asta Trident外部创建的快照。</block>
-  <block id="1e0e621824f4773df03d972d64c7892c" category="paragraph">要导入卷快照、Asta Trident会使用PV名称和VolumeSnapshotContent标注来查找内部快照、并将其创建的TridentSnapshot CR命名为。</block>
-  <block id="861e4c53fb0c4a84065e8b437db9f614" category="admonition">快照必须具有父卷。</block>
-  <block id="72aec08b3316c218c1f87677e0a51ed0" category="list-text">*集群管理员：*创建<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 引用后端快照。</block>
-  <block id="c202fb047149bdb0116d555ea38063d1" category="list-text">。<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 标注必须为<block ref="a9a33d21059c79525ad20995b3255379" prefix=" " category="inline-code"></block>。</block>
-  <block id="a2d471e4f64ec00dc1822cec2fd5995b" category="list-text">。<block ref="39133e4ee9648ecb1a2dae934a22788a" prefix=" " category="inline-code"></block> 必须为<block ref="6ae97f23de0ab758768fc09b1f363e79" prefix=" " category="inline-code"></block>。这是外部快照程序在中向Asta Trident提供的唯一信息<block ref="b4dfa9524f461a609ad4726f69b847e9" prefix=" " category="inline-code"></block> 致电。</block>
-  <block id="bddec5d361b469ba15d203f21980b727" category="paragraph">以下示例将创建<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 用于名为的后端快照<block ref="82645407d5a235bd775551b0a8455cd1" prefix=" " category="inline-code"></block> 和<block ref="2348ca4190691eced72fb5d6eeba6ae6" prefix=" " category="inline-code"></block> 已命名<block ref="8da549176ef577547f8791c32a1da91a" prefix=" " category="inline-code"></block>。</block>
-  <block id="f2048b2fb4bf379591abc388d9eade66" category="admonition">。<block ref="2348ca4190691eced72fb5d6eeba6ae6" prefix=" " category="inline-code"></block> 由于CR命名限制、名称不能始终与后端快照名称匹配。</block>
-  <block id="e3631e30d03158f2ee7f5abe3814ae2c" category="list-text">*集群管理员：*绑定<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> 到<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 其中：<block ref="ac2950be4b8a710dd81ec4c2cff071da" prefix=" " category="inline-code"></block> 是您在中指定的名称<block ref="2348ca4190691eced72fb5d6eeba6ae6" prefix=" " category="inline-code"></block>。</block>
-  <block id="60648a03d093f2a24b63474813c14f83" category="paragraph">以下示例将绑定卷快照<block ref="8da549176ef577547f8791c32a1da91a" prefix=" " category="inline-code"></block> 到<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 已命名<block ref="5509d2df2b7e97b55de9ac8c06cfc6e1" prefix=" " category="inline-code"></block>。</block>
-  <block id="481efebb9fccb590cd87e8ac2f5dec96" category="list-text">*内部处理(不需要执行任何操作)：*外部快照程序会看到新创建的卷快照内容并运行<block ref="b4dfa9524f461a609ad4726f69b847e9" prefix=" " category="inline-code"></block> 致电。Asta三项功能可创建<block ref="9a303ae09fee10afe60e5fd9e00e5e45" prefix=" " category="inline-code"></block>。</block>
-  <block id="373ac13882294b603bb64da84dc4fae5" category="list-text">外部快照程序用于设置<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> to<block ref="bdc3aa73b1bbfc0b0212a8f6a8bb2077" prefix=" " category="inline-code"></block> 和卷快照<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>。</block>
   <block id="f6e6b6f8bbabf2b4d61efaa16f96f7c7" category="list-text">TRIdent返回<block ref="0253f5e864e2646df8eab03ca4f066ee" prefix=" " category="inline-code"></block>。</block>
   <block id="2fae3f8997b56adf73a63fcf9e10a75d" category="list-text">*任何用户:*创建一个<block ref="2b3f8e4d49589c4452db0a07d619d824" prefix=" " category="inline-code"></block> 以引用新的<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block>、其中<block ref="be455c19a1930c91806853db05c277d9" prefix=" " category="inline-code"></block> (或<block ref="43cbd4bd62b601d2f5e0b618220b0f44" prefix=" " category="inline-code"></block>)名称为<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> 名称。</block>
-  <block id="dbb9cfb0687e7c3a92a94550713c8e6d" category="paragraph">以下示例将创建一个引用的PVC<block ref="8da549176ef577547f8791c32a1da91a" prefix=" " category="inline-code"></block> 卷快照。</block>
   <block id="35d57da577b5f55299f7644e8b2de091" category="section-title">删除具有关联快照的PV</block>
   <block id="b1bc7c11251b98a19ba1fc0ad08275ed" category="section-title">部署卷快照控制器</block>
   <block id="785a74cfc0b587326abdc91a50fc4a95" category="paragraph">Asta三叉式存储提供了动态管理ONTAP后端导出策略的功能。这样，存储管理员就可以为工作节点 IP 指定允许的地址空间，而不是手动定义显式规则。它大大简化了导出策略管理；修改导出策略不再需要手动干预存储集群。此外、这有助于将对存储集群的访问限制为仅允许IP位于指定范围内的工作节点访问、从而支持精细的自动化管理。</block>
@@ -3500,7 +3459,6 @@ SMB</block>
   <block id="fcf85cd17f22ed47dfe9169453e44dc1" category="paragraph">虽然Asta三端存储会将新卷与配置的访问组关联起来、但它不会自行创建或管理访问组。在将存储后端添加到Asta Trident之前、访问组必须存在、并且它们需要包含Kubenetes集群中可能会挂载该后端配置的卷的每个节点的iSCSI IQN。在大多数安装中，包括集群中的每个工作节点。</block>
   <block id="ca3c25915a30bef4ec583f6082477acf" category="paragraph">如果要从使用默认值的配置修改配置<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> 访问组到也使用其他的访问组、并包括的ID<block ref="47cb44be55a0dffa15dfc900a4c687be" prefix=" " category="inline-code"></block> 列表中的访问组。</block>
   <block id="88e4f10ca85b56deb88df953f1b028c9" category="admonition">如果您使用Astra Control进行保护、恢复和移动、请阅读 <block ref="655b383e69b0d2ae89ad0b4bf7e37964" category="inline-xref-macro-rx"></block>。</block>
-  <block id="5e5ae25254f91097d911b58f235c0657" category="admonition">可以使用安全角色的登录凭据(用户名/密码)或专用密钥以及ONTAP集群上安装的证书对ONTAP后端进行身份验证。您可以使用更新现有后端以从一种身份验证模式移至另一种身份验证模式<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block>。</block>
   <block id="c6891a9678e67fff611982bdd3dc5a4d" category="section-title">Astra Control驱动程序兼容性</block>
   <block id="b2edeceecc054572188ee3b08cd58c64" category="list-text">放置二进制文件并创建配置文件后、使用所需的配置文件启动三叉进制守护进程。</block>
   <block id="ed79382c003eb221606454bd2116c86f" category="summary">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。**阅读发行说明，了解有关升级到Asta Trdent 23.07的重要信息。**</block>
@@ -3619,7 +3577,6 @@ SMB</block>
   <block id="7a15e63f1d0efc213151254bbc1b2d0d" category="doc">升级TRIdent操作员安装</block>
   <block id="0f443eb922735ce52f2b490ffca00e49" category="paragraph">您可以使用三端操作员手动或使用Helm升级A作用 于三端的Astra。您可以从一个TRIdent操作员安装升级到另一个TRIdent操作员安装或从升级<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装到一个TRIdent操作员版本。请查看 <block ref="5cffa5fbe758cc3901f0e33c78b29d1b" category="inline-link-macro-rx"></block> 升级三端修复程序安装之前。</block>
   <block id="3ef75911ec16a9d0ba70cfd4e68dcb71" category="section-title">升级手动安装</block>
-  <block id="5ed69ef07355e375ad2d6619b584ffe9" category="paragraph">您可以将从集群范围的三端操作员安装升级到另一个集群范围的三端操作员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。</block>
   <block id="b0e74afe1fdeb605b5c47b501c43b71b" category="inline-link-macro">您安装的版本</block>
   <block id="4642420c93e6091ce8421e89a16fd80d" category="admonition">要从使用命名空间范围的运算符(版本20.07到20.10)安装的Asta三端技术升级、请按照的升级说明进行操作 <block ref="567dd1ff029f25a404a69ff1e3c8d83b" category="inline-link-macro-rx"></block> 的Astra三端。</block>
   <block id="eb7a4fa3d9aff7ec5b23abb8b82d516b" category="paragraph">｛\f270通过｝｛\f270｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270通过｝｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270｝</block>
@@ -3865,4 +3822,42 @@ SMB</block>
   <block id="57154d2dcf591aaa3d4dcbfbba196075" category="inline-link-macro">支持的ONTAP卷限制</block>
   <block id="7fe76f1189ac93d41118f7ba3e36e3ab" category="list-text">使用 ...<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 只有当永久性卷使用量计数预期高于时、才会显示此值 <block ref="e5997a58d747f862af8a862cd1b54e31" category="inline-link-macro-rx"></block>。</block>
   <block id="a6b18abf4de4d534121b0cca3b164d74" category="list-text">使用 ...<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 只有当永久性卷使用量计数预期高于时、才会显示此值 <block ref="e5997a58d747f862af8a862cd1b54e31" category="inline-link-macro-rx"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 无法使用驱动程序。</block>
+  <block id="aa33f1094363f0d5dc3ca342e19ec6e0" category="paragraph">您可以从集群范围的三端技术人员安装升级到另一个集群范围的三端技术人员安装。所有Astra Trident 21.01及更高版本均使用集群范围的运算符。</block>
+  <block id="2dd987ed7fd9d4bf9fb445cc7738223b" category="paragraph">Asta三项功能支持 <block ref="a3174ff04e144786ca73f65ec9b76f58" category="inline-link-macro-rx"></block> 以使集群管理员能够创建<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 在Asta Trident外部创建的对象和导入快照。</block>
+  <block id="44028ad7f17b2bd495c04edf7e9e6b36" category="paragraph">Asta三端存储必须已创建或导入快照的父卷。</block>
+  <block id="60f1523169568857649514e4ad6e4f40" category="list-text">*集群管理员：*创建一个<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 引用后端快照的对象。这将在Asta Trdent中启动快照工作流。</block>
+  <block id="44ce6c838becb17913e38bbe2b0096fe" category="list-text">在中指定后端快照的名称<block ref="4ab6864fc58ecd8b598ee10dfe2ac311" prefix=" " category="inline-code"></block> 作为<block ref="d42b3f1355513faa92e8e6b438dffc73" prefix=" " category="inline-code"></block>。</block>
+  <block id="4f45cf3342acaba38e45ce6b09a79e04" category="list-text">指定<block ref="62c99546614b1610927a47ea682b6d63" prefix=" " category="inline-code"></block> 在中<block ref="39133e4ee9648ecb1a2dae934a22788a" prefix=" " category="inline-code"></block>。这是外部快照程序在中向Asta Trident提供的唯一信息<block ref="b4dfa9524f461a609ad4726f69b847e9" prefix=" " category="inline-code"></block> 致电。</block>
+  <block id="e0668acdd6b1e131a130998184f4f7fc" category="admonition">。<block ref="8773ea16ee304585aa1da2afd8f25434" prefix=" " category="inline-code"></block> 由于CR命名限制、不能始终与后端快照名称匹配。</block>
+  <block id="90a9b62f2d9107ff002b3ffcff75c334" category="paragraph">以下示例将创建<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 引用后端快照的对象<block ref="82645407d5a235bd775551b0a8455cd1" prefix=" " category="inline-code"></block>。</block>
+  <block id="b385a638aafc60dc851702d7207b1460" category="list-text">*集群管理员：*创建<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> 引用的CR<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 对象。此操作将请求访问以使用<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> 在给定命名空间中。</block>
+  <block id="4fd027fecd2883c25a41ecd68536b1d6" category="paragraph">以下示例将创建<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> CR已命名<block ref="117b36cc8905f43e1ffd580e8b17723b" prefix=" " category="inline-code"></block> 引用的<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 已命名<block ref="ae79a6ea6405531b451963557819c96a" prefix=" " category="inline-code"></block>。</block>
+  <block id="b44a9af30767857be583043a573285f8" category="list-text">*内部处理(无需执行任何操作)：*外部快照程序可识别新创建的<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 并运行<block ref="b4dfa9524f461a609ad4726f69b847e9" prefix=" " category="inline-code"></block> 致电。Asta三项功能可创建<block ref="9a303ae09fee10afe60e5fd9e00e5e45" prefix=" " category="inline-code"></block>。</block>
+  <block id="92aa04a2cf75f40187ef422ef48baa9f" category="list-text">外部快照程序用于设置<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> to<block ref="bdc3aa73b1bbfc0b0212a8f6a8bb2077" prefix=" " category="inline-code"></block> 和<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> to<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>。</block>
+  <block id="5581736d9cc57d1f1193e52f799c03b2" category="paragraph">以下示例将创建一个引用的PVC<block ref="310a3378435f31620fbc3e7831ac7286" prefix=" " category="inline-code"></block> 已命名<block ref="117b36cc8905f43e1ffd580e8b17723b" prefix=" " category="inline-code"></block>。</block>
+  <block id="a288b0971f8f6c63f5e6510bcebf421b" category="cell">驱动程序名称+"_"+ dataLIF</block>
+  <block id="280a6a6866847c57b1a98bbcdc929268" category="cell">""(默认情况下不强制实施)</block>
+  <block id="3eeb940d8060411516e1578a9fd70a15" category="cell">故障排除时要使用的调试标志。例如、｛"api"：false、"METHO"：true｝
+
+除非正在进行故障排除并需要详细的日志转储、否则请勿使用。</block>
+  <block id="ebc576222020c2a2ae2fc769169f1d2a" category="cell">"正确"</block>
+  <block id="c41b872c22969c2098a0056121589349" category="cell">空间预留模式；"无"(精简)或"卷"(厚)</block>
+  <block id="f6d62a8e69201d3806ac1ef24ec64c4d" category="cell">"无"</block>
+  <block id="6b3e1a8dae111668b3e4e13c5949a7c0" category="cell">如果为"0"、则为"0"<block ref="0a236e7685e50a59df980d0a30929d6c" prefix=" " category="inline-code"></block> 为"none"、否则为""</block>
+  <block id="7639141e9ab9cd89ef8bc0b16fd34e6a" category="cell">使用"无"的层策略</block>
+  <block id="07b6e78dbb76bc803c585f0e0579de56" category="cell">对于ONTAP 9.5 SVM-DR之前的配置、为"仅快照"</block>
+  <block id="472f537653935d084b34d91ce4119f17" category="paragraph">A作用 是在"Comments"字段中设置配置标签。注释在FlexVol 上设置。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
+  <block id="a486595fa1d9f349d9f9385ef2cb39f0" category="cell">"ONTAP NAS "、"ONTAP NAS经济"、"ONTAP NAS灵活组"、"ONTAP SAN "、"ONTAP SAN经济"</block>
+  <block id="e50e8adc0d4818a8ed496eb95b3aea51" category="cell">["0.0.0.0/0、"：：：/0"]`</block>
+  <block id="86780ad6247dfbcd90ca1455ee592852" category="cell">"三级联"</block>
+  <block id="e70237f69c6dce25fd2312b8d7f00b1e" category="cell">"100"</block>
+  <block id="7e6a32bd8074b1aa2c8c0d2529140ae4" category="cell">故障排除时要使用的调试标志。例如、｛"api"：false、"METHO"：true｝
+
+请勿使用<block ref="effa2d809c72dcb6cce15a1e0b040e63" prefix=" " category="inline-code"></block> 除非您正在进行故障排除并需要详细的日志转储。</block>
+  <block id="89ffa293e05655bd6be9d422345be38a" category="cell">"200"</block>
+  <block id="3eda001907760c018e29ddf4cb7aa3c8" category="cell">"777"表示NFS卷；空(不适用)表示SMB卷</block>
+  <block id="7e8aabb1dc00b7d4aac6d0876f6507f4" category="cell">控制对的访问<block ref="a15da8cecb1f1192c4d913b8ba676121" prefix=" " category="inline-code"></block> 目录</block>
+  <block id="5f04fbb334c6fb8030146ad8f76a953a" category="paragraph">A作用 是在"Comments"字段中设置配置标签。在FlexVol上为设置了注释<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 或FlexGroup<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
+  <block id="aea10b5a282698ad4477a7113234ae65" category="inline-link-macro">导入卷快照</block>
+  <block id="4999635328ae714b8eb5f24934a24943" category="admonition">通常、您不需要管理<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 对象。但如果需要、则例外 <block ref="0b4cdf17ac3e4123330cb8e51ec533a2" category="inline-link-macro-rx"></block> 在Asta Trdent外部创建。</block>
 </blocks>

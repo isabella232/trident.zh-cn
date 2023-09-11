@@ -141,21 +141,23 @@ spec:
 
 == 导入卷快照
 
-Asta三项功能支持 link:https://kubernetes.io/docs/concepts/storage/volume-snapshots/#static["Kubbernetes预配置快照过程"^] 以使集群管理员能够创建 `VolumeSnapshotContent` 并提供在Asta Trident外部创建的快照。
+Asta三项功能支持 link:https://kubernetes.io/docs/concepts/storage/volume-snapshots/#static["Kubbernetes预配置快照过程"^] 以使集群管理员能够创建 `VolumeSnapshotContent` 在Asta Trident外部创建的对象和导入快照。
 
-要导入卷快照、Asta Trident会使用PV名称和VolumeSnapshotContent标注来查找内部快照、并将其创建的TridentSnapshot CR命名为。
-
-
-NOTE: 快照必须具有父卷。
+.开始之前
+Asta三端存储必须已创建或导入快照的父卷。
 
 .步骤
-. *集群管理员：*创建 `VolumeSnapshotContent` 引用后端快照。
+. *集群管理员：*创建一个 `VolumeSnapshotContent` 引用后端快照的对象。这将在Asta Trdent中启动快照工作流。
 +
-** 。 `VolumeSnapshotContent` 标注必须为 `trident.netapp.io/internalSnapshotName: <backend-snapshot-name>`。
-** 。 `snapshotHandle` 必须为 `<pv-name>/<VolumeSnapshotContent-name>`。这是外部快照程序在中向Asta Trident提供的唯一信息 `ListSnapshots` 致电。
+** 在中指定后端快照的名称 `annotations` 作为 `trident.netapp.io/internalSnapshotName: <"backend-snapshot-name">`。
+** 指定 `<name-of-parent-volume-in-trident>/<volume-snapshot-content-name>` 在中 `snapshotHandle`。这是外部快照程序在中向Asta Trident提供的唯一信息 `ListSnapshots` 致电。
++
+
+NOTE: 。 `<volumeSnapshotContentName>` 由于CR命名限制、不能始终与后端快照名称匹配。
+
 +
 .示例
-以下示例将创建 `VolumeSnapshotContent` 用于名为的后端快照 `snap-01` 和 `volumeSnapshotRef` 已命名 `test-snapshot`。
+以下示例将创建 `VolumeSnapshotContent` 引用后端快照的对象 `snap-01`。
 
 +
 [listing]
@@ -163,28 +165,21 @@ NOTE: 快照必须具有父卷。
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotContent
 metadata:
-  name: my-trident-snapshot-content
+  name: import-snap-content
   annotations:
-    trident.netapp.io/internalSnapshotName: snap-01  # This represents the name of the snapshot on the backend
+    trident.netapp.io/internalSnapshotName: "snap-01"  # This is the name of the snapshot on the backend
 spec:
   deletionPolicy: Retain
   driver: csi.trident.netapp.io
   source:
-    snapshotHandle: pvc-3e5cda7a-200b-46ab-b5d0-c9cd8db2cc01/my-trident-snapshot-content  # This is the only information provided to Trident in the ListSnapshots call
-  volumeSnapshotRef:
-    name: test-snapshot
-    namespace: default
+    snapshotHandle: pvc-f71223b5-23b9-4235-bbfe-e269ac7b84b0/import-snap-content # <import PV name or source PV name>/<volume-snapshot-content-name>
 ----
-+
-
-NOTE: 。 `volumeSnapshotRef` 由于CR命名限制、名称不能始终与后端快照名称匹配。
 
 
-
-. *集群管理员：*绑定 `VolumeSnapshot` 到 `VolumeSnapshotContent` 其中： `volumeSnapshotContentName` 是您在中指定的名称 `volumeSnapshotRef`。
+. *集群管理员：*创建 `VolumeSnapshot` 引用的CR `VolumeSnapshotContent` 对象。此操作将请求访问以使用 `VolumeSnapshot` 在给定命名空间中。
 +
 .示例
-以下示例将绑定卷快照 `test-snapshot` 到 `VolumeSnapshotContent` 已命名 `my-trident-snapshot-content`。
+以下示例将创建 `VolumeSnapshot` CR已命名 `import-snap` 引用的 `VolumeSnapshotContent` 已命名 `import-snap-content`。
 
 +
 [listing]
@@ -192,22 +187,22 @@ NOTE: 。 `volumeSnapshotRef` 由于CR命名限制、名称不能始终与后端
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
-  name: test-snapshot
-  namespace: default
+  name: import-snap
 spec:
+  # volumeSnapshotClassName: csi-snapclass (not required for pre-provisioned or imported snapshots)
   source:
-    volumeSnapshotContentName: my-trident-snapshot-content
+    volumeSnapshotContentName: import-snap-content
 ----
-. *内部处理(不需要执行任何操作)：*外部快照程序会看到新创建的卷快照内容并运行 `ListSnapshots` 致电。Asta三项功能可创建 `TridentSnapshot`。
+. *内部处理(无需执行任何操作)：*外部快照程序可识别新创建的 `VolumeSnapshotContent` 并运行 `ListSnapshots` 致电。Asta三项功能可创建 `TridentSnapshot`。
 +
-** 外部快照程序用于设置 `VolumeSnapshotContent` to `readyToUse` 和卷快照 `true`。
+** 外部快照程序用于设置 `VolumeSnapshotContent` to `readyToUse` 和 `VolumeSnapshot` to `true`。
 ** TRIdent返回 `readyToUse=true`。
 
 
 . *任何用户:*创建一个 `PersistentVolumeClaim` 以引用新的 `VolumeSnapshot`、其中 `spec.dataSource` (或 `spec.dataSourceRef`)名称为 `VolumeSnapshot` 名称。
 +
 .示例
-以下示例将创建一个引用的PVC `test-snapshot` 卷快照。
+以下示例将创建一个引用的PVC `VolumeSnapshot` 已命名 `import-snap`。
 
 +
 [listing]
@@ -224,8 +219,7 @@ spec:
     requests:
       storage: 1Gi
   dataSource:
-    name: test-snapshot
-    namespace: default
+    name: import-snap
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io
 ----
