@@ -2883,9 +2883,6 @@
   <block id="361d997e700d422835e56b644784bb7e" category="list-text">节点插件负责将存储连接到节点。</block>
   <block id="1736b3823517cc62395e05494b09ddb9" category="admonition"><block ref="b2c66bca748ffde67c7b6817cb8dd795" prefix="" category="inline-code"></block> 在中指定<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 表示安装了Astra Trident的命名空间。此参数 * 安装 Astra Trident 后无法更新 * 。如果尝试执行此操作、则会导致<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 要更改为的状态<block ref="d7c8c85bf79bbe1b7188497c32c3b0ca" prefix=" " category="inline-code"></block>。Astra Trident不能跨命名空间迁移。</block>
   <block id="a739aa7f082abebdf65f4b114dd3ad7d" category="paragraph">此表详细介绍了相关信息<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 属性。</block>
-  <block id="b520e4144a27e0f45e8e22d5ccd8328d" category="cell">Pod的其他节点选择器。格式与 pod.spec.nodeSelector 相同。</block>
-  <block id="e138e2a410035dad85499a3dabe692d5" category="cell">覆盖Kubernetes对Pod的容错。格式与 po.spec.Tolerations 相同。</block>
-  <block id="d4cc4428c9a6422247c8ff288ea4b5eb" category="cell">Pod的其他节点选择器。格式与 pod.spec.nodeSelector 相同。</block>
   <block id="c350769115c3c8e4132e9c428b166b12" category="doc">Astra Trident架构</block>
   <block id="d90582d42d65d5af05c3d40ad0eb4987" category="admonition">如果您是首次使用Azure NetApp Files 或在新位置使用、则需要进行一些初始配置来设置Azure NetApp Files 并创建NFS卷。请参见<block ref="b6e93c3bfc36cf835c63e42e55586d97" category="inline-link-rx"></block>。</block>
   <block id="84444089b52eed627a838de74ae8d652" category="section-title">NFS和SMB卷的前提条件</block>
@@ -3022,9 +3019,6 @@
   <block id="f53514cf8829a41463c245b088ae732e" category="paragraph">要在Windows节点上运行A作用 是：</block>
   <block id="a921baa9e8c81f13d59fed4fce57ec88" category="example-title">示例2：启用force detach</block>
   <block id="c5b5b00ff1b3a892c8694ab932cbf9ca" category="paragraph">有关强制断开的详细信息、请参见 <block ref="63cac71755fb6ef1f1fea34cf4037121" category="inline-link-macro-rx"></block>。</block>
-  <block id="85be37285c336ae757f07d58eb0d7ea2" category="cell">用于发送 AutoSupport 遥测的代理的地址 / 端口</block>
-  <block id="33fb79e5ddc4ef005332c52292e20c59" category="cell">运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
-  <block id="4a1522be236156dbc873375541a627e1" category="cell">覆盖运行 Trident 控制器 CSI 插件的 Pod 的容错。遵循与相同的格式<block ref="f1fa64fcf5077601cb803e995a51fa4f" prefix=" " category="inline-code"></block>。</block>
   <block id="30042512b273723cf2eec336b6576d84" category="cell"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 仅限。可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。*这是23.04中的一项实验功能。*请参阅 <block ref="620ff2552a2d798650bb027eb1271b17" category="inline-xref-macro-rx"></block> 了解重要详细信息。</block>
   <block id="38a0b9f59e6fe23e1617dc0e78498afe" category="section-title">有关强制断开的详细信息</block>
   <block id="20c0c9efee2da2645ec0eefaf3c75d8c" category="inline-link-macro">Kubnetes：节点非正常关闭</block>
@@ -3859,4 +3853,35 @@ SMB</block>
   <block id="0b5b18e58101a5fdc2d3618c85a04814" category="list-text">*删除<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block>**：通过删除<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。操作员将处理的删除操作<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。</block>
   <block id="566ef0ea3e228b1c501652e83def2c9d" category="paragraph">使用<block ref="fe98497efedbe156ecc4b953aea77e07" prefix=" " category="inline-code"></block> 命令输入<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 要删除与Asta Trandent关联的所有资源(CRD和相关对象除外)、请执行以下操作：</block>
   <block id="3d11c687c20c6a6a9fec2b3d07f861f0" category="section-title">23.07.1中的新增功能</block>
+  <block id="f3f30d479f6e3b393d917a3b2f88c770" category="cell"><block ref="89801e9e98979062e84647433a8ed3e9" prefix="" category="inline-code"></block></block>
+  <block id="c9db68ea6cff44f42ac5acbbfccec399" category="cell">用于安装 Astra Trident 的命名空间</block>
+  <block id="fbbd7b4b14060c4fdb02f92c4c08e702" category="cell">设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 启用在Windows工作节点上的安装。</block>
+  <block id="16e20a5ba5cd6442f3cdd49b16e8a5f3" category="cell"><block ref="8bd1aa960638ccc5869583e34d702ce6" prefix="" category="inline-code"></block></block>
+  <block id="3dd791c4864e77ae6cf11572e2d7b374" category="cell">安装基于 IPv6 的 Astra Trident</block>
+  <block id="077e99fe42ced522b462656cffffe09c" category="cell"><block ref="d5276bb17ae062102e883a18454c2f1b" prefix="" category="inline-code"></block></block>
+  <block id="4448b73eac083e33b7142f0e5790fac5" category="cell">Kubernetes 操作超时</block>
+  <block id="e4d71bf2abad047425f4463e27bb83b0" category="cell">30 秒</block>
+  <block id="42cf123e93ecc5c0297652edbc547fc0" category="cell"><block ref="2fac1659431903a30e063d49b3effb9d" prefix="" category="inline-code"></block></block>
+  <block id="4a213b7c3b997ffb0794b25909381d16" category="cell">不要向NetApp发送AutoSupport捆绑包
+自动</block>
+  <block id="7f54ca385f028308d19e228ce0534a47" category="cell">用于发送AutoSupport的代理的地址/端口
+遥测</block>
+  <block id="076bc379a24183ce77834bac007ca852" category="cell">用于卸载 Astra Trident 的标志</block>
+  <block id="cad060d2f14dbf08315c20014ed31daa" category="cell"><block ref="0b19d236934f609fe765b504a36b637e" prefix="" category="inline-code"></block></block>
+  <block id="acfc4a8e6d53bad27d4e2d393bfff61e" category="cell">要使用的 Astra Trident 日志记录格式 [text ， json]</block>
+  <block id="20cd815523e5806aec29a57282b0d49f" category="cell">文本</block>
+  <block id="20f408a3276af1f7f1bf02ba374786ca" category="cell">要安装的 Astra Trident 映像</block>
+  <block id="0498ee65f9f6b76f08a28e7b6715c963" category="cell">"NetApp/TRIdent：23.07"</block>
+  <block id="4f25f4cca5c1939f4a728d2678e719f7" category="cell">内部注册表的路径、格式<block ref="d2ce1f53a5f0e84f4f1b5e28836eb05b" prefix=" " category="inline-code"></block></block>
+  <block id="fb4feec526f3a24c097c73a5f36af4bd" category="cell">"k8s.gcr.io/sig-storage"(K8s 1.19+)
+或"ka.io/k8scsi"</block>
+  <block id="31aad37dce0c28e12908582a0d63736a" category="cell">主机上的 kubelet 目录的路径</block>
+  <block id="df8f3af91e96fe841267201ed450cd6b" category="cell">"/var/lib/kubelet"</block>
+  <block id="b6e0e2c4168573f0ed61c842470342ba" category="cell"><block ref="c13a52521693f799a16fd56a35c77a04" prefix="" category="inline-code"></block></block>
+  <block id="4e33345575b5a443dec89767624a1ee8" category="cell">要删除以执行完全删除的资源列表
+Astra Trident</block>
+  <block id="f73bb4a0bc9913e7fc6db5f9e5f2afeb" category="cell">从内部注册表中提取映像的机密信息</block>
+  <block id="d64d0e5bb5a552ae4986a713f41c8fc3" category="cell">Pod的其他节点选择器。	遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
+  <block id="875ce721843c20d7f9aae240673ed68b" category="cell">覆盖Kubernetes对Pod的容错。遵循与相同的格式<block ref="f1fa64fcf5077601cb803e995a51fa4f" prefix=" " category="inline-code"></block>。</block>
+  <block id="00e8e1706119ce5300bdc9141ececc37" category="cell">Pod的其他节点选择器。遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
 </blocks>

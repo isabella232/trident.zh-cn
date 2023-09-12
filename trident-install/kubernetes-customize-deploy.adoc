@@ -35,27 +35,62 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 
 此表详细介绍了相关信息 `TridentOrchestrator` 属性。
 
-[cols="3"]
+[cols="1,2,1"]
 |===
 | 参数 | Description | Default 
+
+
+| `namespace` | 用于安装 Astra Trident 的命名空间 | default 
+
+
+| `debug` | 为 Astra Trident 启用调试 | false 
+
+
+| `enableForceDetach` | `ontap-san` 和 `ontap-san-economy` 仅限。可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。*这是23.04中的一项实验功能。*请参阅 <<有关强制断开的详细信息>> 了解重要详细信息。 | `false` 
+
+
+| `windows` | 设置为 `true` 启用在Windows工作节点上的安装。 | false 
+
+
+| `useIPv6` | 安装基于 IPv6 的 Astra Trident | false 
+
+
+| `k8sTimeout` | Kubernetes 操作超时 | 30 秒 
+
+
+| `silenceAutosupport` | 不要向NetApp发送AutoSupport捆绑包
+自动 | false 
 
 
 | `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trdent AutoSupport：23.07" 
 
 
-| `autosupport 代理` | 用于发送 AutoSupport 遥测的代理的地址 / 端口 | "http://proxy.example.com:8888"[] 
+| `autosupport 代理` | 用于发送AutoSupport的代理的地址/端口
+遥测 | "http://proxy.example.com:8888"[] 
 
 
-| `控制器插件节点选择器` | 运行 Trident 控制器 CSI 插件的 Pod 的其他节点选择器。遵循与相同的格式 `pod.spec.nodeSelector`。 | 无默认值；可选 
+| `卸载` | 用于卸载 Astra Trident 的标志 | false 
 
 
-| `控制器插件公差` | 覆盖运行 Trident 控制器 CSI 插件的 Pod 的容错。遵循与相同的格式 `pod.spec.Tolerations`。 | 无默认值；可选 
+| `logFormat` | 要使用的 Astra Trident 日志记录格式 [text ， json] | 文本 
 
 
-| `debug` | 为 Astra Trident 启用调试 | `false` 
+| `TridentImage` | 要安装的 Astra Trident 映像 | "NetApp/TRIdent：23.07" 
 
 
-| `enableForceDetach` | `ontap-san` 和 `ontap-san-economy` 仅限。可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。*这是23.04中的一项实验功能。*请参阅 <<有关强制断开的详细信息>> 了解重要详细信息。 | `false` 
+| `imageRegistry` | 内部注册表的路径、格式
+`<registry FQDN>[:port][/subpath]` | "k8s.gcr.io/sig-storage"(K8s 1.19+)
+或"ka.io/k8scsi" 
+
+
+| `kubeletDir` | 主机上的 kubelet 目录的路径 | "/var/lib/kubelet" 
+
+
+| `wipeout` | 要删除以执行完全删除的资源列表
+Astra Trident |  
+
+
+| `imagePullSecs` | 从内部注册表中提取映像的机密信息 |  
 
 
 | `imagePullPolicy` | 设置Trident运算符的映像提取策略。有效值为：
@@ -64,16 +99,16 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 `Never` 从不提取映像。 | `IfNotPresent` 
 
 
-| `控制器插件节点选择器` | Pod的其他节点选择器。格式与 pod.spec.nodeSelector 相同。 | 无默认值；可选 
+| `控制器插件节点选择器` | Pod的其他节点选择器。	遵循与相同的格式 `pod.spec.nodeSelector`。 | 无默认值；可选 
 
 
-| `控制器插件公差` | 覆盖Kubernetes对Pod的容错。格式与 po.spec.Tolerations 相同。 | 无默认值；可选 
+| `控制器插件公差` | 覆盖Kubernetes对Pod的容错。遵循与相同的格式 `pod.spec.Tolerations`。 | 无默认值；可选 
 
 
-| `nodePluginNodeSelector` | Pod的其他节点选择器。格式与 pod.spec.nodeSelector 相同。 | 无默认值；可选 
+| `nodePluginNodeSelector` | Pod的其他节点选择器。遵循与相同的格式 `pod.spec.nodeSelector`。 | 无默认值；可选 
 
 
-| `nodePluginTholeations` | 覆盖Kubernetes对Pod的容错。格式与 po.spec.Tolerations 相同。 | 无默认值；可选 
+| `nodePluginTholeations` | 覆盖Kubernetes对Pod的容错。遵循与相同的格式 `pod.spec.Tolerations`。 | 无默认值；可选 
 |===
 
 NOTE: 有关格式化 POD 参数的详细信息，请参见 link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["将 Pod 分配给节点"^]。
