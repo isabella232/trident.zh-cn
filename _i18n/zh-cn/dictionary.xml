@@ -737,7 +737,6 @@
   <block id="3de05f78e401869f4630ec8cabf339df" category="section-title">是否可以直接从旧版本升级到新版本（跳过几个版本）？</block>
   <block id="ce44cbbc54839f39b351c091b0e3caa5" category="paragraph">NetApp 支持将 Astra Trident 从一个主要版本升级到下一个直接主要版本。您可以从 18.xx 升级到 19.xx ，从 19.xx 升级到 20.xx 等。在生产部署之前，您应在实验室中测试升级。</block>
   <block id="0399b9e6348e554937a4d65efc97a1b8" category="section-title">是否可以将 Trident 降级到先前版本？</block>
-  <block id="d307563c01953bd90a41ddd049f96d51" category="inline-link-macro">有关降级的章节</block>
   <block id="ba9c59aa9d07b25e124dcf6ca88d689a" category="section-title">管理后端和卷</block>
   <block id="ffe72215dff9a93d62ee68905212025e" category="section-title">是否需要在 ONTAP 后端定义文件中同时定义管理和数据 LIF ？</block>
   <block id="f3997f0b9446951754e665cfe7591cef" category="section-title">Astra Trident 是否可以为 ONTAP 后端配置 CHAP ？</block>
@@ -1875,7 +1874,6 @@
   <block id="cce5aa9218d4019d57adcf814d7189c1" category="paragraph"><block ref="cce5aa9218d4019d57adcf814d7189c1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="45b09f7cb3dcbe0274eef2b3fce46bea" category="paragraph">可以， Astra Trident 可以脱机安装。请参见 <block ref="4a2b27d6d4bc3dd7ae85bfd131d50753" category="inline-link-macro-rx"></block>。</block>
   <block id="0f43ba8a9cfc14b033c2c652f53bfcb9" category="paragraph">如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
-  <block id="72fec731c958562fd09df08eef5fbb89" category="paragraph">如果要降级，需要评估许多因素。请参见 <block ref="ea621a0de3f004c488ea799d0fd7e41d" category="inline-link-macro-rx"></block>。</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">法律声明提供对版权声明、商标、专利等的访问。</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版权</block>
   <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商标</block>
@@ -3884,4 +3882,6 @@ Astra Trident</block>
   <block id="d64d0e5bb5a552ae4986a713f41c8fc3" category="cell">Pod的其他节点选择器。	遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
   <block id="875ce721843c20d7f9aae240673ed68b" category="cell">覆盖Kubernetes对Pod的容错。遵循与相同的格式<block ref="f1fa64fcf5077601cb803e995a51fa4f" prefix=" " category="inline-code"></block>。</block>
   <block id="00e8e1706119ce5300bdc9141ececc37" category="cell">Pod的其他节点选择器。遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
+  <block id="7786076739da628161f45de338cd6e69" category="inline-link-macro">卸载Astra Trident</block>
+  <block id="bc2d347a4b0e30ef46f4d91b07267ca7" category="paragraph">如果您需要修复升级后发现的错误、依赖关系问题或升级失败或不完整的问题、则应执行此操作 <block ref="b6be8ee390417a446f993452ffee9585" category="inline-link-macro-rx"></block> 并按照该版本的特定说明重新安装早期版本。这是降级到早期版本的唯一建议方法。</block>
 </blocks>
