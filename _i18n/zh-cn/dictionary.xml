@@ -635,8 +635,6 @@
   <block id="06da281bf5e01c3c59892dc886cd0067" category="list-text">创建 `TridentOrchestrator` CR 以安装 Astra Trident 。</block>
   <block id="43f17763173fe230bdd78477152f5f7d" category="inline-link-macro">卸载 Astra Trident</block>
   <block id="8656f6a3d04342ff6248bd7d32949c2a" category="paragraph">如果您使用 Helm 安装了 Astra Trident ，则可以使用 `helm uninstall` 将其卸载。</block>
-  <block id="c416a70504ae36e8cfbf555ad0d13ab9" category="paragraph">如果您使用操作符安装了 Astra Trident ，则可以通过执行以下操作之一卸载它：</block>
-  <block id="245e84de93b9b41f643f9e737c17e702" category="paragraph">当 `uninstall` 标志设置为 `true` 时， Trident 操作员将卸载 Trident ，但不会删除 Trident Orchestrator 本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。</block>
   <block id="3bda6d3452a50ffddd40bb74b05d6c50" category="summary">Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的，可提供新功能和性能增强以及错误修复和改进功能。我们建议您每年至少升级一次，以利用 Astra Trident 中的新功能。</block>
   <block id="3386987a97643481040e99019808e020" category="doc">升级 Astra Trident</block>
   <block id="558ab0bef1894a7a726109d36632d09d" category="inline-link-macro">已知问题</block>
@@ -3570,8 +3568,6 @@ SMB</block>
   <block id="426346b94737adca6c2d979d911464ef" category="section-title">卸载TRIdent操作员安装</block>
   <block id="253ead25988bfe2dee06d2227693e39d" category="paragraph">您可以手动卸载或使用Helm卸载TRYDent操作员安装。</block>
   <block id="2985edaba812b8b31d08cc8513fee0a3" category="section-title">卸载手动安装</block>
-  <block id="932d8e226d5e26c888990ae2e734feb8" category="list-text">*编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 要设置卸载标志：*您可以编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 并设置<block ref="f41a95848a012f4f1a6550ce79c588aa" prefix=" " category="inline-code"></block>。</block>
-  <block id="d7348a31cc49a1353d8a060756d323e4" category="list-text">编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> CR并设置<block ref="fe98497efedbe156ecc4b953aea77e07" prefix=" " category="inline-code"></block> 标记如下所示：</block>
   <block id="55f6e2744208ccefe34f3e05ced2c988" category="section-title">卸载Helm安装</block>
   <block id="99dec4df69ba043a5eb3118e1e0b364e" category="section-title">卸载<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装</block>
   <block id="7a15e63f1d0efc213151254bbc1b2d0d" category="doc">升级TRIdent操作员安装</block>
@@ -3756,8 +3752,6 @@ SMB</block>
   <block id="fed6290ac938ca603cf5f4f680802954" category="open-title">&lt;code&gt;tridentctl&lt;/code&gt;</block>
   <block id="cc40bbe559f5f0b7306a8ae2941647b5" category="paragraph">在使用卸载Asta Dent后完全删除CRD<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
   <block id="660807cada2c8061fb92638cfe0568d0" category="list-text">为了便于升级和重新安装、卸载Asta Dent不会删除CRD或Asta Dent创建的相关对象。如果您需要完全删除Asta Trandent及其所有数据、请参见 <block ref="9d95a644de0932ac2f909a32a488bd14" category="inline-link-macro-rx"></block>。</block>
-  <block id="3277c9131339b6e3e8b8401d060b2ace" category="list-text">*删除<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block>：通过删除<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。操作员将处理的删除操作<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。</block>
-  <block id="d92f992bb942ae97af56a9921f1fb6d0" category="paragraph">使用<block ref="fe98497efedbe156ecc4b953aea77e07" prefix=" " category="inline-code"></block> 命令输入<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 删除与Asta Trandent关联的所有资源(CRD和相关对象除外)。</block>
   <block id="88251b113e3f1da4ba88b0d4283d23ed" category="paragraph">了解如何在Astra三端安装中创建和使用ONTAP SAN驱动程序。本节提供了将后端映射到StorageClasses的后端配置示例和详细信息。</block>
   <block id="00100eed0a9df5b2142497897b426d44" category="cell">集群或SVM管理LIF的IP地址。
 
@@ -3816,7 +3810,6 @@ SMB</block>
   <block id="d265ac83a999c5664002082de4a65e05" category="list-text"><block ref="40ecbfec412666aee449608e50f67b87" prefix="" category="inline-code"></block> 如果您的映像全部位于一个注册表中。</block>
   <block id="183ccfb0be6f36dfc545d9bf582a1180" category="list-text"><block ref="d3a400126b30a5fb9f887818fc7e1f04" prefix="" category="inline-code"></block> 如果Trident映像与CSI映像位于不同的注册表中。</block>
   <block id="d06187756592965157c9f1bc4fc51a9c" category="cell">"NetApp/trdent AutoSupport：23.07"</block>
-  <block id="b686eadf7765eed3e9de8f9cbded0fe8" category="section-title">23.07.1中的新增功能</block>
   <block id="06918a8f55f386d79e64a70ca217b501" category="paragraph">*Kubernetes:*修复了删除守护程序集的问题，以支持零停机升级(<block ref="6f993c83118cc4a1dd5351c8501e26c9" category="inline-link-macro-rx"></block>）。</block>
   <block id="ca6a658f1db1af30f178530c90cbe8fc" category="section-title">23.07中的变更</block>
   <block id="57154d2dcf591aaa3d4dcbfbba196075" category="inline-link-macro">支持的ONTAP卷限制</block>
@@ -3860,4 +3853,10 @@ SMB</block>
   <block id="5f04fbb334c6fb8030146ad8f76a953a" category="paragraph">A作用 是在"Comments"字段中设置配置标签。在FlexVol上为设置了注释<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 或FlexGroup<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>。在配置时、Astra Trident会将虚拟池上的所有标签复制到存储卷。为了方便起见、存储管理员可以按标签为每个虚拟池和组卷定义标签。</block>
   <block id="aea10b5a282698ad4477a7113234ae65" category="inline-link-macro">导入卷快照</block>
   <block id="4999635328ae714b8eb5f24934a24943" category="admonition">通常、您不需要管理<block ref="d6a1ae997b76c43d7aaf3b22e620401e" prefix=" " category="inline-code"></block> 对象。但如果需要、则例外 <block ref="0b4cdf17ac3e4123330cb8e51ec533a2" category="inline-link-macro-rx"></block> 在Asta Trdent外部创建。</block>
+  <block id="4aa76d97b44b3ff21dced31974f437dc" category="paragraph">如果您使用操作员安装了Astra Trdent、则可以通过执行以下操作之一将其卸载：</block>
+  <block id="6418f8ccde0bb975a1ad82cf1d5250c6" category="list-text">*编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> CR并设置卸载标志**：</block>
+  <block id="30abd17d4913fab8af9d1efd63c15f9c" category="paragraph">当<block ref="fe98497efedbe156ecc4b953aea77e07" prefix=" " category="inline-code"></block> 标志设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>、Trident操作符将卸载Trident、但不会删除Trident Orchestrator本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。</block>
+  <block id="0b5b18e58101a5fdc2d3618c85a04814" category="list-text">*删除<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block>**：通过删除<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。操作员将处理的删除操作<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。</block>
+  <block id="566ef0ea3e228b1c501652e83def2c9d" category="paragraph">使用<block ref="fe98497efedbe156ecc4b953aea77e07" prefix=" " category="inline-code"></block> 命令输入<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 要删除与Asta Trandent关联的所有资源(CRD和相关对象除外)、请执行以下操作：</block>
+  <block id="3d11c687c20c6a6a9fec2b3d07f861f0" category="section-title">23.07.1中的新增功能</block>
 </blocks>

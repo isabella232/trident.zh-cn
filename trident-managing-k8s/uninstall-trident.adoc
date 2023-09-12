@@ -52,20 +52,18 @@ summary: 您应使用与安装Asta三端安装相同的方法卸载Asta三端安
 
 === 卸载手动安装
 
-如果您使用操作符安装了 Astra Trident ，则可以通过执行以下操作之一卸载它：
+如果您使用操作员安装了Astra Trdent、则可以通过执行以下操作之一将其卸载：
 
-* *编辑 `TridentOrchestrator` 要设置卸载标志：*您可以编辑 `TridentOrchestrator` 并设置 `spec.uninstall=true`。
-+
-** 编辑 `TridentOrchestrator` CR并设置 `uninstall` 标记如下所示：
+. *编辑 `TridentOrchestrator` CR并设置卸载标志**：
 +
 [listing]
 ----
 kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"uninstall":true}}'
 ----
-** 当 `uninstall` 标志设置为 `true` 时， Trident 操作员将卸载 Trident ，但不会删除 Trident Orchestrator 本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。
++
+当 `uninstall` 标志设置为 `true`、Trident操作符将卸载Trident、但不会删除Trident Orchestrator本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。
 
-
-* *删除 `TridentOrchestrator`：通过删除 `TridentOrchestrator` cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。操作员将处理的删除操作 `TridentOrchestrator` 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。
+. *删除 `TridentOrchestrator`**：通过删除 `TridentOrchestrator` cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。操作员将处理的删除操作 `TridentOrchestrator` 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。
 
 
 
@@ -89,7 +87,7 @@ release "trident" uninstalled
 
 == 卸载 `tridentctl` 安装
 
-使用 `uninstall` 命令输入 `tridentctl` 删除与Asta Trandent关联的所有资源(CRD和相关对象除外)。
+使用 `uninstall` 命令输入 `tridentctl` 要删除与Asta Trandent关联的所有资源(CRD和相关对象除外)、请执行以下操作：
 
 [listing]
 ----
