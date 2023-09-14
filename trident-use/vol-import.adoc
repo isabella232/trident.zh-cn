@@ -245,7 +245,7 @@ tridentctl import volume gcpcvs_YEppr adroit-jolly-swift -f <path-to-pvc-file> -
 
 === Azure NetApp Files
 
-Astra三项功能支持使用导入卷 `azure-netapp-files` 和 `azure-netapp-files-subvolume` 驱动程序。
+Astra三项功能支持使用导入卷 `azure-netapp-files` 驱动程序。
 
 
 NOTE: 要导入Azure NetApp Files卷、请按卷路径确定该卷。卷路径是卷的导出路径的一部分、位于之后 `:/`。例如、如果挂载路径为 `10.0.0.2:/importvol1`、卷路径为 `importvol1`。

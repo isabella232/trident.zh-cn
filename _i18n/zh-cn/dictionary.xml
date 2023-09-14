@@ -3205,7 +3205,6 @@
   <block id="b83141d187ef372685e66e6dfe4cabd9" category="admonition">要在Google云平台中导入NetApp Cloud Volumes Service支持的卷、请按卷路径确定该卷。卷路径是卷的导出路径的一部分、位于之后<block ref="fb256b96ee496724e4579987e5a6e4da" prefix=" " category="inline-code"></block>。例如、如果导出路径为<block ref="3bbe8dafc880d124219c1e4f73d41cf9" prefix=" " category="inline-code"></block>、卷路径为<block ref="8886a1ac9f5b94f2fb54d752c304777f" prefix=" " category="inline-code"></block>。</block>
   <block id="9dfa04a9ad04eba811811f2fbd0f5f0e" category="paragraph-title">Google Cloud Platform示例</block>
   <block id="dd8d0b5581c0eb32a23d802032124024" category="paragraph">以下示例将导入<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block> 后端上的卷<block ref="b242744397b7d8bc9391b3e836628c5e" prefix=" " category="inline-code"></block> 卷路径<block ref="8886a1ac9f5b94f2fb54d752c304777f" prefix=" " category="inline-code"></block>。</block>
-  <block id="831e4b284f7105b1bbd4f891a4e7144a" category="paragraph">Astra三项功能支持使用导入卷<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 和<block ref="43f09bc16eaf24131ea82903259878ac" prefix=" " category="inline-code"></block> 驱动程序。</block>
   <block id="7501988e9549daa8c2fcd13e55b9fc78" category="admonition">要导入Azure NetApp Files卷、请按卷路径确定该卷。卷路径是卷的导出路径的一部分、位于之后<block ref="fb256b96ee496724e4579987e5a6e4da" prefix=" " category="inline-code"></block>。例如、如果挂载路径为<block ref="a88065dde27cea3a008a18172c5a9c9e" prefix=" " category="inline-code"></block>、卷路径为<block ref="062b749476713f7b5bbc675159e90bad" prefix=" " category="inline-code"></block>。</block>
   <block id="1cfd9b4e20d41cdca62f758d3b0cb58b" category="paragraph-title">Azure NetApp Files示例</block>
   <block id="bd46b0a8c2c4c89a60ee85052ad2dd0e" category="paragraph">以下示例将导入<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 后端上的卷<block ref="d8dd89ab9d39f5487714722f9becb468" prefix=" " category="inline-code"></block> 卷路径<block ref="062b749476713f7b5bbc675159e90bad" prefix=" " category="inline-code"></block>。</block>
@@ -3708,8 +3707,6 @@ SMB</block>
   <block id="2f73efb41160e66d2e4f5b500c984de8" category="section-title">Azure NetApp Files驱动程序详细信息</block>
   <block id="4ba3000579192de0298587f58861a12e" category="paragraph">Asta三端磁盘提供了以下Azure NetApp Files存储驱动程序、用于与集群进行通信。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
   <block id="7e7d2470a40e817070cd42bd81713c7b" category="paragraph"><block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix="" category="inline-code"></block>，<block ref="79e0f325804dafbdaef73b3b17c0fd8d" prefix=" " category="inline-code"></block></block>
-  <block id="a26f7ba5e57155f8df4df121d4527158" category="cell"><block ref="43f09bc16eaf24131ea82903259878ac" prefix="" category="inline-code"></block></block>
-  <block id="52dcf826fbc73c7b9f555d6b50423f98" category="paragraph"><block ref="310201b6353c5f38bc039e0e51b079d3" prefix="" category="inline-code"></block><block ref="66f137c5dc684da2a6a65917c86edd67" prefix="," category="inline-code"></block>，<block ref="40d1d2ce03569076bd0dc1e0ff90aa4c" prefix=" " category="inline-code"></block></block>
   <block id="62233a6f2ba54c1dcede120348a6f595" category="paragraph">了解如何在Asta Trident安装中创建和使用Element后端。</block>
   <block id="4e7d6286f837d54a4e4154d4b21b0659" category="section-title">Element驱动程序详细信息</block>
   <block id="9fc6992cc8e273b3f7d317fc2a54e18c" category="paragraph">Asta三项功能提供<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 用于与集群通信的存储驱动程序。支持的访问模式包括：_ReadWriteOnce_(RWO)、_ReadOnlyMany_(ROX)、_ReadWriteMany_(rwx)、_ReadWriteOncePod_(RWOP)。</block>
@@ -3884,4 +3881,5 @@ Astra Trident</block>
   <block id="00e8e1706119ce5300bdc9141ececc37" category="cell">Pod的其他节点选择器。遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
   <block id="7786076739da628161f45de338cd6e69" category="inline-link-macro">卸载Astra Trident</block>
   <block id="bc2d347a4b0e30ef46f4d91b07267ca7" category="paragraph">如果您需要修复升级后发现的错误、依赖关系问题或升级失败或不完整的问题、则应执行此操作 <block ref="b6be8ee390417a446f993452ffee9585" category="inline-link-macro-rx"></block> 并按照该版本的特定说明重新安装早期版本。这是降级到早期版本的唯一建议方法。</block>
+  <block id="5d935b9f26b929d94ae4b4f04c74ee28" category="paragraph">Astra三项功能支持使用导入卷<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驱动程序。</block>
 </blocks>
