@@ -91,9 +91,6 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 | `limitAggregateUsage` | 如果使用量超过此百分比，则配置失败。* 不适用于适用于 ONTAP 的 Amazon FSx * | "" （默认情况下不强制实施） 
 
 
-| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。 | ""(默认情况下不强制实施) 
-
-
 | `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 | ""(默认情况下不强制实施) 
 
 
