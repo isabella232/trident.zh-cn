@@ -1922,7 +1922,6 @@
   <block id="7335992f174c029a990442aca68aacbd" category="admonition">如果您尝试同时提供*凭据和证书*、则后端创建将失败、并显示一条错误、指出配置文件中提供了多种身份验证方法。</block>
   <block id="d1914bc190cdc3bc9eee6db0c81021bc" category="section-title">节点服务发现</block>
   <block id="2b6ab5193160f5eaca51526b15f27e3a" category="admonition">节点服务发现可识别已发现的服务、但无法保证服务已正确配置。相反、如果没有发现的服务、则无法保证卷挂载将失败。</block>
-  <block id="66896c99fb06e0b6c86498b249f8217a" category="cell">如果请求的卷大小超过此值、则配置失败。</block>
   <block id="412427d9207c4cc4b01539aff3c50e7c" category="cell">`网络功能`</block>
   <block id="6dc4cb19f2792a3eadfa64d4b4b6d177" category="paragraph">所有Kubernetes工作节点都必须安装适当的NFS工具。请参见 <block ref="f1f954e59a21e3ffe189e77dd2ee9f86" category="inline-link-macro-rx"></block> 有关详细信息：</block>
   <block id="6adbf3424e5de1b4e2baad3b4d632c4a" category="paragraph">您可以更新现有后端以使用其他身份验证方法或轮换其凭据。这两种方式都适用：使用用户名 / 密码的后端可以更新为使用证书；使用证书的后端可以更新为基于用户名 / 密码的后端。为此、您必须删除现有身份验证方法并添加新的身份验证方法。然后、使用包含所需参数的更新后端.json文件执行`tridentctl backend update`。</block>
@@ -3427,7 +3426,6 @@ SMB</block>
   <block id="80f4cfbe493e12651c3514c9481ce1ee" category="admonition">请勿在生产环境中使用按照以下说明构建的Kubennet集群。请使用您的分销商提供的生产部署指南来了解生产就绪集群。</block>
   <block id="46e28df17b257e6671b042b98bd37787" category="list-text"><block ref="46e28df17b257e6671b042b98bd37787" category="inline-link-rx"></block></block>
   <block id="fac0082fb8411565f3d5cb3788a17b17" category="doc">Astra三端快速入门</block>
-  <block id="4b7a06bf8d901036491a46c6f14175e3" category="paragraph">您可以通过几个步骤安装Asta Trandent并开始管理存储资源。开始之前、请查看 <block ref="a7c0f3baef818cf2a5323d10b9f5ac94" category="inline-link-macro-rx"></block>。</block>
   <block id="9a052cea99f186c7d930a0041b20a79b" category="admonition">对于Docker、请参见 <block ref="934c01af2efea144da6665bf428d8f6d" category="inline-link-macro-rx"></block>。</block>
   <block id="b0434693308513b990bcffe2314d6fb5" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> 安装 Astra Trident</block>
   <block id="c8fce1b550592f1b2285ab7a61547927" category="paragraph">Asta三端设计提供了多种针对各种环境和组织进行了优化的安装方法和模式。</block>
@@ -3882,4 +3880,5 @@ Astra Trident</block>
   <block id="7786076739da628161f45de338cd6e69" category="inline-link-macro">卸载Astra Trident</block>
   <block id="bc2d347a4b0e30ef46f4d91b07267ca7" category="paragraph">如果您需要修复升级后发现的错误、依赖关系问题或升级失败或不完整的问题、则应执行此操作 <block ref="b6be8ee390417a446f993452ffee9585" category="inline-link-macro-rx"></block> 并按照该版本的特定说明重新安装早期版本。这是降级到早期版本的唯一建议方法。</block>
   <block id="5d935b9f26b929d94ae4b4f04c74ee28" category="paragraph">Astra三项功能支持使用导入卷<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驱动程序。</block>
+  <block id="0ff441b997c776ccd29f05b449a5f4fb" category="paragraph">您可以通过几个步骤安装Asta Trandent并开始管理存储资源。开始之前、请查看 <block ref="a7c0f3baef818cf2a5323d10b9f5ac94" category="inline-link-macro-rx"></block>。</block>
 </blocks>
