@@ -2117,7 +2117,6 @@
   <block id="2bc97a247278d92f5552529c55ab7f0d" category="paragraph">在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。</block>
   <block id="17d79009c5c2bb6bd570bb6f87552a2d" category="paragraph">Astra Trident 支持调整 NFS 和 iSCSI PV 的大小。这样，用户就可以直接通过 Kubernetes 层调整其卷的大小。所有主要 NetApp 存储平台均可进行卷扩展，包括 ONTAP ， SolidFire/NetApp HCI 和 Cloud Volumes Service 后端。要稍后允许扩展，请在与卷关联的 StorageClass 中将 `allowVolumeExpansion` 设置为 `true` 。每当需要调整永久性卷的大小时，请在永久性卷声明中编辑 `sPec.resources.requests.storage` 标注以指定所需的卷大小。Trident会自动调整存储集群上卷的大小。</block>
   <block id="ee3d8ea22d8bf88f2f7fcd6d6dbf26d2" category="paragraph">指标服务可为管理员提供有关 OpenShift 集群的状态，资源利用率和可用性的宝贵信息。此外、POD自动扩展功能也需要使用此功能、许多组织会将来自指标服务的数据用于其成本分摊和/或成本分摊应用程序。</block>
-  <block id="f21f22dde0e0692333a7a28cce456b08" category="sidebar">所有Astra文档</block>
   <block id="06d5b814514e67e2a36b491b2493aed1" category="paragraph">使用此处列出的建议确保Astra Trident安装安全。</block>
   <block id="252ee40ccbd23adc008945e85af83513" category="section-title">将Astra Trident与NVE和NAE结合使用</block>
   <block id="676ad90ce2543d29917d8a5a6fc02e01" category="inline-link-macro">ONTAP NAS配置选项</block>
@@ -3139,12 +3138,10 @@
   <block id="815f28e53ebfb423dfe835a845095bf6" category="inline-link-macro">ONTAP SnapMirror复制和恢复</block>
   <block id="a5217e87e9aef874c28773b5774ecf37" category="paragraph">Asta三端存储无法配置SnapMirror复制关系、但存储管理员可以使用 <block ref="c3487d6df2463efc752acd6f5cc45a1f" category="inline-link-macro-rx"></block> 以复制Asta Trdent创建的卷。</block>
   <block id="c3c343b5a84229bd5095fd09f2afc5f5" category="inline-link-macro">tridentctrd卷导入</block>
-  <block id="5b570015a3a6711227cf6a2802ccd0d7" category="paragraph">然后、您可以使用将恢复的卷导入到Astra Trident中 <block ref="d8ad77887a2224df2faf4f1df578e333" category="inline-link-macro-rx"></block>。</block>
   <block id="d8d9dfeae772da34290b750d0f848a26" category="admonition">不支持导入<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>， <block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block>或<block ref="70d5dbddc55e3700ddbc8d21f0de22a3" prefix=" " category="inline-code"></block> 驱动程序。</block>
   <block id="b489b293d6cbe8b86835d3cac8c315fb" category="section-title">Snapshot数据保护</block>
   <block id="f332d72a4b78e34e31131f3a98c98053" category="paragraph">您可以使用以下方式保护和还原数据：</block>
   <block id="97fb495fd3b6672c40bb0092ca102eca" category="list-text">外部快照控制器和CRD、用于为永久性卷(PVs)创建Kubbernetes卷快照。</block>
-  <block id="cb55f92ada2ab9103f2202b5e32b90c2" category="paragraph"><block ref="cb55f92ada2ab9103f2202b5e32b90c2" category="inline-link-macro-rx"></block></block>
   <block id="83cd672b9742ba621e93a8b69c4ab2d4" category="list-text">ONTAP快照、用于还原卷的全部内容或恢复单个文件或LUN。</block>
   <block id="ad336d1fccea3e918d07055edac855a3" category="inline-link-macro">ONTAP快照</block>
   <block id="0cb949d1baa06577db93328185a8f24d" category="paragraph"><block ref="0cb949d1baa06577db93328185a8f24d" category="inline-link-macro-rx"></block></block>
@@ -3881,4 +3878,6 @@ Astra Trident</block>
   <block id="bc2d347a4b0e30ef46f4d91b07267ca7" category="paragraph">如果您需要修复升级后发现的错误、依赖关系问题或升级失败或不完整的问题、则应执行此操作 <block ref="b6be8ee390417a446f993452ffee9585" category="inline-link-macro-rx"></block> 并按照该版本的特定说明重新安装早期版本。这是降级到早期版本的唯一建议方法。</block>
   <block id="5d935b9f26b929d94ae4b4f04c74ee28" category="paragraph">Astra三项功能支持使用导入卷<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驱动程序。</block>
   <block id="0ff441b997c776ccd29f05b449a5f4fb" category="paragraph">您可以通过几个步骤安装Asta Trandent并开始管理存储资源。开始之前、请查看 <block ref="a7c0f3baef818cf2a5323d10b9f5ac94" category="inline-link-macro-rx"></block>。</block>
+  <block id="d055d4dfcb35cd1eea7b3d52e42a8924" category="paragraph">然后、您可以使用将恢复的卷导入到Astra Trident中 <block ref="b0a81d9cb6f9ea994a428f959b11d3c6" category="inline-link-macro-rx"></block>。</block>
+  <block id="4227c1b28cc9c04bf3552b7aae57fc3c" category="paragraph"><block ref="4227c1b28cc9c04bf3552b7aae57fc3c" category="inline-link-macro-rx"></block></block>
 </blocks>

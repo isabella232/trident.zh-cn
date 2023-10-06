@@ -106,7 +106,7 @@ NOTE: 如果指定了 `-identity-preserve true`、则A作用 是在激活目标S
 
 Asta三端存储无法配置SnapMirror复制关系、但存储管理员可以使用 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-disaster-recovery-concept.html["ONTAP SnapMirror复制和恢复"^] 以复制Asta Trdent创建的卷。
 
-然后、您可以使用将恢复的卷导入到Astra Trident中 link:trident-use/vol-import.adoc["tridentctrd卷导入"]。
+然后、您可以使用将恢复的卷导入到Astra Trident中 link:../trident-use/vol-import.html["tridentctrd卷导入"]。
 
 
 NOTE: 不支持导入 `ontap-nas-economy`，  `ontap-san-economy`或 `ontap-flexgroup-economy` 驱动程序。
@@ -119,7 +119,7 @@ NOTE: 不支持导入 `ontap-nas-economy`，  `ontap-san-economy`或 `ontap-flex
 
 * 外部快照控制器和CRD、用于为永久性卷(PVs)创建Kubbernetes卷快照。
 +
-link:trident-use/vol-snapshots.adoc["卷快照"]
+link:../trident-use/vol-snapshots.html["卷快照"]
 
 * ONTAP快照、用于还原卷的全部内容或恢复单个文件或LUN。
 +
