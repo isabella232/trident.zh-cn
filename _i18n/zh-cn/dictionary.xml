@@ -3846,7 +3846,6 @@ SMB</block>
   <block id="f3f30d479f6e3b393d917a3b2f88c770" category="cell"><block ref="89801e9e98979062e84647433a8ed3e9" prefix="" category="inline-code"></block></block>
   <block id="c9db68ea6cff44f42ac5acbbfccec399" category="cell">用于安装 Astra Trident 的命名空间</block>
   <block id="fbbd7b4b14060c4fdb02f92c4c08e702" category="cell">设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 启用在Windows工作节点上的安装。</block>
-  <block id="16e20a5ba5cd6442f3cdd49b16e8a5f3" category="cell"><block ref="8bd1aa960638ccc5869583e34d702ce6" prefix="" category="inline-code"></block></block>
   <block id="3dd791c4864e77ae6cf11572e2d7b374" category="cell">安装基于 IPv6 的 Astra Trident</block>
   <block id="077e99fe42ced522b462656cffffe09c" category="cell"><block ref="d5276bb17ae062102e883a18454c2f1b" prefix="" category="inline-code"></block></block>
   <block id="4448b73eac083e33b7142f0e5790fac5" category="cell">Kubernetes 操作超时</block>
@@ -3880,4 +3879,5 @@ Astra Trident</block>
   <block id="0ff441b997c776ccd29f05b449a5f4fb" category="paragraph">您可以通过几个步骤安装Asta Trandent并开始管理存储资源。开始之前、请查看 <block ref="a7c0f3baef818cf2a5323d10b9f5ac94" category="inline-link-macro-rx"></block>。</block>
   <block id="d055d4dfcb35cd1eea7b3d52e42a8924" category="paragraph">然后、您可以使用将恢复的卷导入到Astra Trident中 <block ref="b0a81d9cb6f9ea994a428f959b11d3c6" category="inline-link-macro-rx"></block>。</block>
   <block id="4227c1b28cc9c04bf3552b7aae57fc3c" category="paragraph"><block ref="4227c1b28cc9c04bf3552b7aae57fc3c" category="inline-link-macro-rx"></block></block>
+  <block id="d293f031e5664526b25f3a65012401b7" category="cell"><block ref="fdb7cb8f657426e7c409bfd6d1a36ce4" prefix="" category="inline-code"></block></block>
 </blocks>
