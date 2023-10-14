@@ -38,7 +38,7 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 
 可以指定完全限定域名(FQDN)。
 
-如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须使用方括号进行定义、例如 `[28e8:d9fb:a825:b7bf:69a8:d02f:9e7b:3555]`。
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须使用方括号进行定义、例如 `[28e8:d9fb:a825:b7bf:69a8:d02f:9e7b:3555]`。
 
 有关无缝MetroCluster切换、请参见 <<mcc-best>>。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
 
@@ -49,7 +49,7 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 
 可以在初始设置后更改。请参见 。
 
-如果使用安装了Astra Trident、则可以将设置为使用IPv6地址 `--use-ipv6` 标志。IPv6地址必须使用方括号进行定义、例如 `[28e8:d9fb:a825:b7bf:69a8:d02f:9e7b:3555]`。
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须使用方括号进行定义、例如 `[28e8:d9fb:a825:b7bf:69a8:d02f:9e7b:3555]`。
 
 *对于MetroCluster省略。*请参见 <<mcc-best>>。 | 指定的地址或派生自SVM (如果未指定)(不建议) 
 

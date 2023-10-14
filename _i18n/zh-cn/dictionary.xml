@@ -96,21 +96,6 @@
   <block id="1bb2af29a08ab6ea9414a8656234b8c6" category="list-text">`` -h ， -help` ：卷帮助。</block>
   <block id="0ad393d5c23749c23f3855220b55375a" category="list-text">`` -no-manage` ：仅创建 PV/PVC 。不要假定卷生命周期管理。</block>
   <block id="42ddf993417d9568ca6a057fe55f9c63" category="paragraph">您可以运行 `install` 标志来安装 Astra Trident 。</block>
-  <block id="fbd7cc4267716ab9206612c6dcaa206e" category="list-text">`` -autosupport-proxy string` ：用于发送 AutoSupport 遥测的代理的地址 / 端口。</block>
-  <block id="778cbd0cbbd73953bc965ad29269803c" category="list-text">`` -enable-node-prep` ：尝试在节点上安装所需的软件包。</block>
-  <block id="23945a1dd08f0fb29fc1b73a02a2f48d" category="list-text">`` -generate-custom-yaml` ：在不安装任何内容的情况下生成 YAML 文件。</block>
-  <block id="351ac43ddb05bc31fb7aa4d76c9098ed" category="list-text">`` -h ， -help` ：安装帮助。</block>
-  <block id="3b825e283b9b4452c1ef223373ad950d" category="list-text">`` -image-regRegistry string` ：内部映像注册表的地址 / 端口。</block>
-  <block id="ba7224837b2ded4b5b295c1012fcc2c0" category="list-text">`` -K8s-timeout duration` ：所有 Kubernetes 操作的超时（默认值为 3 毫秒）。</block>
-  <block id="6018142252ad7b87dc139b3235ff4fd3" category="list-text">`` -kubelet-dir string` ： kubelet 内部状态的主机位置（默认为 "/var/lib/kubelet" ）。</block>
-  <block id="e36f8ff54239eb329caf981624e29cb9" category="list-text">`` -log-format string` ： Astra Trident 日志记录格式（文本， json ）（默认为 "text" ）。</block>
-  <block id="75f452bd493d8727bcf31563cc9106b4" category="list-text">`` -pv 字符串` ： Astra Trident 使用的原有 PV 名称，用于确保此名称不存在（默认为 "trident " ）。</block>
-  <block id="ba2a8d0773dc83972c406043a789e4dd" category="list-text">`` -PVC 字符串` ： Astra Trident 使用的原有 PVC 的名称，用于确保此名称不存在（默认为 "trident " ）。</block>
-  <block id="6c99958eae5167b3baa561e4f7ee33f1" category="list-text">`` -silning-autosupport` ：不要自动向 NetApp 发送 AutoSupport 捆绑包（默认为 true ）。</block>
-  <block id="77c96d54825d934e8abaadbc0049935d" category="list-text">`` —静默` ：在安装期间禁用大多数输出。</block>
-  <block id="daeedc3203fdc6c1fb8dfe70e2381ed3" category="list-text">`` -trident 映像字符串` ：要安装的 Astra Trident 映像。</block>
-  <block id="9a7a8500c6fa970d6879b522c3e33437" category="list-text">`` -use-custom-yaml` ：使用设置目录中现有的任何 YAML 文件。</block>
-  <block id="bbf23448d408765a1240d287ed41ceff" category="list-text">`` -use-ipv6` ：使用 IPv6 进行 Astra Trident 的通信。</block>
   <block id="501416d02a886c81e8849b2f400e28a3" category="paragraph">您可以运行 `logs` 标志从 Astra Trident 打印日志。</block>
   <block id="be8607b2dc354b7010b1464ac140fc1b" category="list-text">`` A ， -archive` ：使用所有日志创建支持归档，除非另有说明。</block>
   <block id="d8d07479f4d5c7f0ef2b0f51407f070c" category="list-text">`` -h ， -help` ：日志帮助。</block>
@@ -2540,7 +2525,6 @@
   <block id="cb16cfa78684ba0c7fc9cff3e67df72b" category="paragraph">Astra Trident支持为以下项定义IPv6地址：</block>
   <block id="a24e915be64ce870d285c6e28a6df3f5" category="list-text"><block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix="" category="inline-code"></block> 和<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block> 适用于ONTAP NAS后端。</block>
   <block id="fb250da700173f245f4c10d2970cfba8" category="list-text"><block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix="" category="inline-code"></block> 适用于ONTAP SAN后端。您无法指定<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block> 在ONTAP SAN后端。</block>
-  <block id="26c2fac45b391513484ac592dfbd2e11" category="paragraph">必须使用安装Astra Trident<block ref="0612dd31fddbea26c732fa571ce36adc" prefix=" " category="inline-code"></block> 用于通过IPv6正常运行的标志。</block>
   <block id="f53ad7a29c3832e7ce3b551fa5add12d" category="paragraph">您可以更新上的数据LIF<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 和<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 仅限。</block>
   <block id="18e52eb5a60f4ee8d6f1fb37ab3e3781" category="paragraph">标志：*<block ref="60072fc2fad0d30fc656850e04c7433f" prefix=" " category="inline-code"></block>：卸载帮助。*<block ref="61bce13717a9d6da0266dbc3e2b1e642" prefix=" " category="inline-code"></block>：卸载期间禁用大多数输出。</block>
   <block id="741970ef3d523752ab543427956bb1b8" category="cell">1.19 - 1.26</block>
@@ -2767,7 +2751,6 @@
   <block id="3fa13ec46a3746ee36c97d65fa53f096" category="admonition">如果PVC连接到一个或多个Pod、则必须关闭所有对应Pod、然后将其恢复到、新数据LIF才能生效。</block>
   <block id="a84a64b02579dc14f89cbfdf30b6e938" category="list-text">您可以使用指定日志保留时间范围<block ref="86339c2ed773d5bd944b82d3086d3477" prefix=" " category="inline-code"></block> 标志。例如：<block ref="e238339d491d4840f7d8e509bdbb7b63" prefix=" " category="inline-code"></block>。此信息通过收集和发送<block ref="9d80ca17f097c8e365550f4036ccf0e3" prefix=" " category="inline-code"></block> 与Astra Trident一起安装的容器。您可以从获取容器映像<block ref="1b00454f0ab35dcec2ee1a0061efc6e5" category="inline-link-rx"></block>。</block>
   <block id="76b4586b7207f884c66397194b773e14" category="summary">了解适用于ONTAP 的Amazon FSX的后端配置选项。本节提供了后端配置示例。</block>
-  <block id="bf432628a3769cd379c6784688db312f" category="cell">协议 LIF 的 IP 地址。* ONTAP NAS驱动程序*：建议指定dataLIF。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 <block ref="b2c939cb81e81d99a25f4be74f517f2f" category="inline-xref-macro-rx"></block>。* ONTAP SAN驱动程序*：不为iSCSI指定。Astra Trident使用ONTAP 选择性LUN映射来发现建立多路径会话所需的iSCI LIF。如果明确定义了dataLIF、则会生成警告。如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
   <block id="508e91a481a0d10be716ae1a501447d0" category="cell">"["0.0.0.0/0 "、"：：/0 "]"</block>
   <block id="b8c7e19ba614c29878588409008e29c6" category="cell">用于连接到集群或SVM的用户名。用于基于凭据的身份验证。例如、vsadmin。</block>
   <block id="9a2486a943ad2a4c99f2797d6984f3d0" category="cell">用于连接到集群或SVM的密码。用于基于凭据的身份验证。</block>
@@ -2999,7 +2982,6 @@
   <block id="c1fd85851a162222ab0690383666bd47" category="paragraph"><block ref="05b6053c41a2130afd6fc3b158bda4e6" prefix="" category="inline-code"></block></block>
   <block id="bf0a8b77dbb95465376fb2cfec90b422" category="paragraph"><block ref="76bb7251da6a3c88e629c03a402b9d15" prefix="" category="inline-code"></block></block>
   <block id="8e6b1878428055edaef42698026bd1b5" category="paragraph">默认情况下， Astra Trident 不会使用 Kubernetes 将挂载选项设置为任何值。要在 Kubernetes 存储类中指定挂载选项，请按照给定示例进行操作 <block ref="29e04d8356a523f6fc836193630ad63e" category="inline-link-macro-rx"></block>。</block>
-  <block id="419c95e5a9e44d427f99debdcf0550c7" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="cd38c25b6345abc8733d2ef72739cd97" category="inline-link-macro-rx"></block> Configuration</block>
   <block id="1dedbfd605df8b562acc8f759a8e9acc" category="list-text">运行的Kubernetes集群 <block ref="229e1052bb9ecd8cf2680d6f44691174" category="inline-link-macro-rx"></block></block>
   <block id="17c5eeb01739643b5aef94fe18b6c849" category="paragraph">您可以使用版本选择器在最新版本和以前的四个版本之间导航、也可以使用以下链接。</block>
   <block id="4693b2393d80830cd4f198db20bf2b72" category="inline-link">Astra三排版23.01</block>
@@ -3364,8 +3346,6 @@ SMB</block>
   <block id="66cbadc48d2dbe3accb93937a8d42d1e" category="paragraph">必须使用两个配置选项。下面是一个后端定义示例：</block>
   <block id="e98bc47811eddcaad07f10623b28d028" category="admonition">使用此功能时、您必须确保SVM中的根接合具有先前创建的导出策略、并具有允许节点CIDR块的导出规则(例如默认导出策略)。始终遵循NetApp建议的最佳实践、为Astra三端存储专用SVM。</block>
   <block id="1042787fd4ac6b51cfd71a9564293ec1" category="cell">使用CHAP对iSCSI进行身份验证。Asta三端到子使用CHAP。</block>
-  <block id="16c5a19000fdf77116a42ef5615c4685" category="list-text"><block ref="a52f2fa2f1fec0074848a3750307fb69" prefix="" category="inline-code"></block>：AutoSupport遥测的容器映像(默认为"NetApp/TRIMT autostsupport：&lt;current-version&gt;")。</block>
-  <block id="1d1a0da3e4ed6ccf7826b60a0633c618" category="list-text"><block ref="4531ec288530509b32f6f51400c1fddc" prefix="" category="inline-code"></block>：覆盖三端控制器的REST API的HTTP请求超时(默认值为1 m30)。</block>
   <block id="a03c5f2c1a3d118d44bc3e92d52663bb" category="paragraph">Trident还提供<block ref="77167d63af133b47bca3bbacd580fa44" prefix=" " category="inline-code"></block> 和<block ref="58c1c86186ef8de4f6e12d8f3aed8b64" prefix=" " category="inline-code"></block> 用于创建克隆的标注。您可以使用这些标注克隆PVC、而无需使用CSI实施。</block>
   <block id="5f117d85f5b23527c781bb26a4b15109" category="paragraph">。<block ref="75e4a0ceb294a9d74374c938e4e8ddc8" prefix=" " category="inline-code"></block> 目录包含用于Trident的PVC定义示例。请参见 <block ref="62155edb2842dfbdb69802620baa3865" category="inline-xref-macro-rx"></block> 有关与三项技术的卷关联的参数和设置的完整问题描述。</block>
   <block id="6229286496513c532bbb85d111e6228f" category="paragraph">Astra Trident使用<block ref="99bc4b850e05bafd67cf5f5f49344c1e" prefix=" " category="inline-code"></block> 用于保留Trident对象身份的对象、例如Trident后端、Trident存储类和Trident卷。这些对象由 Trident 管理。此外， CSI 卷快照框架还引入了一些定义卷快照所需的 CRD 。</block>
@@ -3720,11 +3700,6 @@ SMB</block>
   <block id="9f65455ce006fe56e7588e4e14f1edb8" category="paragraph">可以为模拟服务类设计虚拟池。使用适用于 Azure NetApp Files 的云卷服务的虚拟池实施，让我们来了解一下如何设置不同的服务类。使用多个标签配置Azure NetApp Files后端、以表示不同的性能级别。设置<block ref="28277e44c5db61612accdf326d137e96" prefix=" " category="inline-code"></block> 添加适当的性能级别、并在每个标签下添加其他所需的方面。现在、创建可映射到不同虚拟池的不同Kubernetes存储类。使用<block ref="bed471c4a88e25ac9a7e4a7b980700a8" prefix=" " category="inline-code"></block> 字段中、每个StorageClass都会调用可用于托管卷的虚拟池。</block>
   <block id="42f3b65b98b18c792b7b5534e40d2646" category="section-title">FSx for ONTAP驱动程序详细信息</block>
   <block id="9b82ca4e89dcaf4cecf50467b6126909" category="paragraph">有关驱动程序详细信息、请参见 <block ref="4093b6d0ce8cf414637a02002d2b0376" category="inline-link-macro-rx"></block> 和 <block ref="276422a40a581e9842304216329765d5" category="inline-link-macro-rx"></block>。</block>
-  <block id="02882f6e58d1a3adffd9c9e4d0b2cc15" category="cell">集群或 SVM 管理 LIF 的 IP 地址
-
-可以指定完全限定域名(FQDN)。
-
-如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
   <block id="629ac35dda697ad18f8fef7094213871" category="list-text">如果要降级到早期版本的三端到功能、请先运行<block ref="ac8650577d1b744589a6a11b60ac38c7" prefix=" " category="inline-code"></block> 用于删除Trident的命令。下载所需的<block ref="f3d78353f8dac3e49bbefeb5f6a2383b" category="inline-link-rx"></block> 并使用安装<block ref="430bf77bee6c59d385d4194f84c21b16" prefix=" " category="inline-code"></block> 命令：</block>
   <block id="2a1db8dc71dec3264e9155d610575785" category="section-title">完全删除Asta Trandent和CRD</block>
   <block id="de752588132c292a8a12ad2441fbf43c" category="paragraph">您可以完全删除Asta Dent以及所有创建的CRD和关联的自定义资源。</block>
@@ -3737,13 +3712,6 @@ SMB</block>
   <block id="cc40bbe559f5f0b7306a8ae2941647b5" category="paragraph">在使用卸载Asta Dent后完全删除CRD<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block></block>
   <block id="660807cada2c8061fb92638cfe0568d0" category="list-text">为了便于升级和重新安装、卸载Asta Dent不会删除CRD或Asta Dent创建的相关对象。如果您需要完全删除Asta Trandent及其所有数据、请参见 <block ref="9d95a644de0932ac2f909a32a488bd14" category="inline-link-macro-rx"></block>。</block>
   <block id="88251b113e3f1da4ba88b0d4283d23ed" category="paragraph">了解如何在Astra三端安装中创建和使用ONTAP SAN驱动程序。本节提供了将后端映射到StorageClasses的后端配置示例和详细信息。</block>
-  <block id="00100eed0a9df5b2142497897b426d44" category="cell">集群或SVM管理LIF的IP地址。
-
-可以指定完全限定域名(FQDN)。
-
-如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须使用方括号进行定义、例如<block ref="33e9328e92e3ef05629093b4693b3925" prefix=" " category="inline-code"></block>。
-
-有关无缝MetroCluster切换、请参见 <block ref="41195e18a4a81a05f5c5a6be365a5602" category="inline-xref-macro-rx"></block>。</block>
   <block id="53f89913149599078aa2763e20f64db1" category="cell">协议 LIF 的 IP 地址。
 
 *请勿为iSCSI指定。* Astra Trident使用 <block ref="2de2f329c45219df280af5a70ed7a17c" category="inline-link-macro-rx"></block> 发现建立多路径会话所需的iSCI LIF。如果出现、则会生成警告<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block> 已明确定义。
@@ -3759,22 +3727,6 @@ SMB</block>
   <block id="bb5c9e20ecc2d96bd9d91107161bf89b" category="list-text">您可以更新<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> 使用以下命令直接通过KubeNet访问对象：</block>
   <block id="ccec41e7609b17a7fe58691b5cbf68ea" category="list-text">或者、您也可以对现有进行更改<block ref="913a4b06671d1e04e6582a85afe3abbe" prefix=" " category="inline-code"></block> 使用以下命令执行CR：</block>
   <block id="9c12c9edc9fbb4ee2f0331555cd8de1b" category="paragraph">了解如何创建ONTAP NAS驱动程序并将其用于Astra三端安装。本节提供了将后端映射到StorageClasses的后端配置示例和详细信息。</block>
-  <block id="630864bd1af028bd4049fce933eeed43" category="cell">集群或 SVM 管理 LIF 的 IP 地址
-
-可以指定完全限定域名(FQDN)。
-
-如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须使用方括号进行定义、例如<block ref="33e9328e92e3ef05629093b4693b3925" prefix=" " category="inline-code"></block>。
-
-有关无缝MetroCluster切换、请参见 <block ref="41195e18a4a81a05f5c5a6be365a5602" category="inline-xref-macro-rx"></block>。</block>
-  <block id="55ef3b8d4908e1b161b74799585d5b2b" category="cell">协议 LIF 的 IP 地址。
-
-建议指定<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block>。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。
-
-可以在初始设置后更改。请参见 <block ref="b2c939cb81e81d99a25f4be74f517f2f" category="inline-xref-macro-rx"></block>。
-
-如果使用安装了Astra Trident、则可以将设置为使用IPv6地址<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> 标志。IPv6地址必须使用方括号进行定义、例如<block ref="33e9328e92e3ef05629093b4693b3925" prefix=" " category="inline-code"></block>。
-
-*对于MetroCluster省略。*请参见 <block ref="41195e18a4a81a05f5c5a6be365a5602" category="inline-xref-macro-rx"></block>。</block>
   <block id="d24ddd1da817847ede47979e6e68c60e" category="example-title">ONTAP NAS FlexGroup示例</block>
   <block id="8788fe54575b03d9b62dbb1a38a7a277" category="example-title">SMB卷示例</block>
   <block id="1ce00ab507a065e4febc57b244e25d18" category="example-title">自动导出策略示例</block>
@@ -3874,10 +3826,64 @@ Astra Trident</block>
   <block id="875ce721843c20d7f9aae240673ed68b" category="cell">覆盖Kubernetes对Pod的容错。遵循与相同的格式<block ref="f1fa64fcf5077601cb803e995a51fa4f" prefix=" " category="inline-code"></block>。</block>
   <block id="00e8e1706119ce5300bdc9141ececc37" category="cell">Pod的其他节点选择器。遵循与相同的格式<block ref="6ae8be3433bfc36ced79a1271e6ebf11" prefix=" " category="inline-code"></block>。</block>
   <block id="7786076739da628161f45de338cd6e69" category="inline-link-macro">卸载Astra Trident</block>
-  <block id="bc2d347a4b0e30ef46f4d91b07267ca7" category="paragraph">如果您需要修复升级后发现的错误、依赖关系问题或升级失败或不完整的问题、则应执行此操作 <block ref="b6be8ee390417a446f993452ffee9585" category="inline-link-macro-rx"></block> 并按照该版本的特定说明重新安装早期版本。这是降级到早期版本的唯一建议方法。</block>
   <block id="5d935b9f26b929d94ae4b4f04c74ee28" category="paragraph">Astra三项功能支持使用导入卷<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驱动程序。</block>
   <block id="0ff441b997c776ccd29f05b449a5f4fb" category="paragraph">您可以通过几个步骤安装Asta Trandent并开始管理存储资源。开始之前、请查看 <block ref="a7c0f3baef818cf2a5323d10b9f5ac94" category="inline-link-macro-rx"></block>。</block>
   <block id="d055d4dfcb35cd1eea7b3d52e42a8924" category="paragraph">然后、您可以使用将恢复的卷导入到Astra Trident中 <block ref="b0a81d9cb6f9ea994a428f959b11d3c6" category="inline-link-macro-rx"></block>。</block>
   <block id="4227c1b28cc9c04bf3552b7aae57fc3c" category="paragraph"><block ref="4227c1b28cc9c04bf3552b7aae57fc3c" category="inline-link-macro-rx"></block></block>
   <block id="d293f031e5664526b25f3a65012401b7" category="cell"><block ref="fdb7cb8f657426e7c409bfd6d1a36ce4" prefix="" category="inline-code"></block></block>
+  <block id="565a885b26c86877e165a4344ddec532" category="cell">集群或 SVM 管理 LIF 的 IP 地址
+
+可以指定完全限定域名(FQDN)。
+
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
+  <block id="2822ed3c57bdf7b3dd2a9e7a14a12770" category="cell">协议 LIF 的 IP 地址。
+
+* ONTAP NAS驱动程序*：建议指定dataLIF。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 <block ref="b2c939cb81e81d99a25f4be74f517f2f" category="inline-xref-macro-rx"></block>。
+
+* ONTAP SAN驱动程序*：不为iSCSI指定。Astra Trident使用ONTAP 选择性LUN映射来发现建立多路径会话所需的iSCI LIF。如果明确定义了dataLIF、则会生成警告。
+
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。</block>
+  <block id="88cb0261777362737d12ea9268184d65" category="cell">集群或SVM管理LIF的IP地址。
+
+可以指定完全限定域名(FQDN)。
+
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须使用方括号进行定义、例如<block ref="33e9328e92e3ef05629093b4693b3925" prefix=" " category="inline-code"></block>。
+
+有关无缝MetroCluster切换、请参见 <block ref="41195e18a4a81a05f5c5a6be365a5602" category="inline-xref-macro-rx"></block>。</block>
+  <block id="1c406311c32773986c724a28df7826af" category="cell">集群或 SVM 管理 LIF 的 IP 地址
+
+可以指定完全限定域名(FQDN)。
+
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须使用方括号进行定义、例如<block ref="33e9328e92e3ef05629093b4693b3925" prefix=" " category="inline-code"></block>。
+
+有关无缝MetroCluster切换、请参见 <block ref="41195e18a4a81a05f5c5a6be365a5602" category="inline-xref-macro-rx"></block>。</block>
+  <block id="1c05218d366e75cebad4a21520fb49f4" category="cell">协议 LIF 的 IP 地址。
+
+建议指定<block ref="ea76b2438eb5996eb2c347e7341ed59a" prefix=" " category="inline-code"></block>。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。
+
+可以在初始设置后更改。请参见 <block ref="b2c939cb81e81d99a25f4be74f517f2f" category="inline-xref-macro-rx"></block>。
+
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须使用方括号进行定义、例如<block ref="33e9328e92e3ef05629093b4693b3925" prefix=" " category="inline-code"></block>。
+
+*对于MetroCluster省略。*请参见 <block ref="41195e18a4a81a05f5c5a6be365a5602" category="inline-xref-macro-rx"></block>。</block>
+  <block id="5e74892a3fc09257dc0257ff5247631b" category="list-text">使用 Trident 时可能会遇到的一个常见问题<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 租户和客户端密码来自权限不足的应用程序注册。有关 Trident 要求的完整列表，请参见 <block ref="afedf4ee56554ea6e6b54e6aa206680c" category="inline-link-macro-rx"></block> Configuration</block>
+  <block id="3d8f9a401d2f14d3d617f589c6df7432" category="paragraph">如果您需要修复升级后发现的错误、依赖关系问题或升级失败或不完整的问题、则应执行此操作 <block ref="a77ee044a82010691ba331df7568f289" category="inline-link-macro-rx"></block> 并按照该版本的特定说明重新安装早期版本。这是降级到早期版本的唯一建议方法。</block>
+  <block id="3fd1a9bc30bcd7efc9fd65fa7a4eccb8" category="paragraph">必须使用标志安装Astra三元组<block ref="4a4ef9f92e69acc000120379678aadcf" prefix=" " category="inline-code"></block> (适用于<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装)、<block ref="fdb7cb8f657426e7c409bfd6d1a36ce4" prefix=" " category="inline-code"></block> (对于三端运算符)、或<block ref="b63589bf34442180f04a6b46488afa6d" prefix=" " category="inline-code"></block> (对于Helm安装)、以使其通过IPv6运行。</block>
+  <block id="96bd65f2912110ac8bb061d9ec9609e0" category="list-text"><block ref="88e6af50844241df09da1b4f0fed0dc1" prefix="" category="inline-code"></block>：AutoSupport遥测的容器映像(默认为"NetApp/TRIMT autostsupport：&lt;current-version&gt;")。</block>
+  <block id="c801be11a30de72587e4e1462517a9bc" category="list-text"><block ref="21e377b6d1724ef73707d1b42de99ab3" prefix="" category="inline-code"></block>：用于发送AutoSupport 遥测的代理的地址/端口。</block>
+  <block id="6966a2db0596b0439e6dd1a5486b9ffb" category="list-text"><block ref="8ef3d4e948c6061ad15793e3bfd2660f" prefix="" category="inline-code"></block>：尝试在节点上安装所需的软件包。</block>
+  <block id="44f66f6d235f40edda36c65141a057ea" category="list-text"><block ref="5de93c87952cd098700fb8d46daed4d6" prefix="" category="inline-code"></block>：在不安装任何内容的情况下生成YAML文件。</block>
+  <block id="8754f4a82f1465efd0693f5bb5c7c56d" category="list-text"><block ref="60072fc2fad0d30fc656850e04c7433f" prefix="" category="inline-code"></block>：安装帮助。</block>
+  <block id="460b654bbf2c9ce02eb1642282346e90" category="list-text"><block ref="a6bd80a942dd6d1c4d4b8aa4bd064415" prefix="" category="inline-code"></block>：覆盖三端控制器的REST API的HTTP请求超时(默认值为1 m30)。</block>
+  <block id="ca0b8c62a30ba6d654b806020656c35c" category="list-text"><block ref="22f97752ec243e2f8fb13a584ff48f0d" prefix="" category="inline-code"></block>：内部映像注册表的地址/端口。</block>
+  <block id="42b215976983835e36d8ecb8a2395b96" category="list-text"><block ref="af58b91b0e366d67d75550c28c8b73bd" prefix="" category="inline-code"></block>：所有Kubernetes操作的超时(默认值为3m0)。</block>
+  <block id="1be177f83affbb67c0e86a1c153df5d8" category="list-text"><block ref="931fef57514fa5bc71c5c9784dcb35b2" prefix="" category="inline-code"></block>：kubelet内部状态的主机位置(默认值为"/var/lib/kubelet")。</block>
+  <block id="a400846cbbab76bc44b2b0ce2b3272bd" category="list-text"><block ref="ad595b91ed4748510a60df1c00ce5bd6" prefix="" category="inline-code"></block>：Astra Trident日志记录格式(文本、json)(默认为"text")。</block>
+  <block id="110955357884a1a40e220cf65023e4af" category="list-text"><block ref="120a4fcacf73dd87df1de81c4d7a2526" prefix="" category="inline-code"></block>：Astra Trident使用的原有PV的名称可确保此名称不存在(默认为"trident ")。</block>
+  <block id="fb5f2b8649aea92b4b4cfb6226444539" category="list-text"><block ref="12ea064968b15f51e1c1a7444fe9f227" prefix="" category="inline-code"></block>：Asta三端图使用的原有PVC的名称，确保不存在(默认为“三端图”)。</block>
+  <block id="064be4bbf8e16f53986a3625c86fbf8c" category="list-text"><block ref="284e51f7c35ac8708577507873ff928e" prefix="" category="inline-code"></block>：不要自动向NetApp发送AutoSupport 捆绑包(默认为true)。</block>
+  <block id="16fd39daf51f1777561290a15ea4f7a8" category="list-text"><block ref="61bce13717a9d6da0266dbc3e2b1e642" prefix="" category="inline-code"></block>：在安装期间禁用大多数输出。</block>
+  <block id="22948ed4deb04f4041cba28bf7536c9a" category="list-text"><block ref="356c2fa7142c3aee4cd6204d96ea0890" prefix="" category="inline-code"></block>：要安装的Astra Trident映像。</block>
+  <block id="c739dc3ddc713880b7989d4cb214b126" category="list-text"><block ref="8026926641b283123174e50f80da83de" prefix="" category="inline-code"></block>：使用设置目录中的任何现有YAML文件。</block>
+  <block id="b4a7a23f7c478405b46b2605053c1b1c" category="list-text"><block ref="4a4ef9f92e69acc000120379678aadcf" prefix="" category="inline-code"></block>：使用IPv6进行Astra Trident的通信。</block>
 </blocks>
