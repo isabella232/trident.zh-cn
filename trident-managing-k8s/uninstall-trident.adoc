@@ -64,6 +64,11 @@ kubectl patch torc <trident-orchestrator-name> --type=merge -p '{"spec":{"uninst
 当 `uninstall` 标志设置为 `true`、Trident操作符将卸载Trident、但不会删除Trident Orchestrator本身。如果要重新安装 Trident ，应清理 Trident Orchestrator 并创建新的 Trident 。
 
 . *删除 `TridentOrchestrator`**：通过删除 `TridentOrchestrator` cr用于部署Astra Trident、此时您需要指示操作员卸载Trident。操作员将处理的删除操作 `TridentOrchestrator` 然后继续删除Astra Trident部署和取消定义、并删除在安装过程中创建的Trident Pod。
++
+[listing]
+----
+kubectl delete -f deploy/<bundle.yaml> -n <namespace>
+----
 
 
 
