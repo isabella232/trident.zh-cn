@@ -3545,7 +3545,6 @@ SMB</block>
   <block id="0832423fdef6d1073376febeafb11832" category="list-text">对于运行Kubornetes 1.24或更早版本的集群、请使用 <block ref="8b8083e47d4f32cbe1da275ad704ec28" category="inline-link-macro-rx"></block>。</block>
   <block id="4ac6364736606467ebc3be7abadfb0ef" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用 <block ref="44d1f465bf50a20fa85c56cfe0e1804f" category="inline-link-macro-rx"></block>。</block>
   <block id="0af6b3e2ec6d581f66df3a49e97c5c55" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从23.04升级、请运行以下命令：</block>
-  <block id="300b059e0bac5cb2864932371a494a8a" category="list-text">使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubenetes 1.27安装Asta Trident 23.07、请运行以下命令：</block>
   <block id="3ae662c67d403e6230b019a96e787b63" category="paragraph">您可以升级Asta三端Helm安装。</block>
   <block id="613909529798c8a2543da8e954e5d742" category="section-title">从升级<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装到TRIdent操作员</block>
   <block id="9142b40107d9c5a0b86ef0ce8c25a88b" category="paragraph">您可以从升级到最新版本的Trident操作员<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装。现有后端和PVC将自动可用。</block>
@@ -3886,4 +3885,5 @@ Astra Trident</block>
   <block id="22948ed4deb04f4041cba28bf7536c9a" category="list-text"><block ref="356c2fa7142c3aee4cd6204d96ea0890" prefix="" category="inline-code"></block>：要安装的Astra Trident映像。</block>
   <block id="c739dc3ddc713880b7989d4cb214b126" category="list-text"><block ref="8026926641b283123174e50f80da83de" prefix="" category="inline-code"></block>：使用设置目录中的任何现有YAML文件。</block>
   <block id="b4a7a23f7c478405b46b2605053c1b1c" category="list-text"><block ref="4a4ef9f92e69acc000120379678aadcf" prefix="" category="inline-code"></block>：使用IPv6进行Astra Trident的通信。</block>
+  <block id="131adabe09344184458d12d3b2b31dc0" category="list-text">使用适用于您的环境的正确捆绑包YAML文件安装A作用 是什么<block ref="98f5e7907d122797ada0893820664b60" prefix=" " category="inline-code"></block> 为<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block> 或<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block> 根据您的Kubbernetes版本。例如、如果您要安装Asta Trident 23.07、请运行以下命令：</block>
 </blocks>

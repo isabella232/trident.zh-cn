@@ -44,14 +44,15 @@ NOTE: 要从使用命名空间范围的运算符(版本20.07到20.10)安装的As
 +
 [listing]
 ----
-kubectl delete -f 23.04/trident-installer/deploy/<bundle-name.yaml> -n trident
+kubectl delete -f 23.04/trident-installer/deploy/<bundle.yaml> -n trident
 ----
 . 如果您使用自定义了初始安装 `TridentOrchestrator` 属性、您可以编辑 `TridentOrchestrator` 用于修改安装参数的对象。其中可能包括为脱机模式指定镜像Trident和CSI映像注册表、启用调试日志或指定映像提取密钥所做的更改。
-. 使用适用于您的环境和Astra Trident版本的正确捆绑包YAML文件安装Astra Trident。例如、如果要为Kubenetes 1.27安装Asta Trident 23.07、请运行以下命令：
+. 使用适用于您的环境的正确捆绑包YAML文件安装A作用 是什么 `<bundle.yaml>` 为
+`bundle_pre_1_25.yaml` 或 `bundle_post_1_25.yaml` 根据您的Kubbernetes版本。例如、如果您要安装Asta Trident 23.07、请运行以下命令：
 +
 [listing]
 ----
-kubectl create -f 23.07.1/trident-installer/deploy/bundle_post_1_25.yaml -n trident
+kubectl create -f 23.07.1/trident-installer/deploy/<bundle.yaml> -n trident
 ----
 
 
