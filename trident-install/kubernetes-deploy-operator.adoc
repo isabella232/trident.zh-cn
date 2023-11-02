@@ -108,17 +108,17 @@ kubectl apply -f deploy/namespace.yaml
 ----
 * 在非命名空间中部署操作员 `trident` 命名空间、更新 `serviceaccount.yaml`， `clusterrolebinding.yaml` 和 `operator.yaml` 并使用生成捆绑包文件 `kustomization.yaml`。
 +
-.. 创建 `kustomization.yaml` 使用以下命令、其中_<bundle>_为 `bundle_pre_1_25` 或 `bundle_post_1_25` 根据您的Kubbernetes版本。
+.. 创建 `kustomization.yaml` 使用以下命令、其中_<bundle.yaml>_为 `bundle_pre_1_25.yaml` 或 `bundle_post_1_25.yaml` 根据您的Kubbernetes版本。
 +
 [listing]
 ----
-cp kustomization_<bundle>.yaml kustomization.yaml
+cp deploy/kustomization_<bundle.yaml> deploy/kustomization.yaml
 ----
-.. 使用以下命令编译分发包、其中_Data <bundle>是 `bundle_pre_1_25` 或 `bundle_post_1_25` 根据您的Kubbernetes版本。
+.. 使用以下命令编译分发包、其中_Data <bundle.yaml>是 `bundle_pre_1_25.yaml` 或 `bundle_post_1_25.yaml` 根据您的Kubbernetes版本。
 +
 [listing]
 ----
-kubectl kustomize deploy/ > deploy/<bundle>.yaml
+kubectl kustomize deploy/ > deploy/<bundle.yaml>
 ----
 
 
@@ -129,7 +129,7 @@ kubectl kustomize deploy/ > deploy/<bundle>.yaml
 +
 [listing]
 ----
-kubectl create -f deploy/<bundle>.yaml
+kubectl create -f deploy/<bundle.yaml>
 ----
 . 验证是否已创建操作员、部署和副本集。
 +
