@@ -3702,7 +3702,6 @@ SMB</block>
   <block id="629ac35dda697ad18f8fef7094213871" category="list-text">如果要降级到早期版本的三端到功能、请先运行<block ref="ac8650577d1b744589a6a11b60ac38c7" prefix=" " category="inline-code"></block> 用于删除Trident的命令。下载所需的<block ref="f3d78353f8dac3e49bbefeb5f6a2383b" category="inline-link-rx"></block> 并使用安装<block ref="430bf77bee6c59d385d4194f84c21b16" prefix=" " category="inline-code"></block> 命令：</block>
   <block id="2a1db8dc71dec3264e9155d610575785" category="section-title">完全删除Asta Trandent和CRD</block>
   <block id="de752588132c292a8a12ad2441fbf43c" category="paragraph">您可以完全删除Asta Dent以及所有创建的CRD和关联的自定义资源。</block>
-  <block id="90dc0d986558510d55c898cb62f4f2d5" category="admonition">此操作无法撤消。除非您需要全新安装Asta三端安装、否则请勿执行此操作。要在不删除CRD的情况下卸载Astra Dent、请参见 <block ref="6b2eb9a0745ceac90657a4978cb010ca" category="inline-link-macro-rx"></block>。</block>
   <block id="4f5dbc74e3448e08fe0e7bfd62876fc8" category="open-title">Trident 运算符</block>
   <block id="f4508049a2ac2bdb5cb9fde92120497a" category="paragraph">要卸载Asta Dandent并使用Dandent操作符完全删除CRD：</block>
   <block id="152090ff5e9a05ea7e1cf0c248449638" category="open-title">掌舵</block>
@@ -3886,4 +3885,5 @@ Astra Trident</block>
   <block id="c739dc3ddc713880b7989d4cb214b126" category="list-text"><block ref="8026926641b283123174e50f80da83de" prefix="" category="inline-code"></block>：使用设置目录中的任何现有YAML文件。</block>
   <block id="b4a7a23f7c478405b46b2605053c1b1c" category="list-text"><block ref="4a4ef9f92e69acc000120379678aadcf" prefix="" category="inline-code"></block>：使用IPv6进行Astra Trident的通信。</block>
   <block id="131adabe09344184458d12d3b2b31dc0" category="list-text">使用适用于您的环境的正确捆绑包YAML文件安装A作用 是什么<block ref="98f5e7907d122797ada0893820664b60" prefix=" " category="inline-code"></block> 为<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block> 或<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block> 根据您的Kubbernetes版本。例如、如果您要安装Asta Trident 23.07、请运行以下命令：</block>
+  <block id="c2246b326c72ec59a183d35d55147b05" category="admonition">此操作无法撤消。除非您需要全新安装Asta三端安装、否则请勿执行此操作。要在不删除CRD的情况下卸载Astra Dent、请参见 <block ref="3ac8f1f328a77d784290ca23df4860e6" category="inline-link-macro-rx"></block>。</block>
 </blocks>

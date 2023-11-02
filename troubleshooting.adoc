@@ -162,7 +162,7 @@ INFO Trident uninstallation succeeded.
 您可以完全删除Asta Dent以及所有创建的CRD和关联的自定义资源。
 
 
-WARNING: 此操作无法撤消。除非您需要全新安装Asta三端安装、否则请勿执行此操作。要在不删除CRD的情况下卸载Astra Dent、请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Astra Trident"]。
+WARNING: 此操作无法撤消。除非您需要全新安装Asta三端安装、否则请勿执行此操作。要在不删除CRD的情况下卸载Astra Dent、请参见 link:trident-managing-k8s/uninstall-trident.html["卸载 Astra Trident"]。
 
 [role="tabbed-block"]
 ====
