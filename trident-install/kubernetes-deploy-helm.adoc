@@ -16,7 +16,7 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 
 
 
-== 有关Astra Trdent 23.07.1的重要信息
+== 有关Asta Trdent的重要信息23.10.
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
@@ -49,11 +49,11 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 ----
 helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 ----
-. 使用 ... `helm install` 并为您的部署指定一个名称、如以下示例中所示 `23.07.1` 是您要安装的Astra Trident版本。
+. 使用 ... `helm install` 并为您的部署指定一个名称、如以下示例中所示 `23.10.0` 是您要安装的Astra Trident版本。
 +
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.07.1 --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 23.10.0 --create-namespace --namespace <trident-namespace>
 ----
 +
 
@@ -83,11 +83,11 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 在命令行上指定覆盖。
 
 |===
-例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `23.07.1` 是您要安装的Astra Trident版本：
+例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `23.10.0` 是您要安装的Astra Trident版本：
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-namespace --namespace trident --set tridentDebug=true
+helm install <name> netapp-trident/trident-operator --version 23.10.0  --create-namespace --namespace trident --set tridentDebug=true
 ----
 
 
@@ -95,7 +95,7 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-
 
 此表和 `values.yaml` 文件(属于Helm图表的一部分)提供了键列表及其默认值。
 
-[cols="3"]
+[cols="1,2,1"]
 |===
 | 选项 | Description | Default 
 
@@ -127,7 +127,7 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-
 | `tridentNodePluginTolerations` | 覆盖Kubernetes对Pod的容错。请参见 <<了解控制器Pod和节点Pod>> 了解详细信息。 |  
 
 
-| `imageRegistry` | 标识的注册表 `trident-operator`， `trident`和其他图像。留空以接受默认值。 | "" 
+| `imageRegistry` | 标识的注册表 `trident-operator`， `trident`和其他图像。留空以接受默认值。 | `""` 
 
 
 | `imagePullPolicy` | 设置的映像提取策略 `trident-operator`。 | `IfNotPresent` 
@@ -136,7 +136,7 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-
 | `imagePullSecs` | 设置的映像提取密钥 `trident-operator`， `trident`和其他图像。 |  
 
 
-| `kubeletDir` | 允许覆盖kubelet内部状态的主机位置。 | "/var/lib/kubelet"` 
+| `kubeletDir` | 允许覆盖kubelet内部状态的主机位置。 | `"/var/lib/kubelet"` 
 
 
 | `operatorLogLevel` | 允许将Trident操作符的日志级别设置为： `trace`， `debug`， `info`， `warn`， `error`或 `fatal`。 | `"info"` 
@@ -145,10 +145,10 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-
 | `operatorDebug` | 允许将Trident操作符的日志级别设置为DEBUG。 | `true` 
 
 
-| `operatorImage` | 允许完全覆盖的映像 `trident-operator`。 | "" 
+| `operatorImage` | 允许完全覆盖的映像 `trident-operator`。 | `""` 
 
 
-| `operatorImageTag` | 允许覆盖的标记 `trident-operator` 图像。 | "" 
+| `operatorImageTag` | 允许覆盖的标记 `trident-operator` 图像。 | `""` 
 
 
 | `tridentIPv6` | 允许在IPv6集群中使用Astra Trident。 | `false` 
@@ -166,7 +166,7 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-
 | `tridentAutosupportImageTag` | 允许覆盖Astra Trident AutoSupport 容器的映像标记。 | `<version>` 
 
 
-| `tridentAutosupportProxy` | 允许Astra Trident AutoSupport 容器通过HTTP代理进行回拨。 | "" 
+| `tridentAutosupportProxy` | 允许Astra Trident AutoSupport 容器通过HTTP代理进行回拨。 | `""` 
 
 
 | `tridentLogFormat` | 设置Astra Trident日志记录格式 (`text` 或 `json`）。 | `"text"` 
@@ -181,19 +181,19 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-
 | `tridentDebug` | 允许将Astra Trident的日志级别设置为 `debug`。 | `false` 
 
 
-| `tridentLogWorkflows` | 允许为跟踪日志记录或日志禁止启用特定的Astra Trident工作流。 | "" 
+| `tridentLogWorkflows` | 允许为跟踪日志记录或日志禁止启用特定的Astra Trident工作流。 | `""` 
 
 
-| `tridentLogLayers` | 允许为跟踪日志记录或日志禁止启用特定的Astra Trident层。 | "" 
+| `tridentLogLayers` | 允许为跟踪日志记录或日志禁止启用特定的Astra Trident层。 | `""` 
 
 
-| `TridentImage` | 允许完全覆盖Astra Trident的映像。 | "" 
+| `TridentImage` | 允许完全覆盖Astra Trident的映像。 | `""` 
 
 
-| `tridentImageTag` | 允许覆盖Astra Trident的映像标记。 | "" 
+| `tridentImageTag` | 允许覆盖Astra Trident的映像标记。 | `""` 
 
 
-| `tridentProbePort` | 允许覆盖用于Kubernetes活动/就绪性探测的默认端口。 | "" 
+| `tridentProbePort` | 允许覆盖用于Kubernetes活动/就绪性探测的默认端口。 | `""` 
 
 
 | `windows` | 允许在Windows工作节点上安装Astra Trident。 | `false` 
@@ -203,6 +203,9 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-
 
 
 | `excludePodSecurityPolicy` | 从创建过程中排除操作员POD安全策略。 | `false` 
+
+
+| `cloudProvider` | 设置为 `"Azure"` 在AKS集群上使用受管身份时。 | `""` 
 |===
 
 

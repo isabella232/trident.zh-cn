@@ -31,6 +31,11 @@ Asta三项功能根据您的版本提供三种支持级别。请参见 link:http
 
 
  a| 
+link:https://docs.netapp.com/us-en/trident/index.html["23.10."^]
+| 2024年10月 | 2025年10月 | 2026年10月 
+
+
+ a| 
 link:https://docs.netapp.com/us-en/trident/index.html["23.07"^]
 | 2024年7月 | 2025年7月 | 2026年7月 
 
@@ -47,7 +52,7 @@ link:https://docs.netapp.com/us-en/trident-2301/index.html["23.01."^]
 
  a| 
 link:https://docs.netapp.com/us-en/trident-2210/index.html["22.10."^]
-| 2023年10月 | 2024年10月 | 2025年10月 
+| -- | 2024年10月 | 2025年10月 
 
 
  a| 
@@ -67,7 +72,7 @@ link:https://docs.netapp.com/us-en/trident-2201/index.html["22.01."^]
 
  a| 
 link:https://docs.netapp.com/us-en/trident-2110/index.html["21.10."^]
-| -- | 2023年10月 | 2024年10月 
+| -- | -- | 2024年10月 
 
 
  a| 
@@ -83,11 +88,6 @@ link:https://netapp-trident.readthedocs.io/en/stable-v21.04/["21.04."^]
  a| 
 link:https://netapp-trident.readthedocs.io/en/stable-v21.01/["21.01."^]
 | -- | -- | 2024年1月 
-
-
- a| 
-link:https://netapp-trident.readthedocs.io/en/stable-v20.11/["20.10."^]
-| -- | -- | 2023年10月 
 |===
 
 NOTE: 21.07之前的版本、重定向到旧版文档站点。

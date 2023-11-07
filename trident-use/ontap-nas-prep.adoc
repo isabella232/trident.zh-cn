@@ -342,22 +342,24 @@ NOTE: 请参见 link:https://docs.netapp.com/us-en/ontap/smb-config/create-share
 
 . 创建后端时、必须配置以下内容以指定SMB卷。有关适用于ONTAP 后端的所有FSX配置选项、请参见 link:trident-fsx-examples.html["适用于ONTAP 的FSX配置选项和示例"]。
 +
-[cols="3"]
+[cols="1,2,1"]
 |===
 | 参数 | Description | 示例 
 
 
-| `smbShare`
-您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称；允许Asta三端到功能创建SMB共享的名称；或者、您可以将参数留空以防止对卷进行通用共享访问。
+| `smbShare` | 您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称；允许Asta三端到功能创建SMB共享的名称；或者、您可以将参数留空以防止对卷进行通用共享访问。
 
 对于内部ONTAP、此参数是可选的。
 
-此参数对于Amazon FSx for ONTAP后端为必填项、不能为空。 | `smb-share` | `nasType` 
+此参数对于Amazon FSx for ONTAP后端为必填项、不能为空。 | `smb-share` 
 
 
-| *必须设置为 `smb`如果为空、则默认为 `nfs`。 | `smb` | `securityStyle` 
+| `nasType` | *必须设置为 `smb`如果为空、则默认为 `nfs`。 | `smb` 
 
 
-| 新卷的安全模式。*必须设置为 `ntfs` 或 `mixed` 用于SMB卷。* | `ntfs` 或 `mixed` 对于SMB卷 | `unixPermissions` 
+| `securityStyle` | 新卷的安全模式。*必须设置为 `ntfs` 或 `mixed` 用于SMB卷。* | `ntfs` 或 `mixed` 对于SMB卷 
+
+
+| `unixPermissions` | 新卷的模式。对于SMB卷、*必须留空。* | "" 
 |===
 

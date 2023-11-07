@@ -16,7 +16,7 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 
 
 
-== 有关Asta Trdent 23.07的重要信息
+== 有关Asta Trdent的重要信息23.10.
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
@@ -49,7 +49,7 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 ----
 helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 ----
-. 使用 ... `helm install` 并为部署和映像注册表位置指定一个名称。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、 `23.07.1` 是您要安装的Astra Trident版本。
+. 使用 ... `helm install` 并为部署和映像注册表位置指定一个名称。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、 `23.10.0` 是您要安装的Astra Trident版本。
 +
 [role="tabbed-block"]
 ====
@@ -57,7 +57,7 @@ helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 --
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.07.1 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 23.10.0 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
 ----
 --
 .不同注册表中的映像
@@ -66,7 +66,7 @@ helm install <name> netapp-trident/trident-operator --version 23.07.1 --set imag
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.07.1 --set imageRegistry=<your-registry>/sig-storage --set operatorImage=<your-registry>/netapp/trident-operator:23.07.1 --set tridentAutosupportImage=<your-registry>/netapp/trident-autosupport:23.07 --set tridentImage=<your-registry>/netapp/trident:23.07.1 --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 23.10.0 --set imageRegistry=<your-registry>/sig-storage --set operatorImage=<your-registry>/netapp/trident-operator:23.10.0 --set tridentAutosupportImage=<your-registry>/netapp/trident-autosupport:23.10 --set tridentImage=<your-registry>/netapp/trident:23.10.0 --create-namespace --namespace <trident-namespace>
 ----
 --
 ====
@@ -98,11 +98,11 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 在命令行上指定覆盖。
 
 |===
-例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `23.07.1` 是您要安装的Astra Trident版本：
+例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `23.10.0` 是您要安装的Astra Trident版本：
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 23.07.1  --create-namespace --namespace trident --set tridentDebug=true
+helm install <name> netapp-trident/trident-operator --version 23.10.0  --create-namespace --namespace trident --set tridentDebug=true
 ----
 
 

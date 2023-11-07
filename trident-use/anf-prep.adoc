@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/anf-prep.html 
-keywords: trident backend, azure netapp files, smb volumes, smb, windows, active directory, csi proxy 
+keywords: trident backend, azure netapp files, smb volumes, smb, windows, active directory, csi proxy, aks, managed identities 
 summary: 在配置Azure NetApp Files 后端之前、您需要确保满足以下要求。 
 ---
 = 准备配置Azure NetApp Files 后端
@@ -18,10 +18,12 @@ summary: 在配置Azure NetApp Files 后端之前、您需要确保满足以下�
 
 == NFS和SMB卷的前提条件
 
-
-NOTE: 如果您是首次使用Azure NetApp Files 或在新位置使用、则需要进行一些初始配置来设置Azure NetApp Files 并创建NFS卷。请参见 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-quickstart-set-up-account-create-volumes["Azure：设置Azure NetApp Files 并创建NFS卷"^]。
+如果您是首次使用Azure NetApp Files 或在新位置使用、则需要进行一些初始配置来设置Azure NetApp Files 并创建NFS卷。请参见 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-quickstart-set-up-account-create-volumes["Azure：设置Azure NetApp Files 并创建NFS卷"^]。
 
 配置和使用 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 后端，您需要满足以下要求：
+
+
+NOTE: `subscriptionID`， `tenantID`， `clientID`， `location`，和 `clientSecret` 在AKS集群上使用受管身份时为可选。
 
 * 一个容量池。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-set-up-capacity-pool["Microsoft：为Azure NetApp Files 创建容量池"^]。
 * 委派给Azure NetApp Files 的子网。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["Microsoft：将子网委派给Azure NetApp Files"^]。
@@ -31,6 +33,9 @@ NOTE: 如果您是首次使用Azure NetApp Files 或在新位置使用、则需�
 ** 所有者或贡献者角色 link:https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles["由Azure预定义"^]。
 ** 答 link:https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles-portal["自定义贡献者角色"] 订阅级别 (`assignableScopes`)、并具有以下权限、这些权限仅限于Astra Trident所需的权限。创建自定义角色后、 link:https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal["使用Azure门户分配角色"^]。
 +
+.自定义贡献者角色
+[%collapsible]
+====
 [source, JSON]
 ----
 {
@@ -73,6 +78,7 @@ NOTE: 如果您是首次使用Azure NetApp Files 或在新位置使用、则需�
     }
 }
 ----
+====
 
 
 * Azure `location` 至少包含一个 link:https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["委派子网"^]。自Trident 22.01日开始 `location` 参数是后端配置文件顶层的必填字段。在虚拟池中指定的位置值将被忽略。

@@ -19,7 +19,54 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 23.07.1中的新增功能
+== 23.10中的新增功能
+
+
+
+=== 修复
+
+* 修复了在新请求的大小小于ONTAP－NAS和ONTAP－NAS－Flexgroup存储驱动程序的卷总大小时进行卷扩展的问题(link:https://github.com/NetApp/trident/issues/834["问题描述#834"^]）。
+* 固定卷大小、以便在导入ONP-NAS和ONP-NAS Flexgroup存储驱动程序期间仅显示卷的可用大小(link:https://github.com/NetApp/trident/issues/722["问题描述#的 第请选择"^]）。
+* 针对ONTAP -NAS经济的固定FlexVol名称转换。
+* 修复了重新启动Windows节点时该节点上的Astra三项功能初始化问题描述的问题。
+
+
+
+
+=== 增强功能
+
+
+
+==== Kubernetes
+
+增加了对Kubnetes 1.28的支持。
+
+
+
+==== Astra Trident
+
+* 增加了对Azure托管身份(AMI)与azure-NetApp-files存储驱动程序的使用支持。
+* 增加了对ONTAP SAN驱动程序基于TCP的NVMe的支持。
+* 新增了在用户将后端设置为暂停状态时暂停卷配置的功能(link:https://github.com/NetApp/trident/issues/558["问题描述#558."^]）。
+
+
+
+
+=== Astra Control中提供的高级功能
+
+通过Asta Trident 23.10、获得许可的Asta Control用户可以使用一个名为Asta Control配置程序的新软件组件。通过此配置程序、您可以访问Asta Trident自身支持的一系列高级管理和存储配置功能之外的一组超群功能。对于23.10版本、这些功能包括：
+
+* 使用由ONTAP提供驱动程序支持的存储后端为应用程序提供备份和还原功能
+* 通过Kerberos 5加密增强存储后端安全性
+* 使用快照恢复数据
+* SnapMirror增强功能
+
+
+link:https://docs.netapp.com/us-en/astra-control-center/release-notes/whats-new.html["了解有关Astra Control配置程序的更多信息。"^]
+
+
+
+== 23.07.1中的变更
 
 *Kubernetes:*修复了删除守护程序集的问题，以支持零停机升级(link:https://github.com/NetApp/trident/issues/740["问题描述740"^]）。
 

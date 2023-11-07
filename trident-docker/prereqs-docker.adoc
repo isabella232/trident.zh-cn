@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-docker/prereqs-docker.html 
-keywords: deploy, astra trident, docker, trident for docker, nfs, iscsi, protcol, nfs protocol, iscsi protocol, configure host, host config 
+keywords: deploy, astra trident, docker, trident for docker, nfs, iscsi, protcol, nfs protocol, iscsi protocol, configure host, host config, nvme/tcp, nvme 
 summary: 在部署 Astra Trident 之前，您必须在主机上安装和配置必要的协议前提条件。 
 ---
 = 部署的前提条件
@@ -25,90 +25,168 @@ summary: 在部署 Astra Trident 之前，您必须在主机上安装和配置�
 ----
 docker --version
 ----
-* 验证是否已在主机上安装和配置协议前提条件：
-
-
-[cols="3*"]
-|===
-| 协议 | 操作系统 | 命令 
-
-
-| NFS  a| 
-RHEL 8+
- a| 
-`sudo yum install -y nfs-utils`
+* 验证是否已在主机上安装和配置协议前提条件。
 
 
 
-| NFS  a| 
-Ubuntu
- a| 
-`sudo apt-get install -y nfs-common`
+
+=== NFS工具
+
+使用适用于您的操作系统的命令安装NFS工具。
+
+[role="tabbed-block"]
+====
+.RHEL 8+
+--
+[listing]
+----
+sudo yum install -y nfs-utils
+----
+--
+.Ubuntu
+--
+[listing]
+----
+sudo apt-get install -y nfs-common
+----
+--
+====
+
+WARNING: 安装NFS工具后重新启动工作节点、以防止在将卷连接到容器时失败。
 
 
 
-| iSCSI  a| 
-RHEL 8+
- a| 
+=== iSCSI工具
+
+使用适用于您的操作系统的命令安装iSCSI工具。
+
+[role="tabbed-block"]
+====
+.RHEL 8+
+--
 . 安装以下系统软件包：
 +
-`sudo yum install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath`
-
+[listing]
+----
+sudo yum install -y lsscsi iscsi-initiator-utils sg3_utils device-mapper-multipath
+----
 . 检查 iscsi-initiator-utils 版本是否为 6.2.0.877-2.el7 或更高版本：
 +
-`rpm -q iscsi-initiator-utils`
-
+[listing]
+----
+rpm -q iscsi-initiator-utils
+----
 . 将扫描设置为手动：
 +
-`sUdo sed -i 's/^ \ （ node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf`
-
+[listing]
+----
+sudo sed -i 's/^\(node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf
+----
 . 启用多路径：
 +
-`sudo mpathconf -enable -for_multipathd y -find_multipaths n`
-
+[listing]
+----
+sudo mpathconf --enable --with_multipathd y --find_multipaths n
+----
 +
 
 NOTE: 确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.
 
 . 确保 `iscsid` 和 `multipathd` 正在运行：
 +
-`sudo systemctl enable -now iscsid multipathd`
-
+[listing]
+----
+sudo systemctl enable --now iscsid multipathd
+----
 . 启用并启动 `iSCSI` ：
 +
-`sudo systemctl enable —现在为 iSCSI`
+[listing]
+----
+sudo systemctl enable --now iscsi
+----
 
 
-
-
-
-| iSCSI  a| 
-Ubuntu
- a| 
+--
+.Ubuntu
+--
 . 安装以下系统软件包：
 +
-`sUdo apt-get install -y open-iscsi lsscsi sg3-utils multipath-tools scsitool`
-
+[listing]
+----
+sudo apt-get install -y open-iscsi lsscsi sg3-utils multipath-tools scsitools
+----
 . 检查 open-iscsi 版本是否为 2.0.877-5ubuntu2.10 或更高版本（对于双子系统）或 2.0.877-7.1ubuntu6.1 或更高版本（对于 Focal ）：
 +
-`dpkg -l open-iscsi`
-
+[listing]
+----
+dpkg -l open-iscsi
+----
 . 将扫描设置为手动：
 +
-`sUdo sed -i 's/^ \ （ node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf`
-
+[listing]
+----
+sudo sed -i 's/^\(node.session.scan\).*/\1 = manual/' /etc/iscsi/iscsid.conf
+----
 . 启用多路径：
 +
-`sUdo tee /etc/multipath.conf <<-'EOF' defaults ｛ user_friendly_names yes find_multipaths no ｝ eOF sudo systemctl enable -now multipath-tools.service sudo service multipath-tools restart`
-
+[listing]
+----
+sudo tee /etc/multipath.conf <<-'EOF'
+defaults {
+    user_friendly_names yes
+    find_multipaths no
+}
+EOF
+sudo systemctl enable --now multipath-tools.service
+sudo service multipath-tools restart
+----
 +
 
 NOTE: 确保 `detc/multipath.conf` contains `find_multipaths no` under` efaults `.
 
 . 确保已启用并运行 `open-iscsi` 和 `multipath-tools` ：
 +
-`sudo systemctl status multipath-tools` `sudo systemctl enable -now open-iscsi.service` `sudo systemctl status open-iscsi`
+[listing]
+----
+sudo systemctl status multipath-tools
+sudo systemctl enable --now open-iscsi.service
+sudo systemctl status open-iscsi
+----
 
 
+--
+====
 
-|===
+
+== NVMe工具
+
+使用适用于您的操作系统的命令安装NVMe工具。
+
+[NOTE]
+====
+* NVMe需要RHEL 9或更高版本。
+* 如果Kubelnetes节点的内核版本太旧、或者NVMe软件包不适用于您的内核版本、您可能需要将节点的内核版本更新为具有NVMe软件包的版本。
+
+
+====
+[role="tabbed-block"]
+====
+.RHEL 9
+--
+[listing]
+----
+sudo yum install nvme-cli
+sudo yum install linux-modules-extra-$(uname -r)
+sudo modprobe nvme-tcp
+----
+--
+.Ubuntu
+--
+[listing]
+----
+sudo apt install nvme-cli
+sudo apt -y install linux-modules-extra-$(uname -r)
+sudo modprobe nvme-tcp
+----
+--
+====

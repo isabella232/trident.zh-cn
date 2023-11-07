@@ -26,8 +26,8 @@ NOTE: 要从使用命名空间范围的运算符(版本20.07到20.10)安装的As
 .关于此任务
 ｛\f270通过｝｛\f270｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270通过｝｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270｝
 
-* 对于运行Kubornetes 1.24或更早版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.07/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
-* 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.07/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
+* 对于运行Kubornetes 1.24或更早版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.10/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
+* 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v23.10/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
 
 
 .开始之前
@@ -40,19 +40,19 @@ NOTE: 要从使用命名空间范围的运算符(版本20.07到20.10)安装的As
 ----
 ./tridentctl -n trident version
 ----
-. 删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从23.04升级、请运行以下命令：
+. 删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从23.07升级、请运行以下命令：
 +
 [listing]
 ----
-kubectl delete -f 23.04/trident-installer/deploy/<bundle.yaml> -n trident
+kubectl delete -f 23.07.0/trident-installer/deploy/<bundle.yaml> -n trident
 ----
 . 如果您使用自定义了初始安装 `TridentOrchestrator` 属性、您可以编辑 `TridentOrchestrator` 用于修改安装参数的对象。其中可能包括为脱机模式指定镜像Trident和CSI映像注册表、启用调试日志或指定映像提取密钥所做的更改。
 . 使用适用于您的环境的正确捆绑包YAML_文件安装<bundle.yaml>三元组、其中_AML_为
-`bundle_pre_1_25.yaml` 或 `bundle_post_1_25.yaml` 根据您的Kubbernetes版本。例如、如果您要安装Asta Trident 23.07、请运行以下命令：
+`bundle_pre_1_25.yaml` 或 `bundle_post_1_25.yaml` 根据您的Kubbernetes版本。例如、如果您要安装Asta Trident 23.10、请运行以下命令：
 +
 [listing]
 ----
-kubectl create -f 23.07.1/trident-installer/deploy/<bundle.yaml> -n trident
+kubectl create -f 23.10.0/trident-installer/deploy/<bundle.yaml> -n trident
 ----
 
 
@@ -67,11 +67,11 @@ WARNING: 将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更�
 
 .步骤
 . 下载最新的 Astra Trident 版本。
-. 使用 `helm upgrade` 命令位置 `trident-operator-23.07.1.tgz` 反映了要升级到的版本。
+. 使用 `helm upgrade` 命令位置 `trident-operator-23.10.0.tgz` 反映了要升级到的版本。
 +
 [listing]
 ----
-helm upgrade <name> trident-operator-23.07.1.tgz
+helm upgrade <name> trident-operator-23.10.0.tgz
 ----
 +
 [NOTE]
@@ -82,7 +82,7 @@ helm upgrade <name> trident-operator-23.07.1.tgz
 
 [listing]
 ----
-helm upgrade <name> trident-operator-23.07.1-custom.tgz --set tridentDebug=true
+helm upgrade <name> trident-operator-23.10.0-custom.tgz --set tridentDebug=true
 ----
 ====
 . 运行 `helm list` 验证图表和应用程序版本均已升级。运行 `tridentctl logs` 查看任何调试消息。
@@ -102,11 +102,11 @@ NOTE: 在切换安装方法之前、请查看 link:../trident-get-started/kubern
 +
 [listing]
 ----
-# Download the release required [23.07.1]
-mkdir 23.07.1
-cd 23.07.1
-wget https://github.com/NetApp/trident/releases/download/v22.01.1/trident-installer-23.07.1.tar.gz
-tar -xf trident-installer-23.07.1.tar.gz
+# Download the release required [23.10.0]
+mkdir 23.10.0
+cd 23.10.0
+wget https://github.com/NetApp/trident/releases/download/v22.01.1/trident-installer-23.10.0.tar.gz
+tar -xf trident-installer-23.10.0.tar.gz
 cd trident-installer
 ----
 . 从清单中创建 `tridentorchator` CRD 。
@@ -163,6 +163,6 @@ kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
-Version:                v23.07.1
+Version:                v23.10.0
 ----
 

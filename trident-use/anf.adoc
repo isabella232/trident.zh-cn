@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: trident-use/anf.html 
-keywords: trident backend, azure netapp files, smb volumes, smb, windows, drivers, access modes, rwo, rwx, rwp, rwop, file system 
-summary: 您可以将Azure NetApp Files配置为Astra三端。您可以使用Azure NetApp Files后端连接NAS和SMB卷。 
+keywords: trident backend, azure netapp files, smb volumes, smb, windows, drivers, access modes, rwo, rwx, rwp, rwop, file system, aks, managed identities, azure 
+summary: '您可以将Azure NetApp Files配置为Astra三端。您可以使用Azure NetApp Files后端连接NFS和SMB卷。Asta Trident还支持使用托管身份为Azure Kubnetes Services (AKS)集群管理凭据。' 
 ---
 = 配置 Azure NetApp Files 后端
 :hardbreaks:
@@ -12,7 +12,7 @@ summary: 您可以将Azure NetApp Files配置为Astra三端。您可以使用Azu
 
 
 [role="lead"]
-您可以将Azure NetApp Files配置为Astra三端。您可以使用Azure NetApp Files后端连接NFS和SMB卷。
+您可以将Azure NetApp Files配置为Astra三端。您可以使用Azure NetApp Files后端连接NFS和SMB卷。Asta Trident还支持使用托管身份为Azure Kubnetes Services (AKS)集群管理凭据。
 
 
 
@@ -38,8 +38,58 @@ Rwo、ROX、rwx、RWOP
 |===
 
 
-== 注意事项
+=== 注意事项
 
 * Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。
 * Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+
+
+
+
+== AKS的受管身份
+
+Asta三项功能支持 link:https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview["受管身份"^] 适用于Azure Kubnetes Services集群。要利用受管身份提供的简化凭据管理、您必须：
+
+* 使用AKS部署的Kubbernetes集群
+* 在AKS Kubbernetes集群上配置的受管身份
+* 已安装Asta三项功能、其中包括 `cloudProvider` 以指定 `"Azure"`。
++
+[role="tabbed-block"]
+====
+.Trident 运算符
+--
+要使用三端运算符安装Astra三端、请编辑 `tridentorchestrator_cr.yaml` 设置 `cloudProvider` to `"Azure"`。例如：
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  imagePullPolicy: IfNotPresent
+  cloudProvider: "Azure"
+----
+--
+.掌舵
+--
+以下示例将安装Asta三项功能集 `cloudProvider` 使用环境变量将其添加到Azure `$CP`：
+
+[listing]
+----
+helm install trident trident-operator-23.10.0-custom.tgz --create-namespace --namespace <trident-namespace> --set cloudProvider=$CP
+----
+--
+.<code>tridentctl</code>
+--
+以下示例将安装Asta Trdent设置 `cloudProvider` 标记为 `Azure`：
+
+[listing]
+----
+tridentctl install --cloud-provider="Azure" -n trident
+----
+--
+====
 

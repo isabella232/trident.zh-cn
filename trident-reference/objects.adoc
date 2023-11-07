@@ -302,7 +302,7 @@ CRD 是一种 Kubernetes 构造。上述资源的对象由 Trident 创建。例�
 
 == Astra Trident `StorageClass` 对象
 
-Trident 会为 Kubernetes `StorageClass` 在其配置程序字段中指定 `csi.trident.netapp.io`/`netapp.io/trident` 的对象创建匹配的存储类。存储类名称与 Kubernetes `StorageClass` 其所代表的对象的名称匹配。
+Trident会为Kubernetes创建匹配的存储类 `StorageClass` 指定的对象 `csi.trident.netapp.io` 在其配置程序字段中。存储类名称与Kubernetes的名称匹配 `StorageClass` 它所代表的对象。
 
 
 NOTE: 使用 Kubernetes 时，如果注册了使用 Trident 作为配置程序的 Kubernetes `StorageClass` ，则会自动创建这些对象。

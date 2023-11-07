@@ -39,22 +39,32 @@ Azure NetApp Files后端提供了这些配置选项。
 | `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + 随机字符 
 
 
-| `ssubscriptionID` 。 | Azure 订阅中的订阅 ID |  
+| `ssubscriptionID` 。 | Azure 订阅中的订阅 ID
+
+如果在AKS集群上启用了受管标识、则为可选。 |  
 
 
-| `租户 ID` 。 | 应用程序注册中的租户 ID |  
+| `租户 ID` 。 | 应用程序注册中的租户 ID
+
+如果在AKS集群上启用了受管标识、则为可选。 |  
 
 
-| `客户端 ID` 。 | 应用程序注册中的客户端 ID |  
+| `客户端 ID` 。 | 应用程序注册中的客户端 ID
+
+如果在AKS集群上启用了受管标识、则为可选。 |  
 
 
-| `clientSecret` 。 | 应用程序注册中的客户端密钥 |  
+| `clientSecret` 。 | 应用程序注册中的客户端密钥
+
+如果在AKS集群上启用了受管标识、则为可选。 |  
 
 
 | `s服务级别` | `S标准` ， `高级` 或 `超级` 之一 | "" （随机） 
 
 
-| `位置` | 要创建新卷的 Azure 位置的名称 |  
+| `位置` | 要创建新卷的 Azure 位置的名称
+
+如果在AKS集群上启用了受管标识、则为可选。 |  
 
 
 | `resourceGroups` | 用于筛选已发现资源的资源组列表 | "[]" （无筛选器） 
@@ -145,8 +155,10 @@ NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.
 
 == 示例配置
 
-.示例 1 ：最低配置
-[%collapsible%open]
+以下示例显示了将大多数参数保留为默认值的基本配置。这是定义后端的最简单方法。
+
+.最低配置
+[%collapsible]
 ====
 这是绝对的最低后端配置。使用此配置、Asta三端存储可以发现已配置位置委派给Azure NetApp Files的所有NetApp帐户、容量池和子网、并随机将新卷放置在其中一个池和子网上。因为 `nasType` 省略 `nfs` 默认情况下适用、后端将为NFS卷配置。
 
@@ -164,8 +176,30 @@ clientSecret: SECRET
 location: eastus
 ----
 ====
-.示例 2 ：使用容量池筛选器的特定服务级别配置
-[%collapsible%open]
+.AKS的受管身份
+[%collapsible]
+====
+此后端配置会出现异常 `subscriptionID`， `tenantID`， `clientID`，和 `clientSecret`，在使用受管身份时是可选的。
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-anf-1
+  namespace: trident
+spec:
+  version: 1
+  storageDriverName: azure-netapp-files
+  capacityPools: ["ultra-pool"]
+  resourceGroups: ["aks-ami-eastus-rg"]
+  netappAccounts: ["smb-na"]
+  virtualNetwork: eastus-prod-vnet
+  subnet: eastus-anf-subnet
+----
+====
+.使用容量池筛选器的特定服务级别配置
+[%collapsible]
 ====
 此后端配置会将卷放置在Azure中 `eastus` 位置 `Ultra` 容量池。Asta三端存储自动发现该位置委派给Azure NetApp Files的所有子网、并随机在其中一个子网上放置一个新卷。
 
@@ -185,8 +219,8 @@ capacityPools:
 - application-group-1/account-1/ultra-2
 ----
 ====
-.示例 3 ：高级配置
-[%collapsible%open]
+.高级配置
+[%collapsible]
 ====
 此后端配置进一步将卷放置范围缩小为一个子网，并修改了某些卷配置默认值。
 
@@ -217,8 +251,8 @@ defaults:
 
 ----
 ====
-.示例4：虚拟池配置
-[%collapsible%open]
+.虚拟池配置
+[%collapsible]
 ====
 此后端配置可在一个文件中定义多个存储池。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。虚拟池标签用于根据区分池 `performance`。
 
@@ -307,8 +341,8 @@ allowVolumeExpansion: true
 
 使用 `nasType`， `node-stage-secret-name`，和  `node-stage-secret-namespace`、您可以指定SMB卷并提供所需的Active Directory凭据。
 
-.示例1：默认命名空间上的基本配置
-[%collapsible%open]
+.默认命名空间上的基本配置
+[%collapsible]
 ====
 [listing]
 ----
@@ -325,8 +359,8 @@ parameters:
 
 ----
 ====
-.示例2：每个命名空间使用不同的密钥
-[%collapsible%open]
+.每个命名空间使用不同的密钥
+[%collapsible]
 ====
 [listing]
 ----
@@ -342,8 +376,8 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-namespace: ${pvc.namespace}
 ----
 ====
-.示例3：每个卷使用不同的密钥
-[%collapsible%open]
+.每个卷使用不同的密钥
+[%collapsible]
 ====
 [listing]
 ----
@@ -360,7 +394,7 @@ parameters:
 ----
 ====
 
-NOTE: `nasType: `smb` 支持SMB卷的池的筛选器。 `nasType: `nfs` 或 `nasType: `null` NFS池的筛选器。
+NOTE: `nasType: smb` 支持SMB卷的池的筛选器。 `nasType: nfs` 或 `nasType: null` NFS池的筛选器。
 
 
 

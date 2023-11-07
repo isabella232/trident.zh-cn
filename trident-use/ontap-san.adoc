@@ -52,6 +52,34 @@ Rox和rwx在文件系统卷模式下不可用。
 
 
 
+| `ontap-san`  a| 
+NVMe/TCP
+
+请参见 <<NVMe/TCP的其他注意事项>>。
+ a| 
+块
+ a| 
+Rwo、ROX、rwx、RWOP
+ a| 
+无文件系统；原始块设备
+
+
+
+| `ontap-san`  a| 
+NVMe/TCP
+
+请参见 <<NVMe/TCP的其他注意事项>>。
+ a| 
+文件系统
+ a| 
+Rwo、RWO1.
+
+Rox和rwx在文件系统卷模式下不可用。
+ a| 
+`xfs` ， `ext3` ， `ext4`
+
+
+
 | `ontap-san-economy.`  a| 
 iSCSI
  a| 
@@ -99,3 +127,24 @@ Astra Trident 应以 ONTAP 或 SVM 管理员身份运行，通常使用 `admin` 
 NOTE: 如果使用 `limitAggregateUsage` 参数，则需要集群管理员权限。将适用于 NetApp ONTAP 的 Amazon FSx 与 Astra Trident 结合使用时， `limitAggregateUsage` 参数不适用于 `vsadmin` 和 `fsxadmin` 用户帐户。如果指定此参数，配置操作将失败。
 
 虽然可以在ONTAP中创建一个可以由三端驱动程序使用的限制性更强的角色、但我们不建议这样做。大多数新版本的 Trident 都会调用需要考虑的其他 API ，从而使升级变得困难且容易出错。
+
+
+
+== NVMe/TCP的其他注意事项
+
+Asta三端存储器支持使用的非易失性内存快速(NVMe)协议 `ontap-san` 驱动程序包括：
+
+* IPv6
+* NVMe卷的快照和克隆
+* 调整NVMe卷大小
+* 导入在Asta Trident外部创建的NVMe卷、以便Asta Trident可以管理其生命周期
+* NVMe本机多路径
+* 正常或非正常关闭K8s节点(23.10)
+
+
+Astra三项技术不支持：
+
+* DH-HMAC-CHAP、由NVMe本机提供支持
+* 设备映射程序(Device maper、DM)多路径
+* 进行了加密
+

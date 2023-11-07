@@ -65,7 +65,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: luks
-provisioner: netapp.io/trident
+provisioner: csi.trident.netapp.io
 parameters:
   selector: "luks=true"
   csi.storage.k8s.io/node-stage-secret-name: luks-${pvc.name}
@@ -223,7 +223,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: luks
-provisioner: netapp.io/trident
+provisioner: csi.trident.netapp.io
 parameters:
   selector: "luks=true"
   csi.storage.k8s.io/node-stage-secret-name: luks-${pvc.name}

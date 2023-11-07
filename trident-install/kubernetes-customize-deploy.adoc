@@ -40,50 +40,53 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | 参数 | Description | Default 
 
 
-| `namespace` | 用于安装 Astra Trident 的命名空间 | default 
+| `namespace` | 用于安装 Astra Trident 的命名空间 | `"default"` 
 
 
-| `debug` | 为 Astra Trident 启用调试 | false 
+| `debug` | 为 Astra Trident 启用调试 | `false` 
 
 
 | `enableForceDetach` | `ontap-san` 和 `ontap-san-economy` 仅限。可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。*这是23.04中的一项实验功能。*请参阅 <<有关强制断开的详细信息>> 了解重要详细信息。 | `false` 
 
 
-| `windows` | 设置为 `true` 启用在Windows工作节点上的安装。 | false 
+| `windows` | 设置为 `true` 启用在Windows工作节点上的安装。 | `false` 
+
+
+| `cloudProvider` | 设置为 `"Azure"` 在AKS集群上使用受管身份时。 | `""` 
 
 
 | `IPv6` | 安装基于 IPv6 的 Astra Trident | false 
 
 
-| `k8sTimeout` | Kubernetes 操作超时 | 30 秒 
+| `k8sTimeout` | Kubernetes 操作超时 | `30sec` 
 
 
 | `silenceAutosupport` | 不要向NetApp发送AutoSupport捆绑包
-自动 | false 
+自动 | `false` 
 
 
-| `autosupport 映像` | AutoSupport 遥测的容器映像 | "NetApp/trdent AutoSupport：23.07" 
+| `autosupport 映像` | AutoSupport 遥测的容器映像 | `"netapp/trident-autosupport:23.10"` 
 
 
 | `autosupport 代理` | 用于发送AutoSupport的代理的地址/端口
-遥测 | "http://proxy.example.com:8888"[] 
+遥测 | `"http://proxy.example.com:8888"` 
 
 
-| `卸载` | 用于卸载 Astra Trident 的标志 | false 
+| `卸载` | 用于卸载 Astra Trident 的标志 | `false` 
 
 
-| `logFormat` | 要使用的 Astra Trident 日志记录格式 [text ， json] | 文本 
+| `logFormat` | 要使用的 Astra Trident 日志记录格式 [text ， json] | `"text"` 
 
 
-| `TridentImage` | 要安装的 Astra Trident 映像 | "NetApp/TRIdent：23.07" 
+| `TridentImage` | 要安装的 Astra Trident 映像 | `"netapp/trident:23.10"` 
 
 
 | `imageRegistry` | 内部注册表的路径、格式
-`<registry FQDN>[:port][/subpath]` | "k8s.gcr.io/sig-storage"(K8s 1.19+)
-或"ka.io/k8scsi" 
+`<registry FQDN>[:port][/subpath]` | `"k8s.gcr.io/sig-storage"` (Kubenetes 1.19及更高版本)
+或 `"quay.io/k8scsi"` 
 
 
-| `kubeletDir` | 主机上的 kubelet 目录的路径 | "/var/lib/kubelet" 
+| `kubeletDir` | 主机上的 kubelet 目录的路径 | `"/var/lib/kubelet"` 
 
 
 | `wipeout` | 要删除以执行完全删除的资源列表
@@ -142,12 +145,12 @@ NOTE: 在节点重新通过资格认定(标记为后)之前、三端技术(Tride
 
 == 配置示例
 
-您可以在定义时使用上述属性 `TridentOrchestrator` 自定义安装。
+您可以使用中的属性 <<配置选项>> 定义时 `TridentOrchestrator` 自定义安装。
 
-.示例1：基本自定义配置
-[%collapsible%open]
+.基本自定义配置
+[%collapsible]
 ====
-这是一个基本自定义配置示例。
+这是一个基本自定义安装示例。
 
 [listing]
 ----
@@ -163,10 +166,10 @@ spec:
   - thisisasecret
 ----
 ====
-.示例2：使用节点选择器部署
-[%collapsible%open]
+.节点选择器
+[%collapsible]
 ====
-此示例说明了如何使用节点选择器部署Trident：
+此示例将安装具有节点选择器的Asta Trdent。
 
 [listing]
 ----
@@ -183,10 +186,10 @@ spec:
     storage: netapp
 ----
 ====
-.示例3：在Windows工作节点上部署
-[%collapsible%open]
+.Windows工作节点
+[%collapsible]
 ====
-此示例说明了如何在Windows工作节点上部署。
+此示例将A作用 于Windows工作节点上。
 
 [listing]
 ----
@@ -199,5 +202,22 @@ spec:
   debug: true
   namespace: trident
   windows: true
+----
+====
+.AKS集群上的受管身份
+[%collapsible]
+====
+此示例将安装A作用 于在AKS集群上启用受管身份。
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  cloudProvider: "Azure"
 ----
 ====

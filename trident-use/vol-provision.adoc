@@ -54,6 +54,9 @@ spec:
 .PersentVolumeClaim示例清单
 [%collapsible]
 ====
+这些示例显示了基本的PVC配置选项。
+
+.PVC、带读取器
 此示例显示了一个具有读取权限的基本PVC、该PVC与名为的StorageClass关联 `basic-csi`。
 
 [listing]
@@ -70,10 +73,31 @@ spec:
       storage: 1Gi
   storageClassName: basic-csi
 ----
+.采用NVMe/TCP的PVC
+此示例显示了一个与名为的StorageClass关联的具有读取权限的NVMe/TCP的基本PVC `protection-gold`。
+
+[listing]
+----
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+name: pvc-san-nvme
+spec:
+accessModes:
+  - ReadWriteOnce
+resources:
+  requests:
+    storage: 300Mi
+storageClassName: protection-gold
+----
 ====
 .POD清单示例
 [%collapsible]
 ====
+这些示例显示了将PVC连接到POD的基本配置。
+
+.基本配置
 [listing]
 ----
 kind: Pod
@@ -94,6 +118,32 @@ spec:
       volumeMounts:
         - mountPath: "/my/mount/path"
           name: pv-storage
+----
+.基本NVMe/TCP配置
+[listing]
+----
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+      resources: {}
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: task-pv-storage
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+      claimName: pvc-san-nvme
 ----
 ====
 
