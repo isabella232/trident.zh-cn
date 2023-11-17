@@ -4036,4 +4036,5 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="4c326d958c0bd182aa53c9e9bba722ad" category="paragraph">如果您未运行Asta Trident 23.10、则可通过获取先前版本的文档 <block ref="6e1ac221c7aa10f6bb30cbfd51cb3204" category="inline-link-macro-rx"></block>。</block>
   <block id="6933dffe806f29980dbedda6aef6fda7" category="inline-link">A作用 三排版23.07</block>
   <block id="5190d8b9f5b246f225722ffa2f20e6b3" category="list-text"><block ref="5190d8b9f5b246f225722ffa2f20e6b3" category="inline-link-rx"></block></block>
+  <block id="0cd8d0588cd2b20face3a0379d38f777" category="admonition">使用动态导出策略时、请勿使用网络地址转换(Network Address Translation、NAT)。使用NAT时、存储控制器会看到前端NAT地址、而不是实际IP主机地址、因此、如果在导出规则中找不到匹配项、则会拒绝访问。</block>
 </blocks>
