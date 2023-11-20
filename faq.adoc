@@ -62,7 +62,7 @@ Astra Trident 与其他 NetApp 软件产品没有任何依赖关系，它可以�
 
 === Astra Trident 是否支持从专用注册表脱机安装？
 
-可以， Astra Trident 可以脱机安装。请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy.html["此处"]。
+可以， Astra Trident 可以脱机安装。请参见 link:trident-get-started/kubernetes-deploy.html["此处"]。
 
 
 
@@ -86,13 +86,13 @@ Astra Trident 从 Kubernetes API 服务器读取数据，以确定应用程序�
 
 === Astra Trident 使用哪些角色和特权？
 
-通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
+通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 link:trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
 
 
 
 === 是否可以在本地生成 Astra Trident 用于安装的准确清单文件？
 
-如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 link:https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
+如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 link:trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
 
 
 
@@ -310,7 +310,7 @@ Astra Trident 会将后端凭据存储为 Kubernetes Secretes 。
 
 === 如何使用 ONTAP 通过 Astra Trident 设置卷加密？
 
-您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： link:https://docs.netapp.com/us-en/trident/trident-reco/security-reco.html#use-astra-trident-with-nve-and-nae["Astra Trident如何与NVE和NAE配合使用"]
+您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： link:trident-reco/security-reco.html#use-astra-trident-with-nve-and-nae["Astra Trident如何与NVE和NAE配合使用"]
 
 
 

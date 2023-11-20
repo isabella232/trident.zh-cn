@@ -1769,8 +1769,6 @@
   <block id="a10ab8f133704d9a58a1dff179ad7f7d" category="list-text">使用 "** 标准创建 " 时，禁用自动备份。禁用自动备份可以使 Trident 成功删除卷，而无需进一步手动干预。</block>
   <block id="4ef50c481a6113a6276514f572c414d2" category="inline-image-macro">AWS 控制台禁用自动备份的屏幕截图。</block>
   <block id="cce5aa9218d4019d57adcf814d7189c1" category="paragraph"><block ref="cce5aa9218d4019d57adcf814d7189c1" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="45b09f7cb3dcbe0274eef2b3fce46bea" category="paragraph">可以， Astra Trident 可以脱机安装。请参见 <block ref="4a2b27d6d4bc3dd7ae85bfd131d50753" category="inline-link-macro-rx"></block>。</block>
-  <block id="0f43ba8a9cfc14b033c2c652f53bfcb9" category="paragraph">如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">法律声明提供对版权声明、商标、专利等的访问。</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版权</block>
   <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商标</block>
@@ -2144,7 +2142,6 @@
   <block id="f18a50f02f48551895d57b81dd288142" category="sidebar">在命名空间之间共享NFS卷</block>
   <block id="fd1117c82327fbe8671f26e897ceb8f4" category="inline-link-macro">使用BlueXP的Astra Trident</block>
   <block id="a76a1e164520105317267dc41b95e8ce" category="paragraph">使用 <block ref="f8c16e8c21124ccc028d2db7fd32a98f" category="inline-link-macro-rx"></block>、您可以升级到最新版本的Astra Trident、添加和管理存储类并将其连接到工作环境、以及使用Cloud Backup Service 备份永久性卷。BlueXP支持使用Trident操作员手动或使用Helm部署Astra Trident。</block>
-  <block id="6ce33e8f1e198bf1c3583bc5ef789b75" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="3260a21902518174ce8d9bfef42be276" category="inline-link-macro-rx"></block></block>
   <block id="66f2c42a4ca561f5472459301bc7d096" category="list-text">ONTAP 驱动程序的自动MetroCluster 切换检测现已全面推出。</block>
   <block id="e87ded5ef8bc8adbc3c135528636f4f2" category="list-text"><block ref="e87ded5ef8bc8adbc3c135528636f4f2" category="inline-link-macro-rx"></block></block>
   <block id="fce586d9f649fb529d0a1846495ba259" category="list-text"><block ref="fce586d9f649fb529d0a1846495ba259" category="inline-link-macro-rx"></block></block>
@@ -3505,7 +3502,6 @@ SMB</block>
   <block id="40c7465c2468fd6e890691f6cb612731" category="paragraph">升级后的 Trident 安装的前缀。如果您使用的是1.3.2之前的版本的Trident并对现有卷执行升级、则需要设置此值才能访问通过volume-name方法映射的旧卷。</block>
   <block id="7f86daacf34c67c042470fa9d926ba49" category="paragraph">标准日志记录级别应允许您诊断大多数问题。如果您发现这还不够、则可以启用调试日志记录。</block>
   <block id="6bdfdbfc466bb6d93222dbf7b3a374fe" category="list-text">如果您在主机上运行二进制文件本身、则主机的中会显示日志<block ref="849fc2421f236e9c9b49a9d3fed2c404" prefix=" " category="inline-code"></block> 目录。要启用调试日志记录、请指定<block ref="9b945915b0cddbee22047fd529d642f6" prefix=" " category="inline-code"></block> 运行插件时。</block>
-  <block id="856df87d418b99d5e88b1e337987cad3" category="paragraph">通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 <block ref="7a68296d6f600eac17d317743bea0050" category="inline-link-macro-rx"></block>。</block>
   <block id="1a4c36220ae60b6a6a4c2285be05a43a" category="section-title">我的存储系统密码已更改、Astra Trident不再工作、如何恢复？</block>
   <block id="a988578d4c176cf950a2211099db7d92" category="paragraph">使用更新后端的密码<block ref="00a81aa9b1d406861879017de885e0fb" prefix=" " category="inline-code"></block>。替换<block ref="3d9fd17a5232cc24eeeaec2b07af5417" prefix=" " category="inline-code"></block> 在示例中、使用后端名称、和<block ref="27ab7e8dbd45daf638f3144d4891ef3b" prefix=" " category="inline-code"></block> 路径正确<block ref="9c15d32711e9ef8c6f76deda35452e13" prefix=" " category="inline-code"></block> 文件</block>
   <block id="8cb93d7a514e5569b46cba45dedc7daf" category="paragraph">如果 Trident POD 被销毁，数据不会丢失。三元数据存储在CRD对象中。已由 Trident 配置的所有 PV 都将正常运行。</block>
@@ -4037,4 +4033,8 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="6933dffe806f29980dbedda6aef6fda7" category="inline-link">A作用 三排版23.07</block>
   <block id="5190d8b9f5b246f225722ffa2f20e6b3" category="list-text"><block ref="5190d8b9f5b246f225722ffa2f20e6b3" category="inline-link-rx"></block></block>
   <block id="0cd8d0588cd2b20face3a0379d38f777" category="admonition">使用动态导出策略时、请勿使用网络地址转换(Network Address Translation、NAT)。使用NAT时、存储控制器会看到前端NAT地址、而不是实际IP主机地址、因此、如果在导出规则中找不到匹配项、则会拒绝访问。</block>
+  <block id="11e8ef6c378ba835810fad2cc65ce5b5" category="paragraph">可以， Astra Trident 可以脱机安装。请参见 <block ref="8b57b68a0e3f8b19c1d735a44663ac45" category="inline-link-macro-rx"></block>。</block>
+  <block id="85d1bf3ede0fe784fd2bd122a9f9488f" category="paragraph">通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 <block ref="52b05a1acf0f0f7fbbce1ec1469188fc" category="inline-link-macro-rx"></block>。</block>
+  <block id="5b72286a318e05b9dba4ea3ab28f1892" category="paragraph">如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 <block ref="52b05a1acf0f0f7fbbce1ec1469188fc" category="inline-link-macro-rx"></block>。</block>
+  <block id="de05556ddd203d92c70611ab918d657a" category="paragraph">您可以使用后端定义文件中的加密参数在 Trident 配置的卷上设置加密。有关详细信息、请参见： <block ref="22dccd9f6b27b25deeed93972d237440" category="inline-link-macro-rx"></block></block>
 </blocks>
