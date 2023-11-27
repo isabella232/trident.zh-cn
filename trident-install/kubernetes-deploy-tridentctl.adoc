@@ -197,13 +197,3 @@ tridentctl install --windows -n trident
 tridentctl install --enable-force-detach=true -n trident
 ----
 ====
-.AKS集群上的受管身份
-[%collapsible]
-====
-此示例将安装A作用 于启用托管身份的A作用。
-
-[listing]
-----
-tridentctl install --cloud-provider="Azure" -n trident
-----
-====

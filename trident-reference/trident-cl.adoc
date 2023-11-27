@@ -18,38 +18,38 @@ Astra Trident 为 Trident 流程编排程序提供了多个命令行选项。您
 
 == 日志记录
 
-* ` -debug` ：启用调试输出。
-* ` -loglevel <level>` ：设置日志记录级别（调试，信息，警告，错误，致命）。默认为 INFO 。
+`-debug`:: 启用调试输出。
+`-loglevel <level>`:: 设置日志记录级别(调试、信息、警告、错误、致命)。默认为 INFO 。
 
 
 
 
 == Kubernetes
 
-* ` -K8s_pod` ：使用此选项或 ` -K8s_api_server` 启用 Kubernetes 支持。如果设置此值，则 Trident 将使用其所属 POD 的 Kubernetes 服务帐户凭据来联系 API 服务器。只有当 Trident 在启用了服务帐户的 Kubernetes 集群中作为 POD 运行时，此功能才有效。
-* ` -K8s_api_server < 不安全地址：不安全端口 >` ：使用此选项或 ` -K8s_pod` 启用 Kubernetes 支持。指定后， Trident 将使用提供的不安全地址和端口连接到 Kubernetes API 服务器。这样可以在 Pod 之外部署 Trident ；但是，它仅支持与 API 服务器的不安全连接。要安全连接，请使用 ` -K8s_pod` 选项将 Trident 部署在 Pod 中。
-* ` -K8s_config_path <file>` ：必需；必须指定 KubeConfig 文件的路径。
+`-k8s_pod`:: 使用此选项或 `-k8s_api_server` 以启用Kubernetes支持。如果设置此值，则 Trident 将使用其所属 POD 的 Kubernetes 服务帐户凭据来联系 API 服务器。只有当 Trident 在启用了服务帐户的 Kubernetes 集群中作为 POD 运行时，此功能才有效。
+`-k8s_api_server <insecure-address:insecure-port>`:: 使用此选项或 `-k8s_pod` 以启用Kubernetes支持。指定后， Trident 将使用提供的不安全地址和端口连接到 Kubernetes API 服务器。这样可以在 Pod 之外部署 Trident ；但是，它仅支持与 API 服务器的不安全连接。要安全连接、请使用在Pod中部署Trident `-k8s_pod` 选项
 
 
 
 
 == Docker
 
-* ` -volume_driver < 名称 >` ：注册 Docker 插件时使用的驱动程序名称。默认为 `NetApp` 。
-* ` -driver_port <port-number>` ：侦听此端口，而不是 UNIX 域套接字。
-* ` 配置 < 文件 >` ：必需；您必须指定后端配置文件的路径。
+`-volume_driver <name>`:: 注册Docker插件时使用的驱动程序名称。默认为 `netapp`。
+`-driver_port <port-number>`:: 侦听此端口、而不侦听UNIX域套接字。
+`-config <file>`:: 必需；您必须指定后端配置文件的此路径。
 
 
 
 
 == REST
 
-* ` 地址 <ip-or-host>` ：指定 Trident 的 REST 服务器应侦听的地址。默认为 localhost 。在本地主机上侦听并在 Kubernetes Pod 中运行时，无法从 Pod 外部直接访问 REST 接口。使用 ` 地址 ""` 可从 Pod IP 地址访问 REST 接口。
-
-
+`-address <ip-or-host>`:: 指定要侦听的三端存储服务器的地址。默认为 localhost 。在本地主机上侦听并在 Kubernetes Pod 中运行时，无法从 Pod 外部直接访问 REST 接口。使用 ... `-address ""` 可从Pod IP地址访问REST接口。
++
+--
 
 CAUTION: 可以将 Trident REST 接口配置为仅以 127.0.0.1 （对于 IPv4 ）或（：： 1 ）（对于 IPv6 ）侦听和提供服务。
 
-* ` -port <port-number>` ：指定 Trident 的 REST 服务器应侦听的端口。默认为 8000 。
-* ` -REST` ：启用 REST 接口。默认为 true 。
+--
+`-port <port-number>`:: 指定应侦听的三端存储服务器的端口。默认为 8000 。
+`-rest`:: 启用REST接口。默认为 true 。
 

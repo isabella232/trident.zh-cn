@@ -8,11 +8,7 @@ entries:
   url: "/trident-reference/rest-api.html"
 - title: 命令行选项
   url: "/trident-reference/trident-cl.html"
-- title: 与 Kubernetes 集成的 NetApp 产品
-  url: "/trident-reference/k8s-netapp.html"
 - title: Kubernetes 和 Astra Trident 对象
   url: "/trident-reference/objects.html"
-- title: 使用tridentct利 管理Astra三端
-  url: "/trident-reference/tridentctl.html"
 - title: POD安全标准(PSS)和安全上下文限制(SCC)
   url: "/trident-reference/pod-security.html"
