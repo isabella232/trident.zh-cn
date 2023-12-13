@@ -66,25 +66,21 @@ kubectl create -f 23.10.0/trident-installer/deploy/<bundle.yaml> -n trident
 WARNING: 将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更高版本时、必须将values.yaml更新为set `excludePodSecurityPolicy` to `true` 或添加 `--set excludePodSecurityPolicy=true` 到 `helm upgrade` 命令。
 
 .步骤
-. 下载最新的 Astra Trident 版本。
-. 使用 `helm upgrade` 命令位置 `trident-operator-23.10.0.tgz` 反映了要升级到的版本。
+. 如果您 link:../trident-get-started/kubernetes-deploy-helm.html#deploy-the-trident-operator-and-install-astra-trident-using-helm["已使用Helm安装Asta Trdent"]，您可以使用 `helm upgrade trident netapp-trident/trident-operator --version 23.10.0` 一步升级。如果您未添加Helm repo或无法使用它进行升级：
++
+.. 从下载最新的Astra Trdent版本 link:https://github.com/NetApp/trident/releases/latest["GitHub上的_assets_部分"^]。
+.. 使用 `helm upgrade` 命令位置 `trident-operator-23.10.0.tgz` 反映了要升级到的版本。
 +
 [listing]
 ----
 helm upgrade <name> trident-operator-23.10.0.tgz
 ----
 +
-[NOTE]
-====
-如果在初始安装期间设置了任何非默认选项(例如为Trident和CSI映像指定专用的镜像注册表)、请使用 `--set` 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。
 
-例如，要更改默认值 `tridentDebug` ，请运行以下命令：
+NOTE: 如果您在初始安装期间设置了自定义选项(例如、为三端映像和CSI映像指定专用、镜像注册表)、请附加 `helm upgrade` 命令 `--set` 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。
 
-[listing]
-----
-helm upgrade <name> trident-operator-23.10.0-custom.tgz --set tridentDebug=true
-----
-====
+
+
 . 运行 `helm list` 验证图表和应用程序版本均已升级。运行 `tridentctl logs` 查看任何调试消息。
 
 

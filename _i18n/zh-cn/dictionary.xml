@@ -539,7 +539,6 @@
   <block id="5ff3faebb0ff710340bdbee89a4667ad" category="doc">使用操作员升级</block>
   <block id="199ed8c975e8bb544d18428ba17adbc3" category="inline-link">GitHub 上的问题描述详细信息</block>
   <block id="3002cfcea36b7fb4d87da4d413730851" category="list-text">下载最新的 Astra Trident 版本。</block>
-  <block id="4a6b869a481b52472aa62cfa4d9d255e" category="paragraph">例如，要更改默认值 `tridentDebug` ，请运行以下命令：</block>
   <block id="4ab464bddccdcbc36fab4cea802025f9" category="list-text">从清单中创建 `tridentorchator` CRD 。</block>
   <block id="06da281bf5e01c3c59892dc886cd0067" category="list-text">创建 `TridentOrchestrator` CR 以安装 Astra Trident 。</block>
   <block id="43f17763173fe230bdd78477152f5f7d" category="inline-link-macro">卸载 Astra Trident</block>
@@ -2426,7 +2425,6 @@
   <block id="441b9a0ce7113f17c0021f9922b1c865" category="inline-link-macro">使用Trident操作符进行升级</block>
   <block id="589143858f045594979d5d3cf5289bf6" category="paragraph">您可以使用轻松升级现有的Astra Trident安装<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。</block>
   <block id="bdae3121e140e5325fd05919c86dd97f" category="list-text">如果您使用自定义了初始安装<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 属性、您可以编辑<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 用于修改安装参数的对象。其中可能包括为脱机模式指定镜像Trident和CSI映像注册表、启用调试日志或指定映像提取密钥所做的更改。</block>
-  <block id="b0f8c567e856516aabf80f916e995d4f" category="paragraph">如果在初始安装期间设置了任何非默认选项(例如为Trident和CSI映像指定专用的镜像注册表)、请使用<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。</block>
   <block id="3d0107bfa0874592e9dc04f9869b604b" category="list-text">运行<block ref="cd4140d3de30b520500459331d08d2bf" prefix=" " category="inline-code"></block> 验证图表和应用程序版本均已升级。运行<block ref="3e725291d4b17065fdcd321172fcfae3" prefix=" " category="inline-code"></block> 查看任何调试消息。</block>
   <block id="3fe5d266a33f137293c314a2e334b611" category="inline-link">Astra Trident 22.10</block>
   <block id="9fefe9ff51badc61edd8a36c8240aa29" category="list-text"><block ref="9fefe9ff51badc61edd8a36c8240aa29" category="inline-link-rx"></block></block>
@@ -4016,4 +4014,8 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="0e43bd2bbbbfb114e0df26c0544f5608" category="list-text"><block ref="914071b8934b1d6035495f1ed02aa5fd" prefix="" category="inline-code"></block>，<block ref="0c113ca6d57519b559ba5a426be3c6b6" prefix=" " category="inline-code"></block>：后端状态帮助。<block ref="2be951e4c83b3373b0b76554fd93bb4a" prefix=" " category="inline-code"></block>：设置为<block ref="735fda5d72b5c650f3f0435195a211bd" prefix=" " category="inline-code"></block> 暂停后端操作。设置为<block ref="fea087517c26fadd409bd4b9dc642555" prefix=" " category="inline-code"></block> 恢复后端操作。设置为时<block ref="735fda5d72b5c650f3f0435195a211bd" prefix=" " category="inline-code"></block>：</block>
   <block id="4301e504ec5591a4c51fe93e446a7a35" category="paragraph"><block ref="dca46ba7b3ffeb9b51e10f54acbd826d" prefix="" category="inline-code"></block></block>
   <block id="e6e32acf4d56921ac92540101fe00fc9" category="list-text"><block ref="db0e9588c0d46e16e0aea5c50287a54f" prefix="" category="inline-code"></block>：仅限客户端版本(不需要服务器)。<block ref="60072fc2fad0d30fc656850e04c7433f" prefix=" " category="inline-code"></block>：版本帮助。</block>
+  <block id="2776a355e79f6256fa8b6a84044ebc66" category="inline-link-macro">已使用Helm安装Asta Trdent</block>
+  <block id="dec90c165180e4428352d04efba76d8b" category="list-text">如果您 <block ref="701383cb184d92daac13becc67e9c1be" category="inline-link-macro-rx"></block>，您可以使用<block ref="00f73970d66f7ceaea7519a201d88dc8" prefix=" " category="inline-code"></block> 一步升级。如果您未添加Helm repo或无法使用它进行升级：</block>
+  <block id="fd55ae3db3b16ceeb447f43dc713fb27" category="list-text">从下载最新的Astra Trdent版本 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
+  <block id="34c5f2f84f16f23213713a6adc11c319" category="admonition">如果您在初始安装期间设置了自定义选项(例如、为三端映像和CSI映像指定专用、镜像注册表)、请附加<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。</block>
 </blocks>
