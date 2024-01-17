@@ -280,7 +280,7 @@ NOTE: Docker Swarm 目前不支持 `ontap-nas-economy-经济` 驱动程序，因
 * 需要 ONTAP 9.2 或更高版本。
 * 截至本文撰写时， FlexGroup 仅支持 NFS v3 。
 * 建议为 SVM 启用 64 位 NFSv3 标识符。
-* 建议的最小 FlexGroup 大小为 100 GB 。
+* 建议的最小FlexGroup成员/卷大小为100 GiB。
 * FlexGroup 卷不支持克隆。
 
 

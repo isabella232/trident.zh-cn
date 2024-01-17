@@ -1547,7 +1547,6 @@
   <block id="9d83b6d2e2b099e63bf8e2fc8c870893" category="list-text">需要 ONTAP 9.2 或更高版本。</block>
   <block id="e7c74973b26ad51b9db42a9c347a8cd4" category="list-text">截至本文撰写时， FlexGroup 仅支持 NFS v3 。</block>
   <block id="02a100b04add3b90fddef64499e825a2" category="list-text">建议为 SVM 启用 64 位 NFSv3 标识符。</block>
-  <block id="496f8625569b787269edab0f3de973da" category="list-text">建议的最小 FlexGroup 大小为 100 GB 。</block>
   <block id="db78b2a7acf43fa03cd95fb3a77c82f9" category="list-text">FlexGroup 卷不支持克隆。</block>
   <block id="f5ac1e3c252855373c7f660dbd89699d" category="inline-link">《 NetApp FlexGroup 卷最佳实践和实施指南》</block>
   <block id="df1a7e79743809601db1d20d6a33ae52" category="paragraph">有关适用于 FlexGroup 的 FlexGroup 和工作负载的信息，请参见<block ref="b8a99695d7979127a1cab07b42e22743" category="inline-link-rx"></block>。</block>
@@ -3165,7 +3164,6 @@ SMB</block>
   <block id="a221a060125881c2027807248f8302a2" category="list-text">这是一个Kubbernetes对象、因此请使用<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block> 以在Kubernetes中创建。</block>
   <block id="f31a577daf927c7edc5555c9ceabc983" category="section-title">存储类示例</block>
   <block id="64c314ed1bd24115a72a8a4284115a5c" category="inline-link">适用于特定后端的简单存储类定义</block>
-  <block id="cd05956789bea1b8ca185126ede9bfe6" category="paragraph">Asta三项功能<block ref="fdffa1e2d88d340a5703a5f7123df6a4" category="inline-link-rx"></block>。</block>
   <block id="d9ab9b10b2101546e16eeab0b981d10c" category="paragraph">或者、您也可以进行编辑<block ref="9a35c6080acd99f860d0c669b1a980f9" prefix=" " category="inline-code"></block> 安装程序随附的文件、然后进行替换<block ref="9c9a0798e59f3f4d7b08e45faef1e131" prefix=" " category="inline-code"></block> 和存储驱动程序名称。</block>
   <block id="ff87ac5778183437377f5f963a3dccac" category="paragraph">编辑StorageClass定义以设置<block ref="6add71a247c8f4513060920be14857bc" prefix=" " category="inline-code"></block> 字段设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>。</block>
   <block id="efe0663b3e4eed08a4a1b30c3f3a2aac" category="paragraph">编辑PVC定义并更新<block ref="02b011e6fe36e26e5f7365ba08bf5a48" prefix=" " category="inline-code"></block> 以反映新需要的大小、该大小必须大于原始大小。</block>
@@ -4018,4 +4016,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="dec90c165180e4428352d04efba76d8b" category="list-text">如果您 <block ref="701383cb184d92daac13becc67e9c1be" category="inline-link-macro-rx"></block>，您可以使用<block ref="00f73970d66f7ceaea7519a201d88dc8" prefix=" " category="inline-code"></block> 一步升级。如果您未添加Helm repo或无法使用它进行升级：</block>
   <block id="fd55ae3db3b16ceeb447f43dc713fb27" category="list-text">从下载最新的Astra Trdent版本 <block ref="6a7c34d1e7545bd3ab5abc336e61eb7f" category="inline-link-macro-rx"></block>。</block>
   <block id="34c5f2f84f16f23213713a6adc11c319" category="admonition">如果您在初始安装期间设置了自定义选项(例如、为三端映像和CSI映像指定专用、镜像注册表)、请附加<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。</block>
+  <block id="92f2a092c8970a9e6a9a8f5829670977" category="paragraph">Asta三项功能<block ref="78512e06e40b1d6e7b22821168623dd6" category="inline-link-rx"></block>。</block>
+  <block id="20a385c1dc7ef65425669840055b5330" category="list-text">建议的最小FlexGroup成员/卷大小为100 GiB。</block>
 </blocks>

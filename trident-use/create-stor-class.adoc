@@ -87,7 +87,7 @@ basic-csi    csi.trident.netapp.io   15h
 
 === 存储类示例
 
-Asta三项功能 https://github.com/NetApp/trident/tree/master/trident-installer/sample-input/pvc-samples["适用于特定后端的简单存储类定义"^]。
+Asta三项功能 https://github.com/NetApp/trident/tree/master/trident-installer/sample-input/storage-class-samples["适用于特定后端的简单存储类定义"^]。
 
 或者、您也可以进行编辑 `sample-input/storage-class-csi.yaml.templ` 安装程序随附的文件、然后进行替换 `__BACKEND_TYPE__` 和存储驱动程序名称。
 
