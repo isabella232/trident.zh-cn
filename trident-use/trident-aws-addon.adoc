@@ -4,7 +4,7 @@ permalink: trident-use/trident-aws-addon.html
 keywords: Trident add-on, Astra Trident EKS add-on, Trident AWS EKS add-on, integrate Trident, Trident 
 summary: 将Asta Trident EKS加载项添加到Kubbernetes集群。 
 ---
-= 在EKS cluser上配置Asta Trident EKS加载项23.10版
+= 在EKS集群上配置Asta Trident EKS加载项23.10版
 :hardbreaks:
 :allow-uri-read: 
 :icons: font

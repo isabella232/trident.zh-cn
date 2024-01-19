@@ -4019,7 +4019,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="92f2a092c8970a9e6a9a8f5829670977" category="paragraph">Asta三项功能<block ref="78512e06e40b1d6e7b22821168623dd6" category="inline-link-rx"></block>。</block>
   <block id="20a385c1dc7ef65425669840055b5330" category="list-text">建议的最小FlexGroup成员/卷大小为100 GiB。</block>
   <block id="fd677451fcb2b9e12434f11dd81d463e" category="summary">将Asta Trident EKS加载项添加到Kubbernetes集群。</block>
-  <block id="7300036f416b8655e56df4e850a1edc1" category="doc">在EKS cluser上配置Asta Trident EKS加载项23.10版</block>
   <block id="fde605b45abe19dca0689ef0eaa6e384" category="paragraph">Asta三端存储简化了Kubelnetes中适用于NetApp ONTAP存储的Amazon FSx管理、使开发人员和管理员能够专注于应用程序部署。A作用 是通过AWS验证、可与Amazon EKS配合使用。通过EKS加载项、您可以始终确保Amazon EKS集群安全稳定、并减少安装、配置和更新加载项所需的工作量。</block>
   <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">前提条件</block>
   <block id="2f2c25cde4f655e64149cdd745b67001" category="paragraph">在配置适用于AWS EKS的Asta TrIDent加载项之前、请确保满足以下条件：</block>
@@ -4047,4 +4046,5 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="5fef1c4f3767262a0ef823aaa69e1703" category="paragraph-title">使用命令行界面卸载Asta Trident EKS加载项：</block>
   <block id="e1f272eb0b2aaba7b1cb689543f653e0" category="paragraph">以下命令将卸载Asta三端EKS加载项：<block ref="09a3e9c644b219341aa6e2e8a8922e59" prefix=" " category="inline-code"></block></block>
   <block id="c6861e88433ccd90f1ce8143d7e5fed0" category="sidebar">在EKS集群上配置Asta Trident EKS加载项</block>
+  <block id="7ed15597cafdca20d5859b7e394bc0ab" category="doc">在EKS集群上配置Asta Trident EKS加载项23.10版</block>
 </blocks>
