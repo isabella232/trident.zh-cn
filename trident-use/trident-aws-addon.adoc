@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: trident-use/trident-aws-addon.html 
+keywords: Trident add-on, Astra Trident EKS add-on, Trident AWS EKS add-on, integrate Trident, Trident 
+summary: 将Asta Trident EKS加载项添加到Kubbernetes集群。 
+---
+= 在EKS cluser上配置Asta Trident EKS加载项23.10版
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Asta三端存储简化了Kubelnetes中适用于NetApp ONTAP存储的Amazon FSx管理、使开发人员和管理员能够专注于应用程序部署。A作用 是通过AWS验证、可与Amazon EKS配合使用。通过EKS加载项、您可以始终确保Amazon EKS集群安全稳定、并减少安装、配置和更新加载项所需的工作量。
+
+
+
+== 前提条件
+
+在配置适用于AWS EKS的Asta TrIDent加载项之前、请确保满足以下条件：
+
+* 具有附加订阅的Amazon EKS集群帐户
+* AWS对AWS Marketplace的权限：
+`"aws-marketplace:ViewSubscriptions",
+"aws-marketplace:Subscribe",
+"aws-marketplace:Unsubscribe`
+* AMI类型：Amazon Linux 2 (AL2_x86_64)或Amazon Linux 2 ARM (AL2_ARM_64)
+* 节点类型：AMD或ARM
+* 现有Amazon FSx for NetApp ONTAP文件系统
+
+
+
+
+== 步骤
+
+. 在EKS Kubernetes集群上、导航到*附加项*选项卡。
++
+image::../media/aws-eks-01.png[AWS EKS 01]
+
+. 转到*AWS Marketplace附加项*并选择_storage_类别。
++
+image::../media/aws-eks-02.png[AWS EKS 02]
+
+. 找到*AstraDent* by AstraDent*并选中NetApp插件的复选框。
+. 选择所需的附加软件版本。
++
+image::../media/aws-eks-03.png[AWS EKS 03]
+
+. 选择要从节点继承的IAM角色选项。
+. 根据需要配置任何可选设置，然后选择*Next*。
++
+image::../media/aws-eks-04.png[AWS EKS 04]
+
+. 选择 * 创建 * 。
+. 验证此加载项的状态是否为_Active_.
++
+image::../media/aws-eks-05.png[AWS EKS 05]
+
+
+
+
+
+== 使用命令行界面安装/卸载A作用 的三端EKS加载项
+
+.使用命令行界面安装Asta Trident EKS加载项：
+以下示例命令用于安装Asta Trdent EKS加载项：
+`eksctl create addon --cluster K8s-arm --name netapp_trident-operator --version v23.10.0-eksbuild.`
+`eksctl create addon --cluster K8s-arm --name netapp_trident-operator --version v23.10.0-eksbuild.1` (使用专用版本)
+
+.使用命令行界面卸载Asta Trident EKS加载项：
+以下命令将卸载Asta三端EKS加载项：
+`eksctl delete addon --cluster K8s-arm --name netapp_trident-operator`

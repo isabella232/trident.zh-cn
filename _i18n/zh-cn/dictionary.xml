@@ -4018,4 +4018,33 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="34c5f2f84f16f23213713a6adc11c319" category="admonition">如果您在初始安装期间设置了自定义选项(例如、为三端映像和CSI映像指定专用、镜像注册表)、请附加<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 为了确保这些选项包含在upgrade命令中、否则这些值将重置为默认值。</block>
   <block id="92f2a092c8970a9e6a9a8f5829670977" category="paragraph">Asta三项功能<block ref="78512e06e40b1d6e7b22821168623dd6" category="inline-link-rx"></block>。</block>
   <block id="20a385c1dc7ef65425669840055b5330" category="list-text">建议的最小FlexGroup成员/卷大小为100 GiB。</block>
+  <block id="fd677451fcb2b9e12434f11dd81d463e" category="summary">将Asta Trident EKS加载项添加到Kubbernetes集群。</block>
+  <block id="7300036f416b8655e56df4e850a1edc1" category="doc">在EKS cluser上配置Asta Trident EKS加载项23.10版</block>
+  <block id="fde605b45abe19dca0689ef0eaa6e384" category="paragraph">Asta三端存储简化了Kubelnetes中适用于NetApp ONTAP存储的Amazon FSx管理、使开发人员和管理员能够专注于应用程序部署。A作用 是通过AWS验证、可与Amazon EKS配合使用。通过EKS加载项、您可以始终确保Amazon EKS集群安全稳定、并减少安装、配置和更新加载项所需的工作量。</block>
+  <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">前提条件</block>
+  <block id="2f2c25cde4f655e64149cdd745b67001" category="paragraph">在配置适用于AWS EKS的Asta TrIDent加载项之前、请确保满足以下条件：</block>
+  <block id="56ae1c25c84da104d5678975802dd9b7" category="list-text">具有附加订阅的Amazon EKS集群帐户</block>
+  <block id="3f597c2b0d86deed94c99ef3d5fa4932" category="list-text">AWS对AWS Marketplace的权限：<block ref="8047af5c1ca81290342558a545113f6e" prefix=" " category="inline-code"></block></block>
+  <block id="8ac2d15830983d69c7c62c4d8a69266c" category="list-text">AMI类型：Amazon Linux 2 (AL2_x86_64)或Amazon Linux 2 ARM (AL2_ARM_64)</block>
+  <block id="68437d1104a05b71c1c25548a95ad946" category="list-text">节点类型：AMD或ARM</block>
+  <block id="63ac2242cb63194d25dd17c30c89f80d" category="list-text">现有Amazon FSx for NetApp ONTAP文件系统</block>
+  <block id="22547dfa47b268c96e02c861e2800aad" category="list-text">在EKS Kubernetes集群上、导航到*附加项*选项卡。</block>
+  <block id="46fd403fb7788c53f0de4aa06ccc89d9" category="image-alt">AWS EKS 01</block>
+  <block id="153bbcd55aded817c5a331d5acae54eb" category="list-text">转到*AWS Marketplace附加项*并选择_storage_类别。</block>
+  <block id="2b1131719d4d8198515b53a0132411fb" category="image-alt">AWS EKS 02</block>
+  <block id="07ef8d283073ee1ff1a371c82759ad14" category="list-text">找到*AstraDent* by AstraDent*并选中NetApp插件的复选框。</block>
+  <block id="5bab8196b750f3260d005a4548bc5de0" category="list-text">选择所需的附加软件版本。</block>
+  <block id="92f63954b2feb520d9a85c6ac6087ad8" category="image-alt">AWS EKS 03</block>
+  <block id="165c328c69599353c4797fde7429e5b5" category="list-text">选择要从节点继承的IAM角色选项。</block>
+  <block id="1ada0e4c6ad383de9c12b6e1e6d56327" category="list-text">根据需要配置任何可选设置，然后选择*Next*。</block>
+  <block id="b64079b8570f34f88bca59be352b20e2" category="image-alt">AWS EKS 04</block>
+  <block id="bf18811faac9b8e4fcaebab51afd1113" category="list-text">选择 * 创建 * 。</block>
+  <block id="fa883f8fcd252ea2995457cd82515d03" category="list-text">验证此加载项的状态是否为_Active_.</block>
+  <block id="2af6474930eac7fe47a45b3658bef5bf" category="image-alt">AWS EKS 05</block>
+  <block id="cec2926f3f12e3edd6577d4f1edd4e22" category="section-title">使用命令行界面安装/卸载A作用 的三端EKS加载项</block>
+  <block id="64f82c86eee854db6eefc72dbf352f85" category="paragraph-title">使用命令行界面安装Asta Trident EKS加载项：</block>
+  <block id="8a9b3d7ba157ca60525a14459fd3f806" category="paragraph">以下示例命令用于安装Asta Trdent EKS加载项：<block ref="b0cca58f8f0307eaab81f8066a9e1952" prefix=" " category="inline-code"></block><block ref="c1ad0081ff15bc4dd47b3591865bef09" prefix=" " category="inline-code"></block> (使用专用版本)</block>
+  <block id="5fef1c4f3767262a0ef823aaa69e1703" category="paragraph-title">使用命令行界面卸载Asta Trident EKS加载项：</block>
+  <block id="e1f272eb0b2aaba7b1cb689543f653e0" category="paragraph">以下命令将卸载Asta三端EKS加载项：<block ref="09a3e9c644b219341aa6e2e8a8922e59" prefix=" " category="inline-code"></block></block>
+  <block id="c6861e88433ccd90f1ce8143d7e5fed0" category="sidebar">在EKS集群上配置Asta Trident EKS加载项</block>
 </blocks>

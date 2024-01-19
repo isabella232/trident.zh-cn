@@ -44,6 +44,8 @@ entries:
       url: "/trident-use/trident-fsx-prep.html"
     - title: 配置选项和示例
       url: "/trident-use/trident-fsx-examples.html"
+    - title: 在EKS集群上配置Asta Trident EKS加载项
+      url: "/trident-use/trident-aws-addon.html"
   - title: 使用 kubectl 创建后端
     url: "/trident-use/backend-kubectl.html"
   - title: 管理后端
