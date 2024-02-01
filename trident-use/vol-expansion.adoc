@@ -229,7 +229,7 @@ pvc-08f3d561-b199-11e9-8d9f-5254004dfdb7   20Mi       RWO            Delete     
 
 === 第 3 步：展开 PV
 
-要将新创建的 20MiB PV 调整为 1GiB ，请编辑 PVC 并将 `sPec.resources.requests.storage` 设置为 1GB ：
+要将新创建的20MiB PV调整为1GiB、请编辑PVC并进行设置 `spec.resources.requests.storage` 到1 GiB：
 
 [listing]
 ----

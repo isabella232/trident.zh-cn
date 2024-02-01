@@ -40,7 +40,7 @@ Rwo、ROX、rwx、RWOP
 
 === 注意事项
 
-* Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。
+* Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小、Asta三端技术支持会自动创建100-GiB卷。
 * Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
 
 

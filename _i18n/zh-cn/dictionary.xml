@@ -948,7 +948,6 @@
   <block id="27b4a9ed8609e35526601aa8d8be1ab9" category="paragraph">如果您已创建没有此选项的存储类，则只需使用 `kubectl edit storageclass` 编辑现有存储类即可进行卷扩展。</block>
   <block id="784f78e647973a0dcfa11b7a028c7eae" category="paragraph">Astra Trident 应为此 PVC 创建一个 20 MiB NFS PV ：</block>
   <block id="3b16cea25bd4a9aaf5a9c3dcc13ea7eb" category="section-title">第 3 步：展开 PV</block>
-  <block id="e5c2c0bfcfbe01e6174199aaff9616a5" category="paragraph">要将新创建的 20MiB PV 调整为 1GiB ，请编辑 PVC 并将 `sPec.resources.requests.storage` 设置为 1GB ：</block>
   <block id="4a59ce1bc63fd7e6333968fb4bbd9d45" category="section-title">第 4 步：验证扩展</block>
   <block id="c70f05fed7c73e0be4a0b24c8532a87c" category="paragraph">您可以通过检查 PVC ， PV 和 Astra Trident 卷的大小来验证调整大小是否正常工作：</block>
   <block id="cf13ba16f33b5f6772614929649be6c2" category="summary">您可以使用 `tridentctl import` 将现有存储卷作为 Kubernetes PV 导入。</block>
@@ -2113,7 +2112,6 @@
   <block id="c51cc3b801a879870aea846bdde1c7a3" category="section-title">创建后端</block>
   <block id="7d8058d93ec1d95c673d83bf303326ff" category="doc">ONTAP NAS配置选项和示例</block>
   <block id="ea61e2c2ff507048203824add1eb7c21" category="section-title">注意事项</block>
-  <block id="8f395c84ad002394e9f070a25937dcc4" category="list-text">Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小，则 Astra Trident 会自动创建 100 GB 的卷。</block>
   <block id="1cf44a6bee7fa333861e5d0042926fb5" category="list-text">Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。</block>
   <block id="ef0f938ae67a04ac3370fe516c2a6baf" category="list-text">增加了对Kubernetes 1.25的支持。在升级到Kubernetes 1.25之前、您必须将Astra Trident升级到22.10。</block>
   <block id="d041a310ba7cc2599250e64801594107" category="list-text">增加了对的支持 <block ref="ca184a2eda203b6d98158bdf24e5cf7d" category="inline-link-macro-rx"></block>。</block>
@@ -4047,4 +4045,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="e1f272eb0b2aaba7b1cb689543f653e0" category="paragraph">以下命令将卸载Asta三端EKS加载项：<block ref="09a3e9c644b219341aa6e2e8a8922e59" prefix=" " category="inline-code"></block></block>
   <block id="c6861e88433ccd90f1ce8143d7e5fed0" category="sidebar">在EKS集群上配置Asta Trident EKS加载项</block>
   <block id="7ed15597cafdca20d5859b7e394bc0ab" category="doc">在EKS集群上配置Asta Trident EKS加载项23.10版</block>
+  <block id="4262957957c18f0bab73d8ddafcb642f" category="list-text">Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小、Asta三端技术支持会自动创建100-GiB卷。</block>
+  <block id="f825c914a8659f5b0de8a9219ab365b6" category="paragraph">要将新创建的20MiB PV调整为1GiB、请编辑PVC并进行设置<block ref="02b011e6fe36e26e5f7365ba08bf5a48" prefix=" " category="inline-code"></block> 到1 GiB：</block>
 </blocks>
