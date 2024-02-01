@@ -4047,4 +4047,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="7ed15597cafdca20d5859b7e394bc0ab" category="doc">在EKS集群上配置Asta Trident EKS加载项23.10版</block>
   <block id="4262957957c18f0bab73d8ddafcb642f" category="list-text">Azure NetApp Files 服务不支持小于100 GB的卷。如果请求的卷较小、Asta三端技术支持会自动创建100-GiB卷。</block>
   <block id="f825c914a8659f5b0de8a9219ab365b6" category="paragraph">要将新创建的20MiB PV调整为1GiB、请编辑PVC并进行设置<block ref="02b011e6fe36e26e5f7365ba08bf5a48" prefix=" " category="inline-code"></block> 到1 GiB：</block>
+  <block id="f3554362e5b550c58586036685aca0f6" category="list-text">基于凭据：此模式需要对ONTAP后端具有足够的权限。建议使用与预定义安全登录角色关联的帐户、例如<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> 或<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 以确保与ONTAP 版本的最大兼容性。</block>
+  <block id="c2307fcf7cb538e28610fdc783f224a5" category="list-text">基于证书：此模式要求在后端安装证书、才能使Astra Trident与ONTAP集群进行通信。此处，后端定义必须包含客户端证书，密钥和可信 CA 证书的 Base64 编码值（如果使用）（建议）。</block>
 </blocks>
