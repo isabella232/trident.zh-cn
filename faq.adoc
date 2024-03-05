@@ -62,7 +62,7 @@ Astra Trident 与其他 NetApp 软件产品没有任何依赖关系，它可以�
 
 === Astra Trident 是否支持从专用注册表脱机安装？
 
-可以， Astra Trident 可以脱机安装。请参见 link:trident-get-started/kubernetes-deploy.html["此处"]。
+可以， Astra Trident 可以脱机安装。请参见 link:../trident-get-started/kubernetes-deploy.html["了解有关Astra Trident安装的信息"^]。
 
 
 
@@ -86,13 +86,13 @@ Astra Trident 从 Kubernetes API 服务器读取数据，以确定应用程序�
 
 === Astra Trident 使用哪些角色和特权？
 
-通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 link:trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
+通过使用三端技术支持安装程序、可以创建一个Kubernetes ClusterRole、此类ClusterRole可以对Kubernetes集群中的集群的PersentVolume、PersentVolumeClaim、StorageClass和机密资源具有特定访问权限。请参见 link:../trident-get-started/kubernetes-customize-deploy-tridentctl.html["自定义tridentctl安装"^]。
 
 
 
 === 是否可以在本地生成 Astra Trident 用于安装的准确清单文件？
 
-如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 link:trident-get-started/kubernetes-customize-deploy-tridentctl.html["此处"]。
+如果需要，您可以在本地生成和修改 Astra Trident 用于安装的确切清单文件。请参见 link:trident-get-started/kubernetes-customize-deploy-tridentctl.html["自定义tridentctl安装"^]。
 
 
 

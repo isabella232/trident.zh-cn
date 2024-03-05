@@ -15,7 +15,7 @@ summary: 'Kubernetes Pod安全标准(PSS)和Pod安全策略(PSP)定义权限级�
 Kubernetes Pod安全标准(PSS)和Pod安全策略(PSP)定义权限级别并限制Pod的行为。OpenShift安全上下文约束(SCC)同样定义了特定于OpenShift Kubernetes引擎的POD限制。为了提供此自定义设置、Astra Trident会在安装期间启用某些权限。以下各节详细介绍了Astra Trident设置的权限。
 
 
-NOTE: PSS将取代Pod安全策略(PSP)。PSP已在Kubernetes v1.21中弃用、并将在v1.25中删除。有关详细信息，请参见 link:https://kubernetes.io/docs/concepts/security/["Kubernetes：安全性"]。
+NOTE: PSS将取代Pod安全策略(PSP)。PSP已在Kubernetes v1.21中弃用、并将在v1.25中删除。有关详细信息、请参见 link:https://kubernetes.io/docs/concepts/security/["Kubernetes：安全性"]。
 
 
 

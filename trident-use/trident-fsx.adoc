@@ -22,8 +22,6 @@ https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["适用
 
 通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 备份的块和文件永久性卷。
 
-适用于 NetApp ONTAP 的 Amazon FSX 使用 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mgng-stor-tier-fp/GUID-5A78F93F-7539-4840-AB0B-4A6E3252CF84.html["FabricPool"^] 以管理存储层。通过它，您可以根据数据是否经常访问来将数据存储在层中。
-
 
 
 == 注意事项
@@ -31,17 +29,14 @@ https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["适用
 * SMB卷：
 +
 ** SMB卷支持使用 `ontap-nas` 仅限驱动程序。
+** Asta Trident EKS加载项不支持SMB卷。
 ** Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
 
 
-* Trident无法删除在启用了自动备份的Amazon FSX文件系统上创建的卷。要删除 PVC ，您需要手动删除 PV 和 ONTAP 的 FSX 卷。要防止此问题描述 ，请执行以下操作：
+* 在Astra Drident 24.02之前的版本中、在启用了自动备份的Amazon FSx文件系统上创建的卷无法被Drident删除。要在Asta三端到高24.02或更高版本中阻止此问题描述、请指定 `fsxFilesystemID`、AWS `apiRegion`、AWS `apikey`和AWS `secretKey` 在AWS FSx for ONTAP的后端配置文件中。
 +
-** 请勿使用 "* 快速创建 "* 来创建适用于 ONTAP 的 FSX 文件系统。快速创建工作流可启用自动备份，但不提供选择退出选项。
-** 使用 "** 标准创建 " 时，禁用自动备份。禁用自动备份可以使 Trident 成功删除卷，而无需进一步手动干预。
-+
-image:screenshot-fsx-backup-disable.png["AWS 控制台禁用自动备份的屏幕截图。"]
 
-
+NOTE: 如果要为Asta Trident指定IAM角色、则可以省略指定 `apiRegion`， `apiKey`，和 `secretKey` 将字段显式添加到Asta三端。有关详细信息，请参见 link:../trident-use/trident-fsx-examples.html["适用于ONTAP 的FSX配置选项和示例"]。
 
 
 
@@ -80,6 +75,70 @@ WARNING: Astra Trident应作为运行 `vsadmin` SVM用户或具有相同角色�
 
 * link:ontap-nas-prep.html["ONTAP NAS身份验证"]
 * link:ontap-san-prep.html["ONTAP SAN身份验证"]
+
+
+
+
+== 适用于EKS的云身份
+
+通过云身份、Kubnetes Pod可以通过作为AWS IAM角色进行身份验证来访问AWS资源、而不是提供显式AWS凭据。
+
+要在AWS中利用云身份、您必须：
+
+* 使用EKS部署的Kubenetes集群
+* 已安装Asta三项功能、其中包括 `cloudProvider` 指定 `"AWS"` 和 `cloudIdentity` 指定AWS IAM角色。
++
+[role="tabbed-block"]
+====
+.Trident 运算符
+--
+要使用三端运算符安装Astra三端、请编辑 `tridentorchestrator_cr.yaml` 设置 `cloudProvider` to `"AWS"` 并设置 `cloudIdentity` 分配给AWS IAM角色。
+
+例如：
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  imagePullPolicy: IfNotPresent
+  cloudProvider: "AWS"
+  cloudIdentity: "'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/astratrident-role'"
+----
+--
+.掌舵
+--
+使用以下环境变量设置*云提供程序*和*云身份*标志的值：
+
+`export CP="AWS"`
+`export CI="'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/astratrident-role'"`
+
+以下示例将安装Asta Dent和Sets `cloudProvider` to `AWS` 使用环境变量 `$CP` 并使用环境变量设置"云 标识" `$CI`：
+
+[listing]
+----
+helm install trident trident-operator-100.2402.0.tgz --set cloudProvider=$CP --set cloudIdentity=$CI
+----
+--
+.<code>tridentctl</code>
+--
+使用以下环境变量设置*云提供程序*和*云身份*标志的值：
+
+`export CP="AWS"`
+`export CI="'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/astratrident-role'"`
+
+以下示例将安装Asta Dent并设置 `cloud-provider` 标记为 `$CP`，和 `cloud-identity` to `$CI`：
+
+[listing]
+----
+tridentctl install --cloud-provider=$CP --cloud-identity="$CI" -n trident
+----
+--
+====
 
 
 

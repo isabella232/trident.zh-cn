@@ -69,7 +69,7 @@ metadata:
 ----
 此 ServiceMonitor 定义会检索 `trident CSI` 服务返回的指标，并专门查找服务的 `mtrics` 端点。因此， Prometheus 现在已配置为了解 Astra Trident 的指标。
 
-除了直接从 Astra Trident 获得的指标之外， kubelet 还通过自己的指标端点公开了许多 `kubelet_volume_*` 指标。Kubelet 可以提供有关已连接的卷， Pod 及其处理的其他内部操作的信息。请参见 https://kubernetes.io/docs/concepts/cluster-administration/monitoring/["此处"^]。
+除了直接从Astra Trident获得的指标之外、kubelet还公开了许多指标 `kubelet_volume_*` 通过自己的指标端点查看指标。Kubelet 可以提供有关已连接的卷， Pod 及其处理的其他内部操作的信息。请参见 https://kubernetes.io/docs/concepts/cluster-administration/monitoring/["此处"^]。
 
 
 

@@ -31,12 +31,17 @@ Asta三项功能根据您的版本提供三种支持级别。请参见 link:http
 
 
  a| 
-link:https://docs.netapp.com/us-en/trident/index.html["23.10."^]
+link:https://docs.netapp.com/us-en/trident/index.html["24.02."^]
+| 2025年2月 | 2026年2月 | 2027年2月 
+
+
+ a| 
+link:https://docs.netapp.com/us-en/trident-2310/index.html["23.10."^]
 | 2024年10月 | 2025年10月 | 2026年10月 
 
 
  a| 
-link:https://docs.netapp.com/us-en/trident/index.html["23.07"^]
+link:https://docs.netapp.com/us-en/trident-2307/index.html["23.07"^]
 | 2024年7月 | 2025年7月 | 2026年7月 
 
 
@@ -47,7 +52,7 @@ link:https://docs.netapp.com/us-en/trident-2304/index.html["23.04."^]
 
  a| 
 link:https://docs.netapp.com/us-en/trident-2301/index.html["23.01."^]
-| 2024年1月 | 2025年1月 | 2026年1月 
+| -- | 2025年1月 | 2026年1月 
 
 
  a| 
@@ -67,7 +72,7 @@ link:https://docs.netapp.com/us-en/trident-2204/index.html["22.04."^]
 
  a| 
 link:https://docs.netapp.com/us-en/trident-2201/index.html["22.01."^]
-| -- | 2024年1月 | 2025年1月 
+| -- | -- | 2025年1月 
 
 
  a| 
@@ -78,16 +83,6 @@ link:https://docs.netapp.com/us-en/trident-2110/index.html["21.10."^]
  a| 
 link:https://docs.netapp.com/us-en/trident-2107/index.html["21.07."^]
 | -- | -- | 2024年7月 
-
-
- a| 
-link:https://netapp-trident.readthedocs.io/en/stable-v21.04/["21.04."^]
-| -- | -- | 2024年4月 
-
-
- a| 
-link:https://netapp-trident.readthedocs.io/en/stable-v21.01/["21.01."^]
-| -- | -- | 2024年1月 
 |===
 
 NOTE: 21.07之前的版本、重定向到旧版文档站点。
@@ -96,7 +91,7 @@ NOTE: 21.07之前的版本、重定向到旧版文档站点。
 
 == 自助支持
 
-有关故障排除文章的完整列表，请参见 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Trident_Kubernetes["NetApp 知识库（需要登录）"^]。您还可以找到有关排除与 Astra 相关的问题的信息 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra["此处"^]。
+有关故障诊断文章的完整列表、请参阅 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Trident_Kubernetes["NetApp 知识库（需要登录）"^]。您还可以找到有关排除与 Astra 相关的问题的信息 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra["此处"^]。
 
 
 

@@ -28,7 +28,8 @@ summary: 使用此处列出的建议确保您的 Astra Trident 安装安全。
 
 Astra Trident 支持对 ONTAP SAN 工作负载进行基于 CHAP 的身份验证（使用 `ontap-san` 和 `ontap-san-economy.` 驱动程序）。NetApp 建议将双向 CHAP 与 Astra Trident 结合使用，以便在主机和存储后端之间进行身份验证。
 
-对于使用 SAN 存储驱动程序的 ONTAP 后端， Astra Trident 可以通过 `tridentctl` 设置双向 CHAP 并管理 CHAP 用户名和密码。请参见 link:../trident-use/ontap-san-prep.html["此处"] 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。
+对于使用SAN存储驱动程序的ONTAP 后端、Astra Trident可以通过设置双向CHAP并管理CHAP用户名和密码 `tridentctl`。
+请参见 link:../trident-use/ontap-san-prep.html[""^] 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。
 
 
 

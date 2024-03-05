@@ -22,9 +22,13 @@ summary: 在配置Azure NetApp Files 后端之前、您需要确保满足以下�
 
 配置和使用 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"^] 后端，您需要满足以下要求：
 
+[NOTE]
+====
+* `subscriptionID`， `tenantID`， `clientID`， `location`，和 `clientSecret` 在AKS集群上使用受管身份时为可选。
+* `tenantID`， `clientID`，和 `clientSecret` 在AKS集群上使用云标识时可选。
 
-NOTE: `subscriptionID`， `tenantID`， `clientID`， `location`，和 `clientSecret` 在AKS集群上使用受管身份时为可选。
 
+====
 * 一个容量池。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-set-up-capacity-pool["Microsoft：为Azure NetApp Files 创建容量池"^]。
 * 委派给Azure NetApp Files 的子网。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["Microsoft：将子网委派给Azure NetApp Files"^]。
 * `ssubscriptionID` 来自启用了 Azure NetApp Files 的 Azure 订阅。
@@ -81,7 +85,8 @@ NOTE: `subscriptionID`， `tenantID`， `clientID`， `location`，和 `clientSe
 ====
 
 
-* Azure `location` 至少包含一个 link:https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["委派子网"^]。自Trident 22.01日开始 `location` 参数是后端配置文件顶层的必填字段。在虚拟池中指定的位置值将被忽略。
+* Azure `location` 至少包含一个 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-delegate-subnet["委派子网"^]。自Trident 22.01日开始 `location` 参数是后端配置文件顶层的必填字段。在虚拟池中指定的位置值将被忽略。
+* 以使用 `Cloud Identity`请获取 `client ID` 从A https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities["用户分配的托管身份"^] 并在中指定此ID `azure.workload.identity/client-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx`。
 
 
 

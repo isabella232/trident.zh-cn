@@ -51,7 +51,7 @@ spec:
 ----
 您还可以查看中的示例 https://github.com/NetApp/trident/tree/stable/v21.07/trident-installer/sample-input/backends-samples["Trident 安装程序"^] 所需存储平台 / 服务的示例配置目录。
 
-`sPec` 采用后端特定的配置参数。在此示例中，后端使用 `ontap-san` 存储驱动程序并使用此处所示的配置参数。有关所需存储驱动程序的配置选项列表，请参见 link:backends.html["存储驱动程序的后端配置信息"^]。
+。 `spec` 获取后端特定的配置参数。在此示例中、后端使用 `ontap-san` 存储驱动程序、并使用此处所示的配置参数。有关所需存储驱动程序的配置选项列表、请参阅 link:backends.html["存储驱动程序的后端配置信息"^]。
 
 `sPec` 部分还包括 `credentials` 和 `deletionPolicy` 字段，这些字段在 `TridentBackendConfig` CR 中新增：
 

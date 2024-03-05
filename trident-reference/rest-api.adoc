@@ -45,7 +45,7 @@ API 的工作原理如下：
 `POST <trident-address>/trident/v1/<object-type>`:: 创建指定类型的对象。
 +
 --
-* 需要为要创建的对象配置 JSON 。有关每种对象类型的规范，请参见 link:../trident-managing-k8s/tridentctl.html["使用tridentct利 管理Astra三端"]。
+* 需要为要创建的对象配置 JSON 。有关每种对象类型的规范、请参见 link:../trident-managing-k8s/tridentctl.html["使用tridentct利 管理Astra三端"]。
 * 如果对象已存在，则行为会有所不同：后端更新现有对象，而所有其他对象类型将使操作失败。
 
 

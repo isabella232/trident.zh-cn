@@ -19,7 +19,48 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 23.10中的新增功能
+== 24.02中的新增功能
+
+
+
+=== 增强功能
+
+* 增加了对云身份的支持。
++
+** 带有ANF的AK—Azure工作负载标识将用作云标识。
+** 具有FSxN - AWS IAM角色的EKS将用作云身份。
+
+
+* 增加了从EKS控制台将Asta Trident安装为EKS集群上的附加项的支持。
+* 增加了配置和禁用iSCSI自我修复(link:https://github.com/NetApp/trident/issues/864["问题描述#864"]）。
+* 在ONTAP驱动程序中添加了FSx特性、以实现与AWS IAM和SecretsManager的集成、并使Asta Trdent能够删除具有备份的FSx卷(link:https://github.com/NetApp/trident/issues/453["问题描述#453."]）。
+
+
+
+
+==== Kubernetes
+
+* 增加了对Kubnetes 1.29的支持。
+
+
+
+
+=== 修复
+
+* 修复了未启用ACP时出现的ACP警告消息(link:https://github.com/NetApp/trident/issues/866["问题描述#866"]）。
+* 增加了在删除ONTAP驱动程序的快照期间、如果克隆与快照关联、则在执行克隆拆分之前的10秒延迟。
+
+
+
+
+=== 已弃用
+
+* 从多平台映像清单中删除了内置证明框架。
+
+
+
+
+== 23.10中的变化
 
 
 
@@ -367,7 +408,7 @@ IMPORTANT: 现在、在Trident中支持Kubnetes 1.27。请先升级Astra Trident
 
 == 22.04中的更改
 
-NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。对于先前版本，请参见 https://docs.netapp.com/us-en/trident/earlier-versions.html["文档的早期版本"]。
+NetApp 不断改进和完善其产品和服务。以下是 Astra Trident 中的一些最新功能。有关先前版本的信息、请参见 https://docs.netapp.com/us-en/trident/earlier-versions.html["文档的早期版本"]。
 
 
 IMPORTANT: 如果要从先前的任何 Trident 版本升级并使用 Azure NetApp Files ，则 ``location`` config 参数现在是一个必填字段。

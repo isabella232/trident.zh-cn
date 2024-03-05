@@ -223,7 +223,7 @@ ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、solidfire-san�
 |===
 [TIP]
 ====
-* `FSType` 参数用于控制 SAN LUN 所需的文件系统类型。此外， Kubernetes 还会使用存储类中存在的 `FSType` 来指示文件系统已存在。只有在设置了 `FSType` 的情况下，才能使用 Pod 的 `fsGroup` 安全上下文来控制卷所有权。请参见 link:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/["Kubernetes ：为 Pod 或容器配置安全上下文"^] 有关使用 `fsGroup` 上下文设置卷所有权的概述。只有在以下情况下， Kubernetes 才会应用 `fsGroup` 值：
+* 。 `fsType` 参数用于控制SAN LUN所需的文件系统类型。此外、Kubernetes还会使用 `fsType` 在存储类中以指示文件系统已存在。可以使用控制卷所有权 `fsGroup` 仅当出现此情况时、Pod的安全上下文才会显示 `fsType` 已设置。请参见 link:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/["Kubernetes ：为 Pod 或容器配置安全上下文"^] 有关使用设置卷所有权的概述 `fsGroup` 环境。Kubernetes将应用 `fsGroup` 只有在以下情况下才为值：
 +
 ** 在存储类中设置 `FSType` 。
 ** PVC 访问模式为 RW 。
@@ -295,7 +295,7 @@ CRD 是一种 Kubernetes 构造。上述资源的对象由 Trident 创建。例�
 有关 Trident 的 CRD ，请注意以下几点：
 
 * 安装 Trident 时，系统会创建一组 CRD ，并可像使用任何其他资源类型一样使用。
-* 使用 `tridentctl uninstall` 命令卸载 Trident 时， Trident Pod 会被删除，但不会清理创建的 CRD 。请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Trident"] 了解如何从头开始完全删除和重新配置 Trident 。
+* 使用卸载Trident时 `tridentctl uninstall` 命令中、Trident Pod会被删除、但创建的CRD不会被清理。请参见 link:../trident-managing-k8s/uninstall-trident.html["卸载 Trident"] 了解如何从头开始完全删除和重新配置 Trident 。
 
 
 

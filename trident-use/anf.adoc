@@ -79,16 +79,81 @@ spec:
 
 [listing]
 ----
-helm install trident trident-operator-23.10.0-custom.tgz --create-namespace --namespace <trident-namespace> --set cloudProvider=$CP
+helm install trident trident-operator-100.2402.0.tgz --create-namespace --namespace <trident-namespace> --set cloudProvider=$CP
 ----
 --
 .<code>tridentctl</code>
 --
-以下示例将安装Asta Trdent设置 `cloudProvider` 标记为 `Azure`：
+以下示例将安装Asta Dent并设置 `cloudProvider` 标记为 `Azure`：
 
 [listing]
 ----
 tridentctl install --cloud-provider="Azure" -n trident
+----
+--
+====
+
+
+
+
+== 适用于AKS的云身份
+
+通过云身份、Kubnetes Pod可以通过作为AWS IAM角色进行身份验证来访问AWS资源、而不是提供显式AWS凭据。
+
+要在AWS中利用云身份、您必须：
+
+* 使用AKS部署的Kubbernetes集群
+* 在AKS Kubelnetes集群上配置的工作负载身份和oidc-Issuer
+* 已安装Asta三项功能、其中包括 `cloudProvider` 以指定 `"Azure"` 和 `cloudIdentity` 指定工作负载标识
++
+[role="tabbed-block"]
+====
+.Trident 运算符
+--
+要使用三端运算符安装Astra三端、请编辑 `tridentorchestrator_cr.yaml` 设置 `cloudProvider` to `"Azure"` 并设置 `cloudIdentity` to `azure.workload.identity/client-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx`。
+
+例如：
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  imagePullPolicy: IfNotPresent
+  cloudProvider: "Azure"
+  *cloudIdentity: 'azure.workload.identity/client-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx'*
+----
+--
+.掌舵
+--
+使用以下环境变量设置*云提供程序(CP)*和*云身份(CI)*标志的值：
+
+`export CP="Azure"`
+`export CI="azure.workload.identity/client-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"`
+
+以下示例将安装Asta Dent和Sets `cloudProvider` 使用环境变量将其添加到Azure `$CP` 并设置 `cloudIdentity` 使用环境变量 `$CI`：
+
+[listing]
+----
+helm install trident trident-operator-100.2402.0.tgz --set cloudProvider=$CP --set cloudIdentity=$CI
+----
+--
+.<code>tridentctl</code>
+--
+使用以下环境变量设置*云提供程序*和*云身份*标志的值：
+
+`export CP="Azure"`
+`export CI="azure.workload.identity/client-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"`
+
+以下示例将安装Asta Dent并设置 `cloud-provider` 标记为 `$CP`，和 `cloud-identity` to `$CI`：
+
+[listing]
+----
+tridentctl install --cloud-provider=$CP --cloud-identity="$CI" -n trident
 ----
 --
 ====

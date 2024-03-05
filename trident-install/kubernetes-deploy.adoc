@@ -16,7 +16,7 @@ summary: '您可以使用Trident操作符(手动或使用Helm)或安装Astra Tri
 
 
 
-== 有关Asta Trdent的重要信息23.10.
+== 有关Astra Trdent的重要信息24.02
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 

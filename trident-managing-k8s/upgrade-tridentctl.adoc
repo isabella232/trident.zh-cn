@@ -27,7 +27,7 @@ summary: '您可以使用 `tridentctl` 轻松升级现有的 Astra Trident 安�
 ----
 ./tridentctl uninstall -n <namespace>
 ----
-. 重新安装Asta Trdent。请参见 link:..trident-get-started/kubernetes-deploy-tridentctl.html["使用 tridentctl 安装 Astra Trident"]。
+. 重新安装Asta Trdent。请参见 link:../trident-get-started/kubernetes-deploy-tridentctl.html["使用 tridentctl 安装 Astra Trident"]。
 
 
 

@@ -110,6 +110,25 @@ summary: 了解适用于ONTAP 的Amazon FSX的后端配置选项。本节提供�
 
 | `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
 `useREST` 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时 `true`、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问 `ontap` 应用程序。这一点可通过预定义来满足 `vsadmin` 和 `cluster-admin` 角色。 | `false` 
+
+
+| `aws` | 您可以在AWS FSx for ONTAP的配置文件中指定以下内容：
+- `fsxFilesystemID`：指定AWS FSx文件系统的ID。
+- `apiRegion`：AWS API区域名称。
+- `apikey`：AWS API密钥。
+- `secretKey`：AWS机密密钥。 | ``
+``
+
+
+`""`
+`""`
+`""` 
+
+
+| `credentials` | 指定要存储在AWS机密管理器中的FSx SVM凭据。
+- `name`：密钥的Amazon资源名称(ARN)、其中包含SVM的凭据。
+- `type`：设置为 `awsarn`。
+请参见 link:https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html["创建AWS机密管理器密钥"^] 有关详细信息 ... |  
 |===
 
 
@@ -172,8 +191,11 @@ NOTE: 如果PVC连接到一个或多个Pod、则必须关闭所有对应Pod、�
 |===
 
 
-== 示例
+== 示例配置
 
+.配置SMB卷的存储类
+[%collapsible]
+====
 使用 `nasType`， `node-stage-secret-name`，和 `node-stage-secret-namespace`、您可以指定SMB卷并提供所需的Active Directory凭据。SMB卷支持使用 `ontap-nas` 仅限驱动程序。
 
 [listing]
@@ -189,3 +211,26 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-name: "smbcreds"
   csi.storage.k8s.io/node-stage-secret-namespace: "default"
 ----
+====
+.使用密钥管理器配置AWS FSx for ONTAP
+[%collapsible]
+====
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-ontap-nas
+spec:
+  version: 1
+  storageDriverName: ontap-nas
+  backendName: tbc-ontap-nas
+  svm: svm-name
+  aws:
+    fsxFilesystemID: fs-xxxxxxxxxx
+  managementLIF:
+  credentials:
+    name: "arn:aws:secretsmanager:us-west-2:xxxxxxxx:secret:secret-name"
+    type: awsarn
+----
+====

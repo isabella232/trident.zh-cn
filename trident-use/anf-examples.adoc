@@ -46,17 +46,17 @@ Azure NetApp Files后端提供了这些配置选项。
 
 | `租户 ID` 。 | 应用程序注册中的租户 ID
 
-如果在AKS集群上启用了受管标识、则为可选。 |  
+如果在AKS集群上使用托管身份或云身份、则可选。 |  
 
 
 | `客户端 ID` 。 | 应用程序注册中的客户端 ID
 
-如果在AKS集群上启用了受管标识、则为可选。 |  
+如果在AKS集群上使用托管身份或云身份、则可选。 |  
 
 
 | `clientSecret` 。 | 应用程序注册中的客户端密钥
 
-如果在AKS集群上启用了受管标识、则为可选。 |  
+如果在AKS集群上使用托管身份或云身份、则可选。 |  
 
 
 | `s服务级别` | `S标准` ， `高级` 或 `超级` 之一 | "" （随机） 
@@ -196,6 +196,30 @@ spec:
   netappAccounts: ["smb-na"]
   virtualNetwork: eastus-prod-vnet
   subnet: eastus-anf-subnet
+----
+====
+.适用于AKS的云身份
+[%collapsible]
+====
+此后端配置会出现异常 `tenantID`， `clientID`，和 `clientSecret`，在使用云标识时是可选的。
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-anf-1
+  namespace: trident
+spec:
+  version: 1
+  storageDriverName: azure-netapp-files
+  capacityPools: ["ultra-pool"]
+  resourceGroups: ["aks-ami-eastus-rg"]
+  netappAccounts: ["smb-na"]
+  virtualNetwork: eastus-prod-vnet
+  subnet: eastus-anf-subnet
+  location: eastus
+  subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
 ----
 ====
 .使用容量池筛选器的特定服务级别配置

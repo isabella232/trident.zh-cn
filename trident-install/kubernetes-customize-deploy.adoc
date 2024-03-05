@@ -46,13 +46,18 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | `debug` | 为 Astra Trident 启用调试 | `false` 
 
 
-| `enableForceDetach` | `ontap-san` 和 `ontap-san-economy` 仅限。可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。*这是23.04中的一项实验功能。*请参阅 <<有关强制断开的详细信息>> 了解重要详细信息。 | `false` 
+| `enableForceDetach` | `ontap-san` 和 `ontap-san-economy` 仅限。
+
+可与Kubnetes非正常节点关闭(NGN)结合使用、使集群管理员能够在节点运行状况不正常时将已挂载卷的工作负载安全地迁移到新节点。 | `false` 
 
 
 | `windows` | 设置为 `true` 启用在Windows工作节点上的安装。 | `false` 
 
 
-| `cloudProvider` | 设置为 `"Azure"` 在AKS集群上使用受管身份时。 | `""` 
+| `cloudProvider` | 设置为 `"Azure"` 在AKS集群上使用托管身份或云身份时。如果在EKS集群上使用云标识、请设置为"Aws"。 | `""` 
+
+
+| `cloudIdentity` | 在AKS集群上使用云标识时、设置为工作负载标识("azure.Workload .Identity /client-id：XXXXXX-xxxx-xxxx-xxxx-xxxxxxxxxxx")。在EKS集群上使用云身份时、设置为AWS IAM角色("' eks.amazonaws.com/role-arn: arn：aws：iam：：：：12356：roe/astratriident-roe")。 | `""` 
 
 
 | `IPv6` | 安装基于 IPv6 的 Astra Trident | false 
@@ -65,7 +70,7 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 自动 | `false` 
 
 
-| `autosupport 映像` | AutoSupport 遥测的容器映像 | `"netapp/trident-autosupport:23.10"` 
+| `autosupport 映像` | AutoSupport 遥测的容器映像 | `"netapp/trident-autosupport:24.02"` 
 
 
 | `autosupport 代理` | 用于发送AutoSupport的代理的地址/端口
@@ -78,7 +83,7 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | `logFormat` | 要使用的 Astra Trident 日志记录格式 [text ， json] | `"text"` 
 
 
-| `TridentImage` | 要安装的 Astra Trident 映像 | `"netapp/trident:23.10"` 
+| `TridentImage` | 要安装的 Astra Trident 映像 | `"netapp/trident:24.02"` 
 
 
 | `imageRegistry` | 内部注册表的路径、格式
@@ -114,7 +119,7 @@ Astra Trident |
 | `nodePluginTholeations` | 覆盖Kubernetes对Pod的容错。遵循与相同的格式 `pod.spec.Tolerations`。 | 无默认值；可选 
 |===
 
-NOTE: 有关格式化 POD 参数的详细信息，请参见 link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["将 Pod 分配给节点"^]。
+NOTE: 有关格式化POD参数的详细信息、请参阅 link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["将 Pod 分配给节点"^]。
 
 
 
@@ -219,5 +224,42 @@ spec:
   debug: true
   namespace: trident
   cloudProvider: "Azure"
+----
+====
+.AKS集群上的云身份
+[%collapsible]
+====
+此示例将在AKS集群上安装用于云身份的Asta Dent。
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  cloudProvider: "Azure"
+  cloudIdentity: 'azure.workload.identity/client-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx'
+
+----
+====
+.EKS集群上的云身份
+[%collapsible]
+====
+此示例将在AKS集群上安装用于云身份的Asta Dent。
+
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  cloudProvider: "AWS"
+  cloudIdentity: "'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/astratrident-role'"
 ----
 ====
