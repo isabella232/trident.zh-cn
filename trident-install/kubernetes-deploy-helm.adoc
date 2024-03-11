@@ -49,11 +49,11 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 ----
 helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 ----
-. 使用 ... `helm install` 并为您的部署指定一个名称、如以下示例中所示 `24.02.0` 是您要安装的Astra Trident版本。
+. 使用 ... `helm install` 并为您的部署指定一个名称、如以下示例中所示 `100.2402.0` 是您要安装的Astra Trident版本。
 +
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 24.02.0 --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 100.2402.0 --create-namespace --namespace <trident-namespace>
 ----
 +
 
@@ -83,11 +83,11 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 在命令行上指定覆盖。
 
 |===
-例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `24.02.0` 是您要安装的Astra Trident版本：
+例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `100.2402.0` 是您要安装的Astra Trident版本：
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 24.02.0  --create-namespace --namespace trident --set tridentDebug=true
+helm install <name> netapp-trident/trident-operator --version 100.2402.0  --create-namespace --namespace trident --set tridentDebug=true
 ----
 
 
