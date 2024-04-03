@@ -55,17 +55,17 @@ metadata:
   namespace: monitoring
   labels:
       release: prom-operator
-  spec:
-    jobLabel: trident
-    selector:
-      matchLabels:
-        app: controller.csi.trident.netapp.io
-    namespaceSelector:
-      matchNames:
-      - trident
-    endpoints:
-    - port: metrics
-      interval: 15s
+spec:
+  jobLabel: trident
+  selector:
+    matchLabels:
+      app: controller.csi.trident.netapp.io
+  namespaceSelector:
+    matchNames:
+    - trident
+  endpoints:
+  - port: metrics
+    interval: 15s
 ----
 此 ServiceMonitor 定义会检索 `trident CSI` 服务返回的指标，并专门查找服务的 `mtrics` 端点。因此， Prometheus 现在已配置为了解 Astra Trident 的指标。
 
