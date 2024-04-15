@@ -4114,4 +4114,5 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="e5aaee266f7d64bb7199d33750b98122" category="list-text">首次从22.01升级到23.01。</block>
   <block id="c6070eb192dc90174ef63a85c1f02d5a" category="list-text">然后从23.01升级到24.02。</block>
   <block id="23c22ef5f35b931bceb1aaeffafcb5f4" category="list-text">如果您 <block ref="701383cb184d92daac13becc67e9c1be" category="inline-link-macro-rx"></block>，您可以使用<block ref="f8055407f6b06e8c86fe98fdbd160c87" prefix=" " category="inline-code"></block> 一步升级。如果您未添加Helm repo或无法使用它进行升级：</block>
+  <block id="fabc0fa737916420805fcbdf1e73d723" category="list-text">如果有操作员控制盒、请使用<block ref="9ce56b0c50ae80fe754522969b1c96b9" prefix=" " category="inline-code"></block> 确定是否使用Helm安装了Astra Trdent。</block>
 </blocks>

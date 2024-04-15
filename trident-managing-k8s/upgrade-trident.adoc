@@ -62,7 +62,7 @@ NOTE: 在OpenShift容器平台上使用TRIDent操作程序进行升级时、应�
 ** 如果有操作员模块、则使用三端操作员手动或使用Helm安装了A作用 曲三端。
 
 
-. 如果有操作员控制盒、请使用 `kubectl describe tproc trident` 确定是否使用Helm安装了Astra Trdent。
+. 如果有操作员控制盒、请使用 `kubectl describe torc` 确定是否使用Helm安装了Astra Trdent。
 +
 ** 如果有Helm标签、则表示Asta Trdent是使用Helm安装的。
 ** 如果没有Helm标签、则使用Trident操作人员手动安装A作用 于Trident。
