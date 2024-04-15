@@ -85,9 +85,6 @@ link:https://docs.netapp.com/us-en/trident-2107/index.html["21.07."^]
 | -- | -- | 2024年7月 
 |===
 
-NOTE: 21.07之前的版本、重定向到旧版文档站点。
-
-
 
 == 自助支持
 
