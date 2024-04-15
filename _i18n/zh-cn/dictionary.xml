@@ -4027,7 +4027,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="6707fe6e977fc3f5b87a7c0d11a5f279" category="list-text">对于运行Kubornetes 1.24或更早版本的集群、请使用 <block ref="604aa6be52d1a10d7a61bdc7bdfe7b74" category="inline-link-macro-rx"></block>。</block>
   <block id="a751786cc686032ffa5253b48ca9c085" category="list-text">对于运行Kubernetes 1.25或更高版本的集群、请使用 <block ref="f6aa621205d64d4a22ba8b44aad4f0e5" category="inline-link-macro-rx"></block>。</block>
   <block id="fc36214c0fc6e88ea461cd461536fb07" category="list-text">使用适用于您的环境的正确捆绑包YAML_文件安装&lt;bundle.yaml&gt;三元组、其中_AML_为<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block> 或<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block> 根据您的Kubbernetes版本。例如、如果要安装Asta Trident 24.02、请运行以下命令：</block>
-  <block id="b348ca01b955e748e2d526dd03ad57b8" category="list-text">如果您 <block ref="701383cb184d92daac13becc67e9c1be" category="inline-link-macro-rx"></block>，您可以使用<block ref="4c3cecff379dac708e8a483fb533f119" prefix=" " category="inline-code"></block> 一步升级。如果您未添加Helm repo或无法使用它进行升级：</block>
   <block id="6e3e8fb95db896575313140186e26d07" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="2973e53d04f6e3a0c4071821eb468a8f" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
   <block id="733aa7fe5deef27d1cb0828cff0f17bd" category="admonition">在切换安装方法之前、请查看 <block ref="d7d87809bc6e1001ccd94c7433d28fd5" category="inline-link-macro-rx"></block>。</block>
   <block id="948c2cbef9ba6f931735e6eef2d86eba" category="list-text">有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
@@ -4114,4 +4113,5 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="a771c1ff0e805ddbac97ebeb73a070d8" category="list-text">如果要从四个版本窗口之外的版本进行升级、请执行多步骤升级。按照的升级说明进行操作 <block ref="a799aa6eaf3a5192b34ea19f24bb716f" category="inline-link-macro-rx"></block> 您正在从升级到适合四个版本窗口的最新版本。例如、如果您运行的是22.01并希望升级到24.02：</block>
   <block id="e5aaee266f7d64bb7199d33750b98122" category="list-text">首次从22.01升级到23.01。</block>
   <block id="c6070eb192dc90174ef63a85c1f02d5a" category="list-text">然后从23.01升级到24.02。</block>
+  <block id="23c22ef5f35b931bceb1aaeffafcb5f4" category="list-text">如果您 <block ref="701383cb184d92daac13becc67e9c1be" category="inline-link-macro-rx"></block>，您可以使用<block ref="f8055407f6b06e8c86fe98fdbd160c87" prefix=" " category="inline-code"></block> 一步升级。如果您未添加Helm repo或无法使用它进行升级：</block>
 </blocks>
