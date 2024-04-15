@@ -3813,7 +3813,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="e037ffcaadbce3092a5cf8a87340fd58" category="paragraph">此示例将A作用 于Windows工作节点上。</block>
   <block id="a998f3ed1c2f0acf96000ec18ff8cb4f" category="paragraph">此示例将安装A作用 于在AKS集群上启用受管身份。</block>
   <block id="b714bb36b0285d040e315c079c326009" category="list-text">删除用于安装当前 Astra Trident 实例的 Trident 运算符。例如、如果要从23.07升级、请运行以下命令：</block>
-  <block id="7b136496fce84f19eb2409b46c46f701" category="list-text">首次从21.10升级到22.10。</block>
   <block id="766995a062c6503acd7ac4752fbb865d" category="inline-link-macro">23.10.</block>
   <block id="78c875172f37f031a2632dc008815ee1" category="cell">2026年10月</block>
   <block id="6933dffe806f29980dbedda6aef6fda7" category="inline-link">A作用 三排版23.07</block>
@@ -4032,9 +4031,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="6e3e8fb95db896575313140186e26d07" category="list-text">使用<block ref="cd01e1bae83933b9c59c914bc71332ac" prefix=" " category="inline-code"></block> 命令位置<block ref="2973e53d04f6e3a0c4071821eb468a8f" prefix=" " category="inline-code"></block> 反映了要升级到的版本。</block>
   <block id="733aa7fe5deef27d1cb0828cff0f17bd" category="admonition">在切换安装方法之前、请查看 <block ref="d7d87809bc6e1001ccd94c7433d28fd5" category="inline-link-macro-rx"></block>。</block>
   <block id="948c2cbef9ba6f931735e6eef2d86eba" category="list-text">有关详细信息，请参见 <block ref="04cf7258a315ca08f4b436c194fef69d" category="inline-link-macro-rx"></block>。</block>
-  <block id="efb4ad4f97129a41089c72febc546fcc" category="list-text">您可以直接升级到已安装版本的四个版本窗口中的任何目标版本。例如、您可以直接从22.10 (或任何22.10 DOT版本)升级到24.02。</block>
-  <block id="ff66cf4a4b7b4bc7f3ce15d77bd596a7" category="list-text">如果要从四个版本窗口之外的版本进行升级、请执行多步骤升级。按照的升级说明进行操作 <block ref="a799aa6eaf3a5192b34ea19f24bb716f" category="inline-link-macro-rx"></block> 您正在从升级到适合四个版本窗口的最新版本。例如、如果您运行的是21.10、并希望升级到24.02：</block>
-  <block id="1de8721bcfd911022f2a86e48f4f3d2b" category="list-text">然后从22.10升级到24.02。</block>
   <block id="1eb921add61b9e1c5fcaf8272bb52ec6" category="admonition">在OpenShift容器平台上使用TRIDent操作程序进行升级时、应升级到TRIDent 21.01.1或更高版本。21.01.0 版发布的 Trident 运算符包含一个已知的问题描述，该 已在 21.01.1 中修复。有关详细信息、请参见<block ref="bcebcdd21adcbb3d7c640d63a711c6fb" category="inline-link-rx"></block>。</block>
   <block id="6cf46197d43b0fb353cc1cb55753f51c" category="section-title">有关Astra Trdent的重要信息24.02</block>
   <block id="10e922f2b5adf15b9f182c7c103f326e" category="cell"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block> 和<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> 仅限。
@@ -4114,4 +4110,8 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="4b1c6f609d27cc18df4b1605f9aa7b1b" category="paragraph">例如、要更改的默认值<block ref="ad42f6697b035b7580e4fef93be20b4d" prefix=" " category="inline-code"></block>、运行以下命令<block ref="8b5806248570dbb13e7d3bc5e6c0ee37" prefix=" " category="inline-code"></block> 命令位置<block ref="32d61ffcee709121c5ce040022324539" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本：</block>
   <block id="88c15f1888721229de466ebf2206b1c8" category="list-text">使用 ...<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> 并为您的部署指定一个名称、如以下示例中所示<block ref="32d61ffcee709121c5ce040022324539" prefix=" " category="inline-code"></block> 是您要安装的Astra Trident版本。</block>
   <block id="2284dc5d4add6f82e5bc0121aa82a816" category="list-text">增加了对Azure托管身份(AMI)与azure-NetApp-files存储驱动程序的使用支持。</block>
+  <block id="5186dac2db0dc06e7d296c901a018234" category="list-text">您可以直接升级到已安装版本的四个版本窗口中的任何目标版本。例如、您可以直接从23.01 (或任何23.01 DOT版本)升级到24.02。</block>
+  <block id="a771c1ff0e805ddbac97ebeb73a070d8" category="list-text">如果要从四个版本窗口之外的版本进行升级、请执行多步骤升级。按照的升级说明进行操作 <block ref="a799aa6eaf3a5192b34ea19f24bb716f" category="inline-link-macro-rx"></block> 您正在从升级到适合四个版本窗口的最新版本。例如、如果您运行的是22.01并希望升级到24.02：</block>
+  <block id="e5aaee266f7d64bb7199d33750b98122" category="list-text">首次从22.01升级到23.01。</block>
+  <block id="c6070eb192dc90174ef63a85c1f02d5a" category="list-text">然后从23.01升级到24.02。</block>
 </blocks>
