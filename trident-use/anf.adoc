@@ -98,9 +98,9 @@ tridentctl install --cloud-provider="Azure" -n trident
 
 == 适用于AKS的云身份
 
-通过云身份、Kubnetes Pod可以通过作为AWS IAM角色进行身份验证来访问AWS资源、而不是提供显式AWS凭据。
+通过云身份、Kubnetes Pod可以通过作为工作负载身份进行身份验证来访问Azure资源、而不是提供明确的Azure凭据。
 
-要在AWS中利用云身份、您必须：
+要在Azure中利用云身份、您必须：
 
 * 使用AKS部署的Kubbernetes集群
 * 在AKS Kubelnetes集群上配置的工作负载身份和oidc-Issuer
