@@ -195,11 +195,11 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 | v1.23.0  a| 
 * dDocker。io/NetApp/trdent：24.02.0
 * docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.6.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.4.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.0
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.0
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.9.0
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
 * dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
 
 
@@ -208,11 +208,11 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 | v1.24.0  a| 
 * dDocker。io/NetApp/trdent：24.02.0
 * docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.6.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.4.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.0
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.0
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.9.0
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
 * dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
 
 
@@ -221,11 +221,11 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 | v1.25.0  a| 
 * dDocker。io/NetApp/trdent：24.02.0
 * docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.6.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.4.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.0
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.0
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.9.0
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
 * dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
 
 
@@ -234,11 +234,11 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 | v1.26.0  a| 
 * dDocker。io/NetApp/trdent：24.02.0
 * docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.6.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.4.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.0
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.0
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.9.0
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
 * dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
 
 
@@ -247,11 +247,11 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 | v1.27.0  a| 
 * dDocker。io/NetApp/trdent：24.02.0
 * docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.6.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.4.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.0
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.0
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.9.0
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
 * dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
 
 
@@ -260,11 +260,11 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 | v1.28.0  a| 
 * dDocker。io/NetApp/trdent：24.02.0
 * docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.6.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.4.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.0
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.0
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.9.0
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
+* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
 * dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
 
 
@@ -278,7 +278,7 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 * 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
 * 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
 * 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作程序：24.02.0 (可选)
+* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
 
 
 |===
