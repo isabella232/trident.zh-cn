@@ -592,7 +592,6 @@
   <block id="af2a4d2810d86aa0169c117f82682f9a" category="doc">常见问题解答</block>
   <block id="96ab491ef73d5db0cd15f55e1552cc22" category="section-title">一般问题</block>
   <block id="b34c3d20de0f1b2c7a69bdc59002ad47" category="section-title">Astra Trident 的发布频率如何？</block>
-  <block id="2f55088c7d055eb361252b15d5d7af10" category="paragraph">Astra Trident 每三个月发布一次： 1 月， 4 月， 7 月和 10 月。这是 Kubernetes 发布后一个月。</block>
   <block id="15602d1e4b699ebca549a3d953672d8c" category="section-title">Astra Trident 是否支持特定版本的 Kubernetes 中发布的所有功能？</block>
   <block id="d860923e20119473e7f7d50683cb0559" category="paragraph">Astra Trident 通常不支持 Kubernetes 中的 alpha 功能。在 Kubernetes 测试版之后的两个 Trident 版本中， Trident 可能支持测试版功能。</block>
   <block id="52ffcf336df0055235949cf324a8624b" category="section-title">Astra Trident 的运行是否依赖于其他 NetApp 产品？</block>
@@ -3275,7 +3274,6 @@ SMB</block>
   <block id="33ab2c3f94452baf7f17dab03982edfb" category="paragraph">之后<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 更新后、操作员将处理更新并修补现有安装。这可能会触发创建新Pod以相应地修改安装。</block>
   <block id="ac0482b416d6b2d907db760f79e018a7" category="example-title">&lt;strong&gt; Clean重新安装&lt;/strong&gt;</block>
   <block id="ae2cbb250a37c9e09570ff02857e4cbe" category="paragraph">通过集群范围的三端技术参数操作符、可以完全删除集群范围的资源。用户可以完全卸载Astra tandent并轻松重新安装。</block>
-  <block id="8e2504f56599a577cd2bbee322a41d4e" category="paragraph">Astra Trident 遵循季度发布节奏，每个日历年提供四个主要版本。每个新版本都是在先前版本的基础上构建的、并提供了新功能、性能增强功能、错误修复和改进。我们建议您每年至少升级一次、以利用Astra Trident中的新功能。</block>
   <block id="4aa39142850a8999e9a4e9350f8bfbe9" category="list-text">Asta Trident 23.07及更高版本需要v1卷快照、不再支持Alpha或Beta快照。</block>
   <block id="34c1edfb4ac8581528c3791be680aeb3" category="inline-link-macro">CVS 服务类型</block>
   <block id="5797c3891863b81173e1bb10d6488a72" category="inline-link-macro">CVS服务类型示例</block>
@@ -3767,11 +3765,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="0acb661700c6422ee3bfc29c43c715c6" category="paragraph">使用非多路径配置或<block ref="a3a1d5b95e345a3db24a5a30e349f699" prefix=" " category="inline-code"></block> 或<block ref="e82e6d155396541f07f7347c984444ea" prefix=" " category="inline-code"></block> multipath.conf文件中的值将导致挂载失败。Asta Trendent建议使用<block ref="db729c5c8df447087e5a84b961df14f6" prefix=" " category="inline-code"></block> 自21.07版起。</block>
   <block id="8554748be67b956e550de942edae807d" category="admonition">NVMe/TCP需要RHEL 9或更高版本。</block>
   <block id="e379ebca8f2245b4a0c32803c6d7f845" category="paragraph">Kubernetes集群中的所有工作节点都必须能够挂载为Pod配置的卷。要准备工作节点、必须根据您选择的驱动程序安装NFS、iSCSI或NVMe工具。</block>
-  <block id="f1ddd80e14c81c1d754dfbdb2f850757" category="list-text">注册表.k8s.io/sig-storage/CsI-置 配置程序：v3.6.0</block>
-  <block id="9907e74008defde26417cd6b70b41a28" category="list-text">注册表.k8s.io/sig-storage/CsI-Attacher：v4.4.0</block>
-  <block id="0412a949ebb008aa6aa55f27dd6db71c" category="list-text">注册表.k8s.io/sig-storage/CsI-s不同：v1.1.0</block>
-  <block id="1b18bb70ac8b9e2989b63f692a170f14" category="list-text">注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.0</block>
-  <block id="bfcfde74961d9f3991b8fb27f23b564f" category="list-text">注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.9.0</block>
   <block id="df935b95f4f5aa4b8cc6b78b9011196d" category="cell">v1.28.0</block>
   <block id="2564a762d021b4beae21f01627773c0f" category="inline-link-macro">问题描述#834</block>
   <block id="e53ddb8a6947ad5b93f8c82a86836f16" category="list-text">修复了在新请求的大小小于ONTAP－NAS和ONTAP－NAS－Flexgroup存储驱动程序的卷总大小时进行卷扩展的问题(<block ref="6140c2bc2ecfc555b47da5841f5fd8ae" category="inline-link-macro-rx"></block>）。</block>
@@ -4083,7 +4076,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="e7afa8f188dd7bf2c172108b10e2e2df" category="list-text">注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3</block>
   <block id="5268a90435480eab7edcef1c31af78ea" category="list-text">注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3</block>
   <block id="dc33446faca12c219dd12f5e1c73cf51" category="list-text">注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0</block>
-  <block id="528d64fadb48dbbc71a3bf878d210988" category="list-text">dDocker .io/NetApp/trdent操作程序：24.02.0 (可选)</block>
   <block id="62f429770359674b482a69dc8eb1c822" category="paragraph">有关Google Cloud上的Cloud Volumes Service服务类型和服务级别的详细信息、请参见 <block ref="5b5fd03722abab2c395288a6ee42ad11" category="inline-link-macro-rx"></block>。</block>
   <block id="cb1cfaffdbb4cc0c4c444a11e40e3262" category="paragraph">对于使用SAN存储驱动程序的ONTAP 后端、Astra Trident可以通过设置双向CHAP并管理CHAP用户名和密码<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>。
 请参见 <block ref="5cdb093a3afb814148505ae9813b18af" category="inline-link-macro-rx"></block> 了解 Astra Trident 如何在 ONTAP 后端配置 CHAP 。</block>
@@ -4117,4 +4109,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="fabc0fa737916420805fcbdf1e73d723" category="list-text">如果有操作员控制盒、请使用<block ref="9ce56b0c50ae80fe754522969b1c96b9" prefix=" " category="inline-code"></block> 确定是否使用Helm安装了Astra Trdent。</block>
   <block id="f77d4be42f8ef9e2474d677786cf6d7a" category="paragraph">通过云身份、Kubnetes Pod可以通过作为工作负载身份进行身份验证来访问Azure资源、而不是提供明确的Azure凭据。</block>
   <block id="088be2b53cfa8710d751578d273c4af0" category="paragraph">要在Azure中利用云身份、您必须：</block>
+  <block id="309d4be2a929a72254d2e0ec91b427b3" category="paragraph">从24.02版开始、Astra三端到10月每四个月发布一次：2月、6月和10月。这是 Kubernetes 发布后一个月。</block>
+  <block id="d9242a3acb300b393c2167774404ecc0" category="paragraph">从24.02版开始、Asta三端到端按四个月的发布节奏运行、每个日历年发布三个主要版本。每个新版本都是在先前版本的基础上构建的、并提供了新功能、性能增强功能、错误修复和改进。我们建议您每年至少升级一次、以利用Astra Trident中的新功能。</block>
 </blocks>

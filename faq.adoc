@@ -22,7 +22,7 @@ summary: 查找有关 Astra Trident 的安装，配置，升级和故障排除�
 
 === Astra Trident 的发布频率如何？
 
-Astra Trident 每三个月发布一次： 1 月， 4 月， 7 月和 10 月。这是 Kubernetes 发布后一个月。
+从24.02版开始、Astra三端到10月每四个月发布一次：2月、6月和10月。这是 Kubernetes 发布后一个月。
 
 
 
