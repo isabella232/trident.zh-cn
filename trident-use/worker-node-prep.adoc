@@ -230,9 +230,6 @@ NOTE: 对于 Ubuntu 18.04 ，您必须先使用 `iscsiadm` 发现目标端口，
 --
 ====
 
-WARNING: 安装iSCSI工具后重新启动工作节点、以防止在将卷连接到容器时失败。
-
-
 
 == NVMe/TCP卷
 
