@@ -39,14 +39,14 @@ Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
 * Anthos On－Prem (VMware)和Anthos on Bare metal 1.16
 * Kubbernetes 1.23 - 1.29
-* OpenShift 4.10 - 4.14
+* OpenShift 4.10 - 4.10
 
 
 以下版本支持 Trident 操作符：
 
 * Anthos On－Prem (VMware)和Anthos on Bare metal 1.16
 * Kubbernetes 1.23 - 1.29
-* OpenShift 4.10 - 4.14
+* OpenShift 4.10 - 4.10
 
 
 Asta Tirdent还可与其他一系列完全托管和自行管理的Kubernetes产品配合使用、包括Google Kubernetes Engine (GKE)、Amazon Elastic Kubernetes Services (EKS)、Azure Kubernetes Service (AKS)、MiranT斯Kubernetes Engine (MKE)、RAANcher和VMware Tanzu Portfolio。

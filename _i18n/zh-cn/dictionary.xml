@@ -2620,7 +2620,6 @@
   <block id="3f7bf0ef305a15c68efdc95a50750bd0" category="list-text">缺少LUN</block>
   <block id="15ffa30c3d1ab6322e5ff52935a86a50" category="section-title">安装iSCSI工具</block>
   <block id="10ff9e1b33974d06317ff739498154ce" category="paragraph">使用适用于您的操作系统的命令安装iSCSI工具。</block>
-  <block id="0dfbc86ddb50cb439c7039bbf012a2b6" category="admonition">安装iSCSI工具后重新启动工作节点、以防止在将卷连接到容器时失败。</block>
   <block id="baca3a42ff523348689308c7bd411b38" category="paragraph">此后端配置可在一个文件中定义多个存储池。如果您有多个容量池支持不同的服务级别，并且您希望在 Kubernetes 中创建表示这些服务级别的存储类，则此功能非常有用。虚拟池标签用于根据区分池<block ref="c05f6c233521207f6fe311afef550c3c" prefix=" " category="inline-code"></block>。</block>
   <block id="bfd7bf04b3d28a42267e8d1b30a05f01" category="section-title">示例2：的后端和存储类配置<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> 具有虚拟池的驱动程序</block>
   <block id="418ff75ccabac38370cc8570721746a3" category="paragraph">此示例显示了使用虚拟池配置的后端定义文件以及引用这些池的StorageClasses。</block>
@@ -4061,7 +4060,6 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="bf03aee4d85a6d6ce9b7bb529633da76" category="list-text">现在、在Trident中支持Kubnetes 1.29。在升级Kubnetes之前、请先升级Asta Trdent。</block>
   <block id="7cc1edf2116d94e97b8f4a69079de132" category="list-text">Anthos On－Prem (VMware)和Anthos on Bare metal 1.16</block>
   <block id="aee0b36180bb530cbb300a23aa045dea" category="list-text">Kubbernetes 1.23 - 1.29</block>
-  <block id="9a9efcd4425c5075e2aae4a65c4d625d" category="list-text">OpenShift 4.10 - 4.14</block>
   <block id="79b3290789721c34f186b1651a42c3d4" category="paragraph">Asta Tirdent还可与其他一系列完全托管和自行管理的Kubernetes产品配合使用、包括Google Kubernetes Engine (GKE)、Amazon Elastic Kubernetes Services (EKS)、Azure Kubernetes Service (AKS)、MiranT斯Kubernetes Engine (MKE)、RAANcher和VMware Tanzu Portfolio。</block>
   <block id="eca0dda5d40cf62b4a73c50deab2520c" category="inline-link-macro">KubeVirt</block>
   <block id="6dcbb28bcb406143523df0ce31057e5a" category="paragraph">Asta三端到功能和ONTAP可用作的存储提供程序 <block ref="98ab68800979b414641691275d2b9c15" category="inline-link-macro-rx"></block>。</block>
@@ -4111,4 +4109,5 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="088be2b53cfa8710d751578d273c4af0" category="paragraph">要在Azure中利用云身份、您必须：</block>
   <block id="309d4be2a929a72254d2e0ec91b427b3" category="paragraph">从24.02版开始、Astra三端到10月每四个月发布一次：2月、6月和10月。这是 Kubernetes 发布后一个月。</block>
   <block id="d9242a3acb300b393c2167774404ecc0" category="paragraph">从24.02版开始、Asta三端到端按四个月的发布节奏运行、每个日历年发布三个主要版本。每个新版本都是在先前版本的基础上构建的、并提供了新功能、性能增强功能、错误修复和改进。我们建议您每年至少升级一次、以利用Astra Trident中的新功能。</block>
+  <block id="21ce5c96d2c133be2c7c77e35247556c" category="list-text">OpenShift 4.10 - 4.10</block>
 </blocks>
