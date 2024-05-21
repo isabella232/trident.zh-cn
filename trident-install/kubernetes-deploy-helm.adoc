@@ -209,6 +209,12 @@ helm install <name> netapp-trident/trident-operator --version 100.2402.0  --crea
 
 
 | `cloudIdentity` | 在AKS集群上使用云标识时、设置为工作负载标识("azure.Workload .Identity /client-id：XXXXXX-xxxx-xxxx-xxxx-xxxxxxxxxxx")。在EKS集群上使用云身份时、设置为AWS IAM角色("' eks.amazonaws.com/role-arn: arn：aws：iam：：：：12356：roe/astratriident-roe'")。 | `""` 
+
+
+| `iscsiSelfHealingInterval` | 调用iSCSI自我修复的间隔。 | `5m0s` 
+
+
+| `iscsiSelfHealingWaitTime` | iSCSI自我修复通过执行注销和后续登录来尝试解决陈旧会话之前经过的持续时间。 | `7m0s` 
 |===
 
 

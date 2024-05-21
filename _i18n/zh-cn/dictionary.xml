@@ -4112,4 +4112,19 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="e007fb329975dfac9458f3defd0f7fc1" category="inline-link-macro">安装NVMe工具</block>
   <block id="fd7af40a7e3f81bfb0a51eac257dc730" category="paragraph"><block ref="8ac92b41418caf5b4c74c2a77a0c349a" category="inline-link-macro-rx"></block> 如果您使用的是<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 适用于基于TCP (NVMe/TCP)协议的非易失性内存标准(NVMe)。</block>
   <block id="7e757604a320b645d3e338eaa6d9bca2" category="paragraph">。<block ref="da3f7f170e13df7f56e057fc4226aa85" category="inline-link-rx"></block> 将Asta Tandent标识为用于该类的配置程序、并指示Asta Tandent如何配置卷。例如：</block>
+  <block id="50f9796c3e95f29464ed077bb59ca6a5" category="cell"><block ref="a1edaea62dbed344534369e9668223b1" prefix="" category="inline-code"></block></block>
+  <block id="d3ee0f95ea35db45a8c5d2deb96b4eb9" category="cell">调用iSCSI自我修复的间隔。</block>
+  <block id="d2393ee8411e83742fc73a79660d81ba" category="cell"><block ref="48899b1fc217fef67f8c9c11d2af0800" prefix="" category="inline-code"></block></block>
+  <block id="5368476cef8604c12ee3f8a741319473" category="cell"><block ref="85fc372a514da766ce84a222668f8e62" prefix="" category="inline-code"></block></block>
+  <block id="a5c601ef1c412054e22a761067edb9da" category="cell">iSCSI自我修复通过执行注销和后续登录来尝试解决陈旧会话之前经过的持续时间。</block>
+  <block id="e1bd8a641f8c3114c2698aa76942b621" category="cell"><block ref="4fe853d0c57c2a118a755c207068b052" prefix="" category="inline-code"></block></block>
+  <block id="d03a790fb20fccc8b27cff74c7a10709" category="section-title">配置或禁用iSCSI自我修复</block>
+  <block id="1c804f3ccd207f84562f1fad6c4d35f5" category="paragraph">您可以配置以下A作用 力三端iSCSI自我修复设置来修复陈旧的会话：</block>
+  <block id="160cc91d68e6399b864fe236e7a6d11e" category="list-text">*iSCSI自我修复间隔*：确定调用iSCSI自我修复的频率(默认值：5分钟)。您可以将其配置为通过设置较小的数字来提高运行频率、也可以通过设置较大的数字来降低运行频率。</block>
+  <block id="af6999fe88eb0d5f3cf5f3c7570bf014" category="paragraph">将iSCSI自我修复间隔设置为0可完全停止iSCSI自我修复。建议不要禁用iSCSI自我修复；只有在iSCSI自我修复功能无法正常工作或出于调试目的时、才应禁用它。</block>
+  <block id="fe240a869a7a9e3bdc68d460aa116db2" category="list-text">*iSCSI自我修复等待时间*：确定在注销运行状况不正常的会话并尝试重新登录之前iSCSI自我修复等待的时间(默认值：7分钟)。您可以将其配置为较大的数字、以便确定为运行状况不正常的会话必须等待较长的时间才能注销、然后再尝试重新登录、或者配置为较小的数字以较早地注销和登录。</block>
+  <block id="7c3dfaf40c8f6c1208932661e70ca6b2" category="paragraph">要配置或更改iSCSI自我修复设置、请传递<block ref="a1edaea62dbed344534369e9668223b1" prefix=" " category="inline-code"></block> 和<block ref="85fc372a514da766ce84a222668f8e62" prefix=" " category="inline-code"></block> 舵安装或舵更新期间的参数。</block>
+  <block id="ba53a946a5e7dedfdc75a569107f3a66" category="paragraph">以下示例将iSCSI自我修复间隔设置为3分钟、并将自我修复等待时间设置为6分钟：</block>
+  <block id="c67fd1b99934afa248dfeb285a9a4191" category="open-title">Tridentctl</block>
+  <block id="03c688458c87383f238f17223a52f7bd" category="paragraph">要配置或更改iSCSI自我修复设置、请传递<block ref="95df96489cc6481c74d24c1397e3edd9" prefix=" " category="inline-code"></block> 和<block ref="4ad3b66813348b71002bd232a403581c" prefix=" " category="inline-code"></block> 在安装或更新TRDentcdr期间的参数。</block>
 </blocks>
