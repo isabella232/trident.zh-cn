@@ -3111,7 +3111,6 @@ SMB</block>
   <block id="adb998c877c843080cb8c94f182f8b6a" category="paragraph">配置Kubnetes StorageClass对象并创建存储类、以指示Astra Trident如何配置卷。</block>
   <block id="95d4f411b57eb8201e27fa4636c30816" category="section-title">配置Kubnetes StorageClass对象</block>
   <block id="b8d89cc8455fbb137550c0819b7813c8" category="inline-link">Kubnetes StorageClass对象</block>
-  <block id="b92c56f76eb1fd7e747c63e99a829e57" category="paragraph">。<block ref="da3f7f170e13df7f56e057fc4226aa85" category="inline-link-rx"></block> 将Asta Trident标识为该类所使用的配置程序、用于指示Asta Trident如何配置卷。例如：</block>
   <block id="d955a256e02907c43d2afd5bfdb671ea" category="paragraph">创建StorageClass对象后、您可以创建存储类。 <block ref="1310ad9d78b8b659f76828400b5d8126" category="inline-xref-macro-rx"></block> 提供了一些可供您使用或修改的基本示例。</block>
   <block id="a221a060125881c2027807248f8302a2" category="list-text">这是一个Kubbernetes对象、因此请使用<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block> 以在Kubernetes中创建。</block>
   <block id="f31a577daf927c7edc5555c9ceabc983" category="section-title">存储类示例</block>
@@ -3315,7 +3314,6 @@ SMB</block>
   <block id="2985edaba812b8b31d08cc8513fee0a3" category="section-title">卸载手动安装</block>
   <block id="55f6e2744208ccefe34f3e05ced2c988" category="section-title">卸载Helm安装</block>
   <block id="99dec4df69ba043a5eb3118e1e0b364e" category="section-title">卸载<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装</block>
-  <block id="7a15e63f1d0efc213151254bbc1b2d0d" category="doc">升级TRIdent操作员安装</block>
   <block id="0f443eb922735ce52f2b490ffca00e49" category="paragraph">您可以使用三端操作员手动或使用Helm升级A作用 于三端的Astra。您可以从一个TRIdent操作员安装升级到另一个TRIdent操作员安装或从升级<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 安装到一个TRIdent操作员版本。请查看 <block ref="5cffa5fbe758cc3901f0e33c78b29d1b" category="inline-link-macro-rx"></block> 升级三端修复程序安装之前。</block>
   <block id="3ef75911ec16a9d0ba70cfd4e68dcb71" category="section-title">升级手动安装</block>
   <block id="b0e74afe1fdeb605b5c47b501c43b71b" category="inline-link-macro">您安装的版本</block>
@@ -3642,9 +3640,6 @@ Astra Trident</block>
   <block id="9b0dbff182f270b33423b281f92bddc2" category="paragraph">添加<block ref="a564a902c12941efa27c1d2ea4a19f8e" prefix=" " category="inline-code"></block> 返回到子系统。</block>
   <block id="cedfb4d575651cbf026e87084c68731c" category="paragraph">Kubernetes集群中的所有工作节点都必须能够挂载为Pod配置的卷。要准备工作节点、必须根据您选择的驱动程序安装NFS、iSCSI或NVMe/TCP工具。</block>
   <block id="2994aa6a94d7af57a2fb9663129866a9" category="paragraph">如果您使用的是驱动程序组合、则应安装驱动程序所需的所有工具。默认情况下、最新版本的RedHat CoreTM OS已安装这些工具。</block>
-  <block id="aa49aed8e04b1c60f9adbd7cd8692921" category="paragraph">如果您使用的是以下命令、请安装NFS工具：<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block>，<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block>。</block>
-  <block id="1680e7d05a214feff31937c344cf7b40" category="paragraph">如果您使用的是以下命令、请安装iSCSI工具：<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block>，<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block>。</block>
-  <block id="285f743d88da1825f825debafc72b6a6" category="paragraph">如果您使用的是、请安装NVMe工具<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 适用于基于TCP (NVMe/TCP)协议的非易失性内存标准(NVMe)。</block>
   <block id="bfd6781963e74cc6cfd1f864a28a5b5b" category="admonition">对于NVMe/TCP、建议使用ONTAP 9.12或更高版本。</block>
   <block id="4771a9c521a7d39c2dcf6ee71d0ef032" category="section-title">NVMe/TCP卷</block>
   <block id="b15a013c4977a2a96afedafe316664b2" category="section-title">验证安装</block>
@@ -4110,4 +4105,11 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="309d4be2a929a72254d2e0ec91b427b3" category="paragraph">从24.02版开始、Astra三端到10月每四个月发布一次：2月、6月和10月。这是 Kubernetes 发布后一个月。</block>
   <block id="d9242a3acb300b393c2167774404ecc0" category="paragraph">从24.02版开始、Asta三端到端按四个月的发布节奏运行、每个日历年发布三个主要版本。每个新版本都是在先前版本的基础上构建的、并提供了新功能、性能增强功能、错误修复和改进。我们建议您每年至少升级一次、以利用Astra Trident中的新功能。</block>
   <block id="21ce5c96d2c133be2c7c77e35247556c" category="list-text">OpenShift 4.10 - 4.10</block>
+  <block id="32427d4abb52de3afcfa06484384e101" category="doc">使用Trident Operator或Helm升级Astra三端安装</block>
+  <block id="33176aeb27c41088051f460946356423" category="inline-link-macro">安装NFS工具</block>
+  <block id="a0b90bbc60c78003c8f066892446e127" category="paragraph"><block ref="5dac8bb8705e3a30615e678be90a7f1d" category="inline-link-macro-rx"></block> 如果您使用的是：<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block>，<block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block>。</block>
+  <block id="dd1774ab705fcc0738f7d5cfa8176115" category="paragraph"><block ref="918981963bb555a1b3a006c12fd13637" category="inline-link-macro-rx"></block> 如果您使用的是：<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block>，<block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block>，<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block>。</block>
+  <block id="e007fb329975dfac9458f3defd0f7fc1" category="inline-link-macro">安装NVMe工具</block>
+  <block id="fd7af40a7e3f81bfb0a51eac257dc730" category="paragraph"><block ref="8ac92b41418caf5b4c74c2a77a0c349a" category="inline-link-macro-rx"></block> 如果您使用的是<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 适用于基于TCP (NVMe/TCP)协议的非易失性内存标准(NVMe)。</block>
+  <block id="7e757604a320b645d3e338eaa6d9bca2" category="paragraph">。<block ref="da3f7f170e13df7f56e057fc4226aa85" category="inline-link-rx"></block> 将Asta Tandent标识为用于该类的配置程序、并指示Asta Tandent如何配置卷。例如：</block>
 </blocks>

@@ -18,7 +18,7 @@ summary: 您可以设计一个Kubnetes StorageClass文件并创建StorageClass�
 
 == 配置Kubnetes StorageClass对象
 
-。 https://kubernetes.io/docs/concepts/storage/storage-classes/["Kubnetes StorageClass对象"^] 将Asta Trident标识为该类所使用的配置程序、用于指示Asta Trident如何配置卷。例如：
+。 https://kubernetes.io/docs/concepts/storage/storage-classes/["Kubnetes StorageClass对象"^] 将Asta Tandent标识为用于该类的配置程序、并指示Asta Tandent如何配置卷。例如：
 
 [listing]
 ----
