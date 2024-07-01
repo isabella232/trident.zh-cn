@@ -23,7 +23,7 @@ summary: 在安装Astra Trident之前、您应查看这些常规系统要求。�
 .<strong> 中有关Astra </strong> 的信息
 [%collapsible%open]
 ====
-* 现在、在Trident中支持Kubnetes 1.29。在升级Kubnetes之前、请先升级Asta Trdent。
+* 现在、Asta三端磁盘支持Kubbernetes 1.29。在升级Kubnetes之前、请先升级Asta Trdent。
 * Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
 +
 使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Asta Trendent建议使用 `find_multipaths: no` 自21.07版起。
@@ -38,14 +38,14 @@ summary: 在安装Astra Trident之前、您应查看这些常规系统要求。�
 Astra Trident 支持多个容器引擎和流程编排程序，其中包括：
 
 * Anthos On－Prem (VMware)和Anthos on Bare metal 1.16
-* Kubbernetes 1.23 - 1.29
+* Kubbernetes 1.24 - 1.29
 * OpenShift 4.10 - 4.10
 
 
 以下版本支持 Trident 操作符：
 
 * Anthos On－Prem (VMware)和Anthos on Bare metal 1.16
-* Kubbernetes 1.23 - 1.29
+* Kubbernetes 1.24 - 1.29
 * OpenShift 4.10 - 4.10
 
 
@@ -83,56 +83,56 @@ WARNING: 在将安装了Astra三元数据的Kubernetes集群从1.24升级到1.25
 
 
 | Astra Trident  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
 
 
 | 卷快照  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
 
 
 | 卷快照中的 PVC  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
 
 
 | iSCSI PV 调整大小  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
 
 
 | ONTAP 双向 CHAP  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
 
 
 | 动态导出策略  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
 
 
 | Trident 运算符  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
 
 
 | CSI 拓扑  a| 
-1.23 - 1.29
+1.24 - 1.29
  a| 
 否
 
@@ -189,96 +189,18 @@ link:../trident-reference/ports.html["Astra Trident 端口"]
 
 [cols="2"]
 |===
-| Kubernetes 版本 | 容器映像 
+| Kubernetes版本 | 容器映像 
 
 
-| v1.23.0  a| 
-* dDocker。io/NetApp/trdent：24.02.0
-* docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
+| v1.24.0 ， v1.25.0 ， v1.26.0 ， v1.27.0 ， v1.28.0 ， v1.29.0  a| 
+* dDocker。io/NetApp/trdent：24.06.0
+* docer.io/NetApp/trdent-autostsupport：24.06
+* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.1
+* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.6.0
+* 注册表.k8s.io/sig-storage/CsI-s不同：v1.11.0
+* 注册表.k8s.io/sig-storage/CsI-snapshotter：v7.0.2
 * 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
-
-
-
-
-| v1.24.0  a| 
-* dDocker。io/NetApp/trdent：24.02.0
-* docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
-
-
-
-
-| v1.25.0  a| 
-* dDocker。io/NetApp/trdent：24.02.0
-* docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
-
-
-
-
-| v1.26.0  a| 
-* dDocker。io/NetApp/trdent：24.02.0
-* docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
-
-
-
-
-| v1.27.0  a| 
-* dDocker。io/NetApp/trdent：24.02.0
-* docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
-
-
-
-
-| v1.28.0  a| 
-* dDocker。io/NetApp/trdent：24.02.0
-* docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
-
-
-
-
-| v1.29.0  a| 
-* dDocker。io/NetApp/trdent：24.02.0
-* docer.io/NetApp/trdent-autostsupport：24.02
-* 注册表.k8s.io/sig-storage/CsI-置 配置程序：v4.0.0
-* 注册表.k8s.io/sig-storage/CsI-Attacher：v4.5.0
-* 注册表.k8s.io/sig-storage/CsI-s不同：v1.1.3
-* 注册表.k8s.io/sig-storage/CsI-snapshotter：v6.3.3
-* 注册表.k8s.io/sig-storage/CsI-N节点 驱动程序注册器：v2.10.0
-* dDocker .io/NetApp/trdent操作员：24.02.0 (可选)
+* dDocker .io/NetApp/trdent操作员：24.06.0 (可选)
 
 
 |===

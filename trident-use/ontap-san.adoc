@@ -139,7 +139,7 @@ Asta三端存储器支持使用的非易失性内存快速(NVMe)协议 `ontap-sa
 * 调整NVMe卷大小
 * 导入在Asta Trident外部创建的NVMe卷、以便Asta Trident可以管理其生命周期
 * NVMe本机多路径
-* 正常或非正常关闭K8s节点(24.02)
+* 正常或非正常关闭K8s节点(24.06)
 
 
 Astra三项技术不支持：

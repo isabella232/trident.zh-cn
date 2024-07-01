@@ -19,7 +19,54 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 
 
-== 24.02中的新增功能
+== 24.06中的新增功能
+
+
+
+=== 增强功能
+
+* **重要**： `limitVolumeSize` 现在，参数限制ONTAP经济型驱动程序中的qtree/LUN大小。使用新  `limitVolumePoolSize` 参数控制这些驱动程序中的FlexVol大小。link:https://github.com/NetApp/trident/issues/341["问题描述#341"]()。
+* 增加了iSCSI自我修复功能，以便在使用弃用的igroup时按确切的LUN ID启动SCSI扫描link:https://github.com/NetApp/trident/issues/883["问题描述#883"]()。
+* 增加了对卷克隆操作和调整大小操作的支持、即使后端处于暂停模式也是如此。
+* 增加了一项功能、可将用户配置的三端控制器日志设置传播到A作用 力三端节点Pod。
+* 在Asta三元数据中增加了对默认情况下使用REST而非ZAPI for ONTAP 9.15.1及更高版本的支持。
+* 增加了对新永久性卷在ONTAP存储后端的自定义卷名称和元数据的支持。
+* 增强了 `azure-netapp-files` (ANF)驱动程序功能、可在NFS挂载选项设置为使用NFS 4.x时默认自动启用Snapshot目录
+* 增加了对NFS卷的Bottleroclet支持。
+* 增加了对Google Cloud NetApp卷的技术预览支持。
+
+
+
+
+==== Kubernetes
+
+* 增加了A作用，Asta Tident DemonSet可以在启动时清理僵尸装载和剩余跟踪文件link:https://github.com/NetApp/trident/issues/883["问题描述#883"]()。
+* 添加了用于动态导入LVM卷的PVC标注 `trident.netapp.io/luksEncryption`link:https://github.com/NetApp/trident/issues/849["问题描述#849"]()。
+* 为ANF驱动程序添加了拓扑感知功能。
+
+
+
+
+=== 修复
+
+* 修复了因事务陈旧而导致的Asta Dent安装失败问题。
+* 修复了忽略来自Kubbernetes ()的警告消息的trdentcdclink:https://github.com/NetApp/trident/issues/892["问题描述#892"]。
+* 已将A作用 于三端控制器的优先级更 `SecurityContextConstraint` 改为 `0`link:https://github.com/NetApp/trident/issues/887["问题描述#887"]()。
+* ONTAP驱动程序现在接受低于20MiB的卷大小link:https://github.com/NetApp/trident/issues/885["问题[#883."]()。
+* 修复了Asta三项功能、可在调整ONTAP SAN驱动程序大小操作期间防止FlexVol缩减。
+* 修复了NFS v4.1中ANF卷导入失败的问题。
+
+
+
+
+=== 已弃用
+
+* 不再支持EOL Windows Server 2019。
+
+
+
+
+== 24.02中的变化
 
 
 

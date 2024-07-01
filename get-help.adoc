@@ -31,6 +31,11 @@ Asta三项功能根据您的版本提供三种支持级别。请参见 link:http
 
 
  a| 
+link:https://docs.netapp.com/us-en/trident/index.html["24.06"^]
+| 2025年6月 | 2026年6月 | 2027年6月 
+
+
+ a| 
 link:https://docs.netapp.com/us-en/trident/index.html["24.02."^]
 | 2025年2月 | 2026年2月 | 2027年2月 
 
@@ -47,7 +52,7 @@ link:https://docs.netapp.com/us-en/trident-2307/index.html["23.07"^]
 
  a| 
 link:https://docs.netapp.com/us-en/trident-2304/index.html["23.04."^]
-| 2024年4月 | 2025年4月 | 2026年4月 
+| -- | 2025年4月 | 2026年4月 
 
 
  a| 
@@ -67,7 +72,7 @@ link:https://docs.netapp.com/us-en/trident-2207/index.html["22.07."^]
 
  a| 
 link:https://docs.netapp.com/us-en/trident-2204/index.html["22.04."^]
-| -- | 2024年4月 | 2025年4月 
+| -- | -- | 2025年4月 
 
 
  a| 

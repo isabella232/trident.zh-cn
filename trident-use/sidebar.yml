@@ -70,6 +70,8 @@ entries:
     url: "/trident-use/vol-expansion.html"
   - title: 导入卷
     url: "/trident-use/vol-import.html"
+  - title: 自定义卷名称
+    url: "/trident-use/vol-custom-name.html"
   - title: 在命名空间之间共享NFS卷
     url: "/trident-use/volume-share.html"
   - title: 使用 CSI 拓扑

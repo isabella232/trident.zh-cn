@@ -70,7 +70,7 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 自动 | `false` 
 
 
-| `autosupport 映像` | AutoSupport 遥测的容器映像 | `"netapp/trident-autosupport:24.02"` 
+| `autosupport 映像` | AutoSupport 遥测的容器映像 | `"netapp/trident-autosupport:24.06"` 
 
 
 | `autosupport 代理` | 用于发送AutoSupport的代理的地址/端口
@@ -83,7 +83,7 @@ WARNING: `spec.namespace` 在中指定 `TridentOrchestrator` 表示安装了Astr
 | `logFormat` | 要使用的 Astra Trident 日志记录格式 [text ， json] | `"text"` 
 
 
-| `TridentImage` | 要安装的 Astra Trident 映像 | `"netapp/trident:24.02"` 
+| `TridentImage` | 要安装的 Astra Trident 映像 | `"netapp/trident:24.06"` 
 
 
 | `imageRegistry` | 内部注册表的路径、格式

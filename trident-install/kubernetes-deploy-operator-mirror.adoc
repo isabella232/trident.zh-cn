@@ -16,14 +16,14 @@ summary: 您可以手动部署Trident操作员以安装Astra Trident。此过程
 
 
 
-== 有关Astra Trdent的重要信息24.02
+== 有关Astra Trdent的重要信息24.06
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
 .<strong> 中有关Astra </strong> 的信息
 [%collapsible%open]
 ====
-* 现在、在Trident中支持Kubnetes 1.27。在升级Kubernetes之前升级Trident。
+* 现在、Asta三端磁盘支持Kubbernetes 1.29。在升级Kubernetes之前升级Trident。
 * Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
 +
 使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
@@ -75,8 +75,8 @@ Astra Trident安装程序包包含部署Trident操作员和安装Astra Trident�
 
 [listing]
 ----
-wget https://github.com/NetApp/trident/releases/download/v24.02.0/trident-installer-24.02.0.tar.gz
-tar -xf trident-installer-24.02.0.tar.gz
+wget https://github.com/NetApp/trident/releases/download/v24.06.0/trident-installer-24.06.0.tar.gz
+tar -xf trident-installer-24.06.0.tar.gz
 cd trident-installer
 ----
 
@@ -93,10 +93,10 @@ kubectl create -f deploy/crds/<VERSION>.yaml
 
 === 第3步：更新操作符中的注册表位置
 
-在中 `/deploy/operator.yaml`、更新 `image: docker.io/netapp/trident-operator:24.02.0` 以反映映像注册表的位置。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。例如：
+在中 `/deploy/operator.yaml`，更新 `image: docker.io/netapp/trident-operator:24.06.0` 以反映映像注册表的位置。您的 link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表中、也可以位于不同的注册表中、但所有CSI图像都必须位于同一注册表中。例如：
 
-* `image: <your-registry>/trident-operator:24.02.0` 如果您的映像全部位于一个注册表中。
-* `image: <your-registry>/netapp/trident-operator:24.02.0` 如果Trident映像与CSI映像位于不同的注册表中。
+* `image: <your-registry>/trident-operator:24.06.0` 如果您的所有映像都位于一个注册表中。
+* `image: <your-registry>/netapp/trident-operator:24.06.0` 如果您的三端映像与CSI映像位于不同的注册表中。
 
 
 
@@ -105,7 +105,7 @@ kubectl create -f deploy/crds/<VERSION>.yaml
 
 Astra Trident安装程序提供了一个包文件、可用于安装操作员和创建关联对象。使用此捆绑包文件可以轻松地部署操作员并使用默认配置安装Astra Trident。
 
-* 对于运行Kubornetes 1.24或更早版本的集群、请使用 `bundle_pre_1_25.yaml`。
+* 对于运行Kubbernetes 1.24的集群，请使用 `bundle_pre_1_25.yaml`。
 * 对于运行Kubernetes 1.25或更高版本的集群、请使用 `bundle_post_1_25.yaml`。
 
 
@@ -165,8 +165,8 @@ Your link:../trident-get-started/requirements.html#container-images-and-correspo
 [listing]
 ----
 imageRegistry: "<your-registry>"
-autosupportImage: "<your-registry>/trident-autosupport:24.02"
-tridentImage: "<your-registry>/trident:24.02.0"
+autosupportImage: "<your-registry>/trident-autosupport:24.06"
+tridentImage: "<your-registry>/trident:24.06.0"
 ----
 --
 .不同注册表中的映像
@@ -176,8 +176,8 @@ tridentImage: "<your-registry>/trident:24.02.0"
 [listing]
 ----
 imageRegistry: "<your-registry>/sig-storage"
-autosupportImage: "<your-registry>/netapp/trident-autosupport:24.02"
-tridentImage: "<your-registry>/netapp/trident:24.02.0"
+autosupportImage: "<your-registry>/netapp/trident-autosupport:24.06"
+tridentImage: "<your-registry>/netapp/trident:24.06.0"
 ----
 --
 ====
@@ -202,16 +202,16 @@ API Version: trident.netapp.io/v1
 Kind:        TridentOrchestrator
 ...
 Spec:
-  Autosupport Image:  <your-registry>/netapp/trident-autosupport:24.02
+  Autosupport Image:  <your-registry>/netapp/trident-autosupport:24.06
   Debug:              true
   Image Registry:     <your-registry>/sig-storage
   Namespace:          trident
-  Trident Image:      <your-registry>/netapp/trident:24.02.0
+  Trident Image:      <your-registry>/netapp/trident:24.06.0
 Status:
   Current Installation Params:
     IPv6:                       false
     Autosupport Hostname:
-    Autosupport Image:          <your-registry>/netapp/trident-autosupport:24.02
+    Autosupport Image:          <your-registry>/netapp/trident-autosupport:24.06
     Autosupport Proxy:
     Autosupport Serial Number:
     Debug:                      true
@@ -223,11 +223,11 @@ Status:
     Log Format:           text
     Probe Port:           17546
     Silence Autosupport:  false
-    Trident Image:        <your-registry>/netapp/trident:24.02.0
+    Trident Image:        <your-registry>/netapp/trident:24.06.0
   Message:                Trident installed
   Namespace:              trident
   Status:                 Installed
-  Version:                v24.02.0
+  Version:                v24.06.0
 Events:
     Type Reason Age From Message ---- ------ ---- ---- -------Normal
     Installing 74s trident-operator.netapp.io Installing Trident Normal
@@ -300,6 +300,6 @@ trident-operator-766f7b8658-ldzsv          1/1     Running   0           3m
 +----------------+----------------+
 | SERVER VERSION | CLIENT VERSION |
 +----------------+----------------+
-| 24.02.0        | 24.02.0        |
+| 24.06.0        | 24.06.0        |
 +----------------+----------------+
 ----

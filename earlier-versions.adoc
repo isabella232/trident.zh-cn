@@ -12,8 +12,9 @@ summary: 您可以使用版本选择器在最新版本和以前的四个版本�
 
 
 [role="lead"]
-如果您未运行Asta Trident 24.02、则可通过获取先前版本的文档 link:get-help.html["Astra三端支持生命周期"]。
+如果您未运行Asta Trident 24.06，则可从获取以前版本的文档 link:get-help.html["Astra三端支持生命周期"]。
 
+* https://docs.netapp.com/us-en/trident-2402/index.html["Astra三端到子24.02"^]
 * https://docs.netapp.com/us-en/trident-2310/index.html["Astra三打23.10."^]
 * https://docs.netapp.com/us-en/trident-2307/index.html["A作用 三排版23.07"^]
 * https://docs.netapp.com/us-en/trident-2304/index.html["Astra三排版23.04"^]

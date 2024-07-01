@@ -26,8 +26,8 @@ NOTE: 要从使用命名空间范围的运算符(版本20.07到20.10)安装的As
 .关于此任务
 ｛\f270通过｝｛\f270｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270通过｝｛\f151、｝｛\f270｝｛\f270｝｛\f151、｝｛\f270｝
 
-* 对于运行Kubornetes 1.24或更早版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v24.02/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
-* 对于运行Kubernetes 1.25或更高版本的集群、请使用 link:https://github.com/NetApp/trident/tree/stable/v24.02/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
+* 对于运行Kubbernetes 1.24的集群，请使用 link:https://github.com/NetApp/trident/tree/stable/v24.06/deploy/bundle_pre_1_25.yaml["bundle_pre_1_25.yaml"^]。
+* 对于运行Kubernetes 1.25或更高版本的集群，请使用 link:https://github.com/NetApp/trident/tree/stable/v24.06/deploy/bundle_post_1_25.yaml["bundle_post_1_25.yaml"^]。
 
 
 .开始之前
@@ -47,12 +47,12 @@ NOTE: 要从使用命名空间范围的运算符(版本20.07到20.10)安装的As
 kubectl delete -f 23.07.0/trident-installer/deploy/<bundle.yaml> -n trident
 ----
 . 如果您使用自定义了初始安装 `TridentOrchestrator` 属性、您可以编辑 `TridentOrchestrator` 用于修改安装参数的对象。其中可能包括为脱机模式指定镜像Trident和CSI映像注册表、启用调试日志或指定映像提取密钥所做的更改。
-. 使用适用于您的环境的正确捆绑包YAML_文件安装<bundle.yaml>三元组、其中_AML_为
-`bundle_pre_1_25.yaml` 或 `bundle_post_1_25.yaml` 根据您的Kubbernetes版本。例如、如果要安装Asta Trident 24.02、请运行以下命令：
+. 使用适用于您的环境的正确捆绑包YAML_文件安装Astra、其中_Kubornetes_是或基于您的<bundle.yaml>
+`bundle_pre_1_25.yaml` `bundle_post_1_25.yaml` 版本。例如、如果要安装Asta Trident 24.06、请运行以下命令：
 +
 [listing]
 ----
-kubectl create -f 24.02.0/trident-installer/deploy/<bundle.yaml> -n trident
+kubectl create -f 24.06.0/trident-installer/deploy/<bundle.yaml> -n trident
 ----
 
 
@@ -69,11 +69,11 @@ WARNING: 将安装了Astra Trident的Kubernetes集群从1.24升级到1.25或更�
 . 如果您 link:../trident-get-started/kubernetes-deploy-helm.html#deploy-the-trident-operator-and-install-astra-trident-using-helm["已使用Helm安装Asta Trdent"]，您可以使用 `helm upgrade trident netapp-trident/trident-operator --version 100.2402.0` 一步升级。如果您未添加Helm repo或无法使用它进行升级：
 +
 .. 从下载最新的Astra Trdent版本 link:https://github.com/NetApp/trident/releases/latest["GitHub上的_assets_部分"^]。
-.. 使用 `helm upgrade` 命令位置 `trident-operator-24.02.0.tgz` 反映了要升级到的版本。
+.. 使用 `helm upgrade` 命令、其中 `trident-operator-24.06.0.tgz` 反映了要升级到的版本。
 +
 [listing]
 ----
-helm upgrade <name> trident-operator-24.02.0.tgz
+helm upgrade <name> trident-operator-24.06.0.tgz
 ----
 +
 
@@ -98,11 +98,11 @@ NOTE: 在切换安装方法之前、请查看 link:../trident-get-started/kubern
 +
 [listing]
 ----
-# Download the release required [24.020.0]
-mkdir 24.02.0
-cd 24.02.0
-wget https://github.com/NetApp/trident/releases/download/v24.02.0/trident-installer-24.02.0.tar.gz
-tar -xf trident-installer-24.02.0.tar.gz
+# Download the release required [24.060.0]
+mkdir 24.06.0
+cd 24.06.0
+wget https://github.com/NetApp/trident/releases/download/v24.06.0/trident-installer-24.06.0.tar.gz
+tar -xf trident-installer-24.06.0.tar.gz
 cd trident-installer
 ----
 . 从清单中创建 `tridentorchator` CRD 。
@@ -159,6 +159,6 @@ kubectl describe torc trident | grep Message -A 3
 Message:                Trident installed
 Namespace:              trident
 Status:                 Installed
-Version:                v24.02.0
+Version:                v24.06.0
 ----
 

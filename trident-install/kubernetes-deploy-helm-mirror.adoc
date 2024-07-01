@@ -16,14 +16,14 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 
 
 
-== 有关Astra Trdent的重要信息24.02
+== 有关Astra Trdent的重要信息24.06
 
 *您必须阅读以下有关Astra Trident的重要信息。*
 
 .<strong> 中有关Astra </strong> 的信息
 [%collapsible%open]
 ====
-* 现在、在Trident中支持Kubnetes 1.27。在升级Kubernetes之前升级Trident。
+* 现在、Asta三端磁盘支持Kubbernetes 1.29。在升级Kubernetes之前升级Trident。
 * Astra Trident会严格强制在SAN环境中使用多路径配置、建议值为 `find_multipaths: no` 在multipath.conf文件中。
 +
 使用非多路径配置或 `find_multipaths: yes` 或 `find_multipaths: smart` multipath.conf文件中的值将导致挂载失败。Trident已建议使用 `find_multipaths: no` 自21.07版起。
@@ -57,7 +57,7 @@ helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 --
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 100.2402.0 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 100.2406.0 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
 ----
 --
 .不同注册表中的映像
@@ -66,7 +66,7 @@ helm install <name> netapp-trident/trident-operator --version 100.2402.0 --set i
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 100.2402.0 --set imageRegistry=<your-registry>/sig-storage --set operatorImage=<your-registry>/netapp/trident-operator:24.02.0 --set tridentAutosupportImage=<your-registry>/netapp/trident-autosupport:24.02 --set tridentImage=<your-registry>/netapp/trident:24.02.0 --create-namespace --namespace <trident-namespace>
+helm install <name> netapp-trident/trident-operator --version 100.2406.0 --set imageRegistry=<your-registry>/sig-storage --set operatorImage=<your-registry>/netapp/trident-operator:24.06.0 --set tridentAutosupportImage=<your-registry>/netapp/trident-autosupport:24.06 --set tridentImage=<your-registry>/netapp/trident:24.06.0 --create-namespace --namespace <trident-namespace>
 ----
 --
 ====
@@ -102,7 +102,7 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 
 [listing]
 ----
-helm install <name> netapp-trident/trident-operator --version 100.2402.0  --create-namespace --namespace trident --set tridentDebug=true
+helm install <name> netapp-trident/trident-operator --version 100.2406.0  --create-namespace --namespace trident --set tridentDebug=true
 ----
 
 

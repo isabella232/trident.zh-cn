@@ -108,13 +108,10 @@ summary: 了解如何在您的 Astra Trident 安装中创建和使用 ONTAP SAN 
 除非正在进行故障排除并需要详细的日志转储、否则请勿使用。 | `null` 
 
 
-| `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
-
-`useREST` 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时 `true`、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问 `ontap` 应用程序。这一点可通过预定义来满足 `vsadmin` 和 `cluster-admin` 角色。
-
-`useREST` MetroCluster 不支持。
-
-`useREST` 完全符合NVMe/TCP要求。 | `false` 
+| `useREST` | 用于使用 ONTAP REST API 的布尔参数。
+`useREST` 设置为时 `true`，Asta三端将使用ONTAP REST API与后端通信；设置为时 `false`，Asta三端将使用ONTAP ZAPI调用与后端通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP登录角色必须有权访问 `ontap` 应用程序。预定义的和角色可以满足这一 `vsadmin` 要求 `cluster-admin` 。从Asta三元组24.06版本和ONTAP 9.15.1或更高版本开始、默认情况下会 `userREST` 设置为 `true` ；更
+`useREST` 改为 `false` 以使用ONTAP ZAPI调用。
+`useREST` 完全符合NVMe/TCP要求。 | `true` 对于ONTAP 9.151或更高版本，否则 `false`。 
 
 
 | `sanType` | 使用选择 `iscsi` 对于iSCSI或 `nvme` 适用于NVMe/TCP。 | `iscsi` 如果为空 
@@ -163,6 +160,9 @@ NVMe/TCP不支持使用此类数据加密。 | ""
 
 
 | `分层策略` | 使用"无"的层策略 | 对于ONTAP 9.5 SVM-DR之前的配置、为"仅快照" 
+
+
+| `nameTemplate` | 用于创建自定义卷名称的模板。 | "" 
 |===
 
 
@@ -251,8 +251,11 @@ username: vsadmin
 password: <password>
 ----
 ====
-.MetroCluster示例
-[#mcc-best%collapsible]
+[[mcc-best]]
+. 示例
+
+
+[]
 ====
 您可以对后端进行配置、以避免在切换和切回后手动更新后端定义 link:../trident-reco/backup.html#svm-replication-and-recovery["SVM复制和恢复"]。
 
@@ -349,6 +352,25 @@ username: vsadmin
 password: password
 sanType: nvme
 useREST: true
+----
+====
+.使用nameTemplate的后端配置示例
+[%collapsible]
+====
+[listing]
+----
+---
+version: 1
+storageDriverName: ontap-san
+backendName: ontap-san-backend
+managementLIF: <ip address>
+svm: svm0
+username: <admin>
+password: <password>
+defaults: {
+    "nameTemplate": "{{.volume.Name}}_{{.labels.cluster}}_{{.volume.Namespace}}_{{.volume.RequestName}}"
+},
+"labels": {"cluster": "ClusterA", "PVC": "{{.volume.Namespace}}_{{.volume.RequestName}}"}
 ----
 ====
 

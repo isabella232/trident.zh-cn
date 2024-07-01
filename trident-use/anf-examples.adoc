@@ -95,6 +95,9 @@ Azure NetApp Files后端提供了这些配置选项。
 
 
 | `nasType` | 配置NFS或SMB卷创建。选项包括 `nfs`， `smb` 或为空。默认情况下、将设置为空会将NFS卷设置为空。 | `nfs` 
+
+
+| `supportedTopologies` | 表示此后端支持的区域和区域的列表。有关详细信息，请参阅 link:../trident-use/csi-topology.html["使用 CSI 拓扑"]。 |  
 |===
 
 NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.com/en-us/azure/azure-netapp-files/configure-network-features["配置Azure NetApp Files 卷的网络功能"^]。
@@ -316,6 +319,32 @@ storage:
   - standard-1
   - standard-2
 
+----
+====
+.支持的拓扑配置
+[%collapsible]
+====
+Asta Trildent可以根据区域和可用性区域为工作负载配置卷。 `supportedTopologies`此后端配置中的块用于提供每个后端的区域和分区列表。此处指定的区域和分区值必须与每个Kubnetes集群节点上标签中的区域和分区值匹配。这些区域和分区表示可在存储类中提供的允许值列表。对于包含后端提供的部分区域和分区的存储类、Asta Trident将在上述区域和分区中创建卷。有关详细信息，请参阅 link:../trident-use/csi-topology.html["使用 CSI 拓扑"]。
+
+[listing]
+----
+---
+version: 1
+storageDriverName: azure-netapp-files
+subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
+tenantID: 68e4f836-edc1-fake-bff9-b2d865ee56cf
+clientID: dd043f63-bf8e-fake-8076-8de91e5713aa
+clientSecret: SECRET
+location: eastus
+serviceLevel: Ultra
+capacityPools:
+- application-group-1/account-1/ultra-1
+- application-group-1/account-1/ultra-2
+supportedTopologies:
+- topology.kubernetes.io/region: eastus
+  topology.kubernetes.io/zone: eastus-1
+- topology.kubernetes.io/region: eastus
+  topology.kubernetes.io/zone: eastus-2
 ----
 ====
 

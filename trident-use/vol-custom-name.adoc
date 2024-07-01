@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: trident-use/vol-custom-name.html 
+keywords: volumes, volume name, custom volume name, on-demand volume snapshots, expand volumes, iscsci volumes, nfs volumes, expand, expansion, 
+summary: 'Asta Trivent支持为创建的卷分配有意义的名称和标签、以便更容易识别、监控和管理这些卷、并轻松地将其映射到相应的Kubnetes资源(PVC)。' 
+---
+= 自定义卷名称和标签
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用Astra三端存储、您可以为创建的卷分配有意义的名称和标签。这有助于您识别卷并轻松地将其映射到其各自的Kubnetes资源(PVC)。您还可以在后端级别定义用于创建自定义卷名称和自定义标签的模板；您创建、导入或克隆的任何卷都将遵循这些模板。
+
+
+
+== 开始之前
+
+可自定义的卷名称和标签支持：
+
+. 卷创建、导入和克隆操作。
+. 如果使用的是ONTA-NAS经济型驱动程序、则只有qtree卷的名称符合此名称模板。
+. 如果使用的是ONONTAP SAN经济版驱动程序、则只有LUN名称符合此名称模板。
+
+
+
+
+== 限制
+
+. 可自定义的卷名称仅与ONTAP内部部署驱动程序兼容。
+. 可自定义的卷名称不适用于现有卷。
+
+
+
+
+== 可自定义卷名称的关键行为
+
+. 如果因名称模板中的语法无效而导致失败、则后端创建将失败。但是、如果模板应用程序失败、则会根据现有命名约定对卷进行命名。
+. 如果使用后端配置中的名称模板来命名卷、则存储前缀不适用。任何所需的前缀值都可以直接添加到模板中。
+
+
+
+
+== 具有名称模板和标签的后端配置示例
+
+可以在根和/或池级别定义自定义名称模板。
+
+.根级别示例
+[listing]
+----
+{
+"version": 1,
+"storageDriverName": "ontap-nas",
+"backendName": "ontap-nfs-backend",
+"managementLIF": "<ip address>",
+"svm": "svm0",
+"username": "<admin>",
+"password": "<password>",
+"defaults": {
+    "nameTemplate": "{{.volume.Name}}_{{.labels.cluster}}_{{.volume.Namespace}}_{{.volume.RequestName}}"
+},
+"labels": {"cluster": "ClusterA", "PVC": "{{.volume.Namespace}}_{{.volume.RequestName}}"}
+}
+
+----
+.池级别示例
+[listing]
+----
+{
+  "version": 1,
+  "storageDriverName": "ontap-nas",
+  "backendName": "ontap-nfs-backend",
+  "managementLIF": "<ip address>",
+  "svm": "svm0",
+ "username": "<admin>",
+  "password": "<password>",
+  "useREST": true,
+  "storage": [
+  {
+      "labels":{"labelname":"label1", "name": "{{ .volume.Name }}"},
+      "defaults":
+      {
+          "nameTemplate": "pool01_{{ .volume.Name }}_{{ .labels.cluster }}_{{ .volume.Namespace }}_{{ .volume.RequestName }}"
+      }
+   },
+  {
+      "labels":{"cluster":"label2", "name": "{{ .volume.Name }}"},
+      "defaults":
+      {
+          "nameTemplate": "pool02_{{ .volume.Name }}_{{ .labels.cluster }}_{{ .volume.Namespace }}_{{ .volume.RequestName }}"
+      }
+}
+  ]
+}
+----
+
+
+== 命名模板示例
+
+*示例1*：
+
+[listing]
+----
+"nameTemplate": "{{ .config.StoragePrefix }}_{{ .volume.Name }}_{{ .config.BackendName }}"
+----
+*示例2*：
+
+[listing]
+----
+"nameTemplate": "pool_{{ .config.StoragePrefix }}_{{ .volume.Name }}_{{ slice .volume.RequestName 1 5 }}""
+----
+
+
+== 需要考虑的要点
+
+. 对于卷导入、只有当现有卷具有特定格式的标签时、才会更新标签。例如： `{"provisioning":{"Cluster":"ClusterA", "PVC": "pvcname"}}`。
+. 对于受管卷导入、卷名称遵循后端定义中根级别定义的名称模板。
+. Asta三元组不支持使用带有存储前缀的分区运算符。
+. 如果这些模板不会生成唯一的卷名称、Asta Trandent将附加一些随机字符以创建唯一的卷名称。
+. 如果NAS经济型卷的自定义名称长度超过64个字符、Asta Trident将根据现有命名约定为卷命名。对于所有其他ONTAP驱动程序、如果卷名称超过名称限制、则卷创建过程将失败。
+

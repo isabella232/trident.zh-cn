@@ -108,8 +108,7 @@ summary: 了解适用于ONTAP 的Amazon FSX的后端配置选项。本节提供�
 对于Amazon FSx for ONTAP后端、此参数是必需的。 | `smb-share` 
 
 
-| `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
-`useREST` 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时 `true`、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问 `ontap` 应用程序。这一点可通过预定义来满足 `vsadmin` 和 `cluster-admin` 角色。 | `false` 
+| `useREST` | 用于使用 ONTAP REST API 的布尔参数。 `useREST` 设置为时 `true`，Asta三端将使用ONTAP REST API与后端通信；设置为时 `false`，Asta三端将使用ONTAP ZAPI调用与后端通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP登录角色必须有权访问 `ontap` 应用程序。预定义的和角色可以满足这一 `vsadmin` 要求 `cluster-admin` 。从Asta三元组24.06版本和ONTAP 9.15.1或更高版本开始、默认情况下会 `userREST` 设置为 `true` ；更 `useREST` 改为 `false` 以使用ONTAP ZAPI调用。 | `true` 对于ONTAP 9.151或更高版本，否则 `false`。 
 
 
 | `aws` | 您可以在AWS FSx for ONTAP的配置文件中指定以下内容：

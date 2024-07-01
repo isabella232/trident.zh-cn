@@ -118,9 +118,7 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 此参数对于Amazon FSx for ONTAP后端为必填项、不能为空。 | `smb-share` 
 
 
-| `useREST` | 用于使用 ONTAP REST API 的布尔参数。* 技术预览 *
-`useREST` 作为一个*技术预览版提供、建议用于测试环境、而不是生产工作负载。设置为时 `true`、Astra Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP 登录角色必须有权访问 `ontap` 应用程序。这一点可通过预定义来满足 `vsadmin` 和 `cluster-admin` 角色。
-`useREST` MetroCluster 不支持。 | false 
+| `useREST` | 用于使用 ONTAP REST API 的布尔参数。 `useREST` 设置为时 `true`，Asta三端将使用ONTAP REST API与后端通信；设置为时 `false`，Asta三端将使用ONTAP ZAPI调用与后端通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP登录角色必须有权访问 `ontap` 应用程序。预定义的和角色可以满足这一 `vsadmin` 要求 `cluster-admin` 。从Asta三元组24.06版本和ONTAP 9.15.1或更高版本开始、默认情况下会 `userREST` 设置为 `true` ；更 `useREST` 改为 `false` 以使用ONTAP ZAPI调用。 | `true` 对于ONTAP 9.151或更高版本，否则 `false`。 
 |===
 
 
@@ -170,6 +168,9 @@ summary: 了解如何在安装Astra Trident时创建和使用ONTAP NAS驱动程�
 
 
 | `securityStyle` | 新卷的安全模式。NFS支持 `mixed` 和 `unix` 安全模式。SMB支持 `mixed` 和 `ntfs` 安全模式。 | NFS默认值为 `unix`。SMB默认值为 `ntfs`。 
+
+
+| `nameTemplate` | 用于创建自定义卷名称的模板。 | "" 
 |===
 
 NOTE: 在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享 QoS 策略组，并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。
@@ -382,6 +383,25 @@ clientCertificate: ZXR0ZXJwYXB...ICMgJ3BhcGVyc2
 clientPrivateKey: vciwKIyAgZG...0cnksIGRlc2NyaX
 trustedCACertificate: zcyBbaG...b3Igb3duIGNsYXNz
 storagePrefix: myPrefix_
+----
+====
+.使用nameTemplate的后端配置示例
+[%collapsible]
+====
+[listing]
+----
+---
+version: 1
+storageDriverName: ontap-nas
+backendName: ontap-nas-backend
+managementLIF: <ip address>
+svm: svm0
+username: <admin>
+password: <password>
+defaults: {
+    "nameTemplate": "{{.volume.Name}}_{{.labels.cluster}}_{{.volume.Namespace}}_{{.volume.RequestName}}"
+},
+"labels": {"cluster": "ClusterA", "PVC": "{{.volume.Namespace}}_{{.volume.RequestName}}"}
 ----
 ====
 
