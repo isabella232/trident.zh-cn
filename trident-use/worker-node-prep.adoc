@@ -256,7 +256,7 @@ NOTE: 对于 Ubuntu 18.04 ，您必须先使用 `iscsiadm` 发现目标端口，
 
 [listing]
 ----
-helm install trident trident-operator-100.2402.0.tgz --set iscsiSelfHealingInterval=3m0s --set iscsiSelfHealingWaitTime=6m0s -n trident
+helm install trident trident-operator-100.2406.0.tgz --set iscsiSelfHealingInterval=3m0s --set iscsiSelfHealingWaitTime=6m0s -n trident
 ----
 --
 .Tridentctl

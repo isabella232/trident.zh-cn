@@ -49,7 +49,7 @@ summary: 您可以使用Helm部署Trident操作员并安装Astra Trident。此�
 ----
 helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
 ----
-. 使用 ... `helm install` 并为部署和映像注册表位置指定一个名称。Your link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表或不同的注册表中、但所有CSI映像都必须位于同一注册表中。在示例中、 `100.2402.0` 是您要安装的Astra Trident版本。
+. 使用 `helm install` 并指定部署和映像注册表位置的名称。您的 link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和CSI映像"] 可以位于一个注册表中、也可以位于不同的注册表中、但所有CSI图像都必须位于同一注册表中。在示例中、 `100.2406.0` 是您正在安装的A作用 是三端到端的版本。
 +
 [role="tabbed-block"]
 ====
@@ -98,7 +98,7 @@ NOTE: 如果已为Trident创建命名空间、则`-create-namespace`参数不会
 在命令行上指定覆盖。
 
 |===
-例如、要更改的默认值 `debug`、运行以下命令 `--set` 命令位置 `100.2402.0` 是您要安装的Astra Trident版本：
+例如，要更改的默认值 `debug`，请运行以下命令， `--set` 其中 `100.2406.0` 是您正在安装的Asta Trdent版本：
 
 [listing]
 ----
