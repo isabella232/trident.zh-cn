@@ -150,7 +150,6 @@ WARNING: 在将安装了Astra三元数据的Kubernetes集群从1.24升级到1.25
 NOTE: NVMe/TCP需要RHEL 9或更高版本。
 
 * Ubuntu 22.04或更高版本(AMD64和ARM64)
-* Windows Server 2019 (AMD64)
 
 
 默认情况下， Astra Trident 在容器中运行，因此将在任何 Linux 工作程序上运行。但是，根据您使用的后端，这些员工需要能够使用标准 NFS 客户端或 iSCSI 启动程序挂载 Astra Trident 提供的卷。

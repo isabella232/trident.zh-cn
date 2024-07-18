@@ -96,7 +96,7 @@ summary: 在配置Azure NetApp Files 后端之前、您需要确保满足以下�
 要创建SMB卷、您必须具有：
 
 * 已配置Active Directory并连接到Azure NetApp Files。请参见 link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/create-active-directory-connections["Microsoft：创建和管理Azure NetApp Files 的Active Directory连接"^]。
-* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2022的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
 * 至少一个包含Active Directory凭据的Astra Trident密钥、以便Azure NetApp Files 可以向Active Directory进行身份验证。以生成密钥 `smbcreds`：
 +
 [listing]

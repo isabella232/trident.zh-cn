@@ -161,7 +161,7 @@ spec:
 .开始之前
 才能使用配置SMB卷 `ontap-nas` 驱动程序、则必须满足以下条件。
 
-* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2022的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
 * 至少一个包含Active Directory凭据的Astra Trident密钥。以生成密钥 `smbcreds`：
 +
 [listing]
