@@ -166,7 +166,6 @@
   <block id="0e6ac0d7fca9c59e6545312a071555b6" category="cell">相关驱动程序</block>
   <block id="ae6b2a160dd2fafdee385c348edee0c1" category="cell">Kubernetes 版本</block>
   <block id="7cfbb6f07899c8071ff38e69dca190e2" category="cell">FSType</block>
-  <block id="64b6d80cc167d5c657b60054dbe396ee" category="cell">ext4 ， ext3 ， xfs 等</block>
   <block id="7928a56d4874d982a06a59e3f30f6935" category="cell">块卷的文件系统类型</block>
   <block id="b1c94ca2fbc3e78fc30069c8d0f01680" category="cell">全部</block>
   <block id="2435c5eb0d842c13f635d4b1d6667a52" category="paragraph">Trident 安装程序包提供了几个示例存储类定义，可用于 ``sample-input/storage-class-* 。 yaml`` 中的 Trident 。删除 Kubernetes 存储类也会删除相应的 Trident 存储类。</block>
@@ -4197,4 +4196,5 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="bd97885496639b0f4498d4131198ac36" category="list-text">增加了对Windows Server 2022节点的支持。</block>
   <block id="f0d0d71ad406bc532f207cda7d40e0bf" category="list-text">一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2022的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。</block>
   <block id="de547bcab0e20f54ec4d5e95ba44b0b1" category="list-text">Windows Server 2022</block>
+  <block id="010e61d0b40eeb84b96a1321e8f0bab7" category="cell">ext4、ext3、xfs</block>
 </blocks>

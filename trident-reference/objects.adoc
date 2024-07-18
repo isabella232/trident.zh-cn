@@ -213,7 +213,7 @@ ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、solidfire-san�
 | 属性 | Type | 值 | Description | 相关驱动程序 | Kubernetes 版本 
 
 
-| FSType | string | ext4 ， ext3 ， xfs 等 | 块卷的文件系统类型 | solidfire-san、ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、ontap-san-economy. | 全部 
+| FSType | string | ext4、ext3、xfs | 块卷的文件系统类型 | solidfire-san、ontap-nas、ontap-nas-economy. ontap-nas-flexgroup、ontap-san、ontap-san-economy. | 全部 
 
 
 | 允许卷扩展 | boolean | true false | 启用或禁用对增加 PVC 大小的支持 | ontap-nas ， ontap-nas-economy. ontap-nas-flexgroup ， ontap-san ， ontap-san-economy. solidfire-san ， gcp-cvs ， azure-netapp-files | 1.11 及更高版本 
