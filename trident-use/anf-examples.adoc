@@ -170,13 +170,19 @@ NOTE: 有关网络功能的详细信息、请参见 link:https://docs.microsoft.
 [listing]
 ----
 ---
-version: 1
-storageDriverName: azure-netapp-files
-subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
-tenantID: 68e4f836-edc1-fake-bff9-b2d865ee56cf
-clientID: dd043f63-bf8e-fake-8076-8de91e5713aa
-clientSecret: SECRET
-location: eastus
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-anf-1
+  namespace: trident
+spec:
+  version: 1
+  storageDriverName: azure-netapp-files
+  subscriptionID: 9f87c765-4774-fake-ae98-a721add45451
+  tenantID: 68e4f836-edc1-fake-bff9-b2d865ee56cf
+  clientID: dd043f63-bf8e-fake-8076-8de91e5713aa
+  clientSecret: SECRET
+  location: eastus
 ----
 ====
 .AKS的受管身份

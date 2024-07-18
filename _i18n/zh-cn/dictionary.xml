@@ -4196,4 +4196,5 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="2dd7e74e47b2fea3bc13eda279fe6caa" category="list-text">如果您 <block ref="701383cb184d92daac13becc67e9c1be" category="inline-link-macro-rx"></block>使用，则可以使用<block ref="aa057bb2523e090dc6e3052f2e88741e" prefix=" " category="inline-code"></block> 一步升级。如果您未添加Helm repo或无法使用它进行升级：</block>
   <block id="bd97885496639b0f4498d4131198ac36" category="list-text">增加了对Windows Server 2022节点的支持。</block>
   <block id="f0d0d71ad406bc532f207cda7d40e0bf" category="list-text">一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2022的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。</block>
+  <block id="de547bcab0e20f54ec4d5e95ba44b0b1" category="list-text">Windows Server 2022</block>
 </blocks>
