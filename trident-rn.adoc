@@ -40,6 +40,7 @@ WARNING: 安装程序 zip 文件中提供的 `tridentctl` 二进制文件是经�
 
 ==== Kubernetes
 
+* 增加了对Kubnetes 1.30的支持。
 * 增加了A作用，Asta Tident DemonSet可以在启动时清理僵尸装载和剩余跟踪文件link:https://github.com/NetApp/trident/issues/883["问题描述#883"]()。
 * 添加了用于动态导入LVM卷的PVC标注 `trident.netapp.io/luksEncryption`link:https://github.com/NetApp/trident/issues/849["问题描述#849"]()。
 * 为ANF驱动程序添加了拓扑感知功能。
