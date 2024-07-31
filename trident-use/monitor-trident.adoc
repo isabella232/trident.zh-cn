@@ -146,7 +146,7 @@ kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes * 100
 * Astra Trident 还可以通过 `tridentctl send AutoSupport` 按需将容器日志发送到 NetApp 支持部门。您需要触发 Astra Trident 以上传其日志。在提交日志之前，您应接受 NetApp 的https://www.netapp.com/company/legal/privacy-policy/["隐私政策"^]。
 * 除非另有说明，否则 Astra Trident 会从过去 24 小时提取日志。
 * 您可以使用指定日志保留时间范围 `--since` 标志。例如： `tridentctl send autosupport --since=1h`。此信息通过收集和发送 `trident-autosupport` 与Astra Trident一起安装的容器。您可以从获取容器映像 https://hub.docker.com/r/netapp/trident-autosupport["Trident AutoSupport"^]。
-* Trident AutoSupport 不会收集或传输个人身份信息（ PiII ）或个人信息。它附带了 https://www.netapp.com/us/media/enduser-license-agreement-worldwide.pdf["EULA"^] 这不适用于 Trident 容器映像本身。您可以详细了解 NetApp 对数据安全和信任的承诺 https://www.netapp.com/us/company/trust-center/index.aspx["此处"^]。
+* Trident AutoSupport 不会收集或传输个人身份信息（ PiII ）或个人信息。它附带的 https://www.netapp.com/us/media/enduser-license-agreement-worldwide.pdf["EULA"^] 不适用于三端存储容器映像本身。您可以详细了解NetApp对数据安全和信任的承诺 https://www.netapp.com/pdf.html?item=/media/14114-enduserlicenseagreementworldwidepdf.pdf["此处"^]。
 
 
 Astra Trident 发送的有效负载示例如下：

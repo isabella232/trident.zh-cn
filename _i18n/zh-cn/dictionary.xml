@@ -354,7 +354,6 @@
   <block id="65840df7365892d2abe1280cb6cdb1d2" category="paragraph">下面列出了一些最佳实践文档。搜索<block ref="4caccef7312f2c398bfbb419629c1a78" category="inline-link-rx"></block> 对于最新版本。</block>
   <block id="d911b17f4f4cdcca62a04ad77aa9403d" category="paragraph">* ONTAP *</block>
   <block id="f9dd52d280693dc59e53b6e1fb7bd801" category="inline-link">NFS 最佳实践和实施指南</block>
-  <block id="40bb23d54df7f59219c18f15a346d9e5" category="list-text"><block ref="40bb23d54df7f59219c18f15a346d9e5" category="inline-link-rx"></block></block>
   <block id="a76193f5d9397d9c49ca283a20ccf649" category="inline-link">《 SAN 管理指南》</block>
   <block id="5bc9b097037d45aff954bf9bd632d4a4" category="list-text"><block ref="c745f55eb0c9991966e63f0608541bb1" category="inline-link-rx"></block> （对于 iSCSI ）</block>
   <block id="5ca34d6ffc2a555b689542e3fbeeb7af" category="inline-link">适用于 RHEL 的 iSCSI 快速配置</block>
@@ -369,15 +368,11 @@
   <block id="9d0da73b02655dd7861121905db229e2" category="list-text"><block ref="9d0da73b02655dd7861121905db229e2" category="inline-link-rx"></block></block>
   <block id="9aaca8cfd79770bc4944ccc477e37141" category="paragraph">* 应用程序最佳实践信息 *</block>
   <block id="27a5e02bc2fadee43ace94805739a0c8" category="inline-link">基于 ONTAP 的 MySQL 最佳实践</block>
-  <block id="40d2eaf9adabe99a601c57eabf49e4d3" category="list-text"><block ref="40d2eaf9adabe99a601c57eabf49e4d3" category="inline-link-rx"></block></block>
   <block id="17efdd7d210511985714be299d595292" category="inline-link">基于 SolidFire 的 MySQL 最佳实践</block>
   <block id="d03b53d8ec563c37e16ee8c900a75b96" category="list-text"><block ref="d03b53d8ec563c37e16ee8c900a75b96" category="inline-link-rx"></block></block>
   <block id="3aefe1a041af945f1fe8673bf775057b" category="inline-link">NetApp SolidFire 和 Cassandra</block>
-  <block id="7e2b19f6f6bd1332efe1f7a698984670" category="list-text"><block ref="7e2b19f6f6bd1332efe1f7a698984670" category="inline-link-rx"></block></block>
   <block id="6e580111d3a8c12cdcd9522a4d3484c6" category="inline-link">SolidFire 上的 Oracle 最佳实践</block>
-  <block id="6db96715cefe9c4950ef722865494128" category="list-text"><block ref="6db96715cefe9c4950ef722865494128" category="inline-link-rx"></block></block>
   <block id="6448cf37496207be126495e5b05851de" category="inline-link">SolidFire 上的 PostgreSQL 最佳实践</block>
-  <block id="eb2c92a9d2d39fa7191d6e84d5c33bb5" category="list-text"><block ref="eb2c92a9d2d39fa7191d6e84d5c33bb5" category="inline-link-rx"></block></block>
   <block id="b062996d6ca590abe798d3db75561f79" category="paragraph">并非所有应用程序都有特定的准则，与您的 NetApp 团队合作并使用非常重要<block ref="4caccef7312f2c398bfbb419629c1a78" category="inline-link-rx"></block> 以查找最新文档。</block>
   <block id="748c130a6179b02d614cf9a027294302" category="doc">集成 Astra Trident</block>
   <block id="1fdc23c8579638d050b7b219da011f2b" category="section-title">驱动程序选择和部署</block>
@@ -1290,7 +1285,6 @@
   <block id="63b95d84cf55d169b2592f3ac621055f" category="list-text">除非另有说明，否则 Astra Trident 会从过去 24 小时提取日志。</block>
   <block id="5224919a4ae5ccf610fb0ee74e4e7a94" category="inline-link">Trident AutoSupport</block>
   <block id="53084cad3d11df800502598c11e2d10b" category="inline-link">EULA</block>
-  <block id="b9a52e8d1e9b14b8825c6ea01c0ce6d6" category="list-text">Trident AutoSupport 不会收集或传输个人身份信息（ PiII ）或个人信息。它附带了<block ref="173a360b412944768c2ab13e6c8fd1c7" category="inline-link-rx"></block> 这不适用于 Trident 容器映像本身。您可以详细了解 NetApp 对数据安全和信任的承诺<block ref="8470ff535916bda3f4ea4723647a7135" category="inline-link-rx"></block>。</block>
   <block id="89f0f2832f60f480805faf638848c5b7" category="paragraph">Astra Trident 发送的有效负载示例如下：</block>
   <block id="d2ec86f126f845e79aff07e70bf89472" category="list-text">AutoSupport 消息将发送到 NetApp 的 AutoSupport 端点。如果使用私有注册表存储容器映像，则可以使用 ` -image-regRegistry` 标志。</block>
   <block id="86c5a11fba83815412aec79f67f2d276" category="list-text">您也可以通过生成安装 YAML 文件来配置代理 URL 。为此，可以使用 `tridentctl install -generate-custom-yaml` 创建 YAML 文件，并在 `trident dedeployment.yaml` 中为 `trident autosupport` 容器添加 ` -proxy-url` 参数。</block>
@@ -2113,7 +2107,6 @@
   <block id="f1cfea5f1444de607dfa549b3aa57010" category="inline-link-macro">在命名空间之间共享卷：对跨命名空间卷访问说Hello</block>
   <block id="2780f690b7670efc296ac19ef3029d0c" category="list-text">请访问 <block ref="b0d29f1b2abb2cc552e4cc47177582ef" category="inline-link-macro-rx"></block>。</block>
   <block id="96e1384807331548bf745acde0fe1b73" category="inline-link-macro">NetAppTV</block>
-  <block id="414883f8b6ef58c7b3b37e66fbfd482f" category="list-text">观看演示 <block ref="1945a2d4809e81668f29485f6ae1bbc8" category="inline-link-macro-rx"></block>。</block>
   <block id="bd2cc8575fe69c7f775292759380c838" category="inline-link-macro">bundle_pre_1_25.yaml</block>
   <block id="5a02ebff4889c2de0379a0fb10bed282" category="inline-link-macro">bundle_post_1_25.yaml</block>
   <block id="d59db7846bd10b6d60d21543df9faa9e" category="paragraph-title">您需要的内容</block>
@@ -4198,4 +4191,11 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="88a2f4201bf0a82365ef81af5f2afeac" category="cell">v1.24.0、v1.25.0、v1.26.0、v1.27.0、v1.28.0、 v1.29.0、v1.30.0</block>
   <block id="b443358b172ce4f75319c7828483fb8b" category="list-text">现在、Asta三端磁盘支持Kubbernetes 1.30。在升级Kubernetes之前升级Trident。</block>
   <block id="e422e290c66eca7f882976f830b781b4" category="list-text">增加了对Kubnetes 1.30的支持。</block>
+  <block id="190dbae19c88b1e68bf03f7783c5d5d1" category="list-text"><block ref="190dbae19c88b1e68bf03f7783c5d5d1" category="inline-link-rx"></block></block>
+  <block id="430c6bcb8516befc45fb8173b0ca4e1f" category="list-text"><block ref="430c6bcb8516befc45fb8173b0ca4e1f" category="inline-link-rx"></block></block>
+  <block id="d7d36869f2f4aa1eb99a10008e153f20" category="list-text"><block ref="d7d36869f2f4aa1eb99a10008e153f20" category="inline-link-rx"></block></block>
+  <block id="f8b52d963f246a75dc6c8b78c954a4fd" category="list-text"><block ref="f8b52d963f246a75dc6c8b78c954a4fd" category="inline-link-rx"></block></block>
+  <block id="b6780b7b2561935ff862fe7126cde751" category="list-text"><block ref="b6780b7b2561935ff862fe7126cde751" category="inline-link-rx"></block></block>
+  <block id="b9a641d903e611a87a5e68ac7fdb0b84" category="list-text">Trident AutoSupport 不会收集或传输个人身份信息（ PiII ）或个人信息。它附带的<block ref="173a360b412944768c2ab13e6c8fd1c7" category="inline-link-rx"></block> 不适用于三端存储容器映像本身。您可以详细了解NetApp对数据安全和信任的承诺<block ref="d3cc55401bc8303e01c6b0c43ba0733f" category="inline-link-rx"></block>。</block>
+  <block id="5ff83dbc70e496ea22b38ea61bb69f05" category="list-text">观看上的演示 <block ref="c27441bbbe62adf51ae6ecec41fde8bd" category="inline-link-macro-rx"></block>。</block>
 </blocks>

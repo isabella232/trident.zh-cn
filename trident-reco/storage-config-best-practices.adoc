@@ -282,7 +282,7 @@ NOTE: 具有增强型 CSI 配置程序的 Trident 支持使用 CHAP 身份验证
 
 * ONTAP *
 
-* https://www.netapp.com/us/media/tr-4067.pdf["NFS 最佳实践和实施指南"^]
+* https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["NFS 最佳实践和实施指南"^]
 * http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["《 SAN 管理指南》"^] （对于 iSCSI ）
 * http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-rhel-cg/home.html["适用于 RHEL 的 iSCSI 快速配置"^]
 
@@ -300,11 +300,11 @@ NOTE: 具有增强型 CSI 配置程序的 Trident 支持使用 CHAP 身份验证
 
 * 应用程序最佳实践信息 *
 
-* https://www.netapp.com/us/media/tr-4722.pdf["基于 ONTAP 的 MySQL 最佳实践"^]
+* https://docs.netapp.com/us-en/ontap-apps-dbs/mysql/mysql-overview.html["基于 ONTAP 的 MySQL 最佳实践"^]
 * https://www.netapp.com/pdf.html?item=/media/10510-tr-4605.pdf["基于 SolidFire 的 MySQL 最佳实践"^]
-* http://www.netapp.com/us/media/tr-4635.pdf["NetApp SolidFire 和 Cassandra"^]
-* http://www.netapp.com/us/media/tr-4606.pdf["SolidFire 上的 Oracle 最佳实践"^]
-* http://www.netapp.com/us/media/tr-4610.pdf["SolidFire 上的 PostgreSQL 最佳实践"^]
+* https://www.netapp.com/pdf.html?item=/media/10513-tr-4635pdf.pdf["NetApp SolidFire 和 Cassandra"^]
+* https://www.netapp.com/pdf.html?item=/media/10511-tr4606pdf.pdf["SolidFire 上的 Oracle 最佳实践"^]
+* https://www.netapp.com/pdf.html?item=/media/10512-tr-4610pdf.pdf["SolidFire 上的 PostgreSQL 最佳实践"^]
 
 
 并非所有应用程序都有特定的准则，与您的 NetApp 团队合作并使用非常重要 https://www.netapp.com/search/["NetApp 库"^] 以查找最新文档。
