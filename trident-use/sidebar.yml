@@ -40,10 +40,16 @@ entries:
     entries:
     - title: 概述
       url: "/trident-use/trident-fsx.html"
-    - title: 集成适用于ONTAP 的Amazon FSX
-      url: "/trident-use/trident-fsx-prep.html"
-    - title: 配置选项和示例
-      url: "/trident-use/trident-fsx-examples.html"
+    - title: 创建IAM角色和AWS密钥
+      url: "/trident-use/trident-fsx-iam-role.html"
+    - title: 安装 Astra Trident
+      url: "/trident-use/trident-fsx-install-trident.html"
+    - title: 配置存储后端
+      url: "/trident-use/trident-fsx-storage-backend.html"
+    - title: 配置存储类和PVC
+      url: "/trident-use/trident-fsx-storageclass-pvc.html"
+    - title: 部署示例应用程序
+      url: "/trident-use/trident-fsx-deploy-sample.html"
     - title: 在EKS集群上配置Asta Trident EKS加载项
       url: "/trident-use/trident-aws-addon.html"
   - title: 使用 kubectl 创建后端

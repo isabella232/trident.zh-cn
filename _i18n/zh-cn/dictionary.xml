@@ -1114,17 +1114,12 @@
   <block id="ff27e75635c1ff1e88fbc656b16e56ce" category="section-title">了解 Astra Trident</block>
   <block id="483a5da192f46e3cfe8391d3ef234fc4" category="inline-link-macro">常见问题解答</block>
   <block id="486632f7d2196e772b742db4a4a0ad7c" category="inline-link-macro">部署 Astra Trident</block>
-  <block id="79a4618bb191cb293c330f8189531a13" category="list-text">`ontap-san` ：配置的每个 PV 都是其自己的 Amazon FSX for NetApp ONTAP 卷中的一个 LUN 。</block>
   <block id="b8f98ceeb9b158e8af3527fce91e9e57" category="list-text">`ontap-san-economi` ：为 NetApp ONTAP 卷配置的每个 PV 都是一个 LUN ，每个 Amazon FSX 具有可配置的 LUN 数量。</block>
-  <block id="a5bc2c9e7628ac6c73838f9fea0e6ed6" category="list-text">`ONONTAP NAS` ：配置的每个 PV 都是适用于 NetApp ONTAP 的完整 Amazon FSX 卷。</block>
   <block id="94a834f420b7c21f3a1053e6dc705a31" category="list-text">`ontap-nas-economy.` ：配置的每个 PV 都是一个 qtree ，对于 NetApp ONTAP 卷，每个 Amazon FSx 的 qtree 数量是可配置的。</block>
   <block id="e42b07a9f050ef51ea1211004a50f223" category="list-text">`ontap-nas-flexgroup` ：配置的每个 PV 都是适用于 NetApp ONTAP FlexGroup 卷的完整 Amazon FSX 。</block>
   <block id="ed2536bee60113131cf25b2de3ec8734" category="list-text">基于证书： Astra Trident 将使用 SVM 上安装的证书与 FSX 文件系统上的 SVM 进行通信。</block>
   <block id="80d13d3dbe137e8fb646193f275eceeb" category="list-text">已安装 `kubectl` 的现有 Amazon EKS 集群或自管理 Kubernetes 集群。</block>
   <block id="fe914214000491758957f04647f8da36" category="inline-link">Amazon Machine 映像</block>
-  <block id="3e25473814d436a2ebac91120e147b0b" category="admonition">您可以从可以访问文件系统的任何位置使用 SSH 登录到文件系统（例如，安装证书）。使用 `fsxadmin` 用户，创建文件系统时配置的密码以及 `AWS FSx describe 文件系统` 中的管理 DNS 名称。</block>
-  <block id="860958fe641e0edbd80fe522c36d0560" category="list-text">使用您的证书和管理 LIF 的 DNS 名称创建后端文件，如以下示例所示：</block>
-  <block id="1584837635038d443115ce4eeb3b33e4" category="paragraph">有关创建后端的信息，请参见以下链接：</block>
   <block id="6f95a39ae3c518928ed5e4681a0fd49b" category="inline-link-macro">使用 ONTAP NAS 驱动程序配置后端</block>
   <block id="cc788b7e72b2a734dd0985bd1e0e9fe3" category="inline-link">Amazon FSX for NetApp ONTAP 文档</block>
   <block id="fd570b75466e2daca21a032e6fd5981c" category="list-text"><block ref="fd570b75466e2daca21a032e6fd5981c" category="inline-link-rx"></block></block>
@@ -1754,7 +1749,6 @@
   <block id="086e6c16e3fe8e13c336612ef636aa02" category="sidebar">Astra Trident</block>
   <block id="5a333b18a215ecfd4457ba0e1732654b" category="section-title">Trident是否可以在配置了负载共享镜像的SVM上配置卷？</block>
   <block id="0e7629426b9d7596800cd5d72f558a7f" category="paragraph">可以为通过NFS提供数据的SVM的根卷创建负载共享镜像。ONTAP 会自动为Trident创建的卷更新负载共享镜像。这可能会导致卷挂载延迟。使用Trident创建多个卷时、配置卷取决于ONTAP 更新负载共享镜像。</block>
-  <block id="d5d195efeafde24a6a22effd3dd39339" category="list-text">基于凭据：您可以使用文件系统的 `fsxadmin` 用户或为 SVM 配置的 `vsadmin` 用户。</block>
   <block id="7d3f46589c43a64fd040e4f0e0691a86" category="inline-link-macro">Helm图表</block>
   <block id="c9ffe59301b588bbc33bb004cfd312ee" category="section-title">部署Trident操作员并使用Helm安装Astra Trident</block>
   <block id="1ea1b160621872df5909653ebde1bf7f" category="paragraph">您可以更新现有后端、以便在基于凭据的方法和基于证书的方法之间移动。但是、一次仅支持一种身份验证方法。要切换到其他身份验证方法、必须从后端配置中删除现有方法。</block>
@@ -1920,8 +1914,6 @@
   <block id="8f5cc6430613f1c12f36965050bb7197" category="sidebar">不和</block>
   <block id="c53358822905bb04d312060d1cb568af" category="inline-link">Astra Trident 22.04</block>
   <block id="fdd380631ba8063e7b8f842282a01e40" category="list-text"><block ref="fdd380631ba8063e7b8f842282a01e40" category="inline-link-rx"></block></block>
-  <block id="ccb5eb98656346cbfa0b207e7d363bef" category="inline-link-macro">部署方法</block>
-  <block id="e2bcf5dc117f31569d413bd9b7698bf2" category="list-text">使用其中一种部署Astra Trident <block ref="71cad0f2a077aa26894105299bf47b53" category="inline-link-macro-rx"></block>。</block>
   <block id="26798b67dd2e5b4c8d4f03c4c16170c7" category="list-text"><block ref="26798b67dd2e5b4c8d4f03c4c16170c7" category="inline-link-macro-rx"></block></block>
   <block id="85d7b73826973ab07bfe78af69bd85f4" category="list-text"><block ref="85d7b73826973ab07bfe78af69bd85f4" category="inline-link-macro-rx"></block></block>
   <block id="a1142049a82a11e90102d655bb7e234d" category="inline-link-macro">GitHub上的_assets_部分</block>
@@ -2442,7 +2434,6 @@
   <block id="867730e819742e7e493081f160c42c61" category="paragraph">您可以使用以下驱动程序将Astra Trident与适用于NetApp ONTAP 的Amazon FSx集成：</block>
   <block id="676f29c1b0b3626bc959bdc6ebc8953b" category="paragraph">Astra Trident提供两种身份验证模式。</block>
   <block id="2dc4717be6b9cdf676df17aa86465f02" category="admonition">Astra Trident应作为运行<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> SVM用户或具有相同角色的其他名称的用户。适用于NetApp ONTAP 的Amazon FSX具有<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block> 有限更换ONTAP 的用户<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> 集群用户。我们强烈建议使用<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 使用Astra Trident。</block>
-  <block id="43c502a16d6b21dc6eb26a2067154e11" category="paragraph">您可以更新后端以在基于凭据的方法和基于证书的方法之间移动。但是、如果您尝试提供*凭据和证书*、则后端创建将失败。要切换到其他身份验证方法、必须从后端配置中删除现有方法。</block>
   <block id="994eaa47aad78cae857818e1655e2800" category="paragraph">有关启用身份验证的详细信息、请参阅适用于您的驱动程序类型的身份验证：</block>
   <block id="57e00ef3eabad47fc79d0ef1319f989c" category="inline-link-macro">ONTAP NAS身份验证</block>
   <block id="840db27e4fe9967e908b8b101ca72198" category="list-text"><block ref="840db27e4fe9967e908b8b101ca72198" category="inline-link-macro-rx"></block></block>
@@ -2504,7 +2495,6 @@
   <block id="d1f5fcc31a1c5bb592600c9f986af71c" category="example-title">示例2：存储池配置</block>
   <block id="879b7d1da5135e7d94358584a7245e33" category="paragraph">此示例后端配置使用<block ref="c614017642b6cfd9e6a25c7df122d917" prefix=" " category="inline-code"></block> 配置存储池。</block>
   <block id="4a9c2b6feb83a77f2806513226f33d05" category="summary">您可以将适用于NetApp ONTAP 的Amazon FSX文件系统与Astra Trident集成、以确保在Amazon Elastic Kubernetes Service (EKS)中运行的Kubernetes集群可以配置由ONTAP 提供支持的块和文件永久性卷。</block>
-  <block id="8373fe009c8ffdbdda12cfedf744172c" category="doc">集成适用于NetApp ONTAP 的Amazon FSX</block>
   <block id="0629fb104936d0fb60cc736b6cb01caa" category="inline-link-macro">Astra Trident 要求</block>
   <block id="241f2511660937482446bd41efeac638" category="paragraph">此外 <block ref="1615f1c495dc4acc1bb5bea393c7532b" category="inline-link-macro-rx"></block>要将适用于ONTAP 的FSx与Astra Trident集成、您需要：</block>
   <block id="288b1cbb87d08c32abf3084c28636e5c" category="inline-link-macro">NFS或iSCSI</block>
@@ -2512,11 +2502,6 @@
   <block id="d0341760d873a30f82a310a6eab0ba9c" category="admonition">确保按照Amazon Linux和Ubuntu所需的节点准备步骤进行操作<block ref="70013ee128d5437b3d9579d66ece4066" category="inline-link-rx"></block> （ AMIS ），具体取决于您的 EKS AMI 类型。</block>
   <block id="8df63c807f3c78b6087ad0d6ee434fb2" category="list-text">至少一个包含Active Directory凭据的Astra Trident密钥。以生成密钥<block ref="e47a193687dde960f6b6f80d394142a3" prefix=" " category="inline-code"></block>：</block>
   <block id="9303b8f40cf82f5e37702c7a6387e725" category="section-title">ONTAP SAN和NAS驱动程序集成</block>
-  <block id="83d1f963158732d2aedc5119f242bcff" category="admonition">如果要为SMB卷配置、则必须读取 <block ref="688177e6b45c5d27a545463079c58d82" category="inline-xref-macro-rx"></block> 创建后端之前。</block>
-  <block id="c8aecc44e726368f30c6757e9ab5b64b" category="list-text">收集SVM管理LIF DNS名称。例如、使用AWS命令行界面查找<block ref="a3c3b30ab91f2501f21058ee87f27a4f" prefix=" " category="inline-code"></block> 下的条目<block ref="b8724da75fb917e992576b17378e66b3" prefix=" " category="inline-code"></block> -&gt;<block ref="fe4dbcab9b910577e5035e97ac068dae" prefix=" " category="inline-code"></block> 运行以下命令后：</block>
-  <block id="ed625a73c7dbbe8b3d51e643adb7ddfd" category="inline-link-macro">NAS后端身份验证</block>
-  <block id="cac491bba67bb09dddb8fa935c0ed9d6" category="inline-link-macro">SAN后端身份验证</block>
-  <block id="2c4646cfa545b727f14a7ee6560b41b8" category="list-text">创建和安装证书 <block ref="e0dfdc1f3574886f1078f7699f0f57f0" category="inline-link-macro-rx"></block> 或 <block ref="2ba00bd5ff04f92ed7b3b69e76174936" category="inline-link-macro-rx"></block>。</block>
   <block id="fc4e16be02eac62a40d8ba5714cbeda1" category="section-title">准备配置SMB卷</block>
   <block id="fbf3304d2358758ea71475804b2cbeae" category="paragraph">您可以使用配置SMB卷<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 驱动程序。完成前 <block ref="24f26185e00986318dc562523d4edbf6" category="inline-xref-macro-rx"></block> 完成以下步骤。</block>
   <block id="d98f239eeb5789a80cb4b247e5be144d" category="inline-link-macro">Microsoft管理控制台</block>
@@ -2619,7 +2604,6 @@
   <block id="301ebdf8067a213d5a55c65fbb488290" category="sidebar">安全建议</block>
   <block id="58834b137fd6fa7a9ca23468a5c91fd6" category="sidebar">准备配置</block>
   <block id="6fc0b7515ecca271c88eae4a685da613" category="sidebar">NetApp HCI 或SolidFire</block>
-  <block id="60be48bb4b3314965bf50e88e7ae728c" category="sidebar">集成适用于ONTAP 的Amazon FSX</block>
   <block id="ea3d51fb2b16acb7cb260f25bc8965b1" category="sidebar">Astra Trident 是由 NetApp 维护的开源存储配置程序和流程编排程序。通过它，您可以为 Docker 和 Kubernetes 管理的容器化应用程序创建存储卷。</block>
   <block id="e267c2490c7d73d0ffa909b77267cfaf" category="inline-link-macro">Astra Control复制前提条件</block>
   <block id="df7dec428425115b59101028bbebe58c" category="list-text">请勿使用<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block> 预测数据保护、灾难恢复或移动性的需求。</block>
@@ -3949,19 +3933,10 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="f9f7341f4c78b6ec6335f739d088a84d" category="list-text">在Astra Drident 24.02之前的版本中、在启用了自动备份的Amazon FSx文件系统上创建的卷无法被Drident删除。要在Asta三端到高24.02或更高版本中阻止此问题描述、请指定<block ref="d731d2fecb66f9c4a30253bd316a220f" prefix=" " category="inline-code"></block>、AWS<block ref="1e9c0fd1beef5ff8ed3bef2ae3b7e560" prefix=" " category="inline-code"></block>、AWS<block ref="9af4d8381781baccb0f915e554f8798d" prefix=" " category="inline-code"></block>和AWS<block ref="ce656850400574e9f9cffb285ee8abc0" prefix=" " category="inline-code"></block> 在AWS FSx for ONTAP的后端配置文件中。</block>
   <block id="673fab3e95b96286c30129d6bbe2aaf8" category="admonition">如果要为Asta Trident指定IAM角色、则可以省略指定<block ref="1e9c0fd1beef5ff8ed3bef2ae3b7e560" prefix=" " category="inline-code"></block>，<block ref="c9ff119073ea2567730fb42e3a4fe805" prefix=" " category="inline-code"></block>，和<block ref="ce656850400574e9f9cffb285ee8abc0" prefix=" " category="inline-code"></block> 将字段显式添加到Asta三端。有关详细信息，请参见 <block ref="d3e98810edf44af02b30486ed13bd043" category="inline-link-macro-rx"></block>。</block>
   <block id="fa4eb54eedf6fea69ec183c4e2199a4d" category="paragraph">有关驱动程序详细信息、请参见 <block ref="4093b6d0ce8cf414637a02002d2b0376" category="inline-link-macro-rx"></block> 和 <block ref="276422a40a581e9842304216329765d5" category="inline-link-macro-rx"></block>。</block>
-  <block id="ae6017ee96edc081a86a61b92babc4b1" category="section-title">适用于EKS的云身份</block>
-  <block id="ab60fe09519948e192fd900c463d67cb" category="paragraph">通过云身份、Kubnetes Pod可以通过作为AWS IAM角色进行身份验证来访问AWS资源、而不是提供显式AWS凭据。</block>
-  <block id="6e2da9a1823323be02d30873748e0b86" category="paragraph">要在AWS中利用云身份、您必须：</block>
-  <block id="8ca805ac27cfdb3ffd1ace2a3c6feb43" category="list-text">使用EKS部署的Kubenetes集群</block>
-  <block id="ac8abfb7e68dbffd71a69e74adb7558c" category="list-text">已安装Asta三项功能、其中包括<block ref="d19f2c0377f3ed7cab9377cf066cb7ef" prefix=" " category="inline-code"></block> 指定<block ref="907695ffaef2806fea589c7d8d044679" prefix=" " category="inline-code"></block> 和<block ref="89abe9fddbe3cf0f9bcd7779fe4aed69" prefix=" " category="inline-code"></block> 指定AWS IAM角色。</block>
-  <block id="bb933c6c21a0e5af4ff3ea8e1fc8a0b8" category="paragraph">要使用三端运算符安装Astra三端、请编辑<block ref="244895464fd1d6c7ff5a2044c324c0fc" prefix=" " category="inline-code"></block> 设置<block ref="d19f2c0377f3ed7cab9377cf066cb7ef" prefix=" " category="inline-code"></block> to<block ref="907695ffaef2806fea589c7d8d044679" prefix=" " category="inline-code"></block> 并设置<block ref="89abe9fddbe3cf0f9bcd7779fe4aed69" prefix=" " category="inline-code"></block> 分配给AWS IAM角色。</block>
   <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="paragraph">例如：</block>
   <block id="400e51795e42b1bfc94a14aeeeacc04a" category="paragraph">使用以下环境变量设置*云提供程序*和*云身份*标志的值：</block>
-  <block id="b7f7e3a5e64e4cc7db709127d315fbd8" category="paragraph"><block ref="88bff0cbce979a98aecf9182f290f239" prefix="" category="inline-code"></block><block ref="883773d61cc05d438f89f3e98de2ebd2" prefix=" " category="inline-code"></block></block>
-  <block id="fc6a5871b4754f18186f96b19e16f74a" category="paragraph">以下示例将安装Asta Dent和Sets<block ref="d19f2c0377f3ed7cab9377cf066cb7ef" prefix=" " category="inline-code"></block> to<block ref="4847e034bb0a55fcbc8a3380d6a3ab80" prefix=" " category="inline-code"></block> 使用环境变量<block ref="e7b51407a2bfaa34b58afce0107e9a5f" prefix=" " category="inline-code"></block> 并使用环境变量设置"云 标识"<block ref="c9d280b28993d1d105c3fbafb5868a15" prefix=" " category="inline-code"></block>：</block>
   <block id="3fc26750f347130146b4c60fe1b7260b" category="paragraph">以下示例将安装Asta Dent并设置<block ref="e33bb4eb32023da4a8ea7a1ba6927067" prefix=" " category="inline-code"></block> 标记为<block ref="e7b51407a2bfaa34b58afce0107e9a5f" prefix=" " category="inline-code"></block>，和<block ref="c5af480af77c330e04a1fce1f6c2b03a" prefix=" " category="inline-code"></block> to<block ref="c9d280b28993d1d105c3fbafb5868a15" prefix=" " category="inline-code"></block>：</block>
   <block id="f7be25ccd026a013371b7c4961ced8c2" category="paragraph">Astra Control可为使用创建的卷提供无缝保护、灾难恢复和移动性(在Kubernetes集群之间移动卷)<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block>，<block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block>，和<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block> 驱动程序。请参见 <block ref="dfc981ac97be73172a3119f3b831eaf8" category="inline-link-macro-rx"></block> 了解详细信息。</block>
-  <block id="95c49e5db7ea0d365b3b19d3c6b0a9de" category="paragraph">或者、您也可以使用存储在AWS机密管理器中的SVM凭据(用户名和密码)创建后端文件、如以下示例所示：</block>
   <block id="9cd536ab58110b200219128418a9f72f" category="paragraph">以下示例将安装Asta Dent并设置<block ref="d19f2c0377f3ed7cab9377cf066cb7ef" prefix=" " category="inline-code"></block> 标记为<block ref="3a580f142203677f1f0bc30898f63f53" prefix=" " category="inline-code"></block>：</block>
   <block id="c5ac38b2b362dbfd1b55bdb2b7e9375b" category="list-text">在AKS Kubelnetes集群上配置的工作负载身份和oidc-Issuer</block>
   <block id="f8f0f3510f8f641d94893bdecf4aab08" category="list-text">已安装Asta三项功能、其中包括<block ref="d19f2c0377f3ed7cab9377cf066cb7ef" prefix=" " category="inline-code"></block> 以指定<block ref="71d36c46e340ad9137b2691e267f5ecd" prefix=" " category="inline-code"></block> 和<block ref="89abe9fddbe3cf0f9bcd7779fe4aed69" prefix=" " category="inline-code"></block> 指定工作负载标识</block>
@@ -4198,4 +4173,101 @@ NVMe/TCP不支持使用此类数据加密。</block>
   <block id="b6780b7b2561935ff862fe7126cde751" category="list-text"><block ref="b6780b7b2561935ff862fe7126cde751" category="inline-link-rx"></block></block>
   <block id="b9a641d903e611a87a5e68ac7fdb0b84" category="list-text">Trident AutoSupport 不会收集或传输个人身份信息（ PiII ）或个人信息。它附带的<block ref="173a360b412944768c2ab13e6c8fd1c7" category="inline-link-rx"></block> 不适用于三端存储容器映像本身。您可以详细了解NetApp对数据安全和信任的承诺<block ref="d3cc55401bc8303e01c6b0c43ba0733f" category="inline-link-rx"></block>。</block>
   <block id="5ff83dbc70e496ea22b38ea61bb69f05" category="list-text">观看上的演示 <block ref="c27441bbbe62adf51ae6ecec41fde8bd" category="inline-link-macro-rx"></block>。</block>
+  <block id="533a7baf9026dddae6baef47ea605b08" category="doc">部署示例应用程序</block>
+  <block id="fae865e1123e24de7eca1790ec73dc32" category="paragraph">部署示例应用程序。</block>
+  <block id="c09ee63e688125cf9517a66bb5a0a5a6" category="paragraph">以下示例显示了将PVC连接到POD的基本配置：*基本配置*：</block>
+  <block id="f477db05998ad8420119de646e2ff290" category="doc">创建IAM角色和AWS机密</block>
+  <block id="98c3c9acd444d11890d48438db3c165e" category="paragraph">您可以通过作为AWS IAM角色进行身份验证(而不是提供显式AWS凭据)来配置Kubbernetes Pod以访问AWS资源。</block>
+  <block id="3f566b5ded6e7ac8c26dd3c07a2ea056" category="admonition">要使用AWS IAM角色进行身份验证、您必须使用EKS部署Kubenetes集群。</block>
+  <block id="3a218e8961578d046aa713039445902b" category="section-title">创建AWS机密管理器密钥</block>
+  <block id="23608ecae11e8bf8dd19cef208ecf80f" category="paragraph">以下示例将创建一个AWS机密管理器密钥、用于存储ASRA Trident CSI凭据：</block>
+  <block id="6a73f77169c507b4f8a8e33a9180355b" category="paragraph"><block ref="0d1bf1201bf9db7aed15db6de2873c7a" prefix="" category="inline-code"></block></block>
+  <block id="3926fdac6344d565c95f560468946335" category="section-title">创建IAM策略</block>
+  <block id="78edc229f8df1c5e0840f6469bc28454" category="paragraph">以下示例将使用AWS命令行界面创建IAM策略：</block>
+  <block id="96cc21e053acccb273475c8c6744b18e" category="paragraph"><block ref="21a8f9d92c42f5ae09a1d5ac91dbb3c5" prefix="" category="inline-code"></block></block>
+  <block id="e76476464ce5cdc6a38411be3291bbcc" category="paragraph">*策略JSON文件*：</block>
+  <block id="ecfd2948482294ce3f914902915e5237" category="section-title">服务帐户的创建和IAM角色</block>
+  <block id="1cabe4f570d3f442a5def398488077df" category="paragraph">以下示例将在EKS中为服务帐户创建IAM角色：</block>
+  <block id="b16d284f56650120181b0d48c31a9a02" category="paragraph"><block ref="02068ae6546add80470610cbacdd6443" prefix="" category="inline-code"></block></block>
+  <block id="61ac31e67ac41a505c5226920f11c69b" category="paragraph">Asta三端存储简化了Kubelnetes中适用于NetApp ONTAP存储的Amazon FSx管理、使开发人员和管理员能够专注于应用程序部署。</block>
+  <block id="d80675b866d3a3d3f54103565f996f91" category="paragraph">您可以使用以下方法之一安装Astra Trident：</block>
+  <block id="77f6e3db9b70538186091595d9c8c9e8" category="list-text">EKS附加项</block>
+  <block id="821a0be249c7e2b3f10ce8df4b75e1e0" category="section-title">通过Helm安装Asta Trident</block>
+  <block id="954c98092999a4d3abfbd0752ab71c71" category="paragraph"><block ref="88bff0cbce979a98aecf9182f290f239" prefix="" category="inline-code"></block><block ref="2b2461cc41b3726827b2cb5fcb624e2e" prefix=" " category="inline-code"></block></block>
+  <block id="bc98cc711b3772fd9a044dd6fcbd1631" category="section-title">通过EKS插件安装Astra Trident</block>
+  <block id="0a77764215483fbccc22e1d77abfb50f" category="paragraph">A作用 是通过AWS验证、可与Amazon EKS配合使用。通过EKS加载项、您可以始终确保Amazon EKS集群安全稳定、并减少安装、配置和更新加载项所需的工作量。</block>
+  <block id="7184de869a88c49faff4f6482457e5cb" category="section-title">启用适用于AWS的Asta Trident加载项</block>
+  <block id="c630096ceb1c476f438ea2fc958bc665" category="open-title">EKS集群</block>
+  <block id="9ea02e0a94b03561cf2861dcac685125" category="paragraph">以下示例命令用于安装Asta Trdent EKS加载项：</block>
+  <block id="a483e3842dfe9b4c2af76a77cf2bb572" category="paragraph"><block ref="e695a6a298f39ac8b903c2a769db6ab4" prefix="" category="inline-code"></block><block ref="cd13c9a7fd0eef9fb0d553b5cac08792" prefix=" " category="inline-code"></block> (使用专用版本)</block>
+  <block id="e477faed39be08642267684bb501d931" category="open-title">管理控制台</block>
+  <block id="e8d532dbf6904e2793dbda6fd0d03818" category="list-text">打开Amazon EKS控制台，网址为<block ref="c4765fcd1a0f97cf67c0365ddc45d563" category="inline-link-rx"></block>。</block>
+  <block id="8d1588a59bc508adad8a62ccaaa1c610" category="list-text">在左侧导航窗格中，单击*群集*。</block>
+  <block id="32d9b71b3fc3fad1385ba62a9bf6bf46" category="list-text">单击要为其配置NetApp Trident CSI加载项的集群的名称。</block>
+  <block id="91e45a55d3dd23153429aac3c45c53ae" category="list-text">单击*Add-ones*，然后单击*Get more add-ones*。</block>
+  <block id="2fd89d18351d32a81158a0ff94206b31" category="list-text">在*S*择 加载项*页上，执行以下操作：</block>
+  <block id="d6821a378e60f781e319890caff45c30" category="list-text">在AWS Marketplace EKS-addons部分中、选中* NetApp Trident by Astra*复选框。</block>
+  <block id="5a378b18f7bf0c4cabc6c655cd2f535e" category="list-text">单击 * 下一步 * 。</block>
+  <block id="cacc1ddf612923b1c73b0a9a76659f42" category="list-text">在“*配置选定的附加项*设置”页面上，执行以下操作：</block>
+  <block id="149e81257342cd05b0256d010b0b4a37" category="list-text">选择要使用的*版本*。</block>
+  <block id="1df543472a35a3acfd632037832987f6" category="list-text">对于*Select IAM Role*，保留为*not set*。</block>
+  <block id="e873d41466e1383d951643c07a043d80" category="list-text">展开*可选配置设置*，遵循*附加配置架构*，并将*配置值*部分中的configurationvalues*参数设置为您在上一步中创建的roole-arn (值格式应为：<block ref="ee1eb31b5aebe5472fc52cb0ae20b077" prefix=" " category="inline-code"></block>)。如果您为冲突解决方法选择覆盖、则可以使用Amazon EKS附加设置覆盖现有附加项的一个或多个设置。如果未启用此选项、并且与现有设置存在冲突、则操作将失败。您可以使用生成的错误消息来解决冲突。在选择此选项之前、请确保Amazon EKS附加组件未管理您需要自行管理的设置。</block>
+  <block id="dfe4bfc5bd8b8d180411468fbdbb4033" category="list-text">选择“*下一步*”。</block>
+  <block id="fbadf292f84bef20d7678936dbe4c4ce" category="list-text">在*Review and add*页上，选择*Cree*。</block>
+  <block id="46bfc11fb8f185d278ea910b0052a317" category="paragraph">加载项安装完成后、您将看到已安装的加载项。</block>
+  <block id="7820fdb5d8b3ebe0c69c86cf8bd2d0cf" category="open-title">AWS命令行界面</block>
+  <block id="375fe5880d846c5b389735de8ae80b0a" category="list-text">创建<block ref="feef18acfb11dc53b7100577c6d640c4" prefix=" " category="inline-code"></block> 文件：</block>
+  <block id="dbc0f27a2aa9fd3fbef77c25870f8248" category="list-text">安装Astra Trident EKS附加软件"</block>
+  <block id="e907c98f301b06586956529abca9e22c" category="paragraph"><block ref="f9c32cfc7736c461770afa4dd4053bda" prefix="" category="inline-code"></block></block>
+  <block id="ee502e3f68953ecace683d05b827a6ae" category="section-title">更新Astra Trident EKS加载项</block>
+  <block id="41c9d4e34cce02a882f325b51fa9d2f4" category="list-text">检查FSxN Trident CSI加载项的当前版本。请替换<block ref="e2eb89f0ffaf521a0d2eeaffca04d117" prefix=" " category="inline-code"></block> 为您的集群名称。<block ref="7b5be2809a3021f978155d101cf059cf" prefix=" " category="inline-code"></block></block>
+  <block id="52b5830420efb96c3a91beb52bac3b23" category="paragraph">*示例输出：*</block>
+  <block id="9d5aa26aaf32741e908c5366c21ca9a5" category="list-text">将此加载项更新到上一步输出中的update下返回的版本。<block ref="00b585502b38c426d735887171ce6f84" prefix=" " category="inline-code"></block></block>
+  <block id="b3f252777a69b110667756babe83a98f" category="inline-link-macro">插件</block>
+  <block id="25626757a73152ece7fdadb90ede4b7c" category="inline-link-macro">Kubbernetes现场管理</block>
+  <block id="751f793ade8de1ed590e0f90ac05d8e1" category="paragraph">如果您删除了该<block ref="c23ab3adaec8ca15ff3ffd0971be6152" prefix=" " category="inline-code"></block> 选项、并且任何Amazon EKS附加设置与您的现有设置冲突、则更新Amazon EKS附加设置将失败；您将收到一条错误消息、以帮助您解决冲突。在指定此选项之前、请确保Amazon EKS附加组件不会管理您需要管理的设置、因为这些设置会被此选项覆盖。有关此设置的其他选项的详细信息，请参见 <block ref="aea621f0e078efb8367c5d5e894674cd" category="inline-link-macro-rx"></block>。有关Amazon EKS Kubenetes字段管理的详细信息，请参阅 <block ref="97bdcfd76d2ff3e4855f6b36ebad236e" category="inline-link-macro-rx"></block>。</block>
+  <block id="b0c6845b636be8c810182f985c930fed" category="list-text">打开Amazon EKS控制台<block ref="c4765fcd1a0f97cf67c0365ddc45d563" category="inline-link-rx"></block>。</block>
+  <block id="69bd32cd7d6c3b5f9de30250cec1b478" category="list-text">单击要更新的NetApp Trident CSI加载项的集群的名称。</block>
+  <block id="a02487427219ab03773fe3c66fa96556" category="list-text">单击*Add-ones*选项卡。</block>
+  <block id="1b11ccfac36888509b0b9fb0f99a4bbb" category="list-text">单击*Asta Trident by NetApp (Asta编辑)*，然后单击*Edit*(编辑*)。</block>
+  <block id="351442864548fcc84173a68a66b38f2d" category="list-text">在*Configure Astra Trident by Astr* NetApp页上，执行以下操作：</block>
+  <block id="f1b1f807d9e1301dcc6fd3e44d5de4bd" category="list-text">(可选)您可以展开*可选配置设置*并根据需要进行修改。</block>
+  <block id="3dca1b912e3d43e2a746fbcde32a6018" category="list-text">单击 * 保存更改 * 。</block>
+  <block id="5f06738a5749e735a4681f5c09e2bafc" category="paragraph">以下示例将更新EKS加载项：</block>
+  <block id="14aac489d4434a82a3f9f97e8fe91694" category="paragraph"><block ref="187beb49762f7fb831051ad42bd762fe" prefix="" category="inline-code"></block></block>
+  <block id="8d995c3ade9702f8b3d41df18d276fc0" category="section-title">卸载/删除Asta Trident EKS加载项</block>
+  <block id="d8c918c170a0768203b4c2a6218e22bf" category="paragraph">您可以通过两种方式删除Amazon EKS附加项：</block>
+  <block id="d43d72969793ea80734b71e9c2406b2a" category="list-text">*保留集群上的附加软件*–此选项将删除Amazon EKS对任何设置的管理。此外、它还会使Amazon EKS无法通知您更新、并在您启动更新后自动更新Amazon EKS附加项。但是、它会保留集群上的附加软件。此选项可使附加组件成为自管理安装、而不是Amazon EKS附加组件。通过此选项、此附加组件不会出现停机。保留命令中的<block ref="4b4ac0f998920a46fd2015e11d01d3e7" prefix=" " category="inline-code"></block> 选项以保留此附加项。</block>
+  <block id="4c467d48a00d885ea22b1e685b747492" category="list-text">*从您的集群中完全删除附加软件*–我们建议您仅在集群中没有依赖于此附加软件的资源时、才从集群中删除此附加软件。从命令中删除<block ref="4b4ac0f998920a46fd2015e11d01d3e7" prefix=" " category="inline-code"></block> 此选项<block ref="099af53f601532dbd31e0ea99ffdeb64" prefix=" " category="inline-code"></block> 以删除此加载项。</block>
+  <block id="577a7d77fb14f745abf0c5ee04b72879" category="admonition">如果此附加项具有关联的IAM帐户、则不会删除此IAM帐户。</block>
+  <block id="ae7c26e7d90f669e27bf9a36527336ec" category="list-text">在左侧导航窗格中，单击*群集*。</block>
+  <block id="99e7173540f126412137b25a0caaf2d1" category="list-text">单击要删除的NetApp Trident CSI加载项的集群的名称。</block>
+  <block id="8019e0dcd97c1bda9a4283c660df9424" category="list-text">单击*Add-ons*选项卡，然后单击*Astra Trident by NetApp。*</block>
+  <block id="03b194a23dcb353466fbfb7acff64363" category="list-text">单击 * 删除 * 。</block>
+  <block id="c8e9b5ea2470965edac225c56a879d07" category="list-text">在*Remove NetApp_trdent-operator con確 認*对话框中，执行以下操作：</block>
+  <block id="10aba138eb518a0cc15662934a1f6e18" category="list-text">如果您希望Amazon EKS停止管理此附加组件的设置、请选择*保留集群*。如果要在集群上保留附加软件、以便您可以自行管理附加软件的所有设置、请执行此操作。</block>
+  <block id="ecca191ac54751ba8120816fbe45777e" category="list-text">输入*NetApp_trdent-operator*。</block>
+  <block id="bb7c6bde1fc26965ada02923bac65350" category="paragraph">请使用集群的名称进行替换<block ref="e2eb89f0ffaf521a0d2eeaffca04d117" prefix=" " category="inline-code"></block> 、然后运行以下命令。</block>
+  <block id="3f0c01bb690234ddb3284c5ce5c26da2" category="paragraph"><block ref="c2f1a783b03bad400b0ebf4321b8a171" prefix="" category="inline-code"></block></block>
+  <block id="23e0e5bfdd7b1fef2ab4d932aae742e5" category="doc">配置存储后端</block>
+  <block id="8abaad4f18806e469a7b174572013ebf" category="paragraph">您可以使用存储在AWS机密管理器中的SVM凭据(用户名和密码)创建后端文件、如以下示例所示：</block>
+  <block id="090cc9ad205965bc3b1c62e3cce08769" category="paragraph">有关创建后端的信息、请参见以下页面：</block>
+  <block id="c3e86b30fe8148143701324ae1595af8" category="list-text"><block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix="" category="inline-code"></block>：配置的每个PV都是其自身Amazon FSx for NetApp ONTAP卷中的一个LUN。建议用于块存储。</block>
+  <block id="3878a0c92e55dbd3cdd9458330c2f1c3" category="list-text"><block ref="8321592ce24c8a122ecf26a63cfca407" prefix="" category="inline-code"></block>：配置的每个PV都是一个完整的Amazon FSx for NetApp ONTAP卷。建议用于NFS和SMB。</block>
+  <block id="eadd7f9188e84053efc871a14d0d3bd6" category="section-title">后端高级配置和示例</block>
+  <block id="7f0e60d0ce33fb596b81e7eb33f6a793" category="cell">集群或SVM管理LIF的IP地址可以指定完全限定域名(FQDN)。如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。如果在字段下提供<block ref="d731d2fecb66f9c4a30253bd316a220f" prefix=" " category="inline-code"></block><block ref="ac68bbf921d953d1cfab916cb6120864" prefix=" " category="inline-code"></block> 、则无需提供、<block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix=" " category="inline-code"></block> 因为Astra Trident会从AWS检索SVM<block ref="a6ea6092cb7b9c5f31909eb4be8fa5ea" prefix=" " category="inline-code"></block> 信息。因此、您必须提供SVM下某个用户的凭据(例如vsadmin)、并且该用户必须具有此<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 角色。</block>
+  <block id="ab2e083df601e1b7c7346487158ab13f" category="cell">"`100`"</block>
+  <block id="7a5bbb3c815084605b780e0cd6e810fd" category="cell"><block ref="89ffa293e05655bd6be9d422345be38a" prefix="" category="inline-code"></block></block>
+  <block id="2ab2b81dde76a2ec7ed3798f1538f823" category="cell">用于使用 ONTAP REST API 的布尔参数。*技术预览* <block ref="14d839191d1ecf387a15b5b0c802a8ae" prefix=" " category="inline-code"></block> 以**技术预览**的形式提供，建议用于测试环境，而不用于生产工作负载。如果设置为<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block>，Asta Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP登录角色必须有权访问<block ref="a9ba4dc88fa11d44cc7c0c918d174778" prefix=" " category="inline-code"></block> 应用程序。预定义的和角色可以满足这一<block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 要求<block ref="fdb6ba311fad29ec53069808f10ebef4" prefix=" " category="inline-code"></block> 。</block>
+  <block id="1f43150a13f29c496f07ed4a9750b2ff" category="list-text">一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。</block>
+  <block id="9817ca035dba7bc4123be2c0bf280d66" category="doc">配置存储类和PVC</block>
+  <block id="0f69899f9d68f93d2030d9b98790470e" category="paragraph">配置Kubnetes StorageClass对象并创建存储类、以指示Astra Trident如何配置卷。创建一个使用已配置的Kubernetes StorageClass来请求对PV的访问的永久性卷(PV)和永久性卷克莱姆(PVC)。然后、您可以将PV挂载到POD。</block>
+  <block id="b92c56f76eb1fd7e747c63e99a829e57" category="paragraph"><block ref="da3f7f170e13df7f56e057fc4226aa85" category="inline-link-rx"></block>将Astra Trident标识为用于该类的配置程序、指示Astra Trident如何配置卷。例如：</block>
+  <block id="c3d2188822ac025c91b768888f8af01e" category="paragraph">此示例显示了一个具有rwx访问权限的基本PVC，该PVC与名为的StorageClass关联<block ref="1c62ceba602064183a6346b85fe26c96" prefix=" " category="inline-code"></block>。</block>
+  <block id="9079a9ed8262f493ba60c3911523cbae" category="section-title">Asta Trident属性</block>
+  <block id="335c3e1decb27542c24b470670a97381" category="paragraph">这些参数用于确定应使用哪些A作用 于Astra三端存储池来配置给定类型的卷。</block>
+  <block id="8067a6840467d2024a341120a4e2440e" category="list-text">基于凭据(建议)：将凭据安全地存储在AWS机密管理器中。您可以使用文件系统的用户、也可以使用<block ref="679500f227997b45be97e3ca8115c678" prefix=" " category="inline-code"></block><block ref="6173aa5206484b5224450952747c7148" prefix=" " category="inline-code"></block> 为SVM配置的用户。</block>
+  <block id="53f64465dc89ebfc8f426b3cdf4d1614" category="sidebar">创建IAM角色和AWS密钥</block>
+  <block id="0a3c6c3b1b9418c792ec73b934ca8fdd" category="sidebar">配置存储后端</block>
+  <block id="50399b7d6597b32502708277dd2be03c" category="sidebar">配置存储类和PVC</block>
 </blocks>

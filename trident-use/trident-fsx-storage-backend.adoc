@@ -1,0 +1,359 @@
+---
+sidebar: sidebar 
+permalink: trident-use/trident-fsx-storage-backend.html 
+keywords: Amazon FSx for NetApp ONTAP, FSx for ONTAP, deploy Trident, integrate Trident, Trident 
+summary: '通过将Asta三端存储与Amazon FSx for NetApp ONTAP 结合使用、您可以确保在Amazon Elastic Kubelnetes Service (EKS)中运行的Kubelnetes集群可以配置ONTAP 支持的块和文件永久性卷。' 
+---
+= 配置存储后端
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== ONTAP SAN和NAS驱动程序集成
+
+您可以使用存储在AWS机密管理器中的SVM凭据(用户名和密码)创建后端文件、如以下示例所示：
+
+[role="tabbed-block"]
+====
+.YAML
+--
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-ontap-nas
+spec:
+  version: 1
+  storageDriverName: ontap-nas
+  backendName: tbc-ontap-nas
+  svm: svm-name
+  aws:
+    fsxFilesystemID: fs-xxxxxxxxxx
+  credentials:
+    name: "arn:aws:secretsmanager:us-west-2:xxxxxxxx:secret:secret-name"
+    type: awsarn
+----
+--
+.JSON
+--
+[listing]
+----
+{
+  "apiVersion": "trident.netapp.io/v1",
+  "kind": "TridentBackendConfig",
+  "metadata": {
+    "name": "backend-tbc-ontap-nas"
+  },
+  "spec": {
+    "version": 1,
+    "storageDriverName": "ontap-nas",
+    "backendName": "tbc-ontap-nas",
+    "svm": "svm-name",
+    "aws": {
+      "fsxFilesystemID": "fs-xxxxxxxxxx"
+    },
+    "managementLIF": null,
+    "credentials": {
+      "name": "arn:aws:secretsmanager:us-west-2:xxxxxxxx:secret:secret-name",
+      "type": "awsarn"
+    }
+  }
+}
+
+----
+--
+====
+有关创建后端的信息、请参见以下页面：
+
+* link:ontap-nas.html["使用 ONTAP NAS 驱动程序配置后端"]
+* link:ontap-san.html["使用 ONTAP SAN 驱动程序配置后端"]
+
+
+
+
+== FSx for ONTAP驱动程序详细信息
+
+您可以使用以下驱动程序将Astra Trident与适用于NetApp ONTAP 的Amazon FSx集成：
+
+* `ontap-san`：配置的每个PV都是其自身Amazon FSx for NetApp ONTAP卷中的一个LUN。建议用于块存储。
+* `ontap-nas`：配置的每个PV都是一个完整的Amazon FSx for NetApp ONTAP卷。建议用于NFS和SMB。
+* `ontap-san-economi` ：为 NetApp ONTAP 卷配置的每个 PV 都是一个 LUN ，每个 Amazon FSX 具有可配置的 LUN 数量。
+* `ontap-nas-economy.` ：配置的每个 PV 都是一个 qtree ，对于 NetApp ONTAP 卷，每个 Amazon FSx 的 qtree 数量是可配置的。
+* `ontap-nas-flexgroup` ：配置的每个 PV 都是适用于 NetApp ONTAP FlexGroup 卷的完整 Amazon FSX 。
+
+
+有关驱动程序详细信息、请参见 link:../trident-use/ontap-nas.html["NAS驱动程序"] 和 link:../trident-use/ontap-san.html["SAN驱动程序"]。
+
+
+
+== 示例配置
+
+.使用密钥管理器配置AWS FSx for ONTAP
+[%collapsible]
+====
+[listing]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-ontap-nas
+spec:
+  version: 1
+  storageDriverName: ontap-nas
+  backendName: tbc-ontap-nas
+  svm: svm-name
+  aws:
+    fsxFilesystemID: fs-xxxxxxxxxx
+  managementLIF:
+  credentials:
+    name: "arn:aws:secretsmanager:us-west-2:xxxxxxxx:secret:secret-name"
+    type: awsarn
+----
+====
+.配置SMB卷的存储类
+[%collapsible]
+====
+使用 `nasType`， `node-stage-secret-name`，和 `node-stage-secret-namespace`、您可以指定SMB卷并提供所需的Active Directory凭据。SMB卷支持使用 `ontap-nas` 仅限驱动程序。
+
+[listing]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nas-smb-sc
+provisioner: csi.trident.netapp.io
+parameters:
+  backendType: "ontap-nas"
+  trident.netapp.io/nasType: "smb"
+  csi.storage.k8s.io/node-stage-secret-name: "smbcreds"
+  csi.storage.k8s.io/node-stage-secret-namespace: "default"
+----
+====
+
+
+== 后端高级配置和示例
+
+有关后端配置选项，请参见下表：
+
+[cols="3"]
+|===
+| 参数 | Description | 示例 
+
+
+| `ve版本` |  | 始终为 1 
+
+
+| `storageDriverName` | 存储驱动程序的名称 | `ontap-nas`， `ontap-nas-economy`， `ontap-nas-flexgroup`， `ontap-san`， `ontap-san-economy` 
+
+
+| `backendName` | 自定义名称或存储后端 | 驱动程序名称 + "_" + dataLIF 
+
+
+| `m年` 月 日 | 集群或SVM管理LIF的IP地址可以指定完全限定域名(FQDN)。如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。如果在字段下提供 `fsxFilesystemID` `aws` 、则无需提供、 `managementLIF` 因为Astra Trident会从AWS检索SVM `managementLIF` 信息。因此、您必须提供SVM下某个用户的凭据(例如vsadmin)、并且该用户必须具有此 `vsadmin` 角色。 | "10.0.0.1 " ， "2001 ： 1234 ： abcd ：：： fefe] " 
+
+
+| `dataLIF` | 协议 LIF 的 IP 地址。
+
+* ONTAP NAS驱动程序*：建议指定dataLIF。如果未提供此参数、则Astra Trident会从SVM提取数据LIF。您可以指定用于NFS挂载操作的完全限定域名(FQDN)、从而可以创建循环DNS、以便在多个数据LIF之间实现负载平衡。可以在初始设置后更改。请参见 。
+
+* ONTAP SAN驱动程序*：不为iSCSI指定。Astra Trident使用ONTAP 选择性LUN映射来发现建立多路径会话所需的iSCI LIF。如果明确定义了dataLIF、则会生成警告。
+
+如果使用IPv6标志安装了Asta三元组、则可以设置为使用IPv6地址。IPv6地址必须用方括号定义、例如：[28e8：d9fb：a825：b7bf：69a8：d02f：9e7b：3555]。 |  
+
+
+| `autosExportPolicy` | 启用自动创建和更新导出策略[布尔值]。使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | `false` 
+
+
+| `autosExportCIDR` | 用于筛选Kubbernetes节点IP的CIDR列表 `autoExportPolicy` 已启用。
+
+使用 `autoExportPolicy` 和 `autoExportCIDRs` 选项、Astra Trident可以自动管理导出策略。 | "["0.0.0.0/0 "、"：：/0 "]" 
+
+
+| `标签` | 要应用于卷的一组任意 JSON 格式的标签 | "" 
+
+
+| `客户端证书` | 客户端证书的 Base64 编码值。用于基于证书的身份验证 | "" 
+
+
+| `clientPrivateKey` | 客户端专用密钥的 Base64 编码值。用于基于证书的身份验证 | "" 
+
+
+| `trustedCACertifate` | 受信任 CA 证书的 Base64 编码值。可选。用于基于证书的身份验证。 | "" 
+
+
+| `用户名` | 用于连接到集群或SVM的用户名。用于基于凭据的身份验证。例如、vsadmin。 |  
+
+
+| `密码` | 用于连接到集群或SVM的密码。用于基于凭据的身份验证。 |  
+
+
+| `sVM` | 要使用的 Storage Virtual Machine | 如果指定SVM管理LIF则派生。 
+
+
+| `s存储前缀` | 在 SVM 中配置新卷时使用的前缀。创建后无法修改。要更新此参数、您需要创建一个新的后端。 | `trident` 
+
+
+| `limitAggregateUsage` | *请勿为适用于NetApp ONTAP 的Amazon FSX指定。*提供的 `fsxadmin` 和 `vsadmin` 请勿包含检索聚合使用情况所需的权限、并使用Astra Trident对其进行限制。 | 请勿使用。 
+
+
+| `limitVolumeSize` | 如果请求的卷大小超过此值、则配置失败。此外、还会限制它为qtree和LUN以及管理的卷的最大大小 `qtreesPerFlexvol` 选项用于自定义每个FlexVol 的最大qtree数。 | " （默认情况下不强制实施） 
+
+
+| `lunsPerFlexvol` | 每个FlexVol 的最大LUN数必须在50、200范围内。仅限SAN。 | "`100`" 
+
+
+| `debugTraceFlags` | 故障排除时要使用的调试标志。例如、｛"api"：false、"method "：true｝不使用 `debugTraceFlags` 除非您正在进行故障排除并需要详细的日志转储。 | 空 
+
+
+| `nfsMountOptions` | NFS挂载选项的逗号分隔列表。Kubernetes持久卷的挂载选项通常在存储类中指定、但如果在存储类中未指定挂载选项、则Astra Trident将回退到使用存储后端配置文件中指定的挂载选项。如果在存储类或配置文件中未指定挂载选项、则Astra Trident不会在关联的永久性卷上设置任何挂载选项。 | "" 
+
+
+| `nasType` | 配置NFS或SMB卷创建。选项包括 `nfs`， `smb`或为空。*必须设置为 `smb` 对于SMB卷。*如果设置为空、则默认为NFS卷。 | `nfs` 
+
+
+| `qtreesPerFlexvol` | 每个 FlexVol 的最大 qtree 数，必须在 50 ， 300 范围内 | `"200"` 
+
+
+| `smbShare` | 您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称、或者允许Asta三端到功能创建SMB共享的名称。
+
+对于Amazon FSx for ONTAP后端、此参数是必需的。 | `smb-share` 
+
+
+| `useREST` | 用于使用 ONTAP REST API 的布尔参数。*技术预览* 
+`useREST` 以**技术预览**的形式提供，建议用于测试环境，而不用于生产工作负载。如果设置为 `true`，Asta Trident将使用ONTAP REST API与后端进行通信。此功能需要使用ONTAP 9.11.1及更高版本。此外、使用的ONTAP登录角色必须有权访问 `ontap` 应用程序。预定义的和角色可以满足这一 `vsadmin` 要求 `cluster-admin` 。 | `false` 
+
+
+| `aws` | 您可以在AWS FSx for ONTAP的配置文件中指定以下内容：
+- `fsxFilesystemID`：指定AWS FSx文件系统的ID。
+- `apiRegion`：AWS API区域名称。
+- `apikey`：AWS API密钥。
+- `secretKey`：AWS机密密钥。 | ``
+``
+
+
+`""`
+`""`
+`""` 
+
+
+| `credentials` | 指定要存储在AWS机密管理器中的FSx SVM凭据。
+- `name`：密钥的Amazon资源名称(ARN)、其中包含SVM的凭据。
+- `type`：设置为 `awsarn`。
+请参见 link:https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html["创建AWS机密管理器密钥"^] 有关详细信息 ... |  
+|===
+
+
+== 用于配置卷的后端配置选项
+
+您可以在中使用这些选项控制默认配置 `defaults` 配置部分。有关示例，请参见以下配置示例。
+
+[cols="3"]
+|===
+| 参数 | Description | Default 
+
+
+| `spaceAllocation` | LUN 的空间分配 | `true` 
+
+
+| `s页面预留` | 空间预留模式； " 无 " （精简）或 " 卷 " （厚） | `无` 
+
+
+| `sSnapshot 策略` | 要使用的 Snapshot 策略 | `无` 
+
+
+| `qosPolicy` | 要为创建的卷分配的 QoS 策略组。选择每个存储池或后端的qosPolicy或adaptiveQosPolicy之一。在 Astra Trident 中使用 QoS 策略组需要 ONTAP 9.8 或更高版本。建议使用非共享QoS策略组、并确保策略组分别应用于每个成分卷。共享 QoS 策略组将对所有工作负载的总吞吐量实施上限。 | " 
+
+
+| `adaptiveQosPolicy` | 要为创建的卷分配的自适应 QoS 策略组。选择每个存储池或后端的qosPolicy或adaptiveQosPolicy之一。不受 ontap-nas-economy. | " 
+
+
+| `sSnapshot 预留` | 为快照预留的卷百分比为 "0" | 条件 `snapshotPolicy` 为 `none`， `else` " 
+
+
+| `splitOnClone` | 创建克隆时，从其父级拆分该克隆 | `false` 
+
+
+| `加密` | 在新卷上启用NetApp卷加密(NVE)；默认为`false`。要使用此选项，必须在集群上获得 NVE 的许可并启用 NVE 。如果在后端启用了NAE、则在Astra Trident中配置的任何卷都将启用NAE。有关详细信息、请参见： link:../trident-reco/security-reco.html["Astra Trident如何与NVE和NAE配合使用"]。 | `false` 
+
+
+| `luksEncryption` | 启用LUKS加密。请参见 link:../trident-reco/security-reco.html#Use-Linux-Unified-Key-Setup-(LUKS)["使用Linux统一密钥设置(LUKS)"]。仅限SAN。 | "" 
+
+
+| `分层策略` | 要使用的层策略	`none` | `snapshot-only` 适用于ONTAP 9.5 SVM-DR之前的配置 
+
+
+| `unixPermissions` | 新卷的模式。*对于SMB卷保留为空。* | "" 
+
+
+| `securityStyle` | 新卷的安全模式。NFS支持 `mixed` 和 `unix` 安全模式。SMB支持 `mixed` 和 `ntfs` 安全模式。 | NFS默认值为 `unix`。SMB默认值为 `ntfs`。 
+|===
+
+
+== 准备配置SMB卷
+
+您可以使用配置SMB卷 `ontap-nas` 驱动程序。完成前 <<ONTAP SAN和NAS驱动程序集成>> 完成以下步骤。
+
+.开始之前
+才能使用配置SMB卷 `ontap-nas` 驱动程序、则必须满足以下条件。
+
+* 一个Kubernetes集群、其中包含一个Linux控制器节点以及至少一个运行Windows Server 2019的Windows工作节点。Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+* 至少一个包含Active Directory凭据的Astra Trident密钥。以生成密钥 `smbcreds`：
++
+[listing]
+----
+kubectl create secret generic smbcreds --from-literal username=user --from-literal password='password'
+----
+* 配置为Windows服务的CSI代理。配置 `csi-proxy`、请参见 link:https://github.com/kubernetes-csi/csi-proxy["GitHub：CSI代理"^] 或 link:https://github.com/Azure/aks-engine/blob/master/docs/topics/csi-proxy-windows.md["GitHub：适用于Windows的CSI代理"^] 适用于在Windows上运行的Kubernetes节点。
+
+
+.步骤
+. 创建SMB共享。您可以使用以下两种方式之一创建SMB管理共享 link:https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/what-is-microsoft-management-console["Microsoft管理控制台"^] 共享文件夹管理单元或使用ONTAP 命令行界面。要使用ONTAP 命令行界面创建SMB共享、请执行以下操作：
++
+.. 如有必要，为共享创建目录路径结构。
++
+。 `vserver cifs share create` 命令会在创建共享期间检查-path选项中指定的路径。如果指定路径不存在，则命令将失败。
+
+.. 创建与指定SVM关联的SMB共享：
++
+[listing]
+----
+vserver cifs share create -vserver vserver_name -share-name share_name -path path [-share-properties share_properties,...] [other_attributes] [-comment text]
+----
+.. 验证是否已创建共享：
++
+[listing]
+----
+vserver cifs share show -share-name share_name
+----
++
+
+NOTE: 请参见 link:https://docs.netapp.com/us-en/ontap/smb-config/create-share-task.html["创建 SMB 共享"^] 了解完整详细信息。
+
+
+
+. 创建后端时、必须配置以下内容以指定SMB卷。有关适用于ONTAP 后端的所有FSX配置选项、请参见 link:trident-fsx-examples.html["适用于ONTAP 的FSX配置选项和示例"]。
++
+[cols="3"]
+|===
+| 参数 | Description | 示例 
+
+
+| `smbShare` | 您可以指定以下选项之一：使用Microsoft管理控制台或ONTAP命令行界面创建的SMB共享的名称、或者允许Asta三端到功能创建SMB共享的名称。
+
+对于Amazon FSx for ONTAP后端、此参数是必需的。 | `smb-share` 
+
+
+| `nasType` | *必须设置为 `smb`如果为空、则默认为 `nfs`。 | `smb` 
+
+
+| `securityStyle` | 新卷的安全模式。*必须设置为 `ntfs` 或 `mixed` 用于SMB卷。* | `ntfs` 或 `mixed` 对于SMB卷 
+
+
+| `unixPermissions` | 新卷的模式。对于SMB卷、*必须留空。* | "" 
+|===
+

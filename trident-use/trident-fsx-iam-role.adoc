@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: trident-use/trident-fsx-iam-role.html 
+keywords: Amazon FSx for NetApp ONTAP, FSx for ONTAP, deploy Trident, integrate Trident, Trident 
+summary: '通过将Asta三端存储与Amazon FSx for NetApp ONTAP 结合使用、您可以确保在Amazon Elastic Kubelnetes Service (EKS)中运行的Kubelnetes集群可以配置ONTAP 支持的块和文件永久性卷。' 
+---
+= 创建IAM角色和AWS机密
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以通过作为AWS IAM角色进行身份验证(而不是提供显式AWS凭据)来配置Kubbernetes Pod以访问AWS资源。
+
+
+NOTE: 要使用AWS IAM角色进行身份验证、您必须使用EKS部署Kubenetes集群。
+
+
+
+== 创建AWS机密管理器密钥
+
+以下示例将创建一个AWS机密管理器密钥、用于存储ASRA Trident CSI凭据：
+
+`aws secretsmanager create-secret --name trident-secret --description "Trident CSI credentials" --secret-string "{"user":"vsadmin","password":"<svmpassword>"}"`
+
+
+
+== 创建IAM策略
+
+以下示例将使用AWS命令行界面创建IAM策略：
+
+`aws iam create-policy --policy-name AmazonFSxNCSIDriverPolicy --policy-document file://policy.json --description "This policy grants access to Trident CSI to FSxN and Secret manager"`
+
+*策略JSON文件*：
+
+[listing]
+----
+policy.json:
+{
+    "Statement": [
+        {
+            "Action": [
+                "fsx:DescribeFileSystems",
+                "fsx:DescribeVolumes",
+                "fsx:CreateVolume",
+                "fsx:RestoreVolumeFromSnapshot",
+                "fsx:DescribeStorageVirtualMachines",
+                "fsx:UntagResource",
+                "fsx:UpdateVolume",
+                "fsx:TagResource",
+                "fsx:DeleteVolume"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": "secretsmanager:GetSecretValue",
+            "Effect": "Allow",
+            "Resource": "arn:aws:secretsmanager:<aws-region>:<aws-account-id>:secret:<aws-secret-manager-name>"
+        }
+    ],
+    "Version": "2012-10-17"
+}
+----
+
+
+== 服务帐户的创建和IAM角色
+
+以下示例将在EKS中为服务帐户创建IAM角色：
+
+`eksctl create iamserviceaccount --name trident-controller --namespace trident --cluster <my-cluster> --role-name <AmazonEKS_FSxN_CSI_DriverRole> --role-only --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonFSxNCSIDriverPolicy --approve`

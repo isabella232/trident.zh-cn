@@ -14,13 +14,26 @@ summary: '通过将Asta三端存储与Amazon FSx for NetApp ONTAP 结合使用�
 [role="lead"]
 https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["适用于 NetApp ONTAP 的 Amazon FSX"^] 是一种完全托管的AWS服务、可使客户启动和运行由NetApp ONTAP 存储操作系统提供支持的文件系统。借助适用于ONTAP 的FSx、您可以利用您熟悉的NetApp功能、性能和管理功能、同时利用在AWS上存储数据的简便性、灵活性、安全性和可扩展性。FSX for ONTAP 支持ONTAP 文件系统功能和管理API。
 
-
-
-== 概述
+您可以将适用于NetApp ONTAP 的Amazon FSX文件系统与Astra Trident集成、以确保在Amazon Elastic Kubernetes Service (EKS)中运行的Kubernetes集群可以配置由ONTAP 提供支持的块和文件永久性卷。
 
 文件系统是 Amazon FSX 中的主要资源，类似于内部部署的 ONTAP 集群。在每个 SVM 中，您可以创建一个或多个卷，这些卷是将文件和文件夹存储在文件系统中的数据容器。借助适用于 NetApp ONTAP 的 Amazon FSX ， Data ONTAP 将作为云中的托管文件系统提供。新的文件系统类型称为 * NetApp ONTAP * 。
 
 通过将 Astra Trident 与适用于 NetApp ONTAP 的 Amazon FSx 结合使用，您可以确保在 Amazon Elastic Kubernetes Service （ EKS ）中运行的 Kubernetes 集群可以配置由 ONTAP 备份的块和文件永久性卷。
+
+
+
+== 要求
+
+此外 link:../trident-get-started/requirements.html["Astra Trident 要求"]要将适用于ONTAP 的FSx与Astra Trident集成、您需要：
+
+* 已安装 `kubectl` 的现有 Amazon EKS 集群或自管理 Kubernetes 集群。
+* 可从集群的工作节点访问的现有Amazon FSx for NetApp ONTAP文件系统和Storage Virtual Machine (SVM)。
+* 为准备工作的工作节点 link:worker-node-prep.html["NFS或iSCSI"]。
++
+
+NOTE: 确保按照Amazon Linux和Ubuntu所需的节点准备步骤进行操作 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html["Amazon Machine 映像"^] （ AMIS ），具体取决于您的 EKS AMI 类型。
+
+
 
 
 
@@ -30,7 +43,7 @@ https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["适用
 +
 ** SMB卷支持使用 `ontap-nas` 仅限驱动程序。
 ** Asta Trident EKS加载项不支持SMB卷。
-** Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。
+** Astra Trident仅支持将SMB卷挂载到Windows节点上运行的Pod。请参见 <<准备配置SMB卷>> 了解详细信息。
 
 
 * 在Astra Drident 24.02之前的版本中、在启用了自动备份的Amazon FSx文件系统上创建的卷无法被Drident删除。要在Asta三端到高24.02或更高版本中阻止此问题描述、请指定 `fsxFilesystemID`、AWS `apiRegion`、AWS `apikey`和AWS `secretKey` 在AWS FSx for ONTAP的后端配置文件中。
@@ -42,103 +55,22 @@ NOTE: 如果要为Asta Trident指定IAM角色、则可以省略指定 `apiRegion
 
 
 
-== FSx for ONTAP驱动程序详细信息
-
-您可以使用以下驱动程序将Astra Trident与适用于NetApp ONTAP 的Amazon FSx集成：
-
-* `ontap-san` ：配置的每个 PV 都是其自己的 Amazon FSX for NetApp ONTAP 卷中的一个 LUN 。
-* `ontap-san-economi` ：为 NetApp ONTAP 卷配置的每个 PV 都是一个 LUN ，每个 Amazon FSX 具有可配置的 LUN 数量。
-* `ONONTAP NAS` ：配置的每个 PV 都是适用于 NetApp ONTAP 的完整 Amazon FSX 卷。
-* `ontap-nas-economy.` ：配置的每个 PV 都是一个 qtree ，对于 NetApp ONTAP 卷，每个 Amazon FSx 的 qtree 数量是可配置的。
-* `ontap-nas-flexgroup` ：配置的每个 PV 都是适用于 NetApp ONTAP FlexGroup 卷的完整 Amazon FSX 。
-
-
-有关驱动程序详细信息、请参见 link:../trident-use/ontap-nas.html["NAS驱动程序"] 和 link:../trident-use/ontap-san.html["SAN驱动程序"]。
-
-
-
 == 身份验证
 
 Astra Trident提供两种身份验证模式。
 
-* 基于证书： Astra Trident 将使用 SVM 上安装的证书与 FSX 文件系统上的 SVM 进行通信。
-* 基于凭据：您可以使用文件系统的 `fsxadmin` 用户或为 SVM 配置的 `vsadmin` 用户。
+* 基于凭据(建议)：将凭据安全地存储在AWS机密管理器中。您可以使用文件系统的用户、也可以使用 `fsxadmin` `vsadmin` 为SVM配置的用户。
 +
 
 WARNING: Astra Trident应作为运行 `vsadmin` SVM用户或具有相同角色的其他名称的用户。适用于NetApp ONTAP 的Amazon FSX具有 `fsxadmin` 有限更换ONTAP 的用户 `admin` 集群用户。我们强烈建议使用 `vsadmin` 使用Astra Trident。
 
+* 基于证书： Astra Trident 将使用 SVM 上安装的证书与 FSX 文件系统上的 SVM 进行通信。
 
-
-您可以更新后端以在基于凭据的方法和基于证书的方法之间移动。但是、如果您尝试提供*凭据和证书*、则后端创建将失败。要切换到其他身份验证方法、必须从后端配置中删除现有方法。
 
 有关启用身份验证的详细信息、请参阅适用于您的驱动程序类型的身份验证：
 
 * link:ontap-nas-prep.html["ONTAP NAS身份验证"]
 * link:ontap-san-prep.html["ONTAP SAN身份验证"]
-
-
-
-
-== 适用于EKS的云身份
-
-通过云身份、Kubnetes Pod可以通过作为AWS IAM角色进行身份验证来访问AWS资源、而不是提供显式AWS凭据。
-
-要在AWS中利用云身份、您必须：
-
-* 使用EKS部署的Kubenetes集群
-* 已安装Asta三项功能、其中包括 `cloudProvider` 指定 `"AWS"` 和 `cloudIdentity` 指定AWS IAM角色。
-+
-[role="tabbed-block"]
-====
-.Trident 运算符
---
-要使用三端运算符安装Astra三端、请编辑 `tridentorchestrator_cr.yaml` 设置 `cloudProvider` to `"AWS"` 并设置 `cloudIdentity` 分配给AWS IAM角色。
-
-例如：
-
-[listing]
-----
-apiVersion: trident.netapp.io/v1
-kind: TridentOrchestrator
-metadata:
-  name: trident
-spec:
-  debug: true
-  namespace: trident
-  imagePullPolicy: IfNotPresent
-  cloudProvider: "AWS"
-  cloudIdentity: "'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/astratrident-role'"
-----
---
-.掌舵
---
-使用以下环境变量设置*云提供程序*和*云身份*标志的值：
-
-`export CP="AWS"`
-`export CI="'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/astratrident-role'"`
-
-以下示例将安装Asta Dent和Sets `cloudProvider` to `AWS` 使用环境变量 `$CP` 并使用环境变量设置"云 标识" `$CI`：
-
-[listing]
-----
-helm install trident trident-operator-100.2406.0.tgz --set cloudProvider=$CP --set cloudIdentity=$CI
-----
---
-.<code>tridentctl</code>
---
-使用以下环境变量设置*云提供程序*和*云身份*标志的值：
-
-`export CP="AWS"`
-`export CI="'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/astratrident-role'"`
-
-以下示例将安装Asta Dent并设置 `cloud-provider` 标记为 `$CP`，和 `cloud-identity` to `$CI`：
-
-[listing]
-----
-tridentctl install --cloud-provider=$CP --cloud-identity="$CI" -n trident
-----
---
-====
 
 
 

@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: trident-use/trident-fsx-deploy-sample.html 
+keywords: map backends, storage classes, trident backend, ontap-nas, ontap-nas-economy, ontap-nas-flexgroups, options, storageclasses, fsx 
+summary: 了解适用于ONTAP 的Amazon FSX的后端配置选项。本节提供了后端配置示例。 
+---
+= 部署示例应用程序
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+部署示例应用程序。
+
+.步骤
+. 将卷挂载到Pod中。
++
+[listing]
+----
+kubectl create -f pv-pod.yaml
+----
++
+以下示例显示了将PVC连接到POD的基本配置：*基本配置*：
+
++
+[listing]
+----
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pv-pod
+spec:
+  volumes:
+    - name: pv-storage
+      persistentVolumeClaim:
+       claimName: basic
+  containers:
+    - name: pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/my/mount/path"
+          name: pv-storage
+----
++
+
+NOTE: 您可以使用监控进度 `kubectl get pod --watch`。
+
+. 验证卷是否已挂载到上 `/my/mount/path`。
++
+[listing]
+----
+kubectl exec -it task-pv-pod -- df -h /my/mount/path
+----
+
+
+[listing]
+----
+Filesystem                                                        Size  Used Avail Use% Mounted on
+192.168.188.78:/trident_pvc_ae45ed05_3ace_4e7c_9080_d2a83ae03d06  1.1G  320K  1.0G   1% /my/mount/path
+----
+. 现在、您可以删除Pod。Pod应用程序将不再存在、但卷将保留。
++
+[listing]
+----
+kubectl delete pod task-pv-pod
+----
+
